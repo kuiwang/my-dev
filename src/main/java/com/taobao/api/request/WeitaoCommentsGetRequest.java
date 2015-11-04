@@ -1,0 +1,150 @@
+package com.taobao.api.request;
+
+import java.util.Map;
+
+import com.taobao.api.ApiRuleException;
+import com.taobao.api.TaobaoRequest;
+import com.taobao.api.internal.util.RequestCheckUtils;
+import com.taobao.api.internal.util.TaobaoHashMap;
+import com.taobao.api.response.WeitaoCommentsGetResponse;
+
+/**
+ * TOP API: taobao.weitao.comments.get request
+ * 
+ * @author auto create
+ * @since 1.0, 2014-11-02 16:51:48
+ */
+public class WeitaoCommentsGetRequest implements TaobaoRequest<WeitaoCommentsGetResponse> {
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    private Long timestamp;
+
+    /**
+     * 翻页时当前页，如果time_stamp参数不设置，此值必需传入<br />
+     * 支持最小值为：1
+     */
+    private Long currentPage;
+
+    /**
+     * 向前后翻页，direction=0，向上翻;direction=1 向下翻<br />
+     * 支持最大值为：1<br />
+     * 支持最小值为：0<br />
+     * 支持的最大列表长度为：2
+     */
+    private Long direction;
+
+    /**
+     * 查询评论所对应feed的Id<br />
+     * 支持最小值为：1
+     */
+    private Long feedId;
+
+    /**
+     * 翻页查询一页大小<br />
+     * 支持最大值为：100<br />
+     * 支持最小值为：1
+     */
+    private Long pageSize;
+
+    /**
+     * 翻页时间戳，没有时间参数，则说明是跳页查询或者第一页，current_page有效，direction无效；有时间参数，则说明是上下翻页
+     * ，current_page无效，direction有效；
+     * 如果current_page=1，则time_stamp无效，强制刷新为第一页。<br />
+     * 支持的最大列表长度为：15
+     */
+    private Long timeStamp;
+
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Long getCurrentPage() {
+        return this.currentPage;
+    }
+
+    public void setDirection(Long direction) {
+        this.direction = direction;
+    }
+
+    public Long getDirection() {
+        return this.direction;
+    }
+
+    public void setFeedId(Long feedId) {
+        this.feedId = feedId;
+    }
+
+    public Long getFeedId() {
+        return this.feedId;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Long getPageSize() {
+        return this.pageSize;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public Long getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getApiMethodName() {
+        return "taobao.weitao.comments.get";
+    }
+
+    public Map<String, String> getTextParams() {
+        TaobaoHashMap txtParams = new TaobaoHashMap();
+        txtParams.put("current_page", this.currentPage);
+        txtParams.put("direction", this.direction);
+        txtParams.put("feed_id", this.feedId);
+        txtParams.put("page_size", this.pageSize);
+        txtParams.put("time_stamp", this.timeStamp);
+        if (this.udfParams != null) {
+            txtParams.putAll(this.udfParams);
+        }
+        return txtParams;
+    }
+
+    public void putOtherTextParam(String key, String value) {
+        if (this.udfParams == null) {
+            this.udfParams = new TaobaoHashMap();
+        }
+        this.udfParams.put(key, value);
+    }
+
+    public Class<WeitaoCommentsGetResponse> getResponseClass() {
+        return WeitaoCommentsGetResponse.class;
+    }
+
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
+        RequestCheckUtils.checkMaxValue(direction, 1L, "direction");
+        RequestCheckUtils.checkMinValue(direction, 0L, "direction");
+        RequestCheckUtils.checkNotEmpty(feedId, "feedId");
+        RequestCheckUtils.checkMinValue(feedId, 1L, "feedId");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+}

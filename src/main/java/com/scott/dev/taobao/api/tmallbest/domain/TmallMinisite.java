@@ -1,0 +1,60 @@
+package com.scott.dev.taobao.api.tmallbest.domain;
+
+/**
+ * 天猫搜索Minisite信息
+ */
+public class TmallMinisite {
+
+    /**
+     * 店铺id
+     */
+    private Long id;
+
+    /**
+     * 店铺优惠信息
+     */
+    private String promotions;
+
+    /**
+     * 店铺名字
+     */
+    private String title;
+
+    /**
+     * 店铺类型
+     */
+    private Long type;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPromotions() {
+        return this.promotions;
+    }
+
+    public void setPromotions(String promotions) {
+        this.promotions = promotions;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
+    }
+
+}
