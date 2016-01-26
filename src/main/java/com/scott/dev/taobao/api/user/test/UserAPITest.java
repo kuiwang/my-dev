@@ -11,6 +11,7 @@ public class UserAPITest {
     //沙箱环境调用地址
 
     protected static String testUrl = "http://gw.api.tbsandbox.com/router/rest";
+
     //protected static String testUrl = "http://gw.api.taobao.com/router/rest";
 
     protected static String appkey = "test";

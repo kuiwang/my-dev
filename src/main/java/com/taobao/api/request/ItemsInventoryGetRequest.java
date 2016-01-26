@@ -34,8 +34,8 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
      * violation_off_shelf(违规下架的)<br>
      * 默认查询for_shelved(等待所有上架)这个状态的商品<br>
      * <font color=
-     * 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+never_on_shelf(从未上架)+off_shelf(我下架的)</fo
-     * n t >
+     * 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+never_on_shelf(从未上架)+off_shelf(我下架的)</f
+     * o n t >
      */
     private String banner;
 
