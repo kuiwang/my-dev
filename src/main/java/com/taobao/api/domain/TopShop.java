@@ -29,12 +29,12 @@ public class TopShop extends TaobaoObject {
         return this.shopid;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
-    }
-
     public String getShopname() {
         return this.shopname;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
     }
 
     public void setShopname(String shopname) {

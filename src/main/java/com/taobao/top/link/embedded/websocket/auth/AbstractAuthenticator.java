@@ -39,13 +39,13 @@ import com.taobao.top.link.embedded.websocket.util.StringUtil;
  */
 abstract public class AbstractAuthenticator implements Authenticator {
 
-    /** The websocket. */
-    protected WebSocket websocket;
-
     /** The credentials. */
     protected Credentials credentials;
 
     private boolean isDone = false;
+
+    /** The websocket. */
+    protected WebSocket websocket;
 
     /**
      * Instantiates a new abstract authenticator.
@@ -53,9 +53,27 @@ abstract public class AbstractAuthenticator implements Authenticator {
     public AbstractAuthenticator() {
     }
 
+    @Override
+    public void done() {
+        isDone = true;
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.proxy.ProxyCredentials#getCredentials()
+     */
+    /**
+     * Gets the credentials.
+     *
+     * @param challengeList the challenge list
+     * @return the credentials
+     * @throws WebSocketException the web socket exception
+     */
+    abstract public String getCredentials(List<Challenge> challengeList) throws WebSocketException;
+
     /* (non-Javadoc)
      * @see jp.a840.websocket.auth.Authenticator#getCredentials(java.lang.String, java.lang.String, jp.a840.websocket.HttpHeader, java.lang.String)
      */
+    @Override
     public String getCredentials(String method, String requestUri, HttpHeader header,
             String authenticateHeaderName) throws WebSocketException {
         if (isDone) {
@@ -88,20 +106,9 @@ abstract public class AbstractAuthenticator implements Authenticator {
     }
 
     /* (non-Javadoc)
-     * @see jp.a840.websocket.proxy.ProxyCredentials#getCredentials()
-     */
-    /**
-     * Gets the credentials.
-     *
-     * @param challengeList the challenge list
-     * @return the credentials
-     * @throws WebSocketException the web socket exception
-     */
-    abstract public String getCredentials(List<Challenge> challengeList) throws WebSocketException;
-
-    /* (non-Javadoc)
      * @see jp.a840.websocket.auth.Authenticator#init(jp.a840.websocket.WebSocket, jp.a840.websocket.auth.Credentials)
      */
+    @Override
     public void init(WebSocket websocket, Credentials credentials) {
         if (isDone) {
             throw new IllegalStateException("this Authenticator already executed");
@@ -110,19 +117,17 @@ abstract public class AbstractAuthenticator implements Authenticator {
         this.credentials = credentials;
     }
 
-    protected void parseParams(Map<String, String> paramMap, String authParams) {
-        paramMap.putAll(StringUtil.parseKeyValues(authParams, ','));
-    }
-
-    public void done() {
-        isDone = true;
-    }
-
+    @Override
     public boolean isDone() {
         return isDone;
     }
 
+    @Override
     public boolean isNeedAuthenticate() {
         return true;
+    }
+
+    protected void parseParams(Map<String, String> paramMap, String authParams) {
+        paramMap.putAll(StringUtil.parseKeyValues(authParams, ','));
     }
 }

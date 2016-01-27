@@ -8,24 +8,9 @@ import java.util.Date;
 public class Task {
 
     /*
-     * 异步任务id。创建异步任务时返回的任务id号
+     * 下载文件的MD5校验码，通过此校验码可以检查下载的文件是否是完整的。
      */
-    private Long taskId;
-
-    /*
-     * 异步任务处理状态。new（还未开始处理），doing（处理中），done（处理结束）。
-     */
-    private String status;
-
-    /*
-     *  子任务处理结果，如果任务还没有处理完，返回的结果列表为空。如果任务处理完毕，返回子任务结果列表
-     */
-    private SubTask[] subtasks;
-
-    /*
-     * 此任务是由哪个api产生的
-     */
-    private String method;
+    private String checkCode;
 
     /*
      * 任务创建时间
@@ -40,76 +25,91 @@ public class Task {
     private String downloadUrl;
 
     /*
-     * 下载文件的MD5校验码，通过此校验码可以检查下载的文件是否是完整的。
+     * 此任务是由哪个api产生的
      */
-    private String checkCode;
+    private String method;
 
     /*
      * 定时类型任务的执行时间点
      */
     private Date schedule;
 
-    public Long getTaskId() {
-        return taskId;
-    }
+    /*
+     * 异步任务处理状态。new（还未开始处理），doing（处理中），done（处理结束）。
+     */
+    private String status;
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
+    /*
+     *  子任务处理结果，如果任务还没有处理完，返回的结果列表为空。如果任务处理完毕，返回子任务结果列表
+     */
+    private SubTask[] subtasks;
 
-    public String getStatus() {
-        return status;
-    }
+    /*
+     * 异步任务id。创建异步任务时返回的任务id号
+     */
+    private Long taskId;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public SubTask[] getSubtasks() {
-        return subtasks;
-    }
-
-    public void setSubtasks(SubTask[] subtasks) {
-        this.subtasks = subtasks;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
+    public String getCheckCode() {
+        return checkCode;
     }
 
     public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public String getDownloadUrl() {
         return downloadUrl;
     }
 
-    public void setDownloadUrl(String downloadUrl) {
-        this.downloadUrl = downloadUrl;
-    }
-
-    public String getCheckCode() {
-        return checkCode;
-    }
-
-    public void setCheckCode(String checkCode) {
-        this.checkCode = checkCode;
+    public String getMethod() {
+        return method;
     }
 
     public Date getSchedule() {
         return schedule;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public SubTask[] getSubtasks() {
+        return subtasks;
+    }
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setCheckCode(String checkCode) {
+        this.checkCode = checkCode;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
     public void setSchedule(Date schedule) {
         this.schedule = schedule;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubtasks(SubTask[] subtasks) {
+        this.subtasks = subtasks;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 }

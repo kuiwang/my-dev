@@ -47,36 +47,36 @@ public class GradeEquity extends TaobaoObject {
         return this.curGrade;
     }
 
-    public void setCurGrade(String curGrade) {
-        this.curGrade = curGrade;
-    }
-
     public String getCurGradeName() {
         return this.curGradeName;
-    }
-
-    public void setCurGradeName(String curGradeName) {
-        this.curGradeName = curGradeName;
     }
 
     public String getExcludeArea() {
         return this.excludeArea;
     }
 
-    public void setExcludeArea(String excludeArea) {
-        this.excludeArea = excludeArea;
-    }
-
     public Long getPoint() {
         return this.point;
     }
 
-    public void setPoint(Long point) {
-        this.point = point;
-    }
-
     public Boolean getPostage() {
         return this.postage;
+    }
+
+    public void setCurGrade(String curGrade) {
+        this.curGrade = curGrade;
+    }
+
+    public void setCurGradeName(String curGradeName) {
+        this.curGradeName = curGradeName;
+    }
+
+    public void setExcludeArea(String excludeArea) {
+        this.excludeArea = excludeArea;
+    }
+
+    public void setPoint(Long point) {
+        this.point = point;
     }
 
     public void setPostage(Boolean postage) {

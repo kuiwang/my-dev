@@ -103,108 +103,108 @@ public class CorpInfo extends TaobaoObject {
         return this.applyName;
     }
 
-    public void setApplyName(String applyName) {
-        this.applyName = applyName;
-    }
-
     public String getApplyNo() {
         return this.applyNo;
-    }
-
-    public void setApplyNo(String applyNo) {
-        this.applyNo = applyNo;
     }
 
     public Date getApplyTime() {
         return this.applyTime;
     }
 
-    public void setApplyTime(Date applyTime) {
-        this.applyTime = applyTime;
-    }
-
     public String getCorprationId() {
         return this.corprationId;
-    }
-
-    public void setCorprationId(String corprationId) {
-        this.corprationId = corprationId;
     }
 
     public String getCostCenter() {
         return this.costCenter;
     }
 
-    public void setCostCenter(String costCenter) {
-        this.costCenter = costCenter;
-    }
-
     public String getCostCenterCode() {
         return this.costCenterCode;
-    }
-
-    public void setCostCenterCode(String costCenterCode) {
-        this.costCenterCode = costCenterCode;
     }
 
     public String getCostOu() {
         return this.costOu;
     }
 
-    public void setCostOu(String costOu) {
-        this.costOu = costOu;
-    }
-
     public String getExtra() {
         return this.extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
     }
 
     public String getFormNo() {
         return this.formNo;
     }
 
-    public void setFormNo(String formNo) {
-        this.formNo = formNo;
-    }
-
     public String getFormStatus() {
         return this.formStatus;
-    }
-
-    public void setFormStatus(String formStatus) {
-        this.formStatus = formStatus;
     }
 
     public String getReceiptsStatus() {
         return this.receiptsStatus;
     }
 
-    public void setReceiptsStatus(String receiptsStatus) {
-        this.receiptsStatus = receiptsStatus;
-    }
-
     public String getTripPersonName() {
         return this.tripPersonName;
-    }
-
-    public void setTripPersonName(String tripPersonName) {
-        this.tripPersonName = tripPersonName;
     }
 
     public String getTripPersonNo() {
         return this.tripPersonNo;
     }
 
-    public void setTripPersonNo(String tripPersonNo) {
-        this.tripPersonNo = tripPersonNo;
-    }
-
     public String getWorkSpace() {
         return this.workSpace;
+    }
+
+    public void setApplyName(String applyName) {
+        this.applyName = applyName;
+    }
+
+    public void setApplyNo(String applyNo) {
+        this.applyNo = applyNo;
+    }
+
+    public void setApplyTime(Date applyTime) {
+        this.applyTime = applyTime;
+    }
+
+    public void setCorprationId(String corprationId) {
+        this.corprationId = corprationId;
+    }
+
+    public void setCostCenter(String costCenter) {
+        this.costCenter = costCenter;
+    }
+
+    public void setCostCenterCode(String costCenterCode) {
+        this.costCenterCode = costCenterCode;
+    }
+
+    public void setCostOu(String costOu) {
+        this.costOu = costOu;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setFormNo(String formNo) {
+        this.formNo = formNo;
+    }
+
+    public void setFormStatus(String formStatus) {
+        this.formStatus = formStatus;
+    }
+
+    public void setReceiptsStatus(String receiptsStatus) {
+        this.receiptsStatus = receiptsStatus;
+    }
+
+    public void setTripPersonName(String tripPersonName) {
+        this.tripPersonName = tripPersonName;
+    }
+
+    public void setTripPersonNo(String tripPersonNo) {
+        this.tripPersonNo = tripPersonNo;
     }
 
     public void setWorkSpace(String workSpace) {

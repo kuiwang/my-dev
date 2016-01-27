@@ -21,12 +21,12 @@ public class TimeGetResponse extends TaobaoResponse {
     @ApiField("time")
     private Date time;
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
     public Date getTime() {
         return this.time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
 }

@@ -18,10 +18,6 @@ public class WaimaiShopListRequest implements TaobaoRequest<WaimaiShopListRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询关键字
      */
@@ -45,50 +41,51 @@ public class WaimaiShopListRequest implements TaobaoRequest<WaimaiShopListRespon
      */
     private Long status;
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(page, "page");
+        RequestCheckUtils.checkMinValue(page, 1L, "page");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.shop.list";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywords() {
         return this.keywords;
     }
 
-    public void setPage(Long page) {
-        this.page = page;
-    }
-
     public Long getPage() {
         return this.page;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    @Override
+    public Class<WaimaiShopListResponse> getResponseClass() {
+        return WaimaiShopListResponse.class;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.shop.list";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("keywords", this.keywords);
@@ -101,6 +98,12 @@ public class WaimaiShopListRequest implements TaobaoRequest<WaimaiShopListRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -108,19 +111,24 @@ public class WaimaiShopListRequest implements TaobaoRequest<WaimaiShopListRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiShopListResponse> getResponseClass() {
-        return WaimaiShopListResponse.class;
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(page, "page");
-        RequestCheckUtils.checkMinValue(page, 1L, "page");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPage(Long page) {
+        this.page = page;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

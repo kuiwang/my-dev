@@ -16,16 +16,12 @@ import com.taobao.api.response.FenxiaoGradeUpdateResponse;
  */
 public class FenxiaoGradeUpdateRequest implements TaobaoRequest<FenxiaoGradeUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 等级ID
      */
     private Long gradeId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 等级名称，等级名称不可重复<br />
@@ -34,34 +30,41 @@ public class FenxiaoGradeUpdateRequest implements TaobaoRequest<FenxiaoGradeUpda
      */
     private String name;
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 20, "name");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.grade.update";
     }
 
     public Long getGradeId() {
         return this.gradeId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoGradeUpdateResponse> getResponseClass() {
+        return FenxiaoGradeUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.grade.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("grade_id", this.gradeId);
@@ -72,6 +75,12 @@ public class FenxiaoGradeUpdateRequest implements TaobaoRequest<FenxiaoGradeUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class FenxiaoGradeUpdateRequest implements TaobaoRequest<FenxiaoGradeUpda
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoGradeUpdateResponse> getResponseClass() {
-        return FenxiaoGradeUpdateResponse.class;
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 20, "name");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

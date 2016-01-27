@@ -46,28 +46,28 @@ public class RecommendWordPage extends TaobaoObject {
         return this.pageNo;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public List<RecommendWord> getRecommendWordList() {
         return this.recommendWordList;
     }
 
-    public void setRecommendWordList(List<RecommendWord> recommendWordList) {
-        this.recommendWordList = recommendWordList;
-    }
-
     public Long getTotalItem() {
         return this.totalItem;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRecommendWordList(List<RecommendWord> recommendWordList) {
+        this.recommendWordList = recommendWordList;
     }
 
     public void setTotalItem(Long totalItem) {

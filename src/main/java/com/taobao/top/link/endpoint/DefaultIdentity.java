@@ -8,12 +8,18 @@ public class DefaultIdentity implements Identity {
 
     private String name;
 
-    public String getName() {
-        return this.name;
-    }
-
     public DefaultIdentity(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Identity id) {
+        return (id.getClass() == DefaultIdentity.class)
+                && this.name.equals(((DefaultIdentity) id).name);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @SuppressWarnings("unchecked")
@@ -28,12 +34,6 @@ public class DefaultIdentity implements Identity {
     public void render(Object to) {
         Map<String, String> dict = (Map<String, String>) to;
         dict.put("name", this.name);
-    }
-
-    @Override
-    public boolean equals(Identity id) {
-        return id.getClass() == DefaultIdentity.class
-                && this.name.equals(((DefaultIdentity) id).name);
     }
 
     @Override

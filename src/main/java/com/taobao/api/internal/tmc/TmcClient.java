@@ -28,49 +28,81 @@ import com.taobao.top.link.LinkException;
  */
 public class TmcClient {
 
-    private static final Log log = LogFactory.getLog(TmcClient.class);
+    class InnerClient extends MixClient {
 
-    // sign parameters
-    private static final String TIMESTAMP = "timestamp";
+        private String appKey;
+
+        private String appSecret;
+
+        private String groupName;
+
+        public InnerClient(TmcIdentity id) {
+            super(id);
+        }
+
+        @Override
+        protected Map<String, Object> createConnectHeaders() {
+            Map<String, String> signHeader = new HashMap<String, String>();
+            signHeader.put(TIMESTAMP, String.valueOf(System.currentTimeMillis()));
+            signHeader.put(APP_KEY, this.appKey);
+            signHeader.put(GROUP_NAME, this.groupName);
+            try {
+                signHeader.put(SIGN,
+                        TaobaoUtils.signTopRequestNew(signHeader, this.appSecret, false));
+            } catch (Exception e) {
+                log.error("sign error", e);
+            }
+
+            Map<String, Object> requestHeader = new HashMap<String, Object>();
+            requestHeader.putAll(signHeader);
+            requestHeader.put(SDK, Constants.SDK_VERSION);
+            return requestHeader;
+        }
+    }
 
     private static final String APP_KEY = "app_key";
 
     private static final String GROUP_NAME = "group_name";
 
-    private static final String SIGN = "sign";
+    private static final Log log = LogFactory.getLog(TmcClient.class);
 
     private static final String SDK = "sdk";
 
-    private final AtomicBoolean connected = new AtomicBoolean(false);
+    private static final String SIGN = "sign";
+
+    // sign parameters
+    private static final String TIMESTAMP = "timestamp";
+
+    private String appKey;
 
     private InnerClient client;
 
-    private MessageHandler messageHandler;
-
-    private TmcHandler tmcHandler;
-
-    private ThreadPoolExecutor threadPool;
-
-    private int queueSize = 2000; // 消息缓冲队列大小
-
-    private int threadCount = Runtime.getRuntime().availableProcessors() * 10; // 并发处理的线程数量
+    private final AtomicBoolean connected = new AtomicBoolean(false);
 
     // 由于TMC已支持push， pullRequest只需作为收取消息的补偿动作
     private int fetchPeriod = 30; // 定时获取消息周期（单位：秒）
-
-    private boolean removeDuplicate = false; // 是否启用消息去重功能
-
-    private KeySelector keySelector; // 默认对交易、商品、退款进行去重
 
     private Timer fetchTimer;
 
     private TimerTask fetchTimerTask;
 
-    private String uri; // 消息通道服务地址
-
-    private String appKey;
-
     private String groupName;
+
+    private KeySelector keySelector; // 默认对交易、商品、退款进行去重
+
+    private MessageHandler messageHandler;
+
+    private int queueSize = 2000; // 消息缓冲队列大小
+
+    private boolean removeDuplicate = false; // 是否启用消息去重功能
+
+    private int threadCount = Runtime.getRuntime().availableProcessors() * 10; // 并发处理的线程数量
+
+    private ThreadPoolExecutor threadPool;
+
+    private TmcHandler tmcHandler;
+
+    private String uri; // 消息通道服务地址
 
     public TmcClient(String appKey, String appSecret) {
         this(appKey, appSecret, "default"); // 默认分组+线上服务
@@ -90,73 +122,26 @@ public class TmcClient {
         this.client.groupName = groupName;
     }
 
-    protected void setUri(String uri) {
-        this.uri = uri;
+    public void close() {
+        this.close("tmc client closed");
     }
 
-    protected String getAppKey() {
-        return this.appKey;
-    }
-
-    protected String getGroupName() {
-        return this.groupName;
-    }
-
-    protected InnerClient getClient() {
-        return this.client;
-    }
-
-    protected ThreadPoolExecutor getThreadPool() {
-        return this.threadPool;
-    }
-
-    protected MessageHandler getMessageHandler() {
-        return this.messageHandler;
-    }
-
-    public void setMessageHandler(MessageHandler handler) {
-        this.messageHandler = handler;
-    }
-
-    protected TmcHandler getTmcHandler() {
-        return this.tmcHandler;
-    }
-
-    protected int getQueueSize() {
-        return this.queueSize;
-    }
-
-    public void setQueueSize(int queueSize) {
-        if (queueSize < threadCount) {
-            throw new IllegalArgumentException("queue size must greater than thread count");
+    /**
+     * 关闭TMC长连接并释放所有资源。
+     * 
+     * @param reason 关闭的原因
+     */
+    public void close(String reason) {
+        this.stopPullRequest();
+        if (this.tmcHandler != null) {
+            this.tmcHandler.close();
         }
-        this.queueSize = queueSize;
-    }
-
-    public void setThreadCount(int threadCount) {
-        if (threadCount < 1) {
-            throw new IllegalArgumentException("thread count must greater than 1");
+        if (this.threadPool != null) {
+            this.threadPool.shutdown();
+            this.threadPool = null;
         }
-        this.threadCount = threadCount;
-    }
-
-    public void setFetchPeriod(int fetchPeriod) {
-        if (fetchPeriod < 1) {
-            throw new IllegalArgumentException("fetch period must greater than 1");
-        }
-        this.fetchPeriod = fetchPeriod;
-    }
-
-    public void setRemoveDuplicate(boolean removeDuplicate) {
-        this.removeDuplicate = removeDuplicate;
-    }
-
-    protected KeySelector getKeySelector() {
-        return this.keySelector;
-    }
-
-    public void setKeySelector(KeySelector keySelector) {
-        this.keySelector = keySelector;
+        this.client.disconnect(reason);
+        log.warn("tmc client closed");
     }
 
     /**
@@ -192,6 +177,72 @@ public class TmcClient {
     public void connect(String uri) throws LinkException {
         this.uri = uri;
         connect();
+    }
+
+    private void doPullRequest() {
+        this.stopPullRequest();
+        this.fetchTimerTask = new TimerTask() {
+
+            @Override
+            public void run() {
+                pullRequest();
+            }
+        };
+        Date begin = new Date();
+        begin.setTime(begin.getTime() + (fetchPeriod * 1000L));
+        this.fetchTimer = new Timer("tmc-pull", true);
+        this.fetchTimer.schedule(this.fetchTimerTask, begin, fetchPeriod * 1000L);
+    }
+
+    protected String getAppKey() {
+        return this.appKey;
+    }
+
+    protected InnerClient getClient() {
+        return this.client;
+    }
+
+    protected String getGroupName() {
+        return this.groupName;
+    }
+
+    protected KeySelector getKeySelector() {
+        return this.keySelector;
+    }
+
+    protected MessageHandler getMessageHandler() {
+        return this.messageHandler;
+    }
+
+    protected int getQueueSize() {
+        return this.queueSize;
+    }
+
+    protected ThreadPoolExecutor getThreadPool() {
+        return this.threadPool;
+    }
+
+    protected TmcHandler getTmcHandler() {
+        return this.tmcHandler;
+    }
+
+    /**
+     * 检查TMC长连接是否存活。
+     */
+    public boolean isOnline() {
+        return (this.client != null) && this.client.isOnline();
+    }
+
+    protected void pullRequest() {
+        try {
+            Map<String, Object> msg = new HashMap<String, Object>();
+            msg.put(MessageFields.KIND, MessageKind.PullRequest);
+            if (this.client.isOnline()) {
+                this.client.send(msg);
+            }
+        } catch (Exception e) {
+            log.warn("pull request error", e);
+        }
     }
 
     /**
@@ -241,97 +292,47 @@ public class TmcClient {
         this.client.sendAndWait(msg, 2000);
     }
 
-    public void close() {
-        this.close("tmc client closed");
-    }
-
-    /**
-     * 关闭TMC长连接并释放所有资源。
-     * 
-     * @param reason 关闭的原因
-     */
-    public void close(String reason) {
-        this.stopPullRequest();
-        if (this.tmcHandler != null) {
-            this.tmcHandler.close();
+    public void setFetchPeriod(int fetchPeriod) {
+        if (fetchPeriod < 1) {
+            throw new IllegalArgumentException("fetch period must greater than 1");
         }
-        if (this.threadPool != null) {
-            this.threadPool.shutdown();
-            this.threadPool = null;
+        this.fetchPeriod = fetchPeriod;
+    }
+
+    public void setKeySelector(KeySelector keySelector) {
+        this.keySelector = keySelector;
+    }
+
+    public void setMessageHandler(MessageHandler handler) {
+        this.messageHandler = handler;
+    }
+
+    public void setQueueSize(int queueSize) {
+        if (queueSize < threadCount) {
+            throw new IllegalArgumentException("queue size must greater than thread count");
         }
-        this.client.disconnect(reason);
-        log.warn("tmc client closed");
+        this.queueSize = queueSize;
     }
 
-    /**
-     * 检查TMC长连接是否存活。
-     */
-    public boolean isOnline() {
-        return this.client != null && this.client.isOnline();
+    public void setRemoveDuplicate(boolean removeDuplicate) {
+        this.removeDuplicate = removeDuplicate;
     }
 
-    protected void pullRequest() {
-        try {
-            Map<String, Object> msg = new HashMap<String, Object>();
-            msg.put(MessageFields.KIND, MessageKind.PullRequest);
-            if (this.client.isOnline()) {
-                this.client.send(msg);
-            }
-        } catch (Exception e) {
-            log.warn("pull request error", e);
+    public void setThreadCount(int threadCount) {
+        if (threadCount < 1) {
+            throw new IllegalArgumentException("thread count must greater than 1");
         }
+        this.threadCount = threadCount;
     }
 
-    private void doPullRequest() {
-        this.stopPullRequest();
-        this.fetchTimerTask = new TimerTask() {
-
-            public void run() {
-                pullRequest();
-            }
-        };
-        Date begin = new Date();
-        begin.setTime(begin.getTime() + fetchPeriod * 1000L);
-        this.fetchTimer = new Timer("tmc-pull", true);
-        this.fetchTimer.schedule(this.fetchTimerTask, begin, fetchPeriod * 1000L);
+    protected void setUri(String uri) {
+        this.uri = uri;
     }
 
     private void stopPullRequest() {
         if (this.fetchTimer != null) {
             this.fetchTimer.cancel();
             this.fetchTimer = null;
-        }
-    }
-
-    class InnerClient extends MixClient {
-
-        private String appKey;
-
-        private String appSecret;
-
-        private String groupName;
-
-        public InnerClient(TmcIdentity id) {
-            super(id);
-        }
-
-        @Override
-        protected Map<String, Object> createConnectHeaders() {
-            Map<String, String> signHeader = new HashMap<String, String>();
-            signHeader.put(TIMESTAMP, String.valueOf(System.currentTimeMillis()));
-            signHeader.put(APP_KEY, this.appKey);
-            signHeader.put(GROUP_NAME, this.groupName);
-            try {
-                signHeader.put(SIGN,
-                        TaobaoUtils.signTopRequestNew(signHeader, this.appSecret, false));
-            } catch (Exception e) {
-                log.error("sign error", e);
-            }
-
-            Map<String, Object> requestHeader = new HashMap<String, Object>();
-            requestHeader.putAll(signHeader);
-            requestHeader.put(SDK, Constants.SDK_VERSION);
-            return requestHeader;
         }
     }
 

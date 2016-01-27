@@ -19,12 +19,12 @@ public class AppipGetResponse extends TaobaoResponse {
     @ApiField("ip")
     private String ip;
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
     public String getIp() {
         return this.ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
 }

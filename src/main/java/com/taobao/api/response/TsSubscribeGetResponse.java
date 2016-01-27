@@ -20,12 +20,12 @@ public class TsSubscribeGetResponse extends TaobaoResponse {
     @ApiField("service_subscribe")
     private ServiceSubscribe serviceSubscribe;
 
-    public void setServiceSubscribe(ServiceSubscribe serviceSubscribe) {
-        this.serviceSubscribe = serviceSubscribe;
-    }
-
     public ServiceSubscribe getServiceSubscribe() {
         return this.serviceSubscribe;
+    }
+
+    public void setServiceSubscribe(ServiceSubscribe serviceSubscribe) {
+        this.serviceSubscribe = serviceSubscribe;
     }
 
 }

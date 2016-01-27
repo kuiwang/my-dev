@@ -48,36 +48,36 @@ public class SQLServerImport extends TaobaoObject {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getFileName() {
         return this.fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public Long getImportId() {
         return this.importId;
     }
 
-    public void setImportId(Long importId) {
-        this.importId = importId;
-    }
-
     public String getImportStatus() {
         return this.importStatus;
     }
 
-    public void setImportStatus(String importStatus) {
-        this.importStatus = importStatus;
-    }
-
     public String getStartTime() {
         return this.startTime;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setImportId(Long importId) {
+        this.importId = importId;
+    }
+
+    public void setImportStatus(String importStatus) {
+        this.importStatus = importStatus;
     }
 
     public void setStartTime(String startTime) {

@@ -20,12 +20,12 @@ public class SellercenterSubuserPermissionsRolesGetResponse extends TaobaoRespon
     @ApiField("subuser_permission")
     private SubUserPermission subuserPermission;
 
-    public void setSubuserPermission(SubUserPermission subuserPermission) {
-        this.subuserPermission = subuserPermission;
-    }
-
     public SubUserPermission getSubuserPermission() {
         return this.subuserPermission;
+    }
+
+    public void setSubuserPermission(SubUserPermission subuserPermission) {
+        this.subuserPermission = subuserPermission;
     }
 
 }

@@ -18,10 +18,6 @@ public class ScitemMapAddRequest implements TaobaoRequest<ScitemMapAddResponse> 
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 前台ic商品id
      */
@@ -48,58 +44,51 @@ public class ScitemMapAddRequest implements TaobaoRequest<ScitemMapAddResponse> 
      */
     private Long skuId;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.scitem.map.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setNeedCheck(Boolean needCheck) {
-        this.needCheck = needCheck;
-    }
-
     public Boolean getNeedCheck() {
         return this.needCheck;
-    }
-
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
     }
 
     public String getOuterCode() {
         return this.outerCode;
     }
 
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
+    @Override
+    public Class<ScitemMapAddResponse> getResponseClass() {
+        return ScitemMapAddResponse.class;
     }
 
     public Long getScItemId() {
         return this.scItemId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.scitem.map.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -113,6 +102,12 @@ public class ScitemMapAddRequest implements TaobaoRequest<ScitemMapAddResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,15 +115,28 @@ public class ScitemMapAddRequest implements TaobaoRequest<ScitemMapAddResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<ScitemMapAddResponse> getResponseClass() {
-        return ScitemMapAddResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setNeedCheck(Boolean needCheck) {
+        this.needCheck = needCheck;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

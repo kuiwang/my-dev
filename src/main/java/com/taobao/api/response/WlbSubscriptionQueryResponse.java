@@ -30,20 +30,20 @@ public class WlbSubscriptionQueryResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setSellerSubscriptionList(List<WlbSellerSubscription> sellerSubscriptionList) {
-        this.sellerSubscriptionList = sellerSubscriptionList;
-    }
-
     public List<WlbSellerSubscription> getSellerSubscriptionList() {
         return this.sellerSubscriptionList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setSellerSubscriptionList(List<WlbSellerSubscription> sellerSubscriptionList) {
+        this.sellerSubscriptionList = sellerSubscriptionList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

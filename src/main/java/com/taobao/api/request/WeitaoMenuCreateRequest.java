@@ -18,10 +18,6 @@ public class WeitaoMenuCreateRequest implements TaobaoRequest<WeitaoMenuCreateRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支持的type共4种，宝贝分类、h5 url、wangwang和tel，具体见示例：[{ "name": "宝贝分类",
      * "sub_button": [ { "name": "新品", "type": "shopCat", "catId": "111111"
@@ -38,26 +34,35 @@ public class WeitaoMenuCreateRequest implements TaobaoRequest<WeitaoMenuCreateRe
      */
     private String menuString;
 
-    public void setMenuString(String menuString) {
-        this.menuString = menuString;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(menuString, "menuString");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.menu.create";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMenuString() {
         return this.menuString;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WeitaoMenuCreateResponse> getResponseClass() {
+        return WeitaoMenuCreateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.weitao.menu.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("menu_string", this.menuString);
@@ -67,6 +72,12 @@ public class WeitaoMenuCreateRequest implements TaobaoRequest<WeitaoMenuCreateRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -74,15 +85,12 @@ public class WeitaoMenuCreateRequest implements TaobaoRequest<WeitaoMenuCreateRe
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoMenuCreateResponse> getResponseClass() {
-        return WeitaoMenuCreateResponse.class;
+    public void setMenuString(String menuString) {
+        this.menuString = menuString;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(menuString, "menuString");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

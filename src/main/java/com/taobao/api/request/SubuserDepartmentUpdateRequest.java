@@ -17,12 +17,6 @@ import com.taobao.api.response.SubuserDepartmentUpdateResponse;
 public class SubuserDepartmentUpdateRequest implements
         TaobaoRequest<SubuserDepartmentUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 部门ID
      */
@@ -33,60 +27,56 @@ public class SubuserDepartmentUpdateRequest implements
      */
     private String departmentName;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 父部门ID 如果是最高部门则传入0
      */
     private Long parentId;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 主账号用户名
      */
     private String userNick;
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(departmentId, "departmentId");
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.department.update";
     }
 
     public Long getDepartmentId() {
         return this.departmentId;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
     public String getDepartmentName() {
         return this.departmentName;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getParentId() {
         return this.parentId;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public Class<SubuserDepartmentUpdateResponse> getResponseClass() {
+        return SubuserDepartmentUpdateResponse.class;
     }
 
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.department.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("department_id", this.departmentId);
@@ -99,6 +89,16 @@ public class SubuserDepartmentUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,16 +106,24 @@ public class SubuserDepartmentUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserDepartmentUpdateResponse> getResponseClass() {
-        return SubuserDepartmentUpdateResponse.class;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(departmentId, "departmentId");
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

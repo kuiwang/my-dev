@@ -79,92 +79,92 @@ public class AlipayEbppBillAddResponse extends TaobaoResponse {
     @ApiField("sub_order_type")
     private String subOrderType;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
-    }
-
-    public void setBillDate(String billDate) {
-        this.billDate = billDate;
     }
 
     public String getBillDate() {
         return this.billDate;
     }
 
-    public void setBillKey(String billKey) {
-        this.billKey = billKey;
-    }
-
     public String getBillKey() {
         return this.billKey;
-    }
-
-    public void setChargeInst(String chargeInst) {
-        this.chargeInst = chargeInst;
     }
 
     public String getChargeInst() {
         return this.chargeInst;
     }
 
-    public void setChargeInstName(String chargeInstName) {
-        this.chargeInstName = chargeInstName;
-    }
-
     public String getChargeInstName() {
         return this.chargeInstName;
-    }
-
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
     }
 
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderType() {
         return this.orderType;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
     }
 
     public String getOwnerName() {
         return this.ownerName;
     }
 
-    public void setPayAmount(String payAmount) {
-        this.payAmount = payAmount;
-    }
-
     public String getPayAmount() {
         return this.payAmount;
-    }
-
-    public void setServiceAmount(String serviceAmount) {
-        this.serviceAmount = serviceAmount;
     }
 
     public String getServiceAmount() {
         return this.serviceAmount;
     }
 
-    public void setSubOrderType(String subOrderType) {
-        this.subOrderType = subOrderType;
-    }
-
     public String getSubOrderType() {
         return this.subOrderType;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
+    }
+
+    public void setBillKey(String billKey) {
+        this.billKey = billKey;
+    }
+
+    public void setChargeInst(String chargeInst) {
+        this.chargeInst = chargeInst;
+    }
+
+    public void setChargeInstName(String chargeInstName) {
+        this.chargeInstName = chargeInstName;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setPayAmount(String payAmount) {
+        this.payAmount = payAmount;
+    }
+
+    public void setServiceAmount(String serviceAmount) {
+        this.serviceAmount = serviceAmount;
+    }
+
+    public void setSubOrderType(String subOrderType) {
+        this.subOrderType = subOrderType;
     }
 
 }

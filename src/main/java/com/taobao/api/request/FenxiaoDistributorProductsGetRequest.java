@@ -18,12 +18,6 @@ import com.taobao.api.response.FenxiaoDistributorProductsGetResponse;
 public class FenxiaoDistributorProductsGetRequest implements
         TaobaoRequest<FenxiaoDistributorProductsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 下载状态，默认未下载。UNDOWNLOAD：未下载，DOWNLOADED：已下载。
      */
@@ -38,6 +32,8 @@ public class FenxiaoDistributorProductsGetRequest implements
      * 指定查询额外的信息，可选值：skus（sku数据）、images（多图），多个可选值用逗号分割。
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 根据商品ID列表查询，优先级次于产品ID列表，高于其他分页查询条件。如果商品不是分销商品，自动过滤。最大限制20，用逗号分割，例如：“
@@ -80,6 +76,8 @@ public class FenxiaoDistributorProductsGetRequest implements
      */
     private String supplierNick;
 
+    private Long timestamp;
+
     /**
      * 查询时间类型，默认更新时间。MODIFIED:更新时间，CREATE:创建时间
      */
@@ -90,122 +88,74 @@ public class FenxiaoDistributorProductsGetRequest implements
      */
     private String tradeType;
 
-    public void setDownloadStatus(String downloadStatus) {
-        this.downloadStatus = downloadStatus;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(itemIds, 20, "itemIds");
+        RequestCheckUtils.checkMaxListSize(pids, 20, "pids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.distributor.products.get";
     }
 
     public String getDownloadStatus() {
         return this.downloadStatus;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getEndTime() {
         return this.endTime;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setItemIds(String itemIds) {
-        this.itemIds = itemIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemIds() {
         return this.itemIds;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPids(String pids) {
-        this.pids = pids;
     }
 
     public String getPids() {
         return this.pids;
     }
 
-    public void setProductcatId(Long productcatId) {
-        this.productcatId = productcatId;
-    }
-
     public Long getProductcatId() {
         return this.productcatId;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<FenxiaoDistributorProductsGetResponse> getResponseClass() {
+        return FenxiaoDistributorProductsGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
-    }
-
     public String getSupplierNick() {
         return this.supplierNick;
     }
 
-    public void setTimeType(String timeType) {
-        this.timeType = timeType;
-    }
-
-    public String getTimeType() {
-        return this.timeType;
-    }
-
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getTradeType() {
-        return this.tradeType;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.distributor.products.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("download_status", this.downloadStatus);
@@ -227,6 +177,20 @@ public class FenxiaoDistributorProductsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTimeType() {
+        return this.timeType;
+    }
+
+    public String getTradeType() {
+        return this.tradeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -234,16 +198,60 @@ public class FenxiaoDistributorProductsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDistributorProductsGetResponse> getResponseClass() {
-        return FenxiaoDistributorProductsGetResponse.class;
+    public void setDownloadStatus(String downloadStatus) {
+        this.downloadStatus = downloadStatus;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(itemIds, 20, "itemIds");
-        RequestCheckUtils.checkMaxListSize(pids, 20, "pids");
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setItemIds(String itemIds) {
+        this.itemIds = itemIds;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPids(String pids) {
+        this.pids = pids;
+    }
+
+    public void setProductcatId(Long productcatId) {
+        this.productcatId = productcatId;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTimeType(String timeType) {
+        this.timeType = timeType;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

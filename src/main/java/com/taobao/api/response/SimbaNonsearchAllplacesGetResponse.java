@@ -24,12 +24,12 @@ public class SimbaNonsearchAllplacesGetResponse extends TaobaoResponse {
     @ApiField("place")
     private List<Place> placeList;
 
-    public void setPlaceList(List<Place> placeList) {
-        this.placeList = placeList;
-    }
-
     public List<Place> getPlaceList() {
         return this.placeList;
+    }
+
+    public void setPlaceList(List<Place> placeList) {
+        this.placeList = placeList;
     }
 
 }

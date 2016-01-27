@@ -109,116 +109,116 @@ public class Distributor extends TaobaoObject {
         return this.alipayAccount;
     }
 
-    public void setAlipayAccount(String alipayAccount) {
-        this.alipayAccount = alipayAccount;
-    }
-
     public Long getAppraise() {
         return this.appraise;
-    }
-
-    public void setAppraise(Long appraise) {
-        this.appraise = appraise;
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getContactPerson() {
         return this.contactPerson;
-    }
-
-    public void setContactPerson(String contactPerson) {
-        this.contactPerson = contactPerson;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getDistributorId() {
         return this.distributorId;
-    }
-
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
     }
 
     public String getDistributorName() {
         return this.distributorName;
     }
 
-    public void setDistributorName(String distributorName) {
-        this.distributorName = distributorName;
-    }
-
     public String getEmail() {
         return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFullName() {
         return this.fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public Long getLevel() {
         return this.level;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
     public String getMobilePhone() {
         return this.mobilePhone;
     }
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getShopWebLink() {
         return this.shopWebLink;
     }
 
-    public void setShopWebLink(String shopWebLink) {
-        this.shopWebLink = shopWebLink;
-    }
-
     public Date getStarts() {
         return this.starts;
     }
 
-    public void setStarts(Date starts) {
-        this.starts = starts;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setAlipayAccount(String alipayAccount) {
+        this.alipayAccount = alipayAccount;
+    }
+
+    public void setAppraise(Long appraise) {
+        this.appraise = appraise;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
+    }
+
+    public void setDistributorName(String distributorName) {
+        this.distributorName = distributorName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setShopWebLink(String shopWebLink) {
+        this.shopWebLink = shopWebLink;
+    }
+
+    public void setStarts(Date starts) {
+        this.starts = starts;
     }
 
     public void setUserId(Long userId) {

@@ -19,12 +19,12 @@ public class UmpDetailAddResponse extends TaobaoResponse {
     @ApiField("detail_id")
     private Long detailId;
 
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
-    }
-
     public Long getDetailId() {
         return this.detailId;
+    }
+
+    public void setDetailId(Long detailId) {
+        this.detailId = detailId;
     }
 
 }

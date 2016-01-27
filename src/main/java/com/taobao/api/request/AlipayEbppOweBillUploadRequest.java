@@ -19,10 +19,6 @@ import com.taobao.api.response.AlipayEbppOweBillUploadResponse;
 public class AlipayEbppOweBillUploadRequest implements
         TaobaoUploadRequest<AlipayEbppOweBillUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝给每个出账机构指定了一个对应的英文短名称来唯一表示该收费单位。<br />
      * 支持最大长度为：80<br />
@@ -41,6 +37,8 @@ public class AlipayEbppOweBillUploadRequest implements
      * 文件摘要，算法SHA
      */
     private String digestOweBill;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 支付宝订单类型。公共事业缴纳JF,信用卡还款HK<br />
@@ -63,98 +61,11 @@ public class AlipayEbppOweBillUploadRequest implements
      */
     private String subOrderType;
 
-    public void setChargeInst(String chargeInst) {
-        this.chargeInst = chargeInst;
-    }
+    private Long timestamp;
 
-    public String getChargeInst() {
-        return this.chargeInst;
-    }
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
-    public void setChargeoffInst(String chargeoffInst) {
-        this.chargeoffInst = chargeoffInst;
-    }
-
-    public String getChargeoffInst() {
-        return this.chargeoffInst;
-    }
-
-    public void setDigestOweBill(String digestOweBill) {
-        this.digestOweBill = digestOweBill;
-    }
-
-    public String getDigestOweBill() {
-        return this.digestOweBill;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
-    public String getOrderType() {
-        return this.orderType;
-    }
-
-    public void setOweBill(FileItem oweBill) {
-        this.oweBill = oweBill;
-    }
-
-    public FileItem getOweBill() {
-        return this.oweBill;
-    }
-
-    public void setSubOrderType(String subOrderType) {
-        this.subOrderType = subOrderType;
-    }
-
-    public String getSubOrderType() {
-        return this.subOrderType;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.ebpp.owe.bill.upload";
-    }
-
-    public Map<String, String> getTextParams() {
-        TaobaoHashMap txtParams = new TaobaoHashMap();
-        txtParams.put("charge_inst", this.chargeInst);
-        txtParams.put("chargeoff_inst", this.chargeoffInst);
-        txtParams.put("digest_owe_bill", this.digestOweBill);
-        txtParams.put("order_type", this.orderType);
-        txtParams.put("sub_order_type", this.subOrderType);
-        if (this.udfParams != null) {
-            txtParams.putAll(this.udfParams);
-        }
-        return txtParams;
-    }
-
-    public void putOtherTextParam(String key, String value) {
-        if (this.udfParams == null) {
-            this.udfParams = new TaobaoHashMap();
-        }
-        this.udfParams.put(key, value);
-    }
-
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("owe_bill", this.oweBill);
-        return params;
-    }
-
-    public Class<AlipayEbppOweBillUploadResponse> getResponseClass() {
-        return AlipayEbppOweBillUploadResponse.class;
-    }
-
+    @Override
     public void check() throws ApiRuleException {
 
         RequestCheckUtils.checkNotEmpty(chargeInst, "chargeInst");
@@ -168,7 +79,105 @@ public class AlipayEbppOweBillUploadRequest implements
         RequestCheckUtils.checkMaxLength(subOrderType, 10, "subOrderType");
     }
 
+    @Override
+    public String getApiMethodName() {
+        return "alipay.ebpp.owe.bill.upload";
+    }
+
+    public String getChargeInst() {
+        return this.chargeInst;
+    }
+
+    public String getChargeoffInst() {
+        return this.chargeoffInst;
+    }
+
+    public String getDigestOweBill() {
+        return this.digestOweBill;
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("owe_bill", this.oweBill);
+        return params;
+    }
+
+    @Override
     public Map<String, String> getHeaderMap() {
         return headerMap;
+    }
+
+    public String getOrderType() {
+        return this.orderType;
+    }
+
+    public FileItem getOweBill() {
+        return this.oweBill;
+    }
+
+    @Override
+    public Class<AlipayEbppOweBillUploadResponse> getResponseClass() {
+        return AlipayEbppOweBillUploadResponse.class;
+    }
+
+    public String getSubOrderType() {
+        return this.subOrderType;
+    }
+
+    @Override
+    public Map<String, String> getTextParams() {
+        TaobaoHashMap txtParams = new TaobaoHashMap();
+        txtParams.put("charge_inst", this.chargeInst);
+        txtParams.put("chargeoff_inst", this.chargeoffInst);
+        txtParams.put("digest_owe_bill", this.digestOweBill);
+        txtParams.put("order_type", this.orderType);
+        txtParams.put("sub_order_type", this.subOrderType);
+        if (this.udfParams != null) {
+            txtParams.putAll(this.udfParams);
+        }
+        return txtParams;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
+    public void putOtherTextParam(String key, String value) {
+        if (this.udfParams == null) {
+            this.udfParams = new TaobaoHashMap();
+        }
+        this.udfParams.put(key, value);
+    }
+
+    public void setChargeInst(String chargeInst) {
+        this.chargeInst = chargeInst;
+    }
+
+    public void setChargeoffInst(String chargeoffInst) {
+        this.chargeoffInst = chargeoffInst;
+    }
+
+    public void setDigestOweBill(String digestOweBill) {
+        this.digestOweBill = digestOweBill;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setOweBill(FileItem oweBill) {
+        this.oweBill = oweBill;
+    }
+
+    public void setSubOrderType(String subOrderType) {
+        this.subOrderType = subOrderType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

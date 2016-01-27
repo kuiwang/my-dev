@@ -18,9 +18,7 @@ import com.taobao.api.response.HotelImageUploadResponse;
  */
 public class HotelImageUploadRequest implements TaobaoUploadRequest<HotelImageUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 酒店id<br />
@@ -35,36 +33,49 @@ public class HotelImageUploadRequest implements TaobaoUploadRequest<HotelImageUp
      */
     private FileItem pic;
 
-    public void setHid(Long hid) {
-        this.hid = hid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(hid, "hid");
+        RequestCheckUtils.checkNotEmpty(pic, "pic");
+        RequestCheckUtils.checkMaxLength(pic, 512000, "pic");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.image.upload";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("pic", this.pic);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHid() {
         return this.hid;
     }
 
-    public void setPic(FileItem pic) {
-        this.pic = pic;
-    }
-
     public FileItem getPic() {
         return this.pic;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelImageUploadResponse> getResponseClass() {
+        return HotelImageUploadResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.image.upload";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("hid", this.hid);
@@ -74,6 +85,12 @@ public class HotelImageUploadRequest implements TaobaoUploadRequest<HotelImageUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,24 +98,16 @@ public class HotelImageUploadRequest implements TaobaoUploadRequest<HotelImageUp
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("pic", this.pic);
-        return params;
+    public void setHid(Long hid) {
+        this.hid = hid;
     }
 
-    public Class<HotelImageUploadResponse> getResponseClass() {
-        return HotelImageUploadResponse.class;
+    public void setPic(FileItem pic) {
+        this.pic = pic;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(hid, "hid");
-        RequestCheckUtils.checkNotEmpty(pic, "pic");
-        RequestCheckUtils.checkMaxLength(pic, 512000, "pic");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

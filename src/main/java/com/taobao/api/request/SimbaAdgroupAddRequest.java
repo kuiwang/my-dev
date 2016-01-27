@@ -16,12 +16,6 @@ import com.taobao.api.response.SimbaAdgroupAddResponse;
  */
 public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
@@ -32,6 +26,8 @@ public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResp
      * 支持最小值为：5
      */
     private Long defaultPrice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 创意图片地址，必须是商品的图片之一
@@ -48,6 +44,8 @@ public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResp
      */
     private String nick;
 
+    private Long timestamp;
+
     /**
      * 创意标题，最多20个汉字<br />
      * 支持最大长度为：40<br />
@@ -55,66 +53,55 @@ public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResp
      */
     private String title;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(defaultPrice, "defaultPrice");
+        RequestCheckUtils.checkMinValue(defaultPrice, 5L, "defaultPrice");
+        RequestCheckUtils.checkNotEmpty(imgUrl, "imgUrl");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 40, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.add";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setDefaultPrice(Long defaultPrice) {
-        this.defaultPrice = defaultPrice;
-    }
-
     public Long getDefaultPrice() {
         return this.defaultPrice;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getImgUrl() {
         return this.imgUrl;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<SimbaAdgroupAddResponse> getResponseClass() {
+        return SimbaAdgroupAddResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -129,6 +116,16 @@ public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -136,21 +133,32 @@ public class SimbaAdgroupAddRequest implements TaobaoRequest<SimbaAdgroupAddResp
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupAddResponse> getResponseClass() {
-        return SimbaAdgroupAddResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(defaultPrice, "defaultPrice");
-        RequestCheckUtils.checkMinValue(defaultPrice, 5L, "defaultPrice");
-        RequestCheckUtils.checkNotEmpty(imgUrl, "imgUrl");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 40, "title");
+    public void setDefaultPrice(Long defaultPrice) {
+        this.defaultPrice = defaultPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

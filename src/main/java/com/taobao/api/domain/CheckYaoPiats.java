@@ -47,36 +47,36 @@ public class CheckYaoPiats extends TaobaoObject {
         return this.bizOrderId;
     }
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
-    }
-
     public String getErrorCode() {
         return this.errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
     }
 
     public String getErrorMsg() {
         return this.errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
     public String getPiatsCode() {
         return this.piatsCode;
     }
 
-    public void setPiatsCode(String piatsCode) {
-        this.piatsCode = piatsCode;
-    }
-
     public Boolean getSuccess() {
         return this.success;
+    }
+
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setPiatsCode(String piatsCode) {
+        this.piatsCode = piatsCode;
     }
 
     public void setSuccess(Boolean success) {

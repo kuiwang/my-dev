@@ -18,15 +18,11 @@ public class DeleteScheduledTaskRequest implements AliyunRequest<DeleteScheduled
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
 
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
     private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
 
     /**
      * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
@@ -39,50 +35,47 @@ public class DeleteScheduledTaskRequest implements AliyunRequest<DeleteScheduled
      */
     private String scheduledTaskId;
 
-    public void setScheduledTaskId(String scheduledTaskId) {
-        this.scheduledTaskId = scheduledTaskId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(scheduledTaskId, "scheduledTaskId");
     }
 
-    public String getScheduledTaskId() {
-        return this.scheduledTaskId;
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.DeleteScheduledTask.2014-08-28";
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DeleteScheduledTaskResponse> getResponseClass() {
+        return DeleteScheduledTaskResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScheduledTaskId() {
+        return this.scheduledTaskId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.DeleteScheduledTask.2014-08-28";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -95,6 +88,12 @@ public class DeleteScheduledTaskRequest implements AliyunRequest<DeleteScheduled
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -102,15 +101,24 @@ public class DeleteScheduledTaskRequest implements AliyunRequest<DeleteScheduled
         this.udfParams.put(key, value);
     }
 
-    public Class<DeleteScheduledTaskResponse> getResponseClass() {
-        return DeleteScheduledTaskResponse.class;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(scheduledTaskId, "scheduledTaskId");
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScheduledTaskId(String scheduledTaskId) {
+        this.scheduledTaskId = scheduledTaskId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -53,36 +53,36 @@ public class SpmResult extends TaobaoObject {
         return this.appKey;
     }
 
-    public void setAppKey(String appKey) {
-        this.appKey = appKey;
-    }
-
     public Date getDate() {
         return this.date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public List<TopSpm> getSpmModules() {
         return this.spmModules;
     }
 
-    public void setSpmModules(List<TopSpm> spmModules) {
-        this.spmModules = spmModules;
-    }
-
     public List<TopSpm> getSpmPages() {
         return this.spmPages;
     }
 
-    public void setSpmPages(List<TopSpm> spmPages) {
-        this.spmPages = spmPages;
-    }
-
     public TopSpm getSpmSite() {
         return this.spmSite;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setSpmModules(List<TopSpm> spmModules) {
+        this.spmModules = spmModules;
+    }
+
+    public void setSpmPages(List<TopSpm> spmPages) {
+        this.spmPages = spmPages;
     }
 
     public void setSpmSite(TopSpm spmSite) {

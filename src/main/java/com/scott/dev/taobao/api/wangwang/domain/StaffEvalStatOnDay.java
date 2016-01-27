@@ -22,12 +22,12 @@ public class StaffEvalStatOnDay {
         return this.evalDate;
     }
 
-    public void setEvalDate(Date evalDate) {
-        this.evalDate = evalDate;
-    }
-
     public List<StaffEvalStatById> getStaffEvalStatByIds() {
         return this.staffEvalStatByIds;
+    }
+
+    public void setEvalDate(Date evalDate) {
+        this.evalDate = evalDate;
     }
 
     public void setStaffEvalStatByIds(List<StaffEvalStatById> staffEvalStatByIds) {

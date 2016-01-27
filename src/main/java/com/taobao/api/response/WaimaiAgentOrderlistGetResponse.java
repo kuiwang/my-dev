@@ -20,12 +20,12 @@ public class WaimaiAgentOrderlistGetResponse extends TaobaoResponse {
     @ApiField("result")
     private DdTopPaginationForAgentOrder result;
 
-    public void setResult(DdTopPaginationForAgentOrder result) {
-        this.result = result;
-    }
-
     public DdTopPaginationForAgentOrder getResult() {
         return this.result;
+    }
+
+    public void setResult(DdTopPaginationForAgentOrder result) {
+        this.result = result;
     }
 
 }

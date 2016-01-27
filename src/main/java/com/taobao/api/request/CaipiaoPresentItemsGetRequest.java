@@ -16,17 +16,13 @@ import com.taobao.api.response.CaipiaoPresentItemsGetResponse;
  */
 public class CaipiaoPresentItemsGetRequest implements TaobaoRequest<CaipiaoPresentItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 赠送订单的截止时间，格式为yyyyMMdd,
      * 距当前最长时间间隔是3个月，最近可以取当天的时间。不可为空。要求endDate-startDate必须<=3个月，
      */
     private String endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 当前页码， 不可为空、0和负数。
@@ -43,50 +39,50 @@ public class CaipiaoPresentItemsGetRequest implements TaobaoRequest<CaipiaoPrese
      */
     private String startDate;
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.caipiao.present.items.get";
     }
 
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<CaipiaoPresentItemsGetResponse> getResponseClass() {
+        return CaipiaoPresentItemsGetResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.caipiao.present.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -99,6 +95,12 @@ public class CaipiaoPresentItemsGetRequest implements TaobaoRequest<CaipiaoPrese
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,18 +108,24 @@ public class CaipiaoPresentItemsGetRequest implements TaobaoRequest<CaipiaoPrese
         this.udfParams.put(key, value);
     }
 
-    public Class<CaipiaoPresentItemsGetResponse> getResponseClass() {
-        return CaipiaoPresentItemsGetResponse.class;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

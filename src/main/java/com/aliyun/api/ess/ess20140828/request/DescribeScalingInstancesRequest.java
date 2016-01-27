@@ -17,28 +17,12 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class DescribeScalingInstancesRequest implements
         AliyunRequest<DescribeScalingInstancesResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 实例由哪个系统创建，取值：AutoCreated, Attached
      */
     private String creationType;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * Healthy 或 Unhealthy
@@ -150,6 +134,12 @@ public class DescribeScalingInstancesRequest implements
      */
     private String lifecycleState;
 
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
     /**
      * PageNumber
      */
@@ -167,6 +157,12 @@ public class DescribeScalingInstancesRequest implements
     private String regionId;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * 关联的伸缩配置ID。
      */
     private String scalingConfigurationId;
@@ -176,266 +172,156 @@ public class DescribeScalingInstancesRequest implements
      */
     private String scalingGroupId;
 
-    public void setCreationType(String creationType) {
-        this.creationType = creationType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.DescribeScalingInstances.2014-08-28";
     }
 
     public String getCreationType() {
         return this.creationType;
     }
 
-    public void setHealthStatus(String healthStatus) {
-        this.healthStatus = healthStatus;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHealthStatus() {
         return this.healthStatus;
     }
 
-    public void setInstanceId1(String instanceId1) {
-        this.instanceId1 = instanceId1;
-    }
-
     public String getInstanceId1() {
         return this.instanceId1;
-    }
-
-    public void setInstanceId10(String instanceId10) {
-        this.instanceId10 = instanceId10;
     }
 
     public String getInstanceId10() {
         return this.instanceId10;
     }
 
-    public void setInstanceId11(String instanceId11) {
-        this.instanceId11 = instanceId11;
-    }
-
     public String getInstanceId11() {
         return this.instanceId11;
-    }
-
-    public void setInstanceId12(String instanceId12) {
-        this.instanceId12 = instanceId12;
     }
 
     public String getInstanceId12() {
         return this.instanceId12;
     }
 
-    public void setInstanceId13(String instanceId13) {
-        this.instanceId13 = instanceId13;
-    }
-
     public String getInstanceId13() {
         return this.instanceId13;
-    }
-
-    public void setInstanceId14(String instanceId14) {
-        this.instanceId14 = instanceId14;
     }
 
     public String getInstanceId14() {
         return this.instanceId14;
     }
 
-    public void setInstanceId15(String instanceId15) {
-        this.instanceId15 = instanceId15;
-    }
-
     public String getInstanceId15() {
         return this.instanceId15;
-    }
-
-    public void setInstanceId16(String instanceId16) {
-        this.instanceId16 = instanceId16;
     }
 
     public String getInstanceId16() {
         return this.instanceId16;
     }
 
-    public void setInstanceId17(String instanceId17) {
-        this.instanceId17 = instanceId17;
-    }
-
     public String getInstanceId17() {
         return this.instanceId17;
-    }
-
-    public void setInstanceId18(String instanceId18) {
-        this.instanceId18 = instanceId18;
     }
 
     public String getInstanceId18() {
         return this.instanceId18;
     }
 
-    public void setInstanceId19(String instanceId19) {
-        this.instanceId19 = instanceId19;
-    }
-
     public String getInstanceId19() {
         return this.instanceId19;
-    }
-
-    public void setInstanceId2(String instanceId2) {
-        this.instanceId2 = instanceId2;
     }
 
     public String getInstanceId2() {
         return this.instanceId2;
     }
 
-    public void setInstanceId20(String instanceId20) {
-        this.instanceId20 = instanceId20;
-    }
-
     public String getInstanceId20() {
         return this.instanceId20;
-    }
-
-    public void setInstanceId3(String instanceId3) {
-        this.instanceId3 = instanceId3;
     }
 
     public String getInstanceId3() {
         return this.instanceId3;
     }
 
-    public void setInstanceId4(String instanceId4) {
-        this.instanceId4 = instanceId4;
-    }
-
     public String getInstanceId4() {
         return this.instanceId4;
-    }
-
-    public void setInstanceId5(String instanceId5) {
-        this.instanceId5 = instanceId5;
     }
 
     public String getInstanceId5() {
         return this.instanceId5;
     }
 
-    public void setInstanceId6(String instanceId6) {
-        this.instanceId6 = instanceId6;
-    }
-
     public String getInstanceId6() {
         return this.instanceId6;
-    }
-
-    public void setInstanceId7(String instanceId7) {
-        this.instanceId7 = instanceId7;
     }
 
     public String getInstanceId7() {
         return this.instanceId7;
     }
 
-    public void setInstanceId8(String instanceId8) {
-        this.instanceId8 = instanceId8;
-    }
-
     public String getInstanceId8() {
         return this.instanceId8;
-    }
-
-    public void setInstanceId9(String instanceId9) {
-        this.instanceId9 = instanceId9;
     }
 
     public String getInstanceId9() {
         return this.instanceId9;
     }
 
-    public void setLifecycleState(String lifecycleState) {
-        this.lifecycleState = lifecycleState;
-    }
-
     public String getLifecycleState() {
         return this.lifecycleState;
-    }
-
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public Long getPageNumber() {
-        return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Long getPageSize() {
-        return this.pageSize;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setScalingConfigurationId(String scalingConfigurationId) {
-        this.scalingConfigurationId = scalingConfigurationId;
-    }
-
-    public String getScalingConfigurationId() {
-        return this.scalingConfigurationId;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
-    public String getScalingGroupId() {
-        return this.scalingGroupId;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPageNumber() {
+        return this.pageNumber;
+    }
+
+    public Long getPageSize() {
+        return this.pageSize;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeScalingInstancesResponse> getResponseClass() {
+        return DescribeScalingInstancesResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingConfigurationId() {
+        return this.scalingConfigurationId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingGroupId() {
+        return this.scalingGroupId;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.DescribeScalingInstances.2014-08-28";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -475,6 +361,12 @@ public class DescribeScalingInstancesRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -482,16 +374,132 @@ public class DescribeScalingInstancesRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeScalingInstancesResponse> getResponseClass() {
-        return DescribeScalingInstancesResponse.class;
+    public void setCreationType(String creationType) {
+        this.creationType = creationType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    public void setHealthStatus(String healthStatus) {
+        this.healthStatus = healthStatus;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setInstanceId1(String instanceId1) {
+        this.instanceId1 = instanceId1;
+    }
+
+    public void setInstanceId10(String instanceId10) {
+        this.instanceId10 = instanceId10;
+    }
+
+    public void setInstanceId11(String instanceId11) {
+        this.instanceId11 = instanceId11;
+    }
+
+    public void setInstanceId12(String instanceId12) {
+        this.instanceId12 = instanceId12;
+    }
+
+    public void setInstanceId13(String instanceId13) {
+        this.instanceId13 = instanceId13;
+    }
+
+    public void setInstanceId14(String instanceId14) {
+        this.instanceId14 = instanceId14;
+    }
+
+    public void setInstanceId15(String instanceId15) {
+        this.instanceId15 = instanceId15;
+    }
+
+    public void setInstanceId16(String instanceId16) {
+        this.instanceId16 = instanceId16;
+    }
+
+    public void setInstanceId17(String instanceId17) {
+        this.instanceId17 = instanceId17;
+    }
+
+    public void setInstanceId18(String instanceId18) {
+        this.instanceId18 = instanceId18;
+    }
+
+    public void setInstanceId19(String instanceId19) {
+        this.instanceId19 = instanceId19;
+    }
+
+    public void setInstanceId2(String instanceId2) {
+        this.instanceId2 = instanceId2;
+    }
+
+    public void setInstanceId20(String instanceId20) {
+        this.instanceId20 = instanceId20;
+    }
+
+    public void setInstanceId3(String instanceId3) {
+        this.instanceId3 = instanceId3;
+    }
+
+    public void setInstanceId4(String instanceId4) {
+        this.instanceId4 = instanceId4;
+    }
+
+    public void setInstanceId5(String instanceId5) {
+        this.instanceId5 = instanceId5;
+    }
+
+    public void setInstanceId6(String instanceId6) {
+        this.instanceId6 = instanceId6;
+    }
+
+    public void setInstanceId7(String instanceId7) {
+        this.instanceId7 = instanceId7;
+    }
+
+    public void setInstanceId8(String instanceId8) {
+        this.instanceId8 = instanceId8;
+    }
+
+    public void setInstanceId9(String instanceId9) {
+        this.instanceId9 = instanceId9;
+    }
+
+    public void setLifecycleState(String lifecycleState) {
+        this.lifecycleState = lifecycleState;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingConfigurationId(String scalingConfigurationId) {
+        this.scalingConfigurationId = scalingConfigurationId;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

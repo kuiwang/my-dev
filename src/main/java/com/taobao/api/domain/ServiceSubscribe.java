@@ -70,60 +70,60 @@ public class ServiceSubscribe extends TaobaoObject {
         return this.allNum;
     }
 
-    public void setAllNum(Long allNum) {
-        this.allNum = allNum;
-    }
-
     public String getFuturePrice() {
         return this.futurePrice;
-    }
-
-    public void setFuturePrice(String futurePrice) {
-        this.futurePrice = futurePrice;
     }
 
     public Long getFutureSubId() {
         return this.futureSubId;
     }
 
-    public void setFutureSubId(Long futureSubId) {
-        this.futureSubId = futureSubId;
-    }
-
     public Date getGmtExpiry() {
         return this.gmtExpiry;
-    }
-
-    public void setGmtExpiry(Date gmtExpiry) {
-        this.gmtExpiry = gmtExpiry;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getServiceItemCode() {
         return this.serviceItemCode;
-    }
-
-    public void setServiceItemCode(String serviceItemCode) {
-        this.serviceItemCode = serviceItemCode;
     }
 
     public List<QualityUsageDetail> getUsageDetailList() {
         return this.usageDetailList;
     }
 
-    public void setUsageDetailList(List<QualityUsageDetail> usageDetailList) {
-        this.usageDetailList = usageDetailList;
-    }
-
     public Long getUsedNum() {
         return this.usedNum;
+    }
+
+    public void setAllNum(Long allNum) {
+        this.allNum = allNum;
+    }
+
+    public void setFuturePrice(String futurePrice) {
+        this.futurePrice = futurePrice;
+    }
+
+    public void setFutureSubId(Long futureSubId) {
+        this.futureSubId = futureSubId;
+    }
+
+    public void setGmtExpiry(Date gmtExpiry) {
+        this.gmtExpiry = gmtExpiry;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setServiceItemCode(String serviceItemCode) {
+        this.serviceItemCode = serviceItemCode;
+    }
+
+    public void setUsageDetailList(List<QualityUsageDetail> usageDetailList) {
+        this.usageDetailList = usageDetailList;
     }
 
     public void setUsedNum(Long usedNum) {

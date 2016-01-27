@@ -68,16 +68,16 @@ public class TakeoutOption extends TaobaoObject {
     private String mobile;
 
     /**
-     * 外卖店铺名称
-     */
-    @ApiField("shop_name")
-    private String shopName;
-
-    /**
      * 外卖店铺id
      */
     @ApiField("shopid")
     private Long shopid;
+
+    /**
+     * 外卖店铺名称
+     */
+    @ApiField("shop_name")
+    private String shopName;
 
     /**
      * 预定，当天：1，三天内：3，七天内：7
@@ -89,92 +89,92 @@ public class TakeoutOption extends TaobaoObject {
         return this.areaRange;
     }
 
-    public void setAreaRange(String areaRange) {
-        this.areaRange = areaRange;
-    }
-
     public Long getCashOnDelivery() {
         return this.cashOnDelivery;
-    }
-
-    public void setCashOnDelivery(Long cashOnDelivery) {
-        this.cashOnDelivery = cashOnDelivery;
     }
 
     public Long getCateid() {
         return this.cateid;
     }
 
-    public void setCateid(Long cateid) {
-        this.cateid = cateid;
-    }
-
     public String getDeliveryAmount() {
         return this.deliveryAmount;
-    }
-
-    public void setDeliveryAmount(String deliveryAmount) {
-        this.deliveryAmount = deliveryAmount;
     }
 
     public String getDeliveryTime() {
         return this.deliveryTime;
     }
 
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
     public Long getEarlyMinutes() {
         return this.earlyMinutes;
-    }
-
-    public void setEarlyMinutes(Long earlyMinutes) {
-        this.earlyMinutes = earlyMinutes;
     }
 
     public String getFullAmount() {
         return this.fullAmount;
     }
 
-    public void setFullAmount(String fullAmount) {
-        this.fullAmount = fullAmount;
-    }
-
     public String getMinimumAmount() {
         return this.minimumAmount;
-    }
-
-    public void setMinimumAmount(String minimumAmount) {
-        this.minimumAmount = minimumAmount;
     }
 
     public String getMobile() {
         return this.mobile;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public Long getShopid() {
+        return this.shopid;
     }
 
     public String getShopName() {
         return this.shopName;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public Long getSupportDays() {
+        return this.supportDays;
     }
 
-    public Long getShopid() {
-        return this.shopid;
+    public void setAreaRange(String areaRange) {
+        this.areaRange = areaRange;
+    }
+
+    public void setCashOnDelivery(Long cashOnDelivery) {
+        this.cashOnDelivery = cashOnDelivery;
+    }
+
+    public void setCateid(Long cateid) {
+        this.cateid = cateid;
+    }
+
+    public void setDeliveryAmount(String deliveryAmount) {
+        this.deliveryAmount = deliveryAmount;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public void setEarlyMinutes(Long earlyMinutes) {
+        this.earlyMinutes = earlyMinutes;
+    }
+
+    public void setFullAmount(String fullAmount) {
+        this.fullAmount = fullAmount;
+    }
+
+    public void setMinimumAmount(String minimumAmount) {
+        this.minimumAmount = minimumAmount;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public void setShopid(Long shopid) {
         this.shopid = shopid;
     }
 
-    public Long getSupportDays() {
-        return this.supportDays;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
     public void setSupportDays(Long supportDays) {

@@ -20,12 +20,12 @@ public class PictureUserinfoGetResponse extends TaobaoResponse {
     @ApiField("user_info")
     private UserInfo userInfo;
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
-
     public UserInfo getUserInfo() {
         return this.userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
 }

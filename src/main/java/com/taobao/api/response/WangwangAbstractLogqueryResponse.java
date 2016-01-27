@@ -60,60 +60,60 @@ public class WangwangAbstractLogqueryResponse extends TaobaoResponse {
     @ApiField("to_id")
     private String toId;
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
     public String getErrorMsg() {
         return this.errorMsg;
-    }
-
-    public void setFromId(String fromId) {
-        this.fromId = fromId;
     }
 
     public String getFromId() {
         return this.fromId;
     }
 
-    public void setIsSliced(Long isSliced) {
-        this.isSliced = isSliced;
-    }
-
     public Long getIsSliced() {
         return this.isSliced;
-    }
-
-    public void setMsgLists(List<MsgList> msgLists) {
-        this.msgLists = msgLists;
     }
 
     public List<MsgList> getMsgLists() {
         return this.msgLists;
     }
 
-    public void setNextKey(String nextKey) {
-        this.nextKey = nextKey;
-    }
-
     public String getNextKey() {
         return this.nextKey;
-    }
-
-    public void setRetCode(Long retCode) {
-        this.retCode = retCode;
     }
 
     public Long getRetCode() {
         return this.retCode;
     }
 
-    public void setToId(String toId) {
-        this.toId = toId;
-    }
-
     public String getToId() {
         return this.toId;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
+    }
+
+    public void setIsSliced(Long isSliced) {
+        this.isSliced = isSliced;
+    }
+
+    public void setMsgLists(List<MsgList> msgLists) {
+        this.msgLists = msgLists;
+    }
+
+    public void setNextKey(String nextKey) {
+        this.nextKey = nextKey;
+    }
+
+    public void setRetCode(Long retCode) {
+        this.retCode = retCode;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 
 }

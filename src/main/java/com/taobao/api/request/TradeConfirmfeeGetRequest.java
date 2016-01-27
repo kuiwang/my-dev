@@ -18,10 +18,6 @@ public class TradeConfirmfeeGetRequest implements TaobaoRequest<TradeConfirmfeeG
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否是子订单。可选值:IS_FATHER(父订单),IS_CHILD(子订单)
      */
@@ -32,34 +28,36 @@ public class TradeConfirmfeeGetRequest implements TaobaoRequest<TradeConfirmfeeG
      */
     private Long tid;
 
-    public void setIsDetail(String isDetail) {
-        this.isDetail = isDetail;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(isDetail, "isDetail");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.confirmfee.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIsDetail() {
         return this.isDetail;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Class<TradeConfirmfeeGetResponse> getResponseClass() {
+        return TradeConfirmfeeGetResponse.class;
     }
 
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.confirmfee.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_detail", this.isDetail);
@@ -70,6 +68,16 @@ public class TradeConfirmfeeGetRequest implements TaobaoRequest<TradeConfirmfeeG
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class TradeConfirmfeeGetRequest implements TaobaoRequest<TradeConfirmfeeG
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeConfirmfeeGetResponse> getResponseClass() {
-        return TradeConfirmfeeGetResponse.class;
+    public void setIsDetail(String isDetail) {
+        this.isDetail = isDetail;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(isDetail, "isDetail");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

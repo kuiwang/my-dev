@@ -27,20 +27,20 @@ public class FenxiaoProductAddResponse extends TaobaoResponse {
     @ApiField("pid")
     private Long pid;
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getCreated() {
         return this.created;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     public Long getPid() {
         return this.pid;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 
 }

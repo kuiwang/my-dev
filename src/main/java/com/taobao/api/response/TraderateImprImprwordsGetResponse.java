@@ -23,12 +23,12 @@ public class TraderateImprImprwordsGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> imprWords;
 
-    public void setImprWords(List<String> imprWords) {
-        this.imprWords = imprWords;
-    }
-
     public List<String> getImprWords() {
         return this.imprWords;
+    }
+
+    public void setImprWords(List<String> imprWords) {
+        this.imprWords = imprWords;
     }
 
 }

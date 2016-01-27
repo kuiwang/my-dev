@@ -8,6 +8,11 @@ import java.util.Date;
 public class OrderMessage {
 
     /*
+     * 留言内容
+     */
+    private String messageContent;
+
+    /*
      * 留言时间
      */
     private Date messageTime;
@@ -18,41 +23,36 @@ public class OrderMessage {
     private String messageTitle;
 
     /*
-     * 留言内容
-     */
-    private String messageContent;
-
-    /*
      * 留言时的图片地址
      */
     private String picUrl;
 
-    public Date getMessageTime() {
-        return messageTime;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setMessageTime(Date messageTime) {
-        this.messageTime = messageTime;
+    public Date getMessageTime() {
+        return messageTime;
     }
 
     public String getMessageTitle() {
         return messageTitle;
     }
 
-    public void setMessageTitle(String messageTitle) {
-        this.messageTitle = messageTitle;
-    }
-
-    public String getMessageContent() {
-        return messageContent;
+    public String getPicUrl() {
+        return picUrl;
     }
 
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+    public void setMessageTime(Date messageTime) {
+        this.messageTime = messageTime;
+    }
+
+    public void setMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
     }
 
     public void setPicUrl(String picUrl) {

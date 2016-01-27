@@ -8,17 +8,25 @@ import org.jboss.netty.handler.codec.replay.ReplayingDecoder;
 
 public class NettyRemotingDecoder extends ReplayingDecoder<NettyRemotingDecoder.State> {
 
+    public enum State {
+        HEADER, PAYLOAD
+    }
+
+    private static int toFrameLength(long l) throws TooLongFrameException {
+        if (l > Integer.MAX_VALUE) {
+            throw new TooLongFrameException("Length:" + l);
+        } else {
+            return (int) l;
+        }
+    }
+
     private NettyRemotingProtocolHandle handle;
+
+    private ChannelBuffer payload;
 
     private int payloadBytesRead;
 
     private int payloadLength;
-
-    private ChannelBuffer payload;
-
-    public enum State {
-        HEADER, PAYLOAD
-    }
 
     public NettyRemotingDecoder() {
         super(State.HEADER);
@@ -59,8 +67,10 @@ public class NettyRemotingDecoder extends ReplayingDecoder<NettyRemotingDecoder.
                     // We don't have all our content so accumulate payload.
                     // Returning null means we will get called back
                     payloadBuffer = buffer.readBytes(rbytes);
-                    if (this.payload == null) this.payload = channel.getConfig().getBufferFactory()
-                            .getBuffer(toFrameLength(this.payloadLength));
+                    if (this.payload == null) {
+                        this.payload = channel.getConfig().getBufferFactory()
+                                .getBuffer(toFrameLength(this.payloadLength));
+                    }
                     this.payload.writeBytes(payloadBuffer);
                     this.payloadBytesRead += rbytes;
 
@@ -75,21 +85,16 @@ public class NettyRemotingDecoder extends ReplayingDecoder<NettyRemotingDecoder.
 
                 checkpoint(State.HEADER);
 
-                if (this.payload == null) this.payload = payloadBuffer;
-                else this.payload.writeBytes(payloadBuffer);
+                if (this.payload == null) {
+                    this.payload = payloadBuffer;
+                } else {
+                    this.payload.writeBytes(payloadBuffer);
+                }
 
                 this.handle.setContentBuffer(this.payload);
                 return this.handle;
             default:
                 throw new Error("Shouldn't reach here.");
-        }
-    }
-
-    private static int toFrameLength(long l) throws TooLongFrameException {
-        if (l > Integer.MAX_VALUE) {
-            throw new TooLongFrameException("Length:" + l);
-        } else {
-            return (int) l;
         }
     }
 }

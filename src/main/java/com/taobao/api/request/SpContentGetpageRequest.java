@@ -18,10 +18,6 @@ public class SpContentGetpageRequest implements TaobaoRequest<SpContentGetpageRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * JOSN格式的分页参数： page： 查询起始页 >=1 rows： 分页大小 <= 50 sort :
      * 排序字段，支持的排序类型包括：gmtModified – 最后修改时间；likeNum – 喜欢数；viewNum – 浏览数；
@@ -44,42 +40,46 @@ public class SpContentGetpageRequest implements TaobaoRequest<SpContentGetpageRe
      */
     private String siteKey;
 
-    public void setPagerequest(String pagerequest) {
-        this.pagerequest = pagerequest;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pagerequest, "pagerequest");
+        RequestCheckUtils.checkNotEmpty(query, "query");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.getpage";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPagerequest() {
         return this.pagerequest;
     }
 
-    public void setQuery(String query) {
-        this.query = query;
-    }
-
     public String getQuery() {
         return this.query;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentGetpageResponse> getResponseClass() {
+        return SpContentGetpageResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.getpage";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("pagerequest", this.pagerequest);
@@ -91,6 +91,12 @@ public class SpContentGetpageRequest implements TaobaoRequest<SpContentGetpageRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -98,18 +104,20 @@ public class SpContentGetpageRequest implements TaobaoRequest<SpContentGetpageRe
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentGetpageResponse> getResponseClass() {
-        return SpContentGetpageResponse.class;
+    public void setPagerequest(String pagerequest) {
+        this.pagerequest = pagerequest;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pagerequest, "pagerequest");
-        RequestCheckUtils.checkNotEmpty(query, "query");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setQuery(String query) {
+        this.query = query;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

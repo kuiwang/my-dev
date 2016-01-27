@@ -19,12 +19,12 @@ public class SimbaRptAdgroupcreativeeffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_adgroupcreative_effect_list")
     private String rptAdgroupcreativeEffectList;
 
-    public void setRptAdgroupcreativeEffectList(String rptAdgroupcreativeEffectList) {
-        this.rptAdgroupcreativeEffectList = rptAdgroupcreativeEffectList;
-    }
-
     public String getRptAdgroupcreativeEffectList() {
         return this.rptAdgroupcreativeEffectList;
+    }
+
+    public void setRptAdgroupcreativeEffectList(String rptAdgroupcreativeEffectList) {
+        this.rptAdgroupcreativeEffectList = rptAdgroupcreativeEffectList;
     }
 
 }

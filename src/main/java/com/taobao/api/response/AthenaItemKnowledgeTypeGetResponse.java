@@ -24,12 +24,12 @@ public class AthenaItemKnowledgeTypeGetResponse extends TaobaoResponse {
     @ApiField("item_knowledge_type")
     private List<ItemKnowledgeType> itemKnowledgeTypeList;
 
-    public void setItemKnowledgeTypeList(List<ItemKnowledgeType> itemKnowledgeTypeList) {
-        this.itemKnowledgeTypeList = itemKnowledgeTypeList;
-    }
-
     public List<ItemKnowledgeType> getItemKnowledgeTypeList() {
         return this.itemKnowledgeTypeList;
+    }
+
+    public void setItemKnowledgeTypeList(List<ItemKnowledgeType> itemKnowledgeTypeList) {
+        this.itemKnowledgeTypeList = itemKnowledgeTypeList;
     }
 
 }

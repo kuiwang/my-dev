@@ -42,36 +42,36 @@ public class WangwangEserviceStreamweigthsGetResponse extends TaobaoResponse {
     @ApiField("total_weight")
     private Long totalWeight;
 
-    public void setResultCode(Long resultCode) {
-        this.resultCode = resultCode;
-    }
-
     public Long getResultCode() {
         return this.resultCode;
-    }
-
-    public void setResultCount(Long resultCount) {
-        this.resultCount = resultCount;
     }
 
     public Long getResultCount() {
         return this.resultCount;
     }
 
-    public void setStaffStreamWeights(List<StreamWeight> staffStreamWeights) {
-        this.staffStreamWeights = staffStreamWeights;
-    }
-
     public List<StreamWeight> getStaffStreamWeights() {
         return this.staffStreamWeights;
     }
 
-    public void setTotalWeight(Long totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
     public Long getTotalWeight() {
         return this.totalWeight;
+    }
+
+    public void setResultCode(Long resultCode) {
+        this.resultCode = resultCode;
+    }
+
+    public void setResultCount(Long resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public void setStaffStreamWeights(List<StreamWeight> staffStreamWeights) {
+        this.staffStreamWeights = staffStreamWeights;
+    }
+
+    public void setTotalWeight(Long totalWeight) {
+        this.totalWeight = totalWeight;
     }
 
 }

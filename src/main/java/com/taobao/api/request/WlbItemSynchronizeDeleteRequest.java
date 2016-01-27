@@ -17,12 +17,6 @@ import com.taobao.api.response.WlbItemSynchronizeDeleteResponse;
 public class WlbItemSynchronizeDeleteRequest implements
         TaobaoRequest<WlbItemSynchronizeDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外部实体ID<br />
      * 支持的最大列表长度为：64
@@ -34,48 +28,53 @@ public class WlbItemSynchronizeDeleteRequest implements
      */
     private String extEntityType;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 物流宝商品ID<br />
      * 支持的最大列表长度为：20
      */
     private Long itemId;
 
-    public void setExtEntityId(Long extEntityId) {
-        this.extEntityId = extEntityId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
+        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.synchronize.delete";
     }
 
     public Long getExtEntityId() {
         return this.extEntityId;
     }
 
-    public void setExtEntityType(String extEntityType) {
-        this.extEntityType = extEntityType;
-    }
-
     public String getExtEntityType() {
         return this.extEntityType;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbItemSynchronizeDeleteResponse> getResponseClass() {
+        return WlbItemSynchronizeDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.synchronize.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ext_entity_id", this.extEntityId);
@@ -87,6 +86,12 @@ public class WlbItemSynchronizeDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,17 +99,20 @@ public class WlbItemSynchronizeDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemSynchronizeDeleteResponse> getResponseClass() {
-        return WlbItemSynchronizeDeleteResponse.class;
+    public void setExtEntityId(Long extEntityId) {
+        this.extEntityId = extEntityId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
-        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setExtEntityType(String extEntityType) {
+        this.extEntityType = extEntityType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -105,108 +105,108 @@ public class WlbItemInventoryLog extends TaobaoObject {
         return this.batchCode;
     }
 
-    public void setBatchCode(String batchCode) {
-        this.batchCode = batchCode;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getInventType() {
         return this.inventType;
-    }
-
-    public void setInventType(String inventType) {
-        this.inventType = inventType;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public String getOpType() {
         return this.opType;
-    }
-
-    public void setOpType(String opType) {
-        this.opType = opType;
     }
 
     public Long getOpUserId() {
         return this.opUserId;
     }
 
-    public void setOpUserId(Long opUserId) {
-        this.opUserId = opUserId;
-    }
-
     public String getOrderCode() {
         return this.orderCode;
-    }
-
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
     }
 
     public Long getOrderItemId() {
         return this.orderItemId;
     }
 
-    public void setOrderItemId(Long orderItemId) {
-        this.orderItemId = orderItemId;
-    }
-
     public Long getQuantity() {
         return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     public Long getResultQuantity() {
         return this.resultQuantity;
-    }
-
-    public void setResultQuantity(Long resultQuantity) {
-        this.resultQuantity = resultQuantity;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setBatchCode(String batchCode) {
+        this.batchCode = batchCode;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setInventType(String inventType) {
+        this.inventType = inventType;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setOpType(String opType) {
+        this.opType = opType;
+    }
+
+    public void setOpUserId(Long opUserId) {
+        this.opUserId = opUserId;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setOrderItemId(Long orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setResultQuantity(Long resultQuantity) {
+        this.resultQuantity = resultQuantity;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
     }
 
     public void setUserId(Long userId) {

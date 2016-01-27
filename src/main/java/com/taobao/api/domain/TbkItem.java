@@ -83,84 +83,84 @@ public class TbkItem extends TaobaoObject {
         return this.clickUrl;
     }
 
-    public void setClickUrl(String clickUrl) {
-        this.clickUrl = clickUrl;
-    }
-
     public String getDiscountPrice() {
         return this.discountPrice;
-    }
-
-    public void setDiscountPrice(String discountPrice) {
-        this.discountPrice = discountPrice;
     }
 
     public String getItemUrl() {
         return this.itemUrl;
     }
 
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getSellerId() {
         return this.sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
     }
 
     public String getShopUrl() {
         return this.shopUrl;
     }
 
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getVolume() {
         return this.volume;
+    }
+
+    public void setClickUrl(String clickUrl) {
+        this.clickUrl = clickUrl;
+    }
+
+    public void setDiscountPrice(String discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setVolume(Long volume) {

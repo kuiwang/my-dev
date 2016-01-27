@@ -17,12 +17,6 @@ import com.taobao.api.response.LogisticsAddressReachableResponse;
 public class LogisticsAddressReachableRequest implements
         TaobaoRequest<LogisticsAddressReachableResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 详细地址
      */
@@ -32,6 +26,8 @@ public class LogisticsAddressReachableRequest implements
      * 标准区域编码(三级行政区编码或是四级行政区)，可以通过taobao.areas.get获取，如北京市朝阳区为110105
      */
     private String areaCode;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 物流公司编码ID，可以从这个接口获取所有物流公司的标准编码taobao.logistics.companies.get，可以传入多个值，
@@ -49,58 +45,52 @@ public class LogisticsAddressReachableRequest implements
      */
     private String sourceAreaCode;
 
-    public void setAddress(String address) {
-        this.address = address;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(partnerIds, "partnerIds");
+        RequestCheckUtils.checkNotEmpty(serviceType, "serviceType");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.address.reachable";
     }
 
     public String getAreaCode() {
         return this.areaCode;
     }
 
-    public void setPartnerIds(String partnerIds) {
-        this.partnerIds = partnerIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPartnerIds() {
         return this.partnerIds;
     }
 
-    public void setServiceType(Long serviceType) {
-        this.serviceType = serviceType;
+    @Override
+    public Class<LogisticsAddressReachableResponse> getResponseClass() {
+        return LogisticsAddressReachableResponse.class;
     }
 
     public Long getServiceType() {
         return this.serviceType;
     }
 
-    public void setSourceAreaCode(String sourceAreaCode) {
-        this.sourceAreaCode = sourceAreaCode;
-    }
-
     public String getSourceAreaCode() {
         return this.sourceAreaCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.address.reachable";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -114,6 +104,12 @@ public class LogisticsAddressReachableRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -121,16 +117,28 @@ public class LogisticsAddressReachableRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsAddressReachableResponse> getResponseClass() {
-        return LogisticsAddressReachableResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(partnerIds, "partnerIds");
-        RequestCheckUtils.checkNotEmpty(serviceType, "serviceType");
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPartnerIds(String partnerIds) {
+        this.partnerIds = partnerIds;
+    }
+
+    public void setServiceType(Long serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public void setSourceAreaCode(String sourceAreaCode) {
+        this.sourceAreaCode = sourceAreaCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -16,37 +16,42 @@ import com.taobao.api.response.JdsTradesStatisticsGetResponse;
  */
 public class JdsTradesStatisticsGetRequest implements TaobaoRequest<JdsTradesStatisticsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询的日期，格式如YYYYMMDD的日期对应的数字
      */
     private Long date;
 
-    public void setDate(Long date) {
-        this.date = date;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(date, "date");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jds.trades.statistics.get";
     }
 
     public Long getDate() {
         return this.date;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<JdsTradesStatisticsGetResponse> getResponseClass() {
+        return JdsTradesStatisticsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.jds.trades.statistics.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("date", this.date);
@@ -56,6 +61,12 @@ public class JdsTradesStatisticsGetRequest implements TaobaoRequest<JdsTradesSta
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class JdsTradesStatisticsGetRequest implements TaobaoRequest<JdsTradesSta
         this.udfParams.put(key, value);
     }
 
-    public Class<JdsTradesStatisticsGetResponse> getResponseClass() {
-        return JdsTradesStatisticsGetResponse.class;
+    public void setDate(Long date) {
+        this.date = date;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(date, "date");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -36,26 +36,26 @@ import com.taobao.top.link.embedded.websocket.frame.rfc6455.FrameBuilderRfc6455.
  */
 public class FrameHeaderRfc6455 implements FrameHeader {
 
+    /** The fragmented. */
+    protected final boolean fragmented;
+
+    /** The header length. */
+    protected final int headerLength;
+
+    /** The mask */
+    protected boolean mask;
+
+    /** The opcode. */
+    protected final Opcode opcode;
+
     /** The payload length. */
     protected final long payloadLength;
 
     /** The payload length type. */
     protected final PayloadLengthType payloadLengthType;
 
-    /** The header length. */
-    protected final int headerLength;
-
-    /** The fragmented. */
-    protected final boolean fragmented;
-
-    /** The opcode. */
-    protected final Opcode opcode;
-
     /** The real opcode. */
     protected Opcode realOpcode;
-
-    /** The mask */
-    protected boolean mask;
 
     /**
      * Instantiates a new frame header draft06.
@@ -97,8 +97,17 @@ public class FrameHeaderRfc6455 implements FrameHeader {
     }
 
     /* (non-Javadoc)
+     * @see jp.a840.websocket.frame.FrameHeader#getContentsLength()
+     */
+    @Override
+    public long getContentsLength() {
+        return payloadLength;
+    }
+
+    /* (non-Javadoc)
      * @see jp.a840.websocket.frame.FrameHeader#getFrameLength()
      */
+    @Override
     public long getFrameLength() {
         return headerLength + payloadLength;
     }
@@ -110,31 +119,6 @@ public class FrameHeaderRfc6455 implements FrameHeader {
      */
     public int getHeaderLength() {
         return headerLength;
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.frame.FrameHeader#getContentsLength()
-     */
-    public long getContentsLength() {
-        return payloadLength;
-    }
-
-    /**
-     * Checks if is fragmented.
-     *
-     * @return true, if is fragmented
-     */
-    public boolean isFragmented() {
-        return fragmented;
-    }
-
-    /**
-     * Checks if is continuation.
-     *
-     * @return true, if is continuation
-     */
-    public boolean isContinuation() {
-        return Opcode.CONTINUATION.equals(opcode);
     }
 
     /**
@@ -157,6 +141,24 @@ public class FrameHeaderRfc6455 implements FrameHeader {
     }
 
     /**
+     * Checks if is continuation.
+     *
+     * @return true, if is continuation
+     */
+    public boolean isContinuation() {
+        return Opcode.CONTINUATION.equals(opcode);
+    }
+
+    /**
+     * Checks if is fragmented.
+     *
+     * @return true, if is fragmented
+     */
+    public boolean isFragmented() {
+        return fragmented;
+    }
+
+    /**
      * set mask
      * 
      * @param mask
@@ -168,6 +170,7 @@ public class FrameHeaderRfc6455 implements FrameHeader {
     /* (non-Javadoc)
      * @see jp.a840.websocket.frame.FrameHeader#toByteBuffer()
      */
+    @Override
     public ByteBuffer toByteBuffer() {
         ByteBuffer buf = ByteBuffer.allocate(2 + payloadLengthType.offset());
         buf.put((byte) ((fragmented ? 0 : 0x80) | opcode.intValue()));

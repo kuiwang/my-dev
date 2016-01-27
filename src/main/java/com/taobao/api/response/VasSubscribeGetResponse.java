@@ -24,12 +24,12 @@ public class VasSubscribeGetResponse extends TaobaoResponse {
     @ApiField("article_user_subscribe")
     private List<ArticleUserSubscribe> articleUserSubscribes;
 
-    public void setArticleUserSubscribes(List<ArticleUserSubscribe> articleUserSubscribes) {
-        this.articleUserSubscribes = articleUserSubscribes;
-    }
-
     public List<ArticleUserSubscribe> getArticleUserSubscribes() {
         return this.articleUserSubscribes;
+    }
+
+    public void setArticleUserSubscribes(List<ArticleUserSubscribe> articleUserSubscribes) {
+        this.articleUserSubscribes = articleUserSubscribes;
     }
 
 }

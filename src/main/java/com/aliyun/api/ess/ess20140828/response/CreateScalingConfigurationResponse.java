@@ -26,20 +26,20 @@ public class CreateScalingConfigurationResponse extends AliyunResponse {
     @ApiField("ScalingConfigurationId")
     private String scalingConfigurationId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setScalingConfigurationId(String scalingConfigurationId) {
-        this.scalingConfigurationId = scalingConfigurationId;
-    }
-
     public String getScalingConfigurationId() {
         return this.scalingConfigurationId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScalingConfigurationId(String scalingConfigurationId) {
+        this.scalingConfigurationId = scalingConfigurationId;
     }
 
 }

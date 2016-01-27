@@ -53,44 +53,44 @@ public class FeedTile extends TaobaoObject {
         return this.path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public Long getPicHeight() {
         return this.picHeight;
-    }
-
-    public void setPicHeight(Long picHeight) {
-        this.picHeight = picHeight;
     }
 
     public Long getPicWidth() {
         return this.picWidth;
     }
 
-    public void setPicWidth(Long picWidth) {
-        this.picWidth = picWidth;
-    }
-
     public Long getTemplate() {
         return this.template;
-    }
-
-    public void setTemplate(Long template) {
-        this.template = template;
     }
 
     public String getText() {
         return this.text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setPicHeight(Long picHeight) {
+        this.picHeight = picHeight;
+    }
+
+    public void setPicWidth(Long picWidth) {
+        this.picWidth = picWidth;
+    }
+
+    public void setTemplate(Long template) {
+        this.template = template;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void setType(String type) {

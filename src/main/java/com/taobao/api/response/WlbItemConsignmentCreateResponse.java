@@ -19,12 +19,12 @@ public class WlbItemConsignmentCreateResponse extends TaobaoResponse {
     @ApiField("consignment_id")
     private Long consignmentId;
 
-    public void setConsignmentId(Long consignmentId) {
-        this.consignmentId = consignmentId;
-    }
-
     public Long getConsignmentId() {
         return this.consignmentId;
+    }
+
+    public void setConsignmentId(Long consignmentId) {
+        this.consignmentId = consignmentId;
     }
 
 }

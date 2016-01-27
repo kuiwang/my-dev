@@ -16,51 +16,53 @@ import com.taobao.api.response.TicketItemsGetResponse;
  */
 public class TicketItemsGetRequest implements TaobaoRequest<TicketItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要返回的门票商品（TicketItem）对象字段，如title,price,skus等。<br>
      * 可选值：TicketItem商品结构体中所有字段均可返回；多个字段用“,”分隔。
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 批量获取信息的商品标识。最多不能超过20个。
      */
     private String itemIds;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(itemIds, "itemIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ticket.items.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setItemIds(String itemIds) {
-        this.itemIds = itemIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemIds() {
         return this.itemIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TicketItemsGetResponse> getResponseClass() {
+        return TicketItemsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ticket.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -71,6 +73,12 @@ public class TicketItemsGetRequest implements TaobaoRequest<TicketItemsGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class TicketItemsGetRequest implements TaobaoRequest<TicketItemsGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<TicketItemsGetResponse> getResponseClass() {
-        return TicketItemsGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(itemIds, "itemIds");
+    public void setItemIds(String itemIds) {
+        this.itemIds = itemIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

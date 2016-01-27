@@ -41,28 +41,28 @@ public class LogisticsPartner extends TaobaoObject {
         return this.carriage;
     }
 
-    public void setCarriage(CarriageDetail carriage) {
-        this.carriage = carriage;
-    }
-
     public String getCoverRemark() {
         return this.coverRemark;
-    }
-
-    public void setCoverRemark(String coverRemark) {
-        this.coverRemark = coverRemark;
     }
 
     public PartnerDetail getPartner() {
         return this.partner;
     }
 
-    public void setPartner(PartnerDetail partner) {
-        this.partner = partner;
-    }
-
     public String getUncoverRemark() {
         return this.uncoverRemark;
+    }
+
+    public void setCarriage(CarriageDetail carriage) {
+        this.carriage = carriage;
+    }
+
+    public void setCoverRemark(String coverRemark) {
+        this.coverRemark = coverRemark;
+    }
+
+    public void setPartner(PartnerDetail partner) {
+        this.partner = partner;
     }
 
     public void setUncoverRemark(String uncoverRemark) {

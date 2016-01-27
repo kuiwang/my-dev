@@ -30,20 +30,20 @@ public class WlbInventorylogQueryResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setInventoryLogList(List<WlbItemInventoryLog> inventoryLogList) {
-        this.inventoryLogList = inventoryLogList;
-    }
-
     public List<WlbItemInventoryLog> getInventoryLogList() {
         return this.inventoryLogList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setInventoryLogList(List<WlbItemInventoryLog> inventoryLogList) {
+        this.inventoryLogList = inventoryLogList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

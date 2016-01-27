@@ -24,12 +24,12 @@ public class ItemsCustomGetResponse extends TaobaoResponse {
     @ApiField("item")
     private List<Item> items;
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
     public List<Item> getItems() {
         return this.items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
 }

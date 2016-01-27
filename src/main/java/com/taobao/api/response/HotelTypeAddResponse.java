@@ -20,12 +20,12 @@ public class HotelTypeAddResponse extends TaobaoResponse {
     @ApiField("room_type")
     private RoomType roomType;
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
-    }
-
     public RoomType getRoomType() {
         return this.roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
     }
 
 }

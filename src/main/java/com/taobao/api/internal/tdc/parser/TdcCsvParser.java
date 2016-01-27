@@ -17,6 +17,32 @@ import com.taobao.api.internal.tdc.CsvTdcResponse;
  */
 public class TdcCsvParser implements TdcParser {
 
+    private void errorRecord(CsvReader cr, CsvTdcResponse csvRsp, String rsp, String[] headers)
+            throws IOException {
+
+        cr.readRecord();
+        String[] errorMsg = cr.getValues();
+        if ((null == errorMsg) || (errorMsg.length == 0)) {
+            return;
+        }
+        for (int i = 1; i < errorMsg.length; i++) {
+            if (headers[i].equals(Constants.ERROR_MSG)) {
+                csvRsp.setMsg(errorMsg[i]);
+            }
+            if (headers[i].equals(Constants.ERROR_CODE)) {
+                csvRsp.setErrorCode(errorMsg[i]);
+            }
+            if (headers[i].equals(Constants.ERROR_SUB_CODE)) {
+                csvRsp.setSubCode(errorMsg[i]);
+            }
+            if (headers[i].equals(Constants.ERROR_SUB_MSG)) {
+                csvRsp.setSubMsg(errorMsg[i]);
+            }
+        }
+        csvRsp.setBody(rsp);
+    }
+
+    @Override
     public CsvTdcResponse parse(String rsp) throws ApiException {
         CsvTdcResponse csvRsp = new CsvTdcResponse();
         CsvReader cr = CsvReader.parse(rsp);
@@ -54,30 +80,5 @@ public class TdcCsvParser implements TdcParser {
         csvRsp.setBody(rsp);
 
         return csvRsp;
-    }
-
-    private void errorRecord(CsvReader cr, CsvTdcResponse csvRsp, String rsp, String[] headers)
-            throws IOException {
-
-        cr.readRecord();
-        String[] errorMsg = cr.getValues();
-        if (null == errorMsg || errorMsg.length == 0) {
-            return;
-        }
-        for (int i = 1; i < errorMsg.length; i++) {
-            if (headers[i].equals(Constants.ERROR_MSG)) {
-                csvRsp.setMsg(errorMsg[i]);
-            }
-            if (headers[i].equals(Constants.ERROR_CODE)) {
-                csvRsp.setErrorCode(errorMsg[i]);
-            }
-            if (headers[i].equals(Constants.ERROR_SUB_CODE)) {
-                csvRsp.setSubCode(errorMsg[i]);
-            }
-            if (headers[i].equals(Constants.ERROR_SUB_MSG)) {
-                csvRsp.setSubMsg(errorMsg[i]);
-            }
-        }
-        csvRsp.setBody(rsp);
     }
 }

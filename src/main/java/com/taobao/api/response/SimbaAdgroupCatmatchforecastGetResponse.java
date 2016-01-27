@@ -20,12 +20,12 @@ public class SimbaAdgroupCatmatchforecastGetResponse extends TaobaoResponse {
     @ApiField("adgroup_catmatch_forecast")
     private ADGroupCatMatchForecast adgroupCatmatchForecast;
 
-    public void setAdgroupCatmatchForecast(ADGroupCatMatchForecast adgroupCatmatchForecast) {
-        this.adgroupCatmatchForecast = adgroupCatmatchForecast;
-    }
-
     public ADGroupCatMatchForecast getAdgroupCatmatchForecast() {
         return this.adgroupCatmatchForecast;
+    }
+
+    public void setAdgroupCatmatchForecast(ADGroupCatMatchForecast adgroupCatmatchForecast) {
+        this.adgroupCatmatchForecast = adgroupCatmatchForecast;
     }
 
 }

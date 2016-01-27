@@ -48,44 +48,44 @@ public class DescribeInstanceStatusResponse extends AliyunResponse {
     @ApiField("TotalCount")
     private Long totalCount;
 
-    public void setInstanceStatuses(List<InstanceStatus> instanceStatuses) {
-        this.instanceStatuses = instanceStatuses;
-    }
-
     public List<InstanceStatus> getInstanceStatuses() {
         return this.instanceStatuses;
-    }
-
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
     }
 
     public Long getPageNumber() {
         return this.pageNumber;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
     }
 
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setInstanceStatuses(List<InstanceStatus> instanceStatuses) {
+        this.instanceStatuses = instanceStatuses;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

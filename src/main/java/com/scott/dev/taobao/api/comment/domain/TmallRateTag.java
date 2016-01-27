@@ -6,28 +6,28 @@ package com.scott.dev.taobao.api.comment.domain;
 public class TmallRateTag {
 
     /*
-     * 表示标签的名称
-     */
-    private String tagName;
-
-    /*
      *表示标签的极性，正极true，负极false
      */
     private Boolean posi;
 
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
+    /*
+     * 表示标签的名称
+     */
+    private String tagName;
 
     public Boolean getPosi() {
         return posi;
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
     public void setPosi(Boolean posi) {
         this.posi = posi;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

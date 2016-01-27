@@ -35,20 +35,20 @@ public class RefundMappingResult extends TaobaoObject {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
-    }
-
     public Boolean getSucc() {
         return this.succ;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
     }
 
     public void setSucc(Boolean succ) {

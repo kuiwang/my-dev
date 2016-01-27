@@ -51,36 +51,36 @@ public class DdTopPaginationForAgentOrder extends TaobaoObject {
         return this.list;
     }
 
-    public void setList(List<TopDeliveryAgentOrderVO> list) {
-        this.list = list;
-    }
-
     public Long getPageNum() {
         return this.pageNum;
-    }
-
-    public void setPageNum(Long pageNum) {
-        this.pageNum = pageNum;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getViewCount() {
         return this.viewCount;
+    }
+
+    public void setList(List<TopDeliveryAgentOrderVO> list) {
+        this.list = list;
+    }
+
+    public void setPageNum(Long pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
     public void setViewCount(Long viewCount) {

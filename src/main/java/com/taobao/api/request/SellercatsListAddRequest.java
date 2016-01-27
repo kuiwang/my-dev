@@ -18,10 +18,6 @@ public class SellercatsListAddRequest implements TaobaoRequest<SellercatsListAdd
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 卖家自定义类目名称。不超过20个字符
      */
@@ -43,50 +39,47 @@ public class SellercatsListAddRequest implements TaobaoRequest<SellercatsListAdd
      */
     private Long sortOrder;
 
-    public void setName(String name) {
-        this.name = name;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(name, "name");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sellercats.list.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setParentCid(Long parentCid) {
-        this.parentCid = parentCid;
-    }
-
     public Long getParentCid() {
         return this.parentCid;
-    }
-
-    public void setPictUrl(String pictUrl) {
-        this.pictUrl = pictUrl;
     }
 
     public String getPictUrl() {
         return this.pictUrl;
     }
 
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
+    @Override
+    public Class<SellercatsListAddResponse> getResponseClass() {
+        return SellercatsListAddResponse.class;
     }
 
     public Long getSortOrder() {
         return this.sortOrder;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sellercats.list.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("name", this.name);
@@ -99,6 +92,12 @@ public class SellercatsListAddRequest implements TaobaoRequest<SellercatsListAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,15 +105,24 @@ public class SellercatsListAddRequest implements TaobaoRequest<SellercatsListAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<SellercatsListAddResponse> getResponseClass() {
-        return SellercatsListAddResponse.class;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(name, "name");
+    public void setParentCid(Long parentCid) {
+        this.parentCid = parentCid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPictUrl(String pictUrl) {
+        this.pictUrl = pictUrl;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

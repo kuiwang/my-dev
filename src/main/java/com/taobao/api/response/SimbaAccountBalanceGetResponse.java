@@ -19,12 +19,12 @@ public class SimbaAccountBalanceGetResponse extends TaobaoResponse {
     @ApiField("balance")
     private String balance;
 
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
     public String getBalance() {
         return this.balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
 }

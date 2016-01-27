@@ -16,12 +16,6 @@ import com.taobao.api.response.TmcMessagesConfirmResponse;
  */
 public class TmcMessagesConfirmRequest implements TaobaoRequest<TmcMessagesConfirmResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 处理失败的消息ID列表
      */
@@ -32,47 +26,52 @@ public class TmcMessagesConfirmRequest implements TaobaoRequest<TmcMessagesConfi
      */
     private String groupName;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 处理成功的消息ID列表 最大 200个ID
      */
     private String sMessageIds;
 
-    public void setfMessageIds(String fMessageIds) {
-        this.fMessageIds = fMessageIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(fMessageIds, 200, "fMessageIds");
+        RequestCheckUtils.checkNotEmpty(sMessageIds, "sMessageIds");
+        RequestCheckUtils.checkMaxListSize(sMessageIds, 200, "sMessageIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tmc.messages.confirm";
     }
 
     public String getfMessageIds() {
         return this.fMessageIds;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     public String getGroupName() {
         return this.groupName;
     }
 
-    public void setsMessageIds(String sMessageIds) {
-        this.sMessageIds = sMessageIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TmcMessagesConfirmResponse> getResponseClass() {
+        return TmcMessagesConfirmResponse.class;
     }
 
     public String getsMessageIds() {
         return this.sMessageIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tmc.messages.confirm";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("f_message_ids", this.fMessageIds);
@@ -84,6 +83,12 @@ public class TmcMessagesConfirmRequest implements TaobaoRequest<TmcMessagesConfi
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,17 +96,20 @@ public class TmcMessagesConfirmRequest implements TaobaoRequest<TmcMessagesConfi
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcMessagesConfirmResponse> getResponseClass() {
-        return TmcMessagesConfirmResponse.class;
+    public void setfMessageIds(String fMessageIds) {
+        this.fMessageIds = fMessageIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(fMessageIds, 200, "fMessageIds");
-        RequestCheckUtils.checkNotEmpty(sMessageIds, "sMessageIds");
-        RequestCheckUtils.checkMaxListSize(sMessageIds, 200, "sMessageIds");
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setsMessageIds(String sMessageIds) {
+        this.sMessageIds = sMessageIds;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

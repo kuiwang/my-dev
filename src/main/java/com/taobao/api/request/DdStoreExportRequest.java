@@ -18,10 +18,6 @@ public class DdStoreExportRequest implements TaobaoRequest<DdStoreExportResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 页码
      */
@@ -33,34 +29,41 @@ public class DdStoreExportRequest implements TaobaoRequest<DdStoreExportResponse
      */
     private Long pageSize;
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.store.export";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<DdStoreExportResponse> getResponseClass() {
+        return DdStoreExportResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.store.export";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("page_no", this.pageNo);
@@ -71,6 +74,12 @@ public class DdStoreExportRequest implements TaobaoRequest<DdStoreExportResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,17 +87,16 @@ public class DdStoreExportRequest implements TaobaoRequest<DdStoreExportResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<DdStoreExportResponse> getResponseClass() {
-        return DdStoreExportResponse.class;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

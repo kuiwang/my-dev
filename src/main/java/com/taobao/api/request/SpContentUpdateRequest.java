@@ -18,10 +18,6 @@ public class SpContentUpdateRequest implements TaobaoRequest<SpContentUpdateResp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 内容的主键ID
      */
@@ -45,6 +41,10 @@ public class SpContentUpdateRequest implements TaobaoRequest<SpContentUpdateResp
      * (单位是字符，不区分中英文)，标签名称中不能包含非法内容，且一个内容关联的标签数目不能超过6个
      */
     private String tags;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 内容具体的信息，用json格式描述，kv对的方式:
@@ -84,58 +84,47 @@ public class SpContentUpdateRequest implements TaobaoRequest<SpContentUpdateResp
      */
     private String value;
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(schemaName, "schemaName");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+        RequestCheckUtils.checkNotEmpty(value, "value");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setSchemaName(String schemaName) {
-        this.schemaName = schemaName;
+    @Override
+    public Class<SpContentUpdateResponse> getResponseClass() {
+        return SpContentUpdateResponse.class;
     }
 
     public String getSchemaName() {
         return this.schemaName;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
-    }
-
     public String getSiteKey() {
         return this.siteKey;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public String getTags() {
         return this.tags;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -149,6 +138,16 @@ public class SpContentUpdateRequest implements TaobaoRequest<SpContentUpdateResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -156,19 +155,28 @@ public class SpContentUpdateRequest implements TaobaoRequest<SpContentUpdateResp
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentUpdateResponse> getResponseClass() {
-        return SpContentUpdateResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(schemaName, "schemaName");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-        RequestCheckUtils.checkNotEmpty(value, "value");
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

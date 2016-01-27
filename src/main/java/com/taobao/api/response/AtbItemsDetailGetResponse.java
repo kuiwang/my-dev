@@ -30,20 +30,20 @@ public class AtbItemsDetailGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setAtbItemDetails(List<AitaobaoItemDetail> atbItemDetails) {
-        this.atbItemDetails = atbItemDetails;
-    }
-
     public List<AitaobaoItemDetail> getAtbItemDetails() {
         return this.atbItemDetails;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setAtbItemDetails(List<AitaobaoItemDetail> atbItemDetails) {
+        this.atbItemDetails = atbItemDetails;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

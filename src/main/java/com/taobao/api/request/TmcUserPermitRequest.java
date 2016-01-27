@@ -18,8 +18,6 @@ public class TmcUserPermitRequest implements TaobaoRequest<TmcUserPermitResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
     /**
@@ -28,26 +26,29 @@ public class TmcUserPermitRequest implements TaobaoRequest<TmcUserPermitResponse
      */
     private String topics;
 
-    public void setTopics(String topics) {
-        this.topics = topics;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(topics, 100, "topics");
     }
 
-    public String getTopics() {
-        return this.topics;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.tmc.user.permit";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TmcUserPermitResponse> getResponseClass() {
+        return TmcUserPermitResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("topics", this.topics);
@@ -57,6 +58,16 @@ public class TmcUserPermitRequest implements TaobaoRequest<TmcUserPermitResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTopics() {
+        return this.topics;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class TmcUserPermitRequest implements TaobaoRequest<TmcUserPermitResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcUserPermitResponse> getResponseClass() {
-        return TmcUserPermitResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(topics, 100, "topics");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTopics(String topics) {
+        this.topics = topics;
     }
 }

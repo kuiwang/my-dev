@@ -42,36 +42,36 @@ public class RpRefundsAgreeResponse extends TaobaoResponse {
     @ApiField("succ")
     private Boolean succ;
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getMessage() {
         return this.message;
-    }
-
-    public void setMsgCode(String msgCode) {
-        this.msgCode = msgCode;
     }
 
     public String getMsgCode() {
         return this.msgCode;
     }
 
-    public void setResults(List<RefundMappingResult> results) {
-        this.results = results;
-    }
-
     public List<RefundMappingResult> getResults() {
         return this.results;
     }
 
-    public void setSucc(Boolean succ) {
-        this.succ = succ;
-    }
-
     public Boolean getSucc() {
         return this.succ;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setMsgCode(String msgCode) {
+        this.msgCode = msgCode;
+    }
+
+    public void setResults(List<RefundMappingResult> results) {
+        this.results = results;
+    }
+
+    public void setSucc(Boolean succ) {
+        this.succ = succ;
     }
 
 }

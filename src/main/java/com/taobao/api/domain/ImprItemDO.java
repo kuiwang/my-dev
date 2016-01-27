@@ -41,28 +41,28 @@ public class ImprItemDO extends TaobaoObject {
         return this.attributeId;
     }
 
-    public void setAttributeId(Long attributeId) {
-        this.attributeId = attributeId;
-    }
-
     public Long getCount() {
         return this.count;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setAttributeId(Long attributeId) {
+        this.attributeId = attributeId;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public void setTitle(String title) {

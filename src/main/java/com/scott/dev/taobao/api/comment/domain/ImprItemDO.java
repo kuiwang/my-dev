@@ -11,11 +11,6 @@ public class ImprItemDO {
     private Number attributeId;
 
     /*
-     * 印象标签的名称
-     */
-    private String title;
-
-    /*
      * 被买家评价提及到的印象标签次数
      */
     private Number count;
@@ -25,35 +20,40 @@ public class ImprItemDO {
      */
     private Number status;
 
+    /*
+     * 印象标签的名称
+     */
+    private String title;
+
     public Number getAttributeId() {
         return attributeId;
-    }
-
-    public void setAttributeId(Number attributeId) {
-        this.attributeId = attributeId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Number getCount() {
         return count;
     }
 
-    public void setCount(Number count) {
-        this.count = count;
-    }
-
     public Number getStatus() {
         return status;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setAttributeId(Number attributeId) {
+        this.attributeId = attributeId;
+    }
+
+    public void setCount(Number count) {
+        this.count = count;
+    }
+
     public void setStatus(Number status) {
         this.status = status;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -36,28 +36,28 @@ public class WangwangEserviceLoginlogsGetResponse extends TaobaoResponse {
     @ApiField("user_id")
     private String userId;
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public Long getCount() {
         return this.count;
-    }
-
-    public void setLoginlogs(List<LoginLog> loginlogs) {
-        this.loginlogs = loginlogs;
     }
 
     public List<LoginLog> getLoginlogs() {
         return this.loginlogs;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getUserId() {
         return this.userId;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setLoginlogs(List<LoginLog> loginlogs) {
+        this.loginlogs = loginlogs;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }

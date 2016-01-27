@@ -41,28 +41,28 @@ public class Brand extends TaobaoObject {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPid() {
         return this.pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public String getPropName() {
         return this.propName;
     }
 
-    public void setPropName(String propName) {
-        this.propName = propName;
-    }
-
     public Long getVid() {
         return this.vid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setPropName(String propName) {
+        this.propName = propName;
     }
 
     public void setVid(Long vid) {

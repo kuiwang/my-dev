@@ -24,12 +24,12 @@ public class PromotionActivityGetResponse extends TaobaoResponse {
     @ApiField("activity")
     private List<Activity> activitys;
 
-    public void setActivitys(List<Activity> activitys) {
-        this.activitys = activitys;
-    }
-
     public List<Activity> getActivitys() {
         return this.activitys;
+    }
+
+    public void setActivitys(List<Activity> activitys) {
+        this.activitys = activitys;
     }
 
 }

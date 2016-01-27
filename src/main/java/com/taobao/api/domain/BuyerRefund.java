@@ -97,100 +97,100 @@ public class BuyerRefund extends TaobaoObject {
         return this.bizOrderId;
     }
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
     }
 
     public String getGoodsStatusDesc() {
         return this.goodsStatusDesc;
     }
 
-    public void setGoodsStatusDesc(String goodsStatusDesc) {
-        this.goodsStatusDesc = goodsStatusDesc;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public Boolean getNeedReturnGoods() {
         return this.needReturnGoods;
     }
 
-    public void setNeedReturnGoods(Boolean needReturnGoods) {
-        this.needReturnGoods = needReturnGoods;
-    }
-
     public Date getRefundCreateTime() {
         return this.refundCreateTime;
-    }
-
-    public void setRefundCreateTime(Date refundCreateTime) {
-        this.refundCreateTime = refundCreateTime;
     }
 
     public String getRefundDesc() {
         return this.refundDesc;
     }
 
-    public void setRefundDesc(String refundDesc) {
-        this.refundDesc = refundDesc;
-    }
-
     public Long getRefundId() {
         return this.refundId;
-    }
-
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
     }
 
     public String getRefundReason() {
         return this.refundReason;
     }
 
-    public void setRefundReason(String refundReason) {
-        this.refundReason = refundReason;
-    }
-
     public Long getRefundStatus() {
         return this.refundStatus;
-    }
-
-    public void setRefundStatus(Long refundStatus) {
-        this.refundStatus = refundStatus;
     }
 
     public Long getReturnFee() {
         return this.returnFee;
     }
 
-    public void setReturnFee(Long returnFee) {
-        this.returnFee = returnFee;
-    }
-
     public Long getSubOrderId() {
         return this.subOrderId;
     }
 
-    public void setSubOrderId(Long subOrderId) {
-        this.subOrderId = subOrderId;
-    }
-
     public Long getToSellerFee() {
         return this.toSellerFee;
+    }
+
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setGoodsStatusDesc(String goodsStatusDesc) {
+        this.goodsStatusDesc = goodsStatusDesc;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setNeedReturnGoods(Boolean needReturnGoods) {
+        this.needReturnGoods = needReturnGoods;
+    }
+
+    public void setRefundCreateTime(Date refundCreateTime) {
+        this.refundCreateTime = refundCreateTime;
+    }
+
+    public void setRefundDesc(String refundDesc) {
+        this.refundDesc = refundDesc;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRefundReason(String refundReason) {
+        this.refundReason = refundReason;
+    }
+
+    public void setRefundStatus(Long refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public void setReturnFee(Long returnFee) {
+        this.returnFee = returnFee;
+    }
+
+    public void setSubOrderId(Long subOrderId) {
+        this.subOrderId = subOrderId;
     }
 
     public void setToSellerFee(Long toSellerFee) {

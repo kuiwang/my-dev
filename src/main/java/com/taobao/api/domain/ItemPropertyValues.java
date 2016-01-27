@@ -39,20 +39,20 @@ public class ItemPropertyValues extends TaobaoObject {
         return this.propertyId;
     }
 
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
-    }
-
     public String getPropertyName() {
         return this.propertyName;
     }
 
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
-    }
-
     public List<String> getPropertyValues() {
         return this.propertyValues;
+    }
+
+    public void setPropertyId(Long propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 
     public void setPropertyValues(List<String> propertyValues) {

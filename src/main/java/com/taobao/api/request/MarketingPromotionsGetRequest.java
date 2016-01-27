@@ -16,17 +16,13 @@ import com.taobao.api.response.MarketingPromotionsGetResponse;
  */
 public class MarketingPromotionsGetRequest implements TaobaoRequest<MarketingPromotionsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的优惠策略结构字段列表。可选值为Promotion中所有字段，如：promotion_id, promotion_title,
      * item_id, status, tag_id等等
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否新标签标识
@@ -48,58 +44,52 @@ public class MarketingPromotionsGetRequest implements TaobaoRequest<MarketingPro
      */
     private Long tagId;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.marketing.promotions.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setIsNewTag(Boolean isNewTag) {
-        this.isNewTag = isNewTag;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsNewTag() {
         return this.isNewTag;
     }
 
-    public void setNumIid(String numIid) {
-        this.numIid = numIid;
-    }
-
     public String getNumIid() {
         return this.numIid;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<MarketingPromotionsGetResponse> getResponseClass() {
+        return MarketingPromotionsGetResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
     public Long getTagId() {
         return this.tagId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.marketing.promotions.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -113,6 +103,12 @@ public class MarketingPromotionsGetRequest implements TaobaoRequest<MarketingPro
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,16 +116,28 @@ public class MarketingPromotionsGetRequest implements TaobaoRequest<MarketingPro
         this.udfParams.put(key, value);
     }
 
-    public Class<MarketingPromotionsGetResponse> getResponseClass() {
-        return MarketingPromotionsGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+    public void setIsNewTag(Boolean isNewTag) {
+        this.isNewTag = isNewTag;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNumIid(String numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

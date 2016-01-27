@@ -135,148 +135,148 @@ public class WlbSellerSubscription extends TaobaoObject {
         return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Date getGmtModified() {
         return this.gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getIsOwnService() {
         return this.isOwnService;
     }
 
-    public void setIsOwnService(Long isOwnService) {
-        this.isOwnService = isOwnService;
-    }
-
     public Long getParentId() {
         return this.parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public Long getProviderUserId() {
         return this.providerUserId;
     }
 
-    public void setProviderUserId(Long providerUserId) {
-        this.providerUserId = providerUserId;
-    }
-
     public String getRemark() {
         return this.remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getServiceAlias() {
         return this.serviceAlias;
     }
 
-    public void setServiceAlias(String serviceAlias) {
-        this.serviceAlias = serviceAlias;
-    }
-
     public String getServiceCode() {
         return this.serviceCode;
-    }
-
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
     }
 
     public Long getServiceId() {
         return this.serviceId;
     }
 
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
-
     public String getServiceName() {
         return this.serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
     }
 
     public String getServiceType() {
         return this.serviceType;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
-    }
-
     public Date getStartDate() {
         return this.startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getSubscriberUserId() {
         return this.subscriberUserId;
-    }
-
-    public void setSubscriberUserId(Long subscriberUserId) {
-        this.subscriberUserId = subscriberUserId;
     }
 
     public String getSubscriberUserNick() {
         return this.subscriberUserNick;
     }
 
-    public void setSubscriberUserNick(String subscriberUserNick) {
-        this.subscriberUserNick = subscriberUserNick;
-    }
-
     public WlbPartnerAddress getWlbPartnerAddress() {
         return this.wlbPartnerAddress;
     }
 
-    public void setWlbPartnerAddress(WlbPartnerAddress wlbPartnerAddress) {
-        this.wlbPartnerAddress = wlbPartnerAddress;
-    }
-
     public WlbPartnerContact getWlbPartnerContact() {
         return this.wlbPartnerContact;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsOwnService(Long isOwnService) {
+        this.isOwnService = isOwnService;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setProviderUserId(Long providerUserId) {
+        this.providerUserId = providerUserId;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setServiceAlias(String serviceAlias) {
+        this.serviceAlias = serviceAlias;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
+    }
+
+    public void setServiceId(Long serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubscriberUserId(Long subscriberUserId) {
+        this.subscriberUserId = subscriberUserId;
+    }
+
+    public void setSubscriberUserNick(String subscriberUserNick) {
+        this.subscriberUserNick = subscriberUserNick;
+    }
+
+    public void setWlbPartnerAddress(WlbPartnerAddress wlbPartnerAddress) {
+        this.wlbPartnerAddress = wlbPartnerAddress;
     }
 
     public void setWlbPartnerContact(WlbPartnerContact wlbPartnerContact) {

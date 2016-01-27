@@ -35,20 +35,20 @@ public class AdviceOnExcessIndex extends TaobaoObject {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public Long getIndexCount() {
         return this.indexCount;
     }
 
-    public void setIndexCount(Long indexCount) {
-        this.indexCount = indexCount;
-    }
-
     public String getTableName() {
         return this.tableName;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setIndexCount(Long indexCount) {
+        this.indexCount = indexCount;
     }
 
     public void setTableName(String tableName) {

@@ -15,12 +15,6 @@ import com.taobao.api.response.TaeItemsSelectResponse;
  */
 public class TaeItemsSelectRequest implements TaobaoRequest<TaeItemsSelectResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝类目id
      */
@@ -35,6 +29,8 @@ public class TaeItemsSelectRequest implements TaobaoRequest<TaeItemsSelectRespon
      * 返回字段列表
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品更新时间
@@ -66,90 +62,66 @@ public class TaeItemsSelectRequest implements TaobaoRequest<TaeItemsSelectRespon
      */
     private String startPrice;
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tae.items.select";
     }
 
     public String getCid() {
         return this.cid;
     }
 
-    public void setEndPrice(String endPrice) {
-        this.endPrice = endPrice;
-    }
-
     public String getEndPrice() {
         return this.endPrice;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setModifiedTime(Long modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
+    @Override
+    public Class<TaeItemsSelectResponse> getResponseClass() {
+        return TaeItemsSelectResponse.class;
     }
 
     public String getSellerCids() {
         return this.sellerCids;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getSellerNick() {
         return this.sellerNick;
-    }
-
-    public void setStartPrice(String startPrice) {
-        this.startPrice = startPrice;
     }
 
     public String getStartPrice() {
         return this.startPrice;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tae.items.select";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cid", this.cid);
@@ -167,6 +139,12 @@ public class TaeItemsSelectRequest implements TaobaoRequest<TaeItemsSelectRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -174,14 +152,44 @@ public class TaeItemsSelectRequest implements TaobaoRequest<TaeItemsSelectRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<TaeItemsSelectResponse> getResponseClass() {
-        return TaeItemsSelectResponse.class;
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
+    public void setEndPrice(String endPrice) {
+        this.endPrice = endPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setModifiedTime(Long modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStartPrice(String startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

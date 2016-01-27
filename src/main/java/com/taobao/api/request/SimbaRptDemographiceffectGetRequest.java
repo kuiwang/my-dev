@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaRptDemographiceffectGetResponse;
 public class SimbaRptDemographiceffectGetRequest implements
         TaobaoRequest<SimbaRptDemographiceffectGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划id
      */
@@ -32,6 +26,8 @@ public class SimbaRptDemographiceffectGetRequest implements
      * 结束时间,格式为：yyyy-mm-dd
      */
     private String endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 昵称
@@ -58,74 +54,61 @@ public class SimbaRptDemographiceffectGetRequest implements
      */
     private String subwayToken;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+        RequestCheckUtils.checkNotEmpty(subwayToken, "subwayToken");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.rpt.demographiceffect.get";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<SimbaRptDemographiceffectGetResponse> getResponseClass() {
+        return SimbaRptDemographiceffectGetResponse.class;
     }
 
     public String getStartTime() {
         return this.startTime;
     }
 
-    public void setSubwayToken(String subwayToken) {
-        this.subwayToken = subwayToken;
-    }
-
     public String getSubwayToken() {
         return this.subwayToken;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.rpt.demographiceffect.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -141,6 +124,12 @@ public class SimbaRptDemographiceffectGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -148,17 +137,36 @@ public class SimbaRptDemographiceffectGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaRptDemographiceffectGetResponse> getResponseClass() {
-        return SimbaRptDemographiceffectGetResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
-        RequestCheckUtils.checkNotEmpty(subwayToken, "subwayToken");
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setSubwayToken(String subwayToken) {
+        this.subwayToken = subwayToken;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

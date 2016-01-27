@@ -59,52 +59,52 @@ public class PartnerDetail extends TaobaoObject {
         return this.accountNo;
     }
 
-    public void setAccountNo(String accountNo) {
-        this.accountNo = accountNo;
-    }
-
     public String getCompanyCode() {
         return this.companyCode;
-    }
-
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
     }
 
     public Long getCompanyId() {
         return this.companyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
-    }
-
     public String getCompanyName() {
         return this.companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
     }
 
     public String getFullName() {
         return this.fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public String getRegMailNo() {
         return this.regMailNo;
     }
 
-    public void setRegMailNo(String regMailNo) {
-        this.regMailNo = regMailNo;
-    }
-
     public String getWangwangId() {
         return this.wangwangId;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setRegMailNo(String regMailNo) {
+        this.regMailNo = regMailNo;
     }
 
     public void setWangwangId(String wangwangId) {

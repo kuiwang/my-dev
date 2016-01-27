@@ -18,35 +18,40 @@ public class PictureIsreferencedGetRequest implements TaobaoRequest<PictureIsref
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 图片id
      */
     private Long pictureId;
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.isreferenced.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPictureId() {
         return this.pictureId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PictureIsreferencedGetResponse> getResponseClass() {
+        return PictureIsreferencedGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.isreferenced.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("picture_id", this.pictureId);
@@ -56,6 +61,12 @@ public class PictureIsreferencedGetRequest implements TaobaoRequest<PictureIsref
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class PictureIsreferencedGetRequest implements TaobaoRequest<PictureIsref
         this.udfParams.put(key, value);
     }
 
-    public Class<PictureIsreferencedGetResponse> getResponseClass() {
-        return PictureIsreferencedGetResponse.class;
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

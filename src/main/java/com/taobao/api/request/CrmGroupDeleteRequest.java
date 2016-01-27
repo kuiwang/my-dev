@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmGroupDeleteResponse;
  */
 public class CrmGroupDeleteRequest implements TaobaoRequest<CrmGroupDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要删除的分组id<br />
      * 支持最小值为：1<br />
@@ -29,26 +23,38 @@ public class CrmGroupDeleteRequest implements TaobaoRequest<CrmGroupDeleteRespon
      */
     private Long groupId;
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
+        RequestCheckUtils.checkMinValue(groupId, 1L, "groupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.group.delete";
     }
 
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<CrmGroupDeleteResponse> getResponseClass() {
+        return CrmGroupDeleteResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.crm.group.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_id", this.groupId);
@@ -58,6 +64,12 @@ public class CrmGroupDeleteRequest implements TaobaoRequest<CrmGroupDeleteRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,16 +77,12 @@ public class CrmGroupDeleteRequest implements TaobaoRequest<CrmGroupDeleteRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGroupDeleteResponse> getResponseClass() {
-        return CrmGroupDeleteResponse.class;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
-        RequestCheckUtils.checkMinValue(groupId, 1L, "groupId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,12 +19,12 @@ public class LogisticServiceTag {
         return serviceTag;
     }
 
-    public void setServiceTag(String serviceTag) {
-        this.serviceTag = serviceTag;
-    }
-
     public String getServiceType() {
         return serviceType;
+    }
+
+    public void setServiceTag(String serviceTag) {
+        this.serviceTag = serviceTag;
     }
 
     public void setServiceType(String serviceType) {

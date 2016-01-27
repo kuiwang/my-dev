@@ -18,16 +18,12 @@ import com.taobao.api.response.WangwangEserviceReceivenumGetResponse;
 public class WangwangEserviceReceivenumGetRequest implements
         TaobaoRequest<WangwangEserviceReceivenumGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询接待人数的结束日期 时间精确到日 时分秒可以直接传00:00:00
      */
     private Date endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 客服人员id：cntaobao+淘宝nick，例如cntaobaotest<br />
@@ -41,42 +37,46 @@ public class WangwangEserviceReceivenumGetRequest implements
      */
     private Date startDate;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(serviceStaffId, "serviceStaffId");
+        RequestCheckUtils.checkMaxLength(serviceStaffId, 1900, "serviceStaffId");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.eservice.receivenum.get";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setServiceStaffId(String serviceStaffId) {
-        this.serviceStaffId = serviceStaffId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WangwangEserviceReceivenumGetResponse> getResponseClass() {
+        return WangwangEserviceReceivenumGetResponse.class;
     }
 
     public String getServiceStaffId() {
         return this.serviceStaffId;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.eservice.receivenum.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -88,6 +88,12 @@ public class WangwangEserviceReceivenumGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -95,18 +101,20 @@ public class WangwangEserviceReceivenumGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceReceivenumGetResponse> getResponseClass() {
-        return WangwangEserviceReceivenumGetResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(serviceStaffId, "serviceStaffId");
-        RequestCheckUtils.checkMaxLength(serviceStaffId, 1900, "serviceStaffId");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setServiceStaffId(String serviceStaffId) {
+        this.serviceStaffId = serviceStaffId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

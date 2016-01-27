@@ -164,180 +164,180 @@ public class Shipping extends TaobaoObject {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public String getCompanyName() {
         return this.companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getDeliveryEnd() {
         return this.deliveryEnd;
-    }
-
-    public void setDeliveryEnd(Date deliveryEnd) {
-        this.deliveryEnd = deliveryEnd;
     }
 
     public Date getDeliveryStart() {
         return this.deliveryStart;
     }
 
-    public void setDeliveryStart(Date deliveryStart) {
-        this.deliveryStart = deliveryStart;
-    }
-
     public String getFreightPayer() {
         return this.freightPayer;
-    }
-
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
     }
 
     public Boolean getIsQuickCodOrder() {
         return this.isQuickCodOrder;
     }
 
-    public void setIsQuickCodOrder(Boolean isQuickCodOrder) {
-        this.isQuickCodOrder = isQuickCodOrder;
-    }
-
     public Long getIsSpilt() {
         return this.isSpilt;
-    }
-
-    public void setIsSpilt(Long isSpilt) {
-        this.isSpilt = isSpilt;
     }
 
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public String getItemTitle() {
         return this.itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
     }
 
     public Location getLocation() {
         return this.location;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getOrderCode() {
         return this.orderCode;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
-    }
-
     public String getOutSid() {
         return this.outSid;
-    }
-
-    public void setOutSid(String outSid) {
-        this.outSid = outSid;
     }
 
     public String getReceiverMobile() {
         return this.receiverMobile;
     }
 
-    public void setReceiverMobile(String receiverMobile) {
-        this.receiverMobile = receiverMobile;
-    }
-
     public String getReceiverName() {
         return this.receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
     }
 
     public String getReceiverPhone() {
         return this.receiverPhone;
     }
 
-    public void setReceiverPhone(String receiverPhone) {
-        this.receiverPhone = receiverPhone;
-    }
-
     public String getSellerConfirm() {
         return this.sellerConfirm;
-    }
-
-    public void setSellerConfirm(String sellerConfirm) {
-        this.sellerConfirm = sellerConfirm;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public List<Long> getSubTids() {
         return this.subTids;
     }
 
-    public void setSubTids(List<Long> subTids) {
-        this.subTids = subTids;
-    }
-
     public Long getTid() {
         return this.tid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDeliveryEnd(Date deliveryEnd) {
+        this.deliveryEnd = deliveryEnd;
+    }
+
+    public void setDeliveryStart(Date deliveryStart) {
+        this.deliveryStart = deliveryStart;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setIsQuickCodOrder(Boolean isQuickCodOrder) {
+        this.isQuickCodOrder = isQuickCodOrder;
+    }
+
+    public void setIsSpilt(Long isSpilt) {
+        this.isSpilt = isSpilt;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setOutSid(String outSid) {
+        this.outSid = outSid;
+    }
+
+    public void setReceiverMobile(String receiverMobile) {
+        this.receiverMobile = receiverMobile;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public void setSellerConfirm(String sellerConfirm) {
+        this.sellerConfirm = sellerConfirm;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubTids(List<Long> subTids) {
+        this.subTids = subTids;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
     public void setType(String type) {

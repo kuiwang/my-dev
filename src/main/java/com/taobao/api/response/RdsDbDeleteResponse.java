@@ -20,12 +20,12 @@ public class RdsDbDeleteResponse extends TaobaoResponse {
     @ApiField("rds_db_info")
     private RdsDbInfo rdsDbInfo;
 
-    public void setRdsDbInfo(RdsDbInfo rdsDbInfo) {
-        this.rdsDbInfo = rdsDbInfo;
-    }
-
     public RdsDbInfo getRdsDbInfo() {
         return this.rdsDbInfo;
+    }
+
+    public void setRdsDbInfo(RdsDbInfo rdsDbInfo) {
+        this.rdsDbInfo = rdsDbInfo;
     }
 
 }

@@ -18,10 +18,6 @@ public class LogisticsTraceSearchRequest implements TaobaoRequest<LogisticsTrace
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 表明是否是拆单，默认值0，1表示拆单
      */
@@ -42,50 +38,45 @@ public class LogisticsTraceSearchRequest implements TaobaoRequest<LogisticsTrace
      */
     private Long tid;
 
-    public void setIsSplit(Long isSplit) {
-        this.isSplit = isSplit;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(sellerNick, "sellerNick");
+        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.trace.search";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIsSplit() {
         return this.isSplit;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
+    @Override
+    public Class<LogisticsTraceSearchResponse> getResponseClass() {
+        return LogisticsTraceSearchResponse.class;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSubTid(String subTid) {
-        this.subTid = subTid;
-    }
-
     public String getSubTid() {
         return this.subTid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.trace.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_split", this.isSplit);
@@ -98,6 +89,16 @@ public class LogisticsTraceSearchRequest implements TaobaoRequest<LogisticsTrace
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,17 +106,24 @@ public class LogisticsTraceSearchRequest implements TaobaoRequest<LogisticsTrace
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsTraceSearchResponse> getResponseClass() {
-        return LogisticsTraceSearchResponse.class;
+    public void setIsSplit(Long isSplit) {
+        this.isSplit = isSplit;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(sellerNick, "sellerNick");
-        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSubTid(String subTid) {
+        this.subTid = subTid;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

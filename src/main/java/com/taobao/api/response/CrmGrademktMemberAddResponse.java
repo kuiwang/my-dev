@@ -19,12 +19,12 @@ public class CrmGrademktMemberAddResponse extends TaobaoResponse {
     @ApiField("model")
     private Boolean model;
 
-    public void setModel(Boolean model) {
-        this.model = model;
-    }
-
     public Boolean getModel() {
         return this.model;
+    }
+
+    public void setModel(Boolean model) {
+        this.model = model;
     }
 
 }

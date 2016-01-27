@@ -6,6 +6,13 @@ package com.scott.dev.taobao.api.tools.domain;
 public class SubTask {
 
     /*
+     * 标记子任务是否成功。为true表示子任务成功，
+     * 用户可以按照正确执行的结果格式解析sub_task_result。为false表示子任务失败了，
+     * 用户需要按照失败的结果格式解析sub_task_result（里面只有sub_code和sub_msg）
+     */
+    private Boolean isSuccess;
+
+    /*
      * 子任务的有效请求参数，以json格式进行key:value的组合
      */
     private String subTaskRequest;
@@ -18,34 +25,27 @@ public class SubTask {
      */
     private String subTaskResult;
 
-    /*
-     * 标记子任务是否成功。为true表示子任务成功，
-     * 用户可以按照正确执行的结果格式解析sub_task_result。为false表示子任务失败了，
-     * 用户需要按照失败的结果格式解析sub_task_result（里面只有sub_code和sub_msg）
-     */
-    private Boolean isSuccess;
+    public Boolean getIsSuccess() {
+        return isSuccess;
+    }
 
     public String getSubTaskRequest() {
         return subTaskRequest;
-    }
-
-    public void setSubTaskRequest(String subTaskRequest) {
-        this.subTaskRequest = subTaskRequest;
     }
 
     public String getSubTaskResult() {
         return subTaskResult;
     }
 
-    public void setSubTaskResult(String subTaskResult) {
-        this.subTaskResult = subTaskResult;
-    }
-
-    public Boolean getIsSuccess() {
-        return isSuccess;
-    }
-
     public void setIsSuccess(Boolean isSuccess) {
         this.isSuccess = isSuccess;
+    }
+
+    public void setSubTaskRequest(String subTaskRequest) {
+        this.subTaskRequest = subTaskRequest;
+    }
+
+    public void setSubTaskResult(String subTaskResult) {
+        this.subTaskResult = subTaskResult;
     }
 }

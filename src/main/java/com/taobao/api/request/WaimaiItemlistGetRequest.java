@@ -16,12 +16,6 @@ import com.taobao.api.response.WaimaiItemlistGetResponse;
  */
 public class WaimaiItemlistGetRequest implements TaobaoRequest<WaimaiItemlistGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外卖前台类目id<br />
      * 支持的最大列表长度为：11
@@ -39,6 +33,8 @@ public class WaimaiItemlistGetRequest implements TaobaoRequest<WaimaiItemlistGet
      * recommend ,create_time,modify_time)，多个以英文逗号分隔
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 外卖宝贝标题关键字
@@ -85,98 +81,81 @@ public class WaimaiItemlistGetRequest implements TaobaoRequest<WaimaiItemlistGet
      */
     private String startModified;
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageNo, 500L, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 500L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(salesStatus, "salesStatus");
+        RequestCheckUtils.checkMaxValue(salesStatus, 2L, "salesStatus");
+        RequestCheckUtils.checkMinValue(salesStatus, 0L, "salesStatus");
+        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.itemlist.get";
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setEndModified(String endModified) {
-        this.endModified = endModified;
-    }
-
     public String getEndModified() {
         return this.endModified;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeyword() {
         return this.keyword;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSalesStatus(Long salesStatus) {
-        this.salesStatus = salesStatus;
+    @Override
+    public Class<WaimaiItemlistGetResponse> getResponseClass() {
+        return WaimaiItemlistGetResponse.class;
     }
 
     public Long getSalesStatus() {
         return this.salesStatus;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
-    }
-
     public Long getShopid() {
         return this.shopid;
-    }
-
-    public void setStartModified(String startModified) {
-        this.startModified = startModified;
     }
 
     public String getStartModified() {
         return this.startModified;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.itemlist.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("category_id", this.categoryId);
@@ -195,6 +174,12 @@ public class WaimaiItemlistGetRequest implements TaobaoRequest<WaimaiItemlistGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -202,25 +187,48 @@ public class WaimaiItemlistGetRequest implements TaobaoRequest<WaimaiItemlistGet
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiItemlistGetResponse> getResponseClass() {
-        return WaimaiItemlistGetResponse.class;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageNo, 500L, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 500L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(salesStatus, "salesStatus");
-        RequestCheckUtils.checkMaxValue(salesStatus, 2L, "salesStatus");
-        RequestCheckUtils.checkMinValue(salesStatus, 0L, "salesStatus");
-        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
+    public void setEndModified(String endModified) {
+        this.endModified = endModified;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setSalesStatus(Long salesStatus) {
+        this.salesStatus = salesStatus;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
+    }
+
+    public void setStartModified(String startModified) {
+        this.startModified = startModified;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

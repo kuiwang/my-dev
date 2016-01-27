@@ -19,10 +19,6 @@ public class AlibabaXiamiApiContractSellerlistGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 每页数量
      */
@@ -38,55 +34,47 @@ public class AlibabaXiamiApiContractSellerlistGetRequest implements
      */
     private String timeEnd;
 
+    private Long timestamp;
+
     /**
      * 开始时间
      */
     private String timeStart;
 
-    public void setLimit(Long limit) {
-        this.limit = limit;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(limit, "limit");
+        RequestCheckUtils.checkNotEmpty(page, "page");
+        RequestCheckUtils.checkNotEmpty(timeEnd, "timeEnd");
+        RequestCheckUtils.checkNotEmpty(timeStart, "timeStart");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.xiami.api.contract.sellerlist.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLimit() {
         return this.limit;
     }
 
-    public void setPage(Long page) {
-        this.page = page;
-    }
-
     public Long getPage() {
         return this.page;
     }
 
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
+    @Override
+    public Class<AlibabaXiamiApiContractSellerlistGetResponse> getResponseClass() {
+        return AlibabaXiamiApiContractSellerlistGetResponse.class;
     }
 
-    public String getTimeEnd() {
-        return this.timeEnd;
-    }
-
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
-    }
-
-    public String getTimeStart() {
-        return this.timeStart;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.xiami.api.contract.sellerlist.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("limit", this.limit);
@@ -99,6 +87,20 @@ public class AlibabaXiamiApiContractSellerlistGetRequest implements
         return txtParams;
     }
 
+    public String getTimeEnd() {
+        return this.timeEnd;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTimeStart() {
+        return this.timeStart;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,18 +108,24 @@ public class AlibabaXiamiApiContractSellerlistGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaXiamiApiContractSellerlistGetResponse> getResponseClass() {
-        return AlibabaXiamiApiContractSellerlistGetResponse.class;
+    public void setLimit(Long limit) {
+        this.limit = limit;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(limit, "limit");
-        RequestCheckUtils.checkNotEmpty(page, "page");
-        RequestCheckUtils.checkNotEmpty(timeEnd, "timeEnd");
-        RequestCheckUtils.checkNotEmpty(timeStart, "timeStart");
+    public void setPage(Long page) {
+        this.page = page;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTimeEnd(String timeEnd) {
+        this.timeEnd = timeEnd;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTimeStart(String timeStart) {
+        this.timeStart = timeStart;
     }
 }

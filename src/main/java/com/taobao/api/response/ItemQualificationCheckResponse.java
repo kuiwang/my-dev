@@ -20,12 +20,12 @@ public class ItemQualificationCheckResponse extends TaobaoResponse {
     @ApiField("remote_result")
     private RemoteResult remoteResult;
 
-    public void setRemoteResult(RemoteResult remoteResult) {
-        this.remoteResult = remoteResult;
-    }
-
     public RemoteResult getRemoteResult() {
         return this.remoteResult;
+    }
+
+    public void setRemoteResult(RemoteResult remoteResult) {
+        this.remoteResult = remoteResult;
     }
 
 }

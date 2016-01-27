@@ -20,12 +20,12 @@ public class MediaFileAddResponse extends TaobaoResponse {
     @ApiField("file")
     private File file;
 
-    public void setFile(File file) {
-        this.file = file;
-    }
-
     public File getFile() {
         return this.file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 
 }

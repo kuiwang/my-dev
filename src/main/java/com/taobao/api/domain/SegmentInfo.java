@@ -207,244 +207,244 @@ public class SegmentInfo extends TaobaoObject {
         return this.airlineCode;
     }
 
-    public void setAirlineCode(String airlineCode) {
-        this.airlineCode = airlineCode;
-    }
-
     public String getArrAirportCode() {
         return this.arrAirportCode;
-    }
-
-    public void setArrAirportCode(String arrAirportCode) {
-        this.arrAirportCode = arrAirportCode;
     }
 
     public String getArrCityCode() {
         return this.arrCityCode;
     }
 
-    public void setArrCityCode(String arrCityCode) {
-        this.arrCityCode = arrCityCode;
-    }
-
     public String getArrTime() {
         return this.arrTime;
-    }
-
-    public void setArrTime(String arrTime) {
-        this.arrTime = arrTime;
     }
 
     public Long getBookStatus() {
         return this.bookStatus;
     }
 
-    public void setBookStatus(Long bookStatus) {
-        this.bookStatus = bookStatus;
-    }
-
     public Long getCabinClass() {
         return this.cabinClass;
-    }
-
-    public void setCabinClass(Long cabinClass) {
-        this.cabinClass = cabinClass;
     }
 
     public String getCabinCode() {
         return this.cabinCode;
     }
 
-    public void setCabinCode(String cabinCode) {
-        this.cabinCode = cabinCode;
-    }
-
     public Long getCabinId() {
         return this.cabinId;
-    }
-
-    public void setCabinId(Long cabinId) {
-        this.cabinId = cabinId;
     }
 
     public String getCarrier() {
         return this.carrier;
     }
 
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
-    }
-
     public Long getChildFee() {
         return this.childFee;
-    }
-
-    public void setChildFee(Long childFee) {
-        this.childFee = childFee;
     }
 
     public Long getChildInsurePromotionPrice() {
         return this.childInsurePromotionPrice;
     }
 
-    public void setChildInsurePromotionPrice(Long childInsurePromotionPrice) {
-        this.childInsurePromotionPrice = childInsurePromotionPrice;
-    }
-
     public Long getChildPrice() {
         return this.childPrice;
-    }
-
-    public void setChildPrice(Long childPrice) {
-        this.childPrice = childPrice;
     }
 
     public Long getChildTax() {
         return this.childTax;
     }
 
-    public void setChildTax(Long childTax) {
-        this.childTax = childTax;
-    }
-
     public String getDepAirportCode() {
         return this.depAirportCode;
-    }
-
-    public void setDepAirportCode(String depAirportCode) {
-        this.depAirportCode = depAirportCode;
     }
 
     public String getDepCityCode() {
         return this.depCityCode;
     }
 
-    public void setDepCityCode(String depCityCode) {
-        this.depCityCode = depCityCode;
-    }
-
     public String getDepTime() {
         return this.depTime;
-    }
-
-    public void setDepTime(String depTime) {
-        this.depTime = depTime;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Long getFee() {
         return this.fee;
-    }
-
-    public void setFee(Long fee) {
-        this.fee = fee;
     }
 
     public Long getFlightId() {
         return this.flightId;
     }
 
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
-    }
-
     public String getFlightNo() {
         return this.flightNo;
-    }
-
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
     }
 
     public String getFlightType() {
         return this.flightType;
     }
 
-    public void setFlightType(String flightType) {
-        this.flightType = flightType;
-    }
-
     public Long getInsurePromotionPrice() {
         return this.insurePromotionPrice;
-    }
-
-    public void setInsurePromotionPrice(Long insurePromotionPrice) {
-        this.insurePromotionPrice = insurePromotionPrice;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
     public List<Passerger> getPassengers() {
         return this.passengers;
-    }
-
-    public void setPassengers(List<Passerger> passengers) {
-        this.passengers = passengers;
     }
 
     public Long getPolicyId() {
         return this.policyId;
     }
 
-    public void setPolicyId(Long policyId) {
-        this.policyId = policyId;
-    }
-
     public Long getPolicyType() {
         return this.policyType;
-    }
-
-    public void setPolicyType(Long policyType) {
-        this.policyType = policyType;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
     public Long getSegmentType() {
         return this.segmentType;
-    }
-
-    public void setSegmentType(Long segmentType) {
-        this.segmentType = segmentType;
     }
 
     public String getSpecialRule() {
         return this.specialRule;
     }
 
-    public void setSpecialRule(String specialRule) {
-        this.specialRule = specialRule;
-    }
-
     public Long getTax() {
         return this.tax;
     }
 
-    public void setTax(Long tax) {
-        this.tax = tax;
-    }
-
     public Long getTicketPrice() {
         return this.ticketPrice;
+    }
+
+    public void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
+    }
+
+    public void setArrAirportCode(String arrAirportCode) {
+        this.arrAirportCode = arrAirportCode;
+    }
+
+    public void setArrCityCode(String arrCityCode) {
+        this.arrCityCode = arrCityCode;
+    }
+
+    public void setArrTime(String arrTime) {
+        this.arrTime = arrTime;
+    }
+
+    public void setBookStatus(Long bookStatus) {
+        this.bookStatus = bookStatus;
+    }
+
+    public void setCabinClass(Long cabinClass) {
+        this.cabinClass = cabinClass;
+    }
+
+    public void setCabinCode(String cabinCode) {
+        this.cabinCode = cabinCode;
+    }
+
+    public void setCabinId(Long cabinId) {
+        this.cabinId = cabinId;
+    }
+
+    public void setCarrier(String carrier) {
+        this.carrier = carrier;
+    }
+
+    public void setChildFee(Long childFee) {
+        this.childFee = childFee;
+    }
+
+    public void setChildInsurePromotionPrice(Long childInsurePromotionPrice) {
+        this.childInsurePromotionPrice = childInsurePromotionPrice;
+    }
+
+    public void setChildPrice(Long childPrice) {
+        this.childPrice = childPrice;
+    }
+
+    public void setChildTax(Long childTax) {
+        this.childTax = childTax;
+    }
+
+    public void setDepAirportCode(String depAirportCode) {
+        this.depAirportCode = depAirportCode;
+    }
+
+    public void setDepCityCode(String depCityCode) {
+        this.depCityCode = depCityCode;
+    }
+
+    public void setDepTime(String depTime) {
+        this.depTime = depTime;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setFee(Long fee) {
+        this.fee = fee;
+    }
+
+    public void setFlightId(Long flightId) {
+        this.flightId = flightId;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
+    }
+
+    public void setFlightType(String flightType) {
+        this.flightType = flightType;
+    }
+
+    public void setInsurePromotionPrice(Long insurePromotionPrice) {
+        this.insurePromotionPrice = insurePromotionPrice;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setPassengers(List<Passerger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public void setPolicyId(Long policyId) {
+        this.policyId = policyId;
+    }
+
+    public void setPolicyType(Long policyType) {
+        this.policyType = policyType;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setSegmentType(Long segmentType) {
+        this.segmentType = segmentType;
+    }
+
+    public void setSpecialRule(String specialRule) {
+        this.specialRule = specialRule;
+    }
+
+    public void setTax(Long tax) {
+        this.tax = tax;
     }
 
     public void setTicketPrice(Long ticketPrice) {

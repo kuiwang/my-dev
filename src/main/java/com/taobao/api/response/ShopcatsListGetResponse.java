@@ -24,12 +24,12 @@ public class ShopcatsListGetResponse extends TaobaoResponse {
     @ApiField("shop_cat")
     private List<ShopCat> shopCats;
 
-    public void setShopCats(List<ShopCat> shopCats) {
-        this.shopCats = shopCats;
-    }
-
     public List<ShopCat> getShopCats() {
         return this.shopCats;
+    }
+
+    public void setShopCats(List<ShopCat> shopCats) {
+        this.shopCats = shopCats;
     }
 
 }

@@ -3,13 +3,13 @@ package com.taobao.top.link.remoting;
 @SuppressWarnings("serial")
 public class MethodCall implements Message {
 
-    public String Uri;
+    public Object[] Args;
 
     public String MethodName;
 
-    public String TypeName;
-
     public Class<?>[] MethodSignature;
 
-    public Object[] Args;
+    public String TypeName;
+
+    public String Uri;
 }

@@ -61,60 +61,60 @@ public class DescribeSecurityGroupAttributeResponse extends AliyunResponse {
     @ApiField("VpcId")
     private String vpcId;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
     }
 
     public List<Permission> getPermissions() {
         return this.permissions;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
     public String getRegionId() {
         return this.regionId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
     }
 
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
     public String getSecurityGroupId() {
         return this.securityGroupId;
-    }
-
-    public void setSecurityGroupName(String securityGroupName) {
-        this.securityGroupName = securityGroupName;
     }
 
     public String getSecurityGroupName() {
         return this.securityGroupName;
     }
 
-    public void setVpcId(String vpcId) {
-        this.vpcId = vpcId;
-    }
-
     public String getVpcId() {
         return this.vpcId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
+    }
+
+    public void setSecurityGroupName(String securityGroupName) {
+        this.securityGroupName = securityGroupName;
+    }
+
+    public void setVpcId(String vpcId) {
+        this.vpcId = vpcId;
     }
 
 }

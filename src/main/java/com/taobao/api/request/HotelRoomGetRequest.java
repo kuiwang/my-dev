@@ -15,16 +15,12 @@ import com.taobao.api.response.HotelRoomGetResponse;
  */
 public class HotelRoomGetRequest implements TaobaoRequest<HotelRoomGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 酒店房间商品gid。必须为数字。gid和item_id至少要传一个。
      */
     private Long gid;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 酒店房间商品item_id。必须为数字。item_id和gid至少要传一个。
@@ -51,66 +47,54 @@ public class HotelRoomGetRequest implements TaobaoRequest<HotelRoomGetResponse> 
      */
     private Boolean needRoomType;
 
-    public void setGid(Long gid) {
-        this.gid = gid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.room.get";
     }
 
     public Long getGid() {
         return this.gid;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setNeedHotel(Boolean needHotel) {
-        this.needHotel = needHotel;
-    }
-
     public Boolean getNeedHotel() {
         return this.needHotel;
-    }
-
-    public void setNeedRoomDesc(Boolean needRoomDesc) {
-        this.needRoomDesc = needRoomDesc;
     }
 
     public Boolean getNeedRoomDesc() {
         return this.needRoomDesc;
     }
 
-    public void setNeedRoomQuotas(Boolean needRoomQuotas) {
-        this.needRoomQuotas = needRoomQuotas;
-    }
-
     public Boolean getNeedRoomQuotas() {
         return this.needRoomQuotas;
-    }
-
-    public void setNeedRoomType(Boolean needRoomType) {
-        this.needRoomType = needRoomType;
     }
 
     public Boolean getNeedRoomType() {
         return this.needRoomType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelRoomGetResponse> getResponseClass() {
+        return HotelRoomGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.room.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("gid", this.gid);
@@ -125,6 +109,12 @@ public class HotelRoomGetRequest implements TaobaoRequest<HotelRoomGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -132,14 +122,32 @@ public class HotelRoomGetRequest implements TaobaoRequest<HotelRoomGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelRoomGetResponse> getResponseClass() {
-        return HotelRoomGetResponse.class;
+    public void setGid(Long gid) {
+        this.gid = gid;
     }
 
-    public void check() throws ApiRuleException {
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNeedHotel(Boolean needHotel) {
+        this.needHotel = needHotel;
+    }
+
+    public void setNeedRoomDesc(Boolean needRoomDesc) {
+        this.needRoomDesc = needRoomDesc;
+    }
+
+    public void setNeedRoomQuotas(Boolean needRoomQuotas) {
+        this.needRoomQuotas = needRoomQuotas;
+    }
+
+    public void setNeedRoomType(Boolean needRoomType) {
+        this.needRoomType = needRoomType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -79,9 +79,19 @@ abstract public class FrameDraft06 extends Frame {
         super(header, bodyData);
     }
 
+    /**
+     * Checks if is continuation frame.
+     *
+     * @return true, if is continuation frame
+     */
+    public boolean isContinuationFrame() {
+        return ((FrameHeaderDraft06) header).getOpcode().equals(Opcode.CONTINUATION);
+    }
+
     /* (non-Javadoc)
      * @see jp.a840.websocket.frame.Frame#toByteBuffer()
      */
+    @Override
     public ByteBuffer toByteBuffer() {
         ByteBuffer headerBuffer = header.toByteBuffer();
         int bodyLength = 0;
@@ -95,14 +105,5 @@ abstract public class FrameDraft06 extends Frame {
         }
         buf.flip();
         return buf;
-    }
-
-    /**
-     * Checks if is continuation frame.
-     *
-     * @return true, if is continuation frame
-     */
-    public boolean isContinuationFrame() {
-        return ((FrameHeaderDraft06) header).getOpcode().equals(Opcode.CONTINUATION);
     }
 }

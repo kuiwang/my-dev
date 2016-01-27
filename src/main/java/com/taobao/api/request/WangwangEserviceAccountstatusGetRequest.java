@@ -17,12 +17,6 @@ import com.taobao.api.response.WangwangEserviceAccountstatusGetResponse;
 public class WangwangEserviceAccountstatusGetRequest implements
         TaobaoRequest<WangwangEserviceAccountstatusGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 的起始时间。</br> 格式为： YYYY-mm-dd_HH:MM:SS </br> 注：</br> 1. 查询时间必须在30天之内。
      * 2. 起始时间和结束时间间隔不超过7天。<br />
@@ -39,6 +33,12 @@ public class WangwangEserviceAccountstatusGetRequest implements
      */
     private String etime;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 查询账号（序列）。 需要带前缀（如cntaobao）。</br>
      * 
@@ -50,42 +50,41 @@ public class WangwangEserviceAccountstatusGetRequest implements
      */
     private String uid;
 
-    public void setBtime(String btime) {
-        this.btime = btime;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(btime, "btime");
+        RequestCheckUtils.checkMaxLength(btime, 19, "btime");
+        RequestCheckUtils.checkNotEmpty(etime, "etime");
+        RequestCheckUtils.checkMaxLength(etime, 19, "etime");
+        RequestCheckUtils.checkNotEmpty(uid, "uid");
+        RequestCheckUtils.checkMaxListSize(uid, 30, "uid");
+        RequestCheckUtils.checkMaxLength(uid, 1920, "uid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.eservice.accountstatus.get";
     }
 
     public String getBtime() {
         return this.btime;
     }
 
-    public void setEtime(String etime) {
-        this.etime = etime;
-    }
-
     public String getEtime() {
         return this.etime;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getUid() {
-        return this.uid;
+    @Override
+    public Class<WangwangEserviceAccountstatusGetResponse> getResponseClass() {
+        return WangwangEserviceAccountstatusGetResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.eservice.accountstatus.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("btime", this.btime);
@@ -97,6 +96,16 @@ public class WangwangEserviceAccountstatusGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUid() {
+        return this.uid;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -104,21 +113,20 @@ public class WangwangEserviceAccountstatusGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceAccountstatusGetResponse> getResponseClass() {
-        return WangwangEserviceAccountstatusGetResponse.class;
+    public void setBtime(String btime) {
+        this.btime = btime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(btime, "btime");
-        RequestCheckUtils.checkMaxLength(btime, 19, "btime");
-        RequestCheckUtils.checkNotEmpty(etime, "etime");
-        RequestCheckUtils.checkMaxLength(etime, 19, "etime");
-        RequestCheckUtils.checkNotEmpty(uid, "uid");
-        RequestCheckUtils.checkMaxListSize(uid, 30, "uid");
-        RequestCheckUtils.checkMaxLength(uid, 1920, "uid");
+    public void setEtime(String etime) {
+        this.etime = etime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

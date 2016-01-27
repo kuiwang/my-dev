@@ -52,36 +52,36 @@ public class BatchOperateResult extends TaobaoObject {
         return this.errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
     public String getErrorMsg() {
         return this.errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
     }
 
     public List<Long> getFailedItemList() {
         return this.failedItemList;
     }
 
-    public void setFailedItemList(List<Long> failedItemList) {
-        this.failedItemList = failedItemList;
-    }
-
     public Boolean getSuccess() {
         return this.success;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
     public List<Long> getSuccessItemList() {
         return this.successItemList;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setFailedItemList(List<Long> failedItemList) {
+        this.failedItemList = failedItemList;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 
     public void setSuccessItemList(List<Long> successItemList) {

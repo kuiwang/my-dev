@@ -20,12 +20,12 @@ public class WaimaiItemAddResponse extends TaobaoResponse {
     @ApiField("result")
     private CreateResult result;
 
-    public void setResult(CreateResult result) {
-        this.result = result;
-    }
-
     public CreateResult getResult() {
         return this.result;
+    }
+
+    public void setResult(CreateResult result) {
+        this.result = result;
     }
 
 }

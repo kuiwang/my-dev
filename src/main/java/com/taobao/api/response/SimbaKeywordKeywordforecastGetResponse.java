@@ -22,12 +22,12 @@ public class SimbaKeywordKeywordforecastGetResponse extends TaobaoResponse {
     @ApiField("keyword_forecast")
     private KeywordForecast keywordForecast;
 
-    public void setKeywordForecast(KeywordForecast keywordForecast) {
-        this.keywordForecast = keywordForecast;
-    }
-
     public KeywordForecast getKeywordForecast() {
         return this.keywordForecast;
+    }
+
+    public void setKeywordForecast(KeywordForecast keywordForecast) {
+        this.keywordForecast = keywordForecast;
     }
 
 }

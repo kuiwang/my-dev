@@ -25,20 +25,20 @@ public class CreateImageResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-
     public String getImageId() {
         return this.imageId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

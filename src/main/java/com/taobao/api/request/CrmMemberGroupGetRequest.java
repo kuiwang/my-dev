@@ -16,37 +16,42 @@ import com.taobao.api.response.CrmMemberGroupGetResponse;
  */
 public class CrmMemberGroupGetRequest implements TaobaoRequest<CrmMemberGroupGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 会员Nick
      */
     private String buyerNick;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.member.group.get";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<CrmMemberGroupGetResponse> getResponseClass() {
+        return CrmMemberGroupGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.crm.member.group.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -56,6 +61,12 @@ public class CrmMemberGroupGetRequest implements TaobaoRequest<CrmMemberGroupGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class CrmMemberGroupGetRequest implements TaobaoRequest<CrmMemberGroupGet
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMemberGroupGetResponse> getResponseClass() {
-        return CrmMemberGroupGetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

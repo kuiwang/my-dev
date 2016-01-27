@@ -47,36 +47,36 @@ public class BrandCatControl extends TaobaoObject {
         return this.brandId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
     public String getBrandName() {
         return this.brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
     }
 
     public Long getCatId() {
         return this.catId;
     }
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
-
     public String getCatName() {
         return this.catName;
     }
 
-    public void setCatName(String catName) {
-        this.catName = catName;
-    }
-
     public String getCertifiedData() {
         return this.certifiedData;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
     }
 
     public void setCertifiedData(String certifiedData) {

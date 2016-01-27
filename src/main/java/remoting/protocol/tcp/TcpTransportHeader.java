@@ -14,9 +14,9 @@ package remoting.protocol.tcp;
 
 public class TcpTransportHeader {
 
-    public final static String RequestUri = "RequestUri";
-
     public final static String ContentType = "ContentType";
+
+    public final static String RequestUri = "RequestUri";
 
     public final static String StatusCode = "StatusCode";
 

@@ -18,10 +18,6 @@ public class WlbInventoryDetailGetRequest implements TaobaoRequest<WlbInventoryD
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 库存类型列表，值包括： VENDIBLE--可销售库存 FREEZE--冻结库存 ONWAY--在途库存 DEFECT--残次品库存
      * ENGINE_DAMAGE--机损 BOX_DAMAGE--箱损 EXPIRATION--过保
@@ -38,42 +34,44 @@ public class WlbInventoryDetailGetRequest implements TaobaoRequest<WlbInventoryD
      */
     private String storeCode;
 
-    public void setInventoryTypeList(String inventoryTypeList) {
-        this.inventoryTypeList = inventoryTypeList;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(inventoryTypeList, 20, "inventoryTypeList");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.inventory.detail.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getInventoryTypeList() {
         return this.inventoryTypeList;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<WlbInventoryDetailGetResponse> getResponseClass() {
+        return WlbInventoryDetailGetResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.inventory.detail.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("inventory_type_list", this.inventoryTypeList);
@@ -85,6 +83,12 @@ public class WlbInventoryDetailGetRequest implements TaobaoRequest<WlbInventoryD
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class WlbInventoryDetailGetRequest implements TaobaoRequest<WlbInventoryD
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbInventoryDetailGetResponse> getResponseClass() {
-        return WlbInventoryDetailGetResponse.class;
+    public void setInventoryTypeList(String inventoryTypeList) {
+        this.inventoryTypeList = inventoryTypeList;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(inventoryTypeList, 20, "inventoryTypeList");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

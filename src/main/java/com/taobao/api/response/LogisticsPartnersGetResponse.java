@@ -24,12 +24,12 @@ public class LogisticsPartnersGetResponse extends TaobaoResponse {
     @ApiField("logistics_partner")
     private List<LogisticsPartner> logisticsPartners;
 
-    public void setLogisticsPartners(List<LogisticsPartner> logisticsPartners) {
-        this.logisticsPartners = logisticsPartners;
-    }
-
     public List<LogisticsPartner> getLogisticsPartners() {
         return this.logisticsPartners;
+    }
+
+    public void setLogisticsPartners(List<LogisticsPartner> logisticsPartners) {
+        this.logisticsPartners = logisticsPartners;
     }
 
 }

@@ -65,60 +65,60 @@ public class IpcInventoryDetailDo extends TaobaoObject {
         return this.bizOrderId;
     }
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
-    }
-
     public Long getBizSubOrderId() {
         return this.bizSubOrderId;
-    }
-
-    public void setBizSubOrderId(Long bizSubOrderId) {
-        this.bizSubOrderId = bizSubOrderId;
     }
 
     public Long getFlag() {
         return this.flag;
     }
 
-    public void setFlag(Long flag) {
-        this.flag = flag;
-    }
-
     public Long getOccupyQuantity() {
         return this.occupyQuantity;
-    }
-
-    public void setOccupyQuantity(Long occupyQuantity) {
-        this.occupyQuantity = occupyQuantity;
     }
 
     public String getOwnerNick() {
         return this.ownerNick;
     }
 
-    public void setOwnerNick(String ownerNick) {
-        this.ownerNick = ownerNick;
-    }
-
     public Long getReserveQuantity() {
         return this.reserveQuantity;
-    }
-
-    public void setReserveQuantity(Long reserveQuantity) {
-        this.reserveQuantity = reserveQuantity;
     }
 
     public Long getScItemId() {
         return this.scItemId;
     }
 
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
-    }
-
     public String getStoreCode() {
         return this.storeCode;
+    }
+
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
+    }
+
+    public void setBizSubOrderId(Long bizSubOrderId) {
+        this.bizSubOrderId = bizSubOrderId;
+    }
+
+    public void setFlag(Long flag) {
+        this.flag = flag;
+    }
+
+    public void setOccupyQuantity(Long occupyQuantity) {
+        this.occupyQuantity = occupyQuantity;
+    }
+
+    public void setOwnerNick(String ownerNick) {
+        this.ownerNick = ownerNick;
+    }
+
+    public void setReserveQuantity(Long reserveQuantity) {
+        this.reserveQuantity = reserveQuantity;
+    }
+
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
     }
 
     public void setStoreCode(String storeCode) {

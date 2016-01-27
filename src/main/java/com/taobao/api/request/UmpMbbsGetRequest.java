@@ -17,8 +17,6 @@ public class UmpMbbsGetRequest implements TaobaoRequest<UmpMbbsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
     /**
@@ -26,26 +24,28 @@ public class UmpMbbsGetRequest implements TaobaoRequest<UmpMbbsGetResponse> {
      */
     private String type;
 
-    public void setType(String type) {
-        this.type = type;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.ump.mbbs.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<UmpMbbsGetResponse> getResponseClass() {
+        return UmpMbbsGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("type", this.type);
@@ -55,6 +55,16 @@ public class UmpMbbsGetRequest implements TaobaoRequest<UmpMbbsGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class UmpMbbsGetRequest implements TaobaoRequest<UmpMbbsGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpMbbsGetResponse> getResponseClass() {
-        return UmpMbbsGetResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setType(String type) {
+        this.type = type;
     }
 }

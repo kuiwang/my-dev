@@ -6,11 +6,6 @@ package com.scott.dev.taobao.api.comment.domain;
 public class TmallRateTagDetail {
 
     /*
-     * 标签名称
-     */
-    private String tagName;
-
-    /*
      * 反应该标签的评价数量
      */
     private Number count;
@@ -20,27 +15,32 @@ public class TmallRateTagDetail {
      */
     private Boolean posi;
 
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
+    /*
+     * 标签名称
+     */
+    private String tagName;
 
     public Number getCount() {
         return count;
-    }
-
-    public void setCount(Number count) {
-        this.count = count;
     }
 
     public Boolean getPosi() {
         return posi;
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setCount(Number count) {
+        this.count = count;
+    }
+
     public void setPosi(Boolean posi) {
         this.posi = posi;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

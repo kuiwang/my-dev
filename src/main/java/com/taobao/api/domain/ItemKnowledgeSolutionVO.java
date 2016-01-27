@@ -65,60 +65,60 @@ public class ItemKnowledgeSolutionVO extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getQuestion() {
         return this.question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
     public String getSolution() {
         return this.solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
     }
 
     public Long getSolutionLevel() {
         return this.solutionLevel;
     }
 
-    public void setSolutionLevel(Long solutionLevel) {
-        this.solutionLevel = solutionLevel;
-    }
-
     public String getSolutionStf() {
         return this.solutionStf;
-    }
-
-    public void setSolutionStf(String solutionStf) {
-        this.solutionStf = solutionStf;
     }
 
     public String getTypeKey() {
         return this.typeKey;
     }
 
-    public void setTypeKey(String typeKey) {
-        this.typeKey = typeKey;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
+    }
+
+    public void setSolutionLevel(Long solutionLevel) {
+        this.solutionLevel = solutionLevel;
+    }
+
+    public void setSolutionStf(String solutionStf) {
+        this.solutionStf = solutionStf;
+    }
+
+    public void setTypeKey(String typeKey) {
+        this.typeKey = typeKey;
     }
 
     public void setUserNick(String userNick) {

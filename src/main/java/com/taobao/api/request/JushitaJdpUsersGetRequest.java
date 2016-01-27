@@ -16,16 +16,12 @@ import com.taobao.api.response.JushitaJdpUsersGetResponse;
  */
 public class JushitaJdpUsersGetRequest implements TaobaoRequest<JushitaJdpUsersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 此参数一般不用传，用于查询最后更改时间在某个时间段内的用户
      */
     private Date endModified;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 当前页数
@@ -42,63 +38,51 @@ public class JushitaJdpUsersGetRequest implements TaobaoRequest<JushitaJdpUsersG
      */
     private Date startModified;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 如果传了user_id表示单条查询
      */
     private Long userId;
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jushita.jdp.users.get";
     }
 
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
+    @Override
+    public Class<JushitaJdpUsersGetResponse> getResponseClass() {
+        return JushitaJdpUsersGetResponse.class;
     }
 
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jushita.jdp.users.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_modified", this.endModified);
@@ -112,6 +96,16 @@ public class JushitaJdpUsersGetRequest implements TaobaoRequest<JushitaJdpUsersG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,14 +113,28 @@ public class JushitaJdpUsersGetRequest implements TaobaoRequest<JushitaJdpUsersG
         this.udfParams.put(key, value);
     }
 
-    public Class<JushitaJdpUsersGetResponse> getResponseClass() {
-        return JushitaJdpUsersGetResponse.class;
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

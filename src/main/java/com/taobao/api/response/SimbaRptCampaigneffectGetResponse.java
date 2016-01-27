@@ -19,12 +19,12 @@ public class SimbaRptCampaigneffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_campaign_effect_list")
     private String rptCampaignEffectList;
 
-    public void setRptCampaignEffectList(String rptCampaignEffectList) {
-        this.rptCampaignEffectList = rptCampaignEffectList;
-    }
-
     public String getRptCampaignEffectList() {
         return this.rptCampaignEffectList;
+    }
+
+    public void setRptCampaignEffectList(String rptCampaignEffectList) {
+        this.rptCampaignEffectList = rptCampaignEffectList;
     }
 
 }

@@ -24,12 +24,12 @@ public class SellercenterRolemembersGetResponse extends TaobaoResponse {
     @ApiField("sub_user_info")
     private List<SubUserInfo> subusers;
 
-    public void setSubusers(List<SubUserInfo> subusers) {
-        this.subusers = subusers;
-    }
-
     public List<SubUserInfo> getSubusers() {
         return this.subusers;
+    }
+
+    public void setSubusers(List<SubUserInfo> subusers) {
+        this.subusers = subusers;
     }
 
 }

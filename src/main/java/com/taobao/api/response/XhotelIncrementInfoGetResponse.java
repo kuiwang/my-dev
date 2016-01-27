@@ -30,20 +30,20 @@ public class XhotelIncrementInfoGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setHotels(List<SHotel> hotels) {
-        this.hotels = hotels;
-    }
-
     public List<SHotel> getHotels() {
         return this.hotels;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setHotels(List<SHotel> hotels) {
+        this.hotels = hotels;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

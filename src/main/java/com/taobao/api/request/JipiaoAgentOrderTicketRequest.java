@@ -18,10 +18,6 @@ public class JipiaoAgentOrderTicketRequest implements TaobaoRequest<JipiaoAgentO
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝系统订单id
      */
@@ -35,34 +31,41 @@ public class JipiaoAgentOrderTicketRequest implements TaobaoRequest<JipiaoAgentO
      */
     private String successInfo;
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+        RequestCheckUtils.checkNotEmpty(successInfo, "successInfo");
+        RequestCheckUtils.checkMaxListSize(successInfo, 18, "successInfo");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jipiao.agent.order.ticket";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setSuccessInfo(String successInfo) {
-        this.successInfo = successInfo;
+    @Override
+    public Class<JipiaoAgentOrderTicketResponse> getResponseClass() {
+        return JipiaoAgentOrderTicketResponse.class;
     }
 
     public String getSuccessInfo() {
         return this.successInfo;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jipiao.agent.order.ticket";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("order_id", this.orderId);
@@ -73,6 +76,12 @@ public class JipiaoAgentOrderTicketRequest implements TaobaoRequest<JipiaoAgentO
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,17 +89,16 @@ public class JipiaoAgentOrderTicketRequest implements TaobaoRequest<JipiaoAgentO
         this.udfParams.put(key, value);
     }
 
-    public Class<JipiaoAgentOrderTicketResponse> getResponseClass() {
-        return JipiaoAgentOrderTicketResponse.class;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
-        RequestCheckUtils.checkNotEmpty(successInfo, "successInfo");
-        RequestCheckUtils.checkMaxListSize(successInfo, 18, "successInfo");
+    public void setSuccessInfo(String successInfo) {
+        this.successInfo = successInfo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

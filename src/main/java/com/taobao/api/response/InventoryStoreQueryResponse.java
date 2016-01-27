@@ -24,12 +24,12 @@ public class InventoryStoreQueryResponse extends TaobaoResponse {
     @ApiField("store")
     private List<Store> storeList;
 
-    public void setStoreList(List<Store> storeList) {
-        this.storeList = storeList;
-    }
-
     public List<Store> getStoreList() {
         return this.storeList;
+    }
+
+    public void setStoreList(List<Store> storeList) {
+        this.storeList = storeList;
     }
 
 }

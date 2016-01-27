@@ -18,10 +18,6 @@ public class SubuserInfoUpdateRequest implements TaobaoRequest<SubuserInfoUpdate
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否停用子账号 true:表示停用该子账号false:表示开启该子账号
      */
@@ -37,42 +33,43 @@ public class SubuserInfoUpdateRequest implements TaobaoRequest<SubuserInfoUpdate
      */
     private Long subId;
 
-    public void setIsDisableSubaccount(Boolean isDisableSubaccount) {
-        this.isDisableSubaccount = isDisableSubaccount;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(subId, "subId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.info.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsDisableSubaccount() {
         return this.isDisableSubaccount;
     }
 
-    public void setIsDispatch(Boolean isDispatch) {
-        this.isDispatch = isDispatch;
-    }
-
     public Boolean getIsDispatch() {
         return this.isDispatch;
     }
 
-    public void setSubId(Long subId) {
-        this.subId = subId;
+    @Override
+    public Class<SubuserInfoUpdateResponse> getResponseClass() {
+        return SubuserInfoUpdateResponse.class;
     }
 
     public Long getSubId() {
         return this.subId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.info.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_disable_subaccount", this.isDisableSubaccount);
@@ -84,6 +81,12 @@ public class SubuserInfoUpdateRequest implements TaobaoRequest<SubuserInfoUpdate
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,15 +94,20 @@ public class SubuserInfoUpdateRequest implements TaobaoRequest<SubuserInfoUpdate
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserInfoUpdateResponse> getResponseClass() {
-        return SubuserInfoUpdateResponse.class;
+    public void setIsDisableSubaccount(Boolean isDisableSubaccount) {
+        this.isDisableSubaccount = isDisableSubaccount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(subId, "subId");
+    public void setIsDispatch(Boolean isDispatch) {
+        this.isDispatch = isDispatch;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSubId(Long subId) {
+        this.subId = subId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -20,12 +20,12 @@ public class TopatsJushitaJdpDatadeleteResponse extends TaobaoResponse {
     @ApiField("task")
     private Task task;
 
-    public void setTask(Task task) {
-        this.task = task;
-    }
-
     public Task getTask() {
         return this.task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 
 }

@@ -26,20 +26,20 @@ public class QueryVideoByIdResponse extends AliyunResponse {
     @ApiField("Video")
     private Video video;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setVideo(Video video) {
-        this.video = video;
-    }
-
     public Video getVideo() {
         return this.video;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
     }
 
 }

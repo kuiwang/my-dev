@@ -32,11 +32,11 @@ import java.nio.ByteBuffer;
  */
 abstract public class Frame {
 
-    /** The header. */
-    protected FrameHeader header;
-
     /** The contents. */
     protected byte[] contents;
+
+    /** The header. */
+    protected FrameHeader header;
 
     /**
      * Instantiates a new frame.
@@ -53,6 +53,15 @@ abstract public class Frame {
     protected Frame(FrameHeader header, byte[] contents) {
         this.header = header;
         this.contents = contents;
+    }
+
+    /**
+     * Gets the raw contents.
+     *
+     * @return the raw contents
+     */
+    public ByteBuffer getContents() {
+        return ByteBuffer.wrap(contents);
     }
 
     /**
@@ -74,22 +83,6 @@ abstract public class Frame {
     }
 
     /**
-     * convert frame to byte buffer.
-     *
-     * @return the byte buffer
-     */
-    abstract public ByteBuffer toByteBuffer();
-
-    /**
-     * Gets the raw contents.
-     *
-     * @return the raw contents
-     */
-    public ByteBuffer getContents() {
-        return ByteBuffer.wrap(contents);
-    }
-
-    /**
      * Gets the raw contents.
      *
      * @return the raw contents
@@ -108,6 +101,15 @@ abstract public class Frame {
     }
 
     /**
+     * Sets the contents.
+     *
+     * @param contents the new contents
+     */
+    protected void setContents(byte[] contents) {
+        this.contents = contents;
+    }
+
+    /**
      * Sets the header.
      *
      * @param header the new header
@@ -117,11 +119,9 @@ abstract public class Frame {
     }
 
     /**
-     * Sets the contents.
+     * convert frame to byte buffer.
      *
-     * @param contents the new contents
+     * @return the byte buffer
      */
-    protected void setContents(byte[] contents) {
-        this.contents = contents;
-    }
+    abstract public ByteBuffer toByteBuffer();
 }

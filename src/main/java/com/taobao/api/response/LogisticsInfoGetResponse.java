@@ -31,28 +31,28 @@ public class LogisticsInfoGetResponse extends TaobaoResponse {
     @ApiField("receiver_telephone")
     private String receiverTelephone;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
-    }
-
-    public void setReceivedPayment(String receivedPayment) {
-        this.receivedPayment = receivedPayment;
     }
 
     public String getReceivedPayment() {
         return this.receivedPayment;
     }
 
-    public void setReceiverTelephone(String receiverTelephone) {
-        this.receiverTelephone = receiverTelephone;
-    }
-
     public String getReceiverTelephone() {
         return this.receiverTelephone;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setReceivedPayment(String receivedPayment) {
+        this.receivedPayment = receivedPayment;
+    }
+
+    public void setReceiverTelephone(String receiverTelephone) {
+        this.receiverTelephone = receiverTelephone;
     }
 
 }

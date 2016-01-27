@@ -45,44 +45,44 @@ public class TbkShopCouponGetResponse extends TaobaoResponse {
     @ApiField("title")
     private String title;
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
     public Long getAmount() {
         return this.amount;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
     }
 
     public Long getCount() {
         return this.count;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getEndTime() {
         return this.endTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

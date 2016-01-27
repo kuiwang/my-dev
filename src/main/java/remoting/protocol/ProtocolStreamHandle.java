@@ -17,12 +17,11 @@ public class ProtocolStreamHandle {
 
     protected int ReadByte() {
         byte b = this._source.get();
-        if (b > -1) return b;
-        else return -1;
-    }
-
-    protected void WriteByte(byte value) {
-        this._source.put(value);
+        if (b > -1) {
+            return b;
+        } else {
+            return -1;
+        }
     }
 
     protected byte[] ReadBytes(int length) {
@@ -31,12 +30,16 @@ public class ProtocolStreamHandle {
         return buffer;
     }
 
-    protected void WriteBytes(byte[] value) {
-        this._source.put(value, 0, value.length);
-    }
-
     public byte[] ReadContent() {
         return this.ReadBytes(this._contentLength);
+    }
+
+    protected void WriteByte(byte value) {
+        this._source.put(value);
+    }
+
+    protected void WriteBytes(byte[] value) {
+        this._source.put(value, 0, value.length);
     }
 
     public void WriteContent(byte[] value) {

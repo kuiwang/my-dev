@@ -20,12 +20,12 @@ public class RefundMessageAddResponse extends TaobaoResponse {
     @ApiField("refund_message")
     private RefundMessage refundMessage;
 
-    public void setRefundMessage(RefundMessage refundMessage) {
-        this.refundMessage = refundMessage;
-    }
-
     public RefundMessage getRefundMessage() {
         return this.refundMessage;
+    }
+
+    public void setRefundMessage(RefundMessage refundMessage) {
+        this.refundMessage = refundMessage;
     }
 
 }

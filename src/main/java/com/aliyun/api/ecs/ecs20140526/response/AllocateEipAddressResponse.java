@@ -25,20 +25,20 @@ public class AllocateEipAddressResponse extends AliyunResponse {
     @ApiField("EipAddress")
     private String eipAddress;
 
-    public void setAllocationId(String allocationId) {
-        this.allocationId = allocationId;
-    }
-
     public String getAllocationId() {
         return this.allocationId;
     }
 
-    public void setEipAddress(String eipAddress) {
-        this.eipAddress = eipAddress;
-    }
-
     public String getEipAddress() {
         return this.eipAddress;
+    }
+
+    public void setAllocationId(String allocationId) {
+        this.allocationId = allocationId;
+    }
+
+    public void setEipAddress(String eipAddress) {
+        this.eipAddress = eipAddress;
     }
 
 }

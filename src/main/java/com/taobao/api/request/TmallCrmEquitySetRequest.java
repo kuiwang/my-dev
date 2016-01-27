@@ -16,12 +16,6 @@ import com.taobao.api.response.TmallCrmEquitySetResponse;
  */
 public class TmallCrmEquitySetRequest implements TaobaoRequest<TmallCrmEquitySetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 不免邮区域，只在包邮条件设置的时候生效。要和等级一一对应。包邮条件为false的时候不起作用。
      */
@@ -34,6 +28,8 @@ public class TmallCrmEquitySetRequest implements TaobaoRequest<TmallCrmEquitySet
      */
     private String grade;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 返几倍天猫积分，可以不设置。如果设置则要和等级一一对应。不设置代表清空。
      */
@@ -44,50 +40,51 @@ public class TmallCrmEquitySetRequest implements TaobaoRequest<TmallCrmEquitySet
      */
     private String postage;
 
-    public void setExcludeArea(String excludeArea) {
-        this.excludeArea = excludeArea;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(excludeArea, 4, "excludeArea");
+        RequestCheckUtils.checkNotEmpty(grade, "grade");
+        RequestCheckUtils.checkMaxListSize(grade, 4, "grade");
+        RequestCheckUtils.checkMaxListSize(point, 4, "point");
+        RequestCheckUtils.checkMaxListSize(postage, 4, "postage");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.crm.equity.set";
     }
 
     public String getExcludeArea() {
         return this.excludeArea;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
     public String getGrade() {
         return this.grade;
     }
 
-    public void setPoint(String point) {
-        this.point = point;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPoint() {
         return this.point;
     }
 
-    public void setPostage(String postage) {
-        this.postage = postage;
-    }
-
     public String getPostage() {
         return this.postage;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmallCrmEquitySetResponse> getResponseClass() {
+        return TmallCrmEquitySetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.crm.equity.set";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("exclude_area", this.excludeArea);
@@ -100,6 +97,12 @@ public class TmallCrmEquitySetRequest implements TaobaoRequest<TmallCrmEquitySet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,19 +110,24 @@ public class TmallCrmEquitySetRequest implements TaobaoRequest<TmallCrmEquitySet
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallCrmEquitySetResponse> getResponseClass() {
-        return TmallCrmEquitySetResponse.class;
+    public void setExcludeArea(String excludeArea) {
+        this.excludeArea = excludeArea;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(excludeArea, 4, "excludeArea");
-        RequestCheckUtils.checkNotEmpty(grade, "grade");
-        RequestCheckUtils.checkMaxListSize(grade, 4, "grade");
-        RequestCheckUtils.checkMaxListSize(point, 4, "point");
-        RequestCheckUtils.checkMaxListSize(postage, 4, "postage");
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPoint(String point) {
+        this.point = point;
+    }
+
+    public void setPostage(String postage) {
+        this.postage = postage;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

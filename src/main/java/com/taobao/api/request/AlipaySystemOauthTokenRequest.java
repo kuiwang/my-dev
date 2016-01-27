@@ -16,12 +16,6 @@ import com.taobao.api.response.AlipaySystemOauthTokenResponse;
  */
 public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystemOauthTokenResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 授权码，用户对应用授权后得到。<br />
      * 支持最大长度为：40<br />
@@ -36,6 +30,8 @@ public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystem
      */
     private String grantType;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 刷新令牌，上次换取访问令牌是得到。<br />
      * 支持最大长度为：40<br />
@@ -43,42 +39,46 @@ public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystem
      */
     private String refreshToken;
 
-    public void setCode(String code) {
-        this.code = code;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(code, 40, "code");
+        RequestCheckUtils.checkNotEmpty(grantType, "grantType");
+        RequestCheckUtils.checkMaxLength(grantType, 20, "grantType");
+        RequestCheckUtils.checkMaxLength(refreshToken, 40, "refreshToken");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.system.oauth.token";
     }
 
     public String getCode() {
         return this.code;
     }
 
-    public void setGrantType(String grantType) {
-        this.grantType = grantType;
-    }
-
     public String getGrantType() {
         return this.grantType;
     }
 
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getRefreshToken() {
         return this.refreshToken;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlipaySystemOauthTokenResponse> getResponseClass() {
+        return AlipaySystemOauthTokenResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.system.oauth.token";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("code", this.code);
@@ -90,6 +90,12 @@ public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystem
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -97,18 +103,20 @@ public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystem
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipaySystemOauthTokenResponse> getResponseClass() {
-        return AlipaySystemOauthTokenResponse.class;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(code, 40, "code");
-        RequestCheckUtils.checkNotEmpty(grantType, "grantType");
-        RequestCheckUtils.checkMaxLength(grantType, 20, "grantType");
-        RequestCheckUtils.checkMaxLength(refreshToken, 40, "refreshToken");
+    public void setGrantType(String grantType) {
+        this.grantType = grantType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

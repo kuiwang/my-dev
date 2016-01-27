@@ -41,28 +41,28 @@ public class ShopCat extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Boolean getIsParent() {
         return this.isParent;
-    }
-
-    public void setIsParent(Boolean isParent) {
-        this.isParent = isParent;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParentCid() {
         return this.parentCid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setIsParent(Boolean isParent) {
+        this.isParent = isParent;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setParentCid(Long parentCid) {

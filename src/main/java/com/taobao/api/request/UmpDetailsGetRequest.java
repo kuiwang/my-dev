@@ -16,16 +16,12 @@ import com.taobao.api.response.UmpDetailsGetResponse;
  */
 public class UmpDetailsGetRequest implements TaobaoRequest<UmpDetailsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 营销活动id
      */
     private Long actId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页的页码<br />
@@ -40,42 +36,48 @@ public class UmpDetailsGetRequest implements TaobaoRequest<UmpDetailsGetResponse
      */
     private Long pageSize;
 
-    public void setActId(Long actId) {
-        this.actId = actId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(actId, "actId");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
     }
 
     public Long getActId() {
         return this.actId;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.details.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<UmpDetailsGetResponse> getResponseClass() {
+        return UmpDetailsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ump.details.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("act_id", this.actId);
@@ -87,6 +89,12 @@ public class UmpDetailsGetRequest implements TaobaoRequest<UmpDetailsGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,20 +102,20 @@ public class UmpDetailsGetRequest implements TaobaoRequest<UmpDetailsGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpDetailsGetResponse> getResponseClass() {
-        return UmpDetailsGetResponse.class;
+    public void setActId(Long actId) {
+        this.actId = actId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(actId, "actId");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

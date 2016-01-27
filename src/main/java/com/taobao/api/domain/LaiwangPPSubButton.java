@@ -47,36 +47,36 @@ public class LaiwangPPSubButton extends TaobaoObject {
         return this.key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTarget() {
         return this.target;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
     public String getType() {
         return this.type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getUrl() {
         return this.url;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setUrl(String url) {

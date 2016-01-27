@@ -19,12 +19,12 @@ public class TmallCat {
         return this.catId;
     }
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
-
     public String getCatName() {
         return this.catName;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
     }
 
     public void setCatName(String catName) {

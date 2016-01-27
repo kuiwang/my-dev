@@ -16,12 +16,6 @@ import com.taobao.api.response.FenxiaoRequisitionsGetResponse;
  */
 public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequisitionsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 申请结束时间yyyy-MM-dd
      */
@@ -31,6 +25,8 @@ public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequi
      * 申请开始时间yyyy-MM-dd
      */
     private Date applyStart;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码（大于0的整数，默认1）
@@ -47,58 +43,50 @@ public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequi
      */
     private Long status;
 
-    public void setApplyEnd(Date applyEnd) {
-        this.applyEnd = applyEnd;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.requisitions.get";
     }
 
     public Date getApplyEnd() {
         return this.applyEnd;
     }
 
-    public void setApplyStart(Date applyStart) {
-        this.applyStart = applyStart;
-    }
-
     public Date getApplyStart() {
         return this.applyStart;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    @Override
+    public Class<FenxiaoRequisitionsGetResponse> getResponseClass() {
+        return FenxiaoRequisitionsGetResponse.class;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.requisitions.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("apply_end", this.applyEnd);
@@ -112,6 +100,12 @@ public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequi
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,14 +113,28 @@ public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequi
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoRequisitionsGetResponse> getResponseClass() {
-        return FenxiaoRequisitionsGetResponse.class;
+    public void setApplyEnd(Date applyEnd) {
+        this.applyEnd = applyEnd;
     }
 
-    public void check() throws ApiRuleException {
+    public void setApplyStart(Date applyStart) {
+        this.applyStart = applyStart;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

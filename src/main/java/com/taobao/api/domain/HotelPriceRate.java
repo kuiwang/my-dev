@@ -54,44 +54,44 @@ public class HotelPriceRate extends TaobaoObject {
         return this.h5BuyUrl;
     }
 
-    public void setH5BuyUrl(String h5BuyUrl) {
-        this.h5BuyUrl = h5BuyUrl;
-    }
-
     public String getInventoryPrice() {
         return this.inventoryPrice;
-    }
-
-    public void setInventoryPrice(String inventoryPrice) {
-        this.inventoryPrice = inventoryPrice;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPaymentType() {
         return this.paymentType;
-    }
-
-    public void setPaymentType(Long paymentType) {
-        this.paymentType = paymentType;
     }
 
     public String getPcBuyUrl() {
         return this.pcBuyUrl;
     }
 
-    public void setPcBuyUrl(String pcBuyUrl) {
-        this.pcBuyUrl = pcBuyUrl;
-    }
-
     public Long getRpid() {
         return this.rpid;
+    }
+
+    public void setH5BuyUrl(String h5BuyUrl) {
+        this.h5BuyUrl = h5BuyUrl;
+    }
+
+    public void setInventoryPrice(String inventoryPrice) {
+        this.inventoryPrice = inventoryPrice;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPaymentType(Long paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public void setPcBuyUrl(String pcBuyUrl) {
+        this.pcBuyUrl = pcBuyUrl;
     }
 
     public void setRpid(Long rpid) {

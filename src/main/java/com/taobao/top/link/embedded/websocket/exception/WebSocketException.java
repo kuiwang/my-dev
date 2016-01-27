@@ -88,6 +88,16 @@ public class WebSocketException extends Exception {
         this.formatArgs = formatArgs;
     }
 
+    /**
+     * Gets the status code.
+     *
+     * @return the status code
+     */
+    public int getErrorCode() {
+        int errorCode = Integer.valueOf(code.name().substring(1, 5));
+        return errorCode;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Throwable#getMessage()
      */
@@ -99,15 +109,5 @@ public class WebSocketException extends Exception {
         } else {
             return "[" + errorCode + "] " + code.getMessage();
         }
-    }
-
-    /**
-     * Gets the status code.
-     *
-     * @return the status code
-     */
-    public int getErrorCode() {
-        int errorCode = Integer.valueOf(code.name().substring(1, 5));
-        return errorCode;
     }
 }

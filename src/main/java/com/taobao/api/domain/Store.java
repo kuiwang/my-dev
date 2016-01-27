@@ -71,68 +71,68 @@ public class Store extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getAddressAreaName() {
         return this.addressAreaName;
-    }
-
-    public void setAddressAreaName(String addressAreaName) {
-        this.addressAreaName = addressAreaName;
     }
 
     public String getAliasName() {
         return this.aliasName;
     }
 
-    public void setAliasName(String aliasName) {
-        this.aliasName = aliasName;
-    }
-
     public String getContact() {
         return this.contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPostCode() {
         return this.postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
-
     public String getStoreName() {
         return this.storeName;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
     public String getStoreType() {
         return this.storeType;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAddressAreaName(String addressAreaName) {
+        this.addressAreaName = addressAreaName;
+    }
+
+    public void setAliasName(String aliasName) {
+        this.aliasName = aliasName;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public void setStoreType(String storeType) {

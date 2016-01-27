@@ -24,12 +24,12 @@ public class FuwuScoresGetResponse extends TaobaoResponse {
     @ApiField("score_result")
     private List<ScoreResult> scoreResult;
 
-    public void setScoreResult(List<ScoreResult> scoreResult) {
-        this.scoreResult = scoreResult;
-    }
-
     public List<ScoreResult> getScoreResult() {
         return this.scoreResult;
+    }
+
+    public void setScoreResult(List<ScoreResult> scoreResult) {
+        this.scoreResult = scoreResult;
     }
 
 }

@@ -47,36 +47,36 @@ public class AuctionPVPairDO extends TaobaoObject {
         return this.propertyId;
     }
 
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
-    }
-
     public String getPropertyText() {
         return this.propertyText;
-    }
-
-    public void setPropertyText(String propertyText) {
-        this.propertyText = propertyText;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getValueId() {
         return this.valueId;
     }
 
-    public void setValueId(Long valueId) {
-        this.valueId = valueId;
-    }
-
     public String getValueText() {
         return this.valueText;
+    }
+
+    public void setPropertyId(Long propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public void setPropertyText(String propertyText) {
+        this.propertyText = propertyText;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setValueId(Long valueId) {
+        this.valueId = valueId;
     }
 
     public void setValueText(String valueText) {

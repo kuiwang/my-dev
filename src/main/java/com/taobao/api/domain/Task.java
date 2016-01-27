@@ -71,60 +71,60 @@ public class Task extends TaobaoObject {
         return this.checkCode;
     }
 
-    public void setCheckCode(String checkCode) {
-        this.checkCode = checkCode;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getDownloadUrl() {
         return this.downloadUrl;
     }
 
-    public void setDownloadUrl(String downloadUrl) {
-        this.downloadUrl = downloadUrl;
-    }
-
     public String getMethod() {
         return this.method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
     }
 
     public Date getSchedule() {
         return this.schedule;
     }
 
-    public void setSchedule(Date schedule) {
-        this.schedule = schedule;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public List<Subtask> getSubtasks() {
         return this.subtasks;
     }
 
-    public void setSubtasks(List<Subtask> subtasks) {
-        this.subtasks = subtasks;
-    }
-
     public Long getTaskId() {
         return this.taskId;
+    }
+
+    public void setCheckCode(String checkCode) {
+        this.checkCode = checkCode;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setSchedule(Date schedule) {
+        this.schedule = schedule;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubtasks(List<Subtask> subtasks) {
+        this.subtasks = subtasks;
     }
 
     public void setTaskId(Long taskId) {

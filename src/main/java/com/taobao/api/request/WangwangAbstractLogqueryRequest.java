@@ -17,12 +17,6 @@ import com.taobao.api.response.WangwangAbstractLogqueryResponse;
 public class WangwangAbstractLogqueryRequest implements
         TaobaoRequest<WangwangAbstractLogqueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入参数的字符集
      */
@@ -44,6 +38,8 @@ public class WangwangAbstractLogqueryRequest implements
      */
     private String fromId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 设置了这个值，那么聊天记录就从这个点开始查询
      */
@@ -54,79 +50,64 @@ public class WangwangAbstractLogqueryRequest implements
      */
     private String startDate;
 
+    private Long timestamp;
+
     /**
      * 买家id，有cntaobao前缀
      */
     private String toId;
 
-    public void setCharset(String charset) {
-        this.charset = charset;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(count, 1L, "count");
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(fromId, "fromId");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+        RequestCheckUtils.checkNotEmpty(toId, "toId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.abstract.logquery";
     }
 
     public String getCharset() {
         return this.charset;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public Long getCount() {
         return this.count;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setFromId(String fromId) {
-        this.fromId = fromId;
-    }
-
     public String getFromId() {
         return this.fromId;
     }
 
-    public void setNextKey(String nextKey) {
-        this.nextKey = nextKey;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNextKey() {
         return this.nextKey;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<WangwangAbstractLogqueryResponse> getResponseClass() {
+        return WangwangAbstractLogqueryResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public void setToId(String toId) {
-        this.toId = toId;
-    }
-
-    public String getToId() {
-        return this.toId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.abstract.logquery";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charset", this.charset);
@@ -142,6 +123,16 @@ public class WangwangAbstractLogqueryRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getToId() {
+        return this.toId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -149,19 +140,36 @@ public class WangwangAbstractLogqueryRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangAbstractLogqueryResponse> getResponseClass() {
-        return WangwangAbstractLogqueryResponse.class;
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(count, 1L, "count");
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(fromId, "fromId");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
-        RequestCheckUtils.checkNotEmpty(toId, "toId");
+    public void setCount(Long count) {
+        this.count = count;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
+    }
+
+    public void setNextKey(String nextKey) {
+        this.nextKey = nextKey;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 }

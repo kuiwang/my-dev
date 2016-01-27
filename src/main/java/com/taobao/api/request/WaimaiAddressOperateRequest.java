@@ -16,12 +16,6 @@ import com.taobao.api.response.WaimaiAddressOperateResponse;
  */
 public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressOperateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 详细地址
      */
@@ -36,6 +30,8 @@ public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressO
      * 是否是默认地址
      */
     private Long defaulted;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 地址ID
@@ -52,6 +48,10 @@ public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressO
      */
     private String phone;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 经度保留8位有效整数
      */
@@ -62,82 +62,51 @@ public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressO
      */
     private Long y;
 
-    public void setAddress(String address) {
-        this.address = address;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(name, "name");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.address.operate";
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setDefaulted(Long defaulted) {
-        this.defaulted = defaulted;
-    }
-
     public Long getDefaulted() {
         return this.defaulted;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setX(Long x) {
-        this.x = x;
+    @Override
+    public Class<WaimaiAddressOperateResponse> getResponseClass() {
+        return WaimaiAddressOperateResponse.class;
     }
 
-    public Long getX() {
-        return this.x;
-    }
-
-    public void setY(Long y) {
-        this.y = y;
-    }
-
-    public Long getY() {
-        return this.y;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.address.operate";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -154,6 +123,20 @@ public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressO
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getX() {
+        return this.x;
+    }
+
+    public Long getY() {
+        return this.y;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -161,15 +144,40 @@ public class WaimaiAddressOperateRequest implements TaobaoRequest<WaimaiAddressO
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiAddressOperateResponse> getResponseClass() {
-        return WaimaiAddressOperateResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(name, "name");
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDefaulted(Long defaulted) {
+        this.defaulted = defaulted;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setX(Long x) {
+        this.x = x;
+    }
+
+    public void setY(Long y) {
+        this.y = y;
     }
 }

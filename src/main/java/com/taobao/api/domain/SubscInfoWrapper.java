@@ -33,12 +33,12 @@ public class SubscInfoWrapper extends TaobaoObject {
         return this.subscInfoList;
     }
 
-    public void setSubscInfoList(List<SubscInfo> subscInfoList) {
-        this.subscInfoList = subscInfoList;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setSubscInfoList(List<SubscInfo> subscInfoList) {
+        this.subscInfoList = subscInfoList;
     }
 
     public void setTotalCount(Long totalCount) {

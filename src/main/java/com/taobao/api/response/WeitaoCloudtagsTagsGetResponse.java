@@ -30,20 +30,20 @@ public class WeitaoCloudtagsTagsGetResponse extends TaobaoResponse {
     @ApiField("clouds_tag")
     private List<CloudsTag> tagList;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setTagList(List<CloudsTag> tagList) {
-        this.tagList = tagList;
-    }
-
     public List<CloudsTag> getTagList() {
         return this.tagList;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setTagList(List<CloudsTag> tagList) {
+        this.tagList = tagList;
     }
 
 }

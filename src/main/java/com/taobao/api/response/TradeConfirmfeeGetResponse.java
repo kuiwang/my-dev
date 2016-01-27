@@ -20,12 +20,12 @@ public class TradeConfirmfeeGetResponse extends TaobaoResponse {
     @ApiField("trade_confirm_fee")
     private TradeConfirmFee tradeConfirmFee;
 
-    public void setTradeConfirmFee(TradeConfirmFee tradeConfirmFee) {
-        this.tradeConfirmFee = tradeConfirmFee;
-    }
-
     public TradeConfirmFee getTradeConfirmFee() {
         return this.tradeConfirmFee;
+    }
+
+    public void setTradeConfirmFee(TradeConfirmFee tradeConfirmFee) {
+        this.tradeConfirmFee = tradeConfirmFee;
     }
 
 }

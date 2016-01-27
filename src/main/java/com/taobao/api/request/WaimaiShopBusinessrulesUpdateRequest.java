@@ -17,12 +17,6 @@ import com.taobao.api.response.WaimaiShopBusinessrulesUpdateResponse;
 public class WaimaiShopBusinessrulesUpdateRequest implements
         TaobaoRequest<WaimaiShopBusinessrulesUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 配送范围地图标注
      */
@@ -53,6 +47,8 @@ public class WaimaiShopBusinessrulesUpdateRequest implements
      */
     private String fullAmount;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 起送金额
      */
@@ -73,98 +69,80 @@ public class WaimaiShopBusinessrulesUpdateRequest implements
      */
     private Long supportDays;
 
-    public void setAreaRange(String areaRange) {
-        this.areaRange = areaRange;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(areaRange, "areaRange");
+        RequestCheckUtils.checkNotEmpty(deliveryAmount, "deliveryAmount");
+        RequestCheckUtils.checkNotEmpty(deliveryArea, "deliveryArea");
+        RequestCheckUtils.checkNotEmpty(deliveryTime, "deliveryTime");
+        RequestCheckUtils.checkNotEmpty(earlyMinutes, "earlyMinutes");
+        RequestCheckUtils.checkNotEmpty(fullAmount, "fullAmount");
+        RequestCheckUtils.checkNotEmpty(minimumAmount, "minimumAmount");
+        RequestCheckUtils.checkNotEmpty(mobile, "mobile");
+        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
+        RequestCheckUtils.checkNotEmpty(supportDays, "supportDays");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.shop.businessrules.update";
     }
 
     public String getAreaRange() {
         return this.areaRange;
     }
 
-    public void setDeliveryAmount(String deliveryAmount) {
-        this.deliveryAmount = deliveryAmount;
-    }
-
     public String getDeliveryAmount() {
         return this.deliveryAmount;
-    }
-
-    public void setDeliveryArea(String deliveryArea) {
-        this.deliveryArea = deliveryArea;
     }
 
     public String getDeliveryArea() {
         return this.deliveryArea;
     }
 
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
     public String getDeliveryTime() {
         return this.deliveryTime;
-    }
-
-    public void setEarlyMinutes(Long earlyMinutes) {
-        this.earlyMinutes = earlyMinutes;
     }
 
     public Long getEarlyMinutes() {
         return this.earlyMinutes;
     }
 
-    public void setFullAmount(String fullAmount) {
-        this.fullAmount = fullAmount;
-    }
-
     public String getFullAmount() {
         return this.fullAmount;
     }
 
-    public void setMinimumAmount(String minimumAmount) {
-        this.minimumAmount = minimumAmount;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMinimumAmount() {
         return this.minimumAmount;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
     public String getMobile() {
         return this.mobile;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
+    @Override
+    public Class<WaimaiShopBusinessrulesUpdateResponse> getResponseClass() {
+        return WaimaiShopBusinessrulesUpdateResponse.class;
     }
 
     public Long getShopid() {
         return this.shopid;
     }
 
-    public void setSupportDays(Long supportDays) {
-        this.supportDays = supportDays;
-    }
-
     public Long getSupportDays() {
         return this.supportDays;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.shop.businessrules.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area_range", this.areaRange);
@@ -183,6 +161,12 @@ public class WaimaiShopBusinessrulesUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -190,24 +174,48 @@ public class WaimaiShopBusinessrulesUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiShopBusinessrulesUpdateResponse> getResponseClass() {
-        return WaimaiShopBusinessrulesUpdateResponse.class;
+    public void setAreaRange(String areaRange) {
+        this.areaRange = areaRange;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(areaRange, "areaRange");
-        RequestCheckUtils.checkNotEmpty(deliveryAmount, "deliveryAmount");
-        RequestCheckUtils.checkNotEmpty(deliveryArea, "deliveryArea");
-        RequestCheckUtils.checkNotEmpty(deliveryTime, "deliveryTime");
-        RequestCheckUtils.checkNotEmpty(earlyMinutes, "earlyMinutes");
-        RequestCheckUtils.checkNotEmpty(fullAmount, "fullAmount");
-        RequestCheckUtils.checkNotEmpty(minimumAmount, "minimumAmount");
-        RequestCheckUtils.checkNotEmpty(mobile, "mobile");
-        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
-        RequestCheckUtils.checkNotEmpty(supportDays, "supportDays");
+    public void setDeliveryAmount(String deliveryAmount) {
+        this.deliveryAmount = deliveryAmount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDeliveryArea(String deliveryArea) {
+        this.deliveryArea = deliveryArea;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public void setEarlyMinutes(Long earlyMinutes) {
+        this.earlyMinutes = earlyMinutes;
+    }
+
+    public void setFullAmount(String fullAmount) {
+        this.fullAmount = fullAmount;
+    }
+
+    public void setMinimumAmount(String minimumAmount) {
+        this.minimumAmount = minimumAmount;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
+    }
+
+    public void setSupportDays(Long supportDays) {
+        this.supportDays = supportDays;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

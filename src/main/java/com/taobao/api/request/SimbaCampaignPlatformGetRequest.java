@@ -17,50 +17,51 @@ import com.taobao.api.response.SimbaCampaignPlatformGetResponse;
 public class SimbaCampaignPlatformGetRequest implements
         TaobaoRequest<SimbaCampaignPlatformGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.platform.get";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaCampaignPlatformGetResponse> getResponseClass() {
+        return SimbaCampaignPlatformGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.platform.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -71,6 +72,12 @@ public class SimbaCampaignPlatformGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class SimbaCampaignPlatformGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignPlatformGetResponse> getResponseClass() {
-        return SimbaCampaignPlatformGetResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

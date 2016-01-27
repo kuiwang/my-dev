@@ -48,44 +48,44 @@ public class TmallTemaiItemsSearchResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setItemList(List<TmallSearchTmItem> itemList) {
-        this.itemList = itemList;
-    }
-
     public List<TmallSearchTmItem> getItemList() {
         return this.itemList;
-    }
-
-    public void setPage(Long page) {
-        this.page = page;
     }
 
     public Long getPage() {
         return this.page;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setTotalPage(Long totalPage) {
-        this.totalPage = totalPage;
     }
 
     public Long getTotalPage() {
         return this.totalPage;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setItemList(List<TmallSearchTmItem> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setTotalPage(Long totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

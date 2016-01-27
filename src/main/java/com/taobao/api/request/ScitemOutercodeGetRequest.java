@@ -18,35 +18,40 @@ public class ScitemOutercodeGetRequest implements TaobaoRequest<ScitemOutercodeG
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品编码
      */
     private String outerCode;
 
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(outerCode, "outerCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.scitem.outercode.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOuterCode() {
         return this.outerCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ScitemOutercodeGetResponse> getResponseClass() {
+        return ScitemOutercodeGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.scitem.outercode.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("outer_code", this.outerCode);
@@ -56,6 +61,12 @@ public class ScitemOutercodeGetRequest implements TaobaoRequest<ScitemOutercodeG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class ScitemOutercodeGetRequest implements TaobaoRequest<ScitemOutercodeG
         this.udfParams.put(key, value);
     }
 
-    public Class<ScitemOutercodeGetResponse> getResponseClass() {
-        return ScitemOutercodeGetResponse.class;
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(outerCode, "outerCode");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

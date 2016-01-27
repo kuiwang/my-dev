@@ -30,20 +30,20 @@ public class InventoryAdjustExternalResponse extends TaobaoResponse {
     @ApiField("tip_info")
     private List<TipInfo> tipInfos;
 
-    public void setOperateCode(String operateCode) {
-        this.operateCode = operateCode;
-    }
-
     public String getOperateCode() {
         return this.operateCode;
     }
 
-    public void setTipInfos(List<TipInfo> tipInfos) {
-        this.tipInfos = tipInfos;
-    }
-
     public List<TipInfo> getTipInfos() {
         return this.tipInfos;
+    }
+
+    public void setOperateCode(String operateCode) {
+        this.operateCode = operateCode;
+    }
+
+    public void setTipInfos(List<TipInfo> tipInfos) {
+        this.tipInfos = tipInfos;
     }
 
 }

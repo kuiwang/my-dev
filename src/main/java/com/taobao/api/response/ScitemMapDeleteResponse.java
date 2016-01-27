@@ -19,12 +19,12 @@ public class ScitemMapDeleteResponse extends TaobaoResponse {
     @ApiField("module")
     private Long module;
 
-    public void setModule(Long module) {
-        this.module = module;
-    }
-
     public Long getModule() {
         return this.module;
+    }
+
+    public void setModule(Long module) {
+        this.module = module;
     }
 
 }

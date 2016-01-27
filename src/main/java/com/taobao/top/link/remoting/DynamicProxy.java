@@ -13,23 +13,23 @@ import remoting.protocol.tcp.TcpTransportHeader;
 import com.taobao.top.link.BufferManager;
 import com.taobao.top.link.Text;
 import com.taobao.top.link.channel.ChannelException;
+import com.taobao.top.link.channel.ChannelSender.SendHandler;
 import com.taobao.top.link.channel.ClientChannel;
 import com.taobao.top.link.channel.ClientChannelSelector;
-import com.taobao.top.link.channel.ChannelSender.SendHandler;
 
 public class DynamicProxy implements InvocationHandler {
+
+    private RemotingClientChannelHandler channelHandler;
 
     private int executionTimeout = 0;
 
     private URI remoteUri;
 
-    private String uriString;
+    private ClientChannelSelector selector;
 
     private String serializationFormat;
 
-    private ClientChannelSelector selector;
-
-    private RemotingClientChannelHandler channelHandler;
+    private String uriString;
 
     protected DynamicProxy(URI remoteUri, ClientChannelSelector selector,
             RemotingClientChannelHandler handler) {
@@ -45,32 +45,14 @@ public class DynamicProxy implements InvocationHandler {
                 new Class[] { interfaceClass }, this);
     }
 
-    public void setExecutionTimeout(int millisecond) {
-        this.executionTimeout = millisecond;
-    }
-
-    public void setSerializationFormat(String format) {
-        this.serializationFormat = format;
-    }
-
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        MethodCall methodCall = new MethodCall();
-        methodCall.Uri = this.uriString;
-        methodCall.MethodName = method.getName();
-        methodCall.TypeName = method.getDeclaringClass().getName();
-        methodCall.MethodSignature = method.getParameterTypes();
-        methodCall.Args = args;
-
-        MethodReturn methodReturn = this.invoke(methodCall, method.getReturnType());
-
-        if (methodReturn.Exception == null) return methodReturn.ReturnValue;
-
-        // https://github.com/wsky/top-link/issues/18
-        // will course java.lang.reflect.UndeclaredThrowableException
-        // throw new RemotingException("invoke got error",
-        // methodReturn.Exception);
-        throw methodReturn.Exception;
+    private ClientChannel getChannel() throws RemotingException {
+        try {
+            ClientChannel channel = this.selector.getChannel(this.remoteUri);
+            channel.setChannelHandler(channelHandler);
+            return channel;
+        } catch (ChannelException e) {
+            throw new RemotingException(Text.RPC_CAN_NOT_GET_CHANNEL, e);
+        }
     }
 
     public MethodReturn invoke(MethodCall methodCall) throws RemotingException, FormatterException {
@@ -80,11 +62,6 @@ public class DynamicProxy implements InvocationHandler {
     public MethodReturn invoke(MethodCall methodCall, Class<?> returnType)
             throws RemotingException, FormatterException {
         return this.invoke(methodCall, returnType, this.executionTimeout);
-    }
-
-    public MethodReturn invoke(MethodCall methodCall, int executionTimeoutMillisecond)
-            throws RemotingException, FormatterException {
-        return this.invoke(methodCall, Object.class, executionTimeoutMillisecond);
     }
 
     public MethodReturn invoke(MethodCall methodCall, Class<?> returnType,
@@ -106,14 +83,31 @@ public class DynamicProxy implements InvocationHandler {
         }
     }
 
-    private ClientChannel getChannel() throws RemotingException {
-        try {
-            ClientChannel channel = this.selector.getChannel(this.remoteUri);
-            channel.setChannelHandler(channelHandler);
-            return channel;
-        } catch (ChannelException e) {
-            throw new RemotingException(Text.RPC_CAN_NOT_GET_CHANNEL, e);
+    public MethodReturn invoke(MethodCall methodCall, int executionTimeoutMillisecond)
+            throws RemotingException, FormatterException {
+        return this.invoke(methodCall, Object.class, executionTimeoutMillisecond);
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        MethodCall methodCall = new MethodCall();
+        methodCall.Uri = this.uriString;
+        methodCall.MethodName = method.getName();
+        methodCall.TypeName = method.getDeclaringClass().getName();
+        methodCall.MethodSignature = method.getParameterTypes();
+        methodCall.Args = args;
+
+        MethodReturn methodReturn = this.invoke(methodCall, method.getReturnType());
+
+        if (methodReturn.Exception == null) {
+            return methodReturn.ReturnValue;
         }
+
+        // https://github.com/wsky/top-link/issues/18
+        // will course java.lang.reflect.UndeclaredThrowableException
+        // throw new RemotingException("invoke got error",
+        // methodReturn.Exception);
+        throw methodReturn.Exception;
     }
 
     private MethodReturn send(ClientChannel clientChannel, final ByteBuffer buffer,
@@ -140,15 +134,27 @@ public class DynamicProxy implements InvocationHandler {
             this.channelHandler.cancel(syncCallback);
         }
 
-        if (syncCallback.getFailure() != null) throw unexcepException(syncCallback,
-                Text.RPC_CALL_ERROR, syncCallback.getFailure());
+        if (syncCallback.getFailure() != null) {
+            throw unexcepException(syncCallback,
+                    Text.RPC_CALL_ERROR, syncCallback.getFailure());
+        }
 
         return syncCallback.getMethodReturn();
     }
 
+    public void setExecutionTimeout(int millisecond) {
+        this.executionTimeout = millisecond;
+    }
+
+    public void setSerializationFormat(String format) {
+        this.serializationFormat = format;
+    }
+
     private RemotingException unexcepException(SynchronizedRemotingCallback callback,
             String message, Throwable innerException) {
-        if (innerException instanceof RemotingException) return (RemotingException) innerException;
+        if (innerException instanceof RemotingException) {
+            return (RemotingException) innerException;
+        }
         return innerException != null ? new RemotingException(message, innerException)
                 : new RemotingException(message);
     }

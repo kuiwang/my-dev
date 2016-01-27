@@ -39,28 +39,28 @@ public class JipiaoAgentOrderProductSnapshotResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
     public String getData() {
         return this.data;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
     public String getErrorMessage() {
         return this.errorMessage;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

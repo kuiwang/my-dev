@@ -19,35 +19,40 @@ public class PromotionLimitdiscountDetailGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 限时打折ID。这个针对查询唯一限时打折情况。
      */
     private Long limitDiscountId;
 
-    public void setLimitDiscountId(Long limitDiscountId) {
-        this.limitDiscountId = limitDiscountId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(limitDiscountId, "limitDiscountId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.limitdiscount.detail.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLimitDiscountId() {
         return this.limitDiscountId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PromotionLimitdiscountDetailGetResponse> getResponseClass() {
+        return PromotionLimitdiscountDetailGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotion.limitdiscount.detail.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("limit_discount_id", this.limitDiscountId);
@@ -57,6 +62,12 @@ public class PromotionLimitdiscountDetailGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class PromotionLimitdiscountDetailGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionLimitdiscountDetailGetResponse> getResponseClass() {
-        return PromotionLimitdiscountDetailGetResponse.class;
+    public void setLimitDiscountId(Long limitDiscountId) {
+        this.limitDiscountId = limitDiscountId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(limitDiscountId, "limitDiscountId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

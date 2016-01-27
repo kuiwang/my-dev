@@ -29,12 +29,12 @@ public class DescModuleInfo extends TaobaoObject {
         return this.anchorModuleIds;
     }
 
-    public void setAnchorModuleIds(String anchorModuleIds) {
-        this.anchorModuleIds = anchorModuleIds;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setAnchorModuleIds(String anchorModuleIds) {
+        this.anchorModuleIds = anchorModuleIds;
     }
 
     public void setType(Long type) {

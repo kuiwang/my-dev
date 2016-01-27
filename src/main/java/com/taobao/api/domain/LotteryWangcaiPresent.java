@@ -85,84 +85,84 @@ public class LotteryWangcaiPresent extends TaobaoObject {
         return this.appName;
     }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
-
     public String getLotteryName() {
         return this.lotteryName;
-    }
-
-    public void setLotteryName(String lotteryName) {
-        this.lotteryName = lotteryName;
     }
 
     public Date getPresentDate() {
         return this.presentDate;
     }
 
-    public void setPresentDate(Date presentDate) {
-        this.presentDate = presentDate;
-    }
-
     public Long getPresentId() {
         return this.presentId;
-    }
-
-    public void setPresentId(Long presentId) {
-        this.presentId = presentId;
     }
 
     public Long getStakeCount() {
         return this.stakeCount;
     }
 
-    public void setStakeCount(Long stakeCount) {
-        this.stakeCount = stakeCount;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public String getStatusDesc() {
         return this.statusDesc;
     }
 
-    public void setStatusDesc(String statusDesc) {
-        this.statusDesc = statusDesc;
-    }
-
     public String getSweetyWords() {
         return this.sweetyWords;
-    }
-
-    public void setSweetyWords(String sweetyWords) {
-        this.sweetyWords = sweetyWords;
     }
 
     public String getUserNick() {
         return this.userNick;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
     public Long getUserNumId() {
         return this.userNumId;
     }
 
-    public void setUserNumId(Long userNumId) {
-        this.userNumId = userNumId;
-    }
-
     public Long getWinFee() {
         return this.winFee;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public void setLotteryName(String lotteryName) {
+        this.lotteryName = lotteryName;
+    }
+
+    public void setPresentDate(Date presentDate) {
+        this.presentDate = presentDate;
+    }
+
+    public void setPresentId(Long presentId) {
+        this.presentId = presentId;
+    }
+
+    public void setStakeCount(Long stakeCount) {
+        this.stakeCount = stakeCount;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStatusDesc(String statusDesc) {
+        this.statusDesc = statusDesc;
+    }
+
+    public void setSweetyWords(String sweetyWords) {
+        this.sweetyWords = sweetyWords;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
+    }
+
+    public void setUserNumId(Long userNumId) {
+        this.userNumId = userNumId;
     }
 
     public void setWinFee(Long winFee) {

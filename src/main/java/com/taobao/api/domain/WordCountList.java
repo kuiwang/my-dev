@@ -29,12 +29,12 @@ public class WordCountList extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public void setWord(String word) {

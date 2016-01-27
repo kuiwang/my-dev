@@ -6,16 +6,6 @@ package com.scott.dev.taobao.api.item.domain;
 public class PropertyInputDO {
 
     /*
-     * 属性ID
-     */
-    private Number propertyId;
-
-    /*
-     * property_id对应的属性是不是子属性
-     */
-    private Boolean isSubProperty;
-
-    /*
      * property_id对应的属性是否可输入
      */
     private Boolean isAllowInput;
@@ -27,35 +17,45 @@ public class PropertyInputDO {
      */
     private Boolean isRootAllowInput;
 
-    public Number getPropertyId() {
-        return propertyId;
-    }
+    /*
+     * property_id对应的属性是不是子属性
+     */
+    private Boolean isSubProperty;
 
-    public void setPropertyId(Number propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public Boolean getIsSubProperty() {
-        return isSubProperty;
-    }
-
-    public void setIsSubProperty(Boolean isSubProperty) {
-        this.isSubProperty = isSubProperty;
-    }
+    /*
+     * 属性ID
+     */
+    private Number propertyId;
 
     public Boolean getIsAllowInput() {
         return isAllowInput;
-    }
-
-    public void setIsAllowInput(Boolean isAllowInput) {
-        this.isAllowInput = isAllowInput;
     }
 
     public Boolean getIsRootAllowInput() {
         return isRootAllowInput;
     }
 
+    public Boolean getIsSubProperty() {
+        return isSubProperty;
+    }
+
+    public Number getPropertyId() {
+        return propertyId;
+    }
+
+    public void setIsAllowInput(Boolean isAllowInput) {
+        this.isAllowInput = isAllowInput;
+    }
+
     public void setIsRootAllowInput(Boolean isRootAllowInput) {
         this.isRootAllowInput = isRootAllowInput;
+    }
+
+    public void setIsSubProperty(Boolean isSubProperty) {
+        this.isSubProperty = isSubProperty;
+    }
+
+    public void setPropertyId(Number propertyId) {
+        this.propertyId = propertyId;
     }
 }

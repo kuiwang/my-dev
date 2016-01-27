@@ -35,30 +35,19 @@ import com.taobao.top.link.embedded.websocket.frame.FrameHeader;
  */
 public class TextFrame extends FrameDraft76 {
 
-    /** The converted string. */
-    private String convertedString;
-
     /**
-     * Instantiates a new text frame.
+     * Convert string to byte array.
      *
      * @param str the str
+     * @return the byte[]
      */
-    public TextFrame(String str) {
-        super();
-        byte[] body = convertStringToByteArray(str);
-        FrameHeaderDraft76 header = new FrameHeaderDraft76((byte) 0x00, body.length + 1);
-        setHeader(header);
-        setContents(body);
-    }
-
-    /**
-     * Instantiates a new text frame.
-     *
-     * @param header the header
-     * @param body the contents
-     */
-    public TextFrame(FrameHeader header, byte[] body) {
-        super(header, stripTerminateFlag(body));
+    private static byte[] convertStringToByteArray(String str) {
+        try {
+            return str.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            ;
+        }
+        return null;
     }
 
     /**
@@ -76,24 +65,36 @@ public class TextFrame extends FrameDraft76 {
         return body;
     }
 
+    /** The converted string. */
+    private String convertedString;
+
     /**
-     * Convert string to byte array.
+     * Instantiates a new text frame.
+     *
+     * @param header the header
+     * @param body the contents
+     */
+    public TextFrame(FrameHeader header, byte[] body) {
+        super(header, stripTerminateFlag(body));
+    }
+
+    /**
+     * Instantiates a new text frame.
      *
      * @param str the str
-     * @return the byte[]
      */
-    private static byte[] convertStringToByteArray(String str) {
-        try {
-            return str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            ;
-        }
-        return null;
+    public TextFrame(String str) {
+        super();
+        byte[] body = convertStringToByteArray(str);
+        FrameHeaderDraft76 header = new FrameHeaderDraft76((byte) 0x00, body.length + 1);
+        setHeader(header);
+        setContents(body);
     }
 
     /* (non-Javadoc)
      * @see jp.a840.websocket.frame.Frame#toByteBuffer()
      */
+    @Override
     public ByteBuffer toByteBuffer() {
         ByteBuffer buf = ByteBuffer.allocate(1 + contents.length + 1);
         buf.put(header.toByteBuffer());
@@ -106,6 +107,7 @@ public class TextFrame extends FrameDraft76 {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         if (convertedString == null) {
             try {

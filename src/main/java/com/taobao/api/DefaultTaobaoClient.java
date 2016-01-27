@@ -26,37 +26,37 @@ public class DefaultTaobaoClient implements TaobaoClient {
 
     private static final String METHOD = "method";
 
-    private static final String TIMESTAMP = "timestamp";
+    private static final String PARTNER_ID = "partner_id";
 
-    private static final String VERSION = "v";
+    private static final String SESSION = "session";
 
     private static final String SIGN = "sign";
 
     private static final String SIGN_METHOD = "sign_method";
 
-    private static final String PARTNER_ID = "partner_id";
-
-    private static final String SESSION = "session";
-
     private static final String SIMPLIFY = "simplify";
 
-    private String serverUrl;
+    private static final String TIMESTAMP = "timestamp";
+
+    private static final String VERSION = "v";
 
     private String appKey;
 
     private String appSecret;
 
-    private String format = Constants.FORMAT_JSON;
-
-    private String signMethod = Constants.SIGN_METHOD_HMAC;
-
     private int connectTimeout = 3000;//3秒
 
-    private int readTimeout = 15000;//15秒
+    private String format = Constants.FORMAT_JSON;
 
     private boolean needCheckRequest = true; // 是否在客户端校验请求
 
     private boolean needEnableParser = true; // 是否对响应结果进行解释
+
+    private int readTimeout = 15000;//15秒
+
+    private String serverUrl;
+
+    private String signMethod = Constants.SIGN_METHOD_HMAC;
 
     private boolean useSimplifyJson = false; // 是否采用精简化的JSON返回
 
@@ -82,23 +82,6 @@ public class DefaultTaobaoClient implements TaobaoClient {
             int connectTimeout, int readTimeout, String signMethod) {
         this(serverUrl, appKey, appSecret, format, connectTimeout, readTimeout);
         this.signMethod = signMethod;
-    }
-
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
-        return execute(request, null);
-    }
-
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session)
-            throws ApiException {
-        TaobaoParser<T> parser = null;
-        if (this.needEnableParser) {
-            if (Constants.FORMAT_XML.equals(this.format)) {
-                parser = new ObjectXmlParser<T>(request.getResponseClass());
-            } else {
-                parser = new ObjectJsonParser<T>(request.getResponseClass(), this.useSimplifyJson);
-            }
-        }
-        return _execute(request, parser, session);
     }
 
     private <T extends TaobaoResponse> T _execute(TaobaoRequest<T> request, TaobaoParser<T> parser,
@@ -201,7 +184,7 @@ public class DefaultTaobaoClient implements TaobaoClient {
                 reqUrl.append("?");
             }
             reqUrl.append(sysMustQuery);
-            if (sysOptQuery != null & sysOptQuery.length() > 0) {
+            if ((sysOptQuery != null) & (sysOptQuery.length() > 0)) {
                 reqUrl.append("&").append(sysOptQuery);
             }
             requestHolder.setRequestUrl(reqUrl.toString());
@@ -229,32 +212,23 @@ public class DefaultTaobaoClient implements TaobaoClient {
         return requestHolder;
     }
 
-    /**
-     * 是否在客户端校验请求参数。
-     */
-    public void setNeedCheckRequest(boolean needCheckRequest) {
-        this.needCheckRequest = needCheckRequest;
+    @Override
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
+        return execute(request, null);
     }
 
-    /**
-     * 是否把响应字符串解释为对象。
-     */
-    public void setNeedEnableParser(boolean needEnableParser) {
-        this.needEnableParser = needEnableParser;
-    }
-
-    /**
-     * 是否采用标准化的JSON格式返回。
-     */
-    public void setUseSimplifyJson(boolean useSimplifyJson) {
-        this.useSimplifyJson = useSimplifyJson;
-    }
-
-    /**
-     * 是否记录API请求错误日志。
-     */
-    public void setNeedEnableLogger(boolean needEnableLogger) {
-        TaobaoLogger.setNeedEnableLogger(needEnableLogger);
+    @Override
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session)
+            throws ApiException {
+        TaobaoParser<T> parser = null;
+        if (this.needEnableParser) {
+            if (Constants.FORMAT_XML.equals(this.format)) {
+                parser = new ObjectXmlParser<T>(request.getResponseClass());
+            } else {
+                parser = new ObjectJsonParser<T>(request.getResponseClass(), this.useSimplifyJson);
+            }
+        }
+        return _execute(request, parser, session);
     }
 
     /**
@@ -269,6 +243,34 @@ public class DefaultTaobaoClient implements TaobaoClient {
      */
     public void setMaxKeepAliveConnections(int amount) {
         System.setProperty("http.maxConnections", String.valueOf(amount));
+    }
+
+    /**
+     * 是否在客户端校验请求参数。
+     */
+    public void setNeedCheckRequest(boolean needCheckRequest) {
+        this.needCheckRequest = needCheckRequest;
+    }
+
+    /**
+     * 是否记录API请求错误日志。
+     */
+    public void setNeedEnableLogger(boolean needEnableLogger) {
+        TaobaoLogger.setNeedEnableLogger(needEnableLogger);
+    }
+
+    /**
+     * 是否把响应字符串解释为对象。
+     */
+    public void setNeedEnableParser(boolean needEnableParser) {
+        this.needEnableParser = needEnableParser;
+    }
+
+    /**
+     * 是否采用标准化的JSON格式返回。
+     */
+    public void setUseSimplifyJson(boolean useSimplifyJson) {
+        this.useSimplifyJson = useSimplifyJson;
     }
 
 }

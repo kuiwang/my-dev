@@ -16,50 +16,52 @@ import com.taobao.api.response.WeitaoFeedIsrelationResponse;
  */
 public class WeitaoFeedIsrelationRequest implements TaobaoRequest<WeitaoFeedIsrelationResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要查询的粉丝的淘宝昵称
      */
     private String fansNick;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 要查询的公共账号的淘宝昵称
      */
     private String sellerNick;
 
-    public void setFansNick(String fansNick) {
-        this.fansNick = fansNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fansNick, "fansNick");
+        RequestCheckUtils.checkNotEmpty(sellerNick, "sellerNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.feed.isrelation";
     }
 
     public String getFansNick() {
         return this.fansNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WeitaoFeedIsrelationResponse> getResponseClass() {
+        return WeitaoFeedIsrelationResponse.class;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.weitao.feed.isrelation";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fans_nick", this.fansNick);
@@ -70,6 +72,12 @@ public class WeitaoFeedIsrelationRequest implements TaobaoRequest<WeitaoFeedIsre
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class WeitaoFeedIsrelationRequest implements TaobaoRequest<WeitaoFeedIsre
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoFeedIsrelationResponse> getResponseClass() {
-        return WeitaoFeedIsrelationResponse.class;
+    public void setFansNick(String fansNick) {
+        this.fansNick = fansNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fansNick, "fansNick");
-        RequestCheckUtils.checkNotEmpty(sellerNick, "sellerNick");
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

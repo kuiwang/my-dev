@@ -53,44 +53,44 @@ public class EipMonitorData extends TaobaoObject {
         return this.eipBandwidth;
     }
 
-    public void setEipBandwidth(Long eipBandwidth) {
-        this.eipBandwidth = eipBandwidth;
-    }
-
     public Long getEipFlow() {
         return this.eipFlow;
-    }
-
-    public void setEipFlow(Long eipFlow) {
-        this.eipFlow = eipFlow;
     }
 
     public Long getEipPackets() {
         return this.eipPackets;
     }
 
-    public void setEipPackets(Long eipPackets) {
-        this.eipPackets = eipPackets;
-    }
-
     public Long getEipRx() {
         return this.eipRx;
-    }
-
-    public void setEipRx(Long eipRx) {
-        this.eipRx = eipRx;
     }
 
     public Long getEipTx() {
         return this.eipTx;
     }
 
-    public void setEipTx(Long eipTx) {
-        this.eipTx = eipTx;
-    }
-
     public String getTimeStamp() {
         return this.timeStamp;
+    }
+
+    public void setEipBandwidth(Long eipBandwidth) {
+        this.eipBandwidth = eipBandwidth;
+    }
+
+    public void setEipFlow(Long eipFlow) {
+        this.eipFlow = eipFlow;
+    }
+
+    public void setEipPackets(Long eipPackets) {
+        this.eipPackets = eipPackets;
+    }
+
+    public void setEipRx(Long eipRx) {
+        this.eipRx = eipRx;
+    }
+
+    public void setEipTx(Long eipTx) {
+        this.eipTx = eipTx;
     }
 
     public void setTimeStamp(String timeStamp) {

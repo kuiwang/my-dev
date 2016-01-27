@@ -55,6 +55,7 @@ public class TaobaoHashMap extends HashMap<String, String> {
         return this.put(key, strValue);
     }
 
+    @Override
     public String put(String key, String value) {
         if (StringUtils.areNotEmpty(key, value)) {
             return super.put(key, value);

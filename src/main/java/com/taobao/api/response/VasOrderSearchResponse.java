@@ -30,20 +30,20 @@ public class VasOrderSearchResponse extends TaobaoResponse {
     @ApiField("total_item")
     private Long totalItem;
 
-    public void setArticleBizOrders(List<ArticleBizOrder> articleBizOrders) {
-        this.articleBizOrders = articleBizOrders;
-    }
-
     public List<ArticleBizOrder> getArticleBizOrders() {
         return this.articleBizOrders;
     }
 
-    public void setTotalItem(Long totalItem) {
-        this.totalItem = totalItem;
-    }
-
     public Long getTotalItem() {
         return this.totalItem;
+    }
+
+    public void setArticleBizOrders(List<ArticleBizOrder> articleBizOrders) {
+        this.articleBizOrders = articleBizOrders;
+    }
+
+    public void setTotalItem(Long totalItem) {
+        this.totalItem = totalItem;
     }
 
 }

@@ -33,12 +33,12 @@ public class PromotionTagQuery extends TaobaoObject {
         return this.tagList;
     }
 
-    public void setTagList(List<PromotionTag> tagList) {
-        this.tagList = tagList;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setTagList(List<PromotionTag> tagList) {
+        this.tagList = tagList;
     }
 
     public void setTotalResults(Long totalResults) {

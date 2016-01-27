@@ -14,15 +14,15 @@ package remoting.protocol;
 
 public class MessageHeader {
 
-    public final static String Uri = "__Uri";
+    public final static String Args = "__Args";
 
     public final static String MethodName = "__MethodName";
 
     public final static String MethodSignature = "__MethodSignature";
 
+    public final static String Return = "__Return";
+
     public final static String TypeName = "__TypeName";
 
-    public final static String Args = "__Args";
-
-    public final static String Return = "__Return";
+    public final static String Uri = "__Uri";
 }

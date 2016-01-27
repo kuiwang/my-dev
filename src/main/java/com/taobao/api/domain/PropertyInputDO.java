@@ -43,28 +43,28 @@ public class PropertyInputDO extends TaobaoObject {
         return this.isAllowInput;
     }
 
-    public void setIsAllowInput(Boolean isAllowInput) {
-        this.isAllowInput = isAllowInput;
-    }
-
     public Boolean getIsRootAllowInput() {
         return this.isRootAllowInput;
-    }
-
-    public void setIsRootAllowInput(Boolean isRootAllowInput) {
-        this.isRootAllowInput = isRootAllowInput;
     }
 
     public Boolean getIsSubProperty() {
         return this.isSubProperty;
     }
 
-    public void setIsSubProperty(Boolean isSubProperty) {
-        this.isSubProperty = isSubProperty;
-    }
-
     public Long getPropertyId() {
         return this.propertyId;
+    }
+
+    public void setIsAllowInput(Boolean isAllowInput) {
+        this.isAllowInput = isAllowInput;
+    }
+
+    public void setIsRootAllowInput(Boolean isRootAllowInput) {
+        this.isRootAllowInput = isRootAllowInput;
+    }
+
+    public void setIsSubProperty(Boolean isSubProperty) {
+        this.isSubProperty = isSubProperty;
     }
 
     public void setPropertyId(Long propertyId) {

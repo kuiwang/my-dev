@@ -26,20 +26,20 @@ public class FenxiaoDistributorArchivesGetResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setDistributorArchive(DistributorArchive distributorArchive) {
-        this.distributorArchive = distributorArchive;
-    }
-
     public DistributorArchive getDistributorArchive() {
         return this.distributorArchive;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setDistributorArchive(DistributorArchive distributorArchive) {
+        this.distributorArchive = distributorArchive;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

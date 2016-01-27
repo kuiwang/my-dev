@@ -71,68 +71,68 @@ public class Snapshot extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getProductCode() {
         return this.productCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public String getProgress() {
         return this.progress;
-    }
-
-    public void setProgress(String progress) {
-        this.progress = progress;
     }
 
     public String getSnapshotId() {
         return this.snapshotId;
     }
 
-    public void setSnapshotId(String snapshotId) {
-        this.snapshotId = snapshotId;
-    }
-
     public String getSnapshotName() {
         return this.snapshotName;
-    }
-
-    public void setSnapshotName(String snapshotName) {
-        this.snapshotName = snapshotName;
     }
 
     public String getSourceDiskId() {
         return this.sourceDiskId;
     }
 
-    public void setSourceDiskId(String sourceDiskId) {
-        this.sourceDiskId = sourceDiskId;
-    }
-
     public Long getSourceDiskSize() {
         return this.sourceDiskSize;
     }
 
-    public void setSourceDiskSize(Long sourceDiskSize) {
-        this.sourceDiskSize = sourceDiskSize;
-    }
-
     public String getSourceDiskType() {
         return this.sourceDiskType;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
+    public void setSnapshotId(String snapshotId) {
+        this.snapshotId = snapshotId;
+    }
+
+    public void setSnapshotName(String snapshotName) {
+        this.snapshotName = snapshotName;
+    }
+
+    public void setSourceDiskId(String sourceDiskId) {
+        this.sourceDiskId = sourceDiskId;
+    }
+
+    public void setSourceDiskSize(Long sourceDiskSize) {
+        this.sourceDiskSize = sourceDiskSize;
     }
 
     public void setSourceDiskType(String sourceDiskType) {

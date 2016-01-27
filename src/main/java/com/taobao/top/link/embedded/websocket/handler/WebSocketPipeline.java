@@ -36,61 +36,11 @@ import com.taobao.top.link.embedded.websocket.frame.Frame;
  */
 public class WebSocketPipeline {
 
-    /** The start chain. */
-    private StreamHandlerChain startChain;
-
     /** The last chain. */
     private StreamHandlerChain lastChain;
 
-    /**
-     * Send handshake upstream.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
-     */
-    public void sendHandshakeUpstream(WebSocket ws, ByteBuffer buffer) throws WebSocketException {
-        lastChain.nextHandshakeUpstreamHandler(ws, buffer);
-    }
-
-    /**
-     * Send handshake downstream.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
-     */
-    public void sendHandshakeDownstream(WebSocket ws, ByteBuffer buffer) throws WebSocketException {
-        startChain.nextHandshakeDownstreamHandler(ws, buffer);
-    }
-
-    /**
-     * Send upstream.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @param frame the frame
-     * @throws WebSocketException the web socket exception
-     */
-    public void sendUpstream(WebSocket ws, ByteBuffer buffer, Frame frame)
-            throws WebSocketException {
-        lastChain.nextUpstreamHandler(ws, buffer, frame);
-    }
-
-    /**
-     * Send downstream.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @param frame the frame
-     * @throws WebSocketException the web socket exception
-     */
-    public void sendDownstream(WebSocket ws, ByteBuffer buffer, Frame frame)
-            throws WebSocketException {
-        startChain.nextDownstreamHandler(ws, buffer, frame);
-    }
+    /** The start chain. */
+    private StreamHandlerChain startChain;
 
     /**
      * Adds the stream handler.
@@ -115,5 +65,55 @@ public class WebSocketPipeline {
     protected void finalize() throws Throwable {
         startChain.clear();
         super.finalize();
+    }
+
+    /**
+     * Send downstream.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @param frame the frame
+     * @throws WebSocketException the web socket exception
+     */
+    public void sendDownstream(WebSocket ws, ByteBuffer buffer, Frame frame)
+            throws WebSocketException {
+        startChain.nextDownstreamHandler(ws, buffer, frame);
+    }
+
+    /**
+     * Send handshake downstream.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
+     *         the web socket exception
+     */
+    public void sendHandshakeDownstream(WebSocket ws, ByteBuffer buffer) throws WebSocketException {
+        startChain.nextHandshakeDownstreamHandler(ws, buffer);
+    }
+
+    /**
+     * Send handshake upstream.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
+     *         the web socket exception
+     */
+    public void sendHandshakeUpstream(WebSocket ws, ByteBuffer buffer) throws WebSocketException {
+        lastChain.nextHandshakeUpstreamHandler(ws, buffer);
+    }
+
+    /**
+     * Send upstream.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @param frame the frame
+     * @throws WebSocketException the web socket exception
+     */
+    public void sendUpstream(WebSocket ws, ByteBuffer buffer, Frame frame)
+            throws WebSocketException {
+        lastChain.nextUpstreamHandler(ws, buffer, frame);
     }
 }

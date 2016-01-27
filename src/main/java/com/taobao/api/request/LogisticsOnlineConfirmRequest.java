@@ -18,10 +18,6 @@ public class LogisticsOnlineConfirmRequest implements TaobaoRequest<LogisticsOnl
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 表明是否是拆单，默认值0，1表示拆单
      */
@@ -49,58 +45,50 @@ public class LogisticsOnlineConfirmRequest implements TaobaoRequest<LogisticsOnl
      */
     private Long tid;
 
-    public void setIsSplit(Long isSplit) {
-        this.isSplit = isSplit;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
+        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.online.confirm";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIsSplit() {
         return this.isSplit;
     }
 
-    public void setOutSid(String outSid) {
-        this.outSid = outSid;
-    }
-
     public String getOutSid() {
         return this.outSid;
     }
 
-    public void setSellerIp(String sellerIp) {
-        this.sellerIp = sellerIp;
+    @Override
+    public Class<LogisticsOnlineConfirmResponse> getResponseClass() {
+        return LogisticsOnlineConfirmResponse.class;
     }
 
     public String getSellerIp() {
         return this.sellerIp;
     }
 
-    public void setSubTid(String subTid) {
-        this.subTid = subTid;
-    }
-
     public String getSubTid() {
         return this.subTid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.online.confirm";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_split", this.isSplit);
@@ -114,6 +102,16 @@ public class LogisticsOnlineConfirmRequest implements TaobaoRequest<LogisticsOnl
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -121,18 +119,28 @@ public class LogisticsOnlineConfirmRequest implements TaobaoRequest<LogisticsOnl
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsOnlineConfirmResponse> getResponseClass() {
-        return LogisticsOnlineConfirmResponse.class;
+    public void setIsSplit(Long isSplit) {
+        this.isSplit = isSplit;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
-        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
-        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    public void setOutSid(String outSid) {
+        this.outSid = outSid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSellerIp(String sellerIp) {
+        this.sellerIp = sellerIp;
+    }
+
+    public void setSubTid(String subTid) {
+        this.subTid = subTid;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

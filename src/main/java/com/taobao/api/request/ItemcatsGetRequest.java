@@ -16,12 +16,6 @@ import com.taobao.api.response.ItemcatsGetResponse;
  */
 public class ItemcatsGetRequest implements TaobaoRequest<ItemcatsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所属类目ID列表，用半角逗号(,)分隔 例如:(18957,19562,) (cids、parent_cid至少传一个)<br />
      * 支持最大值为：9223372036854775807<br />
@@ -37,6 +31,8 @@ public class ItemcatsGetRequest implements TaobaoRequest<ItemcatsGetResponse> {
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 父商品类目 id，0表示根节点, 传输该参数返回所有子类目。 (cids、parent_cid至少传一个)<br />
      * 支持最大值为：9223372036854775807<br />
@@ -44,42 +40,45 @@ public class ItemcatsGetRequest implements TaobaoRequest<ItemcatsGetResponse> {
      */
     private Long parentCid;
 
-    public void setCids(String cids) {
-        this.cids = cids;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(cids, 1000, "cids");
+        RequestCheckUtils.checkMaxValue(parentCid, 9223372036854775807L, "parentCid");
+        RequestCheckUtils.checkMinValue(parentCid, 0L, "parentCid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.itemcats.get";
     }
 
     public String getCids() {
         return this.cids;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setParentCid(Long parentCid) {
-        this.parentCid = parentCid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getParentCid() {
         return this.parentCid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemcatsGetResponse> getResponseClass() {
+        return ItemcatsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.itemcats.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cids", this.cids);
@@ -91,6 +90,12 @@ public class ItemcatsGetRequest implements TaobaoRequest<ItemcatsGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -98,17 +103,20 @@ public class ItemcatsGetRequest implements TaobaoRequest<ItemcatsGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemcatsGetResponse> getResponseClass() {
-        return ItemcatsGetResponse.class;
+    public void setCids(String cids) {
+        this.cids = cids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(cids, 1000, "cids");
-        RequestCheckUtils.checkMaxValue(parentCid, 9223372036854775807L, "parentCid");
-        RequestCheckUtils.checkMinValue(parentCid, 0L, "parentCid");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setParentCid(Long parentCid) {
+        this.parentCid = parentCid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -25,12 +25,12 @@ public class UmpDetailListAddResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> detailIdList;
 
-    public void setDetailIdList(List<Long> detailIdList) {
-        this.detailIdList = detailIdList;
-    }
-
     public List<Long> getDetailIdList() {
         return this.detailIdList;
+    }
+
+    public void setDetailIdList(List<Long> detailIdList) {
+        this.detailIdList = detailIdList;
     }
 
 }

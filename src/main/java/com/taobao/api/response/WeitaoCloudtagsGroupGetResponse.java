@@ -24,12 +24,12 @@ public class WeitaoCloudtagsGroupGetResponse extends TaobaoResponse {
     @ApiField("cloud_group")
     private List<CloudGroup> groupList;
 
-    public void setGroupList(List<CloudGroup> groupList) {
-        this.groupList = groupList;
-    }
-
     public List<CloudGroup> getGroupList() {
         return this.groupList;
+    }
+
+    public void setGroupList(List<CloudGroup> groupList) {
+        this.groupList = groupList;
     }
 
 }

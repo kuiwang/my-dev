@@ -16,12 +16,6 @@ import com.taobao.api.response.RefundGetResponse;
  */
 public class RefundGetRequest implements TaobaoRequest<RefundGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要返回的字段。目前支持有：refund_id, alipay_no, tid, oid, buyer_nick,
      * seller_nick, total_fee, status, created, refund_fee, good_status,
@@ -32,6 +26,8 @@ public class RefundGetRequest implements TaobaoRequest<RefundGetResponse> {
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 退款单号<br />
      * 支持最大值为：9223372036854775807<br />
@@ -39,34 +35,43 @@ public class RefundGetRequest implements TaobaoRequest<RefundGetResponse> {
      */
     private Long refundId;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(fields, 100, "fields");
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+        RequestCheckUtils.checkMaxValue(refundId, 9223372036854775807L, "refundId");
+        RequestCheckUtils.checkMinValue(refundId, 1L, "refundId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.refund.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RefundGetResponse> getResponseClass() {
+        return RefundGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.refund.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -77,6 +82,12 @@ public class RefundGetRequest implements TaobaoRequest<RefundGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -84,19 +95,16 @@ public class RefundGetRequest implements TaobaoRequest<RefundGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<RefundGetResponse> getResponseClass() {
-        return RefundGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(fields, 100, "fields");
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
-        RequestCheckUtils.checkMaxValue(refundId, 9223372036854775807L, "refundId");
-        RequestCheckUtils.checkMinValue(refundId, 1L, "refundId");
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -18,36 +18,42 @@ public class JdsRefundTracesGetRequest implements TaobaoRequest<JdsRefundTracesG
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝的退款编号<br />
      * 支持最小值为：1
      */
     private Long refundId;
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+        RequestCheckUtils.checkMinValue(refundId, 1L, "refundId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jds.refund.traces.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JdsRefundTracesGetResponse> getResponseClass() {
+        return JdsRefundTracesGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jds.refund.traces.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("refund_id", this.refundId);
@@ -57,6 +63,12 @@ public class JdsRefundTracesGetRequest implements TaobaoRequest<JdsRefundTracesG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,16 +76,12 @@ public class JdsRefundTracesGetRequest implements TaobaoRequest<JdsRefundTracesG
         this.udfParams.put(key, value);
     }
 
-    public Class<JdsRefundTracesGetResponse> getResponseClass() {
-        return JdsRefundTracesGetResponse.class;
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
-        RequestCheckUtils.checkMinValue(refundId, 1L, "refundId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

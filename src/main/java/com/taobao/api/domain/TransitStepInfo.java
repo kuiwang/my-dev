@@ -53,44 +53,44 @@ public class TransitStepInfo extends TaobaoObject {
         return this.action;
     }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getNodeDescription() {
         return this.nodeDescription;
     }
 
-    public void setNodeDescription(String nodeDescription) {
-        this.nodeDescription = nodeDescription;
-    }
-
     public String getStatusDesc() {
         return this.statusDesc;
-    }
-
-    public void setStatusDesc(String statusDesc) {
-        this.statusDesc = statusDesc;
     }
 
     public String getStatusTime() {
         return this.statusTime;
     }
 
-    public void setStatusTime(String statusTime) {
-        this.statusTime = statusTime;
-    }
-
     public String getTime() {
         return this.time;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setNodeDescription(String nodeDescription) {
+        this.nodeDescription = nodeDescription;
+    }
+
+    public void setStatusDesc(String statusDesc) {
+        this.statusDesc = statusDesc;
+    }
+
+    public void setStatusTime(String statusTime) {
+        this.statusTime = statusTime;
     }
 
     public void setTime(String time) {

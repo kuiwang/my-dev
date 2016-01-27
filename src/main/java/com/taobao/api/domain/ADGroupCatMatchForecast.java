@@ -53,44 +53,44 @@ public class ADGroupCatMatchForecast extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public Long getCatmatchId() {
         return this.catmatchId;
-    }
-
-    public void setCatmatchId(Long catmatchId) {
-        this.catmatchId = catmatchId;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getPriceClick() {
         return this.priceClick;
-    }
-
-    public void setPriceClick(String priceClick) {
-        this.priceClick = priceClick;
     }
 
     public String getPriceCust() {
         return this.priceCust;
     }
 
-    public void setPriceCust(String priceCust) {
-        this.priceCust = priceCust;
-    }
-
     public String getPriceRank() {
         return this.priceRank;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setCatmatchId(Long catmatchId) {
+        this.catmatchId = catmatchId;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPriceClick(String priceClick) {
+        this.priceClick = priceClick;
+    }
+
+    public void setPriceCust(String priceCust) {
+        this.priceCust = priceCust;
     }
 
     public void setPriceRank(String priceRank) {

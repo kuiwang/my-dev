@@ -41,28 +41,28 @@ public class AreaOption extends TaobaoObject {
         return this.areaId;
     }
 
-    public void setAreaId(Long areaId) {
-        this.areaId = areaId;
-    }
-
     public Long getLevel() {
         return this.level;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParentId() {
         return this.parentId;
+    }
+
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setParentId(Long parentId) {

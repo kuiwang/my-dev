@@ -18,10 +18,6 @@ public class TradeOrderskuUpdateRequest implements TaobaoRequest<TradeOrderskuUp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 子订单编号（对于单笔订单的交易可以传交易编号）。
      */
@@ -38,42 +34,43 @@ public class TradeOrderskuUpdateRequest implements TaobaoRequest<TradeOrderskuUp
      */
     private String skuProps;
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(oid, "oid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.ordersku.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
+    @Override
+    public Class<TradeOrderskuUpdateResponse> getResponseClass() {
+        return TradeOrderskuUpdateResponse.class;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuProps(String skuProps) {
-        this.skuProps = skuProps;
-    }
-
     public String getSkuProps() {
         return this.skuProps;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.ordersku.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("oid", this.oid);
@@ -85,6 +82,12 @@ public class TradeOrderskuUpdateRequest implements TaobaoRequest<TradeOrderskuUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,15 +95,20 @@ public class TradeOrderskuUpdateRequest implements TaobaoRequest<TradeOrderskuUp
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeOrderskuUpdateResponse> getResponseClass() {
-        return TradeOrderskuUpdateResponse.class;
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(oid, "oid");
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSkuProps(String skuProps) {
+        this.skuProps = skuProps;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

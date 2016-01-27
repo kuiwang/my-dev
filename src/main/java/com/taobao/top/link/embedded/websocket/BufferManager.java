@@ -37,16 +37,6 @@ public class BufferManager {
     private ByteBuffer fragmentBuf;
 
     /**
-     * init management fragment buffer.
-     */
-    public void init() {
-        if (this.fragmentBuf != null) {
-            this.fragmentBuf.clear();
-        }
-        this.fragmentBuf = null;
-    }
-
-    /**
      * Get merged fragmented buffer and argument buffer. if does not have a
      * management fragment buffer then return take a argument buffer
      *
@@ -63,6 +53,16 @@ public class BufferManager {
             buffer = ByteBuffer.wrap(buf);
         }
         return buffer;
+    }
+
+    /**
+     * init management fragment buffer.
+     */
+    public void init() {
+        if (this.fragmentBuf != null) {
+            this.fragmentBuf.clear();
+        }
+        this.fragmentBuf = null;
     }
 
     /**

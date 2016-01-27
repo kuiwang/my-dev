@@ -33,12 +33,12 @@ public class StaffEvalStatById extends TaobaoObject {
         return this.evaluations;
     }
 
-    public void setEvaluations(List<Evaluation> evaluations) {
-        this.evaluations = evaluations;
-    }
-
     public String getServiceStaffId() {
         return this.serviceStaffId;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
     public void setServiceStaffId(String serviceStaffId) {

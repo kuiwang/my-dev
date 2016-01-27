@@ -16,18 +16,14 @@ import com.taobao.api.response.SellercenterRoleAddResponse;
  */
 public class SellercenterRoleAddRequest implements TaobaoRequest<SellercenterRoleAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 角色描述<br />
      * 支持最大长度为：20<br />
      * 支持的最大列表长度为：20
      */
     private String description;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 角色名<br />
@@ -50,50 +46,52 @@ public class SellercenterRoleAddRequest implements TaobaoRequest<SellercenterRol
      */
     private String permissionCodes;
 
-    public void setDescription(String description) {
-        this.description = description;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(description, 20, "description");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 20, "name");
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+        RequestCheckUtils.checkMaxLength(nick, 500, "nick");
+        RequestCheckUtils.checkMaxListSize(permissionCodes, 2000, "permissionCodes");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sellercenter.role.add";
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setPermissionCodes(String permissionCodes) {
-        this.permissionCodes = permissionCodes;
     }
 
     public String getPermissionCodes() {
         return this.permissionCodes;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SellercenterRoleAddResponse> getResponseClass() {
+        return SellercenterRoleAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sellercenter.role.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("description", this.description);
@@ -106,6 +104,12 @@ public class SellercenterRoleAddRequest implements TaobaoRequest<SellercenterRol
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -113,20 +117,24 @@ public class SellercenterRoleAddRequest implements TaobaoRequest<SellercenterRol
         this.udfParams.put(key, value);
     }
 
-    public Class<SellercenterRoleAddResponse> getResponseClass() {
-        return SellercenterRoleAddResponse.class;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(description, 20, "description");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 20, "name");
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
-        RequestCheckUtils.checkMaxLength(nick, 500, "nick");
-        RequestCheckUtils.checkMaxListSize(permissionCodes, 2000, "permissionCodes");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPermissionCodes(String permissionCodes) {
+        this.permissionCodes = permissionCodes;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

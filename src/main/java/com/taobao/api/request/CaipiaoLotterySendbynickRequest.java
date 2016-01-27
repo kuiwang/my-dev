@@ -17,16 +17,12 @@ import com.taobao.api.response.CaipiaoLotterySendbynickResponse;
 public class CaipiaoLotterySendbynickRequest implements
         TaobaoRequest<CaipiaoLotterySendbynickResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 彩票接收方nick， 不可为空、""。
      */
     private String buyerNick;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 彩种ID，此彩种ID为彩票系统中的序号。
@@ -43,50 +39,48 @@ public class CaipiaoLotterySendbynickRequest implements
      */
     private String sweetyWords;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(stakeCount, "stakeCount");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.caipiao.lottery.sendbynick";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setLotteryTypeId(Long lotteryTypeId) {
-        this.lotteryTypeId = lotteryTypeId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLotteryTypeId() {
         return this.lotteryTypeId;
     }
 
-    public void setStakeCount(Long stakeCount) {
-        this.stakeCount = stakeCount;
+    @Override
+    public Class<CaipiaoLotterySendbynickResponse> getResponseClass() {
+        return CaipiaoLotterySendbynickResponse.class;
     }
 
     public Long getStakeCount() {
         return this.stakeCount;
     }
 
-    public void setSweetyWords(String sweetyWords) {
-        this.sweetyWords = sweetyWords;
-    }
-
     public String getSweetyWords() {
         return this.sweetyWords;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.caipiao.lottery.sendbynick";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -99,6 +93,12 @@ public class CaipiaoLotterySendbynickRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,16 +106,24 @@ public class CaipiaoLotterySendbynickRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CaipiaoLotterySendbynickResponse> getResponseClass() {
-        return CaipiaoLotterySendbynickResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(stakeCount, "stakeCount");
+    public void setLotteryTypeId(Long lotteryTypeId) {
+        this.lotteryTypeId = lotteryTypeId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStakeCount(Long stakeCount) {
+        this.stakeCount = stakeCount;
+    }
+
+    public void setSweetyWords(String sweetyWords) {
+        this.sweetyWords = sweetyWords;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -10,24 +10,16 @@ import com.taobao.top.link.channel.ClientChannelSelector;
 
 public class RemotingService {
 
-    private static LoggerFactory loggerFactory = DefaultLoggerFactory.getDefault();
+    private static RemotingClientChannelHandler channelHandler;
 
     private static ClientChannelSelector channelSelector;
 
-    private static RemotingClientChannelHandler channelHandler;
+    private static LoggerFactory loggerFactory = DefaultLoggerFactory.getDefault();
 
     private static SerializationFactory serializationFactory;
 
-    protected static void setLoggerFactory(LoggerFactory loggerFactory) {
-        RemotingService.loggerFactory = loggerFactory;
-    }
-
-    protected static void setChannelSelector(ClientChannelSelector selector) {
-        channelSelector = selector;
-    }
-
-    protected static void setSerializationFactory(SerializationFactory serializationFactory) {
-        RemotingService.serializationFactory = serializationFactory;
+    public static DynamicProxy connect(URI remoteUri) {
+        return new DynamicProxy(remoteUri, getChannelSelector(), getChannelHandler());
     }
 
     public static Object connect(URI remoteUri, Class<?> interfaceClass) {
@@ -40,21 +32,35 @@ public class RemotingService {
         return proxy.create(interfaceClass, remoteUri);
     }
 
-    public static DynamicProxy connect(URI remoteUri) {
-        return new DynamicProxy(remoteUri, getChannelSelector(), getChannelHandler());
-    }
-
     private synchronized static RemotingClientChannelHandler getChannelHandler() {
-        if (channelHandler == null) channelHandler = new RemotingClientChannelHandler(
-                loggerFactory, new AtomicInteger(0));
-        if (serializationFactory != null) channelHandler
-                .setSerializationFactory(serializationFactory);
+        if (channelHandler == null) {
+            channelHandler = new RemotingClientChannelHandler(
+                    loggerFactory, new AtomicInteger(0));
+        }
+        if (serializationFactory != null) {
+            channelHandler
+                    .setSerializationFactory(serializationFactory);
+        }
         return channelHandler;
     }
 
     private synchronized static ClientChannelSelector getChannelSelector() {
-        if (channelSelector == null) channelSelector = new ClientChannelPooledSelector(
-                loggerFactory);
+        if (channelSelector == null) {
+            channelSelector = new ClientChannelPooledSelector(
+                    loggerFactory);
+        }
         return channelSelector;
+    }
+
+    protected static void setChannelSelector(ClientChannelSelector selector) {
+        channelSelector = selector;
+    }
+
+    protected static void setLoggerFactory(LoggerFactory loggerFactory) {
+        RemotingService.loggerFactory = loggerFactory;
+    }
+
+    protected static void setSerializationFactory(SerializationFactory serializationFactory) {
+        RemotingService.serializationFactory = serializationFactory;
     }
 }

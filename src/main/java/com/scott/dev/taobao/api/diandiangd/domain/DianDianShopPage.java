@@ -46,52 +46,52 @@ public class DianDianShopPage {
         return this.dianDianShopList;
     }
 
-    public void setDianDianShopList(List<DianDianShop> dianDianShopList) {
-        this.dianDianShopList = dianDianShopList;
-    }
-
     public Long getNextPage() {
         return this.nextPage;
-    }
-
-    public void setNextPage(Long nextPage) {
-        this.nextPage = nextPage;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPrevPage() {
         return this.prevPage;
     }
 
-    public void setPrevPage(Long prevPage) {
-        this.prevPage = prevPage;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalPage() {
         return this.totalPage;
+    }
+
+    public void setDianDianShopList(List<DianDianShop> dianDianShopList) {
+        this.dianDianShopList = dianDianShopList;
+    }
+
+    public void setNextPage(Long nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPrevPage(Long prevPage) {
+        this.prevPage = prevPage;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
     public void setTotalPage(Long totalPage) {

@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaCampaignUpdateResponse;
  */
 public class SimbaCampaignUpdateRequest implements TaobaoRequest<SimbaCampaignUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
@@ -37,6 +33,8 @@ public class SimbaCampaignUpdateRequest implements TaobaoRequest<SimbaCampaignUp
      */
     private String onlineStatus;
 
+    private Long timestamp;
+
     /**
      * 推广计划名称，不能多余40个字符，不能和客户其他推广计划同名。<br />
      * 支持最大长度为：40<br />
@@ -44,50 +42,44 @@ public class SimbaCampaignUpdateRequest implements TaobaoRequest<SimbaCampaignUp
      */
     private String title;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(onlineStatus, "onlineStatus");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 40, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.update";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<SimbaCampaignUpdateResponse> getResponseClass() {
+        return SimbaCampaignUpdateResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -100,6 +92,16 @@ public class SimbaCampaignUpdateRequest implements TaobaoRequest<SimbaCampaignUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,18 +109,24 @@ public class SimbaCampaignUpdateRequest implements TaobaoRequest<SimbaCampaignUp
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignUpdateResponse> getResponseClass() {
-        return SimbaCampaignUpdateResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(onlineStatus, "onlineStatus");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 40, "title");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

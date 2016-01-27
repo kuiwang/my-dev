@@ -30,20 +30,20 @@ public class DescribeDatabasesResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setDatabases(List<Database> databases) {
-        this.databases = databases;
-    }
-
     public List<Database> getDatabases() {
         return this.databases;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setDatabases(List<Database> databases) {
+        this.databases = databases;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

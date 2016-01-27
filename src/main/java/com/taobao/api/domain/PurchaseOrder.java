@@ -246,276 +246,276 @@ public class PurchaseOrder extends TaobaoObject {
         return this.alipayNo;
     }
 
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
     }
 
     public String getBuyerPayment() {
         return this.buyerPayment;
     }
 
-    public void setBuyerPayment(String buyerPayment) {
-        this.buyerPayment = buyerPayment;
-    }
-
     public String getBuyerTaobaoId() {
         return this.buyerTaobaoId;
-    }
-
-    public void setBuyerTaobaoId(String buyerTaobaoId) {
-        this.buyerTaobaoId = buyerTaobaoId;
     }
 
     public Date getConsignTime() {
         return this.consignTime;
     }
 
-    public void setConsignTime(Date consignTime) {
-        this.consignTime = consignTime;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getDistributorFrom() {
         return this.distributorFrom;
     }
 
-    public void setDistributorFrom(String distributorFrom) {
-        this.distributorFrom = distributorFrom;
-    }
-
     public String getDistributorPayment() {
         return this.distributorPayment;
-    }
-
-    public void setDistributorPayment(String distributorPayment) {
-        this.distributorPayment = distributorPayment;
     }
 
     public String getDistributorUsername() {
         return this.distributorUsername;
     }
 
-    public void setDistributorUsername(String distributorUsername) {
-        this.distributorUsername = distributorUsername;
-    }
-
     public Date getEndTime() {
         return this.endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public List<Feature> getFeatures() {
         return this.features;
     }
 
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
-    }
-
     public Long getFenxiaoId() {
         return this.fenxiaoId;
-    }
-
-    public void setFenxiaoId(Long fenxiaoId) {
-        this.fenxiaoId = fenxiaoId;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<String> getIsvCustomKey() {
         return this.isvCustomKey;
-    }
-
-    public void setIsvCustomKey(List<String> isvCustomKey) {
-        this.isvCustomKey = isvCustomKey;
     }
 
     public List<String> getIsvCustomValue() {
         return this.isvCustomValue;
     }
 
-    public void setIsvCustomValue(List<String> isvCustomValue) {
-        this.isvCustomValue = isvCustomValue;
-    }
-
     public String getLogisticsCompanyName() {
         return this.logisticsCompanyName;
-    }
-
-    public void setLogisticsCompanyName(String logisticsCompanyName) {
-        this.logisticsCompanyName = logisticsCompanyName;
     }
 
     public String getLogisticsId() {
         return this.logisticsId;
     }
 
-    public void setLogisticsId(String logisticsId) {
-        this.logisticsId = logisticsId;
-    }
-
     public String getMemo() {
         return this.memo;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public List<OrderMessage> getOrderMessages() {
         return this.orderMessages;
-    }
-
-    public void setOrderMessages(List<OrderMessage> orderMessages) {
-        this.orderMessages = orderMessages;
     }
 
     public Date getPayTime() {
         return this.payTime;
     }
 
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
     public String getPayType() {
         return this.payType;
-    }
-
-    public void setPayType(String payType) {
-        this.payType = payType;
     }
 
     public String getPostFee() {
         return this.postFee;
     }
 
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
-    }
-
     public Receiver getReceiver() {
         return this.receiver;
-    }
-
-    public void setReceiver(Receiver receiver) {
-        this.receiver = receiver;
     }
 
     public String getShipping() {
         return this.shipping;
     }
 
-    public void setShipping(String shipping) {
-        this.shipping = shipping;
-    }
-
     public String getSnapshotUrl() {
         return this.snapshotUrl;
-    }
-
-    public void setSnapshotUrl(String snapshotUrl) {
-        this.snapshotUrl = snapshotUrl;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public List<SubPurchaseOrder> getSubPurchaseOrders() {
         return this.subPurchaseOrders;
-    }
-
-    public void setSubPurchaseOrders(List<SubPurchaseOrder> subPurchaseOrders) {
-        this.subPurchaseOrders = subPurchaseOrders;
     }
 
     public Long getSupplierFlag() {
         return this.supplierFlag;
     }
 
-    public void setSupplierFlag(Long supplierFlag) {
-        this.supplierFlag = supplierFlag;
-    }
-
     public String getSupplierFrom() {
         return this.supplierFrom;
-    }
-
-    public void setSupplierFrom(String supplierFrom) {
-        this.supplierFrom = supplierFrom;
     }
 
     public String getSupplierMemo() {
         return this.supplierMemo;
     }
 
-    public void setSupplierMemo(String supplierMemo) {
-        this.supplierMemo = supplierMemo;
-    }
-
     public String getSupplierUsername() {
         return this.supplierUsername;
-    }
-
-    public void setSupplierUsername(String supplierUsername) {
-        this.supplierUsername = supplierUsername;
     }
 
     public Long getTcOrderId() {
         return this.tcOrderId;
     }
 
-    public void setTcOrderId(Long tcOrderId) {
-        this.tcOrderId = tcOrderId;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
     }
 
-    public void setTotalFee(String totalFee) {
-        this.totalFee = totalFee;
-    }
-
     public String getTradeType() {
         return this.tradeType;
+    }
+
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setBuyerPayment(String buyerPayment) {
+        this.buyerPayment = buyerPayment;
+    }
+
+    public void setBuyerTaobaoId(String buyerTaobaoId) {
+        this.buyerTaobaoId = buyerTaobaoId;
+    }
+
+    public void setConsignTime(Date consignTime) {
+        this.consignTime = consignTime;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDistributorFrom(String distributorFrom) {
+        this.distributorFrom = distributorFrom;
+    }
+
+    public void setDistributorPayment(String distributorPayment) {
+        this.distributorPayment = distributorPayment;
+    }
+
+    public void setDistributorUsername(String distributorUsername) {
+        this.distributorUsername = distributorUsername;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void setFenxiaoId(Long fenxiaoId) {
+        this.fenxiaoId = fenxiaoId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsvCustomKey(List<String> isvCustomKey) {
+        this.isvCustomKey = isvCustomKey;
+    }
+
+    public void setIsvCustomValue(List<String> isvCustomValue) {
+        this.isvCustomValue = isvCustomValue;
+    }
+
+    public void setLogisticsCompanyName(String logisticsCompanyName) {
+        this.logisticsCompanyName = logisticsCompanyName;
+    }
+
+    public void setLogisticsId(String logisticsId) {
+        this.logisticsId = logisticsId;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setOrderMessages(List<OrderMessage> orderMessages) {
+        this.orderMessages = orderMessages;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setReceiver(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
+    }
+
+    public void setSnapshotUrl(String snapshotUrl) {
+        this.snapshotUrl = snapshotUrl;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubPurchaseOrders(List<SubPurchaseOrder> subPurchaseOrders) {
+        this.subPurchaseOrders = subPurchaseOrders;
+    }
+
+    public void setSupplierFlag(Long supplierFlag) {
+        this.supplierFlag = supplierFlag;
+    }
+
+    public void setSupplierFrom(String supplierFrom) {
+        this.supplierFrom = supplierFrom;
+    }
+
+    public void setSupplierMemo(String supplierMemo) {
+        this.supplierMemo = supplierMemo;
+    }
+
+    public void setSupplierUsername(String supplierUsername) {
+        this.supplierUsername = supplierUsername;
+    }
+
+    public void setTcOrderId(Long tcOrderId) {
+        this.tcOrderId = tcOrderId;
+    }
+
+    public void setTotalFee(String totalFee) {
+        this.totalFee = totalFee;
     }
 
     public void setTradeType(String tradeType) {

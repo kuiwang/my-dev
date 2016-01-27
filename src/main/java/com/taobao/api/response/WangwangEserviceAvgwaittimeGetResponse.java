@@ -24,12 +24,12 @@ public class WangwangEserviceAvgwaittimeGetResponse extends TaobaoResponse {
     @ApiField("waiting_times_on_day")
     private List<WaitingTimesOnDay> waitingTimeListOnDays;
 
-    public void setWaitingTimeListOnDays(List<WaitingTimesOnDay> waitingTimeListOnDays) {
-        this.waitingTimeListOnDays = waitingTimeListOnDays;
-    }
-
     public List<WaitingTimesOnDay> getWaitingTimeListOnDays() {
         return this.waitingTimeListOnDays;
+    }
+
+    public void setWaitingTimeListOnDays(List<WaitingTimesOnDay> waitingTimeListOnDays) {
+        this.waitingTimeListOnDays = waitingTimeListOnDays;
     }
 
 }

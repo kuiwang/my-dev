@@ -24,12 +24,12 @@ public class SubusersGetResponse extends TaobaoResponse {
     @ApiField("sub_account_info")
     private List<SubAccountInfo> subaccounts;
 
-    public void setSubaccounts(List<SubAccountInfo> subaccounts) {
-        this.subaccounts = subaccounts;
-    }
-
     public List<SubAccountInfo> getSubaccounts() {
         return this.subaccounts;
+    }
+
+    public void setSubaccounts(List<SubAccountInfo> subaccounts) {
+        this.subaccounts = subaccounts;
     }
 
 }

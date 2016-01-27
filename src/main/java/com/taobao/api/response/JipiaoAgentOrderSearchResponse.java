@@ -32,28 +32,28 @@ public class JipiaoAgentOrderSearchResponse extends TaobaoResponse {
     @ApiField("search_result")
     private SearchOrderResult searchResult;
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public String getErrorMessage() {
         return this.errorMessage;
-    }
-
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
     }
 
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setSearchResult(SearchOrderResult searchResult) {
-        this.searchResult = searchResult;
-    }
-
     public SearchOrderResult getSearchResult() {
         return this.searchResult;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setSearchResult(SearchOrderResult searchResult) {
+        this.searchResult = searchResult;
     }
 
 }

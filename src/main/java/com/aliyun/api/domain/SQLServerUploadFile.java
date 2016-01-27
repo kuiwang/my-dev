@@ -85,84 +85,84 @@ public class SQLServerUploadFile extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getdBName() {
         return this.dBName;
-    }
-
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
     }
 
     public String getFileName() {
         return this.fileName;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public Long getFileSize() {
         return this.fileSize;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
     }
 
     public String getFileStatus() {
         return this.fileStatus;
     }
 
-    public void setFileStatus(String fileStatus) {
-        this.fileStatus = fileStatus;
-    }
-
     public String getInternetFtpServer() {
         return this.internetFtpServer;
-    }
-
-    public void setInternetFtpServer(String internetFtpServer) {
-        this.internetFtpServer = internetFtpServer;
     }
 
     public Long getInternetPort() {
         return this.internetPort;
     }
 
-    public void setInternetPort(Long internetPort) {
-        this.internetPort = internetPort;
-    }
-
     public String getIntranetFtpserver() {
         return this.intranetFtpserver;
-    }
-
-    public void setIntranetFtpserver(String intranetFtpserver) {
-        this.intranetFtpserver = intranetFtpserver;
     }
 
     public Long getIntranetport() {
         return this.intranetport;
     }
 
-    public void setIntranetport(Long intranetport) {
-        this.intranetport = intranetport;
-    }
-
     public String getPassword() {
         return this.password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUserName() {
         return this.userName;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setFileStatus(String fileStatus) {
+        this.fileStatus = fileStatus;
+    }
+
+    public void setInternetFtpServer(String internetFtpServer) {
+        this.internetFtpServer = internetFtpServer;
+    }
+
+    public void setInternetPort(Long internetPort) {
+        this.internetPort = internetPort;
+    }
+
+    public void setIntranetFtpserver(String intranetFtpserver) {
+        this.intranetFtpserver = intranetFtpserver;
+    }
+
+    public void setIntranetport(Long intranetport) {
+        this.intranetport = intranetport;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUserName(String userName) {

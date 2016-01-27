@@ -85,84 +85,84 @@ public class Promotion extends TaobaoObject {
         return this.decreaseNum;
     }
 
-    public void setDecreaseNum(Long decreaseNum) {
-        this.decreaseNum = decreaseNum;
-    }
-
     public String getDiscountType() {
         return this.discountType;
-    }
-
-    public void setDiscountType(String discountType) {
-        this.discountType = discountType;
     }
 
     public String getDiscountValue() {
         return this.discountValue;
     }
 
-    public void setDiscountValue(String discountValue) {
-        this.discountValue = discountValue;
-    }
-
     public Date getEndDate() {
         return this.endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public String getPromotionDesc() {
         return this.promotionDesc;
-    }
-
-    public void setPromotionDesc(String promotionDesc) {
-        this.promotionDesc = promotionDesc;
     }
 
     public Long getPromotionId() {
         return this.promotionId;
     }
 
-    public void setPromotionId(Long promotionId) {
-        this.promotionId = promotionId;
-    }
-
     public String getPromotionTitle() {
         return this.promotionTitle;
-    }
-
-    public void setPromotionTitle(String promotionTitle) {
-        this.promotionTitle = promotionTitle;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getTagId() {
         return this.tagId;
+    }
+
+    public void setDecreaseNum(Long decreaseNum) {
+        this.decreaseNum = decreaseNum;
+    }
+
+    public void setDiscountType(String discountType) {
+        this.discountType = discountType;
+    }
+
+    public void setDiscountValue(String discountValue) {
+        this.discountValue = discountValue;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setPromotionDesc(String promotionDesc) {
+        this.promotionDesc = promotionDesc;
+    }
+
+    public void setPromotionId(Long promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public void setPromotionTitle(String promotionTitle) {
+        this.promotionTitle = promotionTitle;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setTagId(Long tagId) {

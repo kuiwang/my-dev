@@ -19,12 +19,12 @@ public class SkuQuantity {
         return this.quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public String getSkuId() {
         return this.skuId;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public void setSkuId(String skuId) {

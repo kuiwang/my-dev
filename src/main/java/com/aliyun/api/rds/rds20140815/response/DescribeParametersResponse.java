@@ -49,44 +49,44 @@ public class DescribeParametersResponse extends AliyunResponse {
     @ApiField("DBInstanceParameter")
     private List<DBInstanceParameter> runningParameters;
 
-    public void setConfigParameters(List<DBInstanceParameter> configParameters) {
-        this.configParameters = configParameters;
-    }
-
     public List<DBInstanceParameter> getConfigParameters() {
         return this.configParameters;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
     }
 
     public String getEngine() {
         return this.engine;
     }
 
-    public void setEngineVersion(String engineVersion) {
-        this.engineVersion = engineVersion;
-    }
-
     public String getEngineVersion() {
         return this.engineVersion;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
     }
 
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setRunningParameters(List<DBInstanceParameter> runningParameters) {
-        this.runningParameters = runningParameters;
-    }
-
     public List<DBInstanceParameter> getRunningParameters() {
         return this.runningParameters;
+    }
+
+    public void setConfigParameters(List<DBInstanceParameter> configParameters) {
+        this.configParameters = configParameters;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setRunningParameters(List<DBInstanceParameter> runningParameters) {
+        this.runningParameters = runningParameters;
     }
 
 }

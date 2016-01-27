@@ -13,48 +13,19 @@ import com.taobao.top.link.endpoint.MessageType.ValueFormat;
 
 public class MessageEncoder01 implements MessageEncoder {
 
-    @Override
-    public void writeMessage(ByteBuffer buffer, Message message) {
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-
-        buffer.put((byte) 1);
-        buffer.put((byte) message.messageType);
-
-        if (message.statusCode > 0) {
-            buffer.putShort(HeaderType.StatusCode);
-            buffer.putInt(message.statusCode);
-        }
-        if (message.statusPhase != null && message.statusPhase != "") {
-            buffer.putShort(HeaderType.StatusPhrase);
-            writeCountedString(buffer, message.statusPhase);
-        }
-        if (message.flag > 0) {
-            buffer.putShort(HeaderType.Flag);
-            buffer.putInt(message.flag);
-        }
-        if (message.token != null && !message.token.equals("")) {
-            buffer.putShort(HeaderType.Token);
-            writeCountedString(buffer, message.token);
-        }
-        if (message.content != null) {
-            for (Entry<String, Object> i : message.content.entrySet())
-                writeCustomHeader(buffer, i.getKey(), i.getValue());
-        }
-        buffer.putShort(HeaderType.EndOfHeaders);
-
-        buffer.order(ByteOrder.BIG_ENDIAN);
-        buffer.flip();
-    }
-
     private static void writeCountedString(ByteBuffer buffer, String value) {
         int strLength = 0;
-        if (value != null) strLength = value.length();
+        if (value != null) {
+            strLength = value.length();
+        }
 
         if (strLength > 0) {
             byte[] strBytes = value.getBytes(Charset.forName("UTF-8"));
             buffer.putInt(strBytes.length);
             buffer.put(strBytes);
-        } else buffer.putInt(0);
+        } else {
+            buffer.putInt(0);
+        }
     }
 
     private static void writeCustomHeader(ByteBuffer buffer, String name, Object value) {
@@ -96,5 +67,39 @@ public class MessageEncoder01 implements MessageEncoder {
             buffer.put(ValueFormat.CountedString);
             writeCountedString(buffer, (String) value);
         }
+    }
+
+    @Override
+    public void writeMessage(ByteBuffer buffer, Message message) {
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        buffer.put((byte) 1);
+        buffer.put((byte) message.messageType);
+
+        if (message.statusCode > 0) {
+            buffer.putShort(HeaderType.StatusCode);
+            buffer.putInt(message.statusCode);
+        }
+        if ((message.statusPhase != null) && (message.statusPhase != "")) {
+            buffer.putShort(HeaderType.StatusPhrase);
+            writeCountedString(buffer, message.statusPhase);
+        }
+        if (message.flag > 0) {
+            buffer.putShort(HeaderType.Flag);
+            buffer.putInt(message.flag);
+        }
+        if ((message.token != null) && !message.token.equals("")) {
+            buffer.putShort(HeaderType.Token);
+            writeCountedString(buffer, message.token);
+        }
+        if (message.content != null) {
+            for (Entry<String, Object> i : message.content.entrySet()) {
+                writeCustomHeader(buffer, i.getKey(), i.getValue());
+            }
+        }
+        buffer.putShort(HeaderType.EndOfHeaders);
+
+        buffer.order(ByteOrder.BIG_ENDIAN);
+        buffer.flip();
     }
 }

@@ -18,10 +18,6 @@ public class WlbTmsorderQueryRequest implements TaobaoRequest<WlbTmsorderQueryRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流订单编号<br />
      * 支持最大长度为：64<br />
@@ -39,42 +35,44 @@ public class WlbTmsorderQueryRequest implements TaobaoRequest<WlbTmsorderQueryRe
      */
     private Long pageSize;
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderCode, "orderCode");
+        RequestCheckUtils.checkMaxLength(orderCode, 64, "orderCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.tmsorder.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOrderCode() {
         return this.orderCode;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbTmsorderQueryResponse> getResponseClass() {
+        return WlbTmsorderQueryResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.tmsorder.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("order_code", this.orderCode);
@@ -86,6 +84,12 @@ public class WlbTmsorderQueryRequest implements TaobaoRequest<WlbTmsorderQueryRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,16 +97,20 @@ public class WlbTmsorderQueryRequest implements TaobaoRequest<WlbTmsorderQueryRe
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbTmsorderQueryResponse> getResponseClass() {
-        return WlbTmsorderQueryResponse.class;
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderCode, "orderCode");
-        RequestCheckUtils.checkMaxLength(orderCode, 64, "orderCode");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

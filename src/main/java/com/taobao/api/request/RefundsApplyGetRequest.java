@@ -16,17 +16,13 @@ import com.taobao.api.response.RefundsApplyGetResponse;
  */
 public class RefundsApplyGetRequest implements TaobaoRequest<RefundsApplyGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要返回的字段。目前支持有：refund_id, tid, title, buyer_nick, seller_nick,
      * total_fee, status, created, refund_fee
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。传入值为 1 代表第一页，传入值为 2 代表第二页，依此类推。默认返回的数据是从第一页开始<br />
@@ -55,6 +51,8 @@ public class RefundsApplyGetRequest implements TaobaoRequest<RefundsApplyGetResp
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 交易类型列表，一次查询多种类型可用半角逗号分隔，默认同时查询guarantee_trade,
      * auto_delivery的2种类型的数据。 fixed(一口价) auction(拍卖)
@@ -65,66 +63,52 @@ public class RefundsApplyGetRequest implements TaobaoRequest<RefundsApplyGetResp
      */
     private String type;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.refunds.apply.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
+    @Override
+    public Class<RefundsApplyGetResponse> getResponseClass() {
+        return RefundsApplyGetResponse.class;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.refunds.apply.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -139,6 +123,16 @@ public class RefundsApplyGetRequest implements TaobaoRequest<RefundsApplyGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -146,18 +140,32 @@ public class RefundsApplyGetRequest implements TaobaoRequest<RefundsApplyGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<RefundsApplyGetResponse> getResponseClass() {
-        return RefundsApplyGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -24,12 +24,12 @@ public class TmallLatourPepsiAwardsGetResponse extends TaobaoResponse {
     @ApiField("latour_draw_award")
     private List<LatourDrawAward> awards;
 
-    public void setAwards(List<LatourDrawAward> awards) {
-        this.awards = awards;
-    }
-
     public List<LatourDrawAward> getAwards() {
         return this.awards;
+    }
+
+    public void setAwards(List<LatourDrawAward> awards) {
+        this.awards = awards;
     }
 
 }

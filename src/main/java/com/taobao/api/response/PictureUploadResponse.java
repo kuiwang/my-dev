@@ -20,12 +20,12 @@ public class PictureUploadResponse extends TaobaoResponse {
     @ApiField("picture")
     private Picture picture;
 
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
-
     public Picture getPicture() {
         return this.picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 
 }

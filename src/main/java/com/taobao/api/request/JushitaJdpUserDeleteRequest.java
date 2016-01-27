@@ -18,14 +18,14 @@ public class JushitaJdpUserDeleteRequest implements TaobaoRequest<JushitaJdpUser
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要删除用户的昵称
      */
     private String nick;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 需要删除的用户编号<br />
@@ -33,34 +33,31 @@ public class JushitaJdpUserDeleteRequest implements TaobaoRequest<JushitaJdpUser
      */
     private Long userId;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(userId, 1L, "userId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jushita.jdp.user.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    @Override
+    public Class<JushitaJdpUserDeleteResponse> getResponseClass() {
+        return JushitaJdpUserDeleteResponse.class;
     }
 
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jushita.jdp.user.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -71,6 +68,16 @@ public class JushitaJdpUserDeleteRequest implements TaobaoRequest<JushitaJdpUser
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class JushitaJdpUserDeleteRequest implements TaobaoRequest<JushitaJdpUser
         this.udfParams.put(key, value);
     }
 
-    public Class<JushitaJdpUserDeleteResponse> getResponseClass() {
-        return JushitaJdpUserDeleteResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(userId, 1L, "userId");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

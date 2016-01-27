@@ -18,10 +18,6 @@ public class WlbItemBatchQueryRequest implements TaobaoRequest<WlbItemBatchQuery
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要查询的商品ID列表，以字符串表示，ID间以;隔开
      */
@@ -42,50 +38,47 @@ public class WlbItemBatchQueryRequest implements TaobaoRequest<WlbItemBatchQuery
      */
     private String storeCode;
 
-    public void setItemIds(String itemIds) {
-        this.itemIds = itemIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemIds, "itemIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.batch.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemIds() {
         return this.itemIds;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<WlbItemBatchQueryResponse> getResponseClass() {
+        return WlbItemBatchQueryResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.batch.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_ids", this.itemIds);
@@ -98,6 +91,12 @@ public class WlbItemBatchQueryRequest implements TaobaoRequest<WlbItemBatchQuery
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,15 +104,24 @@ public class WlbItemBatchQueryRequest implements TaobaoRequest<WlbItemBatchQuery
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemBatchQueryResponse> getResponseClass() {
-        return WlbItemBatchQueryResponse.class;
+    public void setItemIds(String itemIds) {
+        this.itemIds = itemIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemIds, "itemIds");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

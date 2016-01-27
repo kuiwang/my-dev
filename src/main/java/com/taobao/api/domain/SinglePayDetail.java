@@ -67,60 +67,60 @@ public class SinglePayDetail extends TaobaoObject {
         return this.alipayOrderNo;
     }
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public String getAmount() {
         return this.amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public String getPayUrl() {
         return this.payUrl;
     }
 
-    public void setPayUrl(String payUrl) {
-        this.payUrl = payUrl;
-    }
-
     public String getReceiveUserId() {
         return this.receiveUserId;
-    }
-
-    public void setReceiveUserId(String receiveUserId) {
-        this.receiveUserId = receiveUserId;
     }
 
     public String getTransferOrderNo() {
         return this.transferOrderNo;
     }
 
-    public void setTransferOrderNo(String transferOrderNo) {
-        this.transferOrderNo = transferOrderNo;
-    }
-
     public String getTransferOutOrderNo() {
         return this.transferOutOrderNo;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setPayUrl(String payUrl) {
+        this.payUrl = payUrl;
+    }
+
+    public void setReceiveUserId(String receiveUserId) {
+        this.receiveUserId = receiveUserId;
+    }
+
+    public void setTransferOrderNo(String transferOrderNo) {
+        this.transferOrderNo = transferOrderNo;
     }
 
     public void setTransferOutOrderNo(String transferOutOrderNo) {

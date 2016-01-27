@@ -83,84 +83,84 @@ public class SpItemInfo extends TaobaoObject {
         return this.finalPrice;
     }
 
-    public void setFinalPrice(String finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
     public String getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
     }
 
     public String getItemUrl() {
         return this.itemUrl;
     }
 
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getPicUrl() {
         return this.picUrl;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getSellerId() {
         return this.sellerId;
     }
 
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public String getShopUrl() {
         return this.shopUrl;
-    }
-
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTk() {
         return this.tk;
     }
 
-    public void setTk(String tk) {
-        this.tk = tk;
-    }
-
     public String getTmall() {
         return this.tmall;
+    }
+
+    public void setFinalPrice(String finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTk(String tk) {
+        this.tk = tk;
     }
 
     public void setTmall(String tmall) {

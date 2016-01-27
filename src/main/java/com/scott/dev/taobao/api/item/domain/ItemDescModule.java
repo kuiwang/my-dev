@@ -6,21 +6,6 @@ package com.scott.dev.taobao.api.item.domain;
 public class ItemDescModule {
 
     /*
-     * 模块id ,(注意:用户自定义模块不用填此项。)
-     */
-    private Number moduleId;
-
-    /*
-     * 模块名称
-     */
-    private String moduleName;
-
-    /*
-     * cat_mod:表示是运营设置的类目维度模块，usr_mod表示的是商家自定义模块。
-     */
-    private String type;
-
-    /*
      * 描述具体内容
      */
     private String content;
@@ -31,68 +16,83 @@ public class ItemDescModule {
     private String intros;
 
     /*
-     * 淘宝图片空间的地址链接，示例模板，最多不超过三个（isv提交时可忽略不传）
+     * 模块id ,(注意:用户自定义模块不用填此项。)
      */
-    private String tplUrls;
+    private Number moduleId;
+
+    /*
+     * 模块名称
+     */
+    private String moduleName;
 
     /*
      * 是否必填 （isv提交时可忽略不传）
      */
     private Boolean required;
 
-    public Number getModuleId() {
-        return moduleId;
-    }
+    /*
+     * 淘宝图片空间的地址链接，示例模板，最多不超过三个（isv提交时可忽略不传）
+     */
+    private String tplUrls;
 
-    public void setModuleId(Number moduleId) {
-        this.moduleId = moduleId;
-    }
-
-    public String getModuleName() {
-        return moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    /*
+     * cat_mod:表示是运营设置的类目维度模块，usr_mod表示的是商家自定义模块。
+     */
+    private String type;
 
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getIntros() {
         return intros;
     }
 
-    public void setIntros(String intros) {
-        this.intros = intros;
+    public Number getModuleId() {
+        return moduleId;
     }
 
-    public String getTplUrls() {
-        return tplUrls;
-    }
-
-    public void setTplUrls(String tplUrls) {
-        this.tplUrls = tplUrls;
+    public String getModuleName() {
+        return moduleName;
     }
 
     public Boolean getRequired() {
         return required;
     }
 
+    public String getTplUrls() {
+        return tplUrls;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setIntros(String intros) {
+        this.intros = intros;
+    }
+
+    public void setModuleId(Number moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
     public void setRequired(Boolean required) {
         this.required = required;
+    }
+
+    public void setTplUrls(String tplUrls) {
+        this.tplUrls = tplUrls;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

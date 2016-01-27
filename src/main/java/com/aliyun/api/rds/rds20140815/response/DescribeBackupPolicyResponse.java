@@ -37,36 +37,36 @@ public class DescribeBackupPolicyResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setBackupRetentionPeriod(Long backupRetentionPeriod) {
-        this.backupRetentionPeriod = backupRetentionPeriod;
-    }
-
     public Long getBackupRetentionPeriod() {
         return this.backupRetentionPeriod;
-    }
-
-    public void setPreferredBackupPeriod(String preferredBackupPeriod) {
-        this.preferredBackupPeriod = preferredBackupPeriod;
     }
 
     public String getPreferredBackupPeriod() {
         return this.preferredBackupPeriod;
     }
 
-    public void setPreferredBackupTime(String preferredBackupTime) {
-        this.preferredBackupTime = preferredBackupTime;
-    }
-
     public String getPreferredBackupTime() {
         return this.preferredBackupTime;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setBackupRetentionPeriod(Long backupRetentionPeriod) {
+        this.backupRetentionPeriod = backupRetentionPeriod;
+    }
+
+    public void setPreferredBackupPeriod(String preferredBackupPeriod) {
+        this.preferredBackupPeriod = preferredBackupPeriod;
+    }
+
+    public void setPreferredBackupTime(String preferredBackupTime) {
+        this.preferredBackupTime = preferredBackupTime;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

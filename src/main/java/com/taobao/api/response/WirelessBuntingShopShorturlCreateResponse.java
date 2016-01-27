@@ -19,12 +19,12 @@ public class WirelessBuntingShopShorturlCreateResponse extends TaobaoResponse {
     @ApiField("shorturl")
     private String shorturl;
 
-    public void setShorturl(String shorturl) {
-        this.shorturl = shorturl;
-    }
-
     public String getShorturl() {
         return this.shorturl;
+    }
+
+    public void setShorturl(String shorturl) {
+        this.shorturl = shorturl;
     }
 
 }

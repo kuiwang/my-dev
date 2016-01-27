@@ -20,12 +20,12 @@ public class LogisticsAddressRemoveResponse extends TaobaoResponse {
     @ApiField("address_result")
     private AddressResult addressResult;
 
-    public void setAddressResult(AddressResult addressResult) {
-        this.addressResult = addressResult;
-    }
-
     public AddressResult getAddressResult() {
         return this.addressResult;
+    }
+
+    public void setAddressResult(AddressResult addressResult) {
+        this.addressResult = addressResult;
     }
 
 }

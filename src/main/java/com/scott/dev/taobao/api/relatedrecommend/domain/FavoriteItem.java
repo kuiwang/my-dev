@@ -8,19 +8,9 @@ import com.scott.dev.taobao.api.Price;
 public class FavoriteItem {
 
     /*
-     * 促销价格
-     */
-    private Price promotionPrice;
-
-    /*
      * 商品名称
      */
     private String itemName;
-
-    /*
-     * 商品价格
-     */
-    private Price itemPrice;
 
     /*
      * 商品图片地址
@@ -28,9 +18,19 @@ public class FavoriteItem {
     private String itemPictrue;
 
     /*
+     * 商品价格
+     */
+    private Price itemPrice;
+
+    /*
      * 商品的详情页面地址
      */
     private String itemUrl;
+
+    /*
+     * 促销价格
+     */
+    private Price promotionPrice;
 
     /*
      *  商品销售次数
@@ -42,56 +42,56 @@ public class FavoriteItem {
      */
     private String trackIid;
 
-    public Price getPromotionPrice() {
-        return promotionPrice;
-    }
-
-    public void setPromotionPrice(Price promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
-
     public String getItemName() {
         return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public Price getItemPrice() {
-        return itemPrice;
-    }
-
-    public void setItemPrice(Price itemPrice) {
-        this.itemPrice = itemPrice;
     }
 
     public String getItemPictrue() {
         return itemPictrue;
     }
 
-    public void setItemPictrue(String itemPictrue) {
-        this.itemPictrue = itemPictrue;
+    public Price getItemPrice() {
+        return itemPrice;
     }
 
     public String getItemUrl() {
         return itemUrl;
     }
 
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
+    public Price getPromotionPrice() {
+        return promotionPrice;
     }
 
     public Number getSellCount() {
         return sellCount;
     }
 
-    public void setSellCount(Number sellCount) {
-        this.sellCount = sellCount;
-    }
-
     public String getTrackIid() {
         return trackIid;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemPictrue(String itemPictrue) {
+        this.itemPictrue = itemPictrue;
+    }
+
+    public void setItemPrice(Price itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setPromotionPrice(Price promotionPrice) {
+        this.promotionPrice = promotionPrice;
+    }
+
+    public void setSellCount(Number sellCount) {
+        this.sellCount = sellCount;
     }
 
     public void setTrackIid(String trackIid) {

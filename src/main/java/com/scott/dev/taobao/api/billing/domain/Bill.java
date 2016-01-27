@@ -111,156 +111,156 @@ public class Bill {
         return this.accountId;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
     public String getAlipayId() {
         return this.alipayId;
-    }
-
-    public void setAlipayId(String alipayId) {
-        this.alipayId = alipayId;
     }
 
     public String getAlipayMail() {
         return this.alipayMail;
     }
 
-    public void setAlipayMail(String alipayMail) {
-        this.alipayMail = alipayMail;
-    }
-
     public String getAlipayNo() {
         return this.alipayNo;
-    }
-
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
     }
 
     public String getAlipayNotice() {
         return this.alipayNotice;
     }
 
-    public void setAlipayNotice(String alipayNotice) {
-        this.alipayNotice = alipayNotice;
-    }
-
     public String getAlipayOutno() {
         return this.alipayOutno;
-    }
-
-    public void setAlipayOutno(String alipayOutno) {
-        this.alipayOutno = alipayOutno;
     }
 
     public Long getAmount() {
         return this.amount;
     }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
     public Long getBid() {
         return this.bid;
-    }
-
-    public void setBid(Long bid) {
-        this.bid = bid;
     }
 
     public Date getBizTime() {
         return this.bizTime;
     }
 
-    public void setBizTime(Date bizTime) {
-        this.bizTime = bizTime;
-    }
-
     public Date getBookTime() {
         return this.bookTime;
-    }
-
-    public void setBookTime(Date bookTime) {
-        this.bookTime = bookTime;
     }
 
     public Date getGmtCreate() {
         return this.gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public String getGmtModified() {
         return this.gmtModified;
-    }
-
-    public void setGmtModified(String gmtModified) {
-        this.gmtModified = gmtModified;
     }
 
     public String getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(String numIid) {
-        this.numIid = numIid;
-    }
-
     public String getObjAlipayId() {
         return this.objAlipayId;
-    }
-
-    public void setObjAlipayId(String objAlipayId) {
-        this.objAlipayId = objAlipayId;
     }
 
     public String getObjAlipayMail() {
         return this.objAlipayMail;
     }
 
-    public void setObjAlipayMail(String objAlipayMail) {
-        this.objAlipayMail = objAlipayMail;
-    }
-
     public String getOrderId() {
         return this.orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public Date getPayTime() {
         return this.payTime;
     }
 
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public Long getTotalAmount() {
         return this.totalAmount;
     }
 
-    public void setTotalAmount(Long totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
     public String getTradeId() {
         return this.tradeId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setAlipayId(String alipayId) {
+        this.alipayId = alipayId;
+    }
+
+    public void setAlipayMail(String alipayMail) {
+        this.alipayMail = alipayMail;
+    }
+
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
+    }
+
+    public void setAlipayNotice(String alipayNotice) {
+        this.alipayNotice = alipayNotice;
+    }
+
+    public void setAlipayOutno(String alipayOutno) {
+        this.alipayOutno = alipayOutno;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public void setBid(Long bid) {
+        this.bid = bid;
+    }
+
+    public void setBizTime(Date bizTime) {
+        this.bizTime = bizTime;
+    }
+
+    public void setBookTime(Date bookTime) {
+        this.bookTime = bookTime;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtModified(String gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public void setNumIid(String numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setObjAlipayId(String objAlipayId) {
+        this.objAlipayId = objAlipayId;
+    }
+
+    public void setObjAlipayMail(String objAlipayMail) {
+        this.objAlipayMail = objAlipayMail;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setTotalAmount(Long totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public void setTradeId(String tradeId) {

@@ -17,35 +17,39 @@ public class InventoryStoreQueryRequest implements TaobaoRequest<InventoryStoreQ
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商家的仓库编码
      */
     private String storeCode;
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.inventory.store.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<InventoryStoreQueryResponse> getResponseClass() {
+        return InventoryStoreQueryResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.inventory.store.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("store_code", this.storeCode);
@@ -55,6 +59,12 @@ public class InventoryStoreQueryRequest implements TaobaoRequest<InventoryStoreQ
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class InventoryStoreQueryRequest implements TaobaoRequest<InventoryStoreQ
         this.udfParams.put(key, value);
     }
 
-    public Class<InventoryStoreQueryResponse> getResponseClass() {
-        return InventoryStoreQueryResponse.class;
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -37,20 +37,20 @@ public class ExtraAttributes extends TaobaoObject {
         return this.publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
-        this.publishTime = publishTime;
-    }
-
     public String getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public String getSalesCount() {
         return this.salesCount;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public void setSalesCount(String salesCount) {

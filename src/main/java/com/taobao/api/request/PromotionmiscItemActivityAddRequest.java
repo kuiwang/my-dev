@@ -18,12 +18,6 @@ import com.taobao.api.response.PromotionmiscItemActivityAddResponse;
 public class PromotionmiscItemActivityAddRequest implements
         TaobaoRequest<PromotionmiscItemActivityAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 减多少钱。当is_decrease_money为true时，该值才有意义。注意：该值单位为分，即100表示1元。<br />
      * 支持最小值为：0
@@ -40,6 +34,8 @@ public class PromotionmiscItemActivityAddRequest implements
      * 活动结束时间。
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否有减钱行为。
@@ -76,103 +72,80 @@ public class PromotionmiscItemActivityAddRequest implements
      */
     private Date startTime;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 用户标签。当is_user_tag为true时，该值才有意义。
      */
     private String userTag;
 
-    public void setDecreaseAmount(Long decreaseAmount) {
-        this.decreaseAmount = decreaseAmount;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(decreaseAmount, 0L, "decreaseAmount");
+        RequestCheckUtils.checkMinValue(discountRate, 0L, "discountRate");
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 32, "name");
+        RequestCheckUtils.checkNotEmpty(participateRange, "participateRange");
+        RequestCheckUtils.checkMaxValue(participateRange, 1L, "participateRange");
+        RequestCheckUtils.checkMinValue(participateRange, 0L, "participateRange");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotionmisc.item.activity.add";
     }
 
     public Long getDecreaseAmount() {
         return this.decreaseAmount;
     }
 
-    public void setDiscountRate(Long discountRate) {
-        this.discountRate = discountRate;
-    }
-
     public Long getDiscountRate() {
         return this.discountRate;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
-        this.isDecreaseMoney = isDecreaseMoney;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsDecreaseMoney() {
         return this.isDecreaseMoney;
     }
 
-    public void setIsDiscount(Boolean isDiscount) {
-        this.isDiscount = isDiscount;
-    }
-
     public Boolean getIsDiscount() {
         return this.isDiscount;
-    }
-
-    public void setIsUserTag(Boolean isUserTag) {
-        this.isUserTag = isUserTag;
     }
 
     public Boolean getIsUserTag() {
         return this.isUserTag;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setParticipateRange(Long participateRange) {
-        this.participateRange = participateRange;
     }
 
     public Long getParticipateRange() {
         return this.participateRange;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<PromotionmiscItemActivityAddResponse> getResponseClass() {
+        return PromotionmiscItemActivityAddResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setUserTag(String userTag) {
-        this.userTag = userTag;
-    }
-
-    public String getUserTag() {
-        return this.userTag;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotionmisc.item.activity.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("decrease_amount", this.decreaseAmount);
@@ -191,6 +164,16 @@ public class PromotionmiscItemActivityAddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserTag() {
+        return this.userTag;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -198,23 +181,48 @@ public class PromotionmiscItemActivityAddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionmiscItemActivityAddResponse> getResponseClass() {
-        return PromotionmiscItemActivityAddResponse.class;
+    public void setDecreaseAmount(Long decreaseAmount) {
+        this.decreaseAmount = decreaseAmount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(decreaseAmount, 0L, "decreaseAmount");
-        RequestCheckUtils.checkMinValue(discountRate, 0L, "discountRate");
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 32, "name");
-        RequestCheckUtils.checkNotEmpty(participateRange, "participateRange");
-        RequestCheckUtils.checkMaxValue(participateRange, 1L, "participateRange");
-        RequestCheckUtils.checkMinValue(participateRange, 0L, "participateRange");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setDiscountRate(Long discountRate) {
+        this.discountRate = discountRate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
+        this.isDecreaseMoney = isDecreaseMoney;
+    }
+
+    public void setIsDiscount(Boolean isDiscount) {
+        this.isDiscount = isDiscount;
+    }
+
+    public void setIsUserTag(Boolean isUserTag) {
+        this.isUserTag = isUserTag;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParticipateRange(Long participateRange) {
+        this.participateRange = participateRange;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserTag(String userTag) {
+        this.userTag = userTag;
     }
 }

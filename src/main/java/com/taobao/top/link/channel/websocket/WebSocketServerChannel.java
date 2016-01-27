@@ -32,17 +32,19 @@ public class WebSocketServerChannel extends NettyServerChannel {
         this.cumulative = cumulative;
     }
 
+    protected WebSocketServerUpstreamHandler createHandler() {
+        return new WebSocketServerUpstreamHandler(this.loggerFactory, this.channelHandler,
+                this.allChannels, this.cumulative);
+    }
+
+    @Override
+    protected void prepareBootstrap(ServerBootstrap bootstrap) {
+    }
+
+    @Override
     protected void preparePipeline(ChannelPipeline pipeline) {
         pipeline.addLast("decoder", new HttpRequestDecoder());
         pipeline.addLast("encoder", new HttpResponseEncoder());
         pipeline.addLast("handler", this.createHandler());
-    }
-
-    protected void prepareBootstrap(ServerBootstrap bootstrap) {
-    }
-
-    protected WebSocketServerUpstreamHandler createHandler() {
-        return new WebSocketServerUpstreamHandler(this.loggerFactory, this.channelHandler,
-                this.allChannels, this.cumulative);
     }
 }

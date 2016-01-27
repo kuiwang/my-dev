@@ -24,12 +24,12 @@ public class SimbaKeywordsbykeywordidsGetResponse extends TaobaoResponse {
     @ApiField("keyword")
     private List<Keyword> keywords;
 
-    public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
-    }
-
     public List<Keyword> getKeywords() {
         return this.keywords;
+    }
+
+    public void setKeywords(List<Keyword> keywords) {
+        this.keywords = keywords;
     }
 
 }

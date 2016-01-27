@@ -17,12 +17,6 @@ import com.taobao.api.response.VasSubscSearchResponse;
  */
 public class VasSubscSearchRequest implements TaobaoRequest<VasSubscSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 应用收费代码，从合作伙伴后台（my.open.taobao.com）-收费管理-收费项目列表 能够获得该应用的收费代码
      */
@@ -42,6 +36,8 @@ public class VasSubscSearchRequest implements TaobaoRequest<VasSubscSearchRespon
      * 是否到期提醒，true=到期提醒 false=非到期提醒 空=全部
      */
     private Boolean expireNotice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 收费项目代码，从合作伙伴后台（my.open.taobao.com）-收费管理-收费项目列表 能够获得收费项目代码
@@ -74,98 +70,72 @@ public class VasSubscSearchRequest implements TaobaoRequest<VasSubscSearchRespon
      */
     private Long status;
 
-    public void setArticleCode(String articleCode) {
-        this.articleCode = articleCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.vas.subsc.search";
     }
 
     public String getArticleCode() {
         return this.articleCode;
     }
 
-    public void setAutosub(Boolean autosub) {
-        this.autosub = autosub;
-    }
-
     public Boolean getAutosub() {
         return this.autosub;
-    }
-
-    public void setEndDeadline(Date endDeadline) {
-        this.endDeadline = endDeadline;
     }
 
     public Date getEndDeadline() {
         return this.endDeadline;
     }
 
-    public void setExpireNotice(Boolean expireNotice) {
-        this.expireNotice = expireNotice;
-    }
-
     public Boolean getExpireNotice() {
         return this.expireNotice;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemCode() {
         return this.itemCode;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDeadline(Date startDeadline) {
-        this.startDeadline = startDeadline;
+    @Override
+    public Class<VasSubscSearchResponse> getResponseClass() {
+        return VasSubscSearchResponse.class;
     }
 
     public Date getStartDeadline() {
         return this.startDeadline;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.vas.subsc.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("article_code", this.articleCode);
@@ -184,6 +154,12 @@ public class VasSubscSearchRequest implements TaobaoRequest<VasSubscSearchRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -191,16 +167,48 @@ public class VasSubscSearchRequest implements TaobaoRequest<VasSubscSearchRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<VasSubscSearchResponse> getResponseClass() {
-        return VasSubscSearchResponse.class;
+    public void setArticleCode(String articleCode) {
+        this.articleCode = articleCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    public void setAutosub(Boolean autosub) {
+        this.autosub = autosub;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDeadline(Date endDeadline) {
+        this.endDeadline = endDeadline;
+    }
+
+    public void setExpireNotice(Boolean expireNotice) {
+        this.expireNotice = expireNotice;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDeadline(Date startDeadline) {
+        this.startDeadline = startDeadline;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

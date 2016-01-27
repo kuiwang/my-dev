@@ -25,20 +25,20 @@ public class CreateTranscodeJobResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
-
     public String getJobId() {
         return this.jobId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

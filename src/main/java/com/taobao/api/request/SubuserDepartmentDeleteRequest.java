@@ -17,50 +17,48 @@ import com.taobao.api.response.SubuserDepartmentDeleteResponse;
 public class SubuserDepartmentDeleteRequest implements
         TaobaoRequest<SubuserDepartmentDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 部门ID
      */
     private Long departmentId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 主账号用户名
      */
     private String userNick;
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(departmentId, "departmentId");
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.department.delete";
     }
 
     public Long getDepartmentId() {
         return this.departmentId;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getUserNick() {
-        return this.userNick;
+    @Override
+    public Class<SubuserDepartmentDeleteResponse> getResponseClass() {
+        return SubuserDepartmentDeleteResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.department.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("department_id", this.departmentId);
@@ -71,6 +69,16 @@ public class SubuserDepartmentDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class SubuserDepartmentDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserDepartmentDeleteResponse> getResponseClass() {
-        return SubuserDepartmentDeleteResponse.class;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(departmentId, "departmentId");
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

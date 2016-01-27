@@ -42,28 +42,28 @@ public class UserCredit extends TaobaoObject {
         return this.goodNum;
     }
 
-    public void setGoodNum(Long goodNum) {
-        this.goodNum = goodNum;
-    }
-
     public Long getLevel() {
         return this.level;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
     public Long getScore() {
         return this.score;
     }
 
-    public void setScore(Long score) {
-        this.score = score;
-    }
-
     public Long getTotalNum() {
         return this.totalNum;
+    }
+
+    public void setGoodNum(Long goodNum) {
+        this.goodNum = goodNum;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
     }
 
     public void setTotalNum(Long totalNum) {

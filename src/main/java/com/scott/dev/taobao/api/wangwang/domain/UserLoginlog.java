@@ -26,20 +26,20 @@ public class UserLoginlog {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public List<LoginLog> getLoginlogs() {
         return this.loginlogs;
     }
 
-    public void setLoginlogs(List<LoginLog> loginlogs) {
-        this.loginlogs = loginlogs;
-    }
-
     public String getUid() {
         return this.uid;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setLoginlogs(List<LoginLog> loginlogs) {
+        this.loginlogs = loginlogs;
     }
 
     public void setUid(String uid) {

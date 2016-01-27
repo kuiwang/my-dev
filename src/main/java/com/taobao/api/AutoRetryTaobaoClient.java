@@ -25,6 +25,11 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
     private int maxRetryCount = 3;
 
     /**
+     * 自定义重试错误码列表。
+     */
+    private Set<String> retryErrorCodes;
+
+    /**
      * 重试之前休眠时间，默认值为100毫秒。
      */
     private long retryWaitTime = 100L;
@@ -33,11 +38,6 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
      * 超过最大重试次数时是否抛出异常。
      */
     private boolean throwIfOverMaxRetry = false;
-
-    /**
-     * 自定义重试错误码列表。
-     */
-    private Set<String> retryErrorCodes;
 
     public AutoRetryTaobaoClient(String serverUrl, String appKey, String appSecret) {
         super(serverUrl, appKey, appSecret);
@@ -57,10 +57,20 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
         super(serverUrl, appKey, appSecret, format, connectTimeout, readTimeout, signMethod);
     }
 
+    private String buildRetryLog(String apiName, Map<String, String> params, int retryCount) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(apiName).append(" retry call ").append(retryCount);
+        params.remove("fields");
+        sb.append(" times, params=").append(params);
+        return sb.toString();
+    }
+
+    @Override
     public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
         return this.execute(request, null);
     }
 
+    @Override
     public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session)
             throws ApiException {
         T rsp = null;
@@ -68,9 +78,9 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
 
         for (int i = 0; i <= maxRetryCount; i++) {
             if (i > 0) {
-                if ((rsp != null && ((rsp.getSubCode() != null && rsp.getSubCode().startsWith(
-                        "isp.")) || (retryErrorCodes != null && retryErrorCodes.contains(rsp
-                        .getSubCode())))) || exp != null) {
+                if (((rsp != null) && (((rsp.getSubCode() != null) && rsp.getSubCode().startsWith(
+                        "isp.")) || ((retryErrorCodes != null) && retryErrorCodes.contains(rsp
+                        .getSubCode())))) || (exp != null)) {
                     sleepWithoutInterrupt(retryWaitTime);
                     log.warn(buildRetryLog(request.getApiMethodName(), request.getTextParams(), i));
                 } else {
@@ -83,7 +93,7 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
                 if (rsp.isSuccess()) {
                     return rsp;
                 } else {
-                    if (i == maxRetryCount && throwIfOverMaxRetry) {
+                    if ((i == maxRetryCount) && throwIfOverMaxRetry) {
                         throw RETRY_FAIL;
                     }
                 }
@@ -101,16 +111,12 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
         }
     }
 
-    private String buildRetryLog(String apiName, Map<String, String> params, int retryCount) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(apiName).append(" retry call ").append(retryCount);
-        params.remove("fields");
-        sb.append(" times, params=").append(params);
-        return sb.toString();
-    }
-
     public void setMaxRetryCount(int maxRetryCount) {
         this.maxRetryCount = maxRetryCount;
+    }
+
+    public void setRetryErrorCodes(Set<String> retryErrorCodes) {
+        this.retryErrorCodes = retryErrorCodes;
     }
 
     public void setRetryWaitTime(long retryWaitTime) {
@@ -119,10 +125,6 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
 
     public void setThrowIfOverMaxRetry(boolean throwIfOverMaxRetry) {
         this.throwIfOverMaxRetry = throwIfOverMaxRetry;
-    }
-
-    public void setRetryErrorCodes(Set<String> retryErrorCodes) {
-        this.retryErrorCodes = retryErrorCodes;
     }
 
     private void sleepWithoutInterrupt(long time) {

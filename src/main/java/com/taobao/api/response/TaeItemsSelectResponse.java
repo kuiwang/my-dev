@@ -36,28 +36,28 @@ public class TaeItemsSelectResponse extends TaobaoResponse {
     @ApiField("page_no")
     private Long pageNo;
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
     public Boolean getHasNext() {
         return this.hasNext;
-    }
-
-    public void setItems(List<ItemSelect> items) {
-        this.items = items;
     }
 
     public List<ItemSelect> getItems() {
         return this.items;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setItems(List<ItemSelect> items) {
+        this.items = items;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
 }

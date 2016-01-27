@@ -77,76 +77,76 @@ public class ShopPositionData extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public Long getSellerId() {
         return this.sellerId;
     }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public Long getShopPositionId() {
         return this.shopPositionId;
-    }
-
-    public void setShopPositionId(Long shopPositionId) {
-        this.shopPositionId = shopPositionId;
     }
 
     public String getStoreName() {
         return this.storeName;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
     public String getTraffic() {
         return this.traffic;
-    }
-
-    public void setTraffic(String traffic) {
-        this.traffic = traffic;
     }
 
     public Long getX() {
         return this.x;
     }
 
-    public void setX(Long x) {
-        this.x = x;
-    }
-
     public Long getY() {
         return this.y;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopPositionId(Long shopPositionId) {
+        this.shopPositionId = shopPositionId;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setTraffic(String traffic) {
+        this.traffic = traffic;
+    }
+
+    public void setX(Long x) {
+        this.x = x;
     }
 
     public void setY(Long y) {

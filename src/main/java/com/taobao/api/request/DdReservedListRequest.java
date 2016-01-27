@@ -16,12 +16,6 @@ import com.taobao.api.response.DdReservedListResponse;
  */
 public class DdReservedListRequest implements TaobaoRequest<DdReservedListResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家称呼
      */
@@ -46,6 +40,8 @@ public class DdReservedListRequest implements TaobaoRequest<DdReservedListRespon
      * 预定结束时间
      */
     private Date ends;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 打印状态 0 : 未打印 1 : 已打印 2 : 已处理
@@ -77,106 +73,74 @@ public class DdReservedListRequest implements TaobaoRequest<DdReservedListRespon
      */
     private String storeId;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.reserved.list";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone;
-    }
-
     public String getBuyerPhone() {
         return this.buyerPhone;
-    }
-
-    public void setCreateEnd(Date createEnd) {
-        this.createEnd = createEnd;
     }
 
     public Date getCreateEnd() {
         return this.createEnd;
     }
 
-    public void setCreateStart(Date createStart) {
-        this.createStart = createStart;
-    }
-
     public Date getCreateStart() {
         return this.createStart;
-    }
-
-    public void setEnds(Date ends) {
-        this.ends = ends;
     }
 
     public Date getEnds() {
         return this.ends;
     }
 
-    public void setOption(Long option) {
-        this.option = option;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOption() {
         return this.option;
     }
 
-    public void setPn(Long pn) {
-        this.pn = pn;
-    }
-
     public Long getPn() {
         return this.pn;
-    }
-
-    public void setPs(Long ps) {
-        this.ps = ps;
     }
 
     public Long getPs() {
         return this.ps;
     }
 
-    public void setStarts(Date starts) {
-        this.starts = starts;
+    @Override
+    public Class<DdReservedListResponse> getResponseClass() {
+        return DdReservedListResponse.class;
     }
 
     public Date getStarts() {
         return this.starts;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.reserved.list";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -196,6 +160,12 @@ public class DdReservedListRequest implements TaobaoRequest<DdReservedListRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -203,14 +173,52 @@ public class DdReservedListRequest implements TaobaoRequest<DdReservedListRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<DdReservedListResponse> getResponseClass() {
-        return DdReservedListResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
+    public void setBuyerPhone(String buyerPhone) {
+        this.buyerPhone = buyerPhone;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCreateEnd(Date createEnd) {
+        this.createEnd = createEnd;
+    }
+
+    public void setCreateStart(Date createStart) {
+        this.createStart = createStart;
+    }
+
+    public void setEnds(Date ends) {
+        this.ends = ends;
+    }
+
+    public void setOption(Long option) {
+        this.option = option;
+    }
+
+    public void setPn(Long pn) {
+        this.pn = pn;
+    }
+
+    public void setPs(Long ps) {
+        this.ps = ps;
+    }
+
+    public void setStarts(Date starts) {
+        this.starts = starts;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

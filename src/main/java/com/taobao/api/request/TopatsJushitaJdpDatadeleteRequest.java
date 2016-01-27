@@ -18,17 +18,13 @@ import com.taobao.api.response.TopatsJushitaJdpDatadeleteResponse;
 public class TopatsJushitaJdpDatadeleteRequest implements
         TaobaoRequest<TopatsJushitaJdpDatadeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 删除数据时间段的结束修改时间，格式为：yyyy-MM-dd
      * HH:mm:ss，结束时间必须为前天的23:59:59秒以前，根据是业务的modified时间
      */
     private Date endModified;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 删除数据时间段的起始修改时间，格式为：yyyy-MM-dd HH:mm:ss,根据是业务的modified时间
@@ -42,55 +38,50 @@ public class TopatsJushitaJdpDatadeleteRequest implements
      */
     private String syncType;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 用户昵称，不填表示删除所有用户的数据。
      */
     private String userNick;
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endModified, "endModified");
+        RequestCheckUtils.checkNotEmpty(startModified, "startModified");
+        RequestCheckUtils.checkNotEmpty(syncType, "syncType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.topats.jushita.jdp.datadelete";
     }
 
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TopatsJushitaJdpDatadeleteResponse> getResponseClass() {
+        return TopatsJushitaJdpDatadeleteResponse.class;
     }
 
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public void setSyncType(String syncType) {
-        this.syncType = syncType;
-    }
-
     public String getSyncType() {
         return this.syncType;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.topats.jushita.jdp.datadelete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_modified", this.endModified);
@@ -103,6 +94,16 @@ public class TopatsJushitaJdpDatadeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -110,17 +111,24 @@ public class TopatsJushitaJdpDatadeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TopatsJushitaJdpDatadeleteResponse> getResponseClass() {
-        return TopatsJushitaJdpDatadeleteResponse.class;
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endModified, "endModified");
-        RequestCheckUtils.checkNotEmpty(startModified, "startModified");
-        RequestCheckUtils.checkNotEmpty(syncType, "syncType");
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSyncType(String syncType) {
+        this.syncType = syncType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

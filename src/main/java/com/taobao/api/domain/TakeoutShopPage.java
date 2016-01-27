@@ -63,52 +63,52 @@ public class TakeoutShopPage extends TaobaoObject {
         return this.nextPage;
     }
 
-    public void setNextPage(Long nextPage) {
-        this.nextPage = nextPage;
-    }
-
     public Long getPage() {
         return this.page;
-    }
-
-    public void setPage(Long page) {
-        this.page = page;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPrevPage() {
         return this.prevPage;
-    }
-
-    public void setPrevPage(Long prevPage) {
-        this.prevPage = prevPage;
     }
 
     public List<TakeoutShopSummaryInfo> getTakeoutSummaryInfos() {
         return this.takeoutSummaryInfos;
     }
 
-    public void setTakeoutSummaryInfos(List<TakeoutShopSummaryInfo> takeoutSummaryInfos) {
-        this.takeoutSummaryInfos = takeoutSummaryInfos;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalPage() {
         return this.totalPage;
+    }
+
+    public void setNextPage(Long nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPrevPage(Long prevPage) {
+        this.prevPage = prevPage;
+    }
+
+    public void setTakeoutSummaryInfos(List<TakeoutShopSummaryInfo> takeoutSummaryInfos) {
+        this.takeoutSummaryInfos = takeoutSummaryInfos;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
     public void setTotalPage(Long totalPage) {

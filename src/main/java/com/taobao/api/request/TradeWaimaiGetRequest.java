@@ -18,10 +18,6 @@ public class TradeWaimaiGetRequest implements TaobaoRequest<TradeWaimaiGetRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * true-查询仅按商家维度 false-查询按商家下所属店铺维度
      */
@@ -39,42 +35,47 @@ public class TradeWaimaiGetRequest implements TaobaoRequest<TradeWaimaiGetRespon
      */
     private Long storeId;
 
-    public void setIsAll(Boolean isAll) {
-        this.isAll = isAll;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(isAll, "isAll");
+        RequestCheckUtils.checkNotEmpty(maxSize, "maxSize");
+        RequestCheckUtils.checkMaxValue(maxSize, 20L, "maxSize");
+        RequestCheckUtils.checkMinValue(maxSize, 1L, "maxSize");
+        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.waimai.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsAll() {
         return this.isAll;
     }
 
-    public void setMaxSize(Long maxSize) {
-        this.maxSize = maxSize;
-    }
-
     public Long getMaxSize() {
         return this.maxSize;
     }
 
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
+    @Override
+    public Class<TradeWaimaiGetResponse> getResponseClass() {
+        return TradeWaimaiGetResponse.class;
     }
 
     public Long getStoreId() {
         return this.storeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.waimai.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_all", this.isAll);
@@ -86,6 +87,12 @@ public class TradeWaimaiGetRequest implements TaobaoRequest<TradeWaimaiGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,19 +100,20 @@ public class TradeWaimaiGetRequest implements TaobaoRequest<TradeWaimaiGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeWaimaiGetResponse> getResponseClass() {
-        return TradeWaimaiGetResponse.class;
+    public void setIsAll(Boolean isAll) {
+        this.isAll = isAll;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(isAll, "isAll");
-        RequestCheckUtils.checkNotEmpty(maxSize, "maxSize");
-        RequestCheckUtils.checkMaxValue(maxSize, 20L, "maxSize");
-        RequestCheckUtils.checkMinValue(maxSize, 1L, "maxSize");
-        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    public void setMaxSize(Long maxSize) {
+        this.maxSize = maxSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

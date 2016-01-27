@@ -17,37 +17,42 @@ import com.taobao.api.response.PromotionmiscActivityRangeAllRemoveResponse;
 public class PromotionmiscActivityRangeAllRemoveRequest implements
         TaobaoRequest<PromotionmiscActivityRangeAllRemoveResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动id。
      */
     private Long activityId;
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(activityId, "activityId");
     }
 
     public Long getActivityId() {
         return this.activityId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.promotionmisc.activity.range.all.remove";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<PromotionmiscActivityRangeAllRemoveResponse> getResponseClass() {
+        return PromotionmiscActivityRangeAllRemoveResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("activity_id", this.activityId);
@@ -57,6 +62,12 @@ public class PromotionmiscActivityRangeAllRemoveRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class PromotionmiscActivityRangeAllRemoveRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionmiscActivityRangeAllRemoveResponse> getResponseClass() {
-        return PromotionmiscActivityRangeAllRemoveResponse.class;
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(activityId, "activityId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

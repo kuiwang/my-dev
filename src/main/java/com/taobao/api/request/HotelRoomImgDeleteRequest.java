@@ -16,16 +16,12 @@ import com.taobao.api.response.HotelRoomImgDeleteResponse;
  */
 public class HotelRoomImgDeleteRequest implements TaobaoRequest<HotelRoomImgDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 酒店房间商品gid。必须为数字。
      */
     private Long gid;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 图片序号，可选值：1，2，3，4，5。 如果原图片个数小于等于1，则报错，不能删除图片。
@@ -34,34 +30,40 @@ public class HotelRoomImgDeleteRequest implements TaobaoRequest<HotelRoomImgDele
      */
     private Long position;
 
-    public void setGid(Long gid) {
-        this.gid = gid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(gid, "gid");
+        RequestCheckUtils.checkNotEmpty(position, "position");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.room.img.delete";
     }
 
     public Long getGid() {
         return this.gid;
     }
 
-    public void setPosition(Long position) {
-        this.position = position;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPosition() {
         return this.position;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelRoomImgDeleteResponse> getResponseClass() {
+        return HotelRoomImgDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.room.img.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("gid", this.gid);
@@ -72,6 +74,12 @@ public class HotelRoomImgDeleteRequest implements TaobaoRequest<HotelRoomImgDele
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,16 +87,16 @@ public class HotelRoomImgDeleteRequest implements TaobaoRequest<HotelRoomImgDele
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelRoomImgDeleteResponse> getResponseClass() {
-        return HotelRoomImgDeleteResponse.class;
+    public void setGid(Long gid) {
+        this.gid = gid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(gid, "gid");
-        RequestCheckUtils.checkNotEmpty(position, "position");
+    public void setPosition(Long position) {
+        this.position = position;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

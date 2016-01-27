@@ -14,11 +14,15 @@ public abstract class TaobaoResponse implements Serializable {
 
     private static final long serialVersionUID = 5014379068811962022L;
 
+    private String body;
+
     @ApiField("code")
     private String errorCode;
 
     @ApiField("msg")
     private String msg;
+
+    private Map<String, String> params;
 
     @ApiField("sub_code")
     private String subCode;
@@ -29,64 +33,60 @@ public abstract class TaobaoResponse implements Serializable {
     @ApiField("top_forbidden_fields")
     private String topForbiddenFields;
 
-    private String body;
-
-    private Map<String, String> params;
+    public String getBody() {
+        return body;
+    }
 
     public String getErrorCode() {
         return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public Map<String, String> getParams() {
+        return params;
     }
 
     public String getSubCode() {
         return this.subCode;
     }
 
-    public void setSubCode(String subCode) {
-        this.subCode = subCode;
-    }
-
     public String getSubMsg() {
         return this.subMsg;
     }
 
-    public void setSubMsg(String subMsg) {
-        this.subMsg = subMsg;
+    public String getTopForbiddenFields() {
+        return this.topForbiddenFields;
     }
 
-    public String getBody() {
-        return body;
+    public boolean isSuccess() {
+        return (this.errorCode == null) && (this.subCode == null);
     }
 
     public void setBody(String body) {
         this.body = body;
     }
 
-    public Map<String, String> getParams() {
-        return params;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public void setParams(Map<String, String> params) {
         this.params = params;
     }
 
-    public boolean isSuccess() {
-        return this.errorCode == null && this.subCode == null;
+    public void setSubCode(String subCode) {
+        this.subCode = subCode;
     }
 
-    public String getTopForbiddenFields() {
-        return this.topForbiddenFields;
+    public void setSubMsg(String subMsg) {
+        this.subMsg = subMsg;
     }
 
     public void setTopForbiddenFields(String topForbiddenFields) {

@@ -94,132 +94,132 @@ public class AtNSearchSegmentVO {
         return this.activityBonus;
     }
 
-    public void setActivityBonus(String activityBonus) {
-        this.activityBonus = activityBonus;
-    }
-
     public Long getActivityId() {
         return this.activityId;
-    }
-
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
     }
 
     public String getArrCity() {
         return this.arrCity;
     }
 
-    public void setArrCity(String arrCity) {
-        this.arrCity = arrCity;
-    }
-
     public Boolean getAutoBook() {
         return this.autoBook;
-    }
-
-    public void setAutoBook(Boolean autoBook) {
-        this.autoBook = autoBook;
     }
 
     public String getBasicCabinPrice() {
         return this.basicCabinPrice;
     }
 
-    public void setBasicCabinPrice(String basicCabinPrice) {
-        this.basicCabinPrice = basicCabinPrice;
-    }
-
     public String getCabin() {
         return this.cabin;
-    }
-
-    public void setCabin(String cabin) {
-        this.cabin = cabin;
     }
 
     public Long getCabinClass() {
         return this.cabinClass;
     }
 
-    public void setCabinClass(Long cabinClass) {
-        this.cabinClass = cabinClass;
-    }
-
     public String getCabinNum() {
         return this.cabinNum;
-    }
-
-    public void setCabinNum(String cabinNum) {
-        this.cabinNum = cabinNum;
     }
 
     public String getDepCity() {
         return this.depCity;
     }
 
-    public void setDepCity(String depCity) {
-        this.depCity = depCity;
-    }
-
     public Long getFareType() {
         return this.fareType;
-    }
-
-    public void setFareType(Long fareType) {
-        this.fareType = fareType;
     }
 
     public Long getFlag() {
         return this.flag;
     }
 
-    public void setFlag(Long flag) {
-        this.flag = flag;
-    }
-
     public String getFlightNo() {
         return this.flightNo;
-    }
-
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
     }
 
     public Long getInvoiceType() {
         return this.invoiceType;
     }
 
-    public void setInvoiceType(Long invoiceType) {
-        this.invoiceType = invoiceType;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getSegmentNumber() {
         return this.segmentNumber;
     }
 
-    public void setSegmentNumber(String segmentNumber) {
-        this.segmentNumber = segmentNumber;
-    }
-
     public Long getStockType() {
         return this.stockType;
     }
 
-    public void setStockType(Long stockType) {
-        this.stockType = stockType;
-    }
-
     public String getTicketPrice() {
         return this.ticketPrice;
+    }
+
+    public void setActivityBonus(String activityBonus) {
+        this.activityBonus = activityBonus;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
+
+    public void setArrCity(String arrCity) {
+        this.arrCity = arrCity;
+    }
+
+    public void setAutoBook(Boolean autoBook) {
+        this.autoBook = autoBook;
+    }
+
+    public void setBasicCabinPrice(String basicCabinPrice) {
+        this.basicCabinPrice = basicCabinPrice;
+    }
+
+    public void setCabin(String cabin) {
+        this.cabin = cabin;
+    }
+
+    public void setCabinClass(Long cabinClass) {
+        this.cabinClass = cabinClass;
+    }
+
+    public void setCabinNum(String cabinNum) {
+        this.cabinNum = cabinNum;
+    }
+
+    public void setDepCity(String depCity) {
+        this.depCity = depCity;
+    }
+
+    public void setFareType(Long fareType) {
+        this.fareType = fareType;
+    }
+
+    public void setFlag(Long flag) {
+        this.flag = flag;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
+    }
+
+    public void setInvoiceType(Long invoiceType) {
+        this.invoiceType = invoiceType;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSegmentNumber(String segmentNumber) {
+        this.segmentNumber = segmentNumber;
+    }
+
+    public void setStockType(Long stockType) {
+        this.stockType = stockType;
     }
 
     public void setTicketPrice(String ticketPrice) {

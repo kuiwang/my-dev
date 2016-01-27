@@ -21,12 +21,12 @@ public class WlbItemCombinationCreateResponse extends TaobaoResponse {
     @ApiField("gmt_create")
     private Date gmtCreate;
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
 }

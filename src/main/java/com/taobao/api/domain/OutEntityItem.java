@@ -29,12 +29,12 @@ public class OutEntityItem extends TaobaoObject {
         return this.entityId;
     }
 
-    public void setEntityId(String entityId) {
-        this.entityId = entityId;
-    }
-
     public String getEntityType() {
         return this.entityType;
+    }
+
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
     }
 
     public void setEntityType(String entityType) {

@@ -24,12 +24,12 @@ public class SimbaCampaignAreaoptionsGetResponse extends TaobaoResponse {
     @ApiField("area_option")
     private List<AreaOption> areaOptions;
 
-    public void setAreaOptions(List<AreaOption> areaOptions) {
-        this.areaOptions = areaOptions;
-    }
-
     public List<AreaOption> getAreaOptions() {
         return this.areaOptions;
+    }
+
+    public void setAreaOptions(List<AreaOption> areaOptions) {
+        this.areaOptions = areaOptions;
     }
 
 }

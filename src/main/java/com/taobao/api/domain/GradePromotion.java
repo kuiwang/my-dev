@@ -59,52 +59,52 @@ public class GradePromotion extends TaobaoObject {
         return this.curGrade;
     }
 
-    public void setCurGrade(String curGrade) {
-        this.curGrade = curGrade;
-    }
-
     public String getCurGradeName() {
         return this.curGradeName;
-    }
-
-    public void setCurGradeName(String curGradeName) {
-        this.curGradeName = curGradeName;
     }
 
     public Long getDiscount() {
         return this.discount;
     }
 
-    public void setDiscount(Long discount) {
-        this.discount = discount;
-    }
-
     public String getNextGrade() {
         return this.nextGrade;
-    }
-
-    public void setNextGrade(String nextGrade) {
-        this.nextGrade = nextGrade;
     }
 
     public String getNextGradeName() {
         return this.nextGradeName;
     }
 
-    public void setNextGradeName(String nextGradeName) {
-        this.nextGradeName = nextGradeName;
-    }
-
     public Long getNextUpgradeAmount() {
         return this.nextUpgradeAmount;
     }
 
-    public void setNextUpgradeAmount(Long nextUpgradeAmount) {
-        this.nextUpgradeAmount = nextUpgradeAmount;
-    }
-
     public Long getNextUpgradeCount() {
         return this.nextUpgradeCount;
+    }
+
+    public void setCurGrade(String curGrade) {
+        this.curGrade = curGrade;
+    }
+
+    public void setCurGradeName(String curGradeName) {
+        this.curGradeName = curGradeName;
+    }
+
+    public void setDiscount(Long discount) {
+        this.discount = discount;
+    }
+
+    public void setNextGrade(String nextGrade) {
+        this.nextGrade = nextGrade;
+    }
+
+    public void setNextGradeName(String nextGradeName) {
+        this.nextGradeName = nextGradeName;
+    }
+
+    public void setNextUpgradeAmount(Long nextUpgradeAmount) {
+        this.nextUpgradeAmount = nextUpgradeAmount;
     }
 
     public void setNextUpgradeCount(Long nextUpgradeCount) {

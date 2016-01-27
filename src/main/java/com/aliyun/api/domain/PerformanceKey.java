@@ -45,28 +45,28 @@ public class PerformanceKey extends TaobaoObject {
         return this.key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
     public String getUnit() {
         return this.unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     public String getValueFormat() {
         return this.valueFormat;
     }
 
-    public void setValueFormat(String valueFormat) {
-        this.valueFormat = valueFormat;
-    }
-
     public List<PerformanceValue> getValues() {
         return this.values;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setValueFormat(String valueFormat) {
+        this.valueFormat = valueFormat;
     }
 
     public void setValues(List<PerformanceValue> values) {

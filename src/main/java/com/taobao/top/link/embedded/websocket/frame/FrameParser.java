@@ -44,12 +44,12 @@ public abstract class FrameParser {
      */
     enum State {
 
-        /** The HEADER. */
-        HEADER,
+        /** The DONE. */
+        DONE,
         /** The FRAME. */
         FRAME,
-        /** The DONE. */
-        DONE;
+        /** The HEADER. */
+        HEADER;
 
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
@@ -68,44 +68,38 @@ public abstract class FrameParser {
          */
         boolean canTransitionTo(State state) {
             EnumSet<State> set = stateMap.get(this);
-            if (set == null) return false;
+            if (set == null) {
+                return false;
+            }
             return set.contains(state);
         }
     }
 
-    /**
-     * Transition to.
-     *
-     * @param to the to
-     * @return the state
-     */
-    protected State transitionTo(State to) {
-        if (state.canTransitionTo(to)) {
-            State old = state;
-            state = to;
-            return old;
-        } else {
-            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
-        }
-    }
+    /** The buffer manager. */
+    private BufferManager bufferManager = new BufferManager();
+
+    /** The header. */
+    private FrameHeader header;
 
     /** The state. */
     volatile private State state = State.DONE;
 
     /**
-     * State.
+     * Creates the frame.
      *
-     * @return the state
+     * @param h the h
+     * @param bodyData the contents data
+     * @return the frame
      */
-    protected State state() {
-        return state;
-    }
+    abstract protected Frame createFrame(FrameHeader h, byte[] bodyData);
 
-    /** The header. */
-    private FrameHeader header;
-
-    /** The buffer manager. */
-    private BufferManager bufferManager = new BufferManager();
+    /**
+     * Creates the frame header.
+     *
+     * @param chunkData the chunk data
+     * @return the frame header
+     */
+    abstract protected FrameHeader createFrameHeader(ByteBuffer chunkData);
 
     /**
      * Parses the.
@@ -133,7 +127,7 @@ public abstract class FrameParser {
                     bufferManager.storeFragmentBuffer(buffer);
                     return null;
                 }
-                if (header.getContentsLength() - 1 > Integer.MAX_VALUE) {
+                if ((header.getContentsLength() - 1) > Integer.MAX_VALUE) {
                     throw new IllegalArgumentException("large data is not support yet");
                 }
                 transitionTo(State.FRAME);
@@ -156,26 +150,34 @@ public abstract class FrameParser {
             }
             return null;
         } finally {
-            if (buffer != null && buffer != downloadBuffer) {
+            if ((buffer != null) && (buffer != downloadBuffer)) {
                 downloadBuffer.position(downloadBuffer.limit() - buffer.remaining());
             }
         }
     }
 
     /**
-     * Creates the frame header.
+     * State.
      *
-     * @param chunkData the chunk data
-     * @return the frame header
+     * @return the state
      */
-    abstract protected FrameHeader createFrameHeader(ByteBuffer chunkData);
+    protected State state() {
+        return state;
+    }
 
     /**
-     * Creates the frame.
+     * Transition to.
      *
-     * @param h the h
-     * @param bodyData the contents data
-     * @return the frame
+     * @param to the to
+     * @return the state
      */
-    abstract protected Frame createFrame(FrameHeader h, byte[] bodyData);
+    protected State transitionTo(State to) {
+        if (state.canTransitionTo(to)) {
+            State old = state;
+            state = to;
+            return old;
+        } else {
+            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
+        }
+    }
 }

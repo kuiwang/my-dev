@@ -41,28 +41,28 @@ public class InsightCategoryForcastDTO extends TaobaoObject {
         return this.bidword;
     }
 
-    public void setBidword(String bidword) {
-        this.bidword = bidword;
-    }
-
     public String getCatPathId() {
         return this.catPathId;
-    }
-
-    public void setCatPathId(String catPathId) {
-        this.catPathId = catPathId;
     }
 
     public String getCatPathName() {
         return this.catPathName;
     }
 
-    public void setCatPathName(String catPathName) {
-        this.catPathName = catPathName;
-    }
-
     public String getScore() {
         return this.score;
+    }
+
+    public void setBidword(String bidword) {
+        this.bidword = bidword;
+    }
+
+    public void setCatPathId(String catPathId) {
+        this.catPathId = catPathId;
+    }
+
+    public void setCatPathName(String catPathName) {
+        this.catPathName = catPathName;
     }
 
     public void setScore(String score) {

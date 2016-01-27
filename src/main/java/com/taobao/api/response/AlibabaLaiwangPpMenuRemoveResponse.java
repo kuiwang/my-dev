@@ -19,12 +19,12 @@ public class AlibabaLaiwangPpMenuRemoveResponse extends TaobaoResponse {
     @ApiField("deletedcount")
     private Long deletedcount;
 
-    public void setDeletedcount(Long deletedcount) {
-        this.deletedcount = deletedcount;
-    }
-
     public Long getDeletedcount() {
         return this.deletedcount;
+    }
+
+    public void setDeletedcount(Long deletedcount) {
+        this.deletedcount = deletedcount;
     }
 
 }

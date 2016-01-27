@@ -18,10 +18,6 @@ public class WlbItemConsignmentPageGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销商宝贝id
      */
@@ -37,42 +33,42 @@ public class WlbItemConsignmentPageGetRequest implements
      */
     private String ownerUserNick;
 
-    public void setIcItemId(Long icItemId) {
-        this.icItemId = icItemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.consignment.page.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIcItemId() {
         return this.icItemId;
     }
 
-    public void setOwnerItemId(Long ownerItemId) {
-        this.ownerItemId = ownerItemId;
-    }
-
     public Long getOwnerItemId() {
         return this.ownerItemId;
-    }
-
-    public void setOwnerUserNick(String ownerUserNick) {
-        this.ownerUserNick = ownerUserNick;
     }
 
     public String getOwnerUserNick() {
         return this.ownerUserNick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbItemConsignmentPageGetResponse> getResponseClass() {
+        return WlbItemConsignmentPageGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.consignment.page.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ic_item_id", this.icItemId);
@@ -84,6 +80,12 @@ public class WlbItemConsignmentPageGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,14 +93,20 @@ public class WlbItemConsignmentPageGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemConsignmentPageGetResponse> getResponseClass() {
-        return WlbItemConsignmentPageGetResponse.class;
+    public void setIcItemId(Long icItemId) {
+        this.icItemId = icItemId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setOwnerItemId(Long ownerItemId) {
+        this.ownerItemId = ownerItemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerUserNick(String ownerUserNick) {
+        this.ownerUserNick = ownerUserNick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

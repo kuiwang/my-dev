@@ -19,26 +19,16 @@ public class ModifyInstanceVpcAttributeRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 指定的实例ID
      */
     private String instanceId;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * 实例私网IP地址，不能单独指定。
@@ -46,70 +36,62 @@ public class ModifyInstanceVpcAttributeRequest implements
     private String privateIpAddress;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    /**
      * 目标虚拟交换机ID，不能跨Zone修改实例的虚拟交换机。
      */
     private String vSwitchId;
 
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(instanceId, "instanceId");
+        RequestCheckUtils.checkNotEmpty(vSwitchId, "vSwitchId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.ModifyInstanceVpcAttribute.2014-05-26";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getInstanceId() {
         return this.instanceId;
     }
 
-    public void setPrivateIpAddress(String privateIpAddress) {
-        this.privateIpAddress = privateIpAddress;
-    }
-
-    public String getPrivateIpAddress() {
-        return this.privateIpAddress;
-    }
-
-    public void setvSwitchId(String vSwitchId) {
-        this.vSwitchId = vSwitchId;
-    }
-
-    public String getvSwitchId() {
-        return this.vSwitchId;
+    public String getOwnerAccount() {
+        return ownerAccount;
     }
 
     public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerAccount() {
-        return ownerAccount;
-    }
-
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getPrivateIpAddress() {
+        return this.privateIpAddress;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<ModifyInstanceVpcAttributeResponse> getResponseClass() {
+        return ModifyInstanceVpcAttributeResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.ModifyInstanceVpcAttribute.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -124,6 +106,16 @@ public class ModifyInstanceVpcAttributeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getvSwitchId() {
+        return this.vSwitchId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -131,16 +123,32 @@ public class ModifyInstanceVpcAttributeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<ModifyInstanceVpcAttributeResponse> getResponseClass() {
-        return ModifyInstanceVpcAttributeResponse.class;
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(instanceId, "instanceId");
-        RequestCheckUtils.checkNotEmpty(vSwitchId, "vSwitchId");
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPrivateIpAddress(String privateIpAddress) {
+        this.privateIpAddress = privateIpAddress;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setvSwitchId(String vSwitchId) {
+        this.vSwitchId = vSwitchId;
     }
 }

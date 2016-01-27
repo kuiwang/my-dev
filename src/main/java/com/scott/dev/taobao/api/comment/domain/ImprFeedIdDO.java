@@ -6,9 +6,9 @@ package com.scott.dev.taobao.api.comment.domain;
 public class ImprFeedIdDO {
 
     /*
-     * 评价结果（1好评 0中评 -1差评）
+     * 存放主评和追评的评价标签信息 biz_type(1:主评 2:追评)
      */
-    private Number rate;
+    private ImprFeedInfoDO[] feedInfoList;
 
     /*
      * 被评价者昵称
@@ -16,31 +16,31 @@ public class ImprFeedIdDO {
     private String nick;
 
     /*
-     * 存放主评和追评的评价标签信息 biz_type(1:主评 2:追评)
+     * 评价结果（1好评 0中评 -1差评）
      */
-    private ImprFeedInfoDO[] feedInfoList;
+    private Number rate;
 
-    public Number getRate() {
-        return rate;
-    }
-
-    public void setRate(Number rate) {
-        this.rate = rate;
+    public ImprFeedInfoDO[] getFeedInfoList() {
+        return feedInfoList;
     }
 
     public String getNick() {
         return nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public ImprFeedInfoDO[] getFeedInfoList() {
-        return feedInfoList;
+    public Number getRate() {
+        return rate;
     }
 
     public void setFeedInfoList(ImprFeedInfoDO[] feedInfoList) {
         this.feedInfoList = feedInfoList;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setRate(Number rate) {
+        this.rate = rate;
     }
 }

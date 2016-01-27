@@ -25,20 +25,20 @@ public class CreateSnapshotResponse extends AliyunResponse {
     @ApiField("SnapshotId")
     private String snapshotId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setSnapshotId(String snapshotId) {
-        this.snapshotId = snapshotId;
-    }
-
     public String getSnapshotId() {
         return this.snapshotId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSnapshotId(String snapshotId) {
+        this.snapshotId = snapshotId;
     }
 
 }

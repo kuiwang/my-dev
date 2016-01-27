@@ -73,68 +73,68 @@ public class ScItemMap extends TaobaoObject {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getMapType() {
         return this.mapType;
-    }
-
-    public void setMapType(Long mapType) {
-        this.mapType = mapType;
     }
 
     public Long getRelItemId() {
         return this.relItemId;
     }
 
-    public void setRelItemId(Long relItemId) {
-        this.relItemId = relItemId;
-    }
-
     public String getRelOuterCode() {
         return this.relOuterCode;
-    }
-
-    public void setRelOuterCode(String relOuterCode) {
-        this.relOuterCode = relOuterCode;
     }
 
     public Long getRelUserId() {
         return this.relUserId;
     }
 
-    public void setRelUserId(Long relUserId) {
-        this.relUserId = relUserId;
-    }
-
     public String getRelUserNick() {
         return this.relUserNick;
-    }
-
-    public void setRelUserNick(String relUserNick) {
-        this.relUserNick = relUserNick;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setMapType(Long mapType) {
+        this.mapType = mapType;
+    }
+
+    public void setRelItemId(Long relItemId) {
+        this.relItemId = relItemId;
+    }
+
+    public void setRelOuterCode(String relOuterCode) {
+        this.relOuterCode = relOuterCode;
+    }
+
+    public void setRelUserId(Long relUserId) {
+        this.relUserId = relUserId;
+    }
+
+    public void setRelUserNick(String relUserNick) {
+        this.relUserNick = relUserNick;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setUserNick(String userNick) {

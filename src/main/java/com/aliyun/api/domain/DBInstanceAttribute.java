@@ -195,228 +195,228 @@ public class DBInstanceAttribute extends TaobaoObject {
         return this.availabilityValue;
     }
 
-    public void setAvailabilityValue(String availabilityValue) {
-        this.availabilityValue = availabilityValue;
-    }
-
     public Long getBinlogRetentionPeriod() {
         return this.binlogRetentionPeriod;
-    }
-
-    public void setBinlogRetentionPeriod(Long binlogRetentionPeriod) {
-        this.binlogRetentionPeriod = binlogRetentionPeriod;
     }
 
     public String getConnectionString() {
         return this.connectionString;
     }
 
-    public void setConnectionString(String connectionString) {
-        this.connectionString = connectionString;
-    }
-
     public String getCreationTime() {
         return this.creationTime;
-    }
-
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
     }
 
     public String getdBInstanceClass() {
         return this.dBInstanceClass;
     }
 
-    public void setdBInstanceClass(String dBInstanceClass) {
-        this.dBInstanceClass = dBInstanceClass;
-    }
-
     public String getdBInstanceDescription() {
         return this.dBInstanceDescription;
-    }
-
-    public void setdBInstanceDescription(String dBInstanceDescription) {
-        this.dBInstanceDescription = dBInstanceDescription;
     }
 
     public String getdBInstanceId() {
         return this.dBInstanceId;
     }
 
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
-    }
-
     public Long getdBInstanceMemory() {
         return this.dBInstanceMemory;
-    }
-
-    public void setdBInstanceMemory(Long dBInstanceMemory) {
-        this.dBInstanceMemory = dBInstanceMemory;
     }
 
     public String getdBInstanceNetType() {
         return this.dBInstanceNetType;
     }
 
-    public void setdBInstanceNetType(String dBInstanceNetType) {
-        this.dBInstanceNetType = dBInstanceNetType;
-    }
-
     public String getdBInstanceStatus() {
         return this.dBInstanceStatus;
-    }
-
-    public void setdBInstanceStatus(String dBInstanceStatus) {
-        this.dBInstanceStatus = dBInstanceStatus;
     }
 
     public String getdBInstanceStorage() {
         return this.dBInstanceStorage;
     }
 
-    public void setdBInstanceStorage(String dBInstanceStorage) {
-        this.dBInstanceStorage = dBInstanceStorage;
-    }
-
     public String getdBInstanceType() {
         return this.dBInstanceType;
-    }
-
-    public void setdBInstanceType(String dBInstanceType) {
-        this.dBInstanceType = dBInstanceType;
     }
 
     public Long getdBMaxQuantity() {
         return this.dBMaxQuantity;
     }
 
-    public void setdBMaxQuantity(Long dBMaxQuantity) {
-        this.dBMaxQuantity = dBMaxQuantity;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
     }
 
     public String getEngineVersion() {
         return this.engineVersion;
     }
 
-    public void setEngineVersion(String engineVersion) {
-        this.engineVersion = engineVersion;
-    }
-
     public String getExpireTime() {
         return this.expireTime;
-    }
-
-    public void setExpireTime(String expireTime) {
-        this.expireTime = expireTime;
     }
 
     public String getGuardDBInstanceId() {
         return this.guardDBInstanceId;
     }
 
-    public void setGuardDBInstanceId(String guardDBInstanceId) {
-        this.guardDBInstanceId = guardDBInstanceId;
-    }
-
     public String getIncrementSourceDBInstanceId() {
         return this.incrementSourceDBInstanceId;
-    }
-
-    public void setIncrementSourceDBInstanceId(String incrementSourceDBInstanceId) {
-        this.incrementSourceDBInstanceId = incrementSourceDBInstanceId;
     }
 
     public String getLockMode() {
         return this.lockMode;
     }
 
-    public void setLockMode(String lockMode) {
-        this.lockMode = lockMode;
-    }
-
     public String getLockReason() {
         return this.lockReason;
-    }
-
-    public void setLockReason(String lockReason) {
-        this.lockReason = lockReason;
     }
 
     public String getMaintainTime() {
         return this.maintainTime;
     }
 
-    public void setMaintainTime(String maintainTime) {
-        this.maintainTime = maintainTime;
-    }
-
     public String getMasterInstanceId() {
         return this.masterInstanceId;
-    }
-
-    public void setMasterInstanceId(String masterInstanceId) {
-        this.masterInstanceId = masterInstanceId;
     }
 
     public Long getMaxConnections() {
         return this.maxConnections;
     }
 
-    public void setMaxConnections(Long maxConnections) {
-        this.maxConnections = maxConnections;
-    }
-
     public Long getMaxIOPS() {
         return this.maxIOPS;
-    }
-
-    public void setMaxIOPS(Long maxIOPS) {
-        this.maxIOPS = maxIOPS;
     }
 
     public String getPayType() {
         return this.payType;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
-
     public String getPort() {
         return this.port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
     }
 
     public List<ReadOnlyDBInstanceId> getReadOnlyDBInstanceIds() {
         return this.readOnlyDBInstanceIds;
     }
 
-    public void setReadOnlyDBInstanceIds(List<ReadOnlyDBInstanceId> readOnlyDBInstanceIds) {
-        this.readOnlyDBInstanceIds = readOnlyDBInstanceIds;
-    }
-
     public String getRegionId() {
         return this.regionId;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
     public String getTempDBInstanceId() {
         return this.tempDBInstanceId;
+    }
+
+    public void setAvailabilityValue(String availabilityValue) {
+        this.availabilityValue = availabilityValue;
+    }
+
+    public void setBinlogRetentionPeriod(Long binlogRetentionPeriod) {
+        this.binlogRetentionPeriod = binlogRetentionPeriod;
+    }
+
+    public void setConnectionString(String connectionString) {
+        this.connectionString = connectionString;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setdBInstanceClass(String dBInstanceClass) {
+        this.dBInstanceClass = dBInstanceClass;
+    }
+
+    public void setdBInstanceDescription(String dBInstanceDescription) {
+        this.dBInstanceDescription = dBInstanceDescription;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setdBInstanceMemory(Long dBInstanceMemory) {
+        this.dBInstanceMemory = dBInstanceMemory;
+    }
+
+    public void setdBInstanceNetType(String dBInstanceNetType) {
+        this.dBInstanceNetType = dBInstanceNetType;
+    }
+
+    public void setdBInstanceStatus(String dBInstanceStatus) {
+        this.dBInstanceStatus = dBInstanceStatus;
+    }
+
+    public void setdBInstanceStorage(String dBInstanceStorage) {
+        this.dBInstanceStorage = dBInstanceStorage;
+    }
+
+    public void setdBInstanceType(String dBInstanceType) {
+        this.dBInstanceType = dBInstanceType;
+    }
+
+    public void setdBMaxQuantity(Long dBMaxQuantity) {
+        this.dBMaxQuantity = dBMaxQuantity;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public void setExpireTime(String expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public void setGuardDBInstanceId(String guardDBInstanceId) {
+        this.guardDBInstanceId = guardDBInstanceId;
+    }
+
+    public void setIncrementSourceDBInstanceId(String incrementSourceDBInstanceId) {
+        this.incrementSourceDBInstanceId = incrementSourceDBInstanceId;
+    }
+
+    public void setLockMode(String lockMode) {
+        this.lockMode = lockMode;
+    }
+
+    public void setLockReason(String lockReason) {
+        this.lockReason = lockReason;
+    }
+
+    public void setMaintainTime(String maintainTime) {
+        this.maintainTime = maintainTime;
+    }
+
+    public void setMasterInstanceId(String masterInstanceId) {
+        this.masterInstanceId = masterInstanceId;
+    }
+
+    public void setMaxConnections(Long maxConnections) {
+        this.maxConnections = maxConnections;
+    }
+
+    public void setMaxIOPS(Long maxIOPS) {
+        this.maxIOPS = maxIOPS;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public void setReadOnlyDBInstanceIds(List<ReadOnlyDBInstanceId> readOnlyDBInstanceIds) {
+        this.readOnlyDBInstanceIds = readOnlyDBInstanceIds;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
 
     public void setTempDBInstanceId(String tempDBInstanceId) {

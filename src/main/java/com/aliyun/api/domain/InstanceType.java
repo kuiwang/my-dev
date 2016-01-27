@@ -35,20 +35,20 @@ public class InstanceType extends TaobaoObject {
         return this.cpuCoreCount;
     }
 
-    public void setCpuCoreCount(Long cpuCoreCount) {
-        this.cpuCoreCount = cpuCoreCount;
-    }
-
     public String getInstanceTypeId() {
         return this.instanceTypeId;
     }
 
-    public void setInstanceTypeId(String instanceTypeId) {
-        this.instanceTypeId = instanceTypeId;
-    }
-
     public String getMemorySize() {
         return this.memorySize;
+    }
+
+    public void setCpuCoreCount(Long cpuCoreCount) {
+        this.cpuCoreCount = cpuCoreCount;
+    }
+
+    public void setInstanceTypeId(String instanceTypeId) {
+        this.instanceTypeId = instanceTypeId;
     }
 
     public void setMemorySize(String memorySize) {

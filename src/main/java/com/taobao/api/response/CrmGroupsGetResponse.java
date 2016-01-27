@@ -30,20 +30,20 @@ public class CrmGroupsGetResponse extends TaobaoResponse {
     @ApiField("total_result")
     private Long totalResult;
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
     public List<Group> getGroups() {
         return this.groups;
     }
 
-    public void setTotalResult(Long totalResult) {
-        this.totalResult = totalResult;
-    }
-
     public Long getTotalResult() {
         return this.totalResult;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void setTotalResult(Long totalResult) {
+        this.totalResult = totalResult;
     }
 
 }

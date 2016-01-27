@@ -15,12 +15,6 @@ import com.taobao.api.response.FenxiaoDiscountsGetResponse;
  */
 public class FenxiaoDiscountsGetRequest implements TaobaoRequest<FenxiaoDiscountsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 折扣ID
      */
@@ -31,34 +25,40 @@ public class FenxiaoDiscountsGetRequest implements TaobaoRequest<FenxiaoDiscount
      */
     private String extFields;
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.discounts.get";
     }
 
     public Long getDiscountId() {
         return this.discountId;
     }
 
-    public void setExtFields(String extFields) {
-        this.extFields = extFields;
-    }
-
     public String getExtFields() {
         return this.extFields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoDiscountsGetResponse> getResponseClass() {
+        return FenxiaoDiscountsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.discounts.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("discount_id", this.discountId);
@@ -69,6 +69,12 @@ public class FenxiaoDiscountsGetRequest implements TaobaoRequest<FenxiaoDiscount
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -76,14 +82,16 @@ public class FenxiaoDiscountsGetRequest implements TaobaoRequest<FenxiaoDiscount
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDiscountsGetResponse> getResponseClass() {
-        return FenxiaoDiscountsGetResponse.class;
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setExtFields(String extFields) {
+        this.extFields = extFields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

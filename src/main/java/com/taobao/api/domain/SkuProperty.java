@@ -39,20 +39,20 @@ public class SkuProperty extends TaobaoObject {
         return this.propId;
     }
 
-    public void setPropId(String propId) {
-        this.propId = propId;
-    }
-
     public String getPropName() {
         return this.propName;
     }
 
-    public void setPropName(String propName) {
-        this.propName = propName;
-    }
-
     public List<SkuPropertyValue> getValues() {
         return this.values;
+    }
+
+    public void setPropId(String propId) {
+        this.propId = propId;
+    }
+
+    public void setPropName(String propName) {
+        this.propName = propName;
     }
 
     public void setValues(List<SkuPropertyValue> values) {

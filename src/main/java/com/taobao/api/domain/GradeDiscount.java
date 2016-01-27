@@ -47,36 +47,36 @@ public class GradeDiscount extends TaobaoObject {
         return this.discountId;
     }
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
-    }
-
     public Long getDiscountType() {
         return this.discountType;
-    }
-
-    public void setDiscountType(Long discountType) {
-        this.discountType = discountType;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getTradeType() {
         return this.tradeType;
+    }
+
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
+    }
+
+    public void setDiscountType(Long discountType) {
+        this.discountType = discountType;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public void setTradeType(Long tradeType) {

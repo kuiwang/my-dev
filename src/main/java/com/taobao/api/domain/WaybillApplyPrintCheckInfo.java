@@ -41,28 +41,28 @@ public class WaybillApplyPrintCheckInfo extends TaobaoObject {
         return this.noticeCode;
     }
 
-    public void setNoticeCode(String noticeCode) {
-        this.noticeCode = noticeCode;
-    }
-
     public String getNoticeMessage() {
         return this.noticeMessage;
-    }
-
-    public void setNoticeMessage(String noticeMessage) {
-        this.noticeMessage = noticeMessage;
     }
 
     public Long getPrintQuantity() {
         return this.printQuantity;
     }
 
-    public void setPrintQuantity(Long printQuantity) {
-        this.printQuantity = printQuantity;
-    }
-
     public String getWaybillCode() {
         return this.waybillCode;
+    }
+
+    public void setNoticeCode(String noticeCode) {
+        this.noticeCode = noticeCode;
+    }
+
+    public void setNoticeMessage(String noticeMessage) {
+        this.noticeMessage = noticeMessage;
+    }
+
+    public void setPrintQuantity(Long printQuantity) {
+        this.printQuantity = printQuantity;
     }
 
     public void setWaybillCode(String waybillCode) {

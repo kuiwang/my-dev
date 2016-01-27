@@ -19,10 +19,6 @@ public class WlbItemAuthorizationQueryRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 授权商品ID
      */
@@ -56,79 +52,60 @@ public class WlbItemAuthorizationQueryRequest implements
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 类型：可由不同角色来查询，默认值OWNER, OWNER -- 授权人, ON_COMMISSION -- 被授权人
      */
     private String type;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(name, 255, "name");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.authorization.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setRuleCode(String ruleCode) {
-        this.ruleCode = ruleCode;
+    @Override
+    public Class<WlbItemAuthorizationQueryResponse> getResponseClass() {
+        return WlbItemAuthorizationQueryResponse.class;
     }
 
     public String getRuleCode() {
         return this.ruleCode;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.authorization.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -144,6 +121,16 @@ public class WlbItemAuthorizationQueryRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -151,15 +138,36 @@ public class WlbItemAuthorizationQueryRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemAuthorizationQueryResponse> getResponseClass() {
-        return WlbItemAuthorizationQueryResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(name, 255, "name");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRuleCode(String ruleCode) {
+        this.ruleCode = ruleCode;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

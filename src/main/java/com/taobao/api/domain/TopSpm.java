@@ -59,52 +59,52 @@ public class TopSpm extends TaobaoObject {
         return this.alipayDealAmount;
     }
 
-    public void setAlipayDealAmount(String alipayDealAmount) {
-        this.alipayDealAmount = alipayDealAmount;
-    }
-
     public Long getAlipayDealCount() {
         return this.alipayDealCount;
-    }
-
-    public void setAlipayDealCount(Long alipayDealCount) {
-        this.alipayDealCount = alipayDealCount;
     }
 
     public Long getAlipayUv() {
         return this.alipayUv;
     }
 
-    public void setAlipayUv(Long alipayUv) {
-        this.alipayUv = alipayUv;
-    }
-
     public String getModule() {
         return this.module;
-    }
-
-    public void setModule(String module) {
-        this.module = module;
     }
 
     public String getPage() {
         return this.page;
     }
 
-    public void setPage(String page) {
-        this.page = page;
-    }
-
     public Long getPv() {
         return this.pv;
     }
 
-    public void setPv(Long pv) {
-        this.pv = pv;
-    }
-
     public Long getUv() {
         return this.uv;
+    }
+
+    public void setAlipayDealAmount(String alipayDealAmount) {
+        this.alipayDealAmount = alipayDealAmount;
+    }
+
+    public void setAlipayDealCount(Long alipayDealCount) {
+        this.alipayDealCount = alipayDealCount;
+    }
+
+    public void setAlipayUv(Long alipayUv) {
+        this.alipayUv = alipayUv;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+    public void setPv(Long pv) {
+        this.pv = pv;
     }
 
     public void setUv(Long uv) {

@@ -19,12 +19,12 @@ public class PromotionDisplayTop {
         return promotionInItem;
     }
 
-    public void setPromotionInItem(PromotionInItem[] promotionInItem) {
-        this.promotionInItem = promotionInItem;
-    }
-
     public PromotionInShop[] getPromotionInShop() {
         return promotionInShop;
+    }
+
+    public void setPromotionInItem(PromotionInItem[] promotionInItem) {
+        this.promotionInItem = promotionInItem;
     }
 
     public void setPromotionInShop(PromotionInShop[] promotionInShop) {

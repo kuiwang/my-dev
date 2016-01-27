@@ -32,28 +32,28 @@ public class WidgetLoginstatusGetResponse extends TaobaoResponse {
     @ApiField("user_id")
     private String userId;
 
-    public void setIsLogin(Boolean isLogin) {
-        this.isLogin = isLogin;
-    }
-
     public Boolean getIsLogin() {
         return this.isLogin;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getUserId() {
         return this.userId;
+    }
+
+    public void setIsLogin(Boolean isLogin) {
+        this.isLogin = isLogin;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }

@@ -30,12 +30,12 @@ public class Range extends TaobaoObject {
         return this.participateId;
     }
 
-    public void setParticipateId(Long participateId) {
-        this.participateId = participateId;
-    }
-
     public Long getParticipateType() {
         return this.participateType;
+    }
+
+    public void setParticipateId(Long participateId) {
+        this.participateId = participateId;
     }
 
     public void setParticipateType(Long participateType) {

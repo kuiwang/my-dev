@@ -30,20 +30,20 @@ public class FenxiaoCooperationGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setCooperations(List<Cooperation> cooperations) {
-        this.cooperations = cooperations;
-    }
-
     public List<Cooperation> getCooperations() {
         return this.cooperations;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setCooperations(List<Cooperation> cooperations) {
+        this.cooperations = cooperations;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

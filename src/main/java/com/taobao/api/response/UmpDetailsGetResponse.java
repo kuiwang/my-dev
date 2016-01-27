@@ -29,20 +29,20 @@ public class UmpDetailsGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setContents(List<String> contents) {
-        this.contents = contents;
-    }
-
     public List<String> getContents() {
         return this.contents;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setContents(List<String> contents) {
+        this.contents = contents;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

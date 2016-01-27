@@ -24,12 +24,12 @@ public class TmallYaoPiatsCheckResponse extends TaobaoResponse {
     @ApiField("check_yao_piats")
     private List<CheckYaoPiats> checkYaoPiatsList;
 
-    public void setCheckYaoPiatsList(List<CheckYaoPiats> checkYaoPiatsList) {
-        this.checkYaoPiatsList = checkYaoPiatsList;
-    }
-
     public List<CheckYaoPiats> getCheckYaoPiatsList() {
         return this.checkYaoPiatsList;
+    }
+
+    public void setCheckYaoPiatsList(List<CheckYaoPiats> checkYaoPiatsList) {
+        this.checkYaoPiatsList = checkYaoPiatsList;
     }
 
 }

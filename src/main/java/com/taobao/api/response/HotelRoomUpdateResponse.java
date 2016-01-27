@@ -20,12 +20,12 @@ public class HotelRoomUpdateResponse extends TaobaoResponse {
     @ApiField("room")
     private Room room;
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
     public Room getRoom() {
         return this.room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
 }

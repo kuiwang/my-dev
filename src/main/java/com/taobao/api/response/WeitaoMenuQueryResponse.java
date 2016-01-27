@@ -25,20 +25,20 @@ public class WeitaoMenuQueryResponse extends TaobaoResponse {
     @ApiField("menu")
     private String menu;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
-    }
-
     public String getMenu() {
         return this.menu;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
     }
 
 }

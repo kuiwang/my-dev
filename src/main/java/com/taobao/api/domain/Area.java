@@ -52,36 +52,36 @@ public class Area extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getParentId() {
         return this.parentId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     public Long getType() {
         return this.type;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
     public String getZip() {
         return this.zip;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     public void setZip(String zip) {

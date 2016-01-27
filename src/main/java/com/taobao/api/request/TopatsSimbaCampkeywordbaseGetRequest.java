@@ -17,16 +17,12 @@ import com.taobao.api.response.TopatsSimbaCampkeywordbaseGetResponse;
 public class TopatsSimbaCampkeywordbaseGetRequest implements
         TaobaoRequest<TopatsSimbaCampkeywordbaseGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询推广计划ID
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 查询的昵称
@@ -48,58 +44,50 @@ public class TopatsSimbaCampkeywordbaseGetRequest implements
      */
     private String timeSlot;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(searchType, "searchType");
+        RequestCheckUtils.checkNotEmpty(source, "source");
+        RequestCheckUtils.checkNotEmpty(timeSlot, "timeSlot");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.topats.simba.campkeywordbase.get";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setSearchType(String searchType) {
-        this.searchType = searchType;
+    @Override
+    public Class<TopatsSimbaCampkeywordbaseGetResponse> getResponseClass() {
+        return TopatsSimbaCampkeywordbaseGetResponse.class;
     }
 
     public String getSearchType() {
         return this.searchType;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getSource() {
         return this.source;
     }
 
-    public void setTimeSlot(String timeSlot) {
-        this.timeSlot = timeSlot;
-    }
-
-    public String getTimeSlot() {
-        return this.timeSlot;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.topats.simba.campkeywordbase.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -113,6 +101,16 @@ public class TopatsSimbaCampkeywordbaseGetRequest implements
         return txtParams;
     }
 
+    public String getTimeSlot() {
+        return this.timeSlot;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,18 +118,28 @@ public class TopatsSimbaCampkeywordbaseGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TopatsSimbaCampkeywordbaseGetResponse> getResponseClass() {
-        return TopatsSimbaCampkeywordbaseGetResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(searchType, "searchType");
-        RequestCheckUtils.checkNotEmpty(source, "source");
-        RequestCheckUtils.checkNotEmpty(timeSlot, "timeSlot");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

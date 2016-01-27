@@ -14,103 +14,103 @@ public class Message implements Serializable {
 
     private static final long serialVersionUID = 3770198526461322514L;
 
+    private String content;
+
+    private Map<?, ?> contentMap;
+
     private Long id;
 
-    private String topic;
+    private Date outgoingTime;
 
     private String pubAppKey;
 
     private Date pubTime;
 
-    private Date outgoingTime;
+    private Map<String, Object> raw;
+
+    private String topic;
 
     private Long userId;
 
     private String userNick;
 
-    private String content;
-
-    private Map<String, Object> raw;
-
-    private Map<?, ?> contentMap;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTopic() {
-        return this.topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getPubAppKey() {
-        return this.pubAppKey;
-    }
-
-    public void setPubAppKey(String pubAppKey) {
-        this.pubAppKey = pubAppKey;
-    }
-
-    public Date getPubTime() {
-        return this.pubTime;
-    }
-
-    public void setPubTime(Date pubTime) {
-        this.pubTime = pubTime;
-    }
-
-    public Date getOutgoingTime() {
-        return this.outgoingTime;
-    }
-
-    public void setOutgoingTime(Date outgoingTime) {
-        this.outgoingTime = outgoingTime;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
     public String getContent() {
         return this.content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Map<String, Object> getRaw() {
-        return this.raw;
-    }
-
-    protected void setRaw(Map<String, Object> raw) {
-        this.raw = raw;
     }
 
     public Map<?, ?> getContentMap() {
         return this.contentMap;
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public Date getOutgoingTime() {
+        return this.outgoingTime;
+    }
+
+    public String getPubAppKey() {
+        return this.pubAppKey;
+    }
+
+    public Date getPubTime() {
+        return this.pubTime;
+    }
+
+    public Map<String, Object> getRaw() {
+        return this.raw;
+    }
+
+    public String getTopic() {
+        return this.topic;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public void setContentMap(Map<?, ?> contentMap) {
         this.contentMap = contentMap;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setOutgoingTime(Date outgoingTime) {
+        this.outgoingTime = outgoingTime;
+    }
+
+    public void setPubAppKey(String pubAppKey) {
+        this.pubAppKey = pubAppKey;
+    }
+
+    public void setPubTime(Date pubTime) {
+        this.pubTime = pubTime;
+    }
+
+    protected void setRaw(Map<String, Object> raw) {
+        this.raw = raw;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

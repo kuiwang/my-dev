@@ -18,10 +18,6 @@ public class HotelTypeNameGetRequest implements TaobaoRequest<HotelTypeNameGetRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要查询的酒店id。必须为数字
      */
@@ -34,34 +30,41 @@ public class HotelTypeNameGetRequest implements TaobaoRequest<HotelTypeNameGetRe
      */
     private String name;
 
-    public void setHid(Long hid) {
-        this.hid = hid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(hid, "hid");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 60, "name");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.type.name.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHid() {
         return this.hid;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelTypeNameGetResponse> getResponseClass() {
+        return HotelTypeNameGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.type.name.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("hid", this.hid);
@@ -72,6 +75,12 @@ public class HotelTypeNameGetRequest implements TaobaoRequest<HotelTypeNameGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class HotelTypeNameGetRequest implements TaobaoRequest<HotelTypeNameGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelTypeNameGetResponse> getResponseClass() {
-        return HotelTypeNameGetResponse.class;
+    public void setHid(Long hid) {
+        this.hid = hid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(hid, "hid");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 60, "name");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

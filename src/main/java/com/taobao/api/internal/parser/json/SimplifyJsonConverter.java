@@ -22,21 +22,6 @@ import com.taobao.api.internal.util.json.JSONValidatingReader;
  */
 public class SimplifyJsonConverter implements Converter {
 
-    public <T extends TaobaoResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
-        JSONReader reader = new JSONValidatingReader(new ExceptionErrorListener());
-        Object rootObj = reader.read(rsp);
-        if (rootObj instanceof Map<?, ?>) {
-            Map<?, ?> rootJson = (Map<?, ?>) rootObj;
-            Object errorJson = rootJson.get(Constants.ERROR_RESPONSE);
-            if (errorJson instanceof Map<?, ?>) {
-                return fromJson((Map<?, ?>) errorJson, clazz);
-            } else {
-                return fromJson(rootJson, clazz);
-            }
-        }
-        return null;
-    }
-
     /**
      * 把JSON格式的数据转换为对象。
      * 
@@ -48,24 +33,7 @@ public class SimplifyJsonConverter implements Converter {
     public <T> T fromJson(final Map<?, ?> json, Class<T> clazz) throws ApiException {
         return Converters.convert(clazz, new Reader() {
 
-            public boolean hasReturnField(Object name) {
-                return json.containsKey(name);
-            }
-
-            public Object getPrimitiveObject(Object name) {
-                return json.get(name);
-            }
-
-            public Object getObject(Object name, Class<?> type) throws ApiException {
-                Object tmp = json.get(name);
-                if (tmp instanceof Map<?, ?>) {
-                    Map<?, ?> map = (Map<?, ?>) tmp;
-                    return fromJson(map, type);
-                } else {
-                    return null;
-                }
-            }
-
+            @Override
             public List<?> getListObjects(Object listName, Object itemName, Class<?> subType)
                     throws ApiException {
                 List<Object> listObjs = null;
@@ -91,7 +59,44 @@ public class SimplifyJsonConverter implements Converter {
 
                 return listObjs;
             }
+
+            @Override
+            public Object getObject(Object name, Class<?> type) throws ApiException {
+                Object tmp = json.get(name);
+                if (tmp instanceof Map<?, ?>) {
+                    Map<?, ?> map = (Map<?, ?>) tmp;
+                    return fromJson(map, type);
+                } else {
+                    return null;
+                }
+            }
+
+            @Override
+            public Object getPrimitiveObject(Object name) {
+                return json.get(name);
+            }
+
+            @Override
+            public boolean hasReturnField(Object name) {
+                return json.containsKey(name);
+            }
         });
+    }
+
+    @Override
+    public <T extends TaobaoResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
+        JSONReader reader = new JSONValidatingReader(new ExceptionErrorListener());
+        Object rootObj = reader.read(rsp);
+        if (rootObj instanceof Map<?, ?>) {
+            Map<?, ?> rootJson = (Map<?, ?>) rootObj;
+            Object errorJson = rootJson.get(Constants.ERROR_RESPONSE);
+            if (errorJson instanceof Map<?, ?>) {
+                return fromJson((Map<?, ?>) errorJson, clazz);
+            } else {
+                return fromJson(rootJson, clazz);
+            }
+        }
+        return null;
     }
 
 }

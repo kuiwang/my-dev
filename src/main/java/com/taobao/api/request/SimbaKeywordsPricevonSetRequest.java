@@ -19,10 +19,6 @@ public class SimbaKeywordsPricevonSetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 关键词ID，出价和匹配方式json字符串，keywordId:词ID，整数。maxPrice：价格，是整数，以“分”为单位，不能小于5，
      * 不能大于日限额,当使用默认出价时必须将这个值设置为0。;
@@ -36,34 +32,39 @@ public class SimbaKeywordsPricevonSetRequest implements
      */
     private String nick;
 
-    public void setKeywordidPrices(String keywordidPrices) {
-        this.keywordidPrices = keywordidPrices;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(keywordidPrices, "keywordidPrices");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywords.pricevon.set";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywordidPrices() {
         return this.keywordidPrices;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordsPricevonSetResponse> getResponseClass() {
+        return SimbaKeywordsPricevonSetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywords.pricevon.set";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("keywordid_prices", this.keywordidPrices);
@@ -74,6 +75,12 @@ public class SimbaKeywordsPricevonSetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,15 +88,16 @@ public class SimbaKeywordsPricevonSetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordsPricevonSetResponse> getResponseClass() {
-        return SimbaKeywordsPricevonSetResponse.class;
+    public void setKeywordidPrices(String keywordidPrices) {
+        this.keywordidPrices = keywordidPrices;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(keywordidPrices, "keywordidPrices");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

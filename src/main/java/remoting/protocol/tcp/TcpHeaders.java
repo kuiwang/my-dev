@@ -17,17 +17,17 @@ package remoting.protocol.tcp;
 
 public class TcpHeaders {
 
-    public final static short EndOfHeaders = 0;
+    public final static short CloseConnection = 5;
+
+    public final static short ContentType = 6;
 
     public final static short Custom = 1;
+
+    public final static short EndOfHeaders = 0;
+
+    public final static short RequestUri = 4;
 
     public final static short StatusCode = 2;
 
     public final static short StatusPhrase = 3;
-
-    public final static short RequestUri = 4;
-
-    public final static short CloseConnection = 5;
-
-    public final static short ContentType = 6;
 }

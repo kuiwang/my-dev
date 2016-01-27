@@ -30,20 +30,20 @@ public class DescribeRegionsResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setRegions(List<Region> regions) {
-        this.regions = regions;
-    }
-
     public List<Region> getRegions() {
         return this.regions;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setRegions(List<Region> regions) {
+        this.regions = regions;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

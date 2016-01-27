@@ -19,10 +19,6 @@ import com.taobao.api.response.ItemPriceUpdateResponse;
  */
 public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 售后服务说明模板id
      */
@@ -102,6 +98,8 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
      * 是否有保修。可选值:true,false;
      */
     private Boolean hasWarranty;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 忽略警告提示.
@@ -214,16 +212,16 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
     private String picPath;
 
     /**
-     * 平邮费用。取值范围:0.01-999.00;精确到2位小数;单位:元。如:5.07，表示:5元7分,
-     * 注:post_fee,express_fee,ems_fee需一起填写
-     */
-    private String postFee;
-
-    /**
      * 宝贝所属的运费模板ID。取值范围：整数且必须是该卖家的运费模板的ID（可通过taobao.postages.
      * get获得当前会话用户的所有邮费模板）
      */
     private Long postageId;
+
+    /**
+     * 平邮费用。取值范围:0.01-999.00;精确到2位小数;单位:元。如:5.07，表示:5元7分,
+     * 注:post_fee,express_fee,ems_fee需一起填写
+     */
+    private String postFee;
 
     /**
      * 商品价格。取值范围:0-100000000;精确到2位小数;单位:元。如:200.07，表示:200元7分。需要在正确的价格区间内。
@@ -250,14 +248,14 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
     private String props;
 
     /**
-     * 是否承诺退换货服务!虚拟商品无须设置此项!
-     */
-    private Boolean sellPromise;
-
-    /**
      * 重新关联商品与店铺类目，结构:",cid1,cid2,...,"，如果店铺类目存在二级类目，必须传入子类目cids。
      */
     private String sellerCids;
+
+    /**
+     * 是否承诺退换货服务!虚拟商品无须设置此项!
+     */
+    private Boolean sellPromise;
 
     /**
      * Sku的外部id串，结构如：1234,1342,… sku_properties, sku_quantities,
@@ -294,12 +292,16 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
      */
     private Long subStock;
 
+    private Long timestamp;
+
     /**
      * 宝贝标题. 不能超过60字符,受违禁词控制<br />
      * 支持最大长度为：60<br />
      * 支持的最大列表长度为：60
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 有效期。可选值:7,14;单位:天;
@@ -311,420 +313,231 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
      */
     private Long weight;
 
-    public void setAfterSaleId(Long afterSaleId) {
-        this.afterSaleId = afterSaleId;
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
+        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
+        RequestCheckUtils.checkMaxLength(image, 524288, "image");
+        RequestCheckUtils.checkMaxValue(num, 999999L, "num");
+        RequestCheckUtils.checkMinValue(num, 0L, "num");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 1L, "numIid");
+        RequestCheckUtils.checkMaxListSize(sellerCids, 10, "sellerCids");
+        RequestCheckUtils.checkMaxLength(title, 60, "title");
     }
 
     public Long getAfterSaleId() {
         return this.afterSaleId;
     }
 
-    public void setApproveStatus(String approveStatus) {
-        this.approveStatus = approveStatus;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.price.update";
     }
 
     public String getApproveStatus() {
         return this.approveStatus;
     }
 
-    public void setAuctionPoint(Long auctionPoint) {
-        this.auctionPoint = auctionPoint;
-    }
-
     public Long getAuctionPoint() {
         return this.auctionPoint;
-    }
-
-    public void setAutoFill(String autoFill) {
-        this.autoFill = autoFill;
     }
 
     public String getAutoFill() {
         return this.autoFill;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCodPostageId(Long codPostageId) {
-        this.codPostageId = codPostageId;
     }
 
     public Long getCodPostageId() {
         return this.codPostageId;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setEmsFee(String emsFee) {
-        this.emsFee = emsFee;
     }
 
     public String getEmsFee() {
         return this.emsFee;
     }
 
-    public void setExpressFee(String expressFee) {
-        this.expressFee = expressFee;
-    }
-
     public String getExpressFee() {
         return this.expressFee;
     }
 
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
     }
 
     public String getFreightPayer() {
         return this.freightPayer;
     }
 
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
-    }
-
     public Boolean getHasDiscount() {
         return this.hasDiscount;
-    }
-
-    public void setHasInvoice(Boolean hasInvoice) {
-        this.hasInvoice = hasInvoice;
     }
 
     public Boolean getHasInvoice() {
         return this.hasInvoice;
     }
 
-    public void setHasShowcase(Boolean hasShowcase) {
-        this.hasShowcase = hasShowcase;
-    }
-
     public Boolean getHasShowcase() {
         return this.hasShowcase;
-    }
-
-    public void setHasWarranty(Boolean hasWarranty) {
-        this.hasWarranty = hasWarranty;
     }
 
     public Boolean getHasWarranty() {
         return this.hasWarranty;
     }
 
-    public void setIgnorewarning(String ignorewarning) {
-        this.ignorewarning = ignorewarning;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIgnorewarning() {
         return this.ignorewarning;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
-    }
-
     public FileItem getImage() {
         return this.image;
-    }
-
-    public void setIncrement(String increment) {
-        this.increment = increment;
     }
 
     public String getIncrement() {
         return this.increment;
     }
 
-    public void setInputPids(String inputPids) {
-        this.inputPids = inputPids;
-    }
-
     public String getInputPids() {
         return this.inputPids;
-    }
-
-    public void setInputStr(String inputStr) {
-        this.inputStr = inputStr;
     }
 
     public String getInputStr() {
         return this.inputStr;
     }
 
-    public void setIs3D(Boolean is3D) {
-        this.is3D = is3D;
-    }
-
     public Boolean getIs3D() {
         return this.is3D;
-    }
-
-    public void setIsEx(Boolean isEx) {
-        this.isEx = isEx;
     }
 
     public Boolean getIsEx() {
         return this.isEx;
     }
 
-    public void setIsLightningConsignment(Boolean isLightningConsignment) {
-        this.isLightningConsignment = isLightningConsignment;
-    }
-
     public Boolean getIsLightningConsignment() {
         return this.isLightningConsignment;
-    }
-
-    public void setIsReplaceSku(Boolean isReplaceSku) {
-        this.isReplaceSku = isReplaceSku;
     }
 
     public Boolean getIsReplaceSku() {
         return this.isReplaceSku;
     }
 
-    public void setIsTaobao(Boolean isTaobao) {
-        this.isTaobao = isTaobao;
-    }
-
     public Boolean getIsTaobao() {
         return this.isTaobao;
-    }
-
-    public void setIsXinpin(Boolean isXinpin) {
-        this.isXinpin = isXinpin;
     }
 
     public Boolean getIsXinpin() {
         return this.isXinpin;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
     public String getLang() {
         return this.lang;
-    }
-
-    public void setListTime(Date listTime) {
-        this.listTime = listTime;
     }
 
     public Date getListTime() {
         return this.listTime;
     }
 
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
-    }
-
     public String getLocationCity() {
         return this.locationCity;
-    }
-
-    public void setLocationState(String locationState) {
-        this.locationState = locationState;
     }
 
     public String getLocationState() {
         return this.locationState;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
     }
 
     public String getPicPath() {
         return this.picPath;
     }
 
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
+    public Long getPostageId() {
+        return this.postageId;
     }
 
     public String getPostFee() {
         return this.postFee;
     }
 
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
-    }
-
-    public Long getPostageId() {
-        return this.postageId;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
-    }
-
     public String getPropertyAlias() {
         return this.propertyAlias;
-    }
-
-    public void setProps(String props) {
-        this.props = props;
     }
 
     public String getProps() {
         return this.props;
     }
 
-    public void setSellPromise(Boolean sellPromise) {
-        this.sellPromise = sellPromise;
-    }
-
-    public Boolean getSellPromise() {
-        return this.sellPromise;
-    }
-
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
+    @Override
+    public Class<ItemPriceUpdateResponse> getResponseClass() {
+        return ItemPriceUpdateResponse.class;
     }
 
     public String getSellerCids() {
         return this.sellerCids;
     }
 
-    public void setSkuOuterIds(String skuOuterIds) {
-        this.skuOuterIds = skuOuterIds;
+    public Boolean getSellPromise() {
+        return this.sellPromise;
     }
 
     public String getSkuOuterIds() {
         return this.skuOuterIds;
     }
 
-    public void setSkuPrices(String skuPrices) {
-        this.skuPrices = skuPrices;
-    }
-
     public String getSkuPrices() {
         return this.skuPrices;
-    }
-
-    public void setSkuProperties(String skuProperties) {
-        this.skuProperties = skuProperties;
     }
 
     public String getSkuProperties() {
         return this.skuProperties;
     }
 
-    public void setSkuQuantities(String skuQuantities) {
-        this.skuQuantities = skuQuantities;
-    }
-
     public String getSkuQuantities() {
         return this.skuQuantities;
-    }
-
-    public void setStuffStatus(String stuffStatus) {
-        this.stuffStatus = stuffStatus;
     }
 
     public String getStuffStatus() {
         return this.stuffStatus;
     }
 
-    public void setSubStock(Long subStock) {
-        this.subStock = subStock;
-    }
-
     public Long getSubStock() {
         return this.subStock;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setValidThru(Long validThru) {
-        this.validThru = validThru;
-    }
-
-    public Long getValidThru() {
-        return this.validThru;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public Long getWeight() {
-        return this.weight;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.price.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("after_sale_id", this.afterSaleId);
@@ -782,6 +595,24 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Long getValidThru() {
+        return this.validThru;
+    }
+
+    public Long getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -789,30 +620,208 @@ public class ItemPriceUpdateRequest implements TaobaoUploadRequest<ItemPriceUpda
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setAfterSaleId(Long afterSaleId) {
+        this.afterSaleId = afterSaleId;
     }
 
-    public Class<ItemPriceUpdateResponse> getResponseClass() {
-        return ItemPriceUpdateResponse.class;
+    public void setApproveStatus(String approveStatus) {
+        this.approveStatus = approveStatus;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
-        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
-        RequestCheckUtils.checkMaxLength(image, 524288, "image");
-        RequestCheckUtils.checkMaxValue(num, 999999L, "num");
-        RequestCheckUtils.checkMinValue(num, 0L, "num");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 1L, "numIid");
-        RequestCheckUtils.checkMaxListSize(sellerCids, 10, "sellerCids");
-        RequestCheckUtils.checkMaxLength(title, 60, "title");
+    public void setAuctionPoint(Long auctionPoint) {
+        this.auctionPoint = auctionPoint;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setAutoFill(String autoFill) {
+        this.autoFill = autoFill;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCodPostageId(Long codPostageId) {
+        this.codPostageId = codPostageId;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setEmsFee(String emsFee) {
+        this.emsFee = emsFee;
+    }
+
+    public void setExpressFee(String expressFee) {
+        this.expressFee = expressFee;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setHasInvoice(Boolean hasInvoice) {
+        this.hasInvoice = hasInvoice;
+    }
+
+    public void setHasShowcase(Boolean hasShowcase) {
+        this.hasShowcase = hasShowcase;
+    }
+
+    public void setHasWarranty(Boolean hasWarranty) {
+        this.hasWarranty = hasWarranty;
+    }
+
+    public void setIgnorewarning(String ignorewarning) {
+        this.ignorewarning = ignorewarning;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setIncrement(String increment) {
+        this.increment = increment;
+    }
+
+    public void setInputPids(String inputPids) {
+        this.inputPids = inputPids;
+    }
+
+    public void setInputStr(String inputStr) {
+        this.inputStr = inputStr;
+    }
+
+    public void setIs3D(Boolean is3D) {
+        this.is3D = is3D;
+    }
+
+    public void setIsEx(Boolean isEx) {
+        this.isEx = isEx;
+    }
+
+    public void setIsLightningConsignment(Boolean isLightningConsignment) {
+        this.isLightningConsignment = isLightningConsignment;
+    }
+
+    public void setIsReplaceSku(Boolean isReplaceSku) {
+        this.isReplaceSku = isReplaceSku;
+    }
+
+    public void setIsTaobao(Boolean isTaobao) {
+        this.isTaobao = isTaobao;
+    }
+
+    public void setIsXinpin(Boolean isXinpin) {
+        this.isXinpin = isXinpin;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public void setListTime(Date listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public void setLocationState(String locationState) {
+        this.locationState = locationState;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setSellPromise(Boolean sellPromise) {
+        this.sellPromise = sellPromise;
+    }
+
+    public void setSkuOuterIds(String skuOuterIds) {
+        this.skuOuterIds = skuOuterIds;
+    }
+
+    public void setSkuPrices(String skuPrices) {
+        this.skuPrices = skuPrices;
+    }
+
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties;
+    }
+
+    public void setSkuQuantities(String skuQuantities) {
+        this.skuQuantities = skuQuantities;
+    }
+
+    public void setStuffStatus(String stuffStatus) {
+        this.stuffStatus = stuffStatus;
+    }
+
+    public void setSubStock(Long subStock) {
+        this.subStock = subStock;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setValidThru(Long validThru) {
+        this.validThru = validThru;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 }

@@ -17,38 +17,44 @@ import com.taobao.api.response.WeitaoCloudtagsGroupDeleteResponse;
 public class WeitaoCloudtagsGroupDeleteRequest implements
         TaobaoRequest<WeitaoCloudtagsGroupDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要删除的用户分组ID，必须为当前操作用户的粉丝分组ID<br />
      * 支持最小值为：1
      */
     private Long groupId;
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
+        RequestCheckUtils.checkMinValue(groupId, 1L, "groupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.cloudtags.group.delete";
     }
 
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WeitaoCloudtagsGroupDeleteResponse> getResponseClass() {
+        return WeitaoCloudtagsGroupDeleteResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.weitao.cloudtags.group.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_id", this.groupId);
@@ -58,6 +64,12 @@ public class WeitaoCloudtagsGroupDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,16 +77,12 @@ public class WeitaoCloudtagsGroupDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoCloudtagsGroupDeleteResponse> getResponseClass() {
-        return WeitaoCloudtagsGroupDeleteResponse.class;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
-        RequestCheckUtils.checkMinValue(groupId, 1L, "groupId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

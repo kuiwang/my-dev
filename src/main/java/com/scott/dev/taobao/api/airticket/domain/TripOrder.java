@@ -36,36 +36,36 @@ public class TripOrder {
         return this.baseInfo;
     }
 
-    public void setBaseInfo(TripBaseInfo baseInfo) {
-        this.baseInfo = baseInfo;
-    }
-
     public CorpInfo getCorpInfo() {
         return this.corpInfo;
-    }
-
-    public void setCorpInfo(CorpInfo corpInfo) {
-        this.corpInfo = corpInfo;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public List<TripFlightInfo> getFlightInfos() {
         return this.flightInfos;
     }
 
-    public void setFlightInfos(List<TripFlightInfo> flightInfos) {
-        this.flightInfos = flightInfos;
-    }
-
     public Itinerary getItinerary() {
         return this.itinerary;
+    }
+
+    public void setBaseInfo(TripBaseInfo baseInfo) {
+        this.baseInfo = baseInfo;
+    }
+
+    public void setCorpInfo(CorpInfo corpInfo) {
+        this.corpInfo = corpInfo;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setFlightInfos(List<TripFlightInfo> flightInfos) {
+        this.flightInfos = flightInfos;
     }
 
     public void setItinerary(Itinerary itinerary) {

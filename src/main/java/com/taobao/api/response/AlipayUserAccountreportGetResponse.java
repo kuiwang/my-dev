@@ -36,28 +36,28 @@ public class AlipayUserAccountreportGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setAlipayRecords(List<AlipayRecord> alipayRecords) {
-        this.alipayRecords = alipayRecords;
-    }
-
     public List<AlipayRecord> getAlipayRecords() {
         return this.alipayRecords;
-    }
-
-    public void setTotalPages(Long totalPages) {
-        this.totalPages = totalPages;
     }
 
     public Long getTotalPages() {
         return this.totalPages;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setAlipayRecords(List<AlipayRecord> alipayRecords) {
+        this.alipayRecords = alipayRecords;
+    }
+
+    public void setTotalPages(Long totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

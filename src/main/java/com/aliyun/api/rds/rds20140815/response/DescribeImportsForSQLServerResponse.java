@@ -49,44 +49,44 @@ public class DescribeImportsForSQLServerResponse extends AliyunResponse {
     @ApiField("TotalRecordCounts")
     private Long totalRecordCounts;
 
-    public void setItems(List<SQLServerImport> items) {
-        this.items = items;
-    }
-
     public List<SQLServerImport> getItems() {
         return this.items;
-    }
-
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
     }
 
     public Long getPageNumber() {
         return this.pageNumber;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setsQLItemsCounts(Long sQLItemsCounts) {
-        this.sQLItemsCounts = sQLItemsCounts;
     }
 
     public Long getsQLItemsCounts() {
         return this.sQLItemsCounts;
     }
 
-    public void setTotalRecordCounts(Long totalRecordCounts) {
-        this.totalRecordCounts = totalRecordCounts;
-    }
-
     public Long getTotalRecordCounts() {
         return this.totalRecordCounts;
+    }
+
+    public void setItems(List<SQLServerImport> items) {
+        this.items = items;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setsQLItemsCounts(Long sQLItemsCounts) {
+        this.sQLItemsCounts = sQLItemsCounts;
+    }
+
+    public void setTotalRecordCounts(Long totalRecordCounts) {
+        this.totalRecordCounts = totalRecordCounts;
     }
 
 }

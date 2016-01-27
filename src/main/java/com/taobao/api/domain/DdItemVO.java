@@ -77,76 +77,76 @@ public class DdItemVO extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getOriPrice() {
         return this.oriPrice;
-    }
-
-    public void setOriPrice(Long oriPrice) {
-        this.oriPrice = oriPrice;
     }
 
     public String getOutId() {
         return this.outId;
     }
 
-    public void setOutId(String outId) {
-        this.outId = outId;
-    }
-
     public String getOutSkuId() {
         return this.outSkuId;
-    }
-
-    public void setOutSkuId(String outSkuId) {
-        this.outSkuId = outSkuId;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getSkuId() {
         return this.skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
     }
 
     public String getSkuName() {
         return this.skuName;
     }
 
-    public void setSkuName(String skuName) {
-        this.skuName = skuName;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOriPrice(Long oriPrice) {
+        this.oriPrice = oriPrice;
+    }
+
+    public void setOutId(String outId) {
+        this.outId = outId;
+    }
+
+    public void setOutSkuId(String outSkuId) {
+        this.outSkuId = outSkuId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuName(String skuName) {
+        this.skuName = skuName;
     }
 
     public void setStatus(Long status) {

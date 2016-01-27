@@ -33,28 +33,28 @@ public class LogisticsOnlineCancelResponse extends TaobaoResponse {
     @ApiField("recreated_order_id")
     private Long recreatedOrderId;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
     }
 
     public Date getModifyTime() {
         return this.modifyTime;
     }
 
-    public void setRecreatedOrderId(Long recreatedOrderId) {
-        this.recreatedOrderId = recreatedOrderId;
-    }
-
     public Long getRecreatedOrderId() {
         return this.recreatedOrderId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setRecreatedOrderId(Long recreatedOrderId) {
+        this.recreatedOrderId = recreatedOrderId;
     }
 
 }

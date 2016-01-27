@@ -32,28 +32,28 @@ public class PromotionmiscToolCheckResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setCheckToolModule(CheckToolModule checkToolModule) {
-        this.checkToolModule = checkToolModule;
-    }
-
     public CheckToolModule getCheckToolModule() {
         return this.checkToolModule;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
     public String getErrorMessage() {
         return this.errorMessage;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setCheckToolModule(CheckToolModule checkToolModule) {
+        this.checkToolModule = checkToolModule;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

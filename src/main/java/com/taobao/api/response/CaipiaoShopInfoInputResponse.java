@@ -19,12 +19,12 @@ public class CaipiaoShopInfoInputResponse extends TaobaoResponse {
     @ApiField("input_result")
     private Boolean inputResult;
 
-    public void setInputResult(Boolean inputResult) {
-        this.inputResult = inputResult;
-    }
-
     public Boolean getInputResult() {
         return this.inputResult;
+    }
+
+    public void setInputResult(Boolean inputResult) {
+        this.inputResult = inputResult;
     }
 
 }

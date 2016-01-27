@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class ModifyScalingRuleRequest implements AliyunRequest<ModifyScalingRuleResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 调整方式，取值： QuantityChangeInCapacity – 按指定个数调整实例（取值范围(0, 100] U (-100,
      * 0]） PercentChangeInCapacity – 按指定百分比调整实例 TotalCapacity –
@@ -53,6 +35,20 @@ public class ModifyScalingRuleRequest implements AliyunRequest<ModifyScalingRule
      */
     private Long cooldown;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * 伸缩规则id
      */
@@ -63,82 +59,63 @@ public class ModifyScalingRuleRequest implements AliyunRequest<ModifyScalingRule
      */
     private String scalingRuleName;
 
-    public void setAdjustmentType(String adjustmentType) {
-        this.adjustmentType = adjustmentType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(scalingRuleId, "scalingRuleId");
     }
 
     public String getAdjustmentType() {
         return this.adjustmentType;
     }
 
-    public void setAdjustmentValue(Long adjustmentValue) {
-        this.adjustmentValue = adjustmentValue;
-    }
-
     public Long getAdjustmentValue() {
         return this.adjustmentValue;
     }
 
-    public void setCooldown(Long cooldown) {
-        this.cooldown = cooldown;
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.ModifyScalingRule.2014-08-28";
     }
 
     public Long getCooldown() {
         return this.cooldown;
     }
 
-    public void setScalingRuleId(String scalingRuleId) {
-        this.scalingRuleId = scalingRuleId;
-    }
-
-    public String getScalingRuleId() {
-        return this.scalingRuleId;
-    }
-
-    public void setScalingRuleName(String scalingRuleName) {
-        this.scalingRuleName = scalingRuleName;
-    }
-
-    public String getScalingRuleName() {
-        return this.scalingRuleName;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<ModifyScalingRuleResponse> getResponseClass() {
+        return ModifyScalingRuleResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingRuleId() {
+        return this.scalingRuleId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingRuleName() {
+        return this.scalingRuleName;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.ModifyScalingRule.2014-08-28";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -155,6 +132,12 @@ public class ModifyScalingRuleRequest implements AliyunRequest<ModifyScalingRule
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -162,15 +145,40 @@ public class ModifyScalingRuleRequest implements AliyunRequest<ModifyScalingRule
         this.udfParams.put(key, value);
     }
 
-    public Class<ModifyScalingRuleResponse> getResponseClass() {
-        return ModifyScalingRuleResponse.class;
+    public void setAdjustmentType(String adjustmentType) {
+        this.adjustmentType = adjustmentType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(scalingRuleId, "scalingRuleId");
+    public void setAdjustmentValue(Long adjustmentValue) {
+        this.adjustmentValue = adjustmentValue;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCooldown(Long cooldown) {
+        this.cooldown = cooldown;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingRuleId(String scalingRuleId) {
+        this.scalingRuleId = scalingRuleId;
+    }
+
+    public void setScalingRuleName(String scalingRuleName) {
+        this.scalingRuleName = scalingRuleName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

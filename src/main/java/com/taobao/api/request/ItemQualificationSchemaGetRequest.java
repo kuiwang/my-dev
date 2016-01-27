@@ -17,37 +17,42 @@ import com.taobao.api.response.ItemQualificationSchemaGetResponse;
 public class ItemQualificationSchemaGetRequest implements
         TaobaoRequest<ItemQualificationSchemaGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入商品发布时，叶子类目的ID
      */
     private Long categoryId;
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(categoryId, "categoryId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.qualification.schema.get";
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<ItemQualificationSchemaGetResponse> getResponseClass() {
+        return ItemQualificationSchemaGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.item.qualification.schema.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("category_id", this.categoryId);
@@ -57,6 +62,12 @@ public class ItemQualificationSchemaGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class ItemQualificationSchemaGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemQualificationSchemaGetResponse> getResponseClass() {
-        return ItemQualificationSchemaGetResponse.class;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(categoryId, "categoryId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

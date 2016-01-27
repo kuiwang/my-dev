@@ -16,16 +16,12 @@ import com.taobao.api.response.TbkShopsConvertResponse;
  */
 public class TbkShopsConvertRequest implements TaobaoRequest<TbkShopsConvertResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表.可选值:click_url.
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 推广者的淘宝会员昵称.注：这里指的是淘宝的登录会员名
@@ -57,66 +53,57 @@ public class TbkShopsConvertRequest implements TaobaoRequest<TbkShopsConvertResp
      */
     private String sids;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(sellerNicks, 10, "sellerNicks");
+        RequestCheckUtils.checkMaxListSize(sids, 10, "sids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tbk.shops.convert";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
-    }
-
     public String getOuterCode() {
         return this.outerCode;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public Long getPid() {
         return this.pid;
     }
 
-    public void setSellerNicks(String sellerNicks) {
-        this.sellerNicks = sellerNicks;
+    @Override
+    public Class<TbkShopsConvertResponse> getResponseClass() {
+        return TbkShopsConvertResponse.class;
     }
 
     public String getSellerNicks() {
         return this.sellerNicks;
     }
 
-    public void setSids(String sids) {
-        this.sids = sids;
-    }
-
     public String getSids() {
         return this.sids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tbk.shops.convert";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -131,6 +118,12 @@ public class TbkShopsConvertRequest implements TaobaoRequest<TbkShopsConvertResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -138,17 +131,32 @@ public class TbkShopsConvertRequest implements TaobaoRequest<TbkShopsConvertResp
         this.udfParams.put(key, value);
     }
 
-    public Class<TbkShopsConvertResponse> getResponseClass() {
-        return TbkShopsConvertResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(sellerNicks, 10, "sellerNicks");
-        RequestCheckUtils.checkMaxListSize(sids, 10, "sids");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setSellerNicks(String sellerNicks) {
+        this.sellerNicks = sellerNicks;
+    }
+
+    public void setSids(String sids) {
+        this.sids = sids;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

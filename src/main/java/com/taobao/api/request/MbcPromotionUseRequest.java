@@ -17,12 +17,6 @@ import com.taobao.api.response.MbcPromotionUseResponse;
  */
 public class MbcPromotionUseRequest implements TaobaoRequest<MbcPromotionUseResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 实际金额单位(分)
      */
@@ -37,6 +31,8 @@ public class MbcPromotionUseRequest implements TaobaoRequest<MbcPromotionUseResp
      * 有效结束时间
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 外部流水号， promotion_type+outer_no 唯一
@@ -58,113 +54,81 @@ public class MbcPromotionUseRequest implements TaobaoRequest<MbcPromotionUseResp
      */
     private Date startTime;
 
+    private Long timestamp;
+
     /**
      * 交易总金额单位(分)
      */
     private Long totalFee;
 
-    /**
-     * 使用时间
-     */
-    private Date useTime;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 买家淘宝ID
      */
     private Long userId;
 
-    public void setActualFee(Long actualFee) {
-        this.actualFee = actualFee;
+    /**
+     * 使用时间
+     */
+    private Date useTime;
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(actualFee, "actualFee");
+        RequestCheckUtils.checkNotEmpty(discountFee, "discountFee");
+        RequestCheckUtils.checkNotEmpty(outerNo, "outerNo");
+        RequestCheckUtils.checkNotEmpty(promotionId, "promotionId");
+        RequestCheckUtils.checkNotEmpty(promotionType, "promotionType");
+        RequestCheckUtils.checkNotEmpty(totalFee, "totalFee");
+        RequestCheckUtils.checkNotEmpty(useTime, "useTime");
+        RequestCheckUtils.checkNotEmpty(userId, "userId");
     }
 
     public Long getActualFee() {
         return this.actualFee;
     }
 
-    public void setDiscountFee(Long discountFee) {
-        this.discountFee = discountFee;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.mbc.promotion.use";
     }
 
     public Long getDiscountFee() {
         return this.discountFee;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setOuterNo(String outerNo) {
-        this.outerNo = outerNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOuterNo() {
         return this.outerNo;
     }
 
-    public void setPromotionId(String promotionId) {
-        this.promotionId = promotionId;
-    }
-
     public String getPromotionId() {
         return this.promotionId;
-    }
-
-    public void setPromotionType(Long promotionType) {
-        this.promotionType = promotionType;
     }
 
     public Long getPromotionType() {
         return this.promotionType;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<MbcPromotionUseResponse> getResponseClass() {
+        return MbcPromotionUseResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setTotalFee(Long totalFee) {
-        this.totalFee = totalFee;
-    }
-
-    public Long getTotalFee() {
-        return this.totalFee;
-    }
-
-    public void setUseTime(Date useTime) {
-        this.useTime = useTime;
-    }
-
-    public Date getUseTime() {
-        return this.useTime;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.mbc.promotion.use";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("actual_fee", this.actualFee);
@@ -183,6 +147,24 @@ public class MbcPromotionUseRequest implements TaobaoRequest<MbcPromotionUseResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTotalFee() {
+        return this.totalFee;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    public Date getUseTime() {
+        return this.useTime;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -190,22 +172,48 @@ public class MbcPromotionUseRequest implements TaobaoRequest<MbcPromotionUseResp
         this.udfParams.put(key, value);
     }
 
-    public Class<MbcPromotionUseResponse> getResponseClass() {
-        return MbcPromotionUseResponse.class;
+    public void setActualFee(Long actualFee) {
+        this.actualFee = actualFee;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(actualFee, "actualFee");
-        RequestCheckUtils.checkNotEmpty(discountFee, "discountFee");
-        RequestCheckUtils.checkNotEmpty(outerNo, "outerNo");
-        RequestCheckUtils.checkNotEmpty(promotionId, "promotionId");
-        RequestCheckUtils.checkNotEmpty(promotionType, "promotionType");
-        RequestCheckUtils.checkNotEmpty(totalFee, "totalFee");
-        RequestCheckUtils.checkNotEmpty(useTime, "useTime");
-        RequestCheckUtils.checkNotEmpty(userId, "userId");
+    public void setDiscountFee(Long discountFee) {
+        this.discountFee = discountFee;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setOuterNo(String outerNo) {
+        this.outerNo = outerNo;
+    }
+
+    public void setPromotionId(String promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public void setPromotionType(Long promotionType) {
+        this.promotionType = promotionType;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTotalFee(Long totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setUseTime(Date useTime) {
+        this.useTime = useTime;
     }
 }

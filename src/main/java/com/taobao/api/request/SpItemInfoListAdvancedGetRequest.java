@@ -17,12 +17,6 @@ import com.taobao.api.response.SpItemInfoListAdvancedGetResponse;
 public class SpItemInfoListAdvancedGetRequest implements
         TaobaoRequest<SpItemInfoListAdvancedGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所在地:省名
      */
@@ -49,6 +43,8 @@ public class SpItemInfoListAdvancedGetRequest implements
      * 最高价格
      */
     private String endPrice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品标题中包含的关键字. 注意:查询时keyword,cid至少选择其中一个参数
@@ -94,135 +90,89 @@ public class SpItemInfoListAdvancedGetRequest implements
      */
     private String startPrice;
 
+    private Long timestamp;
+
     /**
      * 是否商城的商品，设置为true表示该商品是属于淘宝商城的商品，设置为false或不设置表示不判断这个属性
      */
     private String tmallItem;
 
-    public void setArea(String area) {
-        this.area = area;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.item.info.list.advanced.get";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setEndCommissionRate(String endCommissionRate) {
-        this.endCommissionRate = endCommissionRate;
     }
 
     public String getEndCommissionRate() {
         return this.endCommissionRate;
     }
 
-    public void setEndCredit(String endCredit) {
-        this.endCredit = endCredit;
-    }
-
     public String getEndCredit() {
         return this.endCredit;
-    }
-
-    public void setEndPrice(String endPrice) {
-        this.endPrice = endPrice;
     }
 
     public String getEndPrice() {
         return this.endPrice;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeyword() {
         return this.keyword;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpItemInfoListAdvancedGetResponse> getResponseClass() {
+        return SpItemInfoListAdvancedGetResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     public String getSort() {
         return this.sort;
-    }
-
-    public void setStartCommissionRate(String startCommissionRate) {
-        this.startCommissionRate = startCommissionRate;
     }
 
     public String getStartCommissionRate() {
         return this.startCommissionRate;
     }
 
-    public void setStartCredit(String startCredit) {
-        this.startCredit = startCredit;
-    }
-
     public String getStartCredit() {
         return this.startCredit;
-    }
-
-    public void setStartPrice(String startPrice) {
-        this.startPrice = startPrice;
     }
 
     public String getStartPrice() {
         return this.startPrice;
     }
 
-    public void setTmallItem(String tmallItem) {
-        this.tmallItem = tmallItem;
-    }
-
-    public String getTmallItem() {
-        return this.tmallItem;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.item.info.list.advanced.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -245,6 +195,16 @@ public class SpItemInfoListAdvancedGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTmallItem() {
+        return this.tmallItem;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -252,16 +212,64 @@ public class SpItemInfoListAdvancedGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SpItemInfoListAdvancedGetResponse> getResponseClass() {
-        return SpItemInfoListAdvancedGetResponse.class;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndCommissionRate(String endCommissionRate) {
+        this.endCommissionRate = endCommissionRate;
+    }
+
+    public void setEndCredit(String endCredit) {
+        this.endCredit = endCredit;
+    }
+
+    public void setEndPrice(String endPrice) {
+        this.endPrice = endPrice;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public void setStartCommissionRate(String startCommissionRate) {
+        this.startCommissionRate = startCommissionRate;
+    }
+
+    public void setStartCredit(String startCredit) {
+        this.startCredit = startCredit;
+    }
+
+    public void setStartPrice(String startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTmallItem(String tmallItem) {
+        this.tmallItem = tmallItem;
     }
 }

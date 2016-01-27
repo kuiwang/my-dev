@@ -101,108 +101,108 @@ public class SpItem extends TaobaoObject {
         return this.delistTime;
     }
 
-    public void setDelistTime(String delistTime) {
-        this.delistTime = delistTime;
-    }
-
     public String getFinalPrice() {
         return this.finalPrice;
-    }
-
-    public void setFinalPrice(String finalPrice) {
-        this.finalPrice = finalPrice;
     }
 
     public String getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
     public String getItemImgs() {
         return this.itemImgs;
-    }
-
-    public void setItemImgs(String itemImgs) {
-        this.itemImgs = itemImgs;
     }
 
     public String getItemUrl() {
         return this.itemUrl;
     }
 
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
-    }
-
     public String getListTime() {
         return this.listTime;
-    }
-
-    public void setListTime(String listTime) {
-        this.listTime = listTime;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getSellerId() {
         return this.sellerId;
-    }
-
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
     }
 
     public String getShopUrl() {
         return this.shopUrl;
     }
 
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getTk() {
         return this.tk;
     }
 
-    public void setTk(String tk) {
-        this.tk = tk;
-    }
-
     public String getTmall() {
         return this.tmall;
+    }
+
+    public void setDelistTime(String delistTime) {
+        this.delistTime = delistTime;
+    }
+
+    public void setFinalPrice(String finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemImgs(String itemImgs) {
+        this.itemImgs = itemImgs;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setListTime(String listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTk(String tk) {
+        this.tk = tk;
     }
 
     public void setTmall(String tmall) {

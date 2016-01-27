@@ -29,12 +29,12 @@ public class LogisticServiceTag extends TaobaoObject {
         return this.serviceTag;
     }
 
-    public void setServiceTag(String serviceTag) {
-        this.serviceTag = serviceTag;
-    }
-
     public String getServiceType() {
         return this.serviceType;
+    }
+
+    public void setServiceTag(String serviceTag) {
+        this.serviceTag = serviceTag;
     }
 
     public void setServiceType(String serviceType) {

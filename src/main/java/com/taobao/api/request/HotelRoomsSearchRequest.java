@@ -15,18 +15,14 @@ import com.taobao.api.response.HotelRoomsSearchResponse;
  */
 public class HotelRoomsSearchRequest implements TaobaoRequest<HotelRoomsSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 酒店房间商品gid列表，多个gid用英文逗号隔开，一次不超过20个。gids，item_ids ,
      * hids，rids四项必须传一项，同时传递的情况下，作为查询条件的优先级由高到低依次为gids，item_ids ,
      * hids，rids。
      */
     private String gids;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 酒店hid列表，多个hid用英文逗号隔开，一次不超过5个。gids，item_ids ,
@@ -74,90 +70,66 @@ public class HotelRoomsSearchRequest implements TaobaoRequest<HotelRoomsSearchRe
      */
     private String rids;
 
-    public void setGids(String gids) {
-        this.gids = gids;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.rooms.search";
     }
 
     public String getGids() {
         return this.gids;
     }
 
-    public void setHids(String hids) {
-        this.hids = hids;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHids() {
         return this.hids;
     }
 
-    public void setItemIds(String itemIds) {
-        this.itemIds = itemIds;
-    }
-
     public String getItemIds() {
         return this.itemIds;
-    }
-
-    public void setNeedHotel(Boolean needHotel) {
-        this.needHotel = needHotel;
     }
 
     public Boolean getNeedHotel() {
         return this.needHotel;
     }
 
-    public void setNeedRoomDesc(Boolean needRoomDesc) {
-        this.needRoomDesc = needRoomDesc;
-    }
-
     public Boolean getNeedRoomDesc() {
         return this.needRoomDesc;
-    }
-
-    public void setNeedRoomQuotas(Boolean needRoomQuotas) {
-        this.needRoomQuotas = needRoomQuotas;
     }
 
     public Boolean getNeedRoomQuotas() {
         return this.needRoomQuotas;
     }
 
-    public void setNeedRoomType(Boolean needRoomType) {
-        this.needRoomType = needRoomType;
-    }
-
     public Boolean getNeedRoomType() {
         return this.needRoomType;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setRids(String rids) {
-        this.rids = rids;
+    @Override
+    public Class<HotelRoomsSearchResponse> getResponseClass() {
+        return HotelRoomsSearchResponse.class;
     }
 
     public String getRids() {
         return this.rids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.rooms.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("gids", this.gids);
@@ -175,6 +147,12 @@ public class HotelRoomsSearchRequest implements TaobaoRequest<HotelRoomsSearchRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -182,14 +160,44 @@ public class HotelRoomsSearchRequest implements TaobaoRequest<HotelRoomsSearchRe
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelRoomsSearchResponse> getResponseClass() {
-        return HotelRoomsSearchResponse.class;
+    public void setGids(String gids) {
+        this.gids = gids;
     }
 
-    public void check() throws ApiRuleException {
+    public void setHids(String hids) {
+        this.hids = hids;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemIds(String itemIds) {
+        this.itemIds = itemIds;
+    }
+
+    public void setNeedHotel(Boolean needHotel) {
+        this.needHotel = needHotel;
+    }
+
+    public void setNeedRoomDesc(Boolean needRoomDesc) {
+        this.needRoomDesc = needRoomDesc;
+    }
+
+    public void setNeedRoomQuotas(Boolean needRoomQuotas) {
+        this.needRoomQuotas = needRoomQuotas;
+    }
+
+    public void setNeedRoomType(Boolean needRoomType) {
+        this.needRoomType = needRoomType;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setRids(String rids) {
+        this.rids = rids;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

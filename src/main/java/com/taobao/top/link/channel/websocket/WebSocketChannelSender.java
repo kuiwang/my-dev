@@ -24,6 +24,11 @@ public abstract class WebSocketChannelSender extends NettyChannelSender {
     }
 
     @Override
+    public void close(String reason) {
+        this.channel.write(new CloseWebSocketFrame(1000, reason));
+    }
+
+    @Override
     public void send(byte[] data, int offset, int length) throws ChannelException {
         ChannelBuffer buffer = ChannelBuffers.wrappedBuffer(data, offset, length);
         BinaryWebSocketFrame frame = new BinaryWebSocketFrame(buffer);
@@ -33,19 +38,6 @@ public abstract class WebSocketChannelSender extends NettyChannelSender {
     @Override
     public void send(ByteBuffer dataBuffer, SendHandler sendHandler) throws ChannelException {
         this.sendSync(dataBuffer, sendHandler, 0);
-    }
-
-    @Override
-    public boolean sendSync(ByteBuffer dataBuffer, SendHandler sendHandler, int timeoutMilliseconds)
-            throws ChannelException {
-        ChannelBuffer buffer = ChannelBuffers.wrappedBuffer(dataBuffer);
-        BinaryWebSocketFrame frame = new BinaryWebSocketFrame(buffer);
-        return this.send(frame, sendHandler, timeoutMilliseconds);
-    }
-
-    @Override
-    public void close(String reason) {
-        this.channel.write(new CloseWebSocketFrame(1000, reason));
     }
 
     private boolean send(WebSocketFrame frame, final SendHandler sendHandler, int timeout)
@@ -60,12 +52,17 @@ public abstract class WebSocketChannelSender extends NettyChannelSender {
 
             @Override
             public void operationComplete(ChannelFuture future) throws Exception {
-                if (latch != null) latch.countDown();
-                else if (sendHandler != null) sendHandler.onSendComplete(future.isSuccess());
+                if (latch != null) {
+                    latch.countDown();
+                } else if (sendHandler != null) {
+                    sendHandler.onSendComplete(future.isSuccess());
+                }
             }
         });
 
-        if (latch == null) return true;
+        if (latch == null) {
+            return true;
+        }
 
         // boolean success = false;
         try {
@@ -79,6 +76,14 @@ public abstract class WebSocketChannelSender extends NettyChannelSender {
             // if (sendHandler != null)
             // sendHandler.onSendComplete(success);
         }
+    }
+
+    @Override
+    public boolean sendSync(ByteBuffer dataBuffer, SendHandler sendHandler, int timeoutMilliseconds)
+            throws ChannelException {
+        ChannelBuffer buffer = ChannelBuffers.wrappedBuffer(dataBuffer);
+        BinaryWebSocketFrame frame = new BinaryWebSocketFrame(buffer);
+        return this.send(frame, sendHandler, timeoutMilliseconds);
     }
 
 }

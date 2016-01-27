@@ -38,7 +38,9 @@ public class XmlReader {
                             mapList.add(m);
                         }
                         map.put(iter.getNodeName(), mapList);
-                    } else map.put(iter.getNodeName(), m);
+                    } else {
+                        map.put(iter.getNodeName(), m);
+                    }
                 } else {
                     if (map.get(iter.getNodeName()) != null) {
                         Object obj = map.get(iter.getNodeName());
@@ -52,7 +54,9 @@ public class XmlReader {
                             mapList.add(iter.getTextContent());
                         }
                         map.put(iter.getNodeName(), mapList);
-                    } else map.put(iter.getNodeName(), iter.getTextContent());
+                    } else {
+                        map.put(iter.getNodeName(), iter.getTextContent());
+                    }
                 }
             }
         } else {

@@ -33,12 +33,12 @@ public class Qscore extends TaobaoObject {
         return this.catmatchQscore;
     }
 
-    public void setCatmatchQscore(String catmatchQscore) {
-        this.catmatchQscore = catmatchQscore;
-    }
-
     public List<KeywordQscore> getKeywordQscoreList() {
         return this.keywordQscoreList;
+    }
+
+    public void setCatmatchQscore(String catmatchQscore) {
+        this.catmatchQscore = catmatchQscore;
     }
 
     public void setKeywordQscoreList(List<KeywordQscore> keywordQscoreList) {

@@ -53,44 +53,44 @@ public class WlbConsignMent extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public Long getNumber() {
         return this.number;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
-    }
-
     public Long getTgtItemId() {
         return this.tgtItemId;
-    }
-
-    public void setTgtItemId(Long tgtItemId) {
-        this.tgtItemId = tgtItemId;
     }
 
     public Long getTgtUserId() {
         return this.tgtUserId;
     }
 
-    public void setTgtUserId(Long tgtUserId) {
-        this.tgtUserId = tgtUserId;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public void setTgtItemId(Long tgtItemId) {
+        this.tgtItemId = tgtItemId;
+    }
+
+    public void setTgtUserId(Long tgtUserId) {
+        this.tgtUserId = tgtUserId;
     }
 
     public void setUserId(Long userId) {

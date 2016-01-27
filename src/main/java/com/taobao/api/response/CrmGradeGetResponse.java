@@ -24,12 +24,12 @@ public class CrmGradeGetResponse extends TaobaoResponse {
     @ApiField("grade_promotion")
     private List<GradePromotion> gradePromotions;
 
-    public void setGradePromotions(List<GradePromotion> gradePromotions) {
-        this.gradePromotions = gradePromotions;
-    }
-
     public List<GradePromotion> getGradePromotions() {
         return this.gradePromotions;
+    }
+
+    public void setGradePromotions(List<GradePromotion> gradePromotions) {
+        this.gradePromotions = gradePromotions;
     }
 
 }

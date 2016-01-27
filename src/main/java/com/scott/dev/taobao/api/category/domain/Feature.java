@@ -19,12 +19,12 @@ public class Feature {
         return attrKey;
     }
 
-    public void setAttrKey(String attrKey) {
-        this.attrKey = attrKey;
-    }
-
     public String getAttrValue() {
         return attrValue;
+    }
+
+    public void setAttrKey(String attrKey) {
+        this.attrKey = attrKey;
     }
 
     public void setAttrValue(String attrValue) {

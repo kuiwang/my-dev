@@ -55,44 +55,44 @@ public class FenxiaoItemRecord extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getDistributorId() {
         return this.distributorId;
-    }
-
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getTradeType() {
         return this.tradeType;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public void setTradeType(String tradeType) {

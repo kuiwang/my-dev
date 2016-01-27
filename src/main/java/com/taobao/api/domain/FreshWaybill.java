@@ -53,44 +53,44 @@ public class FreshWaybill extends TaobaoObject {
         return this.alias;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
     public String getFeature() {
         return this.feature;
-    }
-
-    public void setFeature(String feature) {
-        this.feature = feature;
     }
 
     public String getShortAddress() {
         return this.shortAddress;
     }
 
-    public void setShortAddress(String shortAddress) {
-        this.shortAddress = shortAddress;
-    }
-
     public String getTime() {
         return this.time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public String getTradeId() {
         return this.tradeId;
     }
 
-    public void setTradeId(String tradeId) {
-        this.tradeId = tradeId;
-    }
-
     public String getWaybillCode() {
         return this.waybillCode;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    public void setShortAddress(String shortAddress) {
+        this.shortAddress = shortAddress;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setTradeId(String tradeId) {
+        this.tradeId = tradeId;
     }
 
     public void setWaybillCode(String waybillCode) {

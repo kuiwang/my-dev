@@ -24,12 +24,12 @@ public class QtReportsGetResponse extends TaobaoResponse {
     @ApiField("qt_report")
     private List<QtReport> reports;
 
-    public void setReports(List<QtReport> reports) {
-        this.reports = reports;
-    }
-
     public List<QtReport> getReports() {
         return this.reports;
+    }
+
+    public void setReports(List<QtReport> reports) {
+        this.reports = reports;
     }
 
 }

@@ -24,12 +24,12 @@ public class FenxiaoDealerRequisitionorderQueryResponse extends TaobaoResponse {
     @ApiField("dealer_order")
     private List<DealerOrder> dealerOrders;
 
-    public void setDealerOrders(List<DealerOrder> dealerOrders) {
-        this.dealerOrders = dealerOrders;
-    }
-
     public List<DealerOrder> getDealerOrders() {
         return this.dealerOrders;
+    }
+
+    public void setDealerOrders(List<DealerOrder> dealerOrders) {
+        this.dealerOrders = dealerOrders;
     }
 
 }

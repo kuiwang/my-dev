@@ -16,12 +16,6 @@ import com.taobao.api.response.AlipayEbppBillAddResponse;
  */
 public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 如果传入调用api有淘宝授权的session可以不传这个字段
      */
@@ -45,6 +39,8 @@ public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAdd
      * 支持的最大列表长度为：80
      */
     private String chargeInst;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 输出机构的业务流水号，需要保证唯一性。<br />
@@ -89,6 +85,8 @@ public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAdd
      */
     private String subOrderType;
 
+    private Long timestamp;
+
     /**
      * 交通违章地点，sub_order_type=TRAFFIC时填写。
      */
@@ -99,122 +97,85 @@ public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAdd
      */
     private String trafficRegulations;
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(billKey, "billKey");
+        RequestCheckUtils.checkMaxLength(billKey, 50, "billKey");
+        RequestCheckUtils.checkNotEmpty(chargeInst, "chargeInst");
+        RequestCheckUtils.checkMaxLength(chargeInst, 80, "chargeInst");
+        RequestCheckUtils.checkNotEmpty(merchantOrderNo, "merchantOrderNo");
+        RequestCheckUtils.checkMaxLength(merchantOrderNo, 32, "merchantOrderNo");
+        RequestCheckUtils.checkNotEmpty(mobile, "mobile");
+        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
+        RequestCheckUtils.checkMaxLength(orderType, 10, "orderType");
+        RequestCheckUtils.checkMaxLength(ownerName, 50, "ownerName");
+        RequestCheckUtils.checkNotEmpty(payAmount, "payAmount");
+        RequestCheckUtils.checkNotEmpty(subOrderType, "subOrderType");
+        RequestCheckUtils.checkMaxLength(subOrderType, 10, "subOrderType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.ebpp.bill.add";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public void setBillDate(String billDate) {
-        this.billDate = billDate;
-    }
-
     public String getBillDate() {
         return this.billDate;
-    }
-
-    public void setBillKey(String billKey) {
-        this.billKey = billKey;
     }
 
     public String getBillKey() {
         return this.billKey;
     }
 
-    public void setChargeInst(String chargeInst) {
-        this.chargeInst = chargeInst;
-    }
-
     public String getChargeInst() {
         return this.chargeInst;
     }
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
     public String getMobile() {
         return this.mobile;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
     }
 
     public String getOrderType() {
         return this.orderType;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
     public String getOwnerName() {
         return this.ownerName;
-    }
-
-    public void setPayAmount(String payAmount) {
-        this.payAmount = payAmount;
     }
 
     public String getPayAmount() {
         return this.payAmount;
     }
 
-    public void setServiceAmount(String serviceAmount) {
-        this.serviceAmount = serviceAmount;
+    @Override
+    public Class<AlipayEbppBillAddResponse> getResponseClass() {
+        return AlipayEbppBillAddResponse.class;
     }
 
     public String getServiceAmount() {
         return this.serviceAmount;
     }
 
-    public void setSubOrderType(String subOrderType) {
-        this.subOrderType = subOrderType;
-    }
-
     public String getSubOrderType() {
         return this.subOrderType;
     }
 
-    public void setTrafficLocation(String trafficLocation) {
-        this.trafficLocation = trafficLocation;
-    }
-
-    public String getTrafficLocation() {
-        return this.trafficLocation;
-    }
-
-    public void setTrafficRegulations(String trafficRegulations) {
-        this.trafficRegulations = trafficRegulations;
-    }
-
-    public String getTrafficRegulations() {
-        return this.trafficRegulations;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.ebpp.bill.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auth_token", this.authToken);
@@ -236,6 +197,20 @@ public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTrafficLocation() {
+        return this.trafficLocation;
+    }
+
+    public String getTrafficRegulations() {
+        return this.trafficRegulations;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -243,27 +218,60 @@ public class AlipayEbppBillAddRequest implements TaobaoRequest<AlipayEbppBillAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayEbppBillAddResponse> getResponseClass() {
-        return AlipayEbppBillAddResponse.class;
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(billKey, "billKey");
-        RequestCheckUtils.checkMaxLength(billKey, 50, "billKey");
-        RequestCheckUtils.checkNotEmpty(chargeInst, "chargeInst");
-        RequestCheckUtils.checkMaxLength(chargeInst, 80, "chargeInst");
-        RequestCheckUtils.checkNotEmpty(merchantOrderNo, "merchantOrderNo");
-        RequestCheckUtils.checkMaxLength(merchantOrderNo, 32, "merchantOrderNo");
-        RequestCheckUtils.checkNotEmpty(mobile, "mobile");
-        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
-        RequestCheckUtils.checkMaxLength(orderType, 10, "orderType");
-        RequestCheckUtils.checkMaxLength(ownerName, 50, "ownerName");
-        RequestCheckUtils.checkNotEmpty(payAmount, "payAmount");
-        RequestCheckUtils.checkNotEmpty(subOrderType, "subOrderType");
-        RequestCheckUtils.checkMaxLength(subOrderType, 10, "subOrderType");
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBillKey(String billKey) {
+        this.billKey = billKey;
+    }
+
+    public void setChargeInst(String chargeInst) {
+        this.chargeInst = chargeInst;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setPayAmount(String payAmount) {
+        this.payAmount = payAmount;
+    }
+
+    public void setServiceAmount(String serviceAmount) {
+        this.serviceAmount = serviceAmount;
+    }
+
+    public void setSubOrderType(String subOrderType) {
+        this.subOrderType = subOrderType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTrafficLocation(String trafficLocation) {
+        this.trafficLocation = trafficLocation;
+    }
+
+    public void setTrafficRegulations(String trafficRegulations) {
+        this.trafficRegulations = trafficRegulations;
     }
 }

@@ -35,20 +35,20 @@ public class AfterSale extends TaobaoObject {
         return this.afterSaleId;
     }
 
-    public void setAfterSaleId(Long afterSaleId) {
-        this.afterSaleId = afterSaleId;
-    }
-
     public String getAfterSaleName() {
         return this.afterSaleName;
     }
 
-    public void setAfterSaleName(String afterSaleName) {
-        this.afterSaleName = afterSaleName;
-    }
-
     public String getAfterSalePath() {
         return this.afterSalePath;
+    }
+
+    public void setAfterSaleId(Long afterSaleId) {
+        this.afterSaleId = afterSaleId;
+    }
+
+    public void setAfterSaleName(String afterSaleName) {
+        this.afterSaleName = afterSaleName;
     }
 
     public void setAfterSalePath(String afterSalePath) {

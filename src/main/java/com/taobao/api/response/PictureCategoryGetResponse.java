@@ -24,12 +24,12 @@ public class PictureCategoryGetResponse extends TaobaoResponse {
     @ApiField("picture_category")
     private List<PictureCategory> pictureCategories;
 
-    public void setPictureCategories(List<PictureCategory> pictureCategories) {
-        this.pictureCategories = pictureCategories;
-    }
-
     public List<PictureCategory> getPictureCategories() {
         return this.pictureCategories;
+    }
+
+    public void setPictureCategories(List<PictureCategory> pictureCategories) {
+        this.pictureCategories = pictureCategories;
     }
 
 }

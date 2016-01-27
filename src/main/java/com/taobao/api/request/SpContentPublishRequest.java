@@ -18,10 +18,6 @@ public class SpContentPublishRequest implements TaobaoRequest<SpContentPublishRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 表示为内容类型，包括2种选项： 1(宝贝);3(自定义)
      */
@@ -40,6 +36,10 @@ public class SpContentPublishRequest implements TaobaoRequest<SpContentPublishRe
      * (单位是字符，不区分中英文)，标签名称中不能包含非法内容，且一个内容关联的标签数目不能超过6个
      */
     private String tags;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 内容具体的信息，用json格式描述，kv对的方式:
@@ -73,50 +73,42 @@ public class SpContentPublishRequest implements TaobaoRequest<SpContentPublishRe
      */
     private String value;
 
-    public void setSchemaName(String schemaName) {
-        this.schemaName = schemaName;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(schemaName, "schemaName");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+        RequestCheckUtils.checkNotEmpty(value, "value");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.publish";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SpContentPublishResponse> getResponseClass() {
+        return SpContentPublishResponse.class;
     }
 
     public String getSchemaName() {
         return this.schemaName;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
-    }
-
     public String getSiteKey() {
         return this.siteKey;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public String getTags() {
         return this.tags;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.publish";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("schema_name", this.schemaName);
@@ -129,6 +121,16 @@ public class SpContentPublishRequest implements TaobaoRequest<SpContentPublishRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -136,18 +138,24 @@ public class SpContentPublishRequest implements TaobaoRequest<SpContentPublishRe
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentPublishResponse> getResponseClass() {
-        return SpContentPublishResponse.class;
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(schemaName, "schemaName");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-        RequestCheckUtils.checkNotEmpty(value, "value");
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

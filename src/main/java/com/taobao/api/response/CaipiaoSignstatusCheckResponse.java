@@ -25,20 +25,20 @@ public class CaipiaoSignstatusCheckResponse extends TaobaoResponse {
     @ApiField("sign_url")
     private String signUrl;
 
-    public void setSign(Boolean sign) {
-        this.sign = sign;
-    }
-
     public Boolean getSign() {
         return this.sign;
     }
 
-    public void setSignUrl(String signUrl) {
-        this.signUrl = signUrl;
-    }
-
     public String getSignUrl() {
         return this.signUrl;
+    }
+
+    public void setSign(Boolean sign) {
+        this.sign = sign;
+    }
+
+    public void setSignUrl(String signUrl) {
+        this.signUrl = signUrl;
     }
 
 }

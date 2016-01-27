@@ -20,12 +20,12 @@ public class TmallProductSpecAddResponse extends TaobaoResponse {
     @ApiField("product_spec")
     private ProductSpec productSpec;
 
-    public void setProductSpec(ProductSpec productSpec) {
-        this.productSpec = productSpec;
-    }
-
     public ProductSpec getProductSpec() {
         return this.productSpec;
+    }
+
+    public void setProductSpec(ProductSpec productSpec) {
+        this.productSpec = productSpec;
     }
 
 }

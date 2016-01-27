@@ -25,20 +25,20 @@ public class CreateScalingGroupResponse extends AliyunResponse {
     @ApiField("ScalingGroupId")
     private String scalingGroupId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
     public String getScalingGroupId() {
         return this.scalingGroupId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
     }
 
 }

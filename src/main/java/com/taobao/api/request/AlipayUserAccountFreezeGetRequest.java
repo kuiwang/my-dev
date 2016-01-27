@@ -16,12 +16,6 @@ import com.taobao.api.response.AlipayUserAccountFreezeGetResponse;
 public class AlipayUserAccountFreezeGetRequest implements
         TaobaoRequest<AlipayUserAccountFreezeGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 冻结类型，多个用,分隔。不传返回所有类型的冻结金额。 DEPOSIT_FREEZE,充值冻结 WITHDRAW_FREEZE,提现冻结
      * PAYMENT_FREEZE,支付冻结 BAIL_FREEZE,保证金冻结 CHARGE_FREEZE,收费冻结
@@ -29,26 +23,36 @@ public class AlipayUserAccountFreezeGetRequest implements
      */
     private String freezeType;
 
-    public void setFreezeType(String freezeType) {
-        this.freezeType = freezeType;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.user.account.freeze.get";
     }
 
     public String getFreezeType() {
         return this.freezeType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<AlipayUserAccountFreezeGetResponse> getResponseClass() {
+        return AlipayUserAccountFreezeGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "alipay.user.account.freeze.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("freeze_type", this.freezeType);
@@ -58,6 +62,12 @@ public class AlipayUserAccountFreezeGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,14 +75,12 @@ public class AlipayUserAccountFreezeGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayUserAccountFreezeGetResponse> getResponseClass() {
-        return AlipayUserAccountFreezeGetResponse.class;
+    public void setFreezeType(String freezeType) {
+        this.freezeType = freezeType;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

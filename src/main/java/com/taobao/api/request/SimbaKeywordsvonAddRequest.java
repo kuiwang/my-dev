@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaKeywordsvonAddResponse;
  */
 public class SimbaKeywordsvonAddRequest implements TaobaoRequest<SimbaKeywordsvonAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组id
      */
     private Long adgroupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 关键词，出价和匹配方式json字符串，word:词，不能有一些特殊字符。maxPrice：价格，是整数，以“分”为单位，不能小于5，
@@ -40,42 +36,44 @@ public class SimbaKeywordsvonAddRequest implements TaobaoRequest<SimbaKeywordsvo
      */
     private String nick;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+        RequestCheckUtils.checkNotEmpty(keywordPrices, "keywordPrices");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setKeywordPrices(String keywordPrices) {
-        this.keywordPrices = keywordPrices;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywordsvon.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywordPrices() {
         return this.keywordPrices;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordsvonAddResponse> getResponseClass() {
+        return SimbaKeywordsvonAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywordsvon.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -87,6 +85,12 @@ public class SimbaKeywordsvonAddRequest implements TaobaoRequest<SimbaKeywordsvo
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,16 +98,20 @@ public class SimbaKeywordsvonAddRequest implements TaobaoRequest<SimbaKeywordsvo
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordsvonAddResponse> getResponseClass() {
-        return SimbaKeywordsvonAddResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
-        RequestCheckUtils.checkNotEmpty(keywordPrices, "keywordPrices");
+    public void setKeywordPrices(String keywordPrices) {
+        this.keywordPrices = keywordPrices;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

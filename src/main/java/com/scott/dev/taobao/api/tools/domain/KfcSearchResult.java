@@ -6,9 +6,10 @@ package com.scott.dev.taobao.api.tools.domain;
 public class KfcSearchResult {
 
     /*
-     * 是否匹配到关键词,匹配到则为true.
+     *过滤后的文本： 当匹配到B等级的词时，文本中的关键词被替换为*号，
+     *content即为关键词替换后的文本； 其他情况，content始终为null 
      */
-    private Boolean matched;
+    private String content;
 
     /*
      * 匹配到的关键词的等级，值为null，或为A、B、C、D。 
@@ -18,32 +19,31 @@ public class KfcSearchResult {
     private String level;
 
     /*
-     *过滤后的文本： 当匹配到B等级的词时，文本中的关键词被替换为*号，
-     *content即为关键词替换后的文本； 其他情况，content始终为null 
+     * 是否匹配到关键词,匹配到则为true.
      */
-    private String content;
+    private Boolean matched;
 
-    public Boolean getMatched() {
-        return matched;
-    }
-
-    public void setMatched(Boolean matched) {
-        this.matched = matched;
+    public String getContent() {
+        return content;
     }
 
     public String getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getContent() {
-        return content;
+    public Boolean getMatched() {
+        return matched;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public void setMatched(Boolean matched) {
+        this.matched = matched;
     }
 }

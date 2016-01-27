@@ -17,12 +17,6 @@ import com.taobao.api.response.HotelOrdersSearchResponse;
  */
 public class HotelOrdersSearchRequest implements TaobaoRequest<HotelOrdersSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 入住时间查询结束时间，格式为：yyyy-MM-dd。不能早于checkin_date_start，间隔不能大于30
      */
@@ -57,6 +51,8 @@ public class HotelOrdersSearchRequest implements TaobaoRequest<HotelOrdersSearch
      * 商品gid列表，多个gid用英文逗号隔开，一次不超过5个
      */
     private String gids;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 酒店hid列表，多个hid用英文逗号隔开，一次不超过5个
@@ -104,138 +100,87 @@ public class HotelOrdersSearchRequest implements TaobaoRequest<HotelOrdersSearch
      */
     private String tids;
 
-    public void setCheckinDateEnd(Date checkinDateEnd) {
-        this.checkinDateEnd = checkinDateEnd;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(status, 1, "status");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.orders.search";
     }
 
     public Date getCheckinDateEnd() {
         return this.checkinDateEnd;
     }
 
-    public void setCheckinDateStart(Date checkinDateStart) {
-        this.checkinDateStart = checkinDateStart;
-    }
-
     public Date getCheckinDateStart() {
         return this.checkinDateStart;
-    }
-
-    public void setCheckoutDateEnd(Date checkoutDateEnd) {
-        this.checkoutDateEnd = checkoutDateEnd;
     }
 
     public Date getCheckoutDateEnd() {
         return this.checkoutDateEnd;
     }
 
-    public void setCheckoutDateStart(Date checkoutDateStart) {
-        this.checkoutDateStart = checkoutDateStart;
-    }
-
     public Date getCheckoutDateStart() {
         return this.checkoutDateStart;
-    }
-
-    public void setCreatedEnd(Date createdEnd) {
-        this.createdEnd = createdEnd;
     }
 
     public Date getCreatedEnd() {
         return this.createdEnd;
     }
 
-    public void setCreatedStart(Date createdStart) {
-        this.createdStart = createdStart;
-    }
-
     public Date getCreatedStart() {
         return this.createdStart;
-    }
-
-    public void setGids(String gids) {
-        this.gids = gids;
     }
 
     public String getGids() {
         return this.gids;
     }
 
-    public void setHids(String hids) {
-        this.hids = hids;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHids() {
         return this.hids;
     }
 
-    public void setNeedGuest(Boolean needGuest) {
-        this.needGuest = needGuest;
-    }
-
     public Boolean getNeedGuest() {
         return this.needGuest;
-    }
-
-    public void setNeedMessage(Boolean needMessage) {
-        this.needMessage = needMessage;
     }
 
     public Boolean getNeedMessage() {
         return this.needMessage;
     }
 
-    public void setOids(String oids) {
-        this.oids = oids;
-    }
-
     public String getOids() {
         return this.oids;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setRids(String rids) {
-        this.rids = rids;
+    @Override
+    public Class<HotelOrdersSearchResponse> getResponseClass() {
+        return HotelOrdersSearchResponse.class;
     }
 
     public String getRids() {
         return this.rids;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setTids(String tids) {
-        this.tids = tids;
-    }
-
-    public String getTids() {
-        return this.tids;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.orders.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("checkin_date_end", this.checkinDateEnd);
@@ -259,6 +204,16 @@ public class HotelOrdersSearchRequest implements TaobaoRequest<HotelOrdersSearch
         return txtParams;
     }
 
+    public String getTids() {
+        return this.tids;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -266,15 +221,68 @@ public class HotelOrdersSearchRequest implements TaobaoRequest<HotelOrdersSearch
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelOrdersSearchResponse> getResponseClass() {
-        return HotelOrdersSearchResponse.class;
+    public void setCheckinDateEnd(Date checkinDateEnd) {
+        this.checkinDateEnd = checkinDateEnd;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(status, 1, "status");
+    public void setCheckinDateStart(Date checkinDateStart) {
+        this.checkinDateStart = checkinDateStart;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCheckoutDateEnd(Date checkoutDateEnd) {
+        this.checkoutDateEnd = checkoutDateEnd;
+    }
+
+    public void setCheckoutDateStart(Date checkoutDateStart) {
+        this.checkoutDateStart = checkoutDateStart;
+    }
+
+    public void setCreatedEnd(Date createdEnd) {
+        this.createdEnd = createdEnd;
+    }
+
+    public void setCreatedStart(Date createdStart) {
+        this.createdStart = createdStart;
+    }
+
+    public void setGids(String gids) {
+        this.gids = gids;
+    }
+
+    public void setHids(String hids) {
+        this.hids = hids;
+    }
+
+    public void setNeedGuest(Boolean needGuest) {
+        this.needGuest = needGuest;
+    }
+
+    public void setNeedMessage(Boolean needMessage) {
+        this.needMessage = needMessage;
+    }
+
+    public void setOids(String oids) {
+        this.oids = oids;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setRids(String rids) {
+        this.rids = rids;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTids(String tids) {
+        this.tids = tids;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

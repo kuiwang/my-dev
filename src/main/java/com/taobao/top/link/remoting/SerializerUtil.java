@@ -13,7 +13,9 @@ public class SerializerUtil {
             } catch (ClassNotFoundException e) {}
         }
 
-        if (factory == null) factory = new DefaultSerializationFactory();
+        if (factory == null) {
+            factory = new DefaultSerializationFactory();
+        }
 
         return factory;
     }

@@ -17,16 +17,12 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderRemarkUpdateResponse
 public class FenxiaoDealerRequisitionorderRemarkUpdateRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderRemarkUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 经销采购单ID
      */
     private Long dealerOrderId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 备注留言，可为空
@@ -40,42 +36,46 @@ public class FenxiaoDealerRequisitionorderRemarkUpdateRequest implements
      */
     private Long supplierMemoFlag;
 
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
+        RequestCheckUtils.checkNotEmpty(supplierMemoFlag, "supplierMemoFlag");
+        RequestCheckUtils.checkMaxValue(supplierMemoFlag, 5L, "supplierMemoFlag");
+        RequestCheckUtils.checkMinValue(supplierMemoFlag, 1L, "supplierMemoFlag");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.remark.update";
     }
 
     public Long getDealerOrderId() {
         return this.dealerOrderId;
     }
 
-    public void setSupplierMemo(String supplierMemo) {
-        this.supplierMemo = supplierMemo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<FenxiaoDealerRequisitionorderRemarkUpdateResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderRemarkUpdateResponse.class;
     }
 
     public String getSupplierMemo() {
         return this.supplierMemo;
     }
 
-    public void setSupplierMemoFlag(Long supplierMemoFlag) {
-        this.supplierMemoFlag = supplierMemoFlag;
-    }
-
     public Long getSupplierMemoFlag() {
         return this.supplierMemoFlag;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.remark.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("dealer_order_id", this.dealerOrderId);
@@ -87,6 +87,12 @@ public class FenxiaoDealerRequisitionorderRemarkUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,18 +100,20 @@ public class FenxiaoDealerRequisitionorderRemarkUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderRemarkUpdateResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderRemarkUpdateResponse.class;
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
-        RequestCheckUtils.checkNotEmpty(supplierMemoFlag, "supplierMemoFlag");
-        RequestCheckUtils.checkMaxValue(supplierMemoFlag, 5L, "supplierMemoFlag");
-        RequestCheckUtils.checkMinValue(supplierMemoFlag, 1L, "supplierMemoFlag");
+    public void setSupplierMemo(String supplierMemo) {
+        this.supplierMemo = supplierMemo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSupplierMemoFlag(Long supplierMemoFlag) {
+        this.supplierMemoFlag = supplierMemoFlag;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

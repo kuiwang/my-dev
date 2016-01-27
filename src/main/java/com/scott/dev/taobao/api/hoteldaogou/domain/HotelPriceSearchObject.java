@@ -37,36 +37,36 @@ public class HotelPriceSearchObject {
         return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public Long getLowPrice() {
         return this.lowPrice;
-    }
-
-    public void setLowPrice(Long lowPrice) {
-        this.lowPrice = lowPrice;
     }
 
     public List<RoomTypePriceSearchObject> getRooms() {
         return this.rooms;
     }
 
-    public void setRooms(List<RoomTypePriceSearchObject> rooms) {
-        this.rooms = rooms;
-    }
-
     public Long getShid() {
         return this.shid;
     }
 
-    public void setShid(Long shid) {
-        this.shid = shid;
-    }
-
     public Date getStartDate() {
         return this.startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setLowPrice(Long lowPrice) {
+        this.lowPrice = lowPrice;
+    }
+
+    public void setRooms(List<RoomTypePriceSearchObject> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setShid(Long shid) {
+        this.shid = shid;
     }
 
     public void setStartDate(Date startDate) {

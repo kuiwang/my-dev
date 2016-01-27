@@ -62,68 +62,68 @@ public class CreateUploadPathForSQLServerResponse extends AliyunResponse {
     @ApiField("UserName")
     private String userName;
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public String getFileName() {
         return this.fileName;
-    }
-
-    public void setInternetFtpServer(String internetFtpServer) {
-        this.internetFtpServer = internetFtpServer;
     }
 
     public String getInternetFtpServer() {
         return this.internetFtpServer;
     }
 
-    public void setInternetPort(String internetPort) {
-        this.internetPort = internetPort;
-    }
-
     public String getInternetPort() {
         return this.internetPort;
-    }
-
-    public void setIntranetFtpserver(String intranetFtpserver) {
-        this.intranetFtpserver = intranetFtpserver;
     }
 
     public String getIntranetFtpserver() {
         return this.intranetFtpserver;
     }
 
-    public void setIntranetport(String intranetport) {
-        this.intranetport = intranetport;
-    }
-
     public String getIntranetport() {
         return this.intranetport;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPassword() {
         return this.password;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserName() {
         return this.userName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setInternetFtpServer(String internetFtpServer) {
+        this.internetFtpServer = internetFtpServer;
+    }
+
+    public void setInternetPort(String internetPort) {
+        this.internetPort = internetPort;
+    }
+
+    public void setIntranetFtpserver(String intranetFtpserver) {
+        this.intranetFtpserver = intranetFtpserver;
+    }
+
+    public void setIntranetport(String intranetport) {
+        this.intranetport = intranetport;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }

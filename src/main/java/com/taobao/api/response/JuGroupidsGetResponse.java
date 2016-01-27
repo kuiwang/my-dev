@@ -23,12 +23,12 @@ public class JuGroupidsGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> groupIds;
 
-    public void setGroupIds(List<Long> groupIds) {
-        this.groupIds = groupIds;
-    }
-
     public List<Long> getGroupIds() {
         return this.groupIds;
+    }
+
+    public void setGroupIds(List<Long> groupIds) {
+        this.groupIds = groupIds;
     }
 
 }

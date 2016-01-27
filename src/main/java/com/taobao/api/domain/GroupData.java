@@ -64,52 +64,52 @@ public class GroupData extends TaobaoObject {
         return this.groupEndTime;
     }
 
-    public void setGroupEndTime(Date groupEndTime) {
-        this.groupEndTime = groupEndTime;
-    }
-
     public Long getGroupId() {
         return this.groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public String getGroupName() {
         return this.groupName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     public Date getGroupStartTime() {
         return this.groupStartTime;
-    }
-
-    public void setGroupStartTime(Date groupStartTime) {
-        this.groupStartTime = groupStartTime;
     }
 
     public List<ItemData> getItemList() {
         return this.itemList;
     }
 
-    public void setItemList(List<ItemData> itemList) {
-        this.itemList = itemList;
-    }
-
     public Boolean getJuView() {
         return this.juView;
     }
 
-    public void setJuView(Boolean juView) {
-        this.juView = juView;
-    }
-
     public Long getPlatformId() {
         return this.platformId;
+    }
+
+    public void setGroupEndTime(Date groupEndTime) {
+        this.groupEndTime = groupEndTime;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setGroupStartTime(Date groupStartTime) {
+        this.groupStartTime = groupStartTime;
+    }
+
+    public void setItemList(List<ItemData> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setJuView(Boolean juView) {
+        this.juView = juView;
     }
 
     public void setPlatformId(Long platformId) {

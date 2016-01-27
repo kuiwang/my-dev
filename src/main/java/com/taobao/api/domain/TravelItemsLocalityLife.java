@@ -62,52 +62,52 @@ public class TravelItemsLocalityLife extends TaobaoObject {
         return this.chooseLogis;
     }
 
-    public void setChooseLogis(Long chooseLogis) {
-        this.chooseLogis = chooseLogis;
-    }
-
     public String getExpirydate() {
         return this.expirydate;
-    }
-
-    public void setExpirydate(String expirydate) {
-        this.expirydate = expirydate;
     }
 
     public String getMerchant() {
         return this.merchant;
     }
 
-    public void setMerchant(String merchant) {
-        this.merchant = merchant;
-    }
-
     public String getNetworkId() {
         return this.networkId;
-    }
-
-    public void setNetworkId(String networkId) {
-        this.networkId = networkId;
     }
 
     public Long getOnsaleAutoRefundRatio() {
         return this.onsaleAutoRefundRatio;
     }
 
-    public void setOnsaleAutoRefundRatio(Long onsaleAutoRefundRatio) {
-        this.onsaleAutoRefundRatio = onsaleAutoRefundRatio;
-    }
-
     public Long getRefundRatio() {
         return this.refundRatio;
     }
 
-    public void setRefundRatio(Long refundRatio) {
-        this.refundRatio = refundRatio;
-    }
-
     public String getVerification() {
         return this.verification;
+    }
+
+    public void setChooseLogis(Long chooseLogis) {
+        this.chooseLogis = chooseLogis;
+    }
+
+    public void setExpirydate(String expirydate) {
+        this.expirydate = expirydate;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant;
+    }
+
+    public void setNetworkId(String networkId) {
+        this.networkId = networkId;
+    }
+
+    public void setOnsaleAutoRefundRatio(Long onsaleAutoRefundRatio) {
+        this.onsaleAutoRefundRatio = onsaleAutoRefundRatio;
+    }
+
+    public void setRefundRatio(Long refundRatio) {
+        this.refundRatio = refundRatio;
     }
 
     public void setVerification(String verification) {

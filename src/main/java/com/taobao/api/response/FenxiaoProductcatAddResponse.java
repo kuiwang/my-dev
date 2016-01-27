@@ -25,20 +25,20 @@ public class FenxiaoProductcatAddResponse extends TaobaoResponse {
     @ApiField("product_line_id")
     private Long productLineId;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setProductLineId(Long productLineId) {
-        this.productLineId = productLineId;
-    }
-
     public Long getProductLineId() {
         return this.productLineId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setProductLineId(Long productLineId) {
+        this.productLineId = productLineId;
     }
 
 }

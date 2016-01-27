@@ -47,36 +47,36 @@ public class SecurityGroup extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getSecurityGroupId() {
         return this.securityGroupId;
     }
 
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
     public String getSecurityGroupName() {
         return this.securityGroupName;
     }
 
-    public void setSecurityGroupName(String securityGroupName) {
-        this.securityGroupName = securityGroupName;
-    }
-
     public String getVpcId() {
         return this.vpcId;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
+    }
+
+    public void setSecurityGroupName(String securityGroupName) {
+        this.securityGroupName = securityGroupName;
     }
 
     public void setVpcId(String vpcId) {

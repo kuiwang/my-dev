@@ -33,12 +33,12 @@ public class LogisticsTag extends TaobaoObject {
         return this.logisticServiceTagList;
     }
 
-    public void setLogisticServiceTagList(List<LogisticServiceTag> logisticServiceTagList) {
-        this.logisticServiceTagList = logisticServiceTagList;
-    }
-
     public String getOrderId() {
         return this.orderId;
+    }
+
+    public void setLogisticServiceTagList(List<LogisticServiceTag> logisticServiceTagList) {
+        this.logisticServiceTagList = logisticServiceTagList;
     }
 
     public void setOrderId(String orderId) {

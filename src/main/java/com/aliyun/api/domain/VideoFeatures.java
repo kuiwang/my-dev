@@ -59,52 +59,52 @@ public class VideoFeatures extends TaobaoObject {
         return this.bitRate;
     }
 
-    public void setBitRate(Long bitRate) {
-        this.bitRate = bitRate;
-    }
-
     public Long getDuration() {
         return this.duration;
-    }
-
-    public void setDuration(Long duration) {
-        this.duration = duration;
     }
 
     public String getFileFormat() {
         return this.fileFormat;
     }
 
-    public void setFileFormat(String fileFormat) {
-        this.fileFormat = fileFormat;
-    }
-
     public Long getFileSize() {
         return this.fileSize;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
     }
 
     public Long getFrameRate() {
         return this.frameRate;
     }
 
-    public void setFrameRate(Long frameRate) {
-        this.frameRate = frameRate;
-    }
-
     public Long getHeight() {
         return this.height;
     }
 
-    public void setHeight(Long height) {
-        this.height = height;
-    }
-
     public Long getWidth() {
         return this.width;
+    }
+
+    public void setBitRate(Long bitRate) {
+        this.bitRate = bitRate;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    public void setFileFormat(String fileFormat) {
+        this.fileFormat = fileFormat;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setFrameRate(Long frameRate) {
+        this.frameRate = frameRate;
+    }
+
+    public void setHeight(Long height) {
+        this.height = height;
     }
 
     public void setWidth(Long width) {

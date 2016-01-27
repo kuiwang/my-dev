@@ -54,36 +54,36 @@ public class SuiteConfDO extends TaobaoObject {
         return this.inputs;
     }
 
-    public void setInputs(List<Long> inputs) {
-        this.inputs = inputs;
-    }
-
     public Long getMaxSize() {
         return this.maxSize;
-    }
-
-    public void setMaxSize(Long maxSize) {
-        this.maxSize = maxSize;
     }
 
     public Long getMaxTotalNumber() {
         return this.maxTotalNumber;
     }
 
-    public void setMaxTotalNumber(Long maxTotalNumber) {
-        this.maxTotalNumber = maxTotalNumber;
-    }
-
     public Long getRootCatId() {
         return this.rootCatId;
     }
 
-    public void setRootCatId(Long rootCatId) {
-        this.rootCatId = rootCatId;
-    }
-
     public Long getSuiteCatId() {
         return this.suiteCatId;
+    }
+
+    public void setInputs(List<Long> inputs) {
+        this.inputs = inputs;
+    }
+
+    public void setMaxSize(Long maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public void setMaxTotalNumber(Long maxTotalNumber) {
+        this.maxTotalNumber = maxTotalNumber;
+    }
+
+    public void setRootCatId(Long rootCatId) {
+        this.rootCatId = rootCatId;
     }
 
     public void setSuiteCatId(Long suiteCatId) {

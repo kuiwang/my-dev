@@ -166,188 +166,188 @@ public class SHotelInfoObject extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getBrand() {
         return this.brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public Long getCity() {
         return this.city;
     }
 
-    public void setCity(Long city) {
-        this.city = city;
-    }
-
     public String getDecorateTime() {
         return this.decorateTime;
-    }
-
-    public void setDecorateTime(String decorateTime) {
-        this.decorateTime = decorateTime;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getDistrict() {
         return this.district;
-    }
-
-    public void setDistrict(Long district) {
-        this.district = district;
     }
 
     public String getH5DetailUrl() {
         return this.h5DetailUrl;
     }
 
-    public void setH5DetailUrl(String h5DetailUrl) {
-        this.h5DetailUrl = h5DetailUrl;
-    }
-
     public String getHotelFacilities() {
         return this.hotelFacilities;
-    }
-
-    public void setHotelFacilities(String hotelFacilities) {
-        this.hotelFacilities = hotelFacilities;
     }
 
     public String getLat() {
         return this.lat;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
     public String getLng() {
         return this.lng;
-    }
-
-    public void setLng(String lng) {
-        this.lng = lng;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getOpeningTime() {
         return this.openingTime;
-    }
-
-    public void setOpeningTime(String openingTime) {
-        this.openingTime = openingTime;
     }
 
     public String getPcDetailUrl() {
         return this.pcDetailUrl;
     }
 
-    public void setPcDetailUrl(String pcDetailUrl) {
-        this.pcDetailUrl = pcDetailUrl;
-    }
-
     public String getPicUrls() {
         return this.picUrls;
-    }
-
-    public void setPicUrls(String picUrls) {
-        this.picUrls = picUrls;
     }
 
     public Long getProvince() {
         return this.province;
     }
 
-    public void setProvince(Long province) {
-        this.province = province;
-    }
-
     public Long getRateNumber() {
         return this.rateNumber;
-    }
-
-    public void setRateNumber(Long rateNumber) {
-        this.rateNumber = rateNumber;
     }
 
     public String getRateScore() {
         return this.rateScore;
     }
 
-    public void setRateScore(String rateScore) {
-        this.rateScore = rateScore;
-    }
-
     public List<SRoomType> getRooms() {
         return this.rooms;
-    }
-
-    public void setRooms(List<SRoomType> rooms) {
-        this.rooms = rooms;
     }
 
     public String getServices() {
         return this.services;
     }
 
-    public void setServices(String services) {
-        this.services = services;
-    }
-
     public Long getShid() {
         return this.shid;
-    }
-
-    public void setShid(Long shid) {
-        this.shid = shid;
     }
 
     public String getStar() {
         return this.star;
     }
 
-    public void setStar(String star) {
-        this.star = star;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public String getTel() {
         return this.tel;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setCity(Long city) {
+        this.city = city;
+    }
+
+    public void setDecorateTime(String decorateTime) {
+        this.decorateTime = decorateTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDistrict(Long district) {
+        this.district = district;
+    }
+
+    public void setH5DetailUrl(String h5DetailUrl) {
+        this.h5DetailUrl = h5DetailUrl;
+    }
+
+    public void setHotelFacilities(String hotelFacilities) {
+        this.hotelFacilities = hotelFacilities;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOpeningTime(String openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public void setPcDetailUrl(String pcDetailUrl) {
+        this.pcDetailUrl = pcDetailUrl;
+    }
+
+    public void setPicUrls(String picUrls) {
+        this.picUrls = picUrls;
+    }
+
+    public void setProvince(Long province) {
+        this.province = province;
+    }
+
+    public void setRateNumber(Long rateNumber) {
+        this.rateNumber = rateNumber;
+    }
+
+    public void setRateScore(String rateScore) {
+        this.rateScore = rateScore;
+    }
+
+    public void setRooms(List<SRoomType> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setServices(String services) {
+        this.services = services;
+    }
+
+    public void setShid(Long shid) {
+        this.shid = shid;
+    }
+
+    public void setStar(String star) {
+        this.star = star;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public void setType(String type) {

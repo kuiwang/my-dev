@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmGrademktMemberQueryResponse;
  */
 public class CrmGrademktMemberQueryRequest implements TaobaoRequest<CrmGrademktMemberQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 会员nick
      */
@@ -32,48 +26,53 @@ public class CrmGrademktMemberQueryRequest implements TaobaoRequest<CrmGrademktM
      */
     private String feather;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 会员属性-json format
      * 生成方法见http://open.taobao.com/doc/detail.htm?id=101281
      */
     private String parameter;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(feather, "feather");
+        RequestCheckUtils.checkNotEmpty(parameter, "parameter");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.grademkt.member.query";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setFeather(String feather) {
-        this.feather = feather;
-    }
-
     public String getFeather() {
         return this.feather;
     }
 
-    public void setParameter(String parameter) {
-        this.parameter = parameter;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getParameter() {
         return this.parameter;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmGrademktMemberQueryResponse> getResponseClass() {
+        return CrmGrademktMemberQueryResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.grademkt.member.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -85,6 +84,12 @@ public class CrmGrademktMemberQueryRequest implements TaobaoRequest<CrmGrademktM
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,17 +97,20 @@ public class CrmGrademktMemberQueryRequest implements TaobaoRequest<CrmGrademktM
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGrademktMemberQueryResponse> getResponseClass() {
-        return CrmGrademktMemberQueryResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(feather, "feather");
-        RequestCheckUtils.checkNotEmpty(parameter, "parameter");
+    public void setFeather(String feather) {
+        this.feather = feather;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

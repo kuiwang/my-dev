@@ -60,52 +60,52 @@ public class Meal extends TaobaoObject {
         return this.itemList;
     }
 
-    public void setItemList(String itemList) {
-        this.itemList = itemList;
-    }
-
     public Long getMealId() {
         return this.mealId;
-    }
-
-    public void setMealId(Long mealId) {
-        this.mealId = mealId;
     }
 
     public String getMealMemo() {
         return this.mealMemo;
     }
 
-    public void setMealMemo(String mealMemo) {
-        this.mealMemo = mealMemo;
-    }
-
     public String getMealName() {
         return this.mealName;
-    }
-
-    public void setMealName(String mealName) {
-        this.mealName = mealName;
     }
 
     public String getMealPrice() {
         return this.mealPrice;
     }
 
-    public void setMealPrice(String mealPrice) {
-        this.mealPrice = mealPrice;
-    }
-
     public Long getPostageId() {
         return this.postageId;
     }
 
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setItemList(String itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setMealId(Long mealId) {
+        this.mealId = mealId;
+    }
+
+    public void setMealMemo(String mealMemo) {
+        this.mealMemo = mealMemo;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
+    }
+
+    public void setMealPrice(String mealPrice) {
+        this.mealPrice = mealPrice;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
     }
 
     public void setStatus(String status) {

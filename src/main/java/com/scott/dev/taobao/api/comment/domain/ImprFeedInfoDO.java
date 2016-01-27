@@ -8,14 +8,14 @@ import java.util.Date;
 public class ImprFeedInfoDO {
 
     /*
+     * 1:主评 2:追评
+     */
+    private Number bizType;
+
+    /*
      * 评价内容
      */
     private String feedback;
-
-    /*
-     * 从评价内容里提取的语义标签
-     */
-    private String[] imprWords;
 
     /*
      * 评价创建时间
@@ -28,47 +28,47 @@ public class ImprFeedInfoDO {
     private Date gmtModified;
 
     /*
-     * 1:主评 2:追评
+     * 从评价内容里提取的语义标签
      */
-    private Number bizType;
+    private String[] imprWords;
+
+    public Number getBizType() {
+        return bizType;
+    }
 
     public String getFeedback() {
         return feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
-
-    public String[] getImprWords() {
-        return imprWords;
-    }
-
-    public void setImprWords(String[] imprWords) {
-        this.imprWords = imprWords;
     }
 
     public Date getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Date getGmtModified() {
         return gmtModified;
+    }
+
+    public String[] getImprWords() {
+        return imprWords;
+    }
+
+    public void setBizType(Number bizType) {
+        this.bizType = bizType;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
 
-    public Number getBizType() {
-        return bizType;
-    }
-
-    public void setBizType(Number bizType) {
-        this.bizType = bizType;
+    public void setImprWords(String[] imprWords) {
+        this.imprWords = imprWords;
     }
 }

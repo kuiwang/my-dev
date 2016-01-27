@@ -17,12 +17,6 @@ import com.taobao.api.response.PromotionCouponAddResponse;
  */
 public class PromotionCouponAddRequest implements TaobaoRequest<PromotionCouponAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订单满多少元才能用这个优惠券，500就是满500元才能使用
      */
@@ -40,55 +34,57 @@ public class PromotionCouponAddRequest implements TaobaoRequest<PromotionCouponA
      */
     private Date endTime;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 优惠券的生效时间
      */
     private Date startTime;
 
-    public void setCondition(Long condition) {
-        this.condition = condition;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(denominations, "denominations");
+        RequestCheckUtils.checkMaxValue(denominations, 100L, "denominations");
+        RequestCheckUtils.checkMinValue(denominations, 3L, "denominations");
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.coupon.add";
     }
 
     public Long getCondition() {
         return this.condition;
     }
 
-    public void setDenominations(Long denominations) {
-        this.denominations = denominations;
-    }
-
     public Long getDenominations() {
         return this.denominations;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<PromotionCouponAddResponse> getResponseClass() {
+        return PromotionCouponAddResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotion.coupon.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("condition", this.condition);
@@ -101,6 +97,12 @@ public class PromotionCouponAddRequest implements TaobaoRequest<PromotionCouponA
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -108,18 +110,24 @@ public class PromotionCouponAddRequest implements TaobaoRequest<PromotionCouponA
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionCouponAddResponse> getResponseClass() {
-        return PromotionCouponAddResponse.class;
+    public void setCondition(Long condition) {
+        this.condition = condition;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(denominations, "denominations");
-        RequestCheckUtils.checkMaxValue(denominations, 100L, "denominations");
-        RequestCheckUtils.checkMinValue(denominations, 3L, "denominations");
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+    public void setDenominations(Long denominations) {
+        this.denominations = denominations;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

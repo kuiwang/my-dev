@@ -20,12 +20,12 @@ public class ItemQualificationSchemaGetResponse extends TaobaoResponse {
     @ApiField("qualifications")
     private Qualifications qualifications;
 
-    public void setQualifications(Qualifications qualifications) {
-        this.qualifications = qualifications;
-    }
-
     public Qualifications getQualifications() {
         return this.qualifications;
+    }
+
+    public void setQualifications(Qualifications qualifications) {
+        this.qualifications = qualifications;
     }
 
 }

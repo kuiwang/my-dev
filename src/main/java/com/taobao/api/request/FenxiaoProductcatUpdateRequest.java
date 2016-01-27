@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoProductcatUpdateResponse;
 public class FenxiaoProductcatUpdateRequest implements
         TaobaoRequest<FenxiaoProductcatUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销默认采购价比例，注意：100.00%，则输入为10000<br />
      * 支持最大值为：99999<br />
@@ -36,6 +30,8 @@ public class FenxiaoProductcatUpdateRequest implements
      * 支持最小值为：100
      */
     private Long dealerCostPercent;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品线名称<br />
@@ -63,66 +59,64 @@ public class FenxiaoProductcatUpdateRequest implements
      */
     private Long retailLowPercent;
 
-    public void setAgentCostPercent(Long agentCostPercent) {
-        this.agentCostPercent = agentCostPercent;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(agentCostPercent, 99999L, "agentCostPercent");
+        RequestCheckUtils.checkMinValue(agentCostPercent, 100L, "agentCostPercent");
+        RequestCheckUtils.checkMaxValue(dealerCostPercent, 99999L, "dealerCostPercent");
+        RequestCheckUtils.checkMinValue(dealerCostPercent, 100L, "dealerCostPercent");
+        RequestCheckUtils.checkMaxLength(name, 10, "name");
+        RequestCheckUtils.checkNotEmpty(productLineId, "productLineId");
+        RequestCheckUtils.checkMaxValue(retailHighPercent, 99999L, "retailHighPercent");
+        RequestCheckUtils.checkMinValue(retailHighPercent, 100L, "retailHighPercent");
+        RequestCheckUtils.checkMaxValue(retailLowPercent, 99999L, "retailLowPercent");
+        RequestCheckUtils.checkMinValue(retailLowPercent, 100L, "retailLowPercent");
     }
 
     public Long getAgentCostPercent() {
         return this.agentCostPercent;
     }
 
-    public void setDealerCostPercent(Long dealerCostPercent) {
-        this.dealerCostPercent = dealerCostPercent;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.productcat.update";
     }
 
     public Long getDealerCostPercent() {
         return this.dealerCostPercent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setProductLineId(Long productLineId) {
-        this.productLineId = productLineId;
-    }
-
     public Long getProductLineId() {
         return this.productLineId;
     }
 
-    public void setRetailHighPercent(Long retailHighPercent) {
-        this.retailHighPercent = retailHighPercent;
+    @Override
+    public Class<FenxiaoProductcatUpdateResponse> getResponseClass() {
+        return FenxiaoProductcatUpdateResponse.class;
     }
 
     public Long getRetailHighPercent() {
         return this.retailHighPercent;
     }
 
-    public void setRetailLowPercent(Long retailLowPercent) {
-        this.retailLowPercent = retailLowPercent;
-    }
-
     public Long getRetailLowPercent() {
         return this.retailLowPercent;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.productcat.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("agent_cost_percent", this.agentCostPercent);
@@ -137,6 +131,12 @@ public class FenxiaoProductcatUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -144,24 +144,32 @@ public class FenxiaoProductcatUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductcatUpdateResponse> getResponseClass() {
-        return FenxiaoProductcatUpdateResponse.class;
+    public void setAgentCostPercent(Long agentCostPercent) {
+        this.agentCostPercent = agentCostPercent;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(agentCostPercent, 99999L, "agentCostPercent");
-        RequestCheckUtils.checkMinValue(agentCostPercent, 100L, "agentCostPercent");
-        RequestCheckUtils.checkMaxValue(dealerCostPercent, 99999L, "dealerCostPercent");
-        RequestCheckUtils.checkMinValue(dealerCostPercent, 100L, "dealerCostPercent");
-        RequestCheckUtils.checkMaxLength(name, 10, "name");
-        RequestCheckUtils.checkNotEmpty(productLineId, "productLineId");
-        RequestCheckUtils.checkMaxValue(retailHighPercent, 99999L, "retailHighPercent");
-        RequestCheckUtils.checkMinValue(retailHighPercent, 100L, "retailHighPercent");
-        RequestCheckUtils.checkMaxValue(retailLowPercent, 99999L, "retailLowPercent");
-        RequestCheckUtils.checkMinValue(retailLowPercent, 100L, "retailLowPercent");
+    public void setDealerCostPercent(Long dealerCostPercent) {
+        this.dealerCostPercent = dealerCostPercent;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProductLineId(Long productLineId) {
+        this.productLineId = productLineId;
+    }
+
+    public void setRetailHighPercent(Long retailHighPercent) {
+        this.retailHighPercent = retailHighPercent;
+    }
+
+    public void setRetailLowPercent(Long retailLowPercent) {
+        this.retailLowPercent = retailLowPercent;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

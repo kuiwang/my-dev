@@ -31,12 +31,12 @@ public class AutoSnapshotExecutionStatusType extends TaobaoObject {
         return this.dataDiskExcutionStatus;
     }
 
-    public void setDataDiskExcutionStatus(String dataDiskExcutionStatus) {
-        this.dataDiskExcutionStatus = dataDiskExcutionStatus;
-    }
-
     public String getSystemDiskExcutionStatus() {
         return this.systemDiskExcutionStatus;
+    }
+
+    public void setDataDiskExcutionStatus(String dataDiskExcutionStatus) {
+        this.dataDiskExcutionStatus = dataDiskExcutionStatus;
     }
 
     public void setSystemDiskExcutionStatus(String systemDiskExcutionStatus) {

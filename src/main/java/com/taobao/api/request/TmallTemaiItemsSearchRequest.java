@@ -16,16 +16,12 @@ import com.taobao.api.response.TmallTemaiItemsSearchResponse;
  */
 public class TmallTemaiItemsSearchRequest implements TaobaoRequest<TmallTemaiItemsSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 特卖前台类目id，传入的必须是特卖类目50100982或其下的二级类目。
      */
     private Long cat;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 排序类型。类型包括： s: 人气排序 p: 价格从低到高; pd: 价格从高到低; d: 月销量从高到低; pt: 按发布时间排序.
@@ -39,42 +35,43 @@ public class TmallTemaiItemsSearchRequest implements TaobaoRequest<TmallTemaiIte
      */
     private Long start;
 
-    public void setCat(Long cat) {
-        this.cat = cat;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cat, "cat");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.temai.items.search";
     }
 
     public Long getCat() {
         return this.cat;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TmallTemaiItemsSearchResponse> getResponseClass() {
+        return TmallTemaiItemsSearchResponse.class;
     }
 
     public String getSort() {
         return this.sort;
     }
 
-    public void setStart(Long start) {
-        this.start = start;
-    }
-
     public Long getStart() {
         return this.start;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.temai.items.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cat", this.cat);
@@ -86,6 +83,12 @@ public class TmallTemaiItemsSearchRequest implements TaobaoRequest<TmallTemaiIte
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,15 +96,20 @@ public class TmallTemaiItemsSearchRequest implements TaobaoRequest<TmallTemaiIte
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallTemaiItemsSearchResponse> getResponseClass() {
-        return TmallTemaiItemsSearchResponse.class;
+    public void setCat(Long cat) {
+        this.cat = cat;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cat, "cat");
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStart(Long start) {
+        this.start = start;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

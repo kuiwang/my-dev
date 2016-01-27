@@ -49,36 +49,36 @@ public class EvalDetail extends TaobaoObject {
         return this.evalCode;
     }
 
-    public void setEvalCode(Long evalCode) {
-        this.evalCode = evalCode;
-    }
-
     public String getEvalRecer() {
         return this.evalRecer;
-    }
-
-    public void setEvalRecer(String evalRecer) {
-        this.evalRecer = evalRecer;
     }
 
     public String getEvalSender() {
         return this.evalSender;
     }
 
-    public void setEvalSender(String evalSender) {
-        this.evalSender = evalSender;
-    }
-
     public Date getEvalTime() {
         return this.evalTime;
     }
 
-    public void setEvalTime(Date evalTime) {
-        this.evalTime = evalTime;
-    }
-
     public Date getSendTime() {
         return this.sendTime;
+    }
+
+    public void setEvalCode(Long evalCode) {
+        this.evalCode = evalCode;
+    }
+
+    public void setEvalRecer(String evalRecer) {
+        this.evalRecer = evalRecer;
+    }
+
+    public void setEvalSender(String evalSender) {
+        this.evalSender = evalSender;
+    }
+
+    public void setEvalTime(Date evalTime) {
+        this.evalTime = evalTime;
     }
 
     public void setSendTime(Date sendTime) {

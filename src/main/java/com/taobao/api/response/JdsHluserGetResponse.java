@@ -20,12 +20,12 @@ public class JdsHluserGetResponse extends TaobaoResponse {
     @ApiField("hl_user")
     private HlUserDO hlUser;
 
-    public void setHlUser(HlUserDO hlUser) {
-        this.hlUser = hlUser;
-    }
-
     public HlUserDO getHlUser() {
         return this.hlUser;
+    }
+
+    public void setHlUser(HlUserDO hlUser) {
+        this.hlUser = hlUser;
     }
 
 }

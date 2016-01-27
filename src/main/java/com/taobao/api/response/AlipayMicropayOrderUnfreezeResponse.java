@@ -20,12 +20,12 @@ public class AlipayMicropayOrderUnfreezeResponse extends TaobaoResponse {
     @ApiField("unfreeze_order_detail")
     private UnfreezeOrderDetail unfreezeOrderDetail;
 
-    public void setUnfreezeOrderDetail(UnfreezeOrderDetail unfreezeOrderDetail) {
-        this.unfreezeOrderDetail = unfreezeOrderDetail;
-    }
-
     public UnfreezeOrderDetail getUnfreezeOrderDetail() {
         return this.unfreezeOrderDetail;
+    }
+
+    public void setUnfreezeOrderDetail(UnfreezeOrderDetail unfreezeOrderDetail) {
+        this.unfreezeOrderDetail = unfreezeOrderDetail;
     }
 
 }

@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderQueryResponse;
 public class FenxiaoDealerRequisitionorderQueryRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 经销采购单编号。 多个编号用英文符号的逗号隔开。最多支持50个经销采购单编号的查询。
      */
@@ -36,34 +30,42 @@ public class FenxiaoDealerRequisitionorderQueryRequest implements
      */
     private String fields;
 
-    public void setDealerOrderIds(String dealerOrderIds) {
-        this.dealerOrderIds = dealerOrderIds;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dealerOrderIds, "dealerOrderIds");
+        RequestCheckUtils.checkMaxListSize(dealerOrderIds, 50, "dealerOrderIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.query";
     }
 
     public String getDealerOrderIds() {
         return this.dealerOrderIds;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderQueryResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderQueryResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("dealer_order_ids", this.dealerOrderIds);
@@ -74,6 +76,12 @@ public class FenxiaoDealerRequisitionorderQueryRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,16 +89,16 @@ public class FenxiaoDealerRequisitionorderQueryRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderQueryResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderQueryResponse.class;
+    public void setDealerOrderIds(String dealerOrderIds) {
+        this.dealerOrderIds = dealerOrderIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dealerOrderIds, "dealerOrderIds");
-        RequestCheckUtils.checkMaxListSize(dealerOrderIds, 50, "dealerOrderIds");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

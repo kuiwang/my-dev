@@ -17,12 +17,6 @@ import com.taobao.api.response.AlibabaXiamiApiContractGiftSendResponse;
 public class AlibabaXiamiApiContractGiftSendRequest implements
         TaobaoRequest<AlibabaXiamiApiContractGiftSendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称
      */
@@ -32,6 +26,8 @@ public class AlibabaXiamiApiContractGiftSendRequest implements
      * 来源，可以传isv的应用名称，用来区分不同的isv
      */
     private String comefrom;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 关联订单ID，必须保证唯一，可以传时间戳或者isv赠送详情表的主键ID
@@ -48,71 +44,61 @@ public class AlibabaXiamiApiContractGiftSendRequest implements
      */
     private Long shopId;
 
+    private Long timestamp;
+
     /**
      * 礼包类型
      */
     private Long type;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(comefrom, "comefrom");
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+        RequestCheckUtils.checkNotEmpty(relationId, "relationId");
+        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
+        RequestCheckUtils.checkNotEmpty(type, "type");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.xiami.api.contract.gift.send";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setComefrom(String comefrom) {
-        this.comefrom = comefrom;
-    }
-
     public String getComefrom() {
         return this.comefrom;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setRelationId(String relationId) {
-        this.relationId = relationId;
-    }
-
     public String getRelationId() {
         return this.relationId;
     }
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
+    @Override
+    public Class<AlibabaXiamiApiContractGiftSendResponse> getResponseClass() {
+        return AlibabaXiamiApiContractGiftSendResponse.class;
     }
 
     public Long getShopId() {
         return this.shopId;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.xiami.api.contract.gift.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -127,6 +113,16 @@ public class AlibabaXiamiApiContractGiftSendRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,20 +130,32 @@ public class AlibabaXiamiApiContractGiftSendRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaXiamiApiContractGiftSendResponse> getResponseClass() {
-        return AlibabaXiamiApiContractGiftSendResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(comefrom, "comefrom");
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
-        RequestCheckUtils.checkNotEmpty(relationId, "relationId");
-        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
-        RequestCheckUtils.checkNotEmpty(type, "type");
+    public void setComefrom(String comefrom) {
+        this.comefrom = comefrom;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setRelationId(String relationId) {
+        this.relationId = relationId;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

@@ -16,18 +16,16 @@ import com.taobao.api.response.TmcMessageProduceResponse;
  */
 public class TmcMessageProduceRequest implements TaobaoRequest<TmcMessageProduceResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 消息内容的JSON表述，必须按照topic的定义来填充<br />
      * 支持最大长度为：2000<br />
      * 支持的最大列表长度为：2000
      */
     private String content;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
 
     /**
      * 发布消息关联的主题<br />
@@ -36,34 +34,36 @@ public class TmcMessageProduceRequest implements TaobaoRequest<TmcMessageProduce
      */
     private String topic;
 
-    public void setContent(String content) {
-        this.content = content;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(content, "content");
+        RequestCheckUtils.checkMaxLength(content, 2000, "content");
+        RequestCheckUtils.checkNotEmpty(topic, "topic");
+        RequestCheckUtils.checkMaxLength(topic, 256, "topic");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tmc.message.produce";
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getTopic() {
-        return this.topic;
+    @Override
+    public Class<TmcMessageProduceResponse> getResponseClass() {
+        return TmcMessageProduceResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tmc.message.produce";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("content", this.content);
@@ -74,6 +74,16 @@ public class TmcMessageProduceRequest implements TaobaoRequest<TmcMessageProduce
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTopic() {
+        return this.topic;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,18 +91,16 @@ public class TmcMessageProduceRequest implements TaobaoRequest<TmcMessageProduce
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcMessageProduceResponse> getResponseClass() {
-        return TmcMessageProduceResponse.class;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(content, "content");
-        RequestCheckUtils.checkMaxLength(content, 2000, "content");
-        RequestCheckUtils.checkNotEmpty(topic, "topic");
-        RequestCheckUtils.checkMaxLength(topic, 256, "topic");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }

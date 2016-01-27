@@ -16,12 +16,6 @@ import com.taobao.api.response.FenxiaoDiscountAddResponse;
  */
 public class FenxiaoDiscountAddRequest implements TaobaoRequest<FenxiaoDiscountAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 折扣名称,长度不能超过25字节
      */
@@ -37,6 +31,8 @@ public class FenxiaoDiscountAddRequest implements TaobaoRequest<FenxiaoDiscountA
      */
     private String discountValues;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 会员等级的id或者分销商id，例如：”1001,2001,1002”
      */
@@ -47,58 +43,55 @@ public class FenxiaoDiscountAddRequest implements TaobaoRequest<FenxiaoDiscountA
      */
     private String targetTypes;
 
-    public void setDiscountName(String discountName) {
-        this.discountName = discountName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(discountName, "discountName");
+        RequestCheckUtils.checkNotEmpty(discountTypes, "discountTypes");
+        RequestCheckUtils.checkNotEmpty(discountValues, "discountValues");
+        RequestCheckUtils.checkNotEmpty(targetIds, "targetIds");
+        RequestCheckUtils.checkNotEmpty(targetTypes, "targetTypes");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.discount.add";
     }
 
     public String getDiscountName() {
         return this.discountName;
     }
 
-    public void setDiscountTypes(String discountTypes) {
-        this.discountTypes = discountTypes;
-    }
-
     public String getDiscountTypes() {
         return this.discountTypes;
-    }
-
-    public void setDiscountValues(String discountValues) {
-        this.discountValues = discountValues;
     }
 
     public String getDiscountValues() {
         return this.discountValues;
     }
 
-    public void setTargetIds(String targetIds) {
-        this.targetIds = targetIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<FenxiaoDiscountAddResponse> getResponseClass() {
+        return FenxiaoDiscountAddResponse.class;
     }
 
     public String getTargetIds() {
         return this.targetIds;
     }
 
-    public void setTargetTypes(String targetTypes) {
-        this.targetTypes = targetTypes;
-    }
-
     public String getTargetTypes() {
         return this.targetTypes;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.discount.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("discount_name", this.discountName);
@@ -112,6 +105,12 @@ public class FenxiaoDiscountAddRequest implements TaobaoRequest<FenxiaoDiscountA
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,19 +118,28 @@ public class FenxiaoDiscountAddRequest implements TaobaoRequest<FenxiaoDiscountA
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDiscountAddResponse> getResponseClass() {
-        return FenxiaoDiscountAddResponse.class;
+    public void setDiscountName(String discountName) {
+        this.discountName = discountName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(discountName, "discountName");
-        RequestCheckUtils.checkNotEmpty(discountTypes, "discountTypes");
-        RequestCheckUtils.checkNotEmpty(discountValues, "discountValues");
-        RequestCheckUtils.checkNotEmpty(targetIds, "targetIds");
-        RequestCheckUtils.checkNotEmpty(targetTypes, "targetTypes");
+    public void setDiscountTypes(String discountTypes) {
+        this.discountTypes = discountTypes;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDiscountValues(String discountValues) {
+        this.discountValues = discountValues;
+    }
+
+    public void setTargetIds(String targetIds) {
+        this.targetIds = targetIds;
+    }
+
+    public void setTargetTypes(String targetTypes) {
+        this.targetTypes = targetTypes;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

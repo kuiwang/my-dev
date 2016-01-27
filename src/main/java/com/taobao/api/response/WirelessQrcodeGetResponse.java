@@ -19,12 +19,12 @@ public class WirelessQrcodeGetResponse extends TaobaoResponse {
     @ApiField("module")
     private String module;
 
-    public void setModule(String module) {
-        this.module = module;
-    }
-
     public String getModule() {
         return this.module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 
 }

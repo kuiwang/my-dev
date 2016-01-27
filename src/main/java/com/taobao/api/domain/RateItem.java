@@ -29,12 +29,12 @@ public class RateItem extends TaobaoObject {
         return this.feedback;
     }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
-
     public String getNick() {
         return this.nick;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     public void setNick(String nick) {

@@ -30,20 +30,20 @@ public class WlbItemBatchQueryResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setItemInventoryBatchList(List<WlbItemBatchInventory> itemInventoryBatchList) {
-        this.itemInventoryBatchList = itemInventoryBatchList;
-    }
-
     public List<WlbItemBatchInventory> getItemInventoryBatchList() {
         return this.itemInventoryBatchList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setItemInventoryBatchList(List<WlbItemBatchInventory> itemInventoryBatchList) {
+        this.itemInventoryBatchList = itemInventoryBatchList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

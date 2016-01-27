@@ -19,12 +19,12 @@ public class OnlineTimeById {
         return this.onlineTimes;
     }
 
-    public void setOnlineTimes(Long onlineTimes) {
-        this.onlineTimes = onlineTimes;
-    }
-
     public String getServiceStaffId() {
         return this.serviceStaffId;
+    }
+
+    public void setOnlineTimes(Long onlineTimes) {
+        this.onlineTimes = onlineTimes;
     }
 
     public void setServiceStaffId(String serviceStaffId) {

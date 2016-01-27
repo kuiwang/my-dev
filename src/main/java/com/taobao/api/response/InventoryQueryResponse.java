@@ -32,20 +32,20 @@ public class InventoryQueryResponse extends TaobaoResponse {
     @ApiField("tip_info")
     private List<TipInfo> tipInfos;
 
-    public void setItemInventorys(List<InventorySum> itemInventorys) {
-        this.itemInventorys = itemInventorys;
-    }
-
     public List<InventorySum> getItemInventorys() {
         return this.itemInventorys;
     }
 
-    public void setTipInfos(List<TipInfo> tipInfos) {
-        this.tipInfos = tipInfos;
-    }
-
     public List<TipInfo> getTipInfos() {
         return this.tipInfos;
+    }
+
+    public void setItemInventorys(List<InventorySum> itemInventorys) {
+        this.itemInventorys = itemInventorys;
+    }
+
+    public void setTipInfos(List<TipInfo> tipInfos) {
+        this.tipInfos = tipInfos;
     }
 
 }

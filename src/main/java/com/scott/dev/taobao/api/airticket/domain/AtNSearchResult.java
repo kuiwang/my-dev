@@ -73,76 +73,76 @@ public class AtNSearchResult {
         return this.activityMapJson;
     }
 
-    public void setActivityMapJson(String activityMapJson) {
-        this.activityMapJson = activityMapJson;
-    }
-
     public String getAgentInfoMap() {
         return this.agentInfoMap;
-    }
-
-    public void setAgentInfoMap(String agentInfoMap) {
-        this.agentInfoMap = agentInfoMap;
     }
 
     public String getAirlineInfoMap() {
         return this.airlineInfoMap;
     }
 
-    public void setAirlineInfoMap(String airlineInfoMap) {
-        this.airlineInfoMap = airlineInfoMap;
-    }
-
     public String getAirportInfoMap() {
         return this.airportInfoMap;
-    }
-
-    public void setAirportInfoMap(String airportInfoMap) {
-        this.airportInfoMap = airportInfoMap;
     }
 
     public String getCabinInfoMap() {
         return this.cabinInfoMap;
     }
 
-    public void setCabinInfoMap(String cabinInfoMap) {
-        this.cabinInfoMap = cabinInfoMap;
-    }
-
     public String getCityInfoMap() {
         return this.cityInfoMap;
-    }
-
-    public void setCityInfoMap(String cityInfoMap) {
-        this.cityInfoMap = cityInfoMap;
     }
 
     public String getFlightInfoMap() {
         return this.flightInfoMap;
     }
 
-    public void setFlightInfoMap(String flightInfoMap) {
-        this.flightInfoMap = flightInfoMap;
-    }
-
     public String getFlightTypeInfoMap() {
         return this.flightTypeInfoMap;
-    }
-
-    public void setFlightTypeInfoMap(String flightTypeInfoMap) {
-        this.flightTypeInfoMap = flightTypeInfoMap;
     }
 
     public String getInsurePromotionInfoMapJson() {
         return this.insurePromotionInfoMapJson;
     }
 
-    public void setInsurePromotionInfoMapJson(String insurePromotionInfoMapJson) {
-        this.insurePromotionInfoMapJson = insurePromotionInfoMapJson;
-    }
-
     public List<AtNSearchItemVO> getItems() {
         return this.items;
+    }
+
+    public void setActivityMapJson(String activityMapJson) {
+        this.activityMapJson = activityMapJson;
+    }
+
+    public void setAgentInfoMap(String agentInfoMap) {
+        this.agentInfoMap = agentInfoMap;
+    }
+
+    public void setAirlineInfoMap(String airlineInfoMap) {
+        this.airlineInfoMap = airlineInfoMap;
+    }
+
+    public void setAirportInfoMap(String airportInfoMap) {
+        this.airportInfoMap = airportInfoMap;
+    }
+
+    public void setCabinInfoMap(String cabinInfoMap) {
+        this.cabinInfoMap = cabinInfoMap;
+    }
+
+    public void setCityInfoMap(String cityInfoMap) {
+        this.cityInfoMap = cityInfoMap;
+    }
+
+    public void setFlightInfoMap(String flightInfoMap) {
+        this.flightInfoMap = flightInfoMap;
+    }
+
+    public void setFlightTypeInfoMap(String flightTypeInfoMap) {
+        this.flightTypeInfoMap = flightTypeInfoMap;
+    }
+
+    public void setInsurePromotionInfoMapJson(String insurePromotionInfoMapJson) {
+        this.insurePromotionInfoMapJson = insurePromotionInfoMapJson;
     }
 
     public void setItems(List<AtNSearchItemVO> items) {

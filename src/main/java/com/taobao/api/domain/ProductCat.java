@@ -59,52 +59,52 @@ public class ProductCat extends TaobaoObject {
         return this.costPercentAgent;
     }
 
-    public void setCostPercentAgent(String costPercentAgent) {
-        this.costPercentAgent = costPercentAgent;
-    }
-
     public String getCostPercentDealer() {
         return this.costPercentDealer;
-    }
-
-    public void setCostPercentDealer(String costPercentDealer) {
-        this.costPercentDealer = costPercentDealer;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getProductNum() {
         return this.productNum;
     }
 
-    public void setProductNum(Long productNum) {
-        this.productNum = productNum;
-    }
-
     public String getRetailHighPercent() {
         return this.retailHighPercent;
     }
 
-    public void setRetailHighPercent(String retailHighPercent) {
-        this.retailHighPercent = retailHighPercent;
-    }
-
     public String getRetailLowPercent() {
         return this.retailLowPercent;
+    }
+
+    public void setCostPercentAgent(String costPercentAgent) {
+        this.costPercentAgent = costPercentAgent;
+    }
+
+    public void setCostPercentDealer(String costPercentDealer) {
+        this.costPercentDealer = costPercentDealer;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProductNum(Long productNum) {
+        this.productNum = productNum;
+    }
+
+    public void setRetailHighPercent(String retailHighPercent) {
+        this.retailHighPercent = retailHighPercent;
     }
 
     public void setRetailLowPercent(String retailLowPercent) {

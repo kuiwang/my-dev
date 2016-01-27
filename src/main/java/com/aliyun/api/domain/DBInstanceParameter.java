@@ -35,20 +35,20 @@ public class DBInstanceParameter extends TaobaoObject {
         return this.parameterDescription;
     }
 
-    public void setParameterDescription(String parameterDescription) {
-        this.parameterDescription = parameterDescription;
-    }
-
     public String getParameterName() {
         return this.parameterName;
     }
 
-    public void setParameterName(String parameterName) {
-        this.parameterName = parameterName;
-    }
-
     public String getParameterValue() {
         return this.parameterValue;
+    }
+
+    public void setParameterDescription(String parameterDescription) {
+        this.parameterDescription = parameterDescription;
+    }
+
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
     }
 
     public void setParameterValue(String parameterValue) {

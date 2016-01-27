@@ -18,48 +18,46 @@ public class BaikeDruginfoUpdateRequest implements TaobaoRequest<BaikeDruginfoUp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * map的json格式用户传入更新数据
      */
     private String jsondata;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 用户id
      */
     private Long userId;
 
-    public void setJsondata(String jsondata) {
-        this.jsondata = jsondata;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(jsondata, "jsondata");
+        RequestCheckUtils.checkNotEmpty(userId, "userId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.baike.druginfo.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getJsondata() {
         return this.jsondata;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    @Override
+    public Class<BaikeDruginfoUpdateResponse> getResponseClass() {
+        return BaikeDruginfoUpdateResponse.class;
     }
 
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.baike.druginfo.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("jsondata", this.jsondata);
@@ -70,6 +68,16 @@ public class BaikeDruginfoUpdateRequest implements TaobaoRequest<BaikeDruginfoUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class BaikeDruginfoUpdateRequest implements TaobaoRequest<BaikeDruginfoUp
         this.udfParams.put(key, value);
     }
 
-    public Class<BaikeDruginfoUpdateResponse> getResponseClass() {
-        return BaikeDruginfoUpdateResponse.class;
+    public void setJsondata(String jsondata) {
+        this.jsondata = jsondata;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(jsondata, "jsondata");
-        RequestCheckUtils.checkNotEmpty(userId, "userId");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

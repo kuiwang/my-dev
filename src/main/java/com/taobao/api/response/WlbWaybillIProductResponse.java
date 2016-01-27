@@ -24,12 +24,12 @@ public class WlbWaybillIProductResponse extends TaobaoResponse {
     @ApiField("waybill_product_type")
     private List<WaybillProductType> productTypes;
 
-    public void setProductTypes(List<WaybillProductType> productTypes) {
-        this.productTypes = productTypes;
-    }
-
     public List<WaybillProductType> getProductTypes() {
         return this.productTypes;
+    }
+
+    public void setProductTypes(List<WaybillProductType> productTypes) {
+        this.productTypes = productTypes;
     }
 
 }

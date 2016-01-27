@@ -20,12 +20,12 @@ public class SimbaAdgroupsbycampaignidGetResponse extends TaobaoResponse {
     @ApiField("adgroups")
     private ADGroupPage adgroups;
 
-    public void setAdgroups(ADGroupPage adgroups) {
-        this.adgroups = adgroups;
-    }
-
     public ADGroupPage getAdgroups() {
         return this.adgroups;
+    }
+
+    public void setAdgroups(ADGroupPage adgroups) {
+        this.adgroups = adgroups;
     }
 
 }

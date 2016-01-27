@@ -86,84 +86,84 @@ public class CreativeRecord extends TaobaoObject {
         return this.auditDesc;
     }
 
-    public void setAuditDesc(String auditDesc) {
-        this.auditDesc = auditDesc;
-    }
-
     public String getAuditStatus() {
         return this.auditStatus;
-    }
-
-    public void setAuditStatus(String auditStatus) {
-        this.auditStatus = auditStatus;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Long getCreativeId() {
         return this.creativeId;
-    }
-
-    public void setCreativeId(Long creativeId) {
-        this.creativeId = creativeId;
     }
 
     public String getImgUrl() {
         return this.imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public Date getModifyTime() {
         return this.modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getOldImgUrl() {
         return this.oldImgUrl;
     }
 
-    public void setOldImgUrl(String oldImgUrl) {
-        this.oldImgUrl = oldImgUrl;
-    }
-
     public String getOldTitle() {
         return this.oldTitle;
     }
 
-    public void setOldTitle(String oldTitle) {
-        this.oldTitle = oldTitle;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setAuditDesc(String auditDesc) {
+        this.auditDesc = auditDesc;
+    }
+
+    public void setAuditStatus(String auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setCreativeId(Long creativeId) {
+        this.creativeId = creativeId;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOldImgUrl(String oldImgUrl) {
+        this.oldImgUrl = oldImgUrl;
+    }
+
+    public void setOldTitle(String oldTitle) {
+        this.oldTitle = oldTitle;
     }
 
     public void setTitle(String title) {

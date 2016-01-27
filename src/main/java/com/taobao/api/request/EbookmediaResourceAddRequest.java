@@ -16,12 +16,6 @@ import com.taobao.api.response.EbookmediaResourceAddResponse;
  */
 public class EbookmediaResourceAddRequest implements TaobaoRequest<EbookmediaResourceAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 电子书商品数字ID
      */
@@ -31,6 +25,8 @@ public class EbookmediaResourceAddRequest implements TaobaoRequest<EbookmediaRes
      * 电子书文件云盘ID
      */
     private Long fileId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 文件ID
@@ -42,63 +38,54 @@ public class EbookmediaResourceAddRequest implements TaobaoRequest<EbookmediaRes
      */
     private String suffix;
 
+    private Long timestamp;
+
     /**
      * 资源类型，（1：正文，0：试读)
      */
     private Long type;
 
-    public void setAuctionId(Long auctionId) {
-        this.auctionId = auctionId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
+        RequestCheckUtils.checkNotEmpty(suffix, "suffix");
+        RequestCheckUtils.checkNotEmpty(type, "type");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ebookmedia.resource.add";
     }
 
     public Long getAuctionId() {
         return this.auctionId;
     }
 
-    public void setFileId(Long fileId) {
-        this.fileId = fileId;
-    }
-
     public Long getFileId() {
         return this.fileId;
     }
 
-    public void setStrFileId(String strFileId) {
-        this.strFileId = strFileId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<EbookmediaResourceAddResponse> getResponseClass() {
+        return EbookmediaResourceAddResponse.class;
     }
 
     public String getStrFileId() {
         return this.strFileId;
     }
 
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-
     public String getSuffix() {
         return this.suffix;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ebookmedia.resource.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_id", this.auctionId);
@@ -112,6 +99,16 @@ public class EbookmediaResourceAddRequest implements TaobaoRequest<EbookmediaRes
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,17 +116,28 @@ public class EbookmediaResourceAddRequest implements TaobaoRequest<EbookmediaRes
         this.udfParams.put(key, value);
     }
 
-    public Class<EbookmediaResourceAddResponse> getResponseClass() {
-        return EbookmediaResourceAddResponse.class;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
-        RequestCheckUtils.checkNotEmpty(suffix, "suffix");
-        RequestCheckUtils.checkNotEmpty(type, "type");
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStrFileId(String strFileId) {
+        this.strFileId = strFileId;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

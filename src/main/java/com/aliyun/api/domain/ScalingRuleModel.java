@@ -61,52 +61,52 @@ public class ScalingRuleModel extends TaobaoObject {
         return this.adjustmentType;
     }
 
-    public void setAdjustmentType(String adjustmentType) {
-        this.adjustmentType = adjustmentType;
-    }
-
     public Long getAdjustmentValue() {
         return this.adjustmentValue;
-    }
-
-    public void setAdjustmentValue(Long adjustmentValue) {
-        this.adjustmentValue = adjustmentValue;
     }
 
     public Long getCooldown() {
         return this.cooldown;
     }
 
-    public void setCooldown(Long cooldown) {
-        this.cooldown = cooldown;
-    }
-
     public String getScalingGroupId() {
         return this.scalingGroupId;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
     }
 
     public String getScalingRuleAri() {
         return this.scalingRuleAri;
     }
 
-    public void setScalingRuleAri(String scalingRuleAri) {
-        this.scalingRuleAri = scalingRuleAri;
-    }
-
     public String getScalingRuleId() {
         return this.scalingRuleId;
     }
 
-    public void setScalingRuleId(String scalingRuleId) {
-        this.scalingRuleId = scalingRuleId;
-    }
-
     public String getScalingRuleName() {
         return this.scalingRuleName;
+    }
+
+    public void setAdjustmentType(String adjustmentType) {
+        this.adjustmentType = adjustmentType;
+    }
+
+    public void setAdjustmentValue(Long adjustmentValue) {
+        this.adjustmentValue = adjustmentValue;
+    }
+
+    public void setCooldown(Long cooldown) {
+        this.cooldown = cooldown;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setScalingRuleAri(String scalingRuleAri) {
+        this.scalingRuleAri = scalingRuleAri;
+    }
+
+    public void setScalingRuleId(String scalingRuleId) {
+        this.scalingRuleId = scalingRuleId;
     }
 
     public void setScalingRuleName(String scalingRuleName) {

@@ -19,12 +19,12 @@ public class FenxiaoDealerRequisitionorderCreateResponse extends TaobaoResponse 
     @ApiField("dealer_order_id")
     private Long dealerOrderId;
 
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
-    }
-
     public Long getDealerOrderId() {
         return this.dealerOrderId;
+    }
+
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
     }
 
 }

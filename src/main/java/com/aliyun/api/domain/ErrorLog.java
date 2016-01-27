@@ -29,12 +29,12 @@ public class ErrorLog extends TaobaoObject {
         return this.createTime;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
     public String getErrorInfo() {
         return this.errorInfo;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public void setErrorInfo(String errorInfo) {

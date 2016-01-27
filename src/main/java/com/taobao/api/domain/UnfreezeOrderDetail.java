@@ -67,60 +67,60 @@ public class UnfreezeOrderDetail extends TaobaoObject {
         return this.alipayOrderNo;
     }
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
-    }
-
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getOrderAmount() {
         return this.orderAmount;
-    }
-
-    public void setOrderAmount(String orderAmount) {
-        this.orderAmount = orderAmount;
     }
 
     public String getOrderStatus() {
         return this.orderStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public String getUnfreezeAmount() {
         return this.unfreezeAmount;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setOrderAmount(String orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public void setUnfreezeAmount(String unfreezeAmount) {

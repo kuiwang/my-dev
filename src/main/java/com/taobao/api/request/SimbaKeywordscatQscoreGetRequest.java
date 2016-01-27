@@ -17,50 +17,51 @@ import com.taobao.api.response.SimbaKeywordscatQscoreGetResponse;
 public class SimbaKeywordscatQscoreGetRequest implements
         TaobaoRequest<SimbaKeywordscatQscoreGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id
      */
     private Long adgroupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywordscat.qscore.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordscatQscoreGetResponse> getResponseClass() {
+        return SimbaKeywordscatQscoreGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywordscat.qscore.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -71,6 +72,12 @@ public class SimbaKeywordscatQscoreGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class SimbaKeywordscatQscoreGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordscatQscoreGetResponse> getResponseClass() {
-        return SimbaKeywordscatQscoreGetResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

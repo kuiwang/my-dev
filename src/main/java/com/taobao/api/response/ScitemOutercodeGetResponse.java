@@ -20,12 +20,12 @@ public class ScitemOutercodeGetResponse extends TaobaoResponse {
     @ApiField("sc_item")
     private ScItem scItem;
 
-    public void setScItem(ScItem scItem) {
-        this.scItem = scItem;
-    }
-
     public ScItem getScItem() {
         return this.scItem;
+    }
+
+    public void setScItem(ScItem scItem) {
+        this.scItem = scItem;
     }
 
 }

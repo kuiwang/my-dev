@@ -30,20 +30,20 @@ public class PromotionLimitdiscountGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setLimitDiscountList(List<LimitDiscount> limitDiscountList) {
-        this.limitDiscountList = limitDiscountList;
-    }
-
     public List<LimitDiscount> getLimitDiscountList() {
         return this.limitDiscountList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setLimitDiscountList(List<LimitDiscount> limitDiscountList) {
+        this.limitDiscountList = limitDiscountList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

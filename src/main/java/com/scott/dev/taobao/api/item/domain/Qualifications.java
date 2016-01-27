@@ -6,11 +6,6 @@ package com.scott.dev.taobao.api.item.domain;
 public class Qualifications {
 
     /*
-     * 是否成功
-     */
-    private Boolean result;
-
-    /*
      * 返回的错误信息
      */
     private String message;
@@ -20,27 +15,32 @@ public class Qualifications {
      */
     private String model;
 
-    public Boolean getResult() {
-        return result;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
+    /*
+     * 是否成功
+     */
+    private Boolean result;
 
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getModel() {
         return model;
     }
 
+    public Boolean getResult() {
+        return result;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 }

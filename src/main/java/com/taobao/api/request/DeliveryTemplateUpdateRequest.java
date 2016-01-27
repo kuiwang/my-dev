@@ -16,12 +16,6 @@ import com.taobao.api.response.DeliveryTemplateUpdateResponse;
  */
 public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemplateUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 可选值：0,1 <br>
      * 说明<br>
@@ -29,6 +23,8 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
      * 1:表示卖家承担服务费
      */
     private Long assumer;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 模板名称，长度不能大于50个字节
@@ -105,90 +101,73 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
      */
     private String templateTypes;
 
-    public void setAssumer(Long assumer) {
-        this.assumer = assumer;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(templateAddFees, "templateAddFees");
+        RequestCheckUtils.checkNotEmpty(templateAddStandards, "templateAddStandards");
+        RequestCheckUtils.checkNotEmpty(templateDests, "templateDests");
+        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
+        RequestCheckUtils.checkNotEmpty(templateStartFees, "templateStartFees");
+        RequestCheckUtils.checkNotEmpty(templateStartStandards, "templateStartStandards");
+        RequestCheckUtils.checkNotEmpty(templateTypes, "templateTypes");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.delivery.template.update";
     }
 
     public Long getAssumer() {
         return this.assumer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setTemplateAddFees(String templateAddFees) {
-        this.templateAddFees = templateAddFees;
+    @Override
+    public Class<DeliveryTemplateUpdateResponse> getResponseClass() {
+        return DeliveryTemplateUpdateResponse.class;
     }
 
     public String getTemplateAddFees() {
         return this.templateAddFees;
     }
 
-    public void setTemplateAddStandards(String templateAddStandards) {
-        this.templateAddStandards = templateAddStandards;
-    }
-
     public String getTemplateAddStandards() {
         return this.templateAddStandards;
-    }
-
-    public void setTemplateDests(String templateDests) {
-        this.templateDests = templateDests;
     }
 
     public String getTemplateDests() {
         return this.templateDests;
     }
 
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
-    }
-
     public Long getTemplateId() {
         return this.templateId;
-    }
-
-    public void setTemplateStartFees(String templateStartFees) {
-        this.templateStartFees = templateStartFees;
     }
 
     public String getTemplateStartFees() {
         return this.templateStartFees;
     }
 
-    public void setTemplateStartStandards(String templateStartStandards) {
-        this.templateStartStandards = templateStartStandards;
-    }
-
     public String getTemplateStartStandards() {
         return this.templateStartStandards;
-    }
-
-    public void setTemplateTypes(String templateTypes) {
-        this.templateTypes = templateTypes;
     }
 
     public String getTemplateTypes() {
         return this.templateTypes;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.delivery.template.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("assumer", this.assumer);
@@ -206,6 +185,12 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -213,21 +198,44 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
         this.udfParams.put(key, value);
     }
 
-    public Class<DeliveryTemplateUpdateResponse> getResponseClass() {
-        return DeliveryTemplateUpdateResponse.class;
+    public void setAssumer(Long assumer) {
+        this.assumer = assumer;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(templateAddFees, "templateAddFees");
-        RequestCheckUtils.checkNotEmpty(templateAddStandards, "templateAddStandards");
-        RequestCheckUtils.checkNotEmpty(templateDests, "templateDests");
-        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
-        RequestCheckUtils.checkNotEmpty(templateStartFees, "templateStartFees");
-        RequestCheckUtils.checkNotEmpty(templateStartStandards, "templateStartStandards");
-        RequestCheckUtils.checkNotEmpty(templateTypes, "templateTypes");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTemplateAddFees(String templateAddFees) {
+        this.templateAddFees = templateAddFees;
+    }
+
+    public void setTemplateAddStandards(String templateAddStandards) {
+        this.templateAddStandards = templateAddStandards;
+    }
+
+    public void setTemplateDests(String templateDests) {
+        this.templateDests = templateDests;
+    }
+
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
+    }
+
+    public void setTemplateStartFees(String templateStartFees) {
+        this.templateStartFees = templateStartFees;
+    }
+
+    public void setTemplateStartStandards(String templateStartStandards) {
+        this.templateStartStandards = templateStartStandards;
+    }
+
+    public void setTemplateTypes(String templateTypes) {
+        this.templateTypes = templateTypes;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

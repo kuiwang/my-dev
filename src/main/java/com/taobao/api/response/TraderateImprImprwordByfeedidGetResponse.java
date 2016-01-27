@@ -20,12 +20,12 @@ public class TraderateImprImprwordByfeedidGetResponse extends TaobaoResponse {
     @ApiField("impr_feed")
     private ImprFeedIdDO imprFeed;
 
-    public void setImprFeed(ImprFeedIdDO imprFeed) {
-        this.imprFeed = imprFeed;
-    }
-
     public ImprFeedIdDO getImprFeed() {
         return this.imprFeed;
+    }
+
+    public void setImprFeed(ImprFeedIdDO imprFeed) {
+        this.imprFeed = imprFeed;
     }
 
 }

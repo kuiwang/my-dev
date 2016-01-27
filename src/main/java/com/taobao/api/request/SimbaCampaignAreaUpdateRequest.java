@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaCampaignAreaUpdateResponse;
 public class SimbaCampaignAreaUpdateRequest implements
         TaobaoRequest<SimbaCampaignAreaUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 值为：“all”；或者用“,”分割的数字，数字必须是直通车全国省市列表的AreaID；
      */
@@ -33,47 +27,51 @@ public class SimbaCampaignAreaUpdateRequest implements
      */
     private Long campaignId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setArea(String area) {
-        this.area = area;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(area, "area");
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.area.update";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaCampaignAreaUpdateResponse> getResponseClass() {
+        return SimbaCampaignAreaUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.area.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -85,6 +83,12 @@ public class SimbaCampaignAreaUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class SimbaCampaignAreaUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignAreaUpdateResponse> getResponseClass() {
-        return SimbaCampaignAreaUpdateResponse.class;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(area, "area");
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

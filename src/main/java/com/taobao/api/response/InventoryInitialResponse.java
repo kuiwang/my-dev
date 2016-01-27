@@ -24,12 +24,12 @@ public class InventoryInitialResponse extends TaobaoResponse {
     @ApiField("tip_info")
     private List<TipInfo> tipInfos;
 
-    public void setTipInfos(List<TipInfo> tipInfos) {
-        this.tipInfos = tipInfos;
-    }
-
     public List<TipInfo> getTipInfos() {
         return this.tipInfos;
+    }
+
+    public void setTipInfos(List<TipInfo> tipInfos) {
+        this.tipInfos = tipInfos;
     }
 
 }

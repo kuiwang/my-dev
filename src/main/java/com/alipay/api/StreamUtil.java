@@ -19,6 +19,57 @@ import java.io.Writer;
  */
 public class StreamUtil {
 
+    private static class SynchronizedOutputStream extends OutputStream {
+
+        private Object lock;
+
+        private OutputStream out;
+
+        SynchronizedOutputStream(OutputStream out) {
+            this(out, out);
+        }
+
+        SynchronizedOutputStream(OutputStream out, Object lock) {
+            this.out = out;
+            this.lock = lock;
+        }
+
+        @Override
+        public void close() throws IOException {
+            synchronized (lock) {
+                out.close();
+            }
+        }
+
+        @Override
+        public void flush() throws IOException {
+            synchronized (lock) {
+                out.flush();
+            }
+        }
+
+        @Override
+        public void write(byte[] data) throws IOException {
+            synchronized (lock) {
+                out.write(data);
+            }
+        }
+
+        @Override
+        public void write(byte[] data, int offset, int length) throws IOException {
+            synchronized (lock) {
+                out.write(data, offset, length);
+            }
+        }
+
+        @Override
+        public void write(int datum) throws IOException {
+            synchronized (lock) {
+                out.write(datum);
+            }
+        }
+    }
+
     private static final int DEFAULT_BUFFER_SIZE = 8192;
 
     public static void io(InputStream in, OutputStream out) throws IOException {
@@ -55,14 +106,6 @@ public class StreamUtil {
         }
     }
 
-    public static OutputStream synchronizedOutputStream(OutputStream out) {
-        return new SynchronizedOutputStream(out);
-    }
-
-    public static OutputStream synchronizedOutputStream(OutputStream out, Object lock) {
-        return new SynchronizedOutputStream(out, lock);
-    }
-
     public static String readText(InputStream in) throws IOException {
         return readText(in, null, -1);
     }
@@ -90,49 +133,11 @@ public class StreamUtil {
         return writer.toString();
     }
 
-    private static class SynchronizedOutputStream extends OutputStream {
+    public static OutputStream synchronizedOutputStream(OutputStream out) {
+        return new SynchronizedOutputStream(out);
+    }
 
-        private OutputStream out;
-
-        private Object lock;
-
-        SynchronizedOutputStream(OutputStream out) {
-            this(out, out);
-        }
-
-        SynchronizedOutputStream(OutputStream out, Object lock) {
-            this.out = out;
-            this.lock = lock;
-        }
-
-        public void write(int datum) throws IOException {
-            synchronized (lock) {
-                out.write(datum);
-            }
-        }
-
-        public void write(byte[] data) throws IOException {
-            synchronized (lock) {
-                out.write(data);
-            }
-        }
-
-        public void write(byte[] data, int offset, int length) throws IOException {
-            synchronized (lock) {
-                out.write(data, offset, length);
-            }
-        }
-
-        public void flush() throws IOException {
-            synchronized (lock) {
-                out.flush();
-            }
-        }
-
-        public void close() throws IOException {
-            synchronized (lock) {
-                out.close();
-            }
-        }
+    public static OutputStream synchronizedOutputStream(OutputStream out, Object lock) {
+        return new SynchronizedOutputStream(out, lock);
     }
 }

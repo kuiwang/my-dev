@@ -20,12 +20,12 @@ public class LogisticsOrderCreateResponse extends TaobaoResponse {
     @ApiField("trade_id")
     private Long tradeId;
 
-    public void setTradeId(Long tradeId) {
-        this.tradeId = tradeId;
-    }
-
     public Long getTradeId() {
         return this.tradeId;
+    }
+
+    public void setTradeId(Long tradeId) {
+        this.tradeId = tradeId;
     }
 
 }

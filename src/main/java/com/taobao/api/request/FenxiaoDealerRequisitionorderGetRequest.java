@@ -18,12 +18,6 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderGetResponse;
 public class FenxiaoDealerRequisitionorderGetRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 采购申请/经销采购单最迟修改时间。与start_date字段的最大时间间隔不能超过30天
      */
@@ -36,6 +30,8 @@ public class FenxiaoDealerRequisitionorderGetRequest implements
      * dealer_order_details 表示只返回明细列表
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 查询者自己在所要查询的采购申请/经销采购单中的身份。 1：供应商。 2：分销商。 注：填写其他值当做错误处理。
@@ -66,74 +62,61 @@ public class FenxiaoDealerRequisitionorderGetRequest implements
      */
     private Date startDate;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(identity, "identity");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.get";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setIdentity(Long identity) {
-        this.identity = identity;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIdentity() {
         return this.identity;
     }
 
-    public void setOrderStatus(Long orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public Long getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderGetResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderGetResponse.class;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -149,6 +132,12 @@ public class FenxiaoDealerRequisitionorderGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -156,17 +145,36 @@ public class FenxiaoDealerRequisitionorderGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderGetResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderGetResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(identity, "identity");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setIdentity(Long identity) {
+        this.identity = identity;
+    }
+
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

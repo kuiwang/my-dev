@@ -16,16 +16,12 @@ import com.taobao.api.response.TmcUserGetResponse;
  */
 public class TmcUserGetRequest implements TaobaoRequest<TmcUserGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表，多个字段以半角逗号分隔。可选值：TmcUser结构体中的所有字段，一定要返回topic。
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 用户昵称<br />
@@ -34,34 +30,41 @@ public class TmcUserGetRequest implements TaobaoRequest<TmcUserGetResponse> {
      */
     private String nick;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+        RequestCheckUtils.checkMaxLength(nick, 100, "nick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tmc.user.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmcUserGetResponse> getResponseClass() {
+        return TmcUserGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tmc.user.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -72,6 +75,12 @@ public class TmcUserGetRequest implements TaobaoRequest<TmcUserGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class TmcUserGetRequest implements TaobaoRequest<TmcUserGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcUserGetResponse> getResponseClass() {
-        return TmcUserGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
-        RequestCheckUtils.checkMaxLength(nick, 100, "nick");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -16,37 +16,42 @@ import com.taobao.api.response.HotelCityGetResponse;
  */
 public class HotelCityGetRequest implements TaobaoRequest<HotelCityGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 国家编码
      */
     private String country;
 
-    public void setCountry(String country) {
-        this.country = country;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(country, "country");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.city.get";
     }
 
     public String getCountry() {
         return this.country;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<HotelCityGetResponse> getResponseClass() {
+        return HotelCityGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.hotel.city.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("country", this.country);
@@ -56,6 +61,12 @@ public class HotelCityGetRequest implements TaobaoRequest<HotelCityGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class HotelCityGetRequest implements TaobaoRequest<HotelCityGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelCityGetResponse> getResponseClass() {
-        return HotelCityGetResponse.class;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(country, "country");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

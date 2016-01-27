@@ -19,10 +19,24 @@ class TmcIdentity implements Identity {
         this.groupName = groupName;
     }
 
+    @Override
+    public boolean equals(Identity id) {
+        return id.getClass().equals(TmcIdentity.class)
+                && this.appKey.equals(((TmcIdentity) id).appKey)
+                && this.groupName.equals(((TmcIdentity) id).groupName);
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.appKey + this.groupName).hashCode();
+    }
+
+    @Override
     public Identity parse(Object data) throws LinkException {
         return null;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public void render(Object to) {
         ((Map<String, String>) to).put("app_key", this.appKey);
@@ -32,16 +46,5 @@ class TmcIdentity implements Identity {
     @Override
     public String toString() {
         return this.appKey + "~" + this.groupName;
-    }
-
-    @Override
-    public int hashCode() {
-        return (this.appKey + this.groupName).hashCode();
-    }
-
-    public boolean equals(Identity id) {
-        return id.getClass().equals(TmcIdentity.class)
-                && this.appKey.equals(((TmcIdentity) id).appKey)
-                && this.groupName.equals(((TmcIdentity) id).groupName);
     }
 }

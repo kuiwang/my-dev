@@ -6,9 +6,9 @@ package com.scott.dev.taobao.api.item.domain;
 public class SuiteConfDO {
 
     /*
-     * 一级类目ID，标识在该一级在类目下能布套装
+     * 如果有值，套装子规格形如：A*n,B*n,C*n....，n只能是inputs中的
      */
-    private Number rootCatId;
+    private Number[] inputs;
 
     /*
      * 套装，子规格限制数，当前一级类目，最多允许选择多少个产品规格，为空表示无限制。
@@ -23,54 +23,54 @@ public class SuiteConfDO {
     private Number maxTotalNumber;
 
     /*
+     * 一级类目ID，标识在该一级在类目下能布套装
+     */
+    private Number rootCatId;
+
+    /*
      * 套装类目ID，当前一级类目，如果发布跨叶子类目的的套装，默认放到那个类目。
      * 如果没有值表示root_cat_id类目下发布的套装产品，不支持跨类目
      */
     private Number suiteCatId;
 
-    /*
-     * 如果有值，套装子规格形如：A*n,B*n,C*n....，n只能是inputs中的
-     */
-    private Number[] inputs;
-
-    public Number getRootCatId() {
-        return rootCatId;
-    }
-
-    public void setRootCatId(Number rootCatId) {
-        this.rootCatId = rootCatId;
+    public Number[] getInputs() {
+        return inputs;
     }
 
     public Number getMaxSize() {
         return maxSize;
     }
 
-    public void setMaxSize(Number maxSize) {
-        this.maxSize = maxSize;
-    }
-
     public Number getMaxTotalNumber() {
         return maxTotalNumber;
     }
 
-    public void setMaxTotalNumber(Number maxTotalNumber) {
-        this.maxTotalNumber = maxTotalNumber;
+    public Number getRootCatId() {
+        return rootCatId;
     }
 
     public Number getSuiteCatId() {
         return suiteCatId;
     }
 
-    public void setSuiteCatId(Number suiteCatId) {
-        this.suiteCatId = suiteCatId;
-    }
-
-    public Number[] getInputs() {
-        return inputs;
-    }
-
     public void setInputs(Number[] inputs) {
         this.inputs = inputs;
+    }
+
+    public void setMaxSize(Number maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public void setMaxTotalNumber(Number maxTotalNumber) {
+        this.maxTotalNumber = maxTotalNumber;
+    }
+
+    public void setRootCatId(Number rootCatId) {
+        this.rootCatId = rootCatId;
+    }
+
+    public void setSuiteCatId(Number suiteCatId) {
+        this.suiteCatId = suiteCatId;
     }
 
 }

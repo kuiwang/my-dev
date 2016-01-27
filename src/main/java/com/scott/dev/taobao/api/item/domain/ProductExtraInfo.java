@@ -6,11 +6,6 @@ package com.scott.dev.taobao.api.item.domain;
 public class ProductExtraInfo {
 
     /*
-     * 产品ID
-     */
-    private Number productId;
-
-    /*
      * 产品扩展信息键
      */
     private String fieldKey;
@@ -25,35 +20,40 @@ public class ProductExtraInfo {
      */
     private String fieldValue;
 
-    public Number getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Number productId) {
-        this.productId = productId;
-    }
+    /*
+     * 产品ID
+     */
+    private Number productId;
 
     public String getFieldKey() {
         return fieldKey;
-    }
-
-    public void setFieldKey(String fieldKey) {
-        this.fieldKey = fieldKey;
     }
 
     public String getFieldName() {
         return fieldName;
     }
 
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
     public String getFieldValue() {
         return fieldValue;
     }
 
+    public Number getProductId() {
+        return productId;
+    }
+
+    public void setFieldKey(String fieldKey) {
+        this.fieldKey = fieldKey;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
     public void setFieldValue(String fieldValue) {
         this.fieldValue = fieldValue;
+    }
+
+    public void setProductId(Number productId) {
+        this.productId = productId;
     }
 }

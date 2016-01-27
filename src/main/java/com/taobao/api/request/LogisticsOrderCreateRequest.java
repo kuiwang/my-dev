@@ -16,12 +16,6 @@ import com.taobao.api.response.LogisticsOrderCreateResponse;
  */
 public class LogisticsOrderCreateRequest implements TaobaoRequest<LogisticsOrderCreateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 运送的货物名称列表，用|号隔开
      */
@@ -31,6 +25,8 @@ public class LogisticsOrderCreateRequest implements TaobaoRequest<LogisticsOrder
      * 运送货物的数量列表，用|号隔开
      */
     private String goodsQuantities;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 创建订单同时是否进行发货，默认发货。
@@ -117,183 +113,121 @@ public class LogisticsOrderCreateRequest implements TaobaoRequest<LogisticsOrder
      */
     private Long shipping;
 
+    private Long timestamp;
+
     /**
      * 订单的交易号码
      */
     private Long tradeId;
 
-    public void setGoodsNames(String goodsNames) {
-        this.goodsNames = goodsNames;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(goodsNames, "goodsNames");
+        RequestCheckUtils.checkNotEmpty(goodsQuantities, "goodsQuantities");
+        RequestCheckUtils.checkNotEmpty(itemValues, "itemValues");
+        RequestCheckUtils.checkNotEmpty(receiverAddress, "receiverAddress");
+        RequestCheckUtils.checkNotEmpty(receiverName, "receiverName");
+        RequestCheckUtils.checkNotEmpty(receiverZipCode, "receiverZipCode");
+        RequestCheckUtils.checkNotEmpty(sellerWangwangId, "sellerWangwangId");
+        RequestCheckUtils.checkNotEmpty(senderAddress, "senderAddress");
+        RequestCheckUtils.checkNotEmpty(senderName, "senderName");
+        RequestCheckUtils.checkNotEmpty(senderZipCode, "senderZipCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.order.create";
     }
 
     public String getGoodsNames() {
         return this.goodsNames;
     }
 
-    public void setGoodsQuantities(String goodsQuantities) {
-        this.goodsQuantities = goodsQuantities;
-    }
-
     public String getGoodsQuantities() {
         return this.goodsQuantities;
     }
 
-    public void setIsConsign(Boolean isConsign) {
-        this.isConsign = isConsign;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsConsign() {
         return this.isConsign;
     }
 
-    public void setItemValues(String itemValues) {
-        this.itemValues = itemValues;
-    }
-
     public String getItemValues() {
         return this.itemValues;
-    }
-
-    public void setLogisCompanyCode(String logisCompanyCode) {
-        this.logisCompanyCode = logisCompanyCode;
     }
 
     public String getLogisCompanyCode() {
         return this.logisCompanyCode;
     }
 
-    public void setLogisType(String logisType) {
-        this.logisType = logisType;
-    }
-
     public String getLogisType() {
         return this.logisType;
-    }
-
-    public void setMailNo(String mailNo) {
-        this.mailNo = mailNo;
     }
 
     public String getMailNo() {
         return this.mailNo;
     }
 
-    public void setReceiverAddress(String receiverAddress) {
-        this.receiverAddress = receiverAddress;
-    }
-
     public String getReceiverAddress() {
         return this.receiverAddress;
-    }
-
-    public void setReceiverMobilePhone(String receiverMobilePhone) {
-        this.receiverMobilePhone = receiverMobilePhone;
     }
 
     public String getReceiverMobilePhone() {
         return this.receiverMobilePhone;
     }
 
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
-
     public String getReceiverName() {
         return this.receiverName;
-    }
-
-    public void setReceiverTelephone(String receiverTelephone) {
-        this.receiverTelephone = receiverTelephone;
     }
 
     public String getReceiverTelephone() {
         return this.receiverTelephone;
     }
 
-    public void setReceiverZipCode(String receiverZipCode) {
-        this.receiverZipCode = receiverZipCode;
-    }
-
     public String getReceiverZipCode() {
         return this.receiverZipCode;
     }
 
-    public void setSellerWangwangId(String sellerWangwangId) {
-        this.sellerWangwangId = sellerWangwangId;
+    @Override
+    public Class<LogisticsOrderCreateResponse> getResponseClass() {
+        return LogisticsOrderCreateResponse.class;
     }
 
     public String getSellerWangwangId() {
         return this.sellerWangwangId;
     }
 
-    public void setSenderAddress(String senderAddress) {
-        this.senderAddress = senderAddress;
-    }
-
     public String getSenderAddress() {
         return this.senderAddress;
-    }
-
-    public void setSenderMobilePhone(String senderMobilePhone) {
-        this.senderMobilePhone = senderMobilePhone;
     }
 
     public String getSenderMobilePhone() {
         return this.senderMobilePhone;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
     public String getSenderName() {
         return this.senderName;
-    }
-
-    public void setSenderTelephone(String senderTelephone) {
-        this.senderTelephone = senderTelephone;
     }
 
     public String getSenderTelephone() {
         return this.senderTelephone;
     }
 
-    public void setSenderZipCode(String senderZipCode) {
-        this.senderZipCode = senderZipCode;
-    }
-
     public String getSenderZipCode() {
         return this.senderZipCode;
-    }
-
-    public void setShipping(Long shipping) {
-        this.shipping = shipping;
     }
 
     public Long getShipping() {
         return this.shipping;
     }
 
-    public void setTradeId(Long tradeId) {
-        this.tradeId = tradeId;
-    }
-
-    public Long getTradeId() {
-        return this.tradeId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.order.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("goods_names", this.goodsNames);
@@ -322,6 +256,16 @@ public class LogisticsOrderCreateRequest implements TaobaoRequest<LogisticsOrder
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTradeId() {
+        return this.tradeId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -329,24 +273,88 @@ public class LogisticsOrderCreateRequest implements TaobaoRequest<LogisticsOrder
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsOrderCreateResponse> getResponseClass() {
-        return LogisticsOrderCreateResponse.class;
+    public void setGoodsNames(String goodsNames) {
+        this.goodsNames = goodsNames;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(goodsNames, "goodsNames");
-        RequestCheckUtils.checkNotEmpty(goodsQuantities, "goodsQuantities");
-        RequestCheckUtils.checkNotEmpty(itemValues, "itemValues");
-        RequestCheckUtils.checkNotEmpty(receiverAddress, "receiverAddress");
-        RequestCheckUtils.checkNotEmpty(receiverName, "receiverName");
-        RequestCheckUtils.checkNotEmpty(receiverZipCode, "receiverZipCode");
-        RequestCheckUtils.checkNotEmpty(sellerWangwangId, "sellerWangwangId");
-        RequestCheckUtils.checkNotEmpty(senderAddress, "senderAddress");
-        RequestCheckUtils.checkNotEmpty(senderName, "senderName");
-        RequestCheckUtils.checkNotEmpty(senderZipCode, "senderZipCode");
+    public void setGoodsQuantities(String goodsQuantities) {
+        this.goodsQuantities = goodsQuantities;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setIsConsign(Boolean isConsign) {
+        this.isConsign = isConsign;
+    }
+
+    public void setItemValues(String itemValues) {
+        this.itemValues = itemValues;
+    }
+
+    public void setLogisCompanyCode(String logisCompanyCode) {
+        this.logisCompanyCode = logisCompanyCode;
+    }
+
+    public void setLogisType(String logisType) {
+        this.logisType = logisType;
+    }
+
+    public void setMailNo(String mailNo) {
+        this.mailNo = mailNo;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
+    }
+
+    public void setReceiverMobilePhone(String receiverMobilePhone) {
+        this.receiverMobilePhone = receiverMobilePhone;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setReceiverTelephone(String receiverTelephone) {
+        this.receiverTelephone = receiverTelephone;
+    }
+
+    public void setReceiverZipCode(String receiverZipCode) {
+        this.receiverZipCode = receiverZipCode;
+    }
+
+    public void setSellerWangwangId(String sellerWangwangId) {
+        this.sellerWangwangId = sellerWangwangId;
+    }
+
+    public void setSenderAddress(String senderAddress) {
+        this.senderAddress = senderAddress;
+    }
+
+    public void setSenderMobilePhone(String senderMobilePhone) {
+        this.senderMobilePhone = senderMobilePhone;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public void setSenderTelephone(String senderTelephone) {
+        this.senderTelephone = senderTelephone;
+    }
+
+    public void setSenderZipCode(String senderZipCode) {
+        this.senderZipCode = senderZipCode;
+    }
+
+    public void setShipping(Long shipping) {
+        this.shipping = shipping;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeId(Long tradeId) {
+        this.tradeId = tradeId;
     }
 }

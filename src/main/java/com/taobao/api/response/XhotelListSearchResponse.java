@@ -54,52 +54,52 @@ public class XhotelListSearchResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
     public String getChannelId() {
         return this.channelId;
-    }
-
-    public void setH5ListUrl(String h5ListUrl) {
-        this.h5ListUrl = h5ListUrl;
     }
 
     public String getH5ListUrl() {
         return this.h5ListUrl;
     }
 
-    public void setHotelListUrl(String hotelListUrl) {
-        this.hotelListUrl = hotelListUrl;
-    }
-
     public String getHotelListUrl() {
         return this.hotelListUrl;
-    }
-
-    public void setHotels(List<SearchHotelObject> hotels) {
-        this.hotels = hotels;
     }
 
     public List<SearchHotelObject> getHotels() {
         return this.hotels;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    public void setH5ListUrl(String h5ListUrl) {
+        this.h5ListUrl = h5ListUrl;
+    }
+
+    public void setHotelListUrl(String hotelListUrl) {
+        this.hotelListUrl = hotelListUrl;
+    }
+
+    public void setHotels(List<SearchHotelObject> hotels) {
+        this.hotels = hotels;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

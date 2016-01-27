@@ -41,28 +41,28 @@ public class RecommendWord extends TaobaoObject {
         return this.averagePrice;
     }
 
-    public void setAveragePrice(String averagePrice) {
-        this.averagePrice = averagePrice;
-    }
-
     public String getPertinence() {
         return this.pertinence;
-    }
-
-    public void setPertinence(String pertinence) {
-        this.pertinence = pertinence;
     }
 
     public String getPv() {
         return this.pv;
     }
 
-    public void setPv(String pv) {
-        this.pv = pv;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setAveragePrice(String averagePrice) {
+        this.averagePrice = averagePrice;
+    }
+
+    public void setPertinence(String pertinence) {
+        this.pertinence = pertinence;
+    }
+
+    public void setPv(String pv) {
+        this.pv = pv;
     }
 
     public void setWord(String word) {

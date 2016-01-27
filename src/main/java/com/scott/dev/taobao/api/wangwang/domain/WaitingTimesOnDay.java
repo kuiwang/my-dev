@@ -22,12 +22,12 @@ public class WaitingTimesOnDay {
         return this.waitingDate;
     }
 
-    public void setWaitingDate(Date waitingDate) {
-        this.waitingDate = waitingDate;
-    }
-
     public List<WaitingTimeById> getWaitingTimeByIds() {
         return this.waitingTimeByIds;
+    }
+
+    public void setWaitingDate(Date waitingDate) {
+        this.waitingDate = waitingDate;
     }
 
     public void setWaitingTimeByIds(List<WaitingTimeById> waitingTimeByIds) {

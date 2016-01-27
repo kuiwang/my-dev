@@ -31,20 +31,20 @@ public class ItempropvaluesGetResponse extends TaobaoResponse {
     @ApiField("prop_value")
     private List<PropValue> propValues;
 
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
-    }
-
     public Date getLastModified() {
         return this.lastModified;
     }
 
-    public void setPropValues(List<PropValue> propValues) {
-        this.propValues = propValues;
-    }
-
     public List<PropValue> getPropValues() {
         return this.propValues;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public void setPropValues(List<PropValue> propValues) {
+        this.propValues = propValues;
     }
 
 }

@@ -47,36 +47,36 @@ public class CloudGroup extends TaobaoObject {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getExpression() {
         return this.expression;
-    }
-
-    public void setExpression(String expression) {
-        this.expression = expression;
     }
 
     public String getGroupId() {
         return this.groupId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setStatus(String status) {

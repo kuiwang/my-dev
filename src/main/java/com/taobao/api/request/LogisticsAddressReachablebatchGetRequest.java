@@ -17,37 +17,42 @@ import com.taobao.api.response.LogisticsAddressReachablebatchGetResponse;
 public class LogisticsAddressReachablebatchGetRequest implements
         TaobaoRequest<LogisticsAddressReachablebatchGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 筛单用户输入地址结构
      */
     private String addressList;
 
-    public void setAddressList(String addressList) {
-        this.addressList = addressList;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(addressList, 20, "addressList");
     }
 
     public String getAddressList() {
         return this.addressList;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.logistics.address.reachablebatch.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<LogisticsAddressReachablebatchGetResponse> getResponseClass() {
+        return LogisticsAddressReachablebatchGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address_list", this.addressList);
@@ -57,6 +62,12 @@ public class LogisticsAddressReachablebatchGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class LogisticsAddressReachablebatchGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsAddressReachablebatchGetResponse> getResponseClass() {
-        return LogisticsAddressReachablebatchGetResponse.class;
+    public void setAddressList(String addressList) {
+        this.addressList = addressList;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(addressList, 20, "addressList");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

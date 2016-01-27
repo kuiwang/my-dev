@@ -59,52 +59,52 @@ public class Permission extends TaobaoObject {
         return this.ipProtocol;
     }
 
-    public void setIpProtocol(String ipProtocol) {
-        this.ipProtocol = ipProtocol;
-    }
-
     public String getNicType() {
         return this.nicType;
-    }
-
-    public void setNicType(String nicType) {
-        this.nicType = nicType;
     }
 
     public String getPolicy() {
         return this.policy;
     }
 
-    public void setPolicy(String policy) {
-        this.policy = policy;
-    }
-
     public String getPortRange() {
         return this.portRange;
-    }
-
-    public void setPortRange(String portRange) {
-        this.portRange = portRange;
     }
 
     public String getSourceCidrIp() {
         return this.sourceCidrIp;
     }
 
-    public void setSourceCidrIp(String sourceCidrIp) {
-        this.sourceCidrIp = sourceCidrIp;
-    }
-
     public String getSourceGroupId() {
         return this.sourceGroupId;
     }
 
-    public void setSourceGroupId(String sourceGroupId) {
-        this.sourceGroupId = sourceGroupId;
-    }
-
     public String getSourceGroupOwnerAccount() {
         return this.sourceGroupOwnerAccount;
+    }
+
+    public void setIpProtocol(String ipProtocol) {
+        this.ipProtocol = ipProtocol;
+    }
+
+    public void setNicType(String nicType) {
+        this.nicType = nicType;
+    }
+
+    public void setPolicy(String policy) {
+        this.policy = policy;
+    }
+
+    public void setPortRange(String portRange) {
+        this.portRange = portRange;
+    }
+
+    public void setSourceCidrIp(String sourceCidrIp) {
+        this.sourceCidrIp = sourceCidrIp;
+    }
+
+    public void setSourceGroupId(String sourceGroupId) {
+        this.sourceGroupId = sourceGroupId;
     }
 
     public void setSourceGroupOwnerAccount(String sourceGroupOwnerAccount) {

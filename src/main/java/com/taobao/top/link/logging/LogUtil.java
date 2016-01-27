@@ -31,7 +31,9 @@ public class LogUtil {
                 loggerFactory = new CommonsLoggerFactory();
             } catch (ClassNotFoundException e) {}
         }
-        if (loggerFactory == null) loggerFactory = DefaultLoggerFactory.getDefault();
+        if (loggerFactory == null) {
+            loggerFactory = DefaultLoggerFactory.getDefault();
+        }
 
         return loggerFactory;
     }

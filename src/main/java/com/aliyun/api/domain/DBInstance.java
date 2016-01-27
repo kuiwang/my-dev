@@ -83,84 +83,84 @@ public class DBInstance extends TaobaoObject {
         return this.dBInstanceDescription;
     }
 
-    public void setdBInstanceDescription(String dBInstanceDescription) {
-        this.dBInstanceDescription = dBInstanceDescription;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
-    }
-
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
     }
 
     public String getdBInstanceNetType() {
         return this.dBInstanceNetType;
     }
 
-    public void setdBInstanceNetType(String dBInstanceNetType) {
-        this.dBInstanceNetType = dBInstanceNetType;
-    }
-
     public String getdBInstanceStatus() {
         return this.dBInstanceStatus;
-    }
-
-    public void setdBInstanceStatus(String dBInstanceStatus) {
-        this.dBInstanceStatus = dBInstanceStatus;
     }
 
     public String getdBInstanceType() {
         return this.dBInstanceType;
     }
 
-    public void setdBInstanceType(String dBInstanceType) {
-        this.dBInstanceType = dBInstanceType;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
     }
 
     public String getExpireTime() {
         return this.expireTime;
     }
 
-    public void setExpireTime(String expireTime) {
-        this.expireTime = expireTime;
-    }
-
     public String getLockMode() {
         return this.lockMode;
-    }
-
-    public void setLockMode(String lockMode) {
-        this.lockMode = lockMode;
     }
 
     public String getLockReason() {
         return this.lockReason;
     }
 
-    public void setLockReason(String lockReason) {
-        this.lockReason = lockReason;
-    }
-
     public String getPayType() {
         return this.payType;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
-
     public String getRegionId() {
         return this.regionId;
+    }
+
+    public void setdBInstanceDescription(String dBInstanceDescription) {
+        this.dBInstanceDescription = dBInstanceDescription;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setdBInstanceNetType(String dBInstanceNetType) {
+        this.dBInstanceNetType = dBInstanceNetType;
+    }
+
+    public void setdBInstanceStatus(String dBInstanceStatus) {
+        this.dBInstanceStatus = dBInstanceStatus;
+    }
+
+    public void setdBInstanceType(String dBInstanceType) {
+        this.dBInstanceType = dBInstanceType;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setExpireTime(String expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public void setLockMode(String lockMode) {
+        this.lockMode = lockMode;
+    }
+
+    public void setLockReason(String lockReason) {
+        this.lockReason = lockReason;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
     }
 
     public void setRegionId(String regionId) {

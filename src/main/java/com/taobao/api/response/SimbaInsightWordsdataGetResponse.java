@@ -24,12 +24,12 @@ public class SimbaInsightWordsdataGetResponse extends TaobaoResponse {
     @ApiField("insight_word_data_d_t_o")
     private List<InsightWordDataDTO> wordDataList;
 
-    public void setWordDataList(List<InsightWordDataDTO> wordDataList) {
-        this.wordDataList = wordDataList;
-    }
-
     public List<InsightWordDataDTO> getWordDataList() {
         return this.wordDataList;
+    }
+
+    public void setWordDataList(List<InsightWordDataDTO> wordDataList) {
+        this.wordDataList = wordDataList;
     }
 
 }

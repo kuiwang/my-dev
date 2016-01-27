@@ -20,12 +20,12 @@ public class TmcUserGetResponse extends TaobaoResponse {
     @ApiField("tmc_user")
     private TmcUser tmcUser;
 
-    public void setTmcUser(TmcUser tmcUser) {
-        this.tmcUser = tmcUser;
-    }
-
     public TmcUser getTmcUser() {
         return this.tmcUser;
+    }
+
+    public void setTmcUser(TmcUser tmcUser) {
+        this.tmcUser = tmcUser;
     }
 
 }

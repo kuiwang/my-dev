@@ -23,12 +23,12 @@ public class AbsConfigServiceResponse extends AliyunResponse {
     @ApiField("String")
     private List<String> list;
 
-    public void setList(List<String> list) {
-        this.list = list;
-    }
-
     public List<String> getList() {
         return this.list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
     }
 
 }

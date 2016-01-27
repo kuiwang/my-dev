@@ -19,10 +19,6 @@ public class FenxiaoOrderRemarkUpdateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 采购单编号
      */
@@ -40,42 +36,46 @@ public class FenxiaoOrderRemarkUpdateRequest implements
      */
     private Long supplierMemoFlag;
 
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(purchaseOrderId, "purchaseOrderId");
+        RequestCheckUtils.checkNotEmpty(supplierMemo, "supplierMemo");
+        RequestCheckUtils.checkMaxValue(supplierMemoFlag, 5L, "supplierMemoFlag");
+        RequestCheckUtils.checkMinValue(supplierMemoFlag, 1L, "supplierMemoFlag");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.order.remark.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPurchaseOrderId() {
         return this.purchaseOrderId;
     }
 
-    public void setSupplierMemo(String supplierMemo) {
-        this.supplierMemo = supplierMemo;
+    @Override
+    public Class<FenxiaoOrderRemarkUpdateResponse> getResponseClass() {
+        return FenxiaoOrderRemarkUpdateResponse.class;
     }
 
     public String getSupplierMemo() {
         return this.supplierMemo;
     }
 
-    public void setSupplierMemoFlag(Long supplierMemoFlag) {
-        this.supplierMemoFlag = supplierMemoFlag;
-    }
-
     public Long getSupplierMemoFlag() {
         return this.supplierMemoFlag;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.order.remark.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("purchase_order_id", this.purchaseOrderId);
@@ -87,6 +87,12 @@ public class FenxiaoOrderRemarkUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,18 +100,20 @@ public class FenxiaoOrderRemarkUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoOrderRemarkUpdateResponse> getResponseClass() {
-        return FenxiaoOrderRemarkUpdateResponse.class;
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(purchaseOrderId, "purchaseOrderId");
-        RequestCheckUtils.checkNotEmpty(supplierMemo, "supplierMemo");
-        RequestCheckUtils.checkMaxValue(supplierMemoFlag, 5L, "supplierMemoFlag");
-        RequestCheckUtils.checkMinValue(supplierMemoFlag, 1L, "supplierMemoFlag");
+    public void setSupplierMemo(String supplierMemo) {
+        this.supplierMemo = supplierMemo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSupplierMemoFlag(Long supplierMemoFlag) {
+        this.supplierMemoFlag = supplierMemoFlag;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

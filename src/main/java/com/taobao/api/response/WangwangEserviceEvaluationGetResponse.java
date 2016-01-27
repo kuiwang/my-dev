@@ -24,12 +24,12 @@ public class WangwangEserviceEvaluationGetResponse extends TaobaoResponse {
     @ApiField("staff_eval_stat_on_day")
     private List<StaffEvalStatOnDay> staffEvalStatOnDays;
 
-    public void setStaffEvalStatOnDays(List<StaffEvalStatOnDay> staffEvalStatOnDays) {
-        this.staffEvalStatOnDays = staffEvalStatOnDays;
-    }
-
     public List<StaffEvalStatOnDay> getStaffEvalStatOnDays() {
         return this.staffEvalStatOnDays;
+    }
+
+    public void setStaffEvalStatOnDays(List<StaffEvalStatOnDay> staffEvalStatOnDays) {
+        this.staffEvalStatOnDays = staffEvalStatOnDays;
     }
 
 }

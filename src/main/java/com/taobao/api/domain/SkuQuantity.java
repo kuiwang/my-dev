@@ -29,12 +29,12 @@ public class SkuQuantity extends TaobaoObject {
         return this.quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public String getSkuId() {
         return this.skuId;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public void setSkuId(String skuId) {

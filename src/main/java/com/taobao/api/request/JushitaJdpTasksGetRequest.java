@@ -16,18 +16,14 @@ import com.taobao.api.response.JushitaJdpTasksGetResponse;
  */
 public class JushitaJdpTasksGetRequest implements TaobaoRequest<JushitaJdpTasksGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 最大可返回的任务数量<br />
      * 支持最大值为：200<br />
      * 支持最小值为：1
      */
     private Long fetchNum;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 任务分组数量，表示把所有任务平均分成x组，在线订购应用此参数必传；非在线订购应用此参数忽略。<br />
@@ -41,69 +37,60 @@ public class JushitaJdpTasksGetRequest implements TaobaoRequest<JushitaJdpTasksG
      */
     private String taskItems;
 
+    private Long timestamp;
+
     /**
      * 任务类型<br />
      * 支持最小值为：0
      */
     private Long type;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 需要查询哪些用户的任务，非在线订购应用此参数必传；在线订购应用此参数忽略。
      */
     private String userIds;
 
-    public void setFetchNum(Long fetchNum) {
-        this.fetchNum = fetchNum;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(fetchNum, 200L, "fetchNum");
+        RequestCheckUtils.checkMinValue(fetchNum, 1L, "fetchNum");
+        RequestCheckUtils.checkMinValue(taskItemNum, 1L, "taskItemNum");
+        RequestCheckUtils.checkMaxListSize(taskItems, 500, "taskItems");
+        RequestCheckUtils.checkNotEmpty(type, "type");
+        RequestCheckUtils.checkMinValue(type, 0L, "type");
+        RequestCheckUtils.checkMaxListSize(userIds, 200, "userIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jushita.jdp.tasks.get";
     }
 
     public Long getFetchNum() {
         return this.fetchNum;
     }
 
-    public void setTaskItemNum(Long taskItemNum) {
-        this.taskItemNum = taskItemNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<JushitaJdpTasksGetResponse> getResponseClass() {
+        return JushitaJdpTasksGetResponse.class;
     }
 
     public Long getTaskItemNum() {
         return this.taskItemNum;
     }
 
-    public void setTaskItems(String taskItems) {
-        this.taskItems = taskItems;
-    }
-
     public String getTaskItems() {
         return this.taskItems;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public void setUserIds(String userIds) {
-        this.userIds = userIds;
-    }
-
-    public String getUserIds() {
-        return this.userIds;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jushita.jdp.tasks.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fetch_num", this.fetchNum);
@@ -117,6 +104,20 @@ public class JushitaJdpTasksGetRequest implements TaobaoRequest<JushitaJdpTasksG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    public String getUserIds() {
+        return this.userIds;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -124,21 +125,28 @@ public class JushitaJdpTasksGetRequest implements TaobaoRequest<JushitaJdpTasksG
         this.udfParams.put(key, value);
     }
 
-    public Class<JushitaJdpTasksGetResponse> getResponseClass() {
-        return JushitaJdpTasksGetResponse.class;
+    public void setFetchNum(Long fetchNum) {
+        this.fetchNum = fetchNum;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(fetchNum, 200L, "fetchNum");
-        RequestCheckUtils.checkMinValue(fetchNum, 1L, "fetchNum");
-        RequestCheckUtils.checkMinValue(taskItemNum, 1L, "taskItemNum");
-        RequestCheckUtils.checkMaxListSize(taskItems, 500, "taskItems");
-        RequestCheckUtils.checkNotEmpty(type, "type");
-        RequestCheckUtils.checkMinValue(type, 0L, "type");
-        RequestCheckUtils.checkMaxListSize(userIds, 200, "userIds");
+    public void setTaskItemNum(Long taskItemNum) {
+        this.taskItemNum = taskItemNum;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTaskItems(String taskItems) {
+        this.taskItems = taskItems;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
+    }
+
+    public void setUserIds(String userIds) {
+        this.userIds = userIds;
     }
 }

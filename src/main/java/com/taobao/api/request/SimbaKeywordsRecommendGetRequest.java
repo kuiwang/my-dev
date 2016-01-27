@@ -17,16 +17,12 @@ import com.taobao.api.response.SimbaKeywordsRecommendGetResponse;
 public class SimbaKeywordsRecommendGetRequest implements
         TaobaoRequest<SimbaKeywordsRecommendGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组ID
      */
     private Long adgroupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
@@ -62,74 +58,64 @@ public class SimbaKeywordsRecommendGetRequest implements
      */
     private Long search;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywords.recommend.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPertinence(String pertinence) {
-        this.pertinence = pertinence;
     }
 
     public String getPertinence() {
         return this.pertinence;
     }
 
-    public void setSearch(Long search) {
-        this.search = search;
+    @Override
+    public Class<SimbaKeywordsRecommendGetResponse> getResponseClass() {
+        return SimbaKeywordsRecommendGetResponse.class;
     }
 
     public Long getSearch() {
         return this.search;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywords.recommend.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -145,6 +131,12 @@ public class SimbaKeywordsRecommendGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -152,20 +144,36 @@ public class SimbaKeywordsRecommendGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordsRecommendGetResponse> getResponseClass() {
-        return SimbaKeywordsRecommendGetResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPertinence(String pertinence) {
+        this.pertinence = pertinence;
+    }
+
+    public void setSearch(Long search) {
+        this.search = search;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

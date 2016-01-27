@@ -113,124 +113,124 @@ public class SQLSlowLog extends TaobaoObject {
         return this.createTime;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
     public String getdBName() {
         return this.dBName;
-    }
-
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
     }
 
     public Long getMaxLockTime() {
         return this.maxLockTime;
     }
 
-    public void setMaxLockTime(Long maxLockTime) {
-        this.maxLockTime = maxLockTime;
-    }
-
     public Long getMySQLTotalExecutionCounts() {
         return this.mySQLTotalExecutionCounts;
-    }
-
-    public void setMySQLTotalExecutionCounts(Long mySQLTotalExecutionCounts) {
-        this.mySQLTotalExecutionCounts = mySQLTotalExecutionCounts;
     }
 
     public Long getMySQLTotalExecutionTimes() {
         return this.mySQLTotalExecutionTimes;
     }
 
-    public void setMySQLTotalExecutionTimes(Long mySQLTotalExecutionTimes) {
-        this.mySQLTotalExecutionTimes = mySQLTotalExecutionTimes;
-    }
-
     public Long getParseMaxRowCount() {
         return this.parseMaxRowCount;
-    }
-
-    public void setParseMaxRowCount(Long parseMaxRowCount) {
-        this.parseMaxRowCount = parseMaxRowCount;
     }
 
     public Long getParseTotalRowCounts() {
         return this.parseTotalRowCounts;
     }
 
-    public void setParseTotalRowCounts(Long parseTotalRowCounts) {
-        this.parseTotalRowCounts = parseTotalRowCounts;
-    }
-
     public String getReportTime() {
         return this.reportTime;
-    }
-
-    public void setReportTime(String reportTime) {
-        this.reportTime = reportTime;
     }
 
     public Long getReturnMaxRowCount() {
         return this.returnMaxRowCount;
     }
 
-    public void setReturnMaxRowCount(Long returnMaxRowCount) {
-        this.returnMaxRowCount = returnMaxRowCount;
-    }
-
     public Long getReturnTotalRowCounts() {
         return this.returnTotalRowCounts;
-    }
-
-    public void setReturnTotalRowCounts(Long returnTotalRowCounts) {
-        this.returnTotalRowCounts = returnTotalRowCounts;
     }
 
     public Long getsQLServerTotalExecutionCounts() {
         return this.sQLServerTotalExecutionCounts;
     }
 
-    public void setsQLServerTotalExecutionCounts(Long sQLServerTotalExecutionCounts) {
-        this.sQLServerTotalExecutionCounts = sQLServerTotalExecutionCounts;
-    }
-
     public Long getsQLServerTotalExecutionTimes() {
         return this.sQLServerTotalExecutionTimes;
-    }
-
-    public void setsQLServerTotalExecutionTimes(Long sQLServerTotalExecutionTimes) {
-        this.sQLServerTotalExecutionTimes = sQLServerTotalExecutionTimes;
     }
 
     public String getsQLText() {
         return this.sQLText;
     }
 
-    public void setsQLText(String sQLText) {
-        this.sQLText = sQLText;
-    }
-
     public Long getTotalLockTimes() {
         return this.totalLockTimes;
-    }
-
-    public void setTotalLockTimes(Long totalLockTimes) {
-        this.totalLockTimes = totalLockTimes;
     }
 
     public Long getTotalLogicalReadCounts() {
         return this.totalLogicalReadCounts;
     }
 
-    public void setTotalLogicalReadCounts(Long totalLogicalReadCounts) {
-        this.totalLogicalReadCounts = totalLogicalReadCounts;
-    }
-
     public Long getTotalPhysicalReadCounts() {
         return this.totalPhysicalReadCounts;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setMaxLockTime(Long maxLockTime) {
+        this.maxLockTime = maxLockTime;
+    }
+
+    public void setMySQLTotalExecutionCounts(Long mySQLTotalExecutionCounts) {
+        this.mySQLTotalExecutionCounts = mySQLTotalExecutionCounts;
+    }
+
+    public void setMySQLTotalExecutionTimes(Long mySQLTotalExecutionTimes) {
+        this.mySQLTotalExecutionTimes = mySQLTotalExecutionTimes;
+    }
+
+    public void setParseMaxRowCount(Long parseMaxRowCount) {
+        this.parseMaxRowCount = parseMaxRowCount;
+    }
+
+    public void setParseTotalRowCounts(Long parseTotalRowCounts) {
+        this.parseTotalRowCounts = parseTotalRowCounts;
+    }
+
+    public void setReportTime(String reportTime) {
+        this.reportTime = reportTime;
+    }
+
+    public void setReturnMaxRowCount(Long returnMaxRowCount) {
+        this.returnMaxRowCount = returnMaxRowCount;
+    }
+
+    public void setReturnTotalRowCounts(Long returnTotalRowCounts) {
+        this.returnTotalRowCounts = returnTotalRowCounts;
+    }
+
+    public void setsQLServerTotalExecutionCounts(Long sQLServerTotalExecutionCounts) {
+        this.sQLServerTotalExecutionCounts = sQLServerTotalExecutionCounts;
+    }
+
+    public void setsQLServerTotalExecutionTimes(Long sQLServerTotalExecutionTimes) {
+        this.sQLServerTotalExecutionTimes = sQLServerTotalExecutionTimes;
+    }
+
+    public void setsQLText(String sQLText) {
+        this.sQLText = sQLText;
+    }
+
+    public void setTotalLockTimes(Long totalLockTimes) {
+        this.totalLockTimes = totalLockTimes;
+    }
+
+    public void setTotalLogicalReadCounts(Long totalLogicalReadCounts) {
+        this.totalLogicalReadCounts = totalLogicalReadCounts;
     }
 
     public void setTotalPhysicalReadCounts(Long totalPhysicalReadCounts) {

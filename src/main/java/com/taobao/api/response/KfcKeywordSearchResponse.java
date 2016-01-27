@@ -20,12 +20,12 @@ public class KfcKeywordSearchResponse extends TaobaoResponse {
     @ApiField("kfc_search_result")
     private KfcSearchResult kfcSearchResult;
 
-    public void setKfcSearchResult(KfcSearchResult kfcSearchResult) {
-        this.kfcSearchResult = kfcSearchResult;
-    }
-
     public KfcSearchResult getKfcSearchResult() {
         return this.kfcSearchResult;
+    }
+
+    public void setKfcSearchResult(KfcSearchResult kfcSearchResult) {
+        this.kfcSearchResult = kfcSearchResult;
     }
 
 }

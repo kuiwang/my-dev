@@ -17,12 +17,6 @@ import com.taobao.api.response.TradesSoldGetResponse;
  */
 public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称
      */
@@ -72,6 +66,8 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 页码。取值范围:大于零的整数; 默认值:1
      */
@@ -113,6 +109,8 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
      */
     private String tag;
 
+    private Long timestamp;
+
     /**
      * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span
      * style="color:red;font-weight: bold;">默认同时查询guarantee_trade,
@@ -132,120 +130,75 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
      */
     private String type;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，
      * 通过此种方式获取增量交易，接口调用成功率在原有的基础上有所提升。
      */
     private Boolean useHasNext;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trades.sold.get";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setEndCreated(Date endCreated) {
-        this.endCreated = endCreated;
-    }
-
     public Date getEndCreated() {
         return this.endCreated;
-    }
-
-    public void setExtType(String extType) {
-        this.extType = extType;
     }
 
     public String getExtType() {
         return this.extType;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setRateStatus(String rateStatus) {
-        this.rateStatus = rateStatus;
     }
 
     public String getRateStatus() {
         return this.rateStatus;
     }
 
-    public void setStartCreated(Date startCreated) {
-        this.startCreated = startCreated;
+    @Override
+    public Class<TradesSoldGetResponse> getResponseClass() {
+        return TradesSoldGetResponse.class;
     }
 
     public Date getStartCreated() {
         return this.startCreated;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     public String getTag() {
         return this.tag;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setUseHasNext(Boolean useHasNext) {
-        this.useHasNext = useHasNext;
-    }
-
-    public Boolean getUseHasNext() {
-        return this.useHasNext;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trades.sold.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -266,6 +219,20 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public Boolean getUseHasNext() {
+        return this.useHasNext;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -273,15 +240,56 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<TradesSoldGetResponse> getResponseClass() {
-        return TradesSoldGetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    public void setEndCreated(Date endCreated) {
+        this.endCreated = endCreated;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setExtType(String extType) {
+        this.extType = extType;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRateStatus(String rateStatus) {
+        this.rateStatus = rateStatus;
+    }
+
+    public void setStartCreated(Date startCreated) {
+        this.startCreated = startCreated;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUseHasNext(Boolean useHasNext) {
+        this.useHasNext = useHasNext;
     }
 }

@@ -18,10 +18,6 @@ public class SimbaToolsItemsTopGetRequest implements TaobaoRequest<SimbaToolsIte
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 输入的必须是一个符合ipv4或者ipv6格式的IP地址
      */
@@ -37,42 +33,44 @@ public class SimbaToolsItemsTopGetRequest implements TaobaoRequest<SimbaToolsIte
      */
     private String nick;
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ip, "ip");
+        RequestCheckUtils.checkNotEmpty(keyword, "keyword");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.tools.items.top.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIp() {
         return this.ip;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
     public String getKeyword() {
         return this.keyword;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaToolsItemsTopGetResponse> getResponseClass() {
+        return SimbaToolsItemsTopGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.tools.items.top.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ip", this.ip);
@@ -84,6 +82,12 @@ public class SimbaToolsItemsTopGetRequest implements TaobaoRequest<SimbaToolsIte
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,16 +95,20 @@ public class SimbaToolsItemsTopGetRequest implements TaobaoRequest<SimbaToolsIte
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaToolsItemsTopGetResponse> getResponseClass() {
-        return SimbaToolsItemsTopGetResponse.class;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ip, "ip");
-        RequestCheckUtils.checkNotEmpty(keyword, "keyword");
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -18,9 +18,7 @@ import com.taobao.api.response.WaimaiItemPicUploadResponse;
  */
 public class WaimaiItemPicUploadRequest implements TaobaoUploadRequest<WaimaiItemPicUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 图片文件字节数组<br />
@@ -28,28 +26,44 @@ public class WaimaiItemPicUploadRequest implements TaobaoUploadRequest<WaimaiIte
      */
     private FileItem picbytes;
 
-    public void setPicbytes(FileItem picbytes) {
-        this.picbytes = picbytes;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(picbytes, "picbytes");
+        RequestCheckUtils.checkMaxLength(picbytes, 512000, "picbytes");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.item.pic.upload";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("picbytes", this.picbytes);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getPicbytes() {
         return this.picbytes;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WaimaiItemPicUploadResponse> getResponseClass() {
+        return WaimaiItemPicUploadResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.item.pic.upload";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         if (this.udfParams != null) {
@@ -58,6 +72,12 @@ public class WaimaiItemPicUploadRequest implements TaobaoUploadRequest<WaimaiIte
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,23 +85,12 @@ public class WaimaiItemPicUploadRequest implements TaobaoUploadRequest<WaimaiIte
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("picbytes", this.picbytes);
-        return params;
+    public void setPicbytes(FileItem picbytes) {
+        this.picbytes = picbytes;
     }
 
-    public Class<WaimaiItemPicUploadResponse> getResponseClass() {
-        return WaimaiItemPicUploadResponse.class;
-    }
-
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(picbytes, "picbytes");
-        RequestCheckUtils.checkMaxLength(picbytes, 512000, "picbytes");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

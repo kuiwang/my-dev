@@ -16,18 +16,14 @@ import com.taobao.api.response.RdsDbCreateResponse;
  */
 public class RdsDbCreateRequest implements TaobaoRequest<RdsDbCreateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 数据库名<br />
      * 支持最大长度为：64<br />
      * 支持的最大列表长度为：64
      */
     private String dbName;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * rds的实例名<br />
@@ -36,34 +32,42 @@ public class RdsDbCreateRequest implements TaobaoRequest<RdsDbCreateResponse> {
      */
     private String instanceName;
 
-    public void setDbName(String dbName) {
-        this.dbName = dbName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dbName, "dbName");
+        RequestCheckUtils.checkMaxLength(dbName, 64, "dbName");
+        RequestCheckUtils.checkNotEmpty(instanceName, "instanceName");
+        RequestCheckUtils.checkMaxLength(instanceName, 30, "instanceName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rds.db.create";
     }
 
     public String getDbName() {
         return this.dbName;
     }
 
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getInstanceName() {
         return this.instanceName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RdsDbCreateResponse> getResponseClass() {
+        return RdsDbCreateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rds.db.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("db_name", this.dbName);
@@ -74,6 +78,12 @@ public class RdsDbCreateRequest implements TaobaoRequest<RdsDbCreateResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,18 +91,16 @@ public class RdsDbCreateRequest implements TaobaoRequest<RdsDbCreateResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<RdsDbCreateResponse> getResponseClass() {
-        return RdsDbCreateResponse.class;
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dbName, "dbName");
-        RequestCheckUtils.checkMaxLength(dbName, 64, "dbName");
-        RequestCheckUtils.checkNotEmpty(instanceName, "instanceName");
-        RequestCheckUtils.checkMaxLength(instanceName, 30, "instanceName");
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

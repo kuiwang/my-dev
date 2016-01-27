@@ -15,12 +15,6 @@ import com.taobao.api.response.SubuserFullinfoGetResponse;
  */
 public class SubuserFullinfoGetRequest implements TaobaoRequest<SubuserFullinfoGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入所需要的参数信息（若不需要获取子账号或主账号的企业邮箱地址，则无需传入该参数；若需要获取子账号或主账号的企业邮箱地址，
      * 则需要传入fields
@@ -28,6 +22,8 @@ public class SubuserFullinfoGetRequest implements TaobaoRequest<SubuserFullinfoG
      * ，例如：subuser_email,user_email）
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 子账号ID（传参中sub_id和sub_nick至少需要其中一个，若sub_id与sub_nick同时传入并且合法，
@@ -41,42 +37,42 @@ public class SubuserFullinfoGetRequest implements TaobaoRequest<SubuserFullinfoG
      */
     private String subNick;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.fullinfo.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setSubId(Long subId) {
-        this.subId = subId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SubuserFullinfoGetResponse> getResponseClass() {
+        return SubuserFullinfoGetResponse.class;
     }
 
     public Long getSubId() {
         return this.subId;
     }
 
-    public void setSubNick(String subNick) {
-        this.subNick = subNick;
-    }
-
     public String getSubNick() {
         return this.subNick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.fullinfo.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -88,6 +84,12 @@ public class SubuserFullinfoGetRequest implements TaobaoRequest<SubuserFullinfoG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -95,14 +97,20 @@ public class SubuserFullinfoGetRequest implements TaobaoRequest<SubuserFullinfoG
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserFullinfoGetResponse> getResponseClass() {
-        return SubuserFullinfoGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
+    public void setSubId(Long subId) {
+        this.subId = subId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSubNick(String subNick) {
+        this.subNick = subNick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

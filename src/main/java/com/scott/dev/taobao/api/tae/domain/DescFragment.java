@@ -19,12 +19,12 @@ public class DescFragment {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getLabel() {
         return this.label;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public void setLabel(String label) {

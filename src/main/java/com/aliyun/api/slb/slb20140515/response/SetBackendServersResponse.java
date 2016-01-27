@@ -36,28 +36,28 @@ public class SetBackendServersResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setBackendServers(List<BackendServer> backendServers) {
-        this.backendServers = backendServers;
-    }
-
     public List<BackendServer> getBackendServers() {
         return this.backendServers;
-    }
-
-    public void setLoadBalancerId(String loadBalancerId) {
-        this.loadBalancerId = loadBalancerId;
     }
 
     public String getLoadBalancerId() {
         return this.loadBalancerId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setBackendServers(List<BackendServer> backendServers) {
+        this.backendServers = backendServers;
+    }
+
+    public void setLoadBalancerId(String loadBalancerId) {
+        this.loadBalancerId = loadBalancerId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

@@ -19,12 +19,12 @@ public class Chatpeer {
         return this.date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getUid() {
         return this.uid;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setUid(String uid) {

@@ -16,37 +16,42 @@ import com.taobao.api.response.TmallTraderateFeedsGetResponse;
  */
 public class TmallTraderateFeedsGetRequest implements TaobaoRequest<TmallTraderateFeedsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 交易子订单ID
      */
     private Long childTradeId;
 
-    public void setChildTradeId(Long childTradeId) {
-        this.childTradeId = childTradeId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(childTradeId, "childTradeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.traderate.feeds.get";
     }
 
     public Long getChildTradeId() {
         return this.childTradeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<TmallTraderateFeedsGetResponse> getResponseClass() {
+        return TmallTraderateFeedsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "tmall.traderate.feeds.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("child_trade_id", this.childTradeId);
@@ -56,6 +61,12 @@ public class TmallTraderateFeedsGetRequest implements TaobaoRequest<TmallTradera
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class TmallTraderateFeedsGetRequest implements TaobaoRequest<TmallTradera
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallTraderateFeedsGetResponse> getResponseClass() {
-        return TmallTraderateFeedsGetResponse.class;
+    public void setChildTradeId(Long childTradeId) {
+        this.childTradeId = childTradeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(childTradeId, "childTradeId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

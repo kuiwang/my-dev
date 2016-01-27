@@ -16,12 +16,6 @@ import com.taobao.api.response.PictureGetResponse;
  */
 public class PictureGetRequest implements TaobaoRequest<PictureGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 图片使用，如果是pc宝贝detail使用，设置为client:computer，查询出来的图片是符合pc的宝贝detail显示的
      * 如果是手机宝贝detail使用，设置为client:phone，查询出来的图片是符合手机的宝贝detail显示的,默认值是全部
@@ -37,6 +31,8 @@ public class PictureGetRequest implements TaobaoRequest<PictureGetResponse> {
      * 查询上传结束时间点,格式:yyyy-MM-dd HH:mm:ss
      */
     private Date endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 图片被修改的时间点，格式:yyyy-MM-dd HH:mm:ss。查询此修改时间点之后到目前的图片。
@@ -74,124 +70,80 @@ public class PictureGetRequest implements TaobaoRequest<PictureGetResponse> {
      */
     private Date startDate;
 
+    private Long timestamp;
+
     /**
      * 图片标题,最大长度50字符,中英文都算一字符
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 图片url查询接口
      */
     private String urls;
 
-    public void setClientType(String clientType) {
-        this.clientType = clientType;
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.get";
     }
 
     public String getClientType() {
         return this.clientType;
     }
 
-    public void setDeleted(String deleted) {
-        this.deleted = deleted;
-    }
-
     public String getDeleted() {
         return this.deleted;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPictureCategoryId(Long pictureCategoryId) {
-        this.pictureCategoryId = pictureCategoryId;
     }
 
     public Long getPictureCategoryId() {
         return this.pictureCategoryId;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
-    }
-
     public Long getPictureId() {
         return this.pictureId;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<PictureGetResponse> getResponseClass() {
+        return PictureGetResponse.class;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setUrls(String urls) {
-        this.urls = urls;
-    }
-
-    public String getUrls() {
-        return this.urls;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("client_type", this.clientType);
@@ -212,6 +164,20 @@ public class PictureGetRequest implements TaobaoRequest<PictureGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getUrls() {
+        return this.urls;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -219,14 +185,56 @@ public class PictureGetRequest implements TaobaoRequest<PictureGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<PictureGetResponse> getResponseClass() {
-        return PictureGetResponse.class;
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
     }
 
-    public void check() throws ApiRuleException {
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPictureCategoryId(Long pictureCategoryId) {
+        this.pictureCategoryId = pictureCategoryId;
+    }
+
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUrls(String urls) {
+        this.urls = urls;
     }
 }

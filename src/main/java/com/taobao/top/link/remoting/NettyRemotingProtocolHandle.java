@@ -14,7 +14,7 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
     // use netty's channelbuffer
     private ChannelBuffer buffer;
 
-    public String preamble;
+    public short contentDelimiter;
 
     public int majorVersion;
 
@@ -22,17 +22,9 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
 
     public short operation;
 
-    public short contentDelimiter;
+    public String preamble;
 
     public HashMap<String, Object> transportHeaders;
-
-    public void setContentLength(int l) {
-        this._contentLength = l;
-    }
-
-    public void setContentBuffer(ChannelBuffer buffer) {
-        this.buffer = buffer;
-    }
 
     public NettyRemotingProtocolHandle(ChannelBuffer buffer) {
         super(null);
@@ -42,8 +34,37 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
     }
 
     @Override
-    public String ReadPreamble() {
-        return this.preamble != null ? this.preamble : super.ReadPreamble();
+    protected int ReadByte() {
+        byte b = this.buffer.readByte();
+        if (b > -1) {
+            return b;
+        } else {
+            return -1;
+        }
+    }
+
+    @Override
+    protected byte[] ReadBytes(int length) {
+        byte[] buffer = new byte[length];
+        this.buffer.readBytes(buffer, 0, length);
+        return buffer;
+    }
+
+    @Override
+    public short ReadContentDelimiter() {
+        return this.contentDelimiter > -1 ? this.contentDelimiter : super.ReadContentDelimiter();
+    }
+
+    @Override
+    public int ReadContentLength() {
+        return this._contentLength > -1 ? this._contentLength : super.ReadContentLength();
+    }
+
+    @Override
+    protected int ReadInt32() {
+        // care about big edian
+        int value = ChannelBuffers.swapInt(this.buffer.readInt());
+        return value;
     }
 
     @Override
@@ -62,13 +83,8 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
     }
 
     @Override
-    public short ReadContentDelimiter() {
-        return this.contentDelimiter > -1 ? this.contentDelimiter : super.ReadContentDelimiter();
-    }
-
-    @Override
-    public int ReadContentLength() {
-        return this._contentLength > -1 ? this._contentLength : super.ReadContentLength();
+    public String ReadPreamble() {
+        return this.preamble != null ? this.preamble : super.ReadPreamble();
     }
 
     @Override
@@ -76,11 +92,12 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
         return this.transportHeaders != null ? this.transportHeaders : super.ReadTransportHeaders();
     }
 
-    @Override
-    protected int ReadByte() {
-        byte b = this.buffer.readByte();
-        if (b > -1) return b;
-        else return -1;
+    public void setContentBuffer(ChannelBuffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void setContentLength(int l) {
+        this._contentLength = l;
     }
 
     @Override
@@ -89,22 +106,8 @@ public class NettyRemotingProtocolHandle extends RemotingTcpProtocolHandle {
     }
 
     @Override
-    protected byte[] ReadBytes(int length) {
-        byte[] buffer = new byte[length];
-        this.buffer.readBytes(buffer, 0, length);
-        return buffer;
-    }
-
-    @Override
     protected void WriteBytes(byte[] value) {
         this.buffer.writeBytes(value, 0, value.length);
-    }
-
-    @Override
-    protected int ReadInt32() {
-        // care about big edian
-        int value = ChannelBuffers.swapInt(this.buffer.readInt());
-        return value;
     }
 
     @Override

@@ -19,12 +19,12 @@ public class PictureReplaceResponse extends TaobaoResponse {
     @ApiField("done")
     private Boolean done;
 
-    public void setDone(Boolean done) {
-        this.done = done;
-    }
-
     public Boolean getDone() {
         return this.done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 
 }

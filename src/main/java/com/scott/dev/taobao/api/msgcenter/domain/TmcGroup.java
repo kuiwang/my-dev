@@ -13,12 +13,12 @@ public class TmcGroup {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String[] getUsers() {
         return users;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUsers(String[] users) {

@@ -19,12 +19,12 @@ public class CrmGrademktMemberGradeactivityInitResponse extends TaobaoResponse {
     @ApiField("module")
     private Boolean module;
 
-    public void setModule(Boolean module) {
-        this.module = module;
-    }
-
     public Boolean getModule() {
         return this.module;
+    }
+
+    public void setModule(Boolean module) {
+        this.module = module;
     }
 
 }

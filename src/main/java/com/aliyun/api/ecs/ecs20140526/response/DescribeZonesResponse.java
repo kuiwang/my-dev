@@ -30,20 +30,20 @@ public class DescribeZonesResponse extends AliyunResponse {
     @ApiField("Zone")
     private List<Zone> zones;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setZones(List<Zone> zones) {
-        this.zones = zones;
-    }
-
     public List<Zone> getZones() {
         return this.zones;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setZones(List<Zone> zones) {
+        this.zones = zones;
     }
 
 }

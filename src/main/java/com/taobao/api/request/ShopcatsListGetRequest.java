@@ -15,37 +15,41 @@ import com.taobao.api.response.ShopcatsListGetResponse;
  */
 public class ShopcatsListGetRequest implements TaobaoRequest<ShopcatsListGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要返回的字段列表，见ShopCat，默认返回：cid,parent_cid,name,is_parent
      */
     private String fields;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.shopcats.list.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<ShopcatsListGetResponse> getResponseClass() {
+        return ShopcatsListGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.shopcats.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -55,6 +59,12 @@ public class ShopcatsListGetRequest implements TaobaoRequest<ShopcatsListGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class ShopcatsListGetRequest implements TaobaoRequest<ShopcatsListGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<ShopcatsListGetResponse> getResponseClass() {
-        return ShopcatsListGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

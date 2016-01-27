@@ -59,52 +59,52 @@ public class SQLRecord extends TaobaoObject {
         return this.accountName;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
     public String getdBName() {
         return this.dBName;
-    }
-
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
     }
 
     public String getExecuteTime() {
         return this.executeTime;
     }
 
-    public void setExecuteTime(String executeTime) {
-        this.executeTime = executeTime;
-    }
-
     public String getHostAddress() {
         return this.hostAddress;
-    }
-
-    public void setHostAddress(String hostAddress) {
-        this.hostAddress = hostAddress;
     }
 
     public Long getReturnRowCounts() {
         return this.returnRowCounts;
     }
 
-    public void setReturnRowCounts(Long returnRowCounts) {
-        this.returnRowCounts = returnRowCounts;
-    }
-
     public String getsQLText() {
         return this.sQLText;
     }
 
-    public void setsQLText(String sQLText) {
-        this.sQLText = sQLText;
-    }
-
     public Long getTotalExecutionTimes() {
         return this.totalExecutionTimes;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setExecuteTime(String executeTime) {
+        this.executeTime = executeTime;
+    }
+
+    public void setHostAddress(String hostAddress) {
+        this.hostAddress = hostAddress;
+    }
+
+    public void setReturnRowCounts(Long returnRowCounts) {
+        this.returnRowCounts = returnRowCounts;
+    }
+
+    public void setsQLText(String sQLText) {
+        this.sQLText = sQLText;
     }
 
     public void setTotalExecutionTimes(Long totalExecutionTimes) {

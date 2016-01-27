@@ -18,10 +18,6 @@ public class DdReservedUpdateRequest implements TaobaoRequest<DdReservedUpdateRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 预定订单编号
      */
@@ -47,58 +43,52 @@ public class DdReservedUpdateRequest implements TaobaoRequest<DdReservedUpdateRe
      */
     private String storeId;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.reserved.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setMark(Long mark) {
-        this.mark = mark;
-    }
-
     public Long getMark() {
         return this.mark;
-    }
-
-    public void setOption(Long option) {
-        this.option = option;
     }
 
     public Long getOption() {
         return this.option;
     }
 
-    public void setSellerMemo(String sellerMemo) {
-        this.sellerMemo = sellerMemo;
+    @Override
+    public Class<DdReservedUpdateResponse> getResponseClass() {
+        return DdReservedUpdateResponse.class;
     }
 
     public String getSellerMemo() {
         return this.sellerMemo;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
     public String getStoreId() {
         return this.storeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.reserved.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -112,6 +102,12 @@ public class DdReservedUpdateRequest implements TaobaoRequest<DdReservedUpdateRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,16 +115,28 @@ public class DdReservedUpdateRequest implements TaobaoRequest<DdReservedUpdateRe
         this.udfParams.put(key, value);
     }
 
-    public Class<DdReservedUpdateResponse> getResponseClass() {
-        return DdReservedUpdateResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    public void setMark(Long mark) {
+        this.mark = mark;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOption(Long option) {
+        this.option = option;
+    }
+
+    public void setSellerMemo(String sellerMemo) {
+        this.sellerMemo = sellerMemo;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

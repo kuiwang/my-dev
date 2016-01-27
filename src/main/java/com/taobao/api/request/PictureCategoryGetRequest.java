@@ -18,10 +18,6 @@ public class PictureCategoryGetRequest implements TaobaoRequest<PictureCategoryG
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 图片分类的修改时间点，格式:yyyy-MM-dd HH:mm:ss。查询此修改时间点之后到目前的图片分类。
      */
@@ -42,63 +38,51 @@ public class PictureCategoryGetRequest implements TaobaoRequest<PictureCategoryG
      */
     private String pictureCategoryName;
 
+    private Long timestamp;
+
     /**
      * 分类类型,fixed代表店铺装修分类类别，auction代表宝贝分类类别，user-define代表用户自定义分类类别
      */
     private String type;
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.category.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     public Long getParentId() {
         return this.parentId;
-    }
-
-    public void setPictureCategoryId(Long pictureCategoryId) {
-        this.pictureCategoryId = pictureCategoryId;
     }
 
     public Long getPictureCategoryId() {
         return this.pictureCategoryId;
     }
 
-    public void setPictureCategoryName(String pictureCategoryName) {
-        this.pictureCategoryName = pictureCategoryName;
-    }
-
     public String getPictureCategoryName() {
         return this.pictureCategoryName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    @Override
+    public Class<PictureCategoryGetResponse> getResponseClass() {
+        return PictureCategoryGetResponse.class;
     }
 
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.category.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("modified_time", this.modifiedTime);
@@ -112,6 +96,16 @@ public class PictureCategoryGetRequest implements TaobaoRequest<PictureCategoryG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,14 +113,28 @@ public class PictureCategoryGetRequest implements TaobaoRequest<PictureCategoryG
         this.udfParams.put(key, value);
     }
 
-    public Class<PictureCategoryGetResponse> getResponseClass() {
-        return PictureCategoryGetResponse.class;
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
-    public void check() throws ApiRuleException {
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPictureCategoryId(Long pictureCategoryId) {
+        this.pictureCategoryId = pictureCategoryId;
+    }
+
+    public void setPictureCategoryName(String pictureCategoryName) {
+        this.pictureCategoryName = pictureCategoryName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

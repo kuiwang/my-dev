@@ -43,28 +43,28 @@ public class FenxiaoGrade extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getGradeId() {
         return this.gradeId;
-    }
-
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getName() {
         return this.name;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
     public void setName(String name) {

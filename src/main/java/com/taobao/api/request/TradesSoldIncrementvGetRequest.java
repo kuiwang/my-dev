@@ -18,12 +18,6 @@ import com.taobao.api.response.TradesSoldIncrementvGetResponse;
 public class TradesSoldIncrementvGetRequest implements
         TaobaoRequest<TradesSoldIncrementvGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询入库结束时间，必须大于入库开始时间(修改时间跨度不能大于一天)，格式:yyyy-MM-dd HH:mm:ss。<span
      * style=
@@ -66,6 +60,8 @@ public class TradesSoldIncrementvGetRequest implements
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 页码。取值范围:大于零的整数;默认值:1。<span
      * style="color:red;font-weight: bold;">注：必须采用倒序的分页方式
@@ -102,6 +98,8 @@ public class TradesSoldIncrementvGetRequest implements
      */
     private String tag;
 
+    private Long timestamp;
+
     /**
      * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span
      * style="color:red;font-weight: bold;">默认同时查询guarantee_trade,
@@ -119,6 +117,8 @@ public class TradesSoldIncrementvGetRequest implements
      */
     private String type;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，<span
      * style
@@ -127,98 +127,61 @@ public class TradesSoldIncrementvGetRequest implements
      */
     private Boolean useHasNext;
 
-    public void setEndCreate(Date endCreate) {
-        this.endCreate = endCreate;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endCreate, "endCreate");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(startCreate, "startCreate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trades.sold.incrementv.get";
     }
 
     public Date getEndCreate() {
         return this.endCreate;
     }
 
-    public void setExtType(String extType) {
-        this.extType = extType;
-    }
-
     public String getExtType() {
         return this.extType;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartCreate(Date startCreate) {
-        this.startCreate = startCreate;
+    @Override
+    public Class<TradesSoldIncrementvGetResponse> getResponseClass() {
+        return TradesSoldIncrementvGetResponse.class;
     }
 
     public Date getStartCreate() {
         return this.startCreate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     public String getTag() {
         return this.tag;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setUseHasNext(Boolean useHasNext) {
-        this.useHasNext = useHasNext;
-    }
-
-    public Boolean getUseHasNext() {
-        return this.useHasNext;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trades.sold.incrementv.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_create", this.endCreate);
@@ -237,6 +200,20 @@ public class TradesSoldIncrementvGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public Boolean getUseHasNext() {
+        return this.useHasNext;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -244,17 +221,48 @@ public class TradesSoldIncrementvGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TradesSoldIncrementvGetResponse> getResponseClass() {
-        return TradesSoldIncrementvGetResponse.class;
+    public void setEndCreate(Date endCreate) {
+        this.endCreate = endCreate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endCreate, "endCreate");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(startCreate, "startCreate");
+    public void setExtType(String extType) {
+        this.extType = extType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartCreate(Date startCreate) {
+        this.startCreate = startCreate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUseHasNext(Boolean useHasNext) {
+        this.useHasNext = useHasNext;
     }
 }

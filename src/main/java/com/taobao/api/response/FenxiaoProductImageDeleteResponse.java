@@ -27,20 +27,20 @@ public class FenxiaoProductImageDeleteResponse extends TaobaoResponse {
     @ApiField("result")
     private Boolean result;
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getCreated() {
         return this.created;
     }
 
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
 }

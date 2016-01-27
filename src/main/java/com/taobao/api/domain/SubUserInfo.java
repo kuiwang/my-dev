@@ -59,52 +59,52 @@ public class SubUserInfo extends TaobaoObject {
         return this.fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public Long getIsOnline() {
         return this.isOnline;
-    }
-
-    public void setIsOnline(Long isOnline) {
-        this.isOnline = isOnline;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getSellerId() {
         return this.sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getSubId() {
         return this.subId;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setIsOnline(Long isOnline) {
+        this.isOnline = isOnline;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public void setSubId(Long subId) {

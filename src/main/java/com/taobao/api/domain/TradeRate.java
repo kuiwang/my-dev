@@ -97,100 +97,100 @@ public class TradeRate extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getItemPrice() {
         return this.itemPrice;
     }
 
-    public void setItemPrice(String itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public String getItemTitle() {
         return this.itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
-    }
-
     public String getRatedNick() {
         return this.ratedNick;
-    }
-
-    public void setRatedNick(String ratedNick) {
-        this.ratedNick = ratedNick;
     }
 
     public String getReply() {
         return this.reply;
     }
 
-    public void setReply(String reply) {
-        this.reply = reply;
-    }
-
     public String getResult() {
         return this.result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
     }
 
     public String getRole() {
         return this.role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public Long getTid() {
         return this.tid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
     public Boolean getValidScore() {
         return this.validScore;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setRatedNick(String ratedNick) {
+        this.ratedNick = ratedNick;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
     public void setValidScore(Boolean validScore) {

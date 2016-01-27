@@ -30,20 +30,20 @@ public class AlipayUserAccountFreezeGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private String totalResults;
 
-    public void setFreezeItems(List<AccountFreeze> freezeItems) {
-        this.freezeItems = freezeItems;
-    }
-
     public List<AccountFreeze> getFreezeItems() {
         return this.freezeItems;
     }
 
-    public void setTotalResults(String totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public String getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setFreezeItems(List<AccountFreeze> freezeItems) {
+        this.freezeItems = freezeItems;
+    }
+
+    public void setTotalResults(String totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

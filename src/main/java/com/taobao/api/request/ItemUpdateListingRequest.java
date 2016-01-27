@@ -18,10 +18,6 @@ public class ItemUpdateListingRequest implements TaobaoRequest<ItemUpdateListing
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要上架的商品的数量。取值范围:大于零的整数。如果商品有sku，则上架数量默认为所有sku数量总和，不可修改。
      * 否则商品数量根据设置数量调整为num<br />
@@ -35,34 +31,42 @@ public class ItemUpdateListingRequest implements TaobaoRequest<ItemUpdateListing
      */
     private Long numIid;
 
-    public void setNum(Long num) {
-        this.num = num;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(num, "num");
+        RequestCheckUtils.checkMinValue(num, 0L, "num");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.update.listing";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemUpdateListingResponse> getResponseClass() {
+        return ItemUpdateListingResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.update.listing";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("num", this.num);
@@ -73,6 +77,12 @@ public class ItemUpdateListingRequest implements TaobaoRequest<ItemUpdateListing
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,18 +90,16 @@ public class ItemUpdateListingRequest implements TaobaoRequest<ItemUpdateListing
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemUpdateListingResponse> getResponseClass() {
-        return ItemUpdateListingResponse.class;
+    public void setNum(Long num) {
+        this.num = num;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(num, "num");
-        RequestCheckUtils.checkMinValue(num, 0L, "num");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

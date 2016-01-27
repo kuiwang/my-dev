@@ -19,12 +19,12 @@ public class DeliveryTemplateDeleteResponse extends TaobaoResponse {
     @ApiField("complete")
     private Boolean complete;
 
-    public void setComplete(Boolean complete) {
-        this.complete = complete;
-    }
-
     public Boolean getComplete() {
         return this.complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
     }
 
 }

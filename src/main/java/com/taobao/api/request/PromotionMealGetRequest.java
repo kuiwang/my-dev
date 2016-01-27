@@ -17,10 +17,6 @@ public class PromotionMealGetRequest implements TaobaoRequest<PromotionMealGetRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 搭配套餐id
      */
@@ -32,34 +28,38 @@ public class PromotionMealGetRequest implements TaobaoRequest<PromotionMealGetRe
      */
     private String status;
 
-    public void setMealId(Long mealId) {
-        this.mealId = mealId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.meal.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMealId() {
         return this.mealId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<PromotionMealGetResponse> getResponseClass() {
+        return PromotionMealGetResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotion.meal.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("meal_id", this.mealId);
@@ -70,6 +70,12 @@ public class PromotionMealGetRequest implements TaobaoRequest<PromotionMealGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,14 +83,16 @@ public class PromotionMealGetRequest implements TaobaoRequest<PromotionMealGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionMealGetResponse> getResponseClass() {
-        return PromotionMealGetResponse.class;
+    public void setMealId(Long mealId) {
+        this.mealId = mealId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

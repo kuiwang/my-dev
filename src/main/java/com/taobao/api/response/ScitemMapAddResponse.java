@@ -19,12 +19,12 @@ public class ScitemMapAddResponse extends TaobaoResponse {
     @ApiField("outer_code")
     private String outerCode;
 
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
-    }
-
     public String getOuterCode() {
         return this.outerCode;
+    }
+
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
     }
 
 }

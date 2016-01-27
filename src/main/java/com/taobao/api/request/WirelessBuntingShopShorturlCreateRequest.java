@@ -18,35 +18,39 @@ public class WirelessBuntingShopShorturlCreateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商店id
      */
     private String shopId;
 
-    public void setShopId(String shopId) {
-        this.shopId = shopId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wireless.bunting.shop.shorturl.create";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WirelessBuntingShopShorturlCreateResponse> getResponseClass() {
+        return WirelessBuntingShopShorturlCreateResponse.class;
     }
 
     public String getShopId() {
         return this.shopId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wireless.bunting.shop.shorturl.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("shop_id", this.shopId);
@@ -56,6 +60,12 @@ public class WirelessBuntingShopShorturlCreateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,14 +73,12 @@ public class WirelessBuntingShopShorturlCreateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WirelessBuntingShopShorturlCreateResponse> getResponseClass() {
-        return WirelessBuntingShopShorturlCreateResponse.class;
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

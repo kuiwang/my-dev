@@ -16,12 +16,6 @@ import com.taobao.api.response.TraderateAddResponse;
  */
 public class TraderateAddRequest implements TaobaoRequest<TraderateAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否匿名,卖家评不能匿名。可选值:true(匿名),false(非匿名)。注意：如果交易订单匿名，则评价也匿名
      */
@@ -32,6 +26,8 @@ public class TraderateAddRequest implements TaobaoRequest<TraderateAddResponse> 
      * .注意：当评价结果为good时就不用输入评价内容.评价内容为neutral/bad的时候需要输入评价内容
      */
     private String content;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 子订单ID
@@ -53,66 +49,53 @@ public class TraderateAddRequest implements TaobaoRequest<TraderateAddResponse> 
      */
     private Long tid;
 
-    public void setAnony(Boolean anony) {
-        this.anony = anony;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(result, "result");
+        RequestCheckUtils.checkNotEmpty(role, "role");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
     }
 
     public Boolean getAnony() {
         return this.anony;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.add";
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    @Override
+    public Class<TraderateAddResponse> getResponseClass() {
+        return TraderateAddResponse.class;
     }
 
     public String getResult() {
         return this.result;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getRole() {
         return this.role;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.traderate.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("anony", this.anony);
@@ -127,6 +110,16 @@ public class TraderateAddRequest implements TaobaoRequest<TraderateAddResponse> 
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,17 +127,32 @@ public class TraderateAddRequest implements TaobaoRequest<TraderateAddResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateAddResponse> getResponseClass() {
-        return TraderateAddResponse.class;
+    public void setAnony(Boolean anony) {
+        this.anony = anony;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(result, "result");
-        RequestCheckUtils.checkNotEmpty(role, "role");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

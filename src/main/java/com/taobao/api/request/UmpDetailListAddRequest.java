@@ -16,12 +16,6 @@ import com.taobao.api.response.UmpDetailListAddResponse;
  */
 public class UmpDetailListAddRequest implements TaobaoRequest<UmpDetailListAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 营销活动id。
      */
@@ -32,34 +26,42 @@ public class UmpDetailListAddRequest implements TaobaoRequest<UmpDetailListAddRe
      */
     private String details;
 
-    public void setActId(Long actId) {
-        this.actId = actId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(actId, "actId");
+        RequestCheckUtils.checkNotEmpty(details, "details");
     }
 
     public Long getActId() {
         return this.actId;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.detail.list.add";
     }
 
     public String getDetails() {
         return this.details;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<UmpDetailListAddResponse> getResponseClass() {
+        return UmpDetailListAddResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.ump.detail.list.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("act_id", this.actId);
@@ -70,6 +72,12 @@ public class UmpDetailListAddRequest implements TaobaoRequest<UmpDetailListAddRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class UmpDetailListAddRequest implements TaobaoRequest<UmpDetailListAddRe
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpDetailListAddResponse> getResponseClass() {
-        return UmpDetailListAddResponse.class;
+    public void setActId(Long actId) {
+        this.actId = actId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(actId, "actId");
-        RequestCheckUtils.checkNotEmpty(details, "details");
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

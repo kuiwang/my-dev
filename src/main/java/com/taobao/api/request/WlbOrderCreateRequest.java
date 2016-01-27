@@ -17,12 +17,6 @@ import com.taobao.api.response.WlbOrderCreateResponse;
  */
 public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝交易号
      */
@@ -49,6 +43,8 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
      * 计划开始送达时间 在入库单中可能会使用
      */
     private Date expectStartTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * {"invoince_info": [{"bill_type":"发票类型，必选", "bill_title":"发票抬头，必选",
@@ -181,6 +177,8 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
      */
     private String storeCode;
 
+    private Long timestamp;
+
     /**
      * 出库单中可能会用到 运输公司名称^^^运输公司联系人^^^运输公司运单号^^^运输公司电话^^^运输公司联系人身份证号
      * 
@@ -205,242 +203,135 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
      */
     private Long totalAmount;
 
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(buyerNick, 64, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(isFinished, "isFinished");
+        RequestCheckUtils.checkNotEmpty(orderItemList, "orderItemList");
+        RequestCheckUtils.checkNotEmpty(orderSubType, "orderSubType");
+        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
+        RequestCheckUtils.checkNotEmpty(outBizCode, "outBizCode");
+        RequestCheckUtils.checkMaxLength(outBizCode, 128, "outBizCode");
+        RequestCheckUtils.checkMaxLength(remark, 4000, "remark");
+        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
+        RequestCheckUtils.checkMaxLength(storeCode, 64, "storeCode");
+        RequestCheckUtils.checkMaxLength(tmsServiceCode, 64, "tmsServiceCode");
     }
 
     public String getAlipayNo() {
         return this.alipayNo;
     }
 
-    public void setAttributes(String attributes) {
-        this.attributes = attributes;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.order.create";
     }
 
     public String getAttributes() {
         return this.attributes;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setExpectEndTime(Date expectEndTime) {
-        this.expectEndTime = expectEndTime;
     }
 
     public Date getExpectEndTime() {
         return this.expectEndTime;
     }
 
-    public void setExpectStartTime(Date expectStartTime) {
-        this.expectStartTime = expectStartTime;
-    }
-
     public Date getExpectStartTime() {
         return this.expectStartTime;
     }
 
-    public void setInvoinceInfo(String invoinceInfo) {
-        this.invoinceInfo = invoinceInfo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getInvoinceInfo() {
         return this.invoinceInfo;
     }
 
-    public void setIsFinished(Boolean isFinished) {
-        this.isFinished = isFinished;
-    }
-
     public Boolean getIsFinished() {
         return this.isFinished;
-    }
-
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
     }
 
     public String getOrderCode() {
         return this.orderCode;
     }
 
-    public void setOrderFlag(String orderFlag) {
-        this.orderFlag = orderFlag;
-    }
-
     public String getOrderFlag() {
         return this.orderFlag;
-    }
-
-    public void setOrderItemList(String orderItemList) {
-        this.orderItemList = orderItemList;
     }
 
     public String getOrderItemList() {
         return this.orderItemList;
     }
 
-    public void setOrderSubType(String orderSubType) {
-        this.orderSubType = orderSubType;
-    }
-
     public String getOrderSubType() {
         return this.orderSubType;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
     }
 
     public String getOrderType() {
         return this.orderType;
     }
 
-    public void setOutBizCode(String outBizCode) {
-        this.outBizCode = outBizCode;
-    }
-
     public String getOutBizCode() {
         return this.outBizCode;
-    }
-
-    public void setPackageCount(Long packageCount) {
-        this.packageCount = packageCount;
     }
 
     public Long getPackageCount() {
         return this.packageCount;
     }
 
-    public void setPayableAmount(Long payableAmount) {
-        this.payableAmount = payableAmount;
-    }
-
     public Long getPayableAmount() {
         return this.payableAmount;
-    }
-
-    public void setPrevOrderCode(String prevOrderCode) {
-        this.prevOrderCode = prevOrderCode;
     }
 
     public String getPrevOrderCode() {
         return this.prevOrderCode;
     }
 
-    public void setReceiverInfo(String receiverInfo) {
-        this.receiverInfo = receiverInfo;
-    }
-
     public String getReceiverInfo() {
         return this.receiverInfo;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setScheduleEnd(String scheduleEnd) {
-        this.scheduleEnd = scheduleEnd;
+    @Override
+    public Class<WlbOrderCreateResponse> getResponseClass() {
+        return WlbOrderCreateResponse.class;
     }
 
     public String getScheduleEnd() {
         return this.scheduleEnd;
     }
 
-    public void setScheduleStart(String scheduleStart) {
-        this.scheduleStart = scheduleStart;
-    }
-
     public String getScheduleStart() {
         return this.scheduleStart;
-    }
-
-    public void setScheduleType(String scheduleType) {
-        this.scheduleType = scheduleType;
     }
 
     public String getScheduleType() {
         return this.scheduleType;
     }
 
-    public void setSenderInfo(String senderInfo) {
-        this.senderInfo = senderInfo;
-    }
-
     public String getSenderInfo() {
         return this.senderInfo;
-    }
-
-    public void setServiceFee(Long serviceFee) {
-        this.serviceFee = serviceFee;
     }
 
     public Long getServiceFee() {
         return this.serviceFee;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
-
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setTmsInfo(String tmsInfo) {
-        this.tmsInfo = tmsInfo;
-    }
-
-    public String getTmsInfo() {
-        return this.tmsInfo;
-    }
-
-    public void setTmsOrderCode(String tmsOrderCode) {
-        this.tmsOrderCode = tmsOrderCode;
-    }
-
-    public String getTmsOrderCode() {
-        return this.tmsOrderCode;
-    }
-
-    public void setTmsServiceCode(String tmsServiceCode) {
-        this.tmsServiceCode = tmsServiceCode;
-    }
-
-    public String getTmsServiceCode() {
-        return this.tmsServiceCode;
-    }
-
-    public void setTotalAmount(Long totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public Long getTotalAmount() {
-        return this.totalAmount;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.order.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("alipay_no", this.alipayNo);
@@ -477,6 +368,28 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTmsInfo() {
+        return this.tmsInfo;
+    }
+
+    public String getTmsOrderCode() {
+        return this.tmsOrderCode;
+    }
+
+    public String getTmsServiceCode() {
+        return this.tmsServiceCode;
+    }
+
+    public Long getTotalAmount() {
+        return this.totalAmount;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -484,25 +397,120 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbOrderCreateResponse> getResponseClass() {
-        return WlbOrderCreateResponse.class;
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(buyerNick, 64, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(isFinished, "isFinished");
-        RequestCheckUtils.checkNotEmpty(orderItemList, "orderItemList");
-        RequestCheckUtils.checkNotEmpty(orderSubType, "orderSubType");
-        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
-        RequestCheckUtils.checkNotEmpty(outBizCode, "outBizCode");
-        RequestCheckUtils.checkMaxLength(outBizCode, 128, "outBizCode");
-        RequestCheckUtils.checkMaxLength(remark, 4000, "remark");
-        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
-        RequestCheckUtils.checkMaxLength(storeCode, 64, "storeCode");
-        RequestCheckUtils.checkMaxLength(tmsServiceCode, 64, "tmsServiceCode");
+    public void setAttributes(String attributes) {
+        this.attributes = attributes;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setExpectEndTime(Date expectEndTime) {
+        this.expectEndTime = expectEndTime;
+    }
+
+    public void setExpectStartTime(Date expectStartTime) {
+        this.expectStartTime = expectStartTime;
+    }
+
+    public void setInvoinceInfo(String invoinceInfo) {
+        this.invoinceInfo = invoinceInfo;
+    }
+
+    public void setIsFinished(Boolean isFinished) {
+        this.isFinished = isFinished;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setOrderFlag(String orderFlag) {
+        this.orderFlag = orderFlag;
+    }
+
+    public void setOrderItemList(String orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+    public void setOrderSubType(String orderSubType) {
+        this.orderSubType = orderSubType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setOutBizCode(String outBizCode) {
+        this.outBizCode = outBizCode;
+    }
+
+    public void setPackageCount(Long packageCount) {
+        this.packageCount = packageCount;
+    }
+
+    public void setPayableAmount(Long payableAmount) {
+        this.payableAmount = payableAmount;
+    }
+
+    public void setPrevOrderCode(String prevOrderCode) {
+        this.prevOrderCode = prevOrderCode;
+    }
+
+    public void setReceiverInfo(String receiverInfo) {
+        this.receiverInfo = receiverInfo;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setScheduleEnd(String scheduleEnd) {
+        this.scheduleEnd = scheduleEnd;
+    }
+
+    public void setScheduleStart(String scheduleStart) {
+        this.scheduleStart = scheduleStart;
+    }
+
+    public void setScheduleType(String scheduleType) {
+        this.scheduleType = scheduleType;
+    }
+
+    public void setSenderInfo(String senderInfo) {
+        this.senderInfo = senderInfo;
+    }
+
+    public void setServiceFee(Long serviceFee) {
+        this.serviceFee = serviceFee;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTmsInfo(String tmsInfo) {
+        this.tmsInfo = tmsInfo;
+    }
+
+    public void setTmsOrderCode(String tmsOrderCode) {
+        this.tmsOrderCode = tmsOrderCode;
+    }
+
+    public void setTmsServiceCode(String tmsServiceCode) {
+        this.tmsServiceCode = tmsServiceCode;
+    }
+
+    public void setTotalAmount(Long totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

@@ -24,20 +24,20 @@ public class AccountFreeze {
         return this.freezeAmount;
     }
 
-    public void setFreezeAmount(String freezeAmount) {
-        this.freezeAmount = freezeAmount;
-    }
-
     public String getFreezeName() {
         return this.freezeName;
     }
 
-    public void setFreezeName(String freezeName) {
-        this.freezeName = freezeName;
-    }
-
     public String getFreezeType() {
         return this.freezeType;
+    }
+
+    public void setFreezeAmount(String freezeAmount) {
+        this.freezeAmount = freezeAmount;
+    }
+
+    public void setFreezeName(String freezeName) {
+        this.freezeName = freezeName;
     }
 
     public void setFreezeType(String freezeType) {

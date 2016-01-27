@@ -19,12 +19,12 @@ public class JoinSecurityGroupResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

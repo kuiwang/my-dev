@@ -18,22 +18,30 @@ public class WangwangEserviceStreamweigthsGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wangwang.eservice.streamweigths.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WangwangEserviceStreamweigthsGetResponse> getResponseClass() {
+        return WangwangEserviceStreamweigthsGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         if (this.udfParams != null) {
@@ -42,6 +50,12 @@ public class WangwangEserviceStreamweigthsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -49,14 +63,8 @@ public class WangwangEserviceStreamweigthsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceStreamweigthsGetResponse> getResponseClass() {
-        return WangwangEserviceStreamweigthsGetResponse.class;
-    }
-
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -23,6 +23,11 @@
  */
 package com.taobao.top.link.embedded.websocket.impl;
 
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3500;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3501;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3502;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3503;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
@@ -45,8 +50,6 @@ import com.taobao.top.link.embedded.websocket.handler.WebSocketPipeline;
 import com.taobao.top.link.embedded.websocket.handshake.Handshake;
 import com.taobao.top.link.embedded.websocket.proxy.Proxy;
 
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
-
 /**
  * A simple websocket client this class is implement the WebSocket Draft76
  * specification.
@@ -61,176 +64,6 @@ public class WebSocketDraft76 extends WebSocketBase {
     /** The logger. */
     //private static Logger logger = Logger.getLogger(WebSocketDraft76.class.getName());
 
-    /** The Constant VERSION. */
-    private static final int VERSION = 76;
-
-    /**
-     * Instantiates a new web socket draft76.
-     *
-     * @param url the url
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
-     */
-    public WebSocketDraft76(String url, WebSocketHandler handler, String... protocols)
-            throws WebSocketException {
-        super(url, (String) null, handler, protocols);
-    }
-
-    /**
-     * Instantiates a new web socket draft76.
-     *
-     * @param url the url
-     * @param proxy the proxy
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
-     */
-    public WebSocketDraft76(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
-            throws WebSocketException {
-        super(url, (String) null, proxy, handler, protocols);
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#newHandshakeInstance()
-     */
-    @Override
-    protected Handshake newHandshakeInstance() {
-        return new Handshake() {
-
-            private ByteBuffer bodyBuf = ByteBuffer.allocate(16);
-
-            /**
-             * Create a handshake requtest
-             * 
-             * <pre>
-             * Sample (Draft76) client => server
-             * GET /demo HTTP/1.1
-             * Host: example.com
-             * Connection: Upgrade
-             * Sec-WebSocket-Key2: 12998 5 Y3 1  .P00
-             * Sec-WebSocket-Protocol: sample
-             * Upgrade: WebSocket
-             * Sec-WebSocket-Key1: 4 @1  46546xW%0l 1 5
-             * Origin: http://example.com
-             * 
-             * ^n:ds[4U
-             * </pre>
-             * 
-             */
-            @Override
-            public ByteBuffer createHandshakeRequest() {
-                bodyBuf.clear(); // initilize a buffer
-
-                // Send GET request to server
-                StringBuilder sb = new StringBuilder();
-                sb.append("GET " + path + " HTTP/1.1\r\n");
-                addHeader(sb, "Host", endpointAddress.getHostName());
-                addHeader(sb, "Upgrade", "websocket");
-                addHeader(sb, "Connection", "Upgrade");
-                addHeader(sb, "Sec-WebSocket-Key1", SecWebSocketKey.generateKey());
-                addHeader(sb, "Sec-WebSocket-Key2", SecWebSocketKey.generateKey());
-                if (origin != null) {
-                    addHeader(sb, "Origin", origin);
-                }
-                if (protocols != null && protocols.length > 0) {
-                    addHeader(sb, "Sec-WebSocket-Protocol", join(",", protocols));
-                }
-                sb.append("\r\n");
-
-                ByteBuffer buf = ByteBuffer.allocate(512);
-                buf.put(sb.toString().getBytes());
-                buf.put(SecWebSocketKey.generateKey3());
-                buf.put((byte) 0xd);
-                buf.put((byte) 0xa);
-                buf.flip();
-
-                return buf;
-            }
-
-            /**
-             * check handshake response
-             * 
-             * <pre>
-             * server => client
-             * HTTP/1.1 101 WebSocket Protocol Handshake
-             * Upgrade: WebSocket
-             * Connection: Upgrade
-             * Sec-WebSocket-Origin: http://example.com
-             * Sec-WebSocket-Location: ws://example.com/demo
-             * Sec-WebSocket-Protocol: sample
-             * 
-             * 8jKS'y:G*Co,Wxa-
-             * </pre>
-             * 
-             * @param buffer
-             */
-            @Override
-            protected boolean parseHandshakeResponseHeader(ByteBuffer buffer)
-                    throws WebSocketException {
-                if (!super.parseHandshakeResponseHeader(buffer)) {
-                    return false;
-                }
-                if (!"websocket".equalsIgnoreCase(this.getResponseHeader()
-                        .getHeaderValue("upgrade"))) {
-                    throw new WebSocketException(E3500, responseHeader.getHeaderValue("upgrade"));
-                }
-                if (!"upgrade".equalsIgnoreCase(this.getResponseHeader().getHeaderValue(
-                        "connection"))) {
-                    throw new WebSocketException(E3501, responseHeader.getHeaderValue("connection"));
-                }
-                String serverOrigin = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-origin");
-                if (origin != null && serverOrigin != null && !serverOrigin.equals(origin)) {
-                    throw new WebSocketException(E3502, origin, serverOrigin);
-                }
-                String serverLocation = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-location");
-                try {
-                    // reformat location URI.
-                    // drop custom port
-                    URI uri = new URI(location.getScheme(), location.getHost(), location.getPath(),
-                            location.getFragment());
-                    if (serverLocation != null && !serverLocation.equals(uri.toString())) {
-                        throw new WebSocketException(E3503, uri.toString(), serverLocation);
-                    }
-                } catch (URISyntaxException e) {
-                    ;
-                }
-                String protocolStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-protocol");
-                if (protocolStr != null) {
-                    serverProtocols = protocolStr.split(",");
-                }
-                return true;
-            }
-
-            @Override
-            protected boolean parseHandshakeResponseBody(ByteBuffer buffer)
-                    throws WebSocketException {
-                if (!super.parseHandshakeResponseBody(buffer)) {
-                    return false;
-                }
-
-                if (buffer.remaining() < bodyBuf.capacity()) {
-                    return false;
-                }
-
-                buffer.get(bodyBuf.array(), 0, bodyBuf.capacity());
-                return true;
-            }
-
-        };
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#getWebSocketVersion()
-     */
-    @Override
-    protected int getWebSocketVersion() {
-        return VERSION;
-    }
-
     /**
      * The Class SecWebSocketKey.
      *
@@ -238,14 +71,14 @@ public class WebSocketDraft76 extends WebSocketBase {
      */
     private static class SecWebSocketKey {
 
-        /** The Constant random. */
-        private static final Random random = new Random();
+        /** The Constant CHARS. */
+        private static final char[] CHARS = new char[84];
 
         /** The Constant LARGEST_INTEGER. */
         private static final long LARGEST_INTEGER = 4294967295L;
 
-        /** The Constant CHARS. */
-        private static final char[] CHARS = new char[84];
+        /** The Constant random. */
+        private static final Random random = new Random();
 
         static {
             int i = 0;
@@ -297,6 +130,36 @@ public class WebSocketDraft76 extends WebSocketBase {
         }
     }
 
+    /** The Constant VERSION. */
+    private static final int VERSION = 76;
+
+    /**
+     * Instantiates a new web socket draft76.
+     *
+     * @param url the url
+     * @param proxy the proxy
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketDraft76(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
+            throws WebSocketException {
+        super(url, (String) null, proxy, handler, protocols);
+    }
+
+    /**
+     * Instantiates a new web socket draft76.
+     *
+     * @param url the url
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketDraft76(String url, WebSocketHandler handler, String... protocols)
+            throws WebSocketException {
+        super(url, (String) null, handler, protocols);
+    }
+
     @Override
     public Frame createFrame(byte[] bytes) throws WebSocketException {
         return new BinaryFrame(bytes);
@@ -311,23 +174,11 @@ public class WebSocketDraft76 extends WebSocketBase {
     }
 
     /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#newFrameParserInstance()
+     * @see jp.a840.websocket.impl.WebSocketBase#getWebSocketVersion()
      */
     @Override
-    protected FrameParser newFrameParserInstance() {
-        return new FrameParser() {
-
-            @Override
-            protected FrameHeader createFrameHeader(ByteBuffer chunkData) {
-                return FrameBuilderDraft76.createFrameHeader(chunkData);
-            }
-
-            @Override
-            protected Frame createFrame(FrameHeader h, byte[] bodyData) {
-                return FrameBuilderDraft76.createFrame(h, bodyData);
-            }
-
-        };
+    protected int getWebSocketVersion() {
+        return VERSION;
     }
 
     /* (non-Javadoc)
@@ -339,6 +190,7 @@ public class WebSocketDraft76 extends WebSocketBase {
         // Add base response handler
         this.pipeline.addStreamHandler(new StreamHandlerAdapter() {
 
+            @Override
             public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
                     StreamHandlerChain chain) throws WebSocketException {
                 if (frame instanceof CloseFrame) {
@@ -348,6 +200,7 @@ public class WebSocketDraft76 extends WebSocketBase {
                 }
             }
 
+            @Override
             public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer,
                     StreamHandlerChain chain) throws WebSocketException {
                 // set response status
@@ -358,5 +211,157 @@ public class WebSocketDraft76 extends WebSocketBase {
                 WebSocketDraft76.this.handler.onOpen(WebSocketDraft76.this);
             }
         });
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.impl.WebSocketBase#newFrameParserInstance()
+     */
+    @Override
+    protected FrameParser newFrameParserInstance() {
+        return new FrameParser() {
+
+            @Override
+            protected Frame createFrame(FrameHeader h, byte[] bodyData) {
+                return FrameBuilderDraft76.createFrame(h, bodyData);
+            }
+
+            @Override
+            protected FrameHeader createFrameHeader(ByteBuffer chunkData) {
+                return FrameBuilderDraft76.createFrameHeader(chunkData);
+            }
+
+        };
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.impl.WebSocketBase#newHandshakeInstance()
+     */
+    @Override
+    protected Handshake newHandshakeInstance() {
+        return new Handshake() {
+
+            private ByteBuffer bodyBuf = ByteBuffer.allocate(16);
+
+            /**
+             * Create a handshake requtest
+             * 
+             * <pre>
+             * Sample (Draft76) client => server
+             * GET /demo HTTP/1.1
+             * Host: example.com
+             * Connection: Upgrade
+             * Sec-WebSocket-Key2: 12998 5 Y3 1  .P00
+             * Sec-WebSocket-Protocol: sample
+             * Upgrade: WebSocket
+             * Sec-WebSocket-Key1: 4 @1  46546xW%0l 1 5
+             * Origin: http://example.com
+             * 
+             * ^n:ds[4U
+             * </pre>
+             * 
+             */
+            @Override
+            public ByteBuffer createHandshakeRequest() {
+                bodyBuf.clear(); // initilize a buffer
+
+                // Send GET request to server
+                StringBuilder sb = new StringBuilder();
+                sb.append("GET " + path + " HTTP/1.1\r\n");
+                addHeader(sb, "Host", endpointAddress.getHostName());
+                addHeader(sb, "Upgrade", "websocket");
+                addHeader(sb, "Connection", "Upgrade");
+                addHeader(sb, "Sec-WebSocket-Key1", SecWebSocketKey.generateKey());
+                addHeader(sb, "Sec-WebSocket-Key2", SecWebSocketKey.generateKey());
+                if (origin != null) {
+                    addHeader(sb, "Origin", origin);
+                }
+                if ((protocols != null) && (protocols.length > 0)) {
+                    addHeader(sb, "Sec-WebSocket-Protocol", join(",", protocols));
+                }
+                sb.append("\r\n");
+
+                ByteBuffer buf = ByteBuffer.allocate(512);
+                buf.put(sb.toString().getBytes());
+                buf.put(SecWebSocketKey.generateKey3());
+                buf.put((byte) 0xd);
+                buf.put((byte) 0xa);
+                buf.flip();
+
+                return buf;
+            }
+
+            @Override
+            protected boolean parseHandshakeResponseBody(ByteBuffer buffer)
+                    throws WebSocketException {
+                if (!super.parseHandshakeResponseBody(buffer)) {
+                    return false;
+                }
+
+                if (buffer.remaining() < bodyBuf.capacity()) {
+                    return false;
+                }
+
+                buffer.get(bodyBuf.array(), 0, bodyBuf.capacity());
+                return true;
+            }
+
+            /**
+             * check handshake response
+             * 
+             * <pre>
+             * server => client
+             * HTTP/1.1 101 WebSocket Protocol Handshake
+             * Upgrade: WebSocket
+             * Connection: Upgrade
+             * Sec-WebSocket-Origin: http://example.com
+             * Sec-WebSocket-Location: ws://example.com/demo
+             * Sec-WebSocket-Protocol: sample
+             * 
+             * 8jKS'y:G*Co,Wxa-
+             * </pre>
+             * 
+             * @param buffer
+             */
+            @Override
+            protected boolean parseHandshakeResponseHeader(ByteBuffer buffer)
+                    throws WebSocketException {
+                if (!super.parseHandshakeResponseHeader(buffer)) {
+                    return false;
+                }
+                if (!"websocket".equalsIgnoreCase(this.getResponseHeader()
+                        .getHeaderValue("upgrade"))) {
+                    throw new WebSocketException(E3500, responseHeader.getHeaderValue("upgrade"));
+                }
+                if (!"upgrade".equalsIgnoreCase(this.getResponseHeader().getHeaderValue(
+                        "connection"))) {
+                    throw new WebSocketException(E3501, responseHeader.getHeaderValue("connection"));
+                }
+                String serverOrigin = this.getResponseHeader().getHeaderValue(
+                        "sec-websocket-origin");
+                if ((origin != null) && (serverOrigin != null) && !serverOrigin.equals(origin)) {
+                    throw new WebSocketException(E3502, origin, serverOrigin);
+                }
+                String serverLocation = this.getResponseHeader().getHeaderValue(
+                        "sec-websocket-location");
+                try {
+                    // reformat location URI.
+                    // drop custom port
+                    URI uri = new URI(location.getScheme(), location.getHost(), location.getPath(),
+                            location.getFragment());
+                    if ((serverLocation != null) && !serverLocation.equals(uri.toString())) {
+                        throw new WebSocketException(E3503, uri.toString(), serverLocation);
+                    }
+                } catch (URISyntaxException e) {
+                    ;
+                }
+                String protocolStr = this.getResponseHeader().getHeaderValue(
+                        "sec-websocket-protocol");
+                if (protocolStr != null) {
+                    serverProtocols = protocolStr.split(",");
+                }
+                return true;
+            }
+
+        };
     }
 }

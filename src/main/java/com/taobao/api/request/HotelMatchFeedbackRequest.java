@@ -16,17 +16,13 @@ import com.taobao.api.response.HotelMatchFeedbackResponse;
  */
 public class HotelMatchFeedbackRequest implements TaobaoRequest<HotelMatchFeedbackResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需进行匹配的酒店id<br />
      * 支持最小值为：1
      */
     private Long haid;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 匹配命中的酒店id<br />
@@ -41,42 +37,48 @@ public class HotelMatchFeedbackRequest implements TaobaoRequest<HotelMatchFeedba
      */
     private Long matchResult;
 
-    public void setHaid(Long haid) {
-        this.haid = haid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(haid, "haid");
+        RequestCheckUtils.checkMinValue(haid, 1L, "haid");
+        RequestCheckUtils.checkMinValue(hid, 0L, "hid");
+        RequestCheckUtils.checkNotEmpty(matchResult, "matchResult");
+        RequestCheckUtils.checkMaxValue(matchResult, 1L, "matchResult");
+        RequestCheckUtils.checkMinValue(matchResult, 0L, "matchResult");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.match.feedback";
     }
 
     public Long getHaid() {
         return this.haid;
     }
 
-    public void setHid(Long hid) {
-        this.hid = hid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHid() {
         return this.hid;
     }
 
-    public void setMatchResult(Long matchResult) {
-        this.matchResult = matchResult;
-    }
-
     public Long getMatchResult() {
         return this.matchResult;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelMatchFeedbackResponse> getResponseClass() {
+        return HotelMatchFeedbackResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.match.feedback";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("haid", this.haid);
@@ -88,6 +90,12 @@ public class HotelMatchFeedbackRequest implements TaobaoRequest<HotelMatchFeedba
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -95,20 +103,20 @@ public class HotelMatchFeedbackRequest implements TaobaoRequest<HotelMatchFeedba
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelMatchFeedbackResponse> getResponseClass() {
-        return HotelMatchFeedbackResponse.class;
+    public void setHaid(Long haid) {
+        this.haid = haid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(haid, "haid");
-        RequestCheckUtils.checkMinValue(haid, 1L, "haid");
-        RequestCheckUtils.checkMinValue(hid, 0L, "hid");
-        RequestCheckUtils.checkNotEmpty(matchResult, "matchResult");
-        RequestCheckUtils.checkMaxValue(matchResult, 1L, "matchResult");
-        RequestCheckUtils.checkMinValue(matchResult, 0L, "matchResult");
+    public void setHid(Long hid) {
+        this.hid = hid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMatchResult(Long matchResult) {
+        this.matchResult = matchResult;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

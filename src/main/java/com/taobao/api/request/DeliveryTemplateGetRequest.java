@@ -16,12 +16,6 @@ import com.taobao.api.response.DeliveryTemplateGetResponse;
  */
 public class DeliveryTemplateGetRequest implements TaobaoRequest<DeliveryTemplateGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表。 <br/>
      * <B> 可选值:示例中的值;各字段之间用","隔开 </B> <br/>
@@ -48,52 +42,52 @@ public class DeliveryTemplateGetRequest implements TaobaoRequest<DeliveryTemplat
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 需要查询的运费模板ID列表
      */
     private String templateIds;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 在没有登录的情况下根据淘宝用户昵称查询指定的模板
      */
     private String userNick;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(templateIds, "templateIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.delivery.template.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setTemplateIds(String templateIds) {
-        this.templateIds = templateIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<DeliveryTemplateGetResponse> getResponseClass() {
+        return DeliveryTemplateGetResponse.class;
     }
 
     public String getTemplateIds() {
         return this.templateIds;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.delivery.template.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -105,6 +99,16 @@ public class DeliveryTemplateGetRequest implements TaobaoRequest<DeliveryTemplat
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -112,16 +116,20 @@ public class DeliveryTemplateGetRequest implements TaobaoRequest<DeliveryTemplat
         this.udfParams.put(key, value);
     }
 
-    public Class<DeliveryTemplateGetResponse> getResponseClass() {
-        return DeliveryTemplateGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(templateIds, "templateIds");
+    public void setTemplateIds(String templateIds) {
+        this.templateIds = templateIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

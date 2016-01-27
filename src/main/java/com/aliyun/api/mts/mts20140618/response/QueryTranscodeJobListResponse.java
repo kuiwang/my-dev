@@ -30,20 +30,20 @@ public class QueryTranscodeJobListResponse extends AliyunResponse {
     @ApiField("VideoTranscodeJob")
     private List<VideoTranscodeJob> transcodeJobs;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTranscodeJobs(List<VideoTranscodeJob> transcodeJobs) {
-        this.transcodeJobs = transcodeJobs;
-    }
-
     public List<VideoTranscodeJob> getTranscodeJobs() {
         return this.transcodeJobs;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTranscodeJobs(List<VideoTranscodeJob> transcodeJobs) {
+        this.transcodeJobs = transcodeJobs;
     }
 
 }

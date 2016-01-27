@@ -18,10 +18,6 @@ public class FenxiaoProductMapAddRequest implements TaobaoRequest<FenxiaoProduct
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否需要校验商家编码，true不校验，false校验。
      */
@@ -47,58 +43,51 @@ public class FenxiaoProductMapAddRequest implements TaobaoRequest<FenxiaoProduct
      */
     private String skuIds;
 
-    public void setNotCheckOuterCode(Boolean notCheckOuterCode) {
-        this.notCheckOuterCode = notCheckOuterCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.map.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getNotCheckOuterCode() {
         return this.notCheckOuterCode;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
+    @Override
+    public Class<FenxiaoProductMapAddResponse> getResponseClass() {
+        return FenxiaoProductMapAddResponse.class;
     }
 
     public Long getScItemId() {
         return this.scItemId;
     }
 
-    public void setScItemIds(String scItemIds) {
-        this.scItemIds = scItemIds;
-    }
-
     public String getScItemIds() {
         return this.scItemIds;
-    }
-
-    public void setSkuIds(String skuIds) {
-        this.skuIds = skuIds;
     }
 
     public String getSkuIds() {
         return this.skuIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.map.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("not_check_outer_code", this.notCheckOuterCode);
@@ -112,6 +101,12 @@ public class FenxiaoProductMapAddRequest implements TaobaoRequest<FenxiaoProduct
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,15 +114,28 @@ public class FenxiaoProductMapAddRequest implements TaobaoRequest<FenxiaoProduct
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductMapAddResponse> getResponseClass() {
-        return FenxiaoProductMapAddResponse.class;
+    public void setNotCheckOuterCode(Boolean notCheckOuterCode) {
+        this.notCheckOuterCode = notCheckOuterCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
+    }
+
+    public void setScItemIds(String scItemIds) {
+        this.scItemIds = scItemIds;
+    }
+
+    public void setSkuIds(String skuIds) {
+        this.skuIds = skuIds;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

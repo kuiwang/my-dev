@@ -16,13 +16,13 @@ import com.taobao.api.internal.util.TaobaoUtils;
  */
 public class FileItem {
 
-    private String fileName;
-
-    private String mimeType;
-
     private byte[] content;
 
     private File file;
+
+    private String fileName;
+
+    private String mimeType;
 
     /**
      * 基于本地文件的构造器。
@@ -65,22 +65,8 @@ public class FileItem {
         this.mimeType = mimeType;
     }
 
-    public String getFileName() {
-        if (this.fileName == null && this.file != null && this.file.exists()) {
-            this.fileName = file.getName();
-        }
-        return this.fileName;
-    }
-
-    public String getMimeType() throws IOException {
-        if (this.mimeType == null) {
-            this.mimeType = TaobaoUtils.getMimeType(getContent());
-        }
-        return this.mimeType;
-    }
-
     public byte[] getContent() throws IOException {
-        if (this.content == null && this.file != null && this.file.exists()) {
+        if ((this.content == null) && (this.file != null) && this.file.exists()) {
             InputStream in = null;
             ByteArrayOutputStream out = null;
 
@@ -102,6 +88,20 @@ public class FileItem {
             }
         }
         return this.content;
+    }
+
+    public String getFileName() {
+        if ((this.fileName == null) && (this.file != null) && this.file.exists()) {
+            this.fileName = file.getName();
+        }
+        return this.fileName;
+    }
+
+    public String getMimeType() throws IOException {
+        if (this.mimeType == null) {
+            this.mimeType = TaobaoUtils.getMimeType(getContent());
+        }
+        return this.mimeType;
     }
 
 }

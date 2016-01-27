@@ -77,68 +77,68 @@ public class TmallRateInfo extends TaobaoObject {
         return this.appendContent;
     }
 
-    public void setAppendContent(String appendContent) {
-        this.appendContent = appendContent;
-    }
-
     public Boolean getAppendHasNegtv() {
         return this.appendHasNegtv;
-    }
-
-    public void setAppendHasNegtv(Boolean appendHasNegtv) {
-        this.appendHasNegtv = appendHasNegtv;
     }
 
     public List<TmallRateTag> getAppendTags() {
         return this.appendTags;
     }
 
-    public void setAppendTags(List<TmallRateTag> appendTags) {
-        this.appendTags = appendTags;
-    }
-
     public Date getAppendTime() {
         return this.appendTime;
-    }
-
-    public void setAppendTime(Date appendTime) {
-        this.appendTime = appendTime;
     }
 
     public Date getCommentTime() {
         return this.commentTime;
     }
 
-    public void setCommentTime(Date commentTime) {
-        this.commentTime = commentTime;
-    }
-
     public String getContent() {
         return this.content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public Boolean getHasNegtv() {
         return this.hasNegtv;
     }
 
-    public void setHasNegtv(Boolean hasNegtv) {
-        this.hasNegtv = hasNegtv;
-    }
-
     public List<TmallRateTag> getTags() {
         return this.tags;
     }
 
-    public void setTags(List<TmallRateTag> tags) {
-        this.tags = tags;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setAppendContent(String appendContent) {
+        this.appendContent = appendContent;
+    }
+
+    public void setAppendHasNegtv(Boolean appendHasNegtv) {
+        this.appendHasNegtv = appendHasNegtv;
+    }
+
+    public void setAppendTags(List<TmallRateTag> appendTags) {
+        this.appendTags = appendTags;
+    }
+
+    public void setAppendTime(Date appendTime) {
+        this.appendTime = appendTime;
+    }
+
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setHasNegtv(Boolean hasNegtv) {
+        this.hasNegtv = hasNegtv;
+    }
+
+    public void setTags(List<TmallRateTag> tags) {
+        this.tags = tags;
     }
 
     public void setUserNick(String userNick) {

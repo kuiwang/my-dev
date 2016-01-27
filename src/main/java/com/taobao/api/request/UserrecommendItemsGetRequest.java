@@ -16,12 +16,6 @@ import com.taobao.api.response.UserrecommendItemsGetResponse;
  */
 public class UserrecommendItemsGetRequest implements TaobaoRequest<UserrecommendItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 请求个数，建议取20个
      */
@@ -32,47 +26,51 @@ public class UserrecommendItemsGetRequest implements TaobaoRequest<Userrecommend
      */
     private String ext;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 请求类型，1：用户购买意图。其他值当非法值处理
      */
     private Long recommendType;
 
-    public void setCount(Long count) {
-        this.count = count;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(count, "count");
+        RequestCheckUtils.checkNotEmpty(recommendType, "recommendType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.userrecommend.items.get";
     }
 
     public Long getCount() {
         return this.count;
     }
 
-    public void setExt(String ext) {
-        this.ext = ext;
-    }
-
     public String getExt() {
         return this.ext;
     }
 
-    public void setRecommendType(Long recommendType) {
-        this.recommendType = recommendType;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getRecommendType() {
         return this.recommendType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<UserrecommendItemsGetResponse> getResponseClass() {
+        return UserrecommendItemsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.userrecommend.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("count", this.count);
@@ -84,6 +82,12 @@ public class UserrecommendItemsGetRequest implements TaobaoRequest<Userrecommend
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,16 +95,20 @@ public class UserrecommendItemsGetRequest implements TaobaoRequest<Userrecommend
         this.udfParams.put(key, value);
     }
 
-    public Class<UserrecommendItemsGetResponse> getResponseClass() {
-        return UserrecommendItemsGetResponse.class;
+    public void setCount(Long count) {
+        this.count = count;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(count, "count");
-        RequestCheckUtils.checkNotEmpty(recommendType, "recommendType");
+    public void setExt(String ext) {
+        this.ext = ext;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRecommendType(Long recommendType) {
+        this.recommendType = recommendType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

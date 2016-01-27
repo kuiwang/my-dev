@@ -25,20 +25,20 @@ public class QueryMediaBucketResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
     public String getBucketName() {
         return this.bucketName;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

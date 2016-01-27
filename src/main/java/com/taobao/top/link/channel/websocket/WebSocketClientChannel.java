@@ -16,76 +16,14 @@ import com.taobao.top.link.channel.netty.NettyClientChannel;
 public class WebSocketClientChannel extends WebSocketChannelSender implements ClientChannel,
         NettyClientChannel {
 
-    private URI uri;
-
     private ChannelHandler channelHandler;
 
     private ResetableTimer heartbeatTimer;
 
+    private URI uri;
+
     public WebSocketClientChannel() {
         super(null);
-    }
-
-    public ChannelHandler getChannelHandler() {
-        this.delayPing();
-        return this.channelHandler;
-    }
-
-    @Override
-    public void setChannel(Channel channel) {
-        this.channel = channel;
-    }
-
-    @Override
-    public void setUri(URI uri) {
-        this.uri = uri;
-    }
-
-    @Override
-    public URI getUri() {
-        return this.uri;
-    }
-
-    @Override
-    public void setChannelHandler(ChannelHandler handler) {
-        this.channelHandler = handler;
-    }
-
-    @Override
-    public boolean isConnected() {
-        return this.channel.isConnected();
-    }
-
-    @Override
-    public void close(String reason) {
-        this.stopHeartbeat();
-        super.close(reason);
-    }
-
-    @Override
-    public void setHeartbeatTimer(ResetableTimer timer) {
-        this.stopHeartbeat();
-        this.heartbeatTimer = timer;
-        this.heartbeatTimer.setTask(new Runnable() {
-
-            @Override
-            public void run() {
-                if (isConnected()) channel.write(new PingWebSocketFrame());
-            }
-        });
-        this.heartbeatTimer.start();
-    }
-
-    @Override
-    public void send(ByteBuffer dataBuffer, SendHandler sendHandler) throws ChannelException {
-        this.checkChannel();
-        super.send(dataBuffer, sendHandler);
-    }
-
-    @Override
-    public void send(byte[] data, int offset, int length) throws ChannelException {
-        this.checkChannel();
-        super.send(data, offset, length);
     }
 
     private void checkChannel() throws ChannelException {
@@ -98,16 +36,85 @@ public class WebSocketClientChannel extends WebSocketChannelSender implements Cl
         this.delayPing();
     }
 
+    @Override
+    public void close(String reason) {
+        this.stopHeartbeat();
+        super.close(reason);
+    }
+
     private void delayPing() {
-        if (this.heartbeatTimer != null) this.heartbeatTimer.delay();
+        if (this.heartbeatTimer != null) {
+            this.heartbeatTimer.delay();
+        }
+    }
+
+    @Override
+    public ChannelHandler getChannelHandler() {
+        this.delayPing();
+        return this.channelHandler;
+    }
+
+    @Override
+    public URI getUri() {
+        return this.uri;
+    }
+
+    @Override
+    public boolean isConnected() {
+        return this.channel.isConnected();
+    }
+
+    @Override
+    public void send(byte[] data, int offset, int length) throws ChannelException {
+        this.checkChannel();
+        super.send(data, offset, length);
+    }
+
+    @Override
+    public void send(ByteBuffer dataBuffer, SendHandler sendHandler) throws ChannelException {
+        this.checkChannel();
+        super.send(dataBuffer, sendHandler);
+    }
+
+    @Override
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
+
+    @Override
+    public void setChannelHandler(ChannelHandler handler) {
+        this.channelHandler = handler;
+    }
+
+    @Override
+    public void setHeartbeatTimer(ResetableTimer timer) {
+        this.stopHeartbeat();
+        this.heartbeatTimer = timer;
+        this.heartbeatTimer.setTask(new Runnable() {
+
+            @Override
+            public void run() {
+                if (isConnected()) {
+                    channel.write(new PingWebSocketFrame());
+                }
+            }
+        });
+        this.heartbeatTimer.start();
+    }
+
+    @Override
+    public void setUri(URI uri) {
+        this.uri = uri;
     }
 
     private void stopHeartbeat() {
-        if (this.heartbeatTimer != null) try {
-            this.heartbeatTimer.stop();
-            this.heartbeatTimer = null;
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        if (this.heartbeatTimer != null) {
+            try {
+                this.heartbeatTimer.stop();
+                this.heartbeatTimer = null;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 }

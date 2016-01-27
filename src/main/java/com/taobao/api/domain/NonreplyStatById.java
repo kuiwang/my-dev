@@ -35,20 +35,20 @@ public class NonreplyStatById extends TaobaoObject {
         return this.nonReplyCustomId;
     }
 
-    public void setNonReplyCustomId(String nonReplyCustomId) {
-        this.nonReplyCustomId = nonReplyCustomId;
-    }
-
     public Long getNonReplyNum() {
         return this.nonReplyNum;
     }
 
-    public void setNonReplyNum(Long nonReplyNum) {
-        this.nonReplyNum = nonReplyNum;
-    }
-
     public String getServiceStaffId() {
         return this.serviceStaffId;
+    }
+
+    public void setNonReplyCustomId(String nonReplyCustomId) {
+        this.nonReplyCustomId = nonReplyCustomId;
+    }
+
+    public void setNonReplyNum(Long nonReplyNum) {
+        this.nonReplyNum = nonReplyNum;
     }
 
     public void setServiceStaffId(String serviceStaffId) {

@@ -29,12 +29,12 @@ public class Region extends TaobaoObject {
         return this.localName;
     }
 
-    public void setLocalName(String localName) {
-        this.localName = localName;
-    }
-
     public String getRegionId() {
         return this.regionId;
+    }
+
+    public void setLocalName(String localName) {
+        this.localName = localName;
     }
 
     public void setRegionId(String regionId) {

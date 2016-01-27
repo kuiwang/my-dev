@@ -13,7 +13,9 @@ public class DefaultMessageDecoderFactory implements MessageDecoderFactory {
     @Override
     public MessageDecoder get(ByteBuffer buffer) {
         int version = buffer.get();
-        if (version == 1) return this.decoder01;
+        if (version == 1) {
+            return this.decoder01;
+        }
         return this.decoder02;
     }
 }

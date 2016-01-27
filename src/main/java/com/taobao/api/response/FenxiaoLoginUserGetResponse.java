@@ -20,12 +20,12 @@ public class FenxiaoLoginUserGetResponse extends TaobaoResponse {
     @ApiField("login_user")
     private LoginUser loginUser;
 
-    public void setLoginUser(LoginUser loginUser) {
-        this.loginUser = loginUser;
-    }
-
     public LoginUser getLoginUser() {
         return this.loginUser;
+    }
+
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
     }
 
 }

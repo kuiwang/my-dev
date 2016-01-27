@@ -18,12 +18,6 @@ import com.taobao.api.response.AlipayTopatsUserAccountreportGetResponse;
 public class AlipayTopatsUserAccountreportGetRequest implements
         TaobaoRequest<AlipayTopatsUserAccountreportGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 返回下载结果文件的数据格式，只支持utf-8和gbk编码，默认是utf-8
      */
@@ -42,10 +36,14 @@ public class AlipayTopatsUserAccountreportGetRequest implements
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 对账单开始时间。最近一个月内的日期。
      */
     private Date startTime;
+
+    private Long timestamp;
 
     /**
      * 账务类型。多个类型是，用逗号分隔，不传则查询所有类型的。PAYMENT:在线支付，TRANSFER:转账，DEPOSIT:充值，
@@ -53,58 +51,47 @@ public class AlipayTopatsUserAccountreportGetRequest implements
      */
     private String type;
 
-    public void setCharset(String charset) {
-        this.charset = charset;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.topats.user.accountreport.get";
     }
 
     public String getCharset() {
         return this.charset;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getEndTime() {
         return this.endTime;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<AlipayTopatsUserAccountreportGetResponse> getResponseClass() {
+        return AlipayTopatsUserAccountreportGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.topats.user.accountreport.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charset", this.charset);
@@ -118,6 +105,16 @@ public class AlipayTopatsUserAccountreportGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -125,17 +122,28 @@ public class AlipayTopatsUserAccountreportGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayTopatsUserAccountreportGetResponse> getResponseClass() {
-        return AlipayTopatsUserAccountreportGetResponse.class;
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

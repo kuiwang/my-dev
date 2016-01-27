@@ -33,12 +33,12 @@ public class DetailPriceInfo extends TaobaoObject {
         return this.itemPrice;
     }
 
-    public void setItemPrice(DetailPrice itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public List<SkuPriceItem> getSkuPriceList() {
         return this.skuPriceList;
+    }
+
+    public void setItemPrice(DetailPrice itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public void setSkuPriceList(List<SkuPriceItem> skuPriceList) {

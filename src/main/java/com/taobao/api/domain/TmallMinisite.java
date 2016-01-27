@@ -41,28 +41,28 @@ public class TmallMinisite extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getPromotions() {
         return this.promotions;
-    }
-
-    public void setPromotions(String promotions) {
-        this.promotions = promotions;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPromotions(String promotions) {
+        this.promotions = promotions;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setType(Long type) {

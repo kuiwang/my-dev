@@ -17,12 +17,6 @@ import com.taobao.api.response.SubuserEmployeeUpdateResponse;
  */
 public class SubuserEmployeeUpdateRequest implements TaobaoRequest<SubuserEmployeeUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 当前员工所属部门ID
      */
@@ -57,6 +51,8 @@ public class SubuserEmployeeUpdateRequest implements TaobaoRequest<SubuserEmploy
      * 员工入职时间(若需要将该字段的值置为空，请传入1900-01-01 00:00:00）
      */
     private Date entryDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 员工身份证号码(若需要将该字段的值置为空，请传入“-1”）
@@ -93,143 +89,92 @@ public class SubuserEmployeeUpdateRequest implements TaobaoRequest<SubuserEmploy
      */
     private Long subId;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 杭州大厦(若需要将该字段的值置为空，请传入“-1”）
      */
     private String workLocation;
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(subId, "subId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.employee.update";
     }
 
     public Long getDepartmentId() {
         return this.departmentId;
     }
 
-    public void setDutyId(Long dutyId) {
-        this.dutyId = dutyId;
-    }
-
     public Long getDutyId() {
         return this.dutyId;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
     }
 
     public String getEmployeeName() {
         return this.employeeName;
     }
 
-    public void setEmployeeNickname(String employeeNickname) {
-        this.employeeNickname = employeeNickname;
-    }
-
     public String getEmployeeNickname() {
         return this.employeeNickname;
-    }
-
-    public void setEmployeeNum(String employeeNum) {
-        this.employeeNum = employeeNum;
     }
 
     public String getEmployeeNum() {
         return this.employeeNum;
     }
 
-    public void setEmployeeTurnover(Boolean employeeTurnover) {
-        this.employeeTurnover = employeeTurnover;
-    }
-
     public Boolean getEmployeeTurnover() {
         return this.employeeTurnover;
-    }
-
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
     }
 
     public Date getEntryDate() {
         return this.entryDate;
     }
 
-    public void setIdCardNum(String idCardNum) {
-        this.idCardNum = idCardNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIdCardNum() {
         return this.idCardNum;
     }
 
-    public void setLeaderId(Long leaderId) {
-        this.leaderId = leaderId;
-    }
-
     public Long getLeaderId() {
         return this.leaderId;
-    }
-
-    public void setOfficePhone(String officePhone) {
-        this.officePhone = officePhone;
     }
 
     public String getOfficePhone() {
         return this.officePhone;
     }
 
-    public void setPersonalEmail(String personalEmail) {
-        this.personalEmail = personalEmail;
-    }
-
     public String getPersonalEmail() {
         return this.personalEmail;
-    }
-
-    public void setPersonalMobile(String personalMobile) {
-        this.personalMobile = personalMobile;
     }
 
     public String getPersonalMobile() {
         return this.personalMobile;
     }
 
-    public void setSex(Long sex) {
-        this.sex = sex;
+    @Override
+    public Class<SubuserEmployeeUpdateResponse> getResponseClass() {
+        return SubuserEmployeeUpdateResponse.class;
     }
 
     public Long getSex() {
         return this.sex;
     }
 
-    public void setSubId(Long subId) {
-        this.subId = subId;
-    }
-
     public Long getSubId() {
         return this.subId;
     }
 
-    public void setWorkLocation(String workLocation) {
-        this.workLocation = workLocation;
-    }
-
-    public String getWorkLocation() {
-        return this.workLocation;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.employee.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("department_id", this.departmentId);
@@ -253,6 +198,16 @@ public class SubuserEmployeeUpdateRequest implements TaobaoRequest<SubuserEmploy
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWorkLocation() {
+        return this.workLocation;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -260,15 +215,68 @@ public class SubuserEmployeeUpdateRequest implements TaobaoRequest<SubuserEmploy
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserEmployeeUpdateResponse> getResponseClass() {
-        return SubuserEmployeeUpdateResponse.class;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(subId, "subId");
+    public void setDutyId(Long dutyId) {
+        this.dutyId = dutyId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public void setEmployeeNickname(String employeeNickname) {
+        this.employeeNickname = employeeNickname;
+    }
+
+    public void setEmployeeNum(String employeeNum) {
+        this.employeeNum = employeeNum;
+    }
+
+    public void setEmployeeTurnover(Boolean employeeTurnover) {
+        this.employeeTurnover = employeeTurnover;
+    }
+
+    public void setEntryDate(Date entryDate) {
+        this.entryDate = entryDate;
+    }
+
+    public void setIdCardNum(String idCardNum) {
+        this.idCardNum = idCardNum;
+    }
+
+    public void setLeaderId(Long leaderId) {
+        this.leaderId = leaderId;
+    }
+
+    public void setOfficePhone(String officePhone) {
+        this.officePhone = officePhone;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public void setPersonalMobile(String personalMobile) {
+        this.personalMobile = personalMobile;
+    }
+
+    public void setSex(Long sex) {
+        this.sex = sex;
+    }
+
+    public void setSubId(Long subId) {
+        this.subId = subId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWorkLocation(String workLocation) {
+        this.workLocation = workLocation;
     }
 }

@@ -24,12 +24,12 @@ public class TripJipiaoAgentOrderGetResponse extends TaobaoResponse {
     @ApiField("at_order")
     private List<AtOrder> orders;
 
-    public void setOrders(List<AtOrder> orders) {
-        this.orders = orders;
-    }
-
     public List<AtOrder> getOrders() {
         return this.orders;
+    }
+
+    public void setOrders(List<AtOrder> orders) {
+        this.orders = orders;
     }
 
 }

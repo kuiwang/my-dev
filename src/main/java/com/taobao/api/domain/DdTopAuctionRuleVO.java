@@ -103,108 +103,108 @@ public class DdTopAuctionRuleVO extends TaobaoObject {
         return this.dayEnds;
     }
 
-    public void setDayEnds(Long dayEnds) {
-        this.dayEnds = dayEnds;
-    }
-
     public Long getDayStarts() {
         return this.dayStarts;
-    }
-
-    public void setDayStarts(Long dayStarts) {
-        this.dayStarts = dayStarts;
     }
 
     public String getFeatures() {
         return this.features;
     }
 
-    public void setFeatures(String features) {
-        this.features = features;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Boolean getIsDiandian() {
         return this.isDiandian;
     }
 
-    public void setIsDiandian(Boolean isDiandian) {
-        this.isDiandian = isDiandian;
-    }
-
     public Boolean getIsTakeout() {
         return this.isTakeout;
-    }
-
-    public void setIsTakeout(Boolean isTakeout) {
-        this.isTakeout = isTakeout;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Date getRuleEnds() {
         return this.ruleEnds;
-    }
-
-    public void setRuleEnds(Date ruleEnds) {
-        this.ruleEnds = ruleEnds;
     }
 
     public Date getRuleStarts() {
         return this.ruleStarts;
     }
 
-    public void setRuleStarts(Date ruleStarts) {
-        this.ruleStarts = ruleStarts;
-    }
-
     public Long getSort() {
         return this.sort;
-    }
-
-    public void setSort(Long sort) {
-        this.sort = sort;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public String getStoreId() {
         return this.storeId;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
     }
 
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getWeeklys() {
         return this.weeklys;
+    }
+
+    public void setDayEnds(Long dayEnds) {
+        this.dayEnds = dayEnds;
+    }
+
+    public void setDayStarts(Long dayStarts) {
+        this.dayStarts = dayStarts;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsDiandian(Boolean isDiandian) {
+        this.isDiandian = isDiandian;
+    }
+
+    public void setIsTakeout(Boolean isTakeout) {
+        this.isTakeout = isTakeout;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRuleEnds(Date ruleEnds) {
+        this.ruleEnds = ruleEnds;
+    }
+
+    public void setRuleStarts(Date ruleStarts) {
+        this.ruleStarts = ruleStarts;
+    }
+
+    public void setSort(Long sort) {
+        this.sort = sort;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setWeeklys(String weeklys) {

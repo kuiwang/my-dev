@@ -79,108 +79,108 @@ public class Itinerary {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getAlipayTradeNo() {
         return this.alipayTradeNo;
-    }
-
-    public void setAlipayTradeNo(String alipayTradeNo) {
-        this.alipayTradeNo = alipayTradeNo;
     }
 
     public String getCompanyCode() {
         return this.companyCode;
     }
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
-    }
-
     public String getExpressCode() {
         return this.expressCode;
-    }
-
-    public void setExpressCode(String expressCode) {
-        this.expressCode = expressCode;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getItineraryNo() {
         return this.itineraryNo;
     }
 
-    public void setItineraryNo(String itineraryNo) {
-        this.itineraryNo = itineraryNo;
-    }
-
     public String getMobile() {
         return this.mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 
     public String getMobileBak() {
         return this.mobileBak;
     }
 
-    public void setMobileBak(String mobileBak) {
-        this.mobileBak = mobileBak;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getSendDate() {
         return this.sendDate;
-    }
-
-    public void setSendDate(String sendDate) {
-        this.sendDate = sendDate;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAlipayTradeNo(String alipayTradeNo) {
+        this.alipayTradeNo = alipayTradeNo;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public void setExpressCode(String expressCode) {
+        this.expressCode = expressCode;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setItineraryNo(String itineraryNo) {
+        this.itineraryNo = itineraryNo;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setMobileBak(String mobileBak) {
+        this.mobileBak = mobileBak;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSendDate(String sendDate) {
+        this.sendDate = sendDate;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public void setType(Long type) {

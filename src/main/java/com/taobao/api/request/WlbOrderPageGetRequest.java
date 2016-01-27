@@ -16,16 +16,12 @@ import com.taobao.api.response.WlbOrderPageGetResponse;
  */
 public class WlbOrderPageGetRequest implements TaobaoRequest<WlbOrderPageGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询截止时间
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 物流订单编号
@@ -64,82 +60,62 @@ public class WlbOrderPageGetRequest implements TaobaoRequest<WlbOrderPageGetResp
      */
     private Date startTime;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.order.page.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOrderCode() {
         return this.orderCode;
     }
 
-    public void setOrderStatus(Long orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public Long getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setOrderSubType(String orderSubType) {
-        this.orderSubType = orderSubType;
     }
 
     public String getOrderSubType() {
         return this.orderSubType;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderType() {
         return this.orderType;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<WlbOrderPageGetResponse> getResponseClass() {
+        return WlbOrderPageGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.order.page.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -156,6 +132,12 @@ public class WlbOrderPageGetRequest implements TaobaoRequest<WlbOrderPageGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -163,14 +145,40 @@ public class WlbOrderPageGetRequest implements TaobaoRequest<WlbOrderPageGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbOrderPageGetResponse> getResponseClass() {
-        return WlbOrderPageGetResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderSubType(String orderSubType) {
+        this.orderSubType = orderSubType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -26,20 +26,20 @@ public class SearchOrderResult {
         return this.hasNext;
     }
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
     public List<Long> getOrderIds() {
         return this.orderIds;
     }
 
-    public void setOrderIds(List<Long> orderIds) {
-        this.orderIds = orderIds;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setOrderIds(List<Long> orderIds) {
+        this.orderIds = orderIds;
     }
 
     public void setPageSize(Long pageSize) {

@@ -17,12 +17,6 @@ import com.taobao.api.response.SpContentGraphicPublishResponse;
 public class SpContentGraphicPublishRequest implements
         TaobaoRequest<SpContentGraphicPublishResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 内容的自定义分类，数值为文本内容，主要用于区分内容的分类（譬如连衣裙、T恤、阿迪达斯等），分类名称的长度限制为(0,5]
      * (单位是字符，不区分中英文)，分类名称中不能包含非法内容，且一个站点下所拥有的总自定义分类数量不能超过16个<br />
@@ -53,6 +47,8 @@ public class SpContentGraphicPublishRequest implements
      */
     private String detailurl;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 是否要发送到微淘广播流
      */
@@ -72,6 +68,8 @@ public class SpContentGraphicPublishRequest implements
      */
     private String tags;
 
+    private Long timestamp;
+
     /**
      * 内容标题,标题的长度限制为(0,32](单位是字符，不区分中英文)<br />
      * 支持最大长度为：32<br />
@@ -79,82 +77,64 @@ public class SpContentGraphicPublishRequest implements
      */
     private String title;
 
-    public void setClassname(String classname) {
-        this.classname = classname;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(classname, "classname");
+        RequestCheckUtils.checkMaxLength(classname, 5, "classname");
+        RequestCheckUtils.checkNotEmpty(contents, "contents");
+        RequestCheckUtils.checkNotEmpty(detailurl, "detailurl");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 32, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.graphic.publish";
     }
 
     public String getClassname() {
         return this.classname;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
     public String getContents() {
         return this.contents;
-    }
-
-    public void setCoverpicurl(String coverpicurl) {
-        this.coverpicurl = coverpicurl;
     }
 
     public String getCoverpicurl() {
         return this.coverpicurl;
     }
 
-    public void setDetailurl(String detailurl) {
-        this.detailurl = detailurl;
-    }
-
     public String getDetailurl() {
         return this.detailurl;
     }
 
-    public void setIntimeline(Boolean intimeline) {
-        this.intimeline = intimeline;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIntimeline() {
         return this.intimeline;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentGraphicPublishResponse> getResponseClass() {
+        return SpContentGraphicPublishResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public String getTags() {
         return this.tags;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.graphic.publish";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("classname", this.classname);
@@ -171,6 +151,16 @@ public class SpContentGraphicPublishRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -178,22 +168,40 @@ public class SpContentGraphicPublishRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentGraphicPublishResponse> getResponseClass() {
-        return SpContentGraphicPublishResponse.class;
+    public void setClassname(String classname) {
+        this.classname = classname;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(classname, "classname");
-        RequestCheckUtils.checkMaxLength(classname, 5, "classname");
-        RequestCheckUtils.checkNotEmpty(contents, "contents");
-        RequestCheckUtils.checkNotEmpty(detailurl, "detailurl");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 32, "title");
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCoverpicurl(String coverpicurl) {
+        this.coverpicurl = coverpicurl;
+    }
+
+    public void setDetailurl(String detailurl) {
+        this.detailurl = detailurl;
+    }
+
+    public void setIntimeline(Boolean intimeline) {
+        this.intimeline = intimeline;
+    }
+
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

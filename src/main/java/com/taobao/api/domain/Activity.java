@@ -65,60 +65,60 @@ public class Activity extends TaobaoObject {
         return this.activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
-    }
-
     public String getActivityUrl() {
         return this.activityUrl;
-    }
-
-    public void setActivityUrl(String activityUrl) {
-        this.activityUrl = activityUrl;
     }
 
     public Long getAppliedCount() {
         return this.appliedCount;
     }
 
-    public void setAppliedCount(Long appliedCount) {
-        this.appliedCount = appliedCount;
-    }
-
     public Long getCouponId() {
         return this.couponId;
-    }
-
-    public void setCouponId(Long couponId) {
-        this.couponId = couponId;
     }
 
     public String getCreateUser() {
         return this.createUser;
     }
 
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
-    }
-
     public Long getPersonLimitCount() {
         return this.personLimitCount;
-    }
-
-    public void setPersonLimitCount(Long personLimitCount) {
-        this.personLimitCount = personLimitCount;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
+
+    public void setActivityUrl(String activityUrl) {
+        this.activityUrl = activityUrl;
+    }
+
+    public void setAppliedCount(Long appliedCount) {
+        this.appliedCount = appliedCount;
+    }
+
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public void setPersonLimitCount(Long personLimitCount) {
+        this.personLimitCount = personLimitCount;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setTotalCount(Long totalCount) {

@@ -25,20 +25,20 @@ public class FenxiaoGradeAddResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
-    }
-
     public Long getGradeId() {
         return this.gradeId;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

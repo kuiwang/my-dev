@@ -19,10 +19,6 @@ import com.taobao.api.response.TmallProductSpecAddResponse;
  */
 public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProductSpecAddResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 产品二维码
      */
@@ -48,6 +44,8 @@ public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProd
      * 用户自定义销售属性，结构：pid1:value1;pid2:value2。在
      */
     private String customerSpecProps;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品图片
@@ -88,116 +86,91 @@ public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProd
      */
     private String specPropsAlias;
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(image, "image");
+        RequestCheckUtils.checkMaxValue(labelPrice, 999999999L, "labelPrice");
+        RequestCheckUtils.checkMinValue(labelPrice, 0L, "labelPrice");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+        RequestCheckUtils.checkMaxLength(specPropsAlias, 60, "specPropsAlias");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.product.spec.add";
     }
 
     public String getBarcode() {
         return this.barcode;
     }
 
-    public void setCertifiedPicStr(String certifiedPicStr) {
-        this.certifiedPicStr = certifiedPicStr;
-    }
-
     public String getCertifiedPicStr() {
         return this.certifiedPicStr;
-    }
-
-    public void setCertifiedTxtStr(String certifiedTxtStr) {
-        this.certifiedTxtStr = certifiedTxtStr;
     }
 
     public String getCertifiedTxtStr() {
         return this.certifiedTxtStr;
     }
 
-    public void setChangeProp(String changeProp) {
-        this.changeProp = changeProp;
-    }
-
     public String getChangeProp() {
         return this.changeProp;
-    }
-
-    public void setCustomerSpecProps(String customerSpecProps) {
-        this.customerSpecProps = customerSpecProps;
     }
 
     public String getCustomerSpecProps() {
         return this.customerSpecProps;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImage() {
         return this.image;
     }
 
-    public void setLabelPrice(Long labelPrice) {
-        this.labelPrice = labelPrice;
-    }
-
     public Long getLabelPrice() {
         return this.labelPrice;
-    }
-
-    public void setMarketTime(Date marketTime) {
-        this.marketTime = marketTime;
     }
 
     public Date getMarketTime() {
         return this.marketTime;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public String getProductCode() {
         return this.productCode;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setSpecProps(String specProps) {
-        this.specProps = specProps;
+    @Override
+    public Class<TmallProductSpecAddResponse> getResponseClass() {
+        return TmallProductSpecAddResponse.class;
     }
 
     public String getSpecProps() {
         return this.specProps;
     }
 
-    public void setSpecPropsAlias(String specPropsAlias) {
-        this.specPropsAlias = specPropsAlias;
-    }
-
     public String getSpecPropsAlias() {
         return this.specPropsAlias;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.product.spec.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("barcode", this.barcode);
@@ -217,6 +190,12 @@ public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -224,26 +203,56 @@ public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProd
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public Class<TmallProductSpecAddResponse> getResponseClass() {
-        return TmallProductSpecAddResponse.class;
+    public void setCertifiedPicStr(String certifiedPicStr) {
+        this.certifiedPicStr = certifiedPicStr;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(image, "image");
-        RequestCheckUtils.checkMaxValue(labelPrice, 999999999L, "labelPrice");
-        RequestCheckUtils.checkMinValue(labelPrice, 0L, "labelPrice");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-        RequestCheckUtils.checkMaxLength(specPropsAlias, 60, "specPropsAlias");
+    public void setCertifiedTxtStr(String certifiedTxtStr) {
+        this.certifiedTxtStr = certifiedTxtStr;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setChangeProp(String changeProp) {
+        this.changeProp = changeProp;
+    }
+
+    public void setCustomerSpecProps(String customerSpecProps) {
+        this.customerSpecProps = customerSpecProps;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setLabelPrice(Long labelPrice) {
+        this.labelPrice = labelPrice;
+    }
+
+    public void setMarketTime(Date marketTime) {
+        this.marketTime = marketTime;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setSpecProps(String specProps) {
+        this.specProps = specProps;
+    }
+
+    public void setSpecPropsAlias(String specPropsAlias) {
+        this.specPropsAlias = specPropsAlias;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

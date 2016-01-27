@@ -17,12 +17,6 @@ import com.taobao.api.response.AlipayDataBillDownloadurlGetResponse;
 public class AlipayDataBillDownloadurlGetRequest implements
         TaobaoRequest<AlipayDataBillDownloadurlGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝给用户的授权。如果没有top的授权，这个字段是必填项
      */
@@ -38,42 +32,46 @@ public class AlipayDataBillDownloadurlGetRequest implements
      */
     private String billType;
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(billDate, "billDate");
+        RequestCheckUtils.checkNotEmpty(billType, "billType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.data.bill.downloadurl.get";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public void setBillDate(String billDate) {
-        this.billDate = billDate;
-    }
-
     public String getBillDate() {
         return this.billDate;
-    }
-
-    public void setBillType(String billType) {
-        this.billType = billType;
     }
 
     public String getBillType() {
         return this.billType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<AlipayDataBillDownloadurlGetResponse> getResponseClass() {
+        return AlipayDataBillDownloadurlGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "alipay.data.bill.downloadurl.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auth_token", this.authToken);
@@ -85,6 +83,12 @@ public class AlipayDataBillDownloadurlGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class AlipayDataBillDownloadurlGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayDataBillDownloadurlGetResponse> getResponseClass() {
-        return AlipayDataBillDownloadurlGetResponse.class;
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(billDate, "billDate");
-        RequestCheckUtils.checkNotEmpty(billType, "billType");
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBillType(String billType) {
+        this.billType = billType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

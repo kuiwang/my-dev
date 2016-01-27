@@ -24,12 +24,12 @@ public class SubuserDepartmentsGetResponse extends TaobaoResponse {
     @ApiField("department")
     private List<Department> departments;
 
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
-    }
-
     public List<Department> getDepartments() {
         return this.departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
 }

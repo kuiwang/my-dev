@@ -18,10 +18,6 @@ public class TradeWaimaiRefuseRequest implements TaobaoRequest<TradeWaimaiRefuse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家付款未发货订单号
      */
@@ -32,34 +28,40 @@ public class TradeWaimaiRefuseRequest implements TaobaoRequest<TradeWaimaiRefuse
      */
     private String reason;
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+        RequestCheckUtils.checkNotEmpty(reason, "reason");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.waimai.refuse";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
     public String getReason() {
         return this.reason;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TradeWaimaiRefuseResponse> getResponseClass() {
+        return TradeWaimaiRefuseResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.waimai.refuse";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("order_id", this.orderId);
@@ -70,6 +72,12 @@ public class TradeWaimaiRefuseRequest implements TaobaoRequest<TradeWaimaiRefuse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class TradeWaimaiRefuseRequest implements TaobaoRequest<TradeWaimaiRefuse
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeWaimaiRefuseResponse> getResponseClass() {
-        return TradeWaimaiRefuseResponse.class;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
-        RequestCheckUtils.checkNotEmpty(reason, "reason");
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

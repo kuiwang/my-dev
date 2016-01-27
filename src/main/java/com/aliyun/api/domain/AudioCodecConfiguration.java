@@ -41,28 +41,28 @@ public class AudioCodecConfiguration extends TaobaoObject {
         return this.bitRate;
     }
 
-    public void setBitRate(String bitRate) {
-        this.bitRate = bitRate;
-    }
-
     public String getChannels() {
         return this.channels;
-    }
-
-    public void setChannels(String channels) {
-        this.channels = channels;
     }
 
     public String getCodec() {
         return this.codec;
     }
 
-    public void setCodec(String codec) {
-        this.codec = codec;
-    }
-
     public String getFreq() {
         return this.freq;
+    }
+
+    public void setBitRate(String bitRate) {
+        this.bitRate = bitRate;
+    }
+
+    public void setChannels(String channels) {
+        this.channels = channels;
+    }
+
+    public void setCodec(String codec) {
+        this.codec = codec;
     }
 
     public void setFreq(String freq) {

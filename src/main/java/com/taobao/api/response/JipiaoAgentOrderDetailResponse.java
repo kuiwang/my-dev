@@ -36,28 +36,28 @@ public class JipiaoAgentOrderDetailResponse extends TaobaoResponse {
     @ApiField("trip_order")
     private List<TripOrder> orders;
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public String getErrorMessage() {
         return this.errorMessage;
-    }
-
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
     }
 
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setOrders(List<TripOrder> orders) {
-        this.orders = orders;
-    }
-
     public List<TripOrder> getOrders() {
         return this.orders;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setOrders(List<TripOrder> orders) {
+        this.orders = orders;
     }
 
 }

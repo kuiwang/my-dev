@@ -33,12 +33,12 @@ public class TmcGroup extends TaobaoObject {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<String> getUsers() {
         return this.users;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUsers(List<String> users) {

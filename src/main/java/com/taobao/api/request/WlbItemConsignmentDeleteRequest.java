@@ -19,10 +19,6 @@ public class WlbItemConsignmentDeleteRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销商前台宝贝ID
      */
@@ -38,42 +34,45 @@ public class WlbItemConsignmentDeleteRequest implements
      */
     private Long ruleId;
 
-    public void setIcItemId(Long icItemId) {
-        this.icItemId = icItemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(icItemId, "icItemId");
+        RequestCheckUtils.checkNotEmpty(ownerItemId, "ownerItemId");
+        RequestCheckUtils.checkNotEmpty(ruleId, "ruleId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.consignment.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIcItemId() {
         return this.icItemId;
     }
 
-    public void setOwnerItemId(Long ownerItemId) {
-        this.ownerItemId = ownerItemId;
-    }
-
     public Long getOwnerItemId() {
         return this.ownerItemId;
     }
 
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
+    @Override
+    public Class<WlbItemConsignmentDeleteResponse> getResponseClass() {
+        return WlbItemConsignmentDeleteResponse.class;
     }
 
     public Long getRuleId() {
         return this.ruleId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.consignment.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ic_item_id", this.icItemId);
@@ -85,6 +84,12 @@ public class WlbItemConsignmentDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,17 +97,20 @@ public class WlbItemConsignmentDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemConsignmentDeleteResponse> getResponseClass() {
-        return WlbItemConsignmentDeleteResponse.class;
+    public void setIcItemId(Long icItemId) {
+        this.icItemId = icItemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(icItemId, "icItemId");
-        RequestCheckUtils.checkNotEmpty(ownerItemId, "ownerItemId");
-        RequestCheckUtils.checkNotEmpty(ruleId, "ruleId");
+    public void setOwnerItemId(Long ownerItemId) {
+        this.ownerItemId = ownerItemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRuleId(Long ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

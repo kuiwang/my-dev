@@ -35,20 +35,20 @@ public class GroupMember extends TaobaoObject {
         return this.groupId;
     }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
     public String getGroupName() {
         return this.groupName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     public String getMemberList() {
         return this.memberList;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public void setMemberList(String memberList) {

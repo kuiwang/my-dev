@@ -30,67 +30,12 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         super(source);
     }
 
-    // / <summary>remoting protocol premable, expected value is ".NET".
-    // / </summary>
-    // / <returns></returns>
-    public String ReadPreamble() {
-        return new String(new byte[] { (byte) this.ReadByte(), (byte) this.ReadByte(),
-                (byte) this.ReadByte(), (byte) this.ReadByte() });
-    }
-
-    public void WritePreamble() {
-        this.WriteBytes(PREAMBLE);
-    }
-
-    // / <summary>remoting protocol majorVersion, expected value is "1".
-    // / </summary>
-    // / <returns></returns>
-    public int ReadMajorVersion() {
-        return this.ReadByte();
-    }
-
-    public void WriteMajorVersion() {
-        this.WriteByte((byte) 1);
-    }
-
-    // / <summary>remoting protocol minorVersion, expected value is "0".
-    // / </summary>
-    // / <returns></returns>
-    public int ReadMinorVersion() {
-        return this.ReadByte();
-    }
-
-    public void WriteMinorVersion() {
-        this.WriteByte((byte) 0);
-    }
-
-    // / <summary>remoting operation code, eg Request/OneWayRequest/Reply
-    // / </summary>
-    // / <returns></returns>
-    public short ReadOperation() {
-        return this.ReadUInt16();
-    }
-
-    // / <summary>write remoting operation code
-    // / </summary>
-    // / <param name="value">Request/OneWayRequest/Reply</param>
-    public void WriteOperation(short value) {
-        this.WriteUInt16(value);
-    }
-
     // / <summary>Chunked or Fixed ContentLength. Only http channel support
     // currently.
     // / </summary>
     // / <returns></returns>
     public short ReadContentDelimiter() {
         return this.ReadUInt16();
-    }
-
-    // / <summary>ContentLength=0, Chunked=1
-    // / </summary>
-    // / <param name="value"></param>
-    public void WriteContentDelimiter(short value) {
-        this.WriteUInt16(value);
     }
 
     // / <summary>get message content length
@@ -100,8 +45,67 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         return this._contentLength = this.ReadInt32();
     }
 
-    public void WriteContentLength(int value) {
-        this.WriteInt32(this._contentLength = value);
+    protected final String ReadCountedString() throws NotSupportedException {
+        byte format = (byte) this.ReadByte();
+        int size = ReadInt32();
+
+        if (size > 0) {
+            byte[] data = this.ReadBytes(size);
+
+            switch (format) {
+                case TcpStringFormat.Unicode:
+                    return new String(data, Charset.forName("unicode"));
+
+                case TcpStringFormat.UTF8:
+                    return new String(data, Charset.forName("UTF-8"));
+
+                default:
+                    throw new NotSupportedException();
+            }
+        } else {
+            return null;
+        }
+    }
+
+    protected boolean readExtendedHeader(short headerType, HashMap<String, Object> dict)
+            throws NotSupportedException {
+        return false;
+    }
+
+    protected int ReadInt32() {
+        this._source.order(ByteOrder.LITTLE_ENDIAN);
+        int value = this._source.getInt();
+        this._source.order(ByteOrder.BIG_ENDIAN);
+        return value;
+    }
+
+    // / <summary>remoting protocol majorVersion, expected value is "1".
+    // / </summary>
+    // / <returns></returns>
+    public int ReadMajorVersion() {
+        return this.ReadByte();
+    }
+
+    // / <summary>remoting protocol minorVersion, expected value is "0".
+    // / </summary>
+    // / <returns></returns>
+    public int ReadMinorVersion() {
+        return this.ReadByte();
+    }
+
+    // / <summary>remoting operation code, eg Request/OneWayRequest/Reply
+    // / </summary>
+    // / <returns></returns>
+    public short ReadOperation() {
+        return this.ReadUInt16();
+    }
+
+    // / <summary>remoting protocol premable, expected value is ".NET".
+    // / </summary>
+    // / <returns></returns>
+    public String ReadPreamble() {
+        return new String(new byte[] { (byte) this.ReadByte(), (byte) this.ReadByte(),
+                (byte) this.ReadByte(), (byte) this.ReadByte() });
     }
 
     public HashMap<String, Object> ReadTransportHeaders() throws NotSupportedException {
@@ -155,83 +159,32 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         return dict;
     }
 
-    // / <summary>write transport header. PS: "RequestUri" must be transport
-    // while request call
-    // / </summary>
-    // / <param name="headers"></param>
-    public void WriteTransportHeaders(HashMap<String, Object> headers) {
-        if (headers != null) for (Entry<String, Object> i : headers.entrySet()) {
-            if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusCode)) this
-                    .WriteStatusCodeHeader(Short.parseShort(i.getValue().toString()));
-            else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusPhrase)) this
-                    .WriteStatusPhraseHeader(i.getValue().toString());
-            else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.ContentType)) this
-                    .WriteContentTypeHeader(i.getValue().toString());
-            else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.RequestUri))
-            // Request-Uri must be transport while request call
-            this.WriteRequestUriHeader(i.getValue().toString());
-            else if (this.writeExtendedHeader(i)) ;
-            else this.WriteCustomHeader(i.getKey(), i.getValue().toString());
-        }
-        this.WriteUInt16(TcpHeaders.EndOfHeaders);
-    }
-
-    protected boolean readExtendedHeader(short headerType, HashMap<String, Object> dict)
-            throws NotSupportedException {
-        return false;
-    }
-
-    protected boolean writeExtendedHeader(Entry<String, Object> entry) {
-        return false;
-    }
-
     protected final short ReadUInt16() {
-        return (short) (this.ReadByte() & 0xFF | this.ReadByte() << 8);
+        return (short) ((this.ReadByte() & 0xFF) | (this.ReadByte() << 8));
     }
 
-    protected final void WriteUInt16(short value) {
-        this.WriteByte((byte) value);
-        this.WriteByte((byte) (value >> 8));
+    // / <summary>ContentLength=0, Chunked=1
+    // / </summary>
+    // / <param name="value"></param>
+    public void WriteContentDelimiter(short value) {
+        this.WriteUInt16(value);
     }
 
-    protected int ReadInt32() {
-        this._source.order(ByteOrder.LITTLE_ENDIAN);
-        int value = this._source.getInt();
-        this._source.order(ByteOrder.BIG_ENDIAN);
-        return value;
+    public void WriteContentLength(int value) {
+        this.WriteInt32(this._contentLength = value);
     }
 
-    protected void WriteInt32(int value) {
-        this._source.order(ByteOrder.LITTLE_ENDIAN);
-        this._source.putInt(value);
-        this._source.order(ByteOrder.BIG_ENDIAN);
-    }
-
-    protected final String ReadCountedString() throws NotSupportedException {
-        byte format = (byte) this.ReadByte();
-        int size = ReadInt32();
-
-        if (size > 0) {
-            byte[] data = this.ReadBytes(size);
-
-            switch (format) {
-                case TcpStringFormat.Unicode:
-                    return new String(data, Charset.forName("unicode"));
-
-                case TcpStringFormat.UTF8:
-                    return new String(data, Charset.forName("UTF-8"));
-
-                default:
-                    throw new NotSupportedException();
-            }
-        } else {
-            return null;
-        }
+    private void WriteContentTypeHeader(String value) {
+        this.WriteUInt16(TcpHeaders.ContentType);
+        this.WriteByte(TcpHeaderFormat.CountedString);
+        this.WriteCountedString(value);
     }
 
     protected final void WriteCountedString(String value) {
         int strLength = 0;
-        if (value != null) strLength = value.length();
+        if (value != null) {
+            strLength = value.length();
+        }
 
         if (strLength > 0) {
             byte[] strBytes = value.getBytes(Charset.forName("UTF-8"));
@@ -245,15 +198,44 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         }
     }
 
-    private void WriteRequestUriHeader(String value) {
-        // value maybe "application/octet-stream"
-        this.WriteUInt16(TcpHeaders.RequestUri);
-        this.WriteByte(TcpHeaderFormat.CountedString);
+    private void WriteCustomHeader(String name, String value) {
+        this.WriteUInt16(TcpHeaders.Custom);
+        this.WriteCountedString(name);
         this.WriteCountedString(value);
     }
 
-    private void WriteContentTypeHeader(String value) {
-        this.WriteUInt16(TcpHeaders.ContentType);
+    protected boolean writeExtendedHeader(Entry<String, Object> entry) {
+        return false;
+    }
+
+    protected void WriteInt32(int value) {
+        this._source.order(ByteOrder.LITTLE_ENDIAN);
+        this._source.putInt(value);
+        this._source.order(ByteOrder.BIG_ENDIAN);
+    }
+
+    public void WriteMajorVersion() {
+        this.WriteByte((byte) 1);
+    }
+
+    public void WriteMinorVersion() {
+        this.WriteByte((byte) 0);
+    }
+
+    // / <summary>write remoting operation code
+    // / </summary>
+    // / <param name="value">Request/OneWayRequest/Reply</param>
+    public void WriteOperation(short value) {
+        this.WriteUInt16(value);
+    }
+
+    public void WritePreamble() {
+        this.WriteBytes(PREAMBLE);
+    }
+
+    private void WriteRequestUriHeader(String value) {
+        // value maybe "application/octet-stream"
+        this.WriteUInt16(TcpHeaders.RequestUri);
         this.WriteByte(TcpHeaderFormat.CountedString);
         this.WriteCountedString(value);
     }
@@ -270,9 +252,37 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         this.WriteCountedString(value);
     }
 
-    private void WriteCustomHeader(String name, String value) {
-        this.WriteUInt16(TcpHeaders.Custom);
-        this.WriteCountedString(name);
-        this.WriteCountedString(value);
+    // / <summary>write transport header. PS: "RequestUri" must be transport
+    // while request call
+    // / </summary>
+    // / <param name="headers"></param>
+    public void WriteTransportHeaders(HashMap<String, Object> headers) {
+        if (headers != null) {
+            for (Entry<String, Object> i : headers.entrySet()) {
+                if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusCode)) {
+                    this
+                            .WriteStatusCodeHeader(Short.parseShort(i.getValue().toString()));
+                } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusPhrase)) {
+                    this
+                            .WriteStatusPhraseHeader(i.getValue().toString());
+                } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.ContentType)) {
+                    this
+                            .WriteContentTypeHeader(i.getValue().toString());
+                } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.RequestUri)) {
+                    // Request-Uri must be transport while request call
+                    this.WriteRequestUriHeader(i.getValue().toString());
+                } else if (this.writeExtendedHeader(i)) {
+                    ;
+                } else {
+                    this.WriteCustomHeader(i.getKey(), i.getValue().toString());
+                }
+            }
+        }
+        this.WriteUInt16(TcpHeaders.EndOfHeaders);
+    }
+
+    protected final void WriteUInt16(short value) {
+        this.WriteByte((byte) value);
+        this.WriteByte((byte) (value >> 8));
     }
 }

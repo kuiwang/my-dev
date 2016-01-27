@@ -23,7 +23,14 @@
  */
 package com.taobao.top.link.embedded.websocket.handshake;
 
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3810;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3812;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3815;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3816;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3817;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3818;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3820;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3821;
 import static java.nio.channels.SelectionKey.OP_READ;
 
 import java.io.IOException;
@@ -39,9 +46,13 @@ import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.net.ssl.*;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLEngineResult;
 import javax.net.ssl.SSLEngineResult.HandshakeStatus;
 import javax.net.ssl.SSLEngineResult.Status;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.TrustManager;
 
 import com.taobao.top.link.embedded.websocket.WebSocket;
 import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
@@ -54,6 +65,30 @@ import com.taobao.top.link.embedded.websocket.util.PacketDumpUtil;
  */
 public class SSLHandshake {
 
+    private class HandshakeBuffer {
+
+        ByteBuffer localBuffer;
+
+        ByteBuffer netBuffer;
+
+        HandshakeBuffer() {
+            this.netBuffer = ByteBuffer.allocate(currentBufferSize);
+            this.localBuffer = ByteBuffer.allocate(currentBufferSize);
+        }
+
+        @Override
+        public String toString() {
+            return "netBuffer: " + netBuffer + ", localBuffer: " + localBuffer;
+        }
+    }
+
+    protected interface HandshakeCallback {
+
+        public SSLEngineResult execute(HandshakeBuffer buffer) throws SSLException;
+    }
+
+    private static final int BUFFER_UNDERFLOW_MAX_RETRY_COUNT = 5;
+
     /**
      * The log.
      */
@@ -64,17 +99,19 @@ public class SSLHandshake {
      */
     private SSLContext ctx;
 
-    /**
-     * The engine.
-     */
-    private SSLEngine engine;
+    private int currentBufferSize;
 
     /**
      * The delegated task executor.
      */
     private ExecutorService delegatedTaskExecutor;
 
-    private int currentBufferSize;
+    /**
+     * The engine.
+     */
+    private SSLEngine engine;
+
+    private int increaseBufferCount = 1;
 
     /**
      * The selector.
@@ -85,10 +122,6 @@ public class SSLHandshake {
      * The socket.
      */
     private SocketChannel socket;
-
-    private static final int BUFFER_UNDERFLOW_MAX_RETRY_COUNT = 5;
-
-    private int increaseBufferCount = 1;
 
     private WebSocket webSocket;
 
@@ -115,6 +148,7 @@ public class SSLHandshake {
         }
         delegatedTaskExecutor = Executors.newCachedThreadPool(new ThreadFactory() {
 
+            @Override
             public Thread newThread(Runnable r) {
                 Thread t = new Thread(r, "SSL DelegateTask");
                 t.setDaemon(true);
@@ -123,20 +157,26 @@ public class SSLHandshake {
         });
     }
 
-    private class HandshakeBuffer {
+    protected SSLEngineResult doCallbackIncreaseBufferProcess(HandshakeCallback callback,
+            HandshakeBuffer hb) throws SSLException, WebSocketException {
+        SSLEngineResult res = null;
+        do {
+            res = callback.execute(hb);
+            if (log.isLoggable(Level.FINER)) {
+                log.finer("res: \n" + res);
+                log.finer("buffer: " + hb);
+            }
+            if (res.getStatus() == Status.BUFFER_OVERFLOW) {
+                increaseBuffer(hb, hb.localBuffer);
+            } else if (res.getStatus() == Status.BUFFER_UNDERFLOW) {
+                increaseBuffer(hb, hb.netBuffer);
+            }
 
-        ByteBuffer netBuffer;
-
-        ByteBuffer localBuffer;
-
-        HandshakeBuffer() {
-            this.netBuffer = ByteBuffer.allocate(currentBufferSize);
-            this.localBuffer = ByteBuffer.allocate(currentBufferSize);
-        }
-
-        public String toString() {
-            return "netBuffer: " + netBuffer + ", localBuffer: " + localBuffer;
-        }
+            if (res.getStatus() != Status.BUFFER_OVERFLOW) {
+                break;
+            }
+        } while (true);
+        return res;
     }
 
     /**
@@ -180,6 +220,7 @@ public class SSLHandshake {
                         hb.netBuffer.clear();
                         doCallbackIncreaseBufferProcess(new HandshakeCallback() {
 
+                            @Override
                             public SSLEngineResult execute(HandshakeBuffer hb) throws SSLException {
                                 return engine.wrap(hb.localBuffer, hb.netBuffer);
                             }
@@ -204,6 +245,7 @@ public class SSLHandshake {
                         do {
                             res = doCallbackIncreaseBufferProcess(new HandshakeCallback() {
 
+                                @Override
                                 public SSLEngineResult execute(HandshakeBuffer hb)
                                         throws SSLException {
                                     return engine.unwrap(hb.netBuffer, hb.localBuffer);
@@ -212,8 +254,8 @@ public class SSLHandshake {
                             if (this.increaseBufferCount > BUFFER_UNDERFLOW_MAX_RETRY_COUNT) {
                                 throw new WebSocketException(E3820);
                             }
-                        } while (res.getStatus() == Status.OK
-                                && res.getHandshakeStatus() == HandshakeStatus.NEED_UNWRAP);
+                        } while ((res.getStatus() == Status.OK)
+                                && (res.getHandshakeStatus() == HandshakeStatus.NEED_UNWRAP));
 
                         break;
                     case NEED_TASK:
@@ -237,33 +279,6 @@ public class SSLHandshake {
                 ;
             }
         }
-    }
-
-    protected interface HandshakeCallback {
-
-        public SSLEngineResult execute(HandshakeBuffer buffer) throws SSLException;
-    }
-
-    protected SSLEngineResult doCallbackIncreaseBufferProcess(HandshakeCallback callback,
-            HandshakeBuffer hb) throws SSLException, WebSocketException {
-        SSLEngineResult res = null;
-        do {
-            res = callback.execute(hb);
-            if (log.isLoggable(Level.FINER)) {
-                log.finer("res: \n" + res);
-                log.finer("buffer: " + hb);
-            }
-            if (res.getStatus() == Status.BUFFER_OVERFLOW) {
-                increaseBuffer(hb, hb.localBuffer);
-            } else if (res.getStatus() == Status.BUFFER_UNDERFLOW) {
-                increaseBuffer(hb, hb.netBuffer);
-            }
-
-            if (res.getStatus() != Status.BUFFER_OVERFLOW) {
-                break;
-            }
-        } while (true);
-        return res;
     }
 
     private void increaseBuffer(HandshakeBuffer hb, ByteBuffer buffer) throws WebSocketException {
@@ -302,22 +317,12 @@ public class SSLHandshake {
     }
 
     /**
-     * Wrap.
-     *
-     * @param localBuffer the local buffer
-     * @param netBuffer the net buffer
-     * @throws WebSocketException the web socket exception
+     * Run delegated tasks.
      */
-    public void wrap(ByteBuffer localBuffer, ByteBuffer netBuffer) throws WebSocketException {
-        try {
-            netBuffer.clear();
-            SSLEngineResult result = engine.wrap(localBuffer, netBuffer);
-            if (log.isLoggable(Level.FINEST)) {
-                log.finest("SSLEngineResult\n" + result);
-            }
-            netBuffer.flip();
-        } catch (SSLException e) {
-            throw new WebSocketException(E3817, e);
+    private void runDelegatedTasks() {
+        Runnable task = null;
+        while ((task = engine.getDelegatedTask()) != null) {
+            delegatedTaskExecutor.execute(task);
         }
     }
 
@@ -342,12 +347,22 @@ public class SSLHandshake {
     }
 
     /**
-     * Run delegated tasks.
+     * Wrap.
+     *
+     * @param localBuffer the local buffer
+     * @param netBuffer the net buffer
+     * @throws WebSocketException the web socket exception
      */
-    private void runDelegatedTasks() {
-        Runnable task = null;
-        while ((task = engine.getDelegatedTask()) != null) {
-            delegatedTaskExecutor.execute(task);
+    public void wrap(ByteBuffer localBuffer, ByteBuffer netBuffer) throws WebSocketException {
+        try {
+            netBuffer.clear();
+            SSLEngineResult result = engine.wrap(localBuffer, netBuffer);
+            if (log.isLoggable(Level.FINEST)) {
+                log.finest("SSLEngineResult\n" + result);
+            }
+            netBuffer.flip();
+        } catch (SSLException e) {
+            throw new WebSocketException(E3817, e);
         }
     }
 

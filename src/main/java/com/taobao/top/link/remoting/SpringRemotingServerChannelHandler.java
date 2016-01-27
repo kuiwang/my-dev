@@ -9,21 +9,6 @@ import com.taobao.top.link.channel.ServerChannelSender;
 
 public class SpringRemotingServerChannelHandler extends DefaultRemotingServerChannelHandler {
 
-    private HandshakerBean handshaker;
-
-    public SpringRemotingServerChannelHandler(LoggerFactory loggerFactory, HandshakerBean handshaker) {
-        super(loggerFactory);
-        this.handshaker = handshaker;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public void onConnect(ChannelContext context) throws Exception {
-        if (this.handshaker == null) return;
-        this.handshaker.onHandshake((List<Entry<String, String>>) context.getMessage(),
-                new Context((ServerChannelSender) context.getSender()));
-    }
-
     public class Context implements ChannelContextBean {
 
         private ServerChannelSender sender;
@@ -42,5 +27,22 @@ public class SpringRemotingServerChannelHandler extends DefaultRemotingServerCha
             this.sender.setContext(key, value);
         }
 
+    }
+
+    private HandshakerBean handshaker;
+
+    public SpringRemotingServerChannelHandler(LoggerFactory loggerFactory, HandshakerBean handshaker) {
+        super(loggerFactory);
+        this.handshaker = handshaker;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void onConnect(ChannelContext context) throws Exception {
+        if (this.handshaker == null) {
+            return;
+        }
+        this.handshaker.onHandshake((List<Entry<String, String>>) context.getMessage(),
+                new Context((ServerChannelSender) context.getSender()));
     }
 }

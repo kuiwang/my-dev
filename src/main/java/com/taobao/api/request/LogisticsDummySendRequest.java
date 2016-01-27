@@ -16,12 +16,6 @@ import com.taobao.api.response.LogisticsDummySendResponse;
  */
 public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * feature参数格式<br>
      * 范例:
@@ -41,6 +35,8 @@ public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySe
      */
     private String feature;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商家的IP地址
      */
@@ -51,42 +47,39 @@ public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySe
      */
     private Long tid;
 
-    public void setFeature(String feature) {
-        this.feature = feature;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.dummy.send";
     }
 
     public String getFeature() {
         return this.feature;
     }
 
-    public void setSellerIp(String sellerIp) {
-        this.sellerIp = sellerIp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<LogisticsDummySendResponse> getResponseClass() {
+        return LogisticsDummySendResponse.class;
     }
 
     public String getSellerIp() {
         return this.sellerIp;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.dummy.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("feature", this.feature);
@@ -98,6 +91,16 @@ public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySe
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,15 +108,20 @@ public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySe
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsDummySendResponse> getResponseClass() {
-        return LogisticsDummySendResponse.class;
+    public void setFeature(String feature) {
+        this.feature = feature;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setSellerIp(String sellerIp) {
+        this.sellerIp = sellerIp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

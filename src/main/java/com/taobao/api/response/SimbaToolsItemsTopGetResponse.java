@@ -24,12 +24,12 @@ public class SimbaToolsItemsTopGetResponse extends TaobaoResponse {
     @ApiField("ranked_item")
     private List<RankedItem> rankeditems;
 
-    public void setRankeditems(List<RankedItem> rankeditems) {
-        this.rankeditems = rankeditems;
-    }
-
     public List<RankedItem> getRankeditems() {
         return this.rankeditems;
+    }
+
+    public void setRankeditems(List<RankedItem> rankeditems) {
+        this.rankeditems = rankeditems;
     }
 
 }

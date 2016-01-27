@@ -23,12 +23,12 @@ public class WlbItemCombinationGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> itemIdList;
 
-    public void setItemIdList(List<Long> itemIdList) {
-        this.itemIdList = itemIdList;
-    }
-
     public List<Long> getItemIdList() {
         return this.itemIdList;
+    }
+
+    public void setItemIdList(List<Long> itemIdList) {
+        this.itemIdList = itemIdList;
     }
 
 }

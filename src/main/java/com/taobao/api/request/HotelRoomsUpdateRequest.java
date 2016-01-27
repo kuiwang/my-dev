@@ -15,12 +15,6 @@ import com.taobao.api.response.HotelRoomsUpdateResponse;
  */
 public class HotelRoomsUpdateRequest implements TaobaoRequest<HotelRoomsUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 多商品房态信息。json encode。每个商品房态参考单商品更新中的room_quota字段。反序列化后入：array((
      * 'gid'=>1, 'roomQuota'=>array(('date'=>'2011-01-29', 'price'=>100,
@@ -30,40 +24,46 @@ public class HotelRoomsUpdateRequest implements TaobaoRequest<HotelRoomsUpdateRe
      */
     private String gidRoomQuotaMap;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 为到店支付卖家特殊使用，可传入多种支付类型的房态信息。 该参数有值时，忽略gid_room_quota_map参数；
      * 该参数无值时，使用gid_room_quota_map参数
      */
     private String multiRoomQuotas;
 
-    public void setGidRoomQuotaMap(String gidRoomQuotaMap) {
-        this.gidRoomQuotaMap = gidRoomQuotaMap;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.rooms.update";
     }
 
     public String getGidRoomQuotaMap() {
         return this.gidRoomQuotaMap;
     }
 
-    public void setMultiRoomQuotas(String multiRoomQuotas) {
-        this.multiRoomQuotas = multiRoomQuotas;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMultiRoomQuotas() {
         return this.multiRoomQuotas;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelRoomsUpdateResponse> getResponseClass() {
+        return HotelRoomsUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.rooms.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("gid_room_quota_map", this.gidRoomQuotaMap);
@@ -74,6 +74,12 @@ public class HotelRoomsUpdateRequest implements TaobaoRequest<HotelRoomsUpdateRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,14 +87,16 @@ public class HotelRoomsUpdateRequest implements TaobaoRequest<HotelRoomsUpdateRe
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelRoomsUpdateResponse> getResponseClass() {
-        return HotelRoomsUpdateResponse.class;
+    public void setGidRoomQuotaMap(String gidRoomQuotaMap) {
+        this.gidRoomQuotaMap = gidRoomQuotaMap;
     }
 
-    public void check() throws ApiRuleException {
+    public void setMultiRoomQuotas(String multiRoomQuotas) {
+        this.multiRoomQuotas = multiRoomQuotas;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

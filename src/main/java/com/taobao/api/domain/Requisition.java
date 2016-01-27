@@ -58,12 +58,6 @@ public class Requisition extends TaobaoObject {
     private Date distOpenDate;
 
     /**
-     * 店铺地址
-     */
-    @ApiField("dist_shop_address")
-    private String distShopAddress;
-
-    /**
      * 分销商id
      */
     @ApiField("distributor_id")
@@ -74,6 +68,12 @@ public class Requisition extends TaobaoObject {
      */
     @ApiField("distributor_nick")
     private String distributorNick;
+
+    /**
+     * 店铺地址
+     */
+    @ApiField("dist_shop_address")
+    private String distShopAddress;
 
     /**
      * 申请时间
@@ -97,100 +97,100 @@ public class Requisition extends TaobaoObject {
         return this.distAppraise;
     }
 
-    public void setDistAppraise(Long distAppraise) {
-        this.distAppraise = distAppraise;
-    }
-
     public Long getDistCategory() {
         return this.distCategory;
-    }
-
-    public void setDistCategory(Long distCategory) {
-        this.distCategory = distCategory;
     }
 
     public String getDistCategoryName() {
         return this.distCategoryName;
     }
 
-    public void setDistCategoryName(String distCategoryName) {
-        this.distCategoryName = distCategoryName;
-    }
-
     public Long getDistIsXiaobao() {
         return this.distIsXiaobao;
-    }
-
-    public void setDistIsXiaobao(Long distIsXiaobao) {
-        this.distIsXiaobao = distIsXiaobao;
     }
 
     public Long getDistLevel() {
         return this.distLevel;
     }
 
-    public void setDistLevel(Long distLevel) {
-        this.distLevel = distLevel;
-    }
-
     public String getDistMessage() {
         return this.distMessage;
-    }
-
-    public void setDistMessage(String distMessage) {
-        this.distMessage = distMessage;
     }
 
     public Date getDistOpenDate() {
         return this.distOpenDate;
     }
 
-    public void setDistOpenDate(Date distOpenDate) {
-        this.distOpenDate = distOpenDate;
-    }
-
-    public String getDistShopAddress() {
-        return this.distShopAddress;
-    }
-
-    public void setDistShopAddress(String distShopAddress) {
-        this.distShopAddress = distShopAddress;
-    }
-
     public Long getDistributorId() {
         return this.distributorId;
-    }
-
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
     }
 
     public String getDistributorNick() {
         return this.distributorNick;
     }
 
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
+    public String getDistShopAddress() {
+        return this.distShopAddress;
     }
 
     public Date getGmtCreate() {
         return this.gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Long getRequisitionId() {
         return this.requisitionId;
     }
 
-    public void setRequisitionId(Long requisitionId) {
-        this.requisitionId = requisitionId;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setDistAppraise(Long distAppraise) {
+        this.distAppraise = distAppraise;
+    }
+
+    public void setDistCategory(Long distCategory) {
+        this.distCategory = distCategory;
+    }
+
+    public void setDistCategoryName(String distCategoryName) {
+        this.distCategoryName = distCategoryName;
+    }
+
+    public void setDistIsXiaobao(Long distIsXiaobao) {
+        this.distIsXiaobao = distIsXiaobao;
+    }
+
+    public void setDistLevel(Long distLevel) {
+        this.distLevel = distLevel;
+    }
+
+    public void setDistMessage(String distMessage) {
+        this.distMessage = distMessage;
+    }
+
+    public void setDistOpenDate(Date distOpenDate) {
+        this.distOpenDate = distOpenDate;
+    }
+
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
+    }
+
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
+    }
+
+    public void setDistShopAddress(String distShopAddress) {
+        this.distShopAddress = distShopAddress;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setRequisitionId(Long requisitionId) {
+        this.requisitionId = requisitionId;
     }
 
     public void setStatus(Long status) {

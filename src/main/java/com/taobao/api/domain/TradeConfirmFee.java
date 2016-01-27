@@ -35,20 +35,20 @@ public class TradeConfirmFee extends TaobaoObject {
         return this.confirmFee;
     }
 
-    public void setConfirmFee(String confirmFee) {
-        this.confirmFee = confirmFee;
-    }
-
     public String getConfirmPostFee() {
         return this.confirmPostFee;
     }
 
-    public void setConfirmPostFee(String confirmPostFee) {
-        this.confirmPostFee = confirmPostFee;
-    }
-
     public Boolean getIsLastOrder() {
         return this.isLastOrder;
+    }
+
+    public void setConfirmFee(String confirmFee) {
+        this.confirmFee = confirmFee;
+    }
+
+    public void setConfirmPostFee(String confirmPostFee) {
+        this.confirmPostFee = confirmPostFee;
     }
 
     public void setIsLastOrder(Boolean isLastOrder) {

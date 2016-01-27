@@ -79,76 +79,76 @@ public class SubscInfo extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getProcessStatus() {
         return this.processStatus;
-    }
-
-    public void setProcessStatus(Long processStatus) {
-        this.processStatus = processStatus;
     }
 
     public String getSaleBonus() {
         return this.saleBonus;
     }
 
-    public void setSaleBonus(String saleBonus) {
-        this.saleBonus = saleBonus;
-    }
-
     public String getSellerName() {
         return this.sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
     }
 
     public Date getServiceEndTime() {
         return this.serviceEndTime;
     }
 
-    public void setServiceEndTime(Date serviceEndTime) {
-        this.serviceEndTime = serviceEndTime;
-    }
-
     public Date getServiceStartTime() {
         return this.serviceStartTime;
-    }
-
-    public void setServiceStartTime(Date serviceStartTime) {
-        this.serviceStartTime = serviceStartTime;
     }
 
     public String getSpName() {
         return this.spName;
     }
 
-    public void setSpName(String spName) {
-        this.spName = spName;
-    }
-
     public String getSubAccountList() {
         return this.subAccountList;
-    }
-
-    public void setSubAccountList(String subAccountList) {
-        this.subAccountList = subAccountList;
     }
 
     public Date getSubscCreatedTime() {
         return this.subscCreatedTime;
     }
 
-    public void setSubscCreatedTime(Date subscCreatedTime) {
-        this.subscCreatedTime = subscCreatedTime;
-    }
-
     public Date getSubscModifiedTime() {
         return this.subscModifiedTime;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setProcessStatus(Long processStatus) {
+        this.processStatus = processStatus;
+    }
+
+    public void setSaleBonus(String saleBonus) {
+        this.saleBonus = saleBonus;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void setServiceEndTime(Date serviceEndTime) {
+        this.serviceEndTime = serviceEndTime;
+    }
+
+    public void setServiceStartTime(Date serviceStartTime) {
+        this.serviceStartTime = serviceStartTime;
+    }
+
+    public void setSpName(String spName) {
+        this.spName = spName;
+    }
+
+    public void setSubAccountList(String subAccountList) {
+        this.subAccountList = subAccountList;
+    }
+
+    public void setSubscCreatedTime(Date subscCreatedTime) {
+        this.subscCreatedTime = subscCreatedTime;
     }
 
     public void setSubscModifiedTime(Date subscModifiedTime) {

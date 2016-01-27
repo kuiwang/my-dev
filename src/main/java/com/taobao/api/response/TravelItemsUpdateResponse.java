@@ -20,12 +20,12 @@ public class TravelItemsUpdateResponse extends TaobaoResponse {
     @ApiField("travel_items")
     private TravelItems travelItems;
 
-    public void setTravelItems(TravelItems travelItems) {
-        this.travelItems = travelItems;
-    }
-
     public TravelItems getTravelItems() {
         return this.travelItems;
+    }
+
+    public void setTravelItems(TravelItems travelItems) {
+        this.travelItems = travelItems;
     }
 
 }

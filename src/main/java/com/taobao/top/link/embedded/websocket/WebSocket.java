@@ -39,36 +39,14 @@ import com.taobao.top.link.embedded.websocket.frame.Frame;
 public interface WebSocket {
 
     /**
-     * Send.
-     *
-     * @param frame the frame
-     * @throws WebSocketException the web socket exception
+     * await close
      */
-    public void send(Frame frame) throws WebSocketException;
+    public void awaitClose() throws InterruptedException;
 
     /**
-     * Send.
-     *
-     * @param buffer the ByteBuffer
-     * @throws WebSocketException the web socket exception
+     * Close.
      */
-    public void send(ByteBuffer buffer) throws WebSocketException;
-
-    /**
-     * Send.
-     *
-     * @param bytes the bytes
-     * @throws WebSocketException the web socket exception
-     */
-    public void send(byte[] bytes) throws WebSocketException;
-
-    /**
-     * Send.
-     *
-     * @param text the text
-     * @throws WebSocketException the web socket exception
-     */
-    public void send(String text) throws WebSocketException;
+    public void close();
 
     /**
      * Connect.
@@ -77,81 +55,6 @@ public interface WebSocket {
      * @throws IOException Signals that an I/O exception has occurred.
      */
     public void connect() throws WebSocketException, IOException;
-
-    /**
-     * Checks if is connected.
-     *
-     * @return true, if is connected
-     */
-    public boolean isConnected();
-
-    /**
-     * Close.
-     */
-    public void close();
-
-    /**
-     * await close
-     */
-    public void awaitClose() throws InterruptedException;
-
-    /**
-     * Checks if is blocking mode.
-     *
-     * @return true, if is blocking mode
-     */
-    public boolean isBlockingMode();
-
-    /**
-     * Sets the blocking mode.
-     *
-     * @param blockingMode the new blocking mode
-     */
-    public void setBlockingMode(boolean blockingMode);
-
-    /**
-     * Gets the location.
-     *
-     * @return the location
-     */
-    public URI getLocation();
-
-    /**
-     * Gets the endpoint.
-     *
-     * @return the endpoint
-     */
-    public InetSocketAddress getEndpoint();
-
-    /**
-     * Gets the buffer size.
-     *
-     * @return the buffer size
-     */
-    public int getBufferSize();
-
-    /**
-     * Gets the connection timeout.
-     *
-     * @return the connection timeout
-     */
-    public int getConnectionTimeout();
-
-    /**
-     * Sets the connection timeout.
-     *
-     * @param connectionTimeout the new connection timeout
-     */
-    public void setConnectionTimeout(int connectionTimeout);
-
-    /**
-     * Creates the frame.
-     *
-     * @param obj the obj
-     * @return the frame
-     * @throws WebSocketException the web socket exception
-     */
-    public Frame createFrame(Object obj) throws WebSocketException;
 
     /**
      * Creates the frame.
@@ -174,9 +77,106 @@ public interface WebSocket {
     /**
      * Creates the frame.
      *
+     * @param obj the obj
+     * @return the frame
+     * @throws WebSocketException the web socket exception
+     */
+    public Frame createFrame(Object obj) throws WebSocketException;
+
+    /**
+     * Creates the frame.
+     *
      * @param str the str
      * @return the frame
      * @throws WebSocketException the web socket exception
      */
     public Frame createFrame(String str) throws WebSocketException;
+
+    /**
+     * Gets the buffer size.
+     *
+     * @return the buffer size
+     */
+    public int getBufferSize();
+
+    /**
+     * Gets the connection timeout.
+     *
+     * @return the connection timeout
+     */
+    public int getConnectionTimeout();
+
+    /**
+     * Gets the endpoint.
+     *
+     * @return the endpoint
+     */
+    public InetSocketAddress getEndpoint();
+
+    /**
+     * Gets the location.
+     *
+     * @return the location
+     */
+    public URI getLocation();
+
+    /**
+     * Checks if is blocking mode.
+     *
+     * @return true, if is blocking mode
+     */
+    public boolean isBlockingMode();
+
+    /**
+     * Checks if is connected.
+     *
+     * @return true, if is connected
+     */
+    public boolean isConnected();
+
+    /**
+     * Send.
+     *
+     * @param bytes the bytes
+     * @throws WebSocketException the web socket exception
+     */
+    public void send(byte[] bytes) throws WebSocketException;
+
+    /**
+     * Send.
+     *
+     * @param buffer the ByteBuffer
+     * @throws WebSocketException the web socket exception
+     */
+    public void send(ByteBuffer buffer) throws WebSocketException;
+
+    /**
+     * Send.
+     *
+     * @param frame the frame
+     * @throws WebSocketException the web socket exception
+     */
+    public void send(Frame frame) throws WebSocketException;
+
+    /**
+     * Send.
+     *
+     * @param text the text
+     * @throws WebSocketException the web socket exception
+     */
+    public void send(String text) throws WebSocketException;
+
+    /**
+     * Sets the blocking mode.
+     *
+     * @param blockingMode the new blocking mode
+     */
+    public void setBlockingMode(boolean blockingMode);
+
+    /**
+     * Sets the connection timeout.
+     *
+     * @param connectionTimeout the new connection timeout
+     */
+    public void setConnectionTimeout(int connectionTimeout);
 }

@@ -18,10 +18,6 @@ public class SpContentGetalltagRequest implements TaobaoRequest<SpContentGetallt
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 站长Key<br />
      * 支持最大长度为：32<br />
@@ -29,26 +25,36 @@ public class SpContentGetalltagRequest implements TaobaoRequest<SpContentGetallt
      */
     private String siteKey;
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.getalltag";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SpContentGetalltagResponse> getResponseClass() {
+        return SpContentGetalltagResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.getalltag";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("site_key", this.siteKey);
@@ -58,6 +64,12 @@ public class SpContentGetalltagRequest implements TaobaoRequest<SpContentGetallt
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,16 +77,12 @@ public class SpContentGetalltagRequest implements TaobaoRequest<SpContentGetallt
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentGetalltagResponse> getResponseClass() {
-        return SpContentGetalltagResponse.class;
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

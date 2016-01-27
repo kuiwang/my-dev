@@ -20,12 +20,12 @@ public class SimbaCampaignBudgetGetResponse extends TaobaoResponse {
     @ApiField("campaign_budget")
     private CampaignBudget campaignBudget;
 
-    public void setCampaignBudget(CampaignBudget campaignBudget) {
-        this.campaignBudget = campaignBudget;
-    }
-
     public CampaignBudget getCampaignBudget() {
         return this.campaignBudget;
+    }
+
+    public void setCampaignBudget(CampaignBudget campaignBudget) {
+        this.campaignBudget = campaignBudget;
     }
 
 }

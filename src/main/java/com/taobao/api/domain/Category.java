@@ -29,12 +29,12 @@ public class Category extends TaobaoObject {
         return this.cateid;
     }
 
-    public void setCateid(Long cateid) {
-        this.cateid = cateid;
-    }
-
     public String getCatename() {
         return this.catename;
+    }
+
+    public void setCateid(Long cateid) {
+        this.cateid = cateid;
     }
 
     public void setCatename(String catename) {

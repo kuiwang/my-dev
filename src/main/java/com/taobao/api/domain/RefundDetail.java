@@ -116,124 +116,124 @@ public class RefundDetail extends TaobaoObject {
         return this.buyerRefund;
     }
 
-    public void setBuyerRefund(BuyerRefund buyerRefund) {
-        this.buyerRefund = buyerRefund;
-    }
-
     public String getDistributorNick() {
         return this.distributorNick;
-    }
-
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
     }
 
     public Boolean getIsReturnGoods() {
         return this.isReturnGoods;
     }
 
-    public void setIsReturnGoods(Boolean isReturnGoods) {
-        this.isReturnGoods = isReturnGoods;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getPaySupFee() {
         return this.paySupFee;
     }
 
-    public void setPaySupFee(String paySupFee) {
-        this.paySupFee = paySupFee;
-    }
-
     public Long getPurchaseOrderId() {
         return this.purchaseOrderId;
-    }
-
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
     }
 
     public Date getRefundCreateTime() {
         return this.refundCreateTime;
     }
 
-    public void setRefundCreateTime(Date refundCreateTime) {
-        this.refundCreateTime = refundCreateTime;
-    }
-
     public String getRefundDesc() {
         return this.refundDesc;
-    }
-
-    public void setRefundDesc(String refundDesc) {
-        this.refundDesc = refundDesc;
     }
 
     public String getRefundFee() {
         return this.refundFee;
     }
 
-    public void setRefundFee(String refundFee) {
-        this.refundFee = refundFee;
-    }
-
     public Long getRefundFlowType() {
         return this.refundFlowType;
-    }
-
-    public void setRefundFlowType(Long refundFlowType) {
-        this.refundFlowType = refundFlowType;
     }
 
     public String getRefundReason() {
         return this.refundReason;
     }
 
-    public void setRefundReason(String refundReason) {
-        this.refundReason = refundReason;
-    }
-
     public Long getRefundStatus() {
         return this.refundStatus;
-    }
-
-    public void setRefundStatus(Long refundStatus) {
-        this.refundStatus = refundStatus;
     }
 
     public Long getSubOrderId() {
         return this.subOrderId;
     }
 
-    public void setSubOrderId(Long subOrderId) {
-        this.subOrderId = subOrderId;
-    }
-
     public String getSupplierNick() {
         return this.supplierNick;
-    }
-
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
     }
 
     public Date getTimeout() {
         return this.timeout;
     }
 
-    public void setTimeout(Date timeout) {
-        this.timeout = timeout;
-    }
-
     public Long getToType() {
         return this.toType;
+    }
+
+    public void setBuyerRefund(BuyerRefund buyerRefund) {
+        this.buyerRefund = buyerRefund;
+    }
+
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
+    }
+
+    public void setIsReturnGoods(Boolean isReturnGoods) {
+        this.isReturnGoods = isReturnGoods;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setPaySupFee(String paySupFee) {
+        this.paySupFee = paySupFee;
+    }
+
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
+    }
+
+    public void setRefundCreateTime(Date refundCreateTime) {
+        this.refundCreateTime = refundCreateTime;
+    }
+
+    public void setRefundDesc(String refundDesc) {
+        this.refundDesc = refundDesc;
+    }
+
+    public void setRefundFee(String refundFee) {
+        this.refundFee = refundFee;
+    }
+
+    public void setRefundFlowType(Long refundFlowType) {
+        this.refundFlowType = refundFlowType;
+    }
+
+    public void setRefundReason(String refundReason) {
+        this.refundReason = refundReason;
+    }
+
+    public void setRefundStatus(Long refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public void setSubOrderId(Long subOrderId) {
+        this.subOrderId = subOrderId;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
+    }
+
+    public void setTimeout(Date timeout) {
+        this.timeout = timeout;
     }
 
     public void setToType(Long toType) {

@@ -6,19 +6,19 @@ public class BufferErrorListener implements JSONErrorListener {
 
     private String input;
 
-    public BufferErrorListener(StringBuffer buffer) {
-        this.buffer = buffer;
-    }
-
     public BufferErrorListener() {
         this(new StringBuffer());
     }
 
-    public void start(String input) {
-        this.input = input;
-        buffer.setLength(0);
+    public BufferErrorListener(StringBuffer buffer) {
+        this.buffer = buffer;
     }
 
+    @Override
+    public void end() {
+    }
+
+    @Override
     public void error(String type, int col) {
         buffer.append("expected ");
         buffer.append(type);
@@ -37,6 +37,9 @@ public class BufferErrorListener implements JSONErrorListener {
         }
     }
 
-    public void end() {
+    @Override
+    public void start(String input) {
+        this.input = input;
+        buffer.setLength(0);
     }
 }

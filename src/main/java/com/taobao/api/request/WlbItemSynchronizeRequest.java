@@ -16,12 +16,6 @@ import com.taobao.api.response.WlbItemSynchronizeResponse;
  */
 public class WlbItemSynchronizeRequest implements TaobaoRequest<WlbItemSynchronizeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外部实体ID<br />
      * 支持的最大列表长度为：64
@@ -33,11 +27,17 @@ public class WlbItemSynchronizeRequest implements TaobaoRequest<WlbItemSynchroni
      */
     private String extEntityType;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商品ID<br />
      * 支持的最大列表长度为：20
      */
     private Long itemId;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 商品所有人淘宝nick<br />
@@ -46,50 +46,43 @@ public class WlbItemSynchronizeRequest implements TaobaoRequest<WlbItemSynchroni
      */
     private String userNick;
 
-    public void setExtEntityId(Long extEntityId) {
-        this.extEntityId = extEntityId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
+        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+        RequestCheckUtils.checkMaxLength(userNick, 64, "userNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.synchronize";
     }
 
     public Long getExtEntityId() {
         return this.extEntityId;
     }
 
-    public void setExtEntityType(String extEntityType) {
-        this.extEntityType = extEntityType;
-    }
-
     public String getExtEntityType() {
         return this.extEntityType;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public Class<WlbItemSynchronizeResponse> getResponseClass() {
+        return WlbItemSynchronizeResponse.class;
     }
 
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.synchronize";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ext_entity_id", this.extEntityId);
@@ -102,6 +95,16 @@ public class WlbItemSynchronizeRequest implements TaobaoRequest<WlbItemSynchroni
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -109,19 +112,24 @@ public class WlbItemSynchronizeRequest implements TaobaoRequest<WlbItemSynchroni
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemSynchronizeResponse> getResponseClass() {
-        return WlbItemSynchronizeResponse.class;
+    public void setExtEntityId(Long extEntityId) {
+        this.extEntityId = extEntityId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
-        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
-        RequestCheckUtils.checkMaxLength(userNick, 64, "userNick");
+    public void setExtEntityType(String extEntityType) {
+        this.extEntityType = extEntityType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

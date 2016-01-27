@@ -49,36 +49,36 @@ public class LimitDiscount extends TaobaoObject {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Long getItemNum() {
         return this.itemNum;
-    }
-
-    public void setItemNum(Long itemNum) {
-        this.itemNum = itemNum;
     }
 
     public Long getLimitDiscountId() {
         return this.limitDiscountId;
     }
 
-    public void setLimitDiscountId(Long limitDiscountId) {
-        this.limitDiscountId = limitDiscountId;
-    }
-
     public String getLimitDiscountName() {
         return this.limitDiscountName;
     }
 
-    public void setLimitDiscountName(String limitDiscountName) {
-        this.limitDiscountName = limitDiscountName;
-    }
-
     public Date getStartTime() {
         return this.startTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setItemNum(Long itemNum) {
+        this.itemNum = itemNum;
+    }
+
+    public void setLimitDiscountId(Long limitDiscountId) {
+        this.limitDiscountId = limitDiscountId;
+    }
+
+    public void setLimitDiscountName(String limitDiscountName) {
+        this.limitDiscountName = limitDiscountName;
     }
 
     public void setStartTime(Date startTime) {

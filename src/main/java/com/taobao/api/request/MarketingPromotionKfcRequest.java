@@ -18,10 +18,6 @@ public class MarketingPromotionKfcRequest implements TaobaoRequest<MarketingProm
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动描述
      */
@@ -32,34 +28,40 @@ public class MarketingPromotionKfcRequest implements TaobaoRequest<MarketingProm
      */
     private String promotionTitle;
 
-    public void setPromotionDesc(String promotionDesc) {
-        this.promotionDesc = promotionDesc;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(promotionDesc, "promotionDesc");
+        RequestCheckUtils.checkNotEmpty(promotionTitle, "promotionTitle");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.marketing.promotion.kfc";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPromotionDesc() {
         return this.promotionDesc;
     }
 
-    public void setPromotionTitle(String promotionTitle) {
-        this.promotionTitle = promotionTitle;
-    }
-
     public String getPromotionTitle() {
         return this.promotionTitle;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<MarketingPromotionKfcResponse> getResponseClass() {
+        return MarketingPromotionKfcResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.marketing.promotion.kfc";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("promotion_desc", this.promotionDesc);
@@ -70,6 +72,12 @@ public class MarketingPromotionKfcRequest implements TaobaoRequest<MarketingProm
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class MarketingPromotionKfcRequest implements TaobaoRequest<MarketingProm
         this.udfParams.put(key, value);
     }
 
-    public Class<MarketingPromotionKfcResponse> getResponseClass() {
-        return MarketingPromotionKfcResponse.class;
+    public void setPromotionDesc(String promotionDesc) {
+        this.promotionDesc = promotionDesc;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(promotionDesc, "promotionDesc");
-        RequestCheckUtils.checkNotEmpty(promotionTitle, "promotionTitle");
+    public void setPromotionTitle(String promotionTitle) {
+        this.promotionTitle = promotionTitle;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

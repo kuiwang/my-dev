@@ -16,18 +16,16 @@ import com.taobao.api.response.CrmGroupMoveResponse;
  */
 public class CrmGroupMoveRequest implements TaobaoRequest<CrmGroupMoveResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要移动的分组<br />
      * 支持最小值为：1<br />
      * 支持的最大列表长度为：19
      */
     private Long fromGroupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
 
     /**
      * 目的分组<br />
@@ -36,34 +34,36 @@ public class CrmGroupMoveRequest implements TaobaoRequest<CrmGroupMoveResponse> 
      */
     private Long toGroupId;
 
-    public void setFromGroupId(Long fromGroupId) {
-        this.fromGroupId = fromGroupId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fromGroupId, "fromGroupId");
+        RequestCheckUtils.checkMinValue(fromGroupId, 1L, "fromGroupId");
+        RequestCheckUtils.checkNotEmpty(toGroupId, "toGroupId");
+        RequestCheckUtils.checkMinValue(toGroupId, 1L, "toGroupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.group.move";
     }
 
     public Long getFromGroupId() {
         return this.fromGroupId;
     }
 
-    public void setToGroupId(Long toGroupId) {
-        this.toGroupId = toGroupId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getToGroupId() {
-        return this.toGroupId;
+    @Override
+    public Class<CrmGroupMoveResponse> getResponseClass() {
+        return CrmGroupMoveResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.group.move";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("from_group_id", this.fromGroupId);
@@ -74,6 +74,16 @@ public class CrmGroupMoveRequest implements TaobaoRequest<CrmGroupMoveResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getToGroupId() {
+        return this.toGroupId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,18 +91,16 @@ public class CrmGroupMoveRequest implements TaobaoRequest<CrmGroupMoveResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGroupMoveResponse> getResponseClass() {
-        return CrmGroupMoveResponse.class;
+    public void setFromGroupId(Long fromGroupId) {
+        this.fromGroupId = fromGroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fromGroupId, "fromGroupId");
-        RequestCheckUtils.checkMinValue(fromGroupId, 1L, "fromGroupId");
-        RequestCheckUtils.checkNotEmpty(toGroupId, "toGroupId");
-        RequestCheckUtils.checkMinValue(toGroupId, 1L, "toGroupId");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setToGroupId(Long toGroupId) {
+        this.toGroupId = toGroupId;
     }
 }

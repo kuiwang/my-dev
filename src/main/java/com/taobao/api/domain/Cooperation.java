@@ -102,100 +102,100 @@ public class Cooperation extends TaobaoObject {
         return this.authPayway;
     }
 
-    public void setAuthPayway(List<String> authPayway) {
-        this.authPayway = authPayway;
-    }
-
     public Long getCooperateId() {
         return this.cooperateId;
-    }
-
-    public void setCooperateId(Long cooperateId) {
-        this.cooperateId = cooperateId;
     }
 
     public Long getDistributorId() {
         return this.distributorId;
     }
 
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
-    }
-
     public String getDistributorNick() {
         return this.distributorNick;
-    }
-
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public Long getGradeId() {
         return this.gradeId;
-    }
-
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
     }
 
     public String getProductLine() {
         return this.productLine;
     }
 
-    public void setProductLine(String productLine) {
-        this.productLine = productLine;
-    }
-
     public List<String> getProductLineName() {
         return this.productLineName;
-    }
-
-    public void setProductLineName(List<String> productLineName) {
-        this.productLineName = productLineName;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Long getSupplierId() {
         return this.supplierId;
     }
 
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
-    }
-
     public String getSupplierNick() {
         return this.supplierNick;
     }
 
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
-    }
-
     public String getTradeType() {
         return this.tradeType;
+    }
+
+    public void setAuthPayway(List<String> authPayway) {
+        this.authPayway = authPayway;
+    }
+
+    public void setCooperateId(Long cooperateId) {
+        this.cooperateId = cooperateId;
+    }
+
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
+    }
+
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
+    }
+
+    public void setProductLine(String productLine) {
+        this.productLine = productLine;
+    }
+
+    public void setProductLineName(List<String> productLineName) {
+        this.productLineName = productLineName;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
     }
 
     public void setTradeType(String tradeType) {

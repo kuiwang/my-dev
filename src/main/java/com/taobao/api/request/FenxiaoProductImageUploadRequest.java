@@ -19,9 +19,7 @@ import com.taobao.api.response.FenxiaoProductImageUploadResponse;
 public class FenxiaoProductImageUploadRequest implements
         TaobaoUploadRequest<FenxiaoProductImageUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品图片
@@ -49,60 +47,60 @@ public class FenxiaoProductImageUploadRequest implements
      */
     private String properties;
 
-    public void setImage(FileItem image) {
-        this.image = image;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(position, "position");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.image.upload";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImage() {
         return this.image;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPosition(Long position) {
-        this.position = position;
     }
 
     public Long getPosition() {
         return this.position;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoProductImageUploadResponse> getResponseClass() {
+        return FenxiaoProductImageUploadResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.image.upload";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("pic_path", this.picPath);
@@ -115,6 +113,12 @@ public class FenxiaoProductImageUploadRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,23 +126,28 @@ public class FenxiaoProductImageUploadRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setImage(FileItem image) {
+        this.image = image;
     }
 
-    public Class<FenxiaoProductImageUploadResponse> getResponseClass() {
-        return FenxiaoProductImageUploadResponse.class;
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(position, "position");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setPosition(Long position) {
+        this.position = position;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

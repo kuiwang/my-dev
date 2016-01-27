@@ -16,16 +16,12 @@ import com.taobao.api.response.WaimaiShopUpdateResponse;
  */
 public class WaimaiShopUpdateRequest implements TaobaoRequest<WaimaiShopUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 店铺地址
      */
     private String address;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 外卖店名称
@@ -64,82 +60,68 @@ public class WaimaiShopUpdateRequest implements TaobaoRequest<WaimaiShopUpdateRe
      */
     private String shopoutid;
 
-    public void setAddress(String address) {
-        this.address = address;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(address, "address");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkNotEmpty(phone, "phone");
+        RequestCheckUtils.checkNotEmpty(posx, "posx");
+        RequestCheckUtils.checkNotEmpty(posy, "posy");
+        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.shop.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPicUrl() {
         return this.picUrl;
     }
 
-    public void setPosx(Long posx) {
-        this.posx = posx;
-    }
-
     public Long getPosx() {
         return this.posx;
-    }
-
-    public void setPosy(Long posy) {
-        this.posy = posy;
     }
 
     public Long getPosy() {
         return this.posy;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
+    @Override
+    public Class<WaimaiShopUpdateResponse> getResponseClass() {
+        return WaimaiShopUpdateResponse.class;
     }
 
     public Long getShopid() {
         return this.shopid;
     }
 
-    public void setShopoutid(String shopoutid) {
-        this.shopoutid = shopoutid;
-    }
-
     public String getShopoutid() {
         return this.shopoutid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.shop.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -156,6 +138,12 @@ public class WaimaiShopUpdateRequest implements TaobaoRequest<WaimaiShopUpdateRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -163,20 +151,40 @@ public class WaimaiShopUpdateRequest implements TaobaoRequest<WaimaiShopUpdateRe
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiShopUpdateResponse> getResponseClass() {
-        return WaimaiShopUpdateResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(address, "address");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkNotEmpty(phone, "phone");
-        RequestCheckUtils.checkNotEmpty(posx, "posx");
-        RequestCheckUtils.checkNotEmpty(posy, "posy");
-        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPosx(Long posx) {
+        this.posx = posx;
+    }
+
+    public void setPosy(Long posy) {
+        this.posy = posy;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
+    }
+
+    public void setShopoutid(String shopoutid) {
+        this.shopoutid = shopoutid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.AtbItemsRelateGetResponse;
  */
 public class AtbItemsRelateGetRequest implements TaobaoRequest<AtbItemsRelateGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分类id.推荐类型为5时cid不能为空。仅支持叶子类目ID，即通过taobao.itemcats.get获取到is_parent=
      * false的cid。
@@ -34,6 +28,8 @@ public class AtbItemsRelateGetRequest implements TaobaoRequest<AtbItemsRelateGet
      * seller_credit_score,item_location,volume;字段之间用","分隔
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 指定返回结果的最大条数.实际返回结果个数根据算法来确定,所以该值会小于或者等于该值
@@ -70,82 +66,66 @@ public class AtbItemsRelateGetRequest implements TaobaoRequest<AtbItemsRelateGet
      */
     private String sort;
 
-    public void setCid(Long cid) {
-        this.cid = cid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
+        RequestCheckUtils.checkNotEmpty(openIid, "openIid");
+        RequestCheckUtils.checkNotEmpty(relateType, "relateType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.atb.items.relate.get";
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setMaxCount(Long maxCount) {
-        this.maxCount = maxCount;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMaxCount() {
         return this.maxCount;
     }
 
-    public void setOpenIid(String openIid) {
-        this.openIid = openIid;
-    }
-
     public String getOpenIid() {
         return this.openIid;
-    }
-
-    public void setRelateType(Long relateType) {
-        this.relateType = relateType;
     }
 
     public Long getRelateType() {
         return this.relateType;
     }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
+    @Override
+    public Class<AtbItemsRelateGetResponse> getResponseClass() {
+        return AtbItemsRelateGetResponse.class;
     }
 
     public Long getSellerId() {
         return this.sellerId;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
-    }
-
     public String getShopType() {
         return this.shopType;
-    }
-
-    public void setSort(String sort) {
-        this.sort = sort;
     }
 
     public String getSort() {
         return this.sort;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.atb.items.relate.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cid", this.cid);
@@ -162,6 +142,12 @@ public class AtbItemsRelateGetRequest implements TaobaoRequest<AtbItemsRelateGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -169,18 +155,40 @@ public class AtbItemsRelateGetRequest implements TaobaoRequest<AtbItemsRelateGet
         this.udfParams.put(key, value);
     }
 
-    public Class<AtbItemsRelateGetResponse> getResponseClass() {
-        return AtbItemsRelateGetResponse.class;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
-        RequestCheckUtils.checkNotEmpty(openIid, "openIid");
-        RequestCheckUtils.checkNotEmpty(relateType, "relateType");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMaxCount(Long maxCount) {
+        this.maxCount = maxCount;
+    }
+
+    public void setOpenIid(String openIid) {
+        this.openIid = openIid;
+    }
+
+    public void setRelateType(Long relateType) {
+        this.relateType = relateType;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

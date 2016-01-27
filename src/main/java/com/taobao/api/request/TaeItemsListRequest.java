@@ -16,12 +16,6 @@ import com.taobao.api.response.TaeItemsListResponse;
  */
 public class TaeItemsListRequest implements TaobaoRequest<TaeItemsListResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 返回值中需要的字段. 可选值
      * title,nick,pic_url,location,cid,price,post_fee,promoted_service.字段间用
@@ -29,39 +23,47 @@ public class TaeItemsListRequest implements TaobaoRequest<TaeItemsListResponse> 
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商品的ID列表, 使用 (,)逗号分隔. 最多支持50个商品ID
      */
     private String numIids;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(numIids, "numIids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tae.items.list";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setNumIids(String numIids) {
-        this.numIids = numIids;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNumIids() {
         return this.numIids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TaeItemsListResponse> getResponseClass() {
+        return TaeItemsListResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tae.items.list";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -72,6 +74,12 @@ public class TaeItemsListRequest implements TaobaoRequest<TaeItemsListResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,16 +87,16 @@ public class TaeItemsListRequest implements TaobaoRequest<TaeItemsListResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<TaeItemsListResponse> getResponseClass() {
-        return TaeItemsListResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(numIids, "numIids");
+    public void setNumIids(String numIids) {
+        this.numIids = numIids;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

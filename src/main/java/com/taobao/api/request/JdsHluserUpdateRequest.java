@@ -17,35 +17,39 @@ public class JdsHluserUpdateRequest implements TaobaoRequest<JdsHluserUpdateResp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 回流信息是否开通买家端展示
      */
     private String openForBuyer;
 
-    public void setOpenForBuyer(String openForBuyer) {
-        this.openForBuyer = openForBuyer;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jds.hluser.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOpenForBuyer() {
         return this.openForBuyer;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JdsHluserUpdateResponse> getResponseClass() {
+        return JdsHluserUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jds.hluser.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("open_for_buyer", this.openForBuyer);
@@ -55,6 +59,12 @@ public class JdsHluserUpdateRequest implements TaobaoRequest<JdsHluserUpdateResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class JdsHluserUpdateRequest implements TaobaoRequest<JdsHluserUpdateResp
         this.udfParams.put(key, value);
     }
 
-    public Class<JdsHluserUpdateResponse> getResponseClass() {
-        return JdsHluserUpdateResponse.class;
+    public void setOpenForBuyer(String openForBuyer) {
+        this.openForBuyer = openForBuyer;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

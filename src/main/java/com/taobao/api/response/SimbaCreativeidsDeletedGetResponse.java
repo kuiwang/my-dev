@@ -23,12 +23,12 @@ public class SimbaCreativeidsDeletedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> deletedCreativeIds;
 
-    public void setDeletedCreativeIds(List<Long> deletedCreativeIds) {
-        this.deletedCreativeIds = deletedCreativeIds;
-    }
-
     public List<Long> getDeletedCreativeIds() {
         return this.deletedCreativeIds;
+    }
+
+    public void setDeletedCreativeIds(List<Long> deletedCreativeIds) {
+        this.deletedCreativeIds = deletedCreativeIds;
     }
 
 }

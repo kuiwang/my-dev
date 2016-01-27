@@ -6,9 +6,14 @@ package com.scott.dev.taobao.api.item.domain;
 public class TicketEtc {
 
     /*
-     * 商品电子凭证的码商-在门票商品为电子凭证时必选
+     *  商品电子凭证是否关联本地商户-在门票商品为电子凭证时必选
      */
-    private String networkId;
+    private Boolean associationStatus;
+
+    /*
+     * 商品电子凭证的自动退款比例-在门票商品为电子凭证时必选
+     */
+    private Number autoRefund;
 
     /*
      * 商品电子凭证的码商-在门票商品为电子凭证时必选
@@ -21,9 +26,9 @@ public class TicketEtc {
     private String merchantNick;
 
     /*
-     * 商品电子凭证是否核销打款-在门票商品为电子凭证时必选
+     * 商品电子凭证的码商-在门票商品为电子凭证时必选
      */
-    private Boolean verificationPay;
+    private String networkId;
 
     /*
      * 商品电子凭证的过期退款比例-在门票商品为电子凭证时必选
@@ -31,69 +36,64 @@ public class TicketEtc {
     private Number overduePay;
 
     /*
-     * 商品电子凭证的自动退款比例-在门票商品为电子凭证时必选
+     * 商品电子凭证是否核销打款-在门票商品为电子凭证时必选
      */
-    private Number autoRefund;
+    private Boolean verificationPay;
 
-    /*
-     *  商品电子凭证是否关联本地商户-在门票商品为电子凭证时必选
-     */
-    private Boolean associationStatus;
-
-    public String getNetworkId() {
-        return networkId;
-    }
-
-    public void setNetworkId(String networkId) {
-        this.networkId = networkId;
-    }
-
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public String getMerchantNick() {
-        return merchantNick;
-    }
-
-    public void setMerchantNick(String merchantNick) {
-        this.merchantNick = merchantNick;
-    }
-
-    public Boolean getVerificationPay() {
-        return verificationPay;
-    }
-
-    public void setVerificationPay(Boolean verificationPay) {
-        this.verificationPay = verificationPay;
-    }
-
-    public Number getOverduePay() {
-        return overduePay;
-    }
-
-    public void setOverduePay(Number overduePay) {
-        this.overduePay = overduePay;
+    public Boolean getAssociationStatus() {
+        return associationStatus;
     }
 
     public Number getAutoRefund() {
         return autoRefund;
     }
 
-    public void setAutoRefund(Number autoRefund) {
-        this.autoRefund = autoRefund;
+    public String getMerchantId() {
+        return merchantId;
     }
 
-    public Boolean getAssociationStatus() {
-        return associationStatus;
+    public String getMerchantNick() {
+        return merchantNick;
+    }
+
+    public String getNetworkId() {
+        return networkId;
+    }
+
+    public Number getOverduePay() {
+        return overduePay;
+    }
+
+    public Boolean getVerificationPay() {
+        return verificationPay;
     }
 
     public void setAssociationStatus(Boolean associationStatus) {
         this.associationStatus = associationStatus;
+    }
+
+    public void setAutoRefund(Number autoRefund) {
+        this.autoRefund = autoRefund;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public void setMerchantNick(String merchantNick) {
+        this.merchantNick = merchantNick;
+    }
+
+    public void setNetworkId(String networkId) {
+        this.networkId = networkId;
+    }
+
+    public void setOverduePay(Number overduePay) {
+        this.overduePay = overduePay;
+    }
+
+    public void setVerificationPay(Boolean verificationPay) {
+        this.verificationPay = verificationPay;
     }
 
 }

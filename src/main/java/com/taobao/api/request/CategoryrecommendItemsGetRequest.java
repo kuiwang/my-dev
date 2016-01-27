@@ -17,12 +17,6 @@ import com.taobao.api.response.CategoryrecommendItemsGetResponse;
 public class CategoryrecommendItemsGetRequest implements
         TaobaoRequest<CategoryrecommendItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入叶子类目ID
      */
@@ -38,55 +32,56 @@ public class CategoryrecommendItemsGetRequest implements
      */
     private String ext;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 请求类型，1：类目下热门商品推荐。其他值当非法值处理
      */
     private Long recommendType;
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(categoryId, "categoryId");
+        RequestCheckUtils.checkNotEmpty(count, "count");
+        RequestCheckUtils.checkNotEmpty(recommendType, "recommendType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.categoryrecommend.items.get";
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public Long getCount() {
         return this.count;
-    }
-
-    public void setExt(String ext) {
-        this.ext = ext;
     }
 
     public String getExt() {
         return this.ext;
     }
 
-    public void setRecommendType(Long recommendType) {
-        this.recommendType = recommendType;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getRecommendType() {
         return this.recommendType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CategoryrecommendItemsGetResponse> getResponseClass() {
+        return CategoryrecommendItemsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.categoryrecommend.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("category_id", this.categoryId);
@@ -99,6 +94,12 @@ public class CategoryrecommendItemsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,17 +107,24 @@ public class CategoryrecommendItemsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CategoryrecommendItemsGetResponse> getResponseClass() {
-        return CategoryrecommendItemsGetResponse.class;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(categoryId, "categoryId");
-        RequestCheckUtils.checkNotEmpty(count, "count");
-        RequestCheckUtils.checkNotEmpty(recommendType, "recommendType");
+    public void setCount(Long count) {
+        this.count = count;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setExt(String ext) {
+        this.ext = ext;
+    }
+
+    public void setRecommendType(Long recommendType) {
+        this.recommendType = recommendType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

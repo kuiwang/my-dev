@@ -17,24 +17,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class CreateDBInstanceForChannelRequest implements
         AliyunRequest<CreateDBInstanceForChannelResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 数据库帐户名操作帐号，需惟一性检查，由小写字母，数字、下划线组成，字母开头，长度不超过16个字符。
      */
@@ -80,6 +62,14 @@ public class CreateDBInstanceForChannelRequest implements
      */
     private String engineVersion;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
     /**
      * Postpaid，按量付费，目前只有这一种
      */
@@ -91,144 +81,113 @@ public class CreateDBInstanceForChannelRequest implements
     private String regionId;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * 允许访问该实例下所有数据库的IP名单，以逗号隔开，不可重复，最多100个；支持格式：%，0.0.0.0/0，10.23.12.24（IP
      * ），或者10.23.12.24/24（CIDR模式，无类域间路由，/24表示了地址中前缀的长度，范围[1,32]）
      * 其中，0.0.0.0/0，表示不限制，用户输入%提示报错
      */
     private String securityIPList;
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(accountName, "accountName");
+        RequestCheckUtils.checkNotEmpty(accountPassword, "accountPassword");
+        RequestCheckUtils.checkNotEmpty(clientToken, "clientToken");
+        RequestCheckUtils.checkNotEmpty(dBInstanceClass, "dBInstanceClass");
+        RequestCheckUtils.checkNotEmpty(dBInstanceNetType, "dBInstanceNetType");
+        RequestCheckUtils.checkNotEmpty(dBInstanceStorage, "dBInstanceStorage");
+        RequestCheckUtils.checkNotEmpty(engine, "engine");
+        RequestCheckUtils.checkNotEmpty(engineVersion, "engineVersion");
+        RequestCheckUtils.checkNotEmpty(payType, "payType");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+        RequestCheckUtils.checkNotEmpty(securityIPList, "securityIPList");
     }
 
     public String getAccountName() {
         return this.accountName;
     }
 
-    public void setAccountPassword(String accountPassword) {
-        this.accountPassword = accountPassword;
-    }
-
     public String getAccountPassword() {
         return this.accountPassword;
     }
 
-    public void setClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    @Override
+    public String getApiMethodName() {
+        return "rds.aliyuncs.com.CreateDBInstanceForChannel.2014-08-15";
     }
 
     public String getClientToken() {
         return this.clientToken;
     }
 
-    public void setdBInstanceClass(String dBInstanceClass) {
-        this.dBInstanceClass = dBInstanceClass;
-    }
-
     public String getdBInstanceClass() {
         return this.dBInstanceClass;
-    }
-
-    public void setdBInstanceDescription(String dBInstanceDescription) {
-        this.dBInstanceDescription = dBInstanceDescription;
     }
 
     public String getdBInstanceDescription() {
         return this.dBInstanceDescription;
     }
 
-    public void setdBInstanceNetType(String dBInstanceNetType) {
-        this.dBInstanceNetType = dBInstanceNetType;
-    }
-
     public String getdBInstanceNetType() {
         return this.dBInstanceNetType;
-    }
-
-    public void setdBInstanceStorage(Long dBInstanceStorage) {
-        this.dBInstanceStorage = dBInstanceStorage;
     }
 
     public Long getdBInstanceStorage() {
         return this.dBInstanceStorage;
     }
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setEngineVersion(String engineVersion) {
-        this.engineVersion = engineVersion;
     }
 
     public String getEngineVersion() {
         return this.engineVersion;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
-
-    public String getPayType() {
-        return this.payType;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setSecurityIPList(String securityIPList) {
-        this.securityIPList = securityIPList;
-    }
-
-    public String getSecurityIPList() {
-        return this.securityIPList;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getPayType() {
+        return this.payType;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateDBInstanceForChannelResponse> getResponseClass() {
+        return CreateDBInstanceForChannelResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSecurityIPList() {
+        return this.securityIPList;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "rds.aliyuncs.com.CreateDBInstanceForChannel.2014-08-15";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -252,6 +211,12 @@ public class CreateDBInstanceForChannelRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -259,25 +224,68 @@ public class CreateDBInstanceForChannelRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateDBInstanceForChannelResponse> getResponseClass() {
-        return CreateDBInstanceForChannelResponse.class;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(accountName, "accountName");
-        RequestCheckUtils.checkNotEmpty(accountPassword, "accountPassword");
-        RequestCheckUtils.checkNotEmpty(clientToken, "clientToken");
-        RequestCheckUtils.checkNotEmpty(dBInstanceClass, "dBInstanceClass");
-        RequestCheckUtils.checkNotEmpty(dBInstanceNetType, "dBInstanceNetType");
-        RequestCheckUtils.checkNotEmpty(dBInstanceStorage, "dBInstanceStorage");
-        RequestCheckUtils.checkNotEmpty(engine, "engine");
-        RequestCheckUtils.checkNotEmpty(engineVersion, "engineVersion");
-        RequestCheckUtils.checkNotEmpty(payType, "payType");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
-        RequestCheckUtils.checkNotEmpty(securityIPList, "securityIPList");
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
+    }
+
+    public void setdBInstanceClass(String dBInstanceClass) {
+        this.dBInstanceClass = dBInstanceClass;
+    }
+
+    public void setdBInstanceDescription(String dBInstanceDescription) {
+        this.dBInstanceDescription = dBInstanceDescription;
+    }
+
+    public void setdBInstanceNetType(String dBInstanceNetType) {
+        this.dBInstanceNetType = dBInstanceNetType;
+    }
+
+    public void setdBInstanceStorage(Long dBInstanceStorage) {
+        this.dBInstanceStorage = dBInstanceStorage;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSecurityIPList(String securityIPList) {
+        this.securityIPList = securityIPList;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

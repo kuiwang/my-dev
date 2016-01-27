@@ -20,12 +20,12 @@ public class DdMenuDetailResponse extends TaobaoResponse {
     @ApiField("result")
     private DdTopMenuDetailVO result;
 
-    public void setResult(DdTopMenuDetailVO result) {
-        this.result = result;
-    }
-
     public DdTopMenuDetailVO getResult() {
         return this.result;
+    }
+
+    public void setResult(DdTopMenuDetailVO result) {
+        this.result = result;
     }
 
 }

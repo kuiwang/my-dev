@@ -25,20 +25,20 @@ public class MbcPromotionUseResponse extends TaobaoResponse {
     @ApiField("ret_code")
     private Long retCode;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return this.id;
     }
 
-    public void setRetCode(Long retCode) {
-        this.retCode = retCode;
-    }
-
     public Long getRetCode() {
         return this.retCode;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRetCode(Long retCode) {
+        this.retCode = retCode;
     }
 
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.AtbItemsGetResponse;
  */
 public class AtbItemsGetRequest implements TaobaoRequest<AtbItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所在地
      */
@@ -81,6 +75,8 @@ public class AtbItemsGetRequest implements TaobaoRequest<AtbItemsGetResponse> {
      * 是否查询消保卖家
      */
     private String guarantee;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品标题中包含的关键字. 注意:查询时keyword,cid至少选择其中一个参数
@@ -167,239 +163,141 @@ public class AtbItemsGetRequest implements TaobaoRequest<AtbItemsGetResponse> {
      */
     private String supportCod;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否支持VIP卡，设置为true表示该商品支持VIP卡，设置为false或不设置表示不判断这个属性
      */
     private String vipCard;
 
-    public void setArea(String area) {
-        this.area = area;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.atb.items.get";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setAutoSend(String autoSend) {
-        this.autoSend = autoSend;
-    }
-
     public String getAutoSend() {
         return this.autoSend;
-    }
-
-    public void setCashCoupon(String cashCoupon) {
-        this.cashCoupon = cashCoupon;
     }
 
     public String getCashCoupon() {
         return this.cashCoupon;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setEndCommissionNum(String endCommissionNum) {
-        this.endCommissionNum = endCommissionNum;
     }
 
     public String getEndCommissionNum() {
         return this.endCommissionNum;
     }
 
-    public void setEndCommissionRate(String endCommissionRate) {
-        this.endCommissionRate = endCommissionRate;
-    }
-
     public String getEndCommissionRate() {
         return this.endCommissionRate;
-    }
-
-    public void setEndCredit(String endCredit) {
-        this.endCredit = endCredit;
     }
 
     public String getEndCredit() {
         return this.endCredit;
     }
 
-    public void setEndPrice(String endPrice) {
-        this.endPrice = endPrice;
-    }
-
     public String getEndPrice() {
         return this.endPrice;
-    }
-
-    public void setEndTotalnum(String endTotalnum) {
-        this.endTotalnum = endTotalnum;
     }
 
     public String getEndTotalnum() {
         return this.endTotalnum;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
-    }
-
-    public void setGuarantee(String guarantee) {
-        this.guarantee = guarantee;
     }
 
     public String getGuarantee() {
         return this.guarantee;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeyword() {
         return this.keyword;
     }
 
-    public void setMallItem(String mallItem) {
-        this.mallItem = mallItem;
-    }
-
     public String getMallItem() {
         return this.mallItem;
-    }
-
-    public void setOnemonthRepair(String onemonthRepair) {
-        this.onemonthRepair = onemonthRepair;
     }
 
     public String getOnemonthRepair() {
         return this.onemonthRepair;
     }
 
-    public void setOverseasItem(String overseasItem) {
-        this.overseasItem = overseasItem;
-    }
-
     public String getOverseasItem() {
         return this.overseasItem;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setRealDescribe(String realDescribe) {
-        this.realDescribe = realDescribe;
     }
 
     public String getRealDescribe() {
         return this.realDescribe;
     }
 
-    public void setSevendaysReturn(String sevendaysReturn) {
-        this.sevendaysReturn = sevendaysReturn;
+    @Override
+    public Class<AtbItemsGetResponse> getResponseClass() {
+        return AtbItemsGetResponse.class;
     }
 
     public String getSevendaysReturn() {
         return this.sevendaysReturn;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     public String getSort() {
         return this.sort;
-    }
-
-    public void setStartCommissionNum(String startCommissionNum) {
-        this.startCommissionNum = startCommissionNum;
     }
 
     public String getStartCommissionNum() {
         return this.startCommissionNum;
     }
 
-    public void setStartCommissionRate(String startCommissionRate) {
-        this.startCommissionRate = startCommissionRate;
-    }
-
     public String getStartCommissionRate() {
         return this.startCommissionRate;
-    }
-
-    public void setStartCredit(String startCredit) {
-        this.startCredit = startCredit;
     }
 
     public String getStartCredit() {
         return this.startCredit;
     }
 
-    public void setStartPrice(String startPrice) {
-        this.startPrice = startPrice;
-    }
-
     public String getStartPrice() {
         return this.startPrice;
-    }
-
-    public void setStartTotalnum(String startTotalnum) {
-        this.startTotalnum = startTotalnum;
     }
 
     public String getStartTotalnum() {
         return this.startTotalnum;
     }
 
-    public void setSupportCod(String supportCod) {
-        this.supportCod = supportCod;
-    }
-
     public String getSupportCod() {
         return this.supportCod;
     }
 
-    public void setVipCard(String vipCard) {
-        this.vipCard = vipCard;
-    }
-
-    public String getVipCard() {
-        return this.vipCard;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.atb.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -435,6 +333,16 @@ public class AtbItemsGetRequest implements TaobaoRequest<AtbItemsGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getVipCard() {
+        return this.vipCard;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -442,16 +350,116 @@ public class AtbItemsGetRequest implements TaobaoRequest<AtbItemsGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<AtbItemsGetResponse> getResponseClass() {
-        return AtbItemsGetResponse.class;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
+    public void setAutoSend(String autoSend) {
+        this.autoSend = autoSend;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCashCoupon(String cashCoupon) {
+        this.cashCoupon = cashCoupon;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setEndCommissionNum(String endCommissionNum) {
+        this.endCommissionNum = endCommissionNum;
+    }
+
+    public void setEndCommissionRate(String endCommissionRate) {
+        this.endCommissionRate = endCommissionRate;
+    }
+
+    public void setEndCredit(String endCredit) {
+        this.endCredit = endCredit;
+    }
+
+    public void setEndPrice(String endPrice) {
+        this.endPrice = endPrice;
+    }
+
+    public void setEndTotalnum(String endTotalnum) {
+        this.endTotalnum = endTotalnum;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setGuarantee(String guarantee) {
+        this.guarantee = guarantee;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setMallItem(String mallItem) {
+        this.mallItem = mallItem;
+    }
+
+    public void setOnemonthRepair(String onemonthRepair) {
+        this.onemonthRepair = onemonthRepair;
+    }
+
+    public void setOverseasItem(String overseasItem) {
+        this.overseasItem = overseasItem;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRealDescribe(String realDescribe) {
+        this.realDescribe = realDescribe;
+    }
+
+    public void setSevendaysReturn(String sevendaysReturn) {
+        this.sevendaysReturn = sevendaysReturn;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public void setStartCommissionNum(String startCommissionNum) {
+        this.startCommissionNum = startCommissionNum;
+    }
+
+    public void setStartCommissionRate(String startCommissionRate) {
+        this.startCommissionRate = startCommissionRate;
+    }
+
+    public void setStartCredit(String startCredit) {
+        this.startCredit = startCredit;
+    }
+
+    public void setStartPrice(String startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    public void setStartTotalnum(String startTotalnum) {
+        this.startTotalnum = startTotalnum;
+    }
+
+    public void setSupportCod(String supportCod) {
+        this.supportCod = supportCod;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setVipCard(String vipCard) {
+        this.vipCard = vipCard;
     }
 }

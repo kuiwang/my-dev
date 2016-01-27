@@ -16,12 +16,6 @@ import com.taobao.api.response.TraderateListAddResponse;
  */
 public class TraderateListAddRequest implements TaobaoRequest<TraderateListAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否匿名，卖家评不能匿名。可选值:true(匿名),false(非匿名)。 注意：如果买家匿名购买，那么买家的评价默认匿名
      */
@@ -32,6 +26,8 @@ public class TraderateListAddRequest implements TaobaoRequest<TraderateListAddRe
      * .注意：当评价结果为good时就不用输入评价内容.评价内容为neutral/bad的时候需要输入评价内容
      */
     private String content;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 评价结果。可选值:good(好评),neutral(中评),bad(差评)
@@ -48,58 +44,49 @@ public class TraderateListAddRequest implements TaobaoRequest<TraderateListAddRe
      */
     private Long tid;
 
-    public void setAnony(Boolean anony) {
-        this.anony = anony;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(result, "result");
+        RequestCheckUtils.checkNotEmpty(role, "role");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
     }
 
     public Boolean getAnony() {
         return this.anony;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.list.add";
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TraderateListAddResponse> getResponseClass() {
+        return TraderateListAddResponse.class;
     }
 
     public String getResult() {
         return this.result;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getRole() {
         return this.role;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.traderate.list.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("anony", this.anony);
@@ -113,6 +100,16 @@ public class TraderateListAddRequest implements TaobaoRequest<TraderateListAddRe
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,17 +117,28 @@ public class TraderateListAddRequest implements TaobaoRequest<TraderateListAddRe
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateListAddResponse> getResponseClass() {
-        return TraderateListAddResponse.class;
+    public void setAnony(Boolean anony) {
+        this.anony = anony;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(result, "result");
-        RequestCheckUtils.checkNotEmpty(role, "role");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

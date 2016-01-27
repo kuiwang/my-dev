@@ -24,12 +24,12 @@ public class WangwangEserviceGroupmemberGetResponse extends TaobaoResponse {
     @ApiField("group_member")
     private List<GroupMember> groupMemberList;
 
-    public void setGroupMemberList(List<GroupMember> groupMemberList) {
-        this.groupMemberList = groupMemberList;
-    }
-
     public List<GroupMember> getGroupMemberList() {
         return this.groupMemberList;
+    }
+
+    public void setGroupMemberList(List<GroupMember> groupMemberList) {
+        this.groupMemberList = groupMemberList;
     }
 
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.JuCityitemsGetResponse;
  */
 public class JuCityitemsGetRequest implements TaobaoRequest<JuCityitemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要获取生活服务商品的城市名称（中文）
      */
@@ -32,6 +26,8 @@ public class JuCityitemsGetRequest implements TaobaoRequest<JuCityitemsGetRespon
      * 或者不传该参数，就默认获得所有的字段
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页获取商品信息页序号，代表第几页<br />
@@ -46,50 +42,52 @@ public class JuCityitemsGetRequest implements TaobaoRequest<JuCityitemsGetRespon
      */
     private Long pageSize;
 
-    public void setCity(String city) {
-        this.city = city;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(city, "city");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ju.cityitems.get";
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JuCityitemsGetResponse> getResponseClass() {
+        return JuCityitemsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ju.cityitems.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("city", this.city);
@@ -102,6 +100,12 @@ public class JuCityitemsGetRequest implements TaobaoRequest<JuCityitemsGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -109,20 +113,24 @@ public class JuCityitemsGetRequest implements TaobaoRequest<JuCityitemsGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<JuCityitemsGetResponse> getResponseClass() {
-        return JuCityitemsGetResponse.class;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(city, "city");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

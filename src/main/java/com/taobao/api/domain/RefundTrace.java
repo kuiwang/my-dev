@@ -61,52 +61,52 @@ public class RefundTrace extends TaobaoObject {
         return this.actionTime;
     }
 
-    public void setActionTime(Date actionTime) {
-        this.actionTime = actionTime;
-    }
-
     public String getAppTitle() {
         return this.appTitle;
-    }
-
-    public void setAppTitle(String appTitle) {
-        this.appTitle = appTitle;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
-    }
-
     public String getRemark() {
         return this.remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getTid() {
         return this.tid;
+    }
+
+    public void setActionTime(Date actionTime) {
+        this.actionTime = actionTime;
+    }
+
+    public void setAppTitle(String appTitle) {
+        this.appTitle = appTitle;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setTid(Long tid) {

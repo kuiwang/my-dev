@@ -30,20 +30,20 @@ public class WlbItemQueryResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setItemList(List<WlbItem> itemList) {
-        this.itemList = itemList;
-    }
-
     public List<WlbItem> getItemList() {
         return this.itemList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setItemList(List<WlbItem> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

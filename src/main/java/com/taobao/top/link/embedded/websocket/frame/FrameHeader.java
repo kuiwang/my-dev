@@ -33,18 +33,18 @@ import java.nio.ByteBuffer;
 public interface FrameHeader {
 
     /**
-     * Gets the frame length.
-     *
-     * @return the frame length
-     */
-    public long getFrameLength();
-
-    /**
      * Gets the contents length.
      *
      * @return the contents length
      */
     public long getContentsLength();
+
+    /**
+     * Gets the frame length.
+     *
+     * @return the frame length
+     */
+    public long getFrameLength();
 
     /**
      * To byte buffer.

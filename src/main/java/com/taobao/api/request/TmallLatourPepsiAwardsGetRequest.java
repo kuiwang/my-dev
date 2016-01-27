@@ -19,10 +19,6 @@ public class TmallLatourPepsiAwardsGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动ID 由互动平台生成
      */
@@ -33,34 +29,40 @@ public class TmallLatourPepsiAwardsGetRequest implements
      */
     private String nick;
 
-    public void setLotteryId(String lotteryId) {
-        this.lotteryId = lotteryId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(lotteryId, "lotteryId");
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.latour.pepsi.awards.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getLotteryId() {
         return this.lotteryId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmallLatourPepsiAwardsGetResponse> getResponseClass() {
+        return TmallLatourPepsiAwardsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.latour.pepsi.awards.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("lottery_id", this.lotteryId);
@@ -71,6 +73,12 @@ public class TmallLatourPepsiAwardsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class TmallLatourPepsiAwardsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallLatourPepsiAwardsGetResponse> getResponseClass() {
-        return TmallLatourPepsiAwardsGetResponse.class;
+    public void setLotteryId(String lotteryId) {
+        this.lotteryId = lotteryId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(lotteryId, "lotteryId");
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

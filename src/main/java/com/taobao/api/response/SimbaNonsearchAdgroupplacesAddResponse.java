@@ -24,12 +24,12 @@ public class SimbaNonsearchAdgroupplacesAddResponse extends TaobaoResponse {
     @ApiField("a_d_group_place")
     private List<ADGroupPlace> adgroupPlaceList;
 
-    public void setAdgroupPlaceList(List<ADGroupPlace> adgroupPlaceList) {
-        this.adgroupPlaceList = adgroupPlaceList;
-    }
-
     public List<ADGroupPlace> getAdgroupPlaceList() {
         return this.adgroupPlaceList;
+    }
+
+    public void setAdgroupPlaceList(List<ADGroupPlace> adgroupPlaceList) {
+        this.adgroupPlaceList = adgroupPlaceList;
     }
 
 }

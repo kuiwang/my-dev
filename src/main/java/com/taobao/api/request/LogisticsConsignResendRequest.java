@@ -16,12 +16,6 @@ import com.taobao.api.response.LogisticsConsignResendResponse;
  */
 public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsConsignResendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流公司代码.如"POST"代表中国邮政,"ZJS"代表宅急送。调用 taobao.logistics.companies.get
      * 获取。 <br>
@@ -47,6 +41,8 @@ public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsCon
      * 当存在"|"时，就说明订单中存在多个商品，商品间用"|"分隔了开来。|"之后的内容含义同上。
      */
     private String feature;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 表明是否是拆单，默认值0，1表示拆单
@@ -74,74 +70,59 @@ public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsCon
      */
     private Long tid;
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(companyCode, "companyCode");
+        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
+        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.consign.resend";
     }
 
     public String getCompanyCode() {
         return this.companyCode;
     }
 
-    public void setFeature(String feature) {
-        this.feature = feature;
-    }
-
     public String getFeature() {
         return this.feature;
     }
 
-    public void setIsSplit(Long isSplit) {
-        this.isSplit = isSplit;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIsSplit() {
         return this.isSplit;
     }
 
-    public void setOutSid(String outSid) {
-        this.outSid = outSid;
-    }
-
     public String getOutSid() {
         return this.outSid;
     }
 
-    public void setSellerIp(String sellerIp) {
-        this.sellerIp = sellerIp;
+    @Override
+    public Class<LogisticsConsignResendResponse> getResponseClass() {
+        return LogisticsConsignResendResponse.class;
     }
 
     public String getSellerIp() {
         return this.sellerIp;
     }
 
-    public void setSubTid(String subTid) {
-        this.subTid = subTid;
-    }
-
     public String getSubTid() {
         return this.subTid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.consign.resend";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("company_code", this.companyCode);
@@ -157,6 +138,16 @@ public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsCon
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -164,19 +155,36 @@ public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsCon
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsConsignResendResponse> getResponseClass() {
-        return LogisticsConsignResendResponse.class;
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(companyCode, "companyCode");
-        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
-        RequestCheckUtils.checkMaxListSize(subTid, 50, "subTid");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
-        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    public void setFeature(String feature) {
+        this.feature = feature;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setIsSplit(Long isSplit) {
+        this.isSplit = isSplit;
+    }
+
+    public void setOutSid(String outSid) {
+        this.outSid = outSid;
+    }
+
+    public void setSellerIp(String sellerIp) {
+        this.sellerIp = sellerIp;
+    }
+
+    public void setSubTid(String subTid) {
+        this.subTid = subTid;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

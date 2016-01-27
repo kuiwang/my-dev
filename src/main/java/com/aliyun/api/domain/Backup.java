@@ -77,76 +77,76 @@ public class Backup extends TaobaoObject {
         return this.backupDownloadURL;
     }
 
-    public void setBackupDownloadURL(String backupDownloadURL) {
-        this.backupDownloadURL = backupDownloadURL;
-    }
-
     public String getBackupEndTime() {
         return this.backupEndTime;
-    }
-
-    public void setBackupEndTime(String backupEndTime) {
-        this.backupEndTime = backupEndTime;
     }
 
     public String getBackupId() {
         return this.backupId;
     }
 
-    public void setBackupId(String backupId) {
-        this.backupId = backupId;
-    }
-
     public String getBackupMethod() {
         return this.backupMethod;
-    }
-
-    public void setBackupMethod(String backupMethod) {
-        this.backupMethod = backupMethod;
     }
 
     public String getBackupMode() {
         return this.backupMode;
     }
 
-    public void setBackupMode(String backupMode) {
-        this.backupMode = backupMode;
-    }
-
     public Long getBackupSize() {
         return this.backupSize;
-    }
-
-    public void setBackupSize(Long backupSize) {
-        this.backupSize = backupSize;
     }
 
     public String getBackupStartTime() {
         return this.backupStartTime;
     }
 
-    public void setBackupStartTime(String backupStartTime) {
-        this.backupStartTime = backupStartTime;
-    }
-
     public String getBackupStatus() {
         return this.backupStatus;
-    }
-
-    public void setBackupStatus(String backupStatus) {
-        this.backupStatus = backupStatus;
     }
 
     public String getBackupType() {
         return this.backupType;
     }
 
-    public void setBackupType(String backupType) {
-        this.backupType = backupType;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
+    }
+
+    public void setBackupDownloadURL(String backupDownloadURL) {
+        this.backupDownloadURL = backupDownloadURL;
+    }
+
+    public void setBackupEndTime(String backupEndTime) {
+        this.backupEndTime = backupEndTime;
+    }
+
+    public void setBackupId(String backupId) {
+        this.backupId = backupId;
+    }
+
+    public void setBackupMethod(String backupMethod) {
+        this.backupMethod = backupMethod;
+    }
+
+    public void setBackupMode(String backupMode) {
+        this.backupMode = backupMode;
+    }
+
+    public void setBackupSize(Long backupSize) {
+        this.backupSize = backupSize;
+    }
+
+    public void setBackupStartTime(String backupStartTime) {
+        this.backupStartTime = backupStartTime;
+    }
+
+    public void setBackupStatus(String backupStatus) {
+        this.backupStatus = backupStatus;
+    }
+
+    public void setBackupType(String backupType) {
+        this.backupType = backupType;
     }
 
     public void setdBInstanceId(String dBInstanceId) {

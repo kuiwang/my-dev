@@ -17,12 +17,6 @@ import com.taobao.api.response.TraderatesGetResponse;
  */
 public class TraderatesGetRequest implements TaobaoRequest<TraderatesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 评价结束时间。如果只输入结束时间，那么全部返回所有评价数据。
      */
@@ -32,6 +26,8 @@ public class TraderatesGetRequest implements TaobaoRequest<TraderatesGetResponse
      * 需返回的字段列表。可选值：TradeRate 结构中的所有字段，多个字段之间用“,”分隔
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品的数字ID
@@ -77,112 +73,77 @@ public class TraderatesGetRequest implements TaobaoRequest<TraderatesGetResponse
      */
     private Long tid;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，
      * 通过此种方式获取评价信息，效率在原有的基础上有80%的提升。
      */
     private Boolean useHasNext;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxValue(pageSize, 150L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(rateType, "rateType");
+        RequestCheckUtils.checkNotEmpty(role, "role");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderates.get";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setRateType(String rateType) {
-        this.rateType = rateType;
-    }
-
     public String getRateType() {
         return this.rateType;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    @Override
+    public Class<TraderatesGetResponse> getResponseClass() {
+        return TraderatesGetResponse.class;
     }
 
     public String getResult() {
         return this.result;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getRole() {
         return this.role;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public void setUseHasNext(Boolean useHasNext) {
-        this.useHasNext = useHasNext;
-    }
-
-    public Boolean getUseHasNext() {
-        return this.useHasNext;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.traderates.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -202,6 +163,20 @@ public class TraderatesGetRequest implements TaobaoRequest<TraderatesGetResponse
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Boolean getUseHasNext() {
+        return this.useHasNext;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -209,19 +184,52 @@ public class TraderatesGetRequest implements TaobaoRequest<TraderatesGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderatesGetResponse> getResponseClass() {
-        return TraderatesGetResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxValue(pageSize, 150L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(rateType, "rateType");
-        RequestCheckUtils.checkNotEmpty(role, "role");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRateType(String rateType) {
+        this.rateType = rateType;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUseHasNext(Boolean useHasNext) {
+        this.useHasNext = useHasNext;
     }
 }

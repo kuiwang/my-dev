@@ -20,12 +20,12 @@ public class TraderateListAddResponse extends TaobaoResponse {
     @ApiField("trade_rate")
     private TradeRate tradeRate;
 
-    public void setTradeRate(TradeRate tradeRate) {
-        this.tradeRate = tradeRate;
-    }
-
     public TradeRate getTradeRate() {
         return this.tradeRate;
+    }
+
+    public void setTradeRate(TradeRate tradeRate) {
+        this.tradeRate = tradeRate;
     }
 
 }

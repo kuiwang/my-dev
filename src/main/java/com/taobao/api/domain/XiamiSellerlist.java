@@ -33,12 +33,12 @@ public class XiamiSellerlist extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public List<XiamiSellerlistInfo> getInfo() {
         return this.info;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public void setInfo(List<XiamiSellerlistInfo> info) {

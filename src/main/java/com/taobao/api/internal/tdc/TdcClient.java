@@ -30,6 +30,15 @@ public interface TdcClient {
     public CsvTdcResponse csvExecute(TdcRequest request, String session) throws ApiException;
 
     /**
+     * MBP的数据回流
+     * 
+     * @param request
+     * @param session
+     * @throws ApiException
+     */
+    public TdcResponse execute(TdcReflowRequest request, String session) throws ApiException;
+
+    /**
      * json格式的执行方法
      * 
      * @param request tdc查询的请求类
@@ -66,14 +75,5 @@ public interface TdcClient {
      * @throws ApiException
      */
     public JXTdcResponse xmlExecute(TdcRequest request, String session) throws ApiException;
-
-    /**
-     * MBP的数据回流
-     * 
-     * @param request
-     * @param session
-     * @throws ApiException
-     */
-    public TdcResponse execute(TdcReflowRequest request, String session) throws ApiException;
 
 }

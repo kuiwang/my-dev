@@ -17,37 +17,42 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderAgreeResponse;
 public class FenxiaoDealerRequisitionorderAgreeRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderAgreeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 采购申请/经销采购单编号
      */
     private Long dealerOrderId;
 
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.agree";
     }
 
     public Long getDealerOrderId() {
         return this.dealerOrderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderAgreeResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderAgreeResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.agree";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("dealer_order_id", this.dealerOrderId);
@@ -57,6 +62,12 @@ public class FenxiaoDealerRequisitionorderAgreeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class FenxiaoDealerRequisitionorderAgreeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderAgreeResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderAgreeResponse.class;
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

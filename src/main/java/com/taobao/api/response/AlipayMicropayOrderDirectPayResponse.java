@@ -20,12 +20,12 @@ public class AlipayMicropayOrderDirectPayResponse extends TaobaoResponse {
     @ApiField("single_pay_detail")
     private SinglePayDetail singlePayDetail;
 
-    public void setSinglePayDetail(SinglePayDetail singlePayDetail) {
-        this.singlePayDetail = singlePayDetail;
-    }
-
     public SinglePayDetail getSinglePayDetail() {
         return this.singlePayDetail;
+    }
+
+    public void setSinglePayDetail(SinglePayDetail singlePayDetail) {
+        this.singlePayDetail = singlePayDetail;
     }
 
 }

@@ -30,20 +30,20 @@ public class WlbNotifyMessagePageGetResponse extends TaobaoResponse {
     @ApiField("wlb_message")
     private List<WlbMessage> wlbMessages;
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setWlbMessages(List<WlbMessage> wlbMessages) {
-        this.wlbMessages = wlbMessages;
-    }
-
     public List<WlbMessage> getWlbMessages() {
         return this.wlbMessages;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public void setWlbMessages(List<WlbMessage> wlbMessages) {
+        this.wlbMessages = wlbMessages;
     }
 
 }

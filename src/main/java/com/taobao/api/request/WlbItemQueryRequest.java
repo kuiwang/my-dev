@@ -18,10 +18,6 @@ public class WlbItemQueryRequest implements TaobaoRequest<WlbItemQueryResponse> 
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否是最小库存单元，只有最小库存单元的商品才可以有库存,值只能给"true","false"来表示; 若值不在范围内，则按true处理
      */
@@ -69,6 +65,8 @@ public class WlbItemQueryRequest implements TaobaoRequest<WlbItemQueryResponse> 
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 商品前台销售名字<br />
      * 支持最大长度为：255<br />
@@ -76,90 +74,65 @@ public class WlbItemQueryRequest implements TaobaoRequest<WlbItemQueryResponse> 
      */
     private String title;
 
-    public void setIsSku(String isSku) {
-        this.isSku = isSku;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(itemCode, 64, "itemCode");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkMaxLength(title, 255, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIsSku() {
         return this.isSku;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
-    }
-
     public String getItemCode() {
         return this.itemCode;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
     }
 
     public String getItemType() {
         return this.itemType;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public Long getParentId() {
         return this.parentId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<WlbItemQueryResponse> getResponseClass() {
+        return WlbItemQueryResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_sku", this.isSku);
@@ -177,6 +150,16 @@ public class WlbItemQueryRequest implements TaobaoRequest<WlbItemQueryResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -184,19 +167,44 @@ public class WlbItemQueryRequest implements TaobaoRequest<WlbItemQueryResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemQueryResponse> getResponseClass() {
-        return WlbItemQueryResponse.class;
+    public void setIsSku(String isSku) {
+        this.isSku = isSku;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(itemCode, 64, "itemCode");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkMaxLength(title, 255, "title");
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

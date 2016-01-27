@@ -19,10 +19,6 @@ import com.taobao.api.response.ItemEbookSerialUpdateResponse;
 public class ItemEbookSerialUpdateRequest implements
         TaobaoUploadRequest<ItemEbookSerialUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 作者。长度不能超过60个字符<br />
      * 支持最大长度为：60<br />
@@ -49,6 +45,8 @@ public class ItemEbookSerialUpdateRequest implements
      * 支持的最大列表长度为：200000
      */
     private String desc;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 宝贝数字id
@@ -78,6 +76,8 @@ public class ItemEbookSerialUpdateRequest implements
      */
     private String relationLink;
 
+    private Long timestamp;
+
     /**
      * 宝贝标题。不能超过60字符，受违禁词控制<br />
      * 支持最大长度为：120<br />
@@ -85,100 +85,79 @@ public class ItemEbookSerialUpdateRequest implements
      */
     private String title;
 
-    public void setAuthor(String author) {
-        this.author = author;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(author, 60, "author");
+        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
+        RequestCheckUtils.checkMaxLength(cover, 524288, "cover");
+        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkMaxLength(name, 60, "name");
+        RequestCheckUtils.checkMaxLength(title, 120, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.ebook.serial.update";
     }
 
     public String getAuthor() {
         return this.author;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCover(FileItem cover) {
-        this.cover = cover;
     }
 
     public FileItem getCover() {
         return this.cover;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("cover", this.cover);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setRelationLink(String relationLink) {
-        this.relationLink = relationLink;
     }
 
     public String getRelationLink() {
         return this.relationLink;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<ItemEbookSerialUpdateResponse> getResponseClass() {
+        return ItemEbookSerialUpdateResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.ebook.serial.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("author", this.author);
@@ -196,6 +175,16 @@ public class ItemEbookSerialUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -203,28 +192,48 @@ public class ItemEbookSerialUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("cover", this.cover);
-        return params;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public Class<ItemEbookSerialUpdateResponse> getResponseClass() {
-        return ItemEbookSerialUpdateResponse.class;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(author, 60, "author");
-        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
-        RequestCheckUtils.checkMaxLength(cover, 524288, "cover");
-        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkMaxLength(name, 60, "name");
-        RequestCheckUtils.checkMaxLength(title, 120, "title");
+    public void setCover(FileItem cover) {
+        this.cover = cover;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setRelationLink(String relationLink) {
+        this.relationLink = relationLink;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

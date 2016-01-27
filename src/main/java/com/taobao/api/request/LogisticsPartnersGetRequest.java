@@ -16,16 +16,12 @@ import com.taobao.api.response.LogisticsPartnersGetResponse;
  */
 public class LogisticsPartnersGetRequest implements TaobaoRequest<LogisticsPartnersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 货物价格.只有当选择货到付款此参数才会有效
      */
     private String goodsValue;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否需要揽收资费信息，默认false。在此值为false时，返回内容中将无carriage。
@@ -56,58 +52,51 @@ public class LogisticsPartnersGetRequest implements TaobaoRequest<LogisticsPartn
      */
     private String targetId;
 
-    public void setGoodsValue(String goodsValue) {
-        this.goodsValue = goodsValue;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(serviceType, "serviceType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.partners.get";
     }
 
     public String getGoodsValue() {
         return this.goodsValue;
     }
 
-    public void setIsNeedCarriage(Boolean isNeedCarriage) {
-        this.isNeedCarriage = isNeedCarriage;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsNeedCarriage() {
         return this.isNeedCarriage;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    @Override
+    public Class<LogisticsPartnersGetResponse> getResponseClass() {
+        return LogisticsPartnersGetResponse.class;
     }
 
     public String getServiceType() {
         return this.serviceType;
     }
 
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
-
     public String getSourceId() {
         return this.sourceId;
-    }
-
-    public void setTargetId(String targetId) {
-        this.targetId = targetId;
     }
 
     public String getTargetId() {
         return this.targetId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.partners.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("goods_value", this.goodsValue);
@@ -121,6 +110,12 @@ public class LogisticsPartnersGetRequest implements TaobaoRequest<LogisticsPartn
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -128,15 +123,28 @@ public class LogisticsPartnersGetRequest implements TaobaoRequest<LogisticsPartn
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsPartnersGetResponse> getResponseClass() {
-        return LogisticsPartnersGetResponse.class;
+    public void setGoodsValue(String goodsValue) {
+        this.goodsValue = goodsValue;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(serviceType, "serviceType");
+    public void setIsNeedCarriage(Boolean isNeedCarriage) {
+        this.isNeedCarriage = isNeedCarriage;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public void setTargetId(String targetId) {
+        this.targetId = targetId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -29,12 +29,12 @@ public class InstanceStatus extends TaobaoObject {
         return this.instanceId;
     }
 
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
     }
 
     public void setStatus(String status) {

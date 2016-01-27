@@ -24,12 +24,12 @@ public class TmallProductSpecsTicketGetResponse extends TaobaoResponse {
     @ApiField("ticket")
     private List<Ticket> tickets;
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
     public List<Ticket> getTickets() {
         return this.tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
 }

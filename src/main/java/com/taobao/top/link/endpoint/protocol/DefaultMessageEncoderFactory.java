@@ -11,7 +11,9 @@ public class DefaultMessageEncoderFactory implements MessageEncoderFactory {
 
     @Override
     public MessageEncoder get(Message message) {
-        if (message.protocolVersion == 1) return this.encoder01;
+        if (message.protocolVersion == 1) {
+            return this.encoder01;
+        }
         return this.encoder02;
     }
 }

@@ -30,47 +30,47 @@ public class VpcAttribute extends TaobaoObject {
     private List<IpAddress> privateIpAddress;
 
     /**
-     * 虚拟交换机Id
-     */
-    @ApiField("VSwitchId")
-    private String vSwitchId;
-
-    /**
      * 虚拟专有网络Id
      */
     @ApiField("VpcId")
     private String vpcId;
 
+    /**
+     * 虚拟交换机Id
+     */
+    @ApiField("VSwitchId")
+    private String vSwitchId;
+
     public String getNatIpAddress() {
         return this.natIpAddress;
-    }
-
-    public void setNatIpAddress(String natIpAddress) {
-        this.natIpAddress = natIpAddress;
     }
 
     public List<IpAddress> getPrivateIpAddress() {
         return this.privateIpAddress;
     }
 
-    public void setPrivateIpAddress(List<IpAddress> privateIpAddress) {
-        this.privateIpAddress = privateIpAddress;
+    public String getVpcId() {
+        return this.vpcId;
     }
 
     public String getvSwitchId() {
         return this.vSwitchId;
     }
 
-    public void setvSwitchId(String vSwitchId) {
-        this.vSwitchId = vSwitchId;
+    public void setNatIpAddress(String natIpAddress) {
+        this.natIpAddress = natIpAddress;
     }
 
-    public String getVpcId() {
-        return this.vpcId;
+    public void setPrivateIpAddress(List<IpAddress> privateIpAddress) {
+        this.privateIpAddress = privateIpAddress;
     }
 
     public void setVpcId(String vpcId) {
         this.vpcId = vpcId;
+    }
+
+    public void setvSwitchId(String vSwitchId) {
+        this.vSwitchId = vSwitchId;
     }
 
 }

@@ -19,12 +19,12 @@ public class UmpToolUpdateResponse extends TaobaoResponse {
     @ApiField("tool_id")
     private Long toolId;
 
-    public void setToolId(Long toolId) {
-        this.toolId = toolId;
-    }
-
     public Long getToolId() {
         return this.toolId;
+    }
+
+    public void setToolId(Long toolId) {
+        this.toolId = toolId;
     }
 
 }

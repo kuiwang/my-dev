@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaAdgroupCatmatchUpdateResponse;
 public class SimbaAdgroupCatmatchUpdateRequest implements
         TaobaoRequest<SimbaAdgroupCatmatchUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id
      */
@@ -32,6 +26,8 @@ public class SimbaAdgroupCatmatchUpdateRequest implements
      * 类目出价Id
      */
     private Long catmatchId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 类目出价，单位为分，不能小于5。如果use_default_price字段为使用默认出价，则此max_price字段所传入的值不起作用。
@@ -51,71 +47,61 @@ public class SimbaAdgroupCatmatchUpdateRequest implements
      */
     private String onlineStatus;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否使用推广组默认出价false为不使用，true为使用
      */
     private Boolean useDefaultPrice;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+        RequestCheckUtils.checkNotEmpty(catmatchId, "catmatchId");
+        RequestCheckUtils.checkNotEmpty(maxPrice, "maxPrice");
+        RequestCheckUtils.checkMinValue(maxPrice, 5L, "maxPrice");
+        RequestCheckUtils.checkNotEmpty(onlineStatus, "onlineStatus");
+        RequestCheckUtils.checkNotEmpty(useDefaultPrice, "useDefaultPrice");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setCatmatchId(Long catmatchId) {
-        this.catmatchId = catmatchId;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.catmatch.update";
     }
 
     public Long getCatmatchId() {
         return this.catmatchId;
     }
 
-    public void setMaxPrice(Long maxPrice) {
-        this.maxPrice = maxPrice;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMaxPrice() {
         return this.maxPrice;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
     }
 
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setUseDefaultPrice(Boolean useDefaultPrice) {
-        this.useDefaultPrice = useDefaultPrice;
+    @Override
+    public Class<SimbaAdgroupCatmatchUpdateResponse> getResponseClass() {
+        return SimbaAdgroupCatmatchUpdateResponse.class;
     }
 
-    public Boolean getUseDefaultPrice() {
-        return this.useDefaultPrice;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.catmatch.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -130,6 +116,16 @@ public class SimbaAdgroupCatmatchUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Boolean getUseDefaultPrice() {
+        return this.useDefaultPrice;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -137,20 +133,32 @@ public class SimbaAdgroupCatmatchUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupCatmatchUpdateResponse> getResponseClass() {
-        return SimbaAdgroupCatmatchUpdateResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
-        RequestCheckUtils.checkNotEmpty(catmatchId, "catmatchId");
-        RequestCheckUtils.checkNotEmpty(maxPrice, "maxPrice");
-        RequestCheckUtils.checkMinValue(maxPrice, 5L, "maxPrice");
-        RequestCheckUtils.checkNotEmpty(onlineStatus, "onlineStatus");
-        RequestCheckUtils.checkNotEmpty(useDefaultPrice, "useDefaultPrice");
+    public void setCatmatchId(Long catmatchId) {
+        this.catmatchId = catmatchId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMaxPrice(Long maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUseDefaultPrice(Boolean useDefaultPrice) {
+        this.useDefaultPrice = useDefaultPrice;
     }
 }

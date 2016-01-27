@@ -17,12 +17,6 @@ import com.taobao.api.response.DdAuctionRuleUpdateResponse;
  */
 public class DdAuctionRuleUpdateRequest implements TaobaoRequest<DdAuctionRuleUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 每天的结束时间 ， 格式：10000*hh+100*mm+ss
      */
@@ -37,6 +31,8 @@ public class DdAuctionRuleUpdateRequest implements TaobaoRequest<DdAuctionRuleUp
      * 扩展属性
      */
     private String features;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 规则ID
@@ -83,127 +79,88 @@ public class DdAuctionRuleUpdateRequest implements TaobaoRequest<DdAuctionRuleUp
      */
     private String storeId;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 周期轮询0,1,2,3通过逗号间隔
      */
     private String weeklys;
 
-    public void setDayEnd(Long dayEnd) {
-        this.dayEnd = dayEnd;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(isDiandian, "isDiandian");
+        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.auction.rule.update";
     }
 
     public Long getDayEnd() {
         return this.dayEnd;
     }
 
-    public void setDayStart(Long dayStart) {
-        this.dayStart = dayStart;
-    }
-
     public Long getDayStart() {
         return this.dayStart;
-    }
-
-    public void setFeatures(String features) {
-        this.features = features;
     }
 
     public String getFeatures() {
         return this.features;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setIsDiandian(Boolean isDiandian) {
-        this.isDiandian = isDiandian;
-    }
-
     public Boolean getIsDiandian() {
         return this.isDiandian;
-    }
-
-    public void setIsTakeout(Boolean isTakeout) {
-        this.isTakeout = isTakeout;
     }
 
     public Boolean getIsTakeout() {
         return this.isTakeout;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setRuleEnd(Date ruleEnd) {
-        this.ruleEnd = ruleEnd;
+    @Override
+    public Class<DdAuctionRuleUpdateResponse> getResponseClass() {
+        return DdAuctionRuleUpdateResponse.class;
     }
 
     public Date getRuleEnd() {
         return this.ruleEnd;
     }
 
-    public void setRuleStart(Date ruleStart) {
-        this.ruleStart = ruleStart;
-    }
-
     public Date getRuleStart() {
         return this.ruleStart;
-    }
-
-    public void setSort(Long sort) {
-        this.sort = sort;
     }
 
     public Long getSort() {
         return this.sort;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public void setWeeklys(String weeklys) {
-        this.weeklys = weeklys;
-    }
-
-    public String getWeeklys() {
-        return this.weeklys;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.auction.rule.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("day_end", this.dayEnd);
@@ -225,6 +182,16 @@ public class DdAuctionRuleUpdateRequest implements TaobaoRequest<DdAuctionRuleUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWeeklys() {
+        return this.weeklys;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -232,19 +199,60 @@ public class DdAuctionRuleUpdateRequest implements TaobaoRequest<DdAuctionRuleUp
         this.udfParams.put(key, value);
     }
 
-    public Class<DdAuctionRuleUpdateResponse> getResponseClass() {
-        return DdAuctionRuleUpdateResponse.class;
+    public void setDayEnd(Long dayEnd) {
+        this.dayEnd = dayEnd;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(isDiandian, "isDiandian");
-        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    public void setDayStart(Long dayStart) {
+        this.dayStart = dayStart;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFeatures(String features) {
+        this.features = features;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsDiandian(Boolean isDiandian) {
+        this.isDiandian = isDiandian;
+    }
+
+    public void setIsTakeout(Boolean isTakeout) {
+        this.isTakeout = isTakeout;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRuleEnd(Date ruleEnd) {
+        this.ruleEnd = ruleEnd;
+    }
+
+    public void setRuleStart(Date ruleStart) {
+        this.ruleStart = ruleStart;
+    }
+
+    public void setSort(Long sort) {
+        this.sort = sort;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWeeklys(String weeklys) {
+        this.weeklys = weeklys;
     }
 }

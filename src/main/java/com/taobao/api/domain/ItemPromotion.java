@@ -91,92 +91,92 @@ public class ItemPromotion extends TaobaoObject {
         return this.activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
-    }
-
     public Long getDecreaseAmount() {
         return this.decreaseAmount;
-    }
-
-    public void setDecreaseAmount(Long decreaseAmount) {
-        this.decreaseAmount = decreaseAmount;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getDiscountRate() {
         return this.discountRate;
-    }
-
-    public void setDiscountRate(Long discountRate) {
-        this.discountRate = discountRate;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Boolean getIsDecreaseMoney() {
         return this.isDecreaseMoney;
-    }
-
-    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
-        this.isDecreaseMoney = isDecreaseMoney;
     }
 
     public Boolean getIsDiscount() {
         return this.isDiscount;
     }
 
-    public void setIsDiscount(Boolean isDiscount) {
-        this.isDiscount = isDiscount;
-    }
-
     public Boolean getIsUserTag() {
         return this.isUserTag;
-    }
-
-    public void setIsUserTag(Boolean isUserTag) {
-        this.isUserTag = isUserTag;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParticipateRange() {
         return this.participateRange;
-    }
-
-    public void setParticipateRange(Long participateRange) {
-        this.participateRange = participateRange;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
     public String getUserTag() {
         return this.userTag;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
+
+    public void setDecreaseAmount(Long decreaseAmount) {
+        this.decreaseAmount = decreaseAmount;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDiscountRate(Long discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
+        this.isDecreaseMoney = isDecreaseMoney;
+    }
+
+    public void setIsDiscount(Boolean isDiscount) {
+        this.isDiscount = isDiscount;
+    }
+
+    public void setIsUserTag(Boolean isUserTag) {
+        this.isUserTag = isUserTag;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParticipateRange(Long participateRange) {
+        this.participateRange = participateRange;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public void setUserTag(String userTag) {

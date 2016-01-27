@@ -18,9 +18,7 @@ import com.taobao.api.response.RpReturngoodsRefuseResponse;
  */
 public class RpReturngoodsRefuseRequest implements TaobaoUploadRequest<RpReturngoodsRefuseResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 退款编号
@@ -42,52 +40,58 @@ public class RpReturngoodsRefuseRequest implements TaobaoUploadRequest<RpReturng
      */
     private FileItem refuseProof;
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
+        RequestCheckUtils.checkNotEmpty(refundVersion, "refundVersion");
+        RequestCheckUtils.checkNotEmpty(refuseProof, "refuseProof");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rp.returngoods.refuse";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("refuse_proof", this.refuseProof);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundPhase(String refundPhase) {
-        this.refundPhase = refundPhase;
-    }
-
     public String getRefundPhase() {
         return this.refundPhase;
-    }
-
-    public void setRefundVersion(Long refundVersion) {
-        this.refundVersion = refundVersion;
     }
 
     public Long getRefundVersion() {
         return this.refundVersion;
     }
 
-    public void setRefuseProof(FileItem refuseProof) {
-        this.refuseProof = refuseProof;
-    }
-
     public FileItem getRefuseProof() {
         return this.refuseProof;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RpReturngoodsRefuseResponse> getResponseClass() {
+        return RpReturngoodsRefuseResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rp.returngoods.refuse";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("refund_id", this.refundId);
@@ -99,6 +103,12 @@ public class RpReturngoodsRefuseRequest implements TaobaoUploadRequest<RpReturng
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,25 +116,24 @@ public class RpReturngoodsRefuseRequest implements TaobaoUploadRequest<RpReturng
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("refuse_proof", this.refuseProof);
-        return params;
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
     }
 
-    public Class<RpReturngoodsRefuseResponse> getResponseClass() {
-        return RpReturngoodsRefuseResponse.class;
+    public void setRefundPhase(String refundPhase) {
+        this.refundPhase = refundPhase;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
-        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
-        RequestCheckUtils.checkNotEmpty(refundVersion, "refundVersion");
-        RequestCheckUtils.checkNotEmpty(refuseProof, "refuseProof");
+    public void setRefundVersion(Long refundVersion) {
+        this.refundVersion = refundVersion;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRefuseProof(FileItem refuseProof) {
+        this.refuseProof = refuseProof;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

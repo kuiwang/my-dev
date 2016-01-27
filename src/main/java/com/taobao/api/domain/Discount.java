@@ -52,36 +52,36 @@ public class Discount extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public List<DiscountDetail> getDetails() {
         return this.details;
-    }
-
-    public void setDetails(List<DiscountDetail> details) {
-        this.details = details;
     }
 
     public Long getDiscountId() {
         return this.discountId;
     }
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
-    }
-
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getName() {
         return this.name;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDetails(List<DiscountDetail> details) {
+        this.details = details;
+    }
+
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
     public void setName(String name) {

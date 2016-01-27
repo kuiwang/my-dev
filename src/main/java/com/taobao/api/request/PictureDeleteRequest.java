@@ -18,35 +18,41 @@ public class PictureDeleteRequest implements TaobaoRequest<PictureDeleteResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 图片ID字符串,可以一个也可以一组,用英文逗号间隔,如450,120,155.限制数量是100
      */
     private String pictureIds;
 
-    public void setPictureIds(String pictureIds) {
-        this.pictureIds = pictureIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pictureIds, "pictureIds");
+        RequestCheckUtils.checkMaxListSize(pictureIds, 100, "pictureIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPictureIds() {
         return this.pictureIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PictureDeleteResponse> getResponseClass() {
+        return PictureDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("picture_ids", this.pictureIds);
@@ -56,6 +62,12 @@ public class PictureDeleteRequest implements TaobaoRequest<PictureDeleteResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,16 +75,12 @@ public class PictureDeleteRequest implements TaobaoRequest<PictureDeleteResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<PictureDeleteResponse> getResponseClass() {
-        return PictureDeleteResponse.class;
+    public void setPictureIds(String pictureIds) {
+        this.pictureIds = pictureIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pictureIds, "pictureIds");
-        RequestCheckUtils.checkMaxListSize(pictureIds, 100, "pictureIds");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

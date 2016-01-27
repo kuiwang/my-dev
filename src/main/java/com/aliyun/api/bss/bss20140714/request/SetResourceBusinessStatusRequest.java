@@ -17,17 +17,23 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class SetResourceBusinessStatusRequest implements
         AliyunRequest<SetResourceBusinessStatusResponse> {
 
+    /**
+     * 操作类型 expired:过期状态 normal:正常状态
+     */
+    private String businessStatus;
+
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
 
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
     private String ownerId;
 
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
+    /**
+     * 要操作的实例Id可创建多实例的服务，需要填写此参数。
+     */
+    private String resourceId;
 
     /**
      * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
@@ -36,80 +42,61 @@ public class SetResourceBusinessStatusRequest implements
     private String resourceOwnerAccount;
 
     /**
-     * 操作类型 expired:过期状态 normal:正常状态
-     */
-    private String businessStatus;
-
-    /**
-     * 要操作的实例Id可创建多实例的服务，需要填写此参数。
-     */
-    private String resourceId;
-
-    /**
      * 要操作的资源的类型。
      */
     private String resourceType;
 
-    public void setBusinessStatus(String businessStatus) {
-        this.businessStatus = businessStatus;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(businessStatus, "businessStatus");
+        RequestCheckUtils.checkNotEmpty(resourceId, "resourceId");
+        RequestCheckUtils.checkNotEmpty(resourceType, "resourceType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "bss.aliyuncs.com.SetResourceBusinessStatus.2014-07-14";
     }
 
     public String getBusinessStatus() {
         return this.businessStatus;
     }
 
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    public String getResourceId() {
-        return this.resourceId;
-    }
-
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
-    }
-
-    public String getResourceType() {
-        return this.resourceType;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getResourceId() {
+        return this.resourceId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    public String getResourceType() {
+        return this.resourceType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SetResourceBusinessStatusResponse> getResponseClass() {
+        return SetResourceBusinessStatusResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "bss.aliyuncs.com.SetResourceBusinessStatus.2014-07-14";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -124,6 +111,12 @@ public class SetResourceBusinessStatusRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -131,17 +124,32 @@ public class SetResourceBusinessStatusRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SetResourceBusinessStatusResponse> getResponseClass() {
-        return SetResourceBusinessStatusResponse.class;
+    public void setBusinessStatus(String businessStatus) {
+        this.businessStatus = businessStatus;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(businessStatus, "businessStatus");
-        RequestCheckUtils.checkNotEmpty(resourceId, "resourceId");
-        RequestCheckUtils.checkNotEmpty(resourceType, "resourceType");
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

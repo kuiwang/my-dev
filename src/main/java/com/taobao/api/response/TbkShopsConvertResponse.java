@@ -24,12 +24,12 @@ public class TbkShopsConvertResponse extends TaobaoResponse {
     @ApiField("tbk_shop")
     private List<TbkShop> tbkShops;
 
-    public void setTbkShops(List<TbkShop> tbkShops) {
-        this.tbkShops = tbkShops;
-    }
-
     public List<TbkShop> getTbkShops() {
         return this.tbkShops;
+    }
+
+    public void setTbkShops(List<TbkShop> tbkShops) {
+        this.tbkShops = tbkShops;
     }
 
 }

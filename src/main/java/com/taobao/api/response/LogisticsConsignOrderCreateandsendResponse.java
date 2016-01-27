@@ -31,28 +31,28 @@ public class LogisticsConsignOrderCreateandsendResponse extends TaobaoResponse {
     @ApiField("result_desc")
     private String resultDesc;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setResultDesc(String resultDesc) {
-        this.resultDesc = resultDesc;
-    }
-
     public String getResultDesc() {
         return this.resultDesc;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setResultDesc(String resultDesc) {
+        this.resultDesc = resultDesc;
     }
 
 }

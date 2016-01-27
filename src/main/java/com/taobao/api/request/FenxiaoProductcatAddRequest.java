@@ -16,12 +16,6 @@ import com.taobao.api.response.FenxiaoProductcatAddResponse;
  */
 public class FenxiaoProductcatAddRequest implements TaobaoRequest<FenxiaoProductcatAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销默认采购价比例，注意：100.00%，则输入为10000<br />
      * 支持最大值为：99999<br />
@@ -35,6 +29,8 @@ public class FenxiaoProductcatAddRequest implements TaobaoRequest<FenxiaoProduct
      * 支持最小值为：100
      */
     private Long dealerCostPercent;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品线名称<br />
@@ -57,82 +53,11 @@ public class FenxiaoProductcatAddRequest implements TaobaoRequest<FenxiaoProduct
      */
     private Long retailLowPercent;
 
-    public void setAgentCostPercent(Long agentCostPercent) {
-        this.agentCostPercent = agentCostPercent;
-    }
+    private Long timestamp;
 
-    public Long getAgentCostPercent() {
-        return this.agentCostPercent;
-    }
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
-    public void setDealerCostPercent(Long dealerCostPercent) {
-        this.dealerCostPercent = dealerCostPercent;
-    }
-
-    public Long getDealerCostPercent() {
-        return this.dealerCostPercent;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setRetailHighPercent(Long retailHighPercent) {
-        this.retailHighPercent = retailHighPercent;
-    }
-
-    public Long getRetailHighPercent() {
-        return this.retailHighPercent;
-    }
-
-    public void setRetailLowPercent(Long retailLowPercent) {
-        this.retailLowPercent = retailLowPercent;
-    }
-
-    public Long getRetailLowPercent() {
-        return this.retailLowPercent;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.productcat.add";
-    }
-
-    public Map<String, String> getTextParams() {
-        TaobaoHashMap txtParams = new TaobaoHashMap();
-        txtParams.put("agent_cost_percent", this.agentCostPercent);
-        txtParams.put("dealer_cost_percent", this.dealerCostPercent);
-        txtParams.put("name", this.name);
-        txtParams.put("retail_high_percent", this.retailHighPercent);
-        txtParams.put("retail_low_percent", this.retailLowPercent);
-        if (this.udfParams != null) {
-            txtParams.putAll(this.udfParams);
-        }
-        return txtParams;
-    }
-
-    public void putOtherTextParam(String key, String value) {
-        if (this.udfParams == null) {
-            this.udfParams = new TaobaoHashMap();
-        }
-        this.udfParams.put(key, value);
-    }
-
-    public Class<FenxiaoProductcatAddResponse> getResponseClass() {
-        return FenxiaoProductcatAddResponse.class;
-    }
-
+    @Override
     public void check() throws ApiRuleException {
         RequestCheckUtils.checkNotEmpty(agentCostPercent, "agentCostPercent");
         RequestCheckUtils.checkMaxValue(agentCostPercent, 99999L, "agentCostPercent");
@@ -150,7 +75,90 @@ public class FenxiaoProductcatAddRequest implements TaobaoRequest<FenxiaoProduct
         RequestCheckUtils.checkMinValue(retailLowPercent, 100L, "retailLowPercent");
     }
 
+    public Long getAgentCostPercent() {
+        return this.agentCostPercent;
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.productcat.add";
+    }
+
+    public Long getDealerCostPercent() {
+        return this.dealerCostPercent;
+    }
+
+    @Override
     public Map<String, String> getHeaderMap() {
         return headerMap;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public Class<FenxiaoProductcatAddResponse> getResponseClass() {
+        return FenxiaoProductcatAddResponse.class;
+    }
+
+    public Long getRetailHighPercent() {
+        return this.retailHighPercent;
+    }
+
+    public Long getRetailLowPercent() {
+        return this.retailLowPercent;
+    }
+
+    @Override
+    public Map<String, String> getTextParams() {
+        TaobaoHashMap txtParams = new TaobaoHashMap();
+        txtParams.put("agent_cost_percent", this.agentCostPercent);
+        txtParams.put("dealer_cost_percent", this.dealerCostPercent);
+        txtParams.put("name", this.name);
+        txtParams.put("retail_high_percent", this.retailHighPercent);
+        txtParams.put("retail_low_percent", this.retailLowPercent);
+        if (this.udfParams != null) {
+            txtParams.putAll(this.udfParams);
+        }
+        return txtParams;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
+    public void putOtherTextParam(String key, String value) {
+        if (this.udfParams == null) {
+            this.udfParams = new TaobaoHashMap();
+        }
+        this.udfParams.put(key, value);
+    }
+
+    public void setAgentCostPercent(Long agentCostPercent) {
+        this.agentCostPercent = agentCostPercent;
+    }
+
+    public void setDealerCostPercent(Long dealerCostPercent) {
+        this.dealerCostPercent = dealerCostPercent;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRetailHighPercent(Long retailHighPercent) {
+        this.retailHighPercent = retailHighPercent;
+    }
+
+    public void setRetailLowPercent(Long retailLowPercent) {
+        this.retailLowPercent = retailLowPercent;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

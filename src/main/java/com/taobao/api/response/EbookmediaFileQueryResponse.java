@@ -24,12 +24,12 @@ public class EbookmediaFileQueryResponse extends TaobaoResponse {
     @ApiField("ebook_media_resource")
     private List<EbookMediaResource> results;
 
-    public void setResults(List<EbookMediaResource> results) {
-        this.results = results;
-    }
-
     public List<EbookMediaResource> getResults() {
         return this.results;
+    }
+
+    public void setResults(List<EbookMediaResource> results) {
+        this.results = results;
     }
 
 }

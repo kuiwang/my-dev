@@ -63,52 +63,52 @@ public class Database extends TaobaoObject {
         return this.accounts;
     }
 
-    public void setAccounts(List<AccountPrivilegeInfo> accounts) {
-        this.accounts = accounts;
-    }
-
     public String getCharacterSetName() {
         return this.characterSetName;
-    }
-
-    public void setCharacterSetName(String characterSetName) {
-        this.characterSetName = characterSetName;
     }
 
     public String getdBDescription() {
         return this.dBDescription;
     }
 
-    public void setdBDescription(String dBDescription) {
-        this.dBDescription = dBDescription;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
-    }
-
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
     }
 
     public String getdBName() {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getdBStatus() {
         return this.dBStatus;
     }
 
-    public void setdBStatus(String dBStatus) {
-        this.dBStatus = dBStatus;
-    }
-
     public String getEngine() {
         return this.engine;
+    }
+
+    public void setAccounts(List<AccountPrivilegeInfo> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void setCharacterSetName(String characterSetName) {
+        this.characterSetName = characterSetName;
+    }
+
+    public void setdBDescription(String dBDescription) {
+        this.dBDescription = dBDescription;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setdBStatus(String dBStatus) {
+        this.dBStatus = dBStatus;
     }
 
     public void setEngine(String engine) {

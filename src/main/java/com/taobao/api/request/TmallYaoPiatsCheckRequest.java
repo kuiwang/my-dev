@@ -16,50 +16,53 @@ import com.taobao.api.response.TmallYaoPiatsCheckResponse;
  */
 public class TmallYaoPiatsCheckRequest implements TaobaoRequest<TmallYaoPiatsCheckResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 子订单号
      */
     private Long bizOrderId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 药监码(多个用逗号分隔)
      */
     private String piatsCodes;
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizOrderId, "bizOrderId");
+        RequestCheckUtils.checkNotEmpty(piatsCodes, "piatsCodes");
+        RequestCheckUtils.checkMaxListSize(piatsCodes, 10, "piatsCodes");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.yao.piats.check";
     }
 
     public Long getBizOrderId() {
         return this.bizOrderId;
     }
 
-    public void setPiatsCodes(String piatsCodes) {
-        this.piatsCodes = piatsCodes;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPiatsCodes() {
         return this.piatsCodes;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmallYaoPiatsCheckResponse> getResponseClass() {
+        return TmallYaoPiatsCheckResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.yao.piats.check";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_order_id", this.bizOrderId);
@@ -70,6 +73,12 @@ public class TmallYaoPiatsCheckRequest implements TaobaoRequest<TmallYaoPiatsChe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,17 +86,16 @@ public class TmallYaoPiatsCheckRequest implements TaobaoRequest<TmallYaoPiatsChe
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallYaoPiatsCheckResponse> getResponseClass() {
-        return TmallYaoPiatsCheckResponse.class;
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizOrderId, "bizOrderId");
-        RequestCheckUtils.checkNotEmpty(piatsCodes, "piatsCodes");
-        RequestCheckUtils.checkMaxListSize(piatsCodes, 10, "piatsCodes");
+    public void setPiatsCodes(String piatsCodes) {
+        this.piatsCodes = piatsCodes;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

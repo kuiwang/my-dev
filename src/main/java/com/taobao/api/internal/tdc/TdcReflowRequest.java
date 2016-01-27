@@ -15,17 +15,17 @@ import com.taobao.api.internal.util.json.JSONValidatingWriter;
  */
 public class TdcReflowRequest {
 
-    public static final String P_INSERT_VALUE = "contain";
-
-    public static final String P_INSERT_TYPE = "insert_type";
+    public static final String INSERT_TYPE_BATCH = "batch_insert";
 
     public static final String P_INSERT = "insert";
 
-    public static final String PATH_INFO = "path_info";
+    public static final String P_INSERT_TYPE = "insert_type";
+
+    public static final String P_INSERT_VALUE = "contain";
 
     public static final String P_MODE = "mode";
 
-    public static final String INSERT_TYPE_BATCH = "batch_insert";
+    public static final String PATH_INFO = "path_info";
 
     /**
      * TDC查询的参数pathInfo:TDC查询路径
@@ -37,26 +37,10 @@ public class TdcReflowRequest {
      */
     private List<Map<String, String>> values = new ArrayList<Map<String, String>>();
 
-    public String getPathInfo() {
-        return pathInfo;
-    }
-
-    public void setPathInfo(String pathInfo) {
-        this.pathInfo = pathInfo;
-    }
-
-    public List<Map<String, String>> getValues() {
-        return values;
-    }
-
-    public void setValues(List<Map<String, String>> values) {
-        this.values = values;
-    }
-
     public TaobaoHashMap getParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
 
-        if (values != null && !values.isEmpty()) {
+        if ((values != null) && !values.isEmpty()) {
             JSONValidatingWriter writer = new JSONValidatingWriter();
             String value = writer.write(values);
             String table = writer.write(pathInfo.substring(1, pathInfo.length()));
@@ -66,6 +50,14 @@ public class TdcReflowRequest {
         txtParams.put(P_INSERT_TYPE, INSERT_TYPE_BATCH);
         txtParams.put(P_MODE, TdcRequestMode.MODE_ODATA_INSERT);
         return txtParams;
+    }
+
+    public String getPathInfo() {
+        return pathInfo;
+    }
+
+    public List<Map<String, String>> getValues() {
+        return values;
     }
 
     /**
@@ -80,6 +72,14 @@ public class TdcReflowRequest {
         }
         this.pathInfo = pathInfo;
         return this;
+    }
+
+    public void setPathInfo(String pathInfo) {
+        this.pathInfo = pathInfo;
+    }
+
+    public void setValues(List<Map<String, String>> values) {
+        this.values = values;
     }
 
     public TdcReflowRequest values(List<Map<String, String>> values) {

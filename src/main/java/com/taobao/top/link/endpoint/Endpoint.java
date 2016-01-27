@@ -25,20 +25,20 @@ public class Endpoint {
 
     protected static int TIMOUT = 5000;
 
-    private Logger logger;
-
-    private Identity identity;
-
-    private List<ServerChannel> serverChannels;
+    private EndpointChannelHandler channelHandler;
 
     private ClientChannelSelector channelSelector;
 
-    private EndpointChannelHandler channelHandler;
+    // in/out endpoints
+    private List<EndpointProxy> connected;
+
+    private Identity identity;
+
+    private Logger logger;
 
     private MessageHandler messageHandler;
 
-    // in/out endpoints
-    private List<EndpointProxy> connected;
+    private List<ServerChannel> serverChannels;
 
     public Endpoint(Identity identity) {
         this(DefaultLoggerFactory.getDefault(), identity);
@@ -52,34 +52,9 @@ public class Endpoint {
         this.setClientChannelSelector(new ClientChannelSharedSelector(loggerFactory));
         this.setChannelHandler(new EndpointChannelHandler(loggerFactory));
 
-        if (this.identity == null) throw new NullPointerException("identity");
-    }
-
-    public Identity getIdentity() {
-        return this.identity;
-    }
-
-    public void setMessageHandler(MessageHandler handler) {
-        this.messageHandler = handler;
-    }
-
-    public MessageHandler getMessageHandler() {
-        return this.messageHandler;
-    }
-
-    public void setChannelHandler(EndpointChannelHandler channelHandler) {
-        this.channelHandler = channelHandler;
-        this.channelHandler.setEndpoint(this);
-        for (ServerChannel channel : this.serverChannels)
-            channel.setChannelHandler(this.channelHandler);
-    }
-
-    public void setClientChannelSelector(ClientChannelSelector selector) {
-        this.channelSelector = selector;
-    }
-
-    public void setScheduler(Scheduler<Identity> scheduler) {
-        this.channelHandler.setScheduler(scheduler);
+        if (this.identity == null) {
+            throw new NullPointerException("identity");
+        }
     }
 
     public void bind(ServerChannel channel) {
@@ -88,19 +63,32 @@ public class Endpoint {
         this.serverChannels.add(channel);
     }
 
-    public void unbindAll() {
-        for (ServerChannel channel : this.serverChannels) {
-            try {
-                channel.stop();
-            } catch (Exception e) {
-                this.logger.error(Text.E_UNBIND_ERROR, e);
-            }
+    private EndpointProxy createProxy(String reason) {
+        EndpointProxy e = new EndpointProxy(this);
+        this.connected.add(e);
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug(Text.E_CREATE_NEW + ": " + reason);
         }
-        this.serverChannels.clear();
+        return e;
     }
 
     public Iterator<EndpointProxy> getConnected() {
         return this.connected.iterator();
+    }
+
+    public synchronized EndpointProxy getEndpoint(Identity target) throws LinkException {
+        if (target.equals(this.identity)) {
+            throw new LinkException(Text.E_ID_DUPLICATE);
+        }
+
+        for (EndpointProxy e : this.connected) {
+            if ((e.getIdentity() != null) && e.getIdentity().equals(target)) {
+                return e;
+            }
+        }
+        EndpointProxy e = this.createProxy(target.toString());
+        e.setIdentity(target);
+        return e;
     }
 
     public synchronized EndpointProxy getEndpoint(Identity target, URI uri) throws LinkException {
@@ -116,7 +104,9 @@ public class Endpoint {
         Map<String, Object> content = new HashMap<String, Object>();
         this.identity.render(content);
         // pass extra data
-        if (extras != null) content.putAll(extras);
+        if (extras != null) {
+            content.putAll(extras);
+        }
         msg.content = content;
 
         EndpointProxy e = this.getEndpoint(target);
@@ -133,24 +123,16 @@ public class Endpoint {
         return e;
     }
 
-    public synchronized EndpointProxy getEndpoint(Identity target) throws LinkException {
-        if (target.equals(this.identity)) throw new LinkException(Text.E_ID_DUPLICATE);
+    public Identity getIdentity() {
+        return this.identity;
+    }
 
-        for (EndpointProxy e : this.connected) {
-            if (e.getIdentity() != null && e.getIdentity().equals(target)) return e;
-        }
-        EndpointProxy e = this.createProxy(target.toString());
-        e.setIdentity(target);
-        return e;
+    public MessageHandler getMessageHandler() {
+        return this.messageHandler;
     }
 
     protected void send(ChannelSender sender, Message message) throws ChannelException {
         this.channelHandler.pending(message, sender);
-    }
-
-    protected boolean sendSync(ChannelSender sender, Message message, int timeout)
-            throws ChannelException {
-        return this.channelHandler.flush(message, sender, timeout);
     }
 
     protected Map<String, Object> sendAndWait(EndpointProxy e, ChannelSender sender,
@@ -162,14 +144,45 @@ public class Endpoint {
         } finally {
             this.channelHandler.cancel(callback);
         }
-        if (callback.getError() != null) throw callback.getError();
+        if (callback.getError() != null) {
+            throw callback.getError();
+        }
         return callback.getReturn();
     }
 
-    private EndpointProxy createProxy(String reason) {
-        EndpointProxy e = new EndpointProxy(this);
-        this.connected.add(e);
-        if (this.logger.isDebugEnabled()) this.logger.debug(Text.E_CREATE_NEW + ": " + reason);
-        return e;
+    protected boolean sendSync(ChannelSender sender, Message message, int timeout)
+            throws ChannelException {
+        return this.channelHandler.flush(message, sender, timeout);
+    }
+
+    public void setChannelHandler(EndpointChannelHandler channelHandler) {
+        this.channelHandler = channelHandler;
+        this.channelHandler.setEndpoint(this);
+        for (ServerChannel channel : this.serverChannels) {
+            channel.setChannelHandler(this.channelHandler);
+        }
+    }
+
+    public void setClientChannelSelector(ClientChannelSelector selector) {
+        this.channelSelector = selector;
+    }
+
+    public void setMessageHandler(MessageHandler handler) {
+        this.messageHandler = handler;
+    }
+
+    public void setScheduler(Scheduler<Identity> scheduler) {
+        this.channelHandler.setScheduler(scheduler);
+    }
+
+    public void unbindAll() {
+        for (ServerChannel channel : this.serverChannels) {
+            try {
+                channel.stop();
+            } catch (Exception e) {
+                this.logger.error(Text.E_UNBIND_ERROR, e);
+            }
+        }
+        this.serverChannels.clear();
     }
 }

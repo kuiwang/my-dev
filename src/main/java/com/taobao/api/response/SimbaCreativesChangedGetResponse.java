@@ -20,12 +20,12 @@ public class SimbaCreativesChangedGetResponse extends TaobaoResponse {
     @ApiField("creatives")
     private CreativePage creatives;
 
-    public void setCreatives(CreativePage creatives) {
-        this.creatives = creatives;
-    }
-
     public CreativePage getCreatives() {
         return this.creatives;
+    }
+
+    public void setCreatives(CreativePage creatives) {
+        this.creatives = creatives;
     }
 
 }

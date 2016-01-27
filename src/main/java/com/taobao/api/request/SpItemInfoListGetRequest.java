@@ -18,10 +18,6 @@ public class SpItemInfoListGetRequest implements TaobaoRequest<SpItemInfoListGet
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品ID,可批量查询, 多个商品ID中间用逗号分隔, 最多可查20个id, ID之间不能有空格
      */
@@ -32,34 +28,40 @@ public class SpItemInfoListGetRequest implements TaobaoRequest<SpItemInfoListGet
      */
     private String siteKey;
 
-    public void setId(String id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.item.info.list.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getId() {
         return this.id;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpItemInfoListGetResponse> getResponseClass() {
+        return SpItemInfoListGetResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.item.info.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -70,6 +72,12 @@ public class SpItemInfoListGetRequest implements TaobaoRequest<SpItemInfoListGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class SpItemInfoListGetRequest implements TaobaoRequest<SpItemInfoListGet
         this.udfParams.put(key, value);
     }
 
-    public Class<SpItemInfoListGetResponse> getResponseClass() {
-        return SpItemInfoListGetResponse.class;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

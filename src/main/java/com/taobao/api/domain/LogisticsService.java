@@ -35,20 +35,20 @@ public class LogisticsService extends TaobaoObject {
         return this.serviceCode;
     }
 
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
-    }
-
     public String getServiceName() {
         return this.serviceName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
     public String getServiceValue4Json() {
         return this.serviceValue4Json;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public void setServiceValue4Json(String serviceValue4Json) {

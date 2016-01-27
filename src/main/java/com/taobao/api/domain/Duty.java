@@ -35,20 +35,20 @@ public class Duty extends TaobaoObject {
         return this.dutyId;
     }
 
-    public void setDutyId(Long dutyId) {
-        this.dutyId = dutyId;
-    }
-
     public Long getDutyLevel() {
         return this.dutyLevel;
     }
 
-    public void setDutyLevel(Long dutyLevel) {
-        this.dutyLevel = dutyLevel;
-    }
-
     public String getDutyName() {
         return this.dutyName;
+    }
+
+    public void setDutyId(Long dutyId) {
+        this.dutyId = dutyId;
+    }
+
+    public void setDutyLevel(Long dutyLevel) {
+        this.dutyLevel = dutyLevel;
     }
 
     public void setDutyName(String dutyName) {

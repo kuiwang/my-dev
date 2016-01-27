@@ -55,44 +55,44 @@ public class ProductImg extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public Long getPosition() {
         return this.position;
-    }
-
-    public void setPosition(Long position) {
-        this.position = position;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getUrl() {
         return this.url;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setPosition(Long position) {
+        this.position = position;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public void setUrl(String url) {

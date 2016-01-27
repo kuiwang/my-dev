@@ -19,12 +19,12 @@ public class DeleteDBInstanceResponse extends AliyunResponse {
     @ApiField("reuqest_id")
     private String reuqestId;
 
-    public void setReuqestId(String reuqestId) {
-        this.reuqestId = reuqestId;
-    }
-
     public String getReuqestId() {
         return this.reuqestId;
+    }
+
+    public void setReuqestId(String reuqestId) {
+        this.reuqestId = reuqestId;
     }
 
 }

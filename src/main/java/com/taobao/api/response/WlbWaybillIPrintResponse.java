@@ -30,21 +30,21 @@ public class WlbWaybillIPrintResponse extends TaobaoResponse {
     @ApiField("waybill_apply_print_check_info")
     private List<WaybillApplyPrintCheckInfo> waybillApplyPrintCheckInfos;
 
-    public void setErrorWaybillCode(String errorWaybillCode) {
-        this.errorWaybillCode = errorWaybillCode;
-    }
-
     public String getErrorWaybillCode() {
         return this.errorWaybillCode;
+    }
+
+    public List<WaybillApplyPrintCheckInfo> getWaybillApplyPrintCheckInfos() {
+        return this.waybillApplyPrintCheckInfos;
+    }
+
+    public void setErrorWaybillCode(String errorWaybillCode) {
+        this.errorWaybillCode = errorWaybillCode;
     }
 
     public void setWaybillApplyPrintCheckInfos(
             List<WaybillApplyPrintCheckInfo> waybillApplyPrintCheckInfos) {
         this.waybillApplyPrintCheckInfos = waybillApplyPrintCheckInfos;
-    }
-
-    public List<WaybillApplyPrintCheckInfo> getWaybillApplyPrintCheckInfos() {
-        return this.waybillApplyPrintCheckInfos;
     }
 
 }

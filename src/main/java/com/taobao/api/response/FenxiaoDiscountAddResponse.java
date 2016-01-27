@@ -19,12 +19,12 @@ public class FenxiaoDiscountAddResponse extends TaobaoResponse {
     @ApiField("discount_id")
     private Long discountId;
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
-    }
-
     public Long getDiscountId() {
         return this.discountId;
+    }
+
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
     }
 
 }

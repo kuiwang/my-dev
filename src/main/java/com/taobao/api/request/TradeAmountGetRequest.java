@@ -16,12 +16,6 @@ import com.taobao.api.response.TradeAmountGetResponse;
  */
 public class TradeAmountGetRequest implements TaobaoRequest<TradeAmountGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订单帐务详情需要返回的字段信息，可选值如下： 1. TradeAmount中可指定的fields：
      * tid,alipay_no,created
@@ -39,6 +33,8 @@ public class TradeAmountGetRequest implements TaobaoRequest<TradeAmountGetRespon
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 订单交易编号<br />
      * 支持最大值为：9223372036854775807<br />
@@ -46,34 +42,38 @@ public class TradeAmountGetRequest implements TaobaoRequest<TradeAmountGetRespon
      */
     private Long tid;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+        RequestCheckUtils.checkMaxValue(tid, 9223372036854775807L, "tid");
+        RequestCheckUtils.checkMinValue(tid, -9223372036854775808L, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.amount.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getTid() {
-        return this.tid;
+    @Override
+    public Class<TradeAmountGetResponse> getResponseClass() {
+        return TradeAmountGetResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.amount.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -84,6 +84,16 @@ public class TradeAmountGetRequest implements TaobaoRequest<TradeAmountGetRespon
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,18 +101,16 @@ public class TradeAmountGetRequest implements TaobaoRequest<TradeAmountGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeAmountGetResponse> getResponseClass() {
-        return TradeAmountGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
-        RequestCheckUtils.checkMaxValue(tid, 9223372036854775807L, "tid");
-        RequestCheckUtils.checkMinValue(tid, -9223372036854775808L, "tid");
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

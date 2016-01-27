@@ -25,20 +25,20 @@ public class CreateSecurityGroupResponse extends AliyunResponse {
     @ApiField("SecurityGroupId")
     private String securityGroupId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
     public String getSecurityGroupId() {
         return this.securityGroupId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
     }
 
 }

@@ -16,37 +16,42 @@ import com.taobao.api.response.TravelItemsareaGetResponse;
  */
 public class TravelItemsareaGetRequest implements TaobaoRequest<TravelItemsareaGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所属叶子类目ID，支持旅游度假线路8个类目。
      */
     private Long cid;
 
-    public void setCid(Long cid) {
-        this.cid = cid;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cid, "cid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.travel.itemsarea.get";
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<TravelItemsareaGetResponse> getResponseClass() {
+        return TravelItemsareaGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.travel.itemsarea.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cid", this.cid);
@@ -56,6 +61,12 @@ public class TravelItemsareaGetRequest implements TaobaoRequest<TravelItemsareaG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class TravelItemsareaGetRequest implements TaobaoRequest<TravelItemsareaG
         this.udfParams.put(key, value);
     }
 
-    public Class<TravelItemsareaGetResponse> getResponseClass() {
-        return TravelItemsareaGetResponse.class;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cid, "cid");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

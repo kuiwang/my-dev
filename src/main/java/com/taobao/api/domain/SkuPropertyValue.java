@@ -35,20 +35,20 @@ public class SkuPropertyValue extends TaobaoObject {
         return this.imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getValueId() {
         return this.valueId;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setValueId(String valueId) {

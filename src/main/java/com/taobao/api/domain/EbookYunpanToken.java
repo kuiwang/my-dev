@@ -35,20 +35,20 @@ public class EbookYunpanToken extends TaobaoObject {
         return this.accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
     public Long getExpiresIn() {
         return this.expiresIn;
     }
 
-    public void setExpiresIn(Long expiresIn) {
-        this.expiresIn = expiresIn;
-    }
-
     public String getRefreshToken() {
         return this.refreshToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public void setExpiresIn(Long expiresIn) {
+        this.expiresIn = expiresIn;
     }
 
     public void setRefreshToken(String refreshToken) {

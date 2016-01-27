@@ -35,29 +35,6 @@ import com.taobao.top.link.embedded.websocket.frame.Frame;
 public interface WebSocketHandler {
 
     /**
-     * On open.
-     * 
-     * @param socket the socket
-     */
-    public void onOpen(WebSocket socket);
-
-    /**
-     * On message.
-     * 
-     * @param socket the socket
-     * @param frame the frame
-     */
-    public void onMessage(WebSocket socket, Frame frame);
-
-    /**
-     * On error.
-     * 
-     * @param socket the socket
-     * @param e the e
-     */
-    public void onError(WebSocket socket, WebSocketException e);
-
-    /**
      * On close.
      * 
      * @param socket the socket
@@ -73,5 +50,28 @@ public interface WebSocketHandler {
      */
     // maybe not well design, onMessage should contain closeframe?
     public void onCloseFrame(WebSocket socket, int statusCode, String reasonText);
+
+    /**
+     * On error.
+     * 
+     * @param socket the socket
+     * @param e the e
+     */
+    public void onError(WebSocket socket, WebSocketException e);
+
+    /**
+     * On message.
+     * 
+     * @param socket the socket
+     * @param frame the frame
+     */
+    public void onMessage(WebSocket socket, Frame frame);
+
+    /**
+     * On open.
+     * 
+     * @param socket the socket
+     */
+    public void onOpen(WebSocket socket);
 
 }

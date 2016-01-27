@@ -18,10 +18,6 @@ public class ItemSkuPriceUpdateRequest implements TaobaoRequest<ItemSkuPriceUpda
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 忽略警告提示.
      */
@@ -69,82 +65,66 @@ public class ItemSkuPriceUpdateRequest implements TaobaoRequest<ItemSkuPriceUpda
      */
     private Long quantity;
 
-    public void setIgnorewarning(String ignorewarning) {
-        this.ignorewarning = ignorewarning;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+        RequestCheckUtils.checkNotEmpty(properties, "properties");
+        RequestCheckUtils.checkMinValue(quantity, 0L, "quantity");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.sku.price.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIgnorewarning() {
         return this.ignorewarning;
     }
 
-    public void setItemPrice(String itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public String getItemPrice() {
         return this.itemPrice;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     public String getLang() {
         return this.lang;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemSkuPriceUpdateResponse> getResponseClass() {
+        return ItemSkuPriceUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.sku.price.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ignorewarning", this.ignorewarning);
@@ -161,6 +141,12 @@ public class ItemSkuPriceUpdateRequest implements TaobaoRequest<ItemSkuPriceUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -168,18 +154,40 @@ public class ItemSkuPriceUpdateRequest implements TaobaoRequest<ItemSkuPriceUpda
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemSkuPriceUpdateResponse> getResponseClass() {
-        return ItemSkuPriceUpdateResponse.class;
+    public void setIgnorewarning(String ignorewarning) {
+        this.ignorewarning = ignorewarning;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
-        RequestCheckUtils.checkNotEmpty(properties, "properties");
-        RequestCheckUtils.checkMinValue(quantity, 0L, "quantity");
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

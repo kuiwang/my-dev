@@ -36,28 +36,28 @@ public class UppSellerPointrecordGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
-    }
-
-    public void setSellerPointRecordList(List<SellerPointRecordModule> sellerPointRecordList) {
-        this.sellerPointRecordList = sellerPointRecordList;
     }
 
     public List<SellerPointRecordModule> getSellerPointRecordList() {
         return this.sellerPointRecordList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setSellerPointRecordList(List<SellerPointRecordModule> sellerPointRecordList) {
+        this.sellerPointRecordList = sellerPointRecordList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

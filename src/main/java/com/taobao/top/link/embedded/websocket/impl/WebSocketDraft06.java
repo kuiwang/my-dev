@@ -23,6 +23,10 @@
  */
 package com.taobao.top.link.embedded.websocket.impl;
 
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3600;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3601;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3602;
+
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -41,12 +45,14 @@ import com.taobao.top.link.embedded.websocket.frame.draft06.CloseFrame;
 import com.taobao.top.link.embedded.websocket.frame.draft06.FrameBuilderDraft06;
 import com.taobao.top.link.embedded.websocket.frame.draft06.FrameHeaderDraft06;
 import com.taobao.top.link.embedded.websocket.frame.draft06.TextFrame;
-import com.taobao.top.link.embedded.websocket.handler.*;
+import com.taobao.top.link.embedded.websocket.handler.MaskDraft06FrameStreamHandler;
+import com.taobao.top.link.embedded.websocket.handler.StreamHandlerAdapter;
+import com.taobao.top.link.embedded.websocket.handler.StreamHandlerChain;
+import com.taobao.top.link.embedded.websocket.handler.WebSocketHandler;
+import com.taobao.top.link.embedded.websocket.handler.WebSocketPipeline;
 import com.taobao.top.link.embedded.websocket.handshake.Handshake;
 import com.taobao.top.link.embedded.websocket.proxy.Proxy;
 import com.taobao.top.link.embedded.websocket.util.Base64;
-
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
 
 /**
  * A simple websocket client
@@ -79,6 +85,35 @@ public class WebSocketDraft06 extends WebSocketBase {
      * Instantiates a new web socket draft06.
      *
      * @param url the url
+     * @param proxy the proxy
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketDraft06(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
+            throws WebSocketException {
+        super(url, proxy, handler, protocols);
+    }
+
+    /**
+     * Instantiates a new web socket draft06.
+     *
+     * @param url the url
+     * @param origin the origin
+     * @param proxy the proxy
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketDraft06(String url, String origin, Proxy proxy, WebSocketHandler handler,
+            String... protocols) throws WebSocketException {
+        super(url, origin, proxy, handler, protocols);
+    }
+
+    /**
+     * Instantiates a new web socket draft06.
+     *
+     * @param url the url
      * @param origin the origin
      * @param handler the handler
      * @param protocols the protocols
@@ -103,32 +138,56 @@ public class WebSocketDraft06 extends WebSocketBase {
     }
 
     /**
-     * Instantiates a new web socket draft06.
+     * Adds the extension.
      *
-     * @param url the url
-     * @param origin the origin
-     * @param proxy the proxy
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
+     * @param extension the extension
      */
-    public WebSocketDraft06(String url, String origin, Proxy proxy, WebSocketHandler handler,
-            String... protocols) throws WebSocketException {
-        super(url, origin, proxy, handler, protocols);
+    public void addExtension(String extension) {
+        extensions.add(extension);
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.impl.WebSocketBase#closeWebSocket()
+     */
+    @Override
+    protected void closeWebSocket() throws WebSocketException {
+        transitionTo(State.CLOSING);
+        pipeline.sendUpstream(this, null, new CloseFrame());
+    }
+
+    @Override
+    public Frame createFrame(byte[] bytes) throws WebSocketException {
+        return new BinaryFrame(bytes);
+    }
+
+    /* (non-Javadoc)
+      * @see jp.a840.websocket.impl.WebSocketBase#createFrame(java.lang.String)
+      */
+    @Override
+    public Frame createFrame(String str) throws WebSocketException {
+        return new TextFrame(str);
     }
 
     /**
-     * Instantiates a new web socket draft06.
+     * Generate web socket key.
      *
-     * @param url the url
-     * @param proxy the proxy
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
+     * @return the string
      */
-    public WebSocketDraft06(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
-            throws WebSocketException {
-        super(url, proxy, handler, protocols);
+    private String generateWebSocketKey() {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            return Base64.encodeToString(md.digest(UUID.randomUUID().toString().getBytes()), false);
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.impl.WebSocketBase#getWebSocketVersion()
+     */
+    @Override
+    protected int getWebSocketVersion() {
+        return VERSION;
     }
 
     /* (non-Javadoc)
@@ -141,6 +200,7 @@ public class WebSocketDraft06 extends WebSocketBase {
         // Add base response handler
         pipeline.addStreamHandler(new StreamHandlerAdapter() {
 
+            @Override
             public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
                     StreamHandlerChain chain) throws WebSocketException {
                 if (frame instanceof CloseFrame) {
@@ -153,6 +213,7 @@ public class WebSocketDraft06 extends WebSocketBase {
                 }
             }
 
+            @Override
             public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer,
                     StreamHandlerChain chain) throws WebSocketException {
                 // set response status
@@ -164,6 +225,33 @@ public class WebSocketDraft06 extends WebSocketBase {
             }
         });
 
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.impl.WebSocketBase#newFrameParserInstance()
+     */
+    @Override
+    protected FrameParser newFrameParserInstance() {
+        return new FrameParser() {
+
+            private FrameHeaderDraft06 previousCreatedFrameHeader;
+
+            @Override
+            protected Frame createFrame(FrameHeader h, byte[] bodyData) {
+                return FrameBuilderDraft06.createFrame((FrameHeaderDraft06) h, bodyData);
+            }
+
+            @Override
+            protected FrameHeader createFrameHeader(ByteBuffer chunkData) {
+                FrameHeaderDraft06 header = FrameBuilderDraft06.createFrameHeader(chunkData,
+                        previousCreatedFrameHeader);
+                if (!header.isContinuation()) {
+                    previousCreatedFrameHeader = header;
+                }
+                return header;
+            }
+
+        };
     }
 
     /* (non-Javadoc)
@@ -202,7 +290,7 @@ public class WebSocketDraft06 extends WebSocketBase {
                 if (origin != null) {
                     addHeader(sb, "Sec-WebSocket-Origin", origin);
                 }
-                if (protocols != null && protocols.length > 0) {
+                if ((protocols != null) && (protocols.length > 0)) {
                     addHeader(sb, "Sec-WebSocket-Protocol", join(",", protocols));
                 }
                 // TODO Sec-WebSocket-Extensions
@@ -262,92 +350,12 @@ public class WebSocketDraft06 extends WebSocketBase {
     }
 
     /**
-     * Generate web socket key.
-     *
-     * @return the string
-     */
-    private String generateWebSocketKey() {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            return Base64.encodeToString(md.digest(UUID.randomUUID().toString().getBytes()), false);
-        } catch (NoSuchAlgorithmException e) {
-            return null;
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#newFrameParserInstance()
-     */
-    @Override
-    protected FrameParser newFrameParserInstance() {
-        return new FrameParser() {
-
-            private FrameHeaderDraft06 previousCreatedFrameHeader;
-
-            @Override
-            protected FrameHeader createFrameHeader(ByteBuffer chunkData) {
-                FrameHeaderDraft06 header = FrameBuilderDraft06.createFrameHeader(chunkData,
-                        previousCreatedFrameHeader);
-                if (!header.isContinuation()) {
-                    previousCreatedFrameHeader = header;
-                }
-                return header;
-            }
-
-            @Override
-            protected Frame createFrame(FrameHeader h, byte[] bodyData) {
-                return FrameBuilderDraft06.createFrame((FrameHeaderDraft06) h, bodyData);
-            }
-
-        };
-    }
-
-    @Override
-    public Frame createFrame(byte[] bytes) throws WebSocketException {
-        return new BinaryFrame(bytes);
-    }
-
-    /* (non-Javadoc)
-      * @see jp.a840.websocket.impl.WebSocketBase#createFrame(java.lang.String)
-      */
-    @Override
-    public Frame createFrame(String str) throws WebSocketException {
-        return new TextFrame(str);
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#getWebSocketVersion()
-     */
-    @Override
-    protected int getWebSocketVersion() {
-        return VERSION;
-    }
-
-    /**
-     * Adds the extension.
-     *
-     * @param extension the extension
-     */
-    public void addExtension(String extension) {
-        extensions.add(extension);
-    }
-
-    /**
      * Removes the extension.
      *
      * @param extension the extension
      */
     public void removeExtension(String extension) {
         extensions.remove(extension);
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.impl.WebSocketBase#closeWebSocket()
-     */
-    @Override
-    protected void closeWebSocket() throws WebSocketException {
-        transitionTo(State.CLOSING);
-        pipeline.sendUpstream(this, null, new CloseFrame());
     }
 
 }

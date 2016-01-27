@@ -10,9 +10,14 @@ import com.scott.dev.taobao.api.Price;
 public class RefundDetail {
 
     /*
-     * 子单id
+     * 下游买家的退款信息
      */
-    private Number subOrderId;
+    private BuyerRefund buyerRefund;
+
+    /*
+     * 分销商nick
+     */
+    private String distributorNick;
 
     /*
      * 是否退货
@@ -20,9 +25,44 @@ public class RefundDetail {
     private Boolean isReturnGoods;
 
     /*
+     * 退款修改时间。格式:yyyy-MM-dd HH:mm:ss
+     */
+    private Date modified;
+
+    /*
+     * 支付给供应商的金额
+     */
+    private Price paySupFee;
+
+    /*
+     * 主采购单id
+     */
+    private Number purchaseOrderId;
+
+    /*
      * 退款创建时间
      */
     private Date refundCreateTime;
+
+    /*
+     * 退款说明
+     */
+    private String refundDesc;
+
+    /*
+     * 退款的金额
+     */
+    private Price refundFee;
+
+    /*
+     * 退款流程类型： 4：发货前退款； 1：发货后退款不退货； 2：发货后退款退货
+     */
+    private Number refundFlowType;
+
+    /*
+     * 退款原因
+     */
+    private String refundReason;
 
     /*
      * 退款状态 1：买家已经申请退款，等待卖家同意 2：卖家已经同意退款，等待买家退货
@@ -32,54 +72,14 @@ public class RefundDetail {
     private Number refundStatus;
 
     /*
-     * 退款的金额
+     * 子单id
      */
-    private Price refundFee;
-
-    /*
-     * 支付给供应商的金额
-     */
-    private Price paySupFee;
-
-    /*
-     * 退款原因
-     */
-    private String refundReason;
-
-    /*
-     * 退款说明
-     */
-    private String refundDesc;
-
-    /*
-     * 下游买家的退款信息
-     */
-    private BuyerRefund buyerRefund;
+    private Number subOrderId;
 
     /*
      * 供应商nick
      */
     private String supplierNick;
-
-    /*
-     * 分销商nick
-     */
-    private String distributorNick;
-
-    /*
-     * 退款修改时间。格式:yyyy-MM-dd HH:mm:ss
-     */
-    private Date modified;
-
-    /*
-     * 主采购单id
-     */
-    private Number purchaseOrderId;
-
-    /*
-     * 退款流程类型： 4：发货前退款； 1：发货后退款不退货； 2：发货后退款退货
-     */
-    private Number refundFlowType;
 
     /*
      * 超时时间
@@ -91,128 +91,128 @@ public class RefundDetail {
      */
     private Number toType;
 
-    public Number getSubOrderId() {
-        return subOrderId;
-    }
-
-    public void setSubOrderId(Number subOrderId) {
-        this.subOrderId = subOrderId;
-    }
-
-    public Boolean getIsReturnGoods() {
-        return isReturnGoods;
-    }
-
-    public void setIsReturnGoods(Boolean isReturnGoods) {
-        this.isReturnGoods = isReturnGoods;
-    }
-
-    public Date getRefundCreateTime() {
-        return refundCreateTime;
-    }
-
-    public void setRefundCreateTime(Date refundCreateTime) {
-        this.refundCreateTime = refundCreateTime;
-    }
-
-    public Number getRefundStatus() {
-        return refundStatus;
-    }
-
-    public void setRefundStatus(Number refundStatus) {
-        this.refundStatus = refundStatus;
-    }
-
-    public Price getRefundFee() {
-        return refundFee;
-    }
-
-    public void setRefundFee(Price refundFee) {
-        this.refundFee = refundFee;
-    }
-
-    public Price getPaySupFee() {
-        return paySupFee;
-    }
-
-    public void setPaySupFee(Price paySupFee) {
-        this.paySupFee = paySupFee;
-    }
-
-    public String getRefundReason() {
-        return refundReason;
-    }
-
-    public void setRefundReason(String refundReason) {
-        this.refundReason = refundReason;
-    }
-
-    public String getRefundDesc() {
-        return refundDesc;
-    }
-
-    public void setRefundDesc(String refundDesc) {
-        this.refundDesc = refundDesc;
-    }
-
     public BuyerRefund getBuyerRefund() {
         return buyerRefund;
-    }
-
-    public void setBuyerRefund(BuyerRefund buyerRefund) {
-        this.buyerRefund = buyerRefund;
-    }
-
-    public String getSupplierNick() {
-        return supplierNick;
-    }
-
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
     }
 
     public String getDistributorNick() {
         return distributorNick;
     }
 
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
+    public Boolean getIsReturnGoods() {
+        return isReturnGoods;
     }
 
     public Date getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public Price getPaySupFee() {
+        return paySupFee;
     }
 
     public Number getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
-    public void setPurchaseOrderId(Number purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
+    public Date getRefundCreateTime() {
+        return refundCreateTime;
+    }
+
+    public String getRefundDesc() {
+        return refundDesc;
+    }
+
+    public Price getRefundFee() {
+        return refundFee;
     }
 
     public Number getRefundFlowType() {
         return refundFlowType;
     }
 
-    public void setRefundFlowType(Number refundFlowType) {
-        this.refundFlowType = refundFlowType;
+    public String getRefundReason() {
+        return refundReason;
+    }
+
+    public Number getRefundStatus() {
+        return refundStatus;
+    }
+
+    public Number getSubOrderId() {
+        return subOrderId;
+    }
+
+    public String getSupplierNick() {
+        return supplierNick;
     }
 
     public Date getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(Date timeout) {
-        this.timeout = timeout;
-    }
-
     public Number getToType() {
         return toType;
+    }
+
+    public void setBuyerRefund(BuyerRefund buyerRefund) {
+        this.buyerRefund = buyerRefund;
+    }
+
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
+    }
+
+    public void setIsReturnGoods(Boolean isReturnGoods) {
+        this.isReturnGoods = isReturnGoods;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setPaySupFee(Price paySupFee) {
+        this.paySupFee = paySupFee;
+    }
+
+    public void setPurchaseOrderId(Number purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
+    }
+
+    public void setRefundCreateTime(Date refundCreateTime) {
+        this.refundCreateTime = refundCreateTime;
+    }
+
+    public void setRefundDesc(String refundDesc) {
+        this.refundDesc = refundDesc;
+    }
+
+    public void setRefundFee(Price refundFee) {
+        this.refundFee = refundFee;
+    }
+
+    public void setRefundFlowType(Number refundFlowType) {
+        this.refundFlowType = refundFlowType;
+    }
+
+    public void setRefundReason(String refundReason) {
+        this.refundReason = refundReason;
+    }
+
+    public void setRefundStatus(Number refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public void setSubOrderId(Number subOrderId) {
+        this.subOrderId = subOrderId;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
+    }
+
+    public void setTimeout(Date timeout) {
+        this.timeout = timeout;
     }
 
     public void setToType(Number toType) {

@@ -47,36 +47,36 @@ public class SpShop extends TaobaoObject {
         return this.gerd;
     }
 
-    public void setGerd(String gerd) {
-        this.gerd = gerd;
-    }
-
     public String getSellerCredit() {
         return this.sellerCredit;
-    }
-
-    public void setSellerCredit(String sellerCredit) {
-        this.sellerCredit = sellerCredit;
     }
 
     public String getShopTitle() {
         return this.shopTitle;
     }
 
-    public void setShopTitle(String shopTitle) {
-        this.shopTitle = shopTitle;
-    }
-
     public String getShopUrl() {
         return this.shopUrl;
     }
 
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
-    }
-
     public String getTmall() {
         return this.tmall;
+    }
+
+    public void setGerd(String gerd) {
+        this.gerd = gerd;
+    }
+
+    public void setSellerCredit(String sellerCredit) {
+        this.sellerCredit = sellerCredit;
+    }
+
+    public void setShopTitle(String shopTitle) {
+        this.shopTitle = shopTitle;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
     }
 
     public void setTmall(String tmall) {

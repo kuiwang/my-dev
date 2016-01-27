@@ -15,41 +15,6 @@ public class Util {
 
     /**
      * 
-     * 新的md5签名，首尾放secret。
-     * 
-     * @param secret 分配给您的APP_SECRET
-     */
-
-    public static String md5Signature(TreeMap<String, String> params, String secret) {
-
-        String result = null;
-
-        StringBuffer orgin = getBeforeSign(params, new StringBuffer(secret));
-
-        if (orgin == null)
-
-        return result;
-
-        orgin.append(secret);
-
-        try {
-
-            MessageDigest md = MessageDigest.getInstance("MD5");
-
-            result = byte2hex(md.digest(orgin.toString().getBytes("utf-8")));
-
-        } catch (Exception e) {
-
-            throw new java.lang.RuntimeException("sign error !");
-
-        }
-
-        return result;
-
-    }
-
-    /**
-     * 
      * 二行制转字符串
      */
 
@@ -59,17 +24,15 @@ public class Util {
 
         String stmp = "";
 
-        for (int n = 0; n < b.length; n++) {
+        for (byte element : b) {
 
-            stmp = (java.lang.Integer.toHexString(b[n] & 0XFF));
+            stmp = (java.lang.Integer.toHexString(element & 0XFF));
 
-            if (stmp.length() == 1)
-
-            hs.append("0").append(stmp);
-
-            else
-
-            hs.append(stmp);
+            if (stmp.length() == 1) {
+                hs.append("0").append(stmp);
+            } else {
+                hs.append(stmp);
+            }
 
         }
 
@@ -84,9 +47,9 @@ public class Util {
 
     private static StringBuffer getBeforeSign(TreeMap<String, String> params, StringBuffer orgin) {
 
-        if (params == null)
-
-        return null;
+        if (params == null) {
+            return null;
+        }
 
         Map<String, String> treeMap = new TreeMap<String, String>();
 
@@ -96,7 +59,7 @@ public class Util {
 
         while (iter.hasNext()) {
 
-            String name = (String) iter.next();
+            String name = iter.next();
 
             orgin.append(name).append(params.get(name));
 
@@ -171,6 +134,41 @@ public class Util {
         }
 
         return null;
+
+    }
+
+    /**
+     * 
+     * 新的md5签名，首尾放secret。
+     * 
+     * @param secret 分配给您的APP_SECRET
+     */
+
+    public static String md5Signature(TreeMap<String, String> params, String secret) {
+
+        String result = null;
+
+        StringBuffer orgin = getBeforeSign(params, new StringBuffer(secret));
+
+        if (orgin == null) {
+            return result;
+        }
+
+        orgin.append(secret);
+
+        try {
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            result = byte2hex(md.digest(orgin.toString().getBytes("utf-8")));
+
+        } catch (Exception e) {
+
+            throw new java.lang.RuntimeException("sign error !");
+
+        }
+
+        return result;
 
     }
 }

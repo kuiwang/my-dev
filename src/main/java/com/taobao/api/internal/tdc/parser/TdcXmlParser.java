@@ -22,6 +22,7 @@ import com.taobao.api.internal.util.XmlUtils;
  */
 public class TdcXmlParser implements TdcParser {
 
+    @Override
     public TdcResponse parse(String rsp) throws ApiException {
         JXTdcResponse jxRsp = new JXTdcResponse();
         Map<String, Object> resultMap = new HashMap<String, Object>();

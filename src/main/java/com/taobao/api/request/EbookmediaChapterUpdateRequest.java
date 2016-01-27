@@ -17,12 +17,6 @@ import com.taobao.api.response.EbookmediaChapterUpdateResponse;
 public class EbookmediaChapterUpdateRequest implements
         TaobaoRequest<EbookmediaChapterUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 电子书商品ID
      */
@@ -37,6 +31,8 @@ public class EbookmediaChapterUpdateRequest implements
      * 章节内容地址,只有通过授权的用户才可以传入此参数,不能超过500个字符
      */
     private String contentUrl;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否免费.值只能是0或者1 0：收费，1：免费
@@ -53,92 +49,66 @@ public class EbookmediaChapterUpdateRequest implements
      */
     private Long tbid;
 
+    private Long timestamp;
+
     /**
      * 章节标题。不能为空，不超过30个字符
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 章节的总字数。总字数必须大于或等于收费字数
      */
     private Long wordCount;
 
-    public void setAuctionId(Long auctionId) {
-        this.auctionId = auctionId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
+        RequestCheckUtils.checkNotEmpty(tbid, "tbid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ebookmedia.chapter.update";
     }
 
     public Long getAuctionId() {
         return this.auctionId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getContent() {
         return this.content;
-    }
-
-    public void setContentUrl(String contentUrl) {
-        this.contentUrl = contentUrl;
     }
 
     public String getContentUrl() {
         return this.contentUrl;
     }
 
-    public void setIsFree(Long isFree) {
-        this.isFree = isFree;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIsFree() {
         return this.isFree;
     }
 
-    public void setPriceCount(Long priceCount) {
-        this.priceCount = priceCount;
-    }
-
     public Long getPriceCount() {
         return this.priceCount;
     }
 
-    public void setTbid(Long tbid) {
-        this.tbid = tbid;
+    @Override
+    public Class<EbookmediaChapterUpdateResponse> getResponseClass() {
+        return EbookmediaChapterUpdateResponse.class;
     }
 
     public Long getTbid() {
         return this.tbid;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setWordCount(Long wordCount) {
-        this.wordCount = wordCount;
-    }
-
-    public Long getWordCount() {
-        return this.wordCount;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ebookmedia.chapter.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_id", this.auctionId);
@@ -155,6 +125,20 @@ public class EbookmediaChapterUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Long getWordCount() {
+        return this.wordCount;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -162,16 +146,40 @@ public class EbookmediaChapterUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<EbookmediaChapterUpdateResponse> getResponseClass() {
-        return EbookmediaChapterUpdateResponse.class;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
-        RequestCheckUtils.checkNotEmpty(tbid, "tbid");
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public void setIsFree(Long isFree) {
+        this.isFree = isFree;
+    }
+
+    public void setPriceCount(Long priceCount) {
+        this.priceCount = priceCount;
+    }
+
+    public void setTbid(Long tbid) {
+        this.tbid = tbid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setWordCount(Long wordCount) {
+        this.wordCount = wordCount;
     }
 }

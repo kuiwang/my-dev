@@ -38,82 +38,29 @@ import com.taobao.api.internal.util.TaobaoLogger;
  */
 public abstract class AliyunWebUtils {
 
-    private static final String DEFAULT_CHARSET = Constants.CHARSET_UTF8;
-
-    private static final String METHOD_POST = "POST";
-
-    private static final String METHOD_GET = "GET";
-
     private static class DefaultTrustManager implements X509TrustManager {
 
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-
+        @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
         }
 
+        @Override
         public void checkServerTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
         }
-    }
 
-    private AliyunWebUtils() {
-    }
-
-    /**
-     * 执行HTTP POST请求。
-     * 
-     * @param url 请求地址
-     * @param params 请求参数
-     * @return 响应字符串
-     * @throws IOException
-     */
-    public static String doPost(String url, Map<String, String> params, int connectTimeout,
-            int readTimeout) throws IOException {
-        return doPost(url, params, DEFAULT_CHARSET, connectTimeout, readTimeout);
-    }
-
-    /**
-     * 执行HTTP POST请求。
-     * 
-     * @param url 请求地址
-     * @param params 请求参数
-     * @param charset 字符集，如UTF-8, GBK, GB2312
-     * @return 响应字符串
-     * @throws IOException
-     */
-    public static String doPost(String url, Map<String, String> params, String charset,
-            int connectTimeout, int readTimeout) throws IOException {
-        return doPost(url, params, charset, connectTimeout, readTimeout, null);
-    }
-
-    public static String doPost(String url, Map<String, String> params, String charset,
-            int connectTimeout, int readTimeout, Map<String, String> headerMap) throws IOException {
-        String ctype = "application/x-www-form-urlencoded;charset=" + charset;
-        String query = buildQuery(params, charset);
-        byte[] content = {};
-        if (query != null) {
-            content = query.getBytes(charset);
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
         }
-        return _doPost(url, ctype, content, connectTimeout, readTimeout, headerMap);
     }
 
-    /**
-     * 执行HTTP POST请求。
-     * 
-     * @param url 请求地址
-     * @param ctype 请求类型
-     * @param content 请求字节数组
-     * @return 响应字符串
-     * @throws IOException
-     */
-    @Deprecated
-    public static String doPost(String url, String ctype, byte[] content, int connectTimeout,
-            int readTimeout) throws IOException {
-        return _doPost(url, ctype, content, connectTimeout, readTimeout, null);
-    }
+    private static final String DEFAULT_CHARSET = Constants.CHARSET_UTF8;
+
+    private static final String METHOD_GET = "GET";
+
+    private static final String METHOD_POST = "POST";
 
     private static String _doPost(String url, String ctype, byte[] content, int connectTimeout,
             int readTimeout, Map<String, String> headerMap) throws IOException {
@@ -150,54 +97,6 @@ public abstract class AliyunWebUtils {
         }
 
         return rsp;
-    }
-
-    /**
-     * 执行带文件上传的HTTP POST请求。
-     * 
-     * @param url 请求地址
-     * @param textParams 文本请求参数
-     * @param fileParams 文件请求参数
-     * @return 响应字符串
-     * @throws IOException
-     */
-    public static String doPost(String url, Map<String, String> params,
-            Map<String, FileItem> fileParams, int connectTimeout, int readTimeout)
-            throws IOException {
-        if (fileParams == null || fileParams.isEmpty()) {
-            return doPost(url, params, DEFAULT_CHARSET, connectTimeout, readTimeout);
-        } else {
-            return doPost(url, params, fileParams, DEFAULT_CHARSET, connectTimeout, readTimeout);
-        }
-    }
-
-    public static String doPost(String url, Map<String, String> params,
-            Map<String, FileItem> fileParams, String charset, int connectTimeout, int readTimeout)
-            throws IOException {
-        return doPost(url, params, fileParams, charset, connectTimeout, readTimeout, null);
-    }
-
-    /**
-     * 执行带文件上传的HTTP POST请求。
-     * 
-     * @param url 请求地址
-     * @param textParams 文本请求参数
-     * @param fileParams 文件请求参数
-     * @param charset 字符集，如UTF-8, GBK, GB2312
-     * @param headerMap 需要传递的header头，可以为空
-     * @return 响应字符串
-     * @throws IOException
-     */
-    public static String doPost(String url, Map<String, String> params,
-            Map<String, FileItem> fileParams, String charset, int connectTimeout, int readTimeout,
-            Map<String, String> headerMap) throws IOException {
-        if (fileParams == null || fileParams.isEmpty()) {
-            return doPost(url, params, charset, connectTimeout, readTimeout, headerMap);
-        } else {
-            return _doPostWithFile(url, params, fileParams, charset, connectTimeout, readTimeout,
-                    headerMap);
-        }
-
     }
 
     private static String _doPostWithFile(String url, Map<String, String> params,
@@ -268,27 +167,83 @@ public abstract class AliyunWebUtils {
         return rsp;
     }
 
-    private static byte[] getTextEntry(String fieldName, String fieldValue, String charset)
-            throws IOException {
-        StringBuilder entry = new StringBuilder();
-        entry.append("Content-Disposition:form-data;name=\"");
-        entry.append(fieldName);
-        entry.append("\"\r\nContent-Type:text/plain\r\n\r\n");
-        entry.append(fieldValue);
-        return entry.toString().getBytes(charset);
+    private static URL buildGetUrl(String strUrl, String query) throws IOException {
+        URL url = new URL(strUrl);
+        if (StringUtils.isEmpty(query)) {
+            return url;
+        }
+
+        if (StringUtils.isEmpty(url.getQuery())) {
+            if (strUrl.endsWith("?")) {
+                strUrl = strUrl + query;
+            } else {
+                strUrl = strUrl + "?" + query;
+            }
+        } else {
+            if (strUrl.endsWith("&")) {
+                strUrl = strUrl + query;
+            } else {
+                strUrl = strUrl + "&" + query;
+            }
+        }
+
+        return new URL(strUrl);
     }
 
-    private static byte[] getFileEntry(String fieldName, String fileName, String mimeType,
-            String charset) throws IOException {
-        StringBuilder entry = new StringBuilder();
-        entry.append("Content-Disposition:form-data;name=\"");
-        entry.append(fieldName);
-        entry.append("\";filename=\"");
-        entry.append(fileName);
-        entry.append("\"\r\nContent-Type:");
-        entry.append(mimeType);
-        entry.append("\r\n\r\n");
-        return entry.toString().getBytes(charset);
+    public static String buildQuery(Map<String, String> params, String charset) throws IOException {
+        if ((params == null) || params.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder query = new StringBuilder();
+        Set<Entry<String, String>> entries = params.entrySet();
+        boolean hasParam = false;
+
+        for (Entry<String, String> entry : entries) {
+            String name = entry.getKey();
+            String value = entry.getValue();
+            // 忽略参数名或参数值为空的参数
+            if (StringUtils.areNotEmpty(name, value)) {
+                if (hasParam) {
+                    query.append("&");
+                } else {
+                    hasParam = true;
+                }
+
+                query.append(name).append("=").append(URLEncoder.encode(value, charset));
+            }
+        }
+
+        return query.toString();
+    }
+
+    /**
+     * 使用默认的UTF-8字符集反编码请求参数值。
+     * 
+     * @param value 参数值
+     * @return 反编码后的参数值
+     */
+    public static String decode(String value) {
+        return decode(value, DEFAULT_CHARSET);
+    }
+
+    /**
+     * 使用指定的字符集反编码请求参数值。
+     * 
+     * @param value 参数值
+     * @param charset 字符集
+     * @return 反编码后的参数值
+     */
+    public static String decode(String value, String charset) {
+        String result = null;
+        if (!StringUtils.isEmpty(value)) {
+            try {
+                result = URLDecoder.decode(value, charset);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return result;
     }
 
     /**
@@ -345,6 +300,136 @@ public abstract class AliyunWebUtils {
         return rsp;
     }
 
+    /**
+     * 执行HTTP POST请求。
+     * 
+     * @param url 请求地址
+     * @param params 请求参数
+     * @return 响应字符串
+     * @throws IOException
+     */
+    public static String doPost(String url, Map<String, String> params, int connectTimeout,
+            int readTimeout) throws IOException {
+        return doPost(url, params, DEFAULT_CHARSET, connectTimeout, readTimeout);
+    }
+
+    /**
+     * 执行带文件上传的HTTP POST请求。
+     * 
+     * @param url 请求地址
+     * @param textParams 文本请求参数
+     * @param fileParams 文件请求参数
+     * @return 响应字符串
+     * @throws IOException
+     */
+    public static String doPost(String url, Map<String, String> params,
+            Map<String, FileItem> fileParams, int connectTimeout, int readTimeout)
+            throws IOException {
+        if ((fileParams == null) || fileParams.isEmpty()) {
+            return doPost(url, params, DEFAULT_CHARSET, connectTimeout, readTimeout);
+        } else {
+            return doPost(url, params, fileParams, DEFAULT_CHARSET, connectTimeout, readTimeout);
+        }
+    }
+
+    public static String doPost(String url, Map<String, String> params,
+            Map<String, FileItem> fileParams, String charset, int connectTimeout, int readTimeout)
+            throws IOException {
+        return doPost(url, params, fileParams, charset, connectTimeout, readTimeout, null);
+    }
+
+    /**
+     * 执行带文件上传的HTTP POST请求。
+     * 
+     * @param url 请求地址
+     * @param textParams 文本请求参数
+     * @param fileParams 文件请求参数
+     * @param charset 字符集，如UTF-8, GBK, GB2312
+     * @param headerMap 需要传递的header头，可以为空
+     * @return 响应字符串
+     * @throws IOException
+     */
+    public static String doPost(String url, Map<String, String> params,
+            Map<String, FileItem> fileParams, String charset, int connectTimeout, int readTimeout,
+            Map<String, String> headerMap) throws IOException {
+        if ((fileParams == null) || fileParams.isEmpty()) {
+            return doPost(url, params, charset, connectTimeout, readTimeout, headerMap);
+        } else {
+            return _doPostWithFile(url, params, fileParams, charset, connectTimeout, readTimeout,
+                    headerMap);
+        }
+
+    }
+
+    /**
+     * 执行HTTP POST请求。
+     * 
+     * @param url 请求地址
+     * @param params 请求参数
+     * @param charset 字符集，如UTF-8, GBK, GB2312
+     * @return 响应字符串
+     * @throws IOException
+     */
+    public static String doPost(String url, Map<String, String> params, String charset,
+            int connectTimeout, int readTimeout) throws IOException {
+        return doPost(url, params, charset, connectTimeout, readTimeout, null);
+    }
+
+    public static String doPost(String url, Map<String, String> params, String charset,
+            int connectTimeout, int readTimeout, Map<String, String> headerMap) throws IOException {
+        String ctype = "application/x-www-form-urlencoded;charset=" + charset;
+        String query = buildQuery(params, charset);
+        byte[] content = {};
+        if (query != null) {
+            content = query.getBytes(charset);
+        }
+        return _doPost(url, ctype, content, connectTimeout, readTimeout, headerMap);
+    }
+
+    /**
+     * 执行HTTP POST请求。
+     * 
+     * @param url 请求地址
+     * @param ctype 请求类型
+     * @param content 请求字节数组
+     * @return 响应字符串
+     * @throws IOException
+     */
+    @Deprecated
+    public static String doPost(String url, String ctype, byte[] content, int connectTimeout,
+            int readTimeout) throws IOException {
+        return _doPost(url, ctype, content, connectTimeout, readTimeout, null);
+    }
+
+    /**
+     * 使用默认的UTF-8字符集编码请求参数值。
+     * 
+     * @param value 参数值
+     * @return 编码后的参数值
+     */
+    public static String encode(String value) {
+        return encode(value, DEFAULT_CHARSET);
+    }
+
+    /**
+     * 使用指定的字符集编码请求参数值。
+     * 
+     * @param value 参数值
+     * @param charset 字符集
+     * @return 编码后的参数值
+     */
+    public static String encode(String value, String charset) {
+        String result = null;
+        if (!StringUtils.isEmpty(value)) {
+            try {
+                result = URLEncoder.encode(value, charset);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return result;
+    }
+
     private static HttpURLConnection getConnection(URL url, String method, String ctype,
             Map<String, String> headerMap) throws IOException {
         HttpURLConnection conn = null;
@@ -361,6 +446,7 @@ public abstract class AliyunWebUtils {
             connHttps.setSSLSocketFactory(ctx.getSocketFactory());
             connHttps.setHostnameVerifier(new HostnameVerifier() {
 
+                @Override
                 public boolean verify(String hostname, SSLSession session) {
                     return true;// 默认都认证通过
                 }
@@ -384,54 +470,28 @@ public abstract class AliyunWebUtils {
         return conn;
     }
 
-    private static URL buildGetUrl(String strUrl, String query) throws IOException {
-        URL url = new URL(strUrl);
-        if (StringUtils.isEmpty(query)) {
-            return url;
-        }
-
-        if (StringUtils.isEmpty(url.getQuery())) {
-            if (strUrl.endsWith("?")) {
-                strUrl = strUrl + query;
-            } else {
-                strUrl = strUrl + "?" + query;
-            }
-        } else {
-            if (strUrl.endsWith("&")) {
-                strUrl = strUrl + query;
-            } else {
-                strUrl = strUrl + "&" + query;
-            }
-        }
-
-        return new URL(strUrl);
+    private static byte[] getFileEntry(String fieldName, String fileName, String mimeType,
+            String charset) throws IOException {
+        StringBuilder entry = new StringBuilder();
+        entry.append("Content-Disposition:form-data;name=\"");
+        entry.append(fieldName);
+        entry.append("\";filename=\"");
+        entry.append(fileName);
+        entry.append("\"\r\nContent-Type:");
+        entry.append(mimeType);
+        entry.append("\r\n\r\n");
+        return entry.toString().getBytes(charset);
     }
 
-    public static String buildQuery(Map<String, String> params, String charset) throws IOException {
-        if (params == null || params.isEmpty()) {
-            return null;
+    private static Map<String, String> getParamsFromUrl(String url) {
+        Map<String, String> map = null;
+        if ((url != null) && (url.indexOf('?') != -1)) {
+            map = splitUrlQuery(url.substring(url.indexOf('?') + 1));
         }
-
-        StringBuilder query = new StringBuilder();
-        Set<Entry<String, String>> entries = params.entrySet();
-        boolean hasParam = false;
-
-        for (Entry<String, String> entry : entries) {
-            String name = entry.getKey();
-            String value = entry.getValue();
-            // 忽略参数名或参数值为空的参数
-            if (StringUtils.areNotEmpty(name, value)) {
-                if (hasParam) {
-                    query.append("&");
-                } else {
-                    hasParam = true;
-                }
-
-                query.append(name).append("=").append(URLEncoder.encode(value, charset));
-            }
+        if (map == null) {
+            map = new HashMap<String, String>();
         }
-
-        return query.toString();
+        return map;
     }
 
     protected static String getResponseAsString(HttpURLConnection conn) throws IOException {
@@ -445,25 +505,6 @@ public abstract class AliyunWebUtils {
                 throw new IOException(conn.getResponseCode() + ":" + conn.getResponseMessage());
             } else {
                 return msg;
-            }
-        }
-    }
-
-    private static String getStreamAsString(InputStream stream, String charset) throws IOException {
-        try {
-            Reader reader = new InputStreamReader(stream, charset);
-            StringBuilder response = new StringBuilder();
-
-            final char[] buff = new char[1024];
-            int read = 0;
-            while ((read = reader.read(buff)) > 0) {
-                response.append(buff, 0, read);
-            }
-
-            return response.toString();
-        } finally {
-            if (stream != null) {
-                stream.close();
             }
         }
     }
@@ -490,73 +531,33 @@ public abstract class AliyunWebUtils {
         return charset;
     }
 
-    /**
-     * 使用默认的UTF-8字符集反编码请求参数值。
-     * 
-     * @param value 参数值
-     * @return 反编码后的参数值
-     */
-    public static String decode(String value) {
-        return decode(value, DEFAULT_CHARSET);
-    }
+    private static String getStreamAsString(InputStream stream, String charset) throws IOException {
+        try {
+            Reader reader = new InputStreamReader(stream, charset);
+            StringBuilder response = new StringBuilder();
 
-    /**
-     * 使用默认的UTF-8字符集编码请求参数值。
-     * 
-     * @param value 参数值
-     * @return 编码后的参数值
-     */
-    public static String encode(String value) {
-        return encode(value, DEFAULT_CHARSET);
-    }
+            final char[] buff = new char[1024];
+            int read = 0;
+            while ((read = reader.read(buff)) > 0) {
+                response.append(buff, 0, read);
+            }
 
-    /**
-     * 使用指定的字符集反编码请求参数值。
-     * 
-     * @param value 参数值
-     * @param charset 字符集
-     * @return 反编码后的参数值
-     */
-    public static String decode(String value, String charset) {
-        String result = null;
-        if (!StringUtils.isEmpty(value)) {
-            try {
-                result = URLDecoder.decode(value, charset);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            return response.toString();
+        } finally {
+            if (stream != null) {
+                stream.close();
             }
         }
-        return result;
     }
 
-    /**
-     * 使用指定的字符集编码请求参数值。
-     * 
-     * @param value 参数值
-     * @param charset 字符集
-     * @return 编码后的参数值
-     */
-    public static String encode(String value, String charset) {
-        String result = null;
-        if (!StringUtils.isEmpty(value)) {
-            try {
-                result = URLEncoder.encode(value, charset);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return result;
-    }
-
-    private static Map<String, String> getParamsFromUrl(String url) {
-        Map<String, String> map = null;
-        if (url != null && url.indexOf('?') != -1) {
-            map = splitUrlQuery(url.substring(url.indexOf('?') + 1));
-        }
-        if (map == null) {
-            map = new HashMap<String, String>();
-        }
-        return map;
+    private static byte[] getTextEntry(String fieldName, String fieldValue, String charset)
+            throws IOException {
+        StringBuilder entry = new StringBuilder();
+        entry.append("Content-Disposition:form-data;name=\"");
+        entry.append(fieldName);
+        entry.append("\"\r\nContent-Type:text/plain\r\n\r\n");
+        entry.append(fieldValue);
+        return entry.toString().getBytes(charset);
     }
 
     /**
@@ -569,16 +570,19 @@ public abstract class AliyunWebUtils {
         Map<String, String> result = new HashMap<String, String>();
 
         String[] pairs = query.split("&");
-        if (pairs != null && pairs.length > 0) {
+        if ((pairs != null) && (pairs.length > 0)) {
             for (String pair : pairs) {
                 String[] param = pair.split("=", 2);
-                if (param != null && param.length == 2) {
+                if ((param != null) && (param.length == 2)) {
                     result.put(param[0], param[1]);
                 }
             }
         }
 
         return result;
+    }
+
+    private AliyunWebUtils() {
     }
 
 }

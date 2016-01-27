@@ -73,68 +73,68 @@ public class ADGroupPlace extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Long getIsDefaultPrice() {
         return this.isDefaultPrice;
-    }
-
-    public void setIsDefaultPrice(Long isDefaultPrice) {
-        this.isDefaultPrice = isDefaultPrice;
     }
 
     public Long getMaxPrice() {
         return this.maxPrice;
     }
 
-    public void setMaxPrice(Long maxPrice) {
-        this.maxPrice = maxPrice;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getPlaceId() {
         return this.placeId;
     }
 
-    public void setPlaceId(Long placeId) {
-        this.placeId = placeId;
-    }
-
     public String getPlaceName() {
         return this.placeName;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setIsDefaultPrice(Long isDefaultPrice) {
+        this.isDefaultPrice = isDefaultPrice;
+    }
+
+    public void setMaxPrice(Long maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPlaceId(Long placeId) {
+        this.placeId = placeId;
     }
 
     public void setPlaceName(String placeName) {

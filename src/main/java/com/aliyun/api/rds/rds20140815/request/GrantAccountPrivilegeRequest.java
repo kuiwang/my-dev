@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class GrantAccountPrivilegeRequest implements AliyunRequest<GrantAccountPrivilegeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 帐号名
      */
@@ -54,74 +36,76 @@ public class GrantAccountPrivilegeRequest implements AliyunRequest<GrantAccountP
      */
     private String dBName;
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(accountName, "accountName");
+        RequestCheckUtils.checkNotEmpty(accountPrivilege, "accountPrivilege");
+        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
+        RequestCheckUtils.checkNotEmpty(dBName, "dBName");
     }
 
     public String getAccountName() {
         return this.accountName;
     }
 
-    public void setAccountPrivilege(String accountPrivilege) {
-        this.accountPrivilege = accountPrivilege;
-    }
-
     public String getAccountPrivilege() {
         return this.accountPrivilege;
     }
 
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
+    @Override
+    public String getApiMethodName() {
+        return "rds.aliyuncs.com.GrantAccountPrivilege.2014-08-15";
     }
 
     public String getdBInstanceId() {
         return this.dBInstanceId;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getdBName() {
         return this.dBName;
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<GrantAccountPrivilegeResponse> getResponseClass() {
+        return GrantAccountPrivilegeResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "rds.aliyuncs.com.GrantAccountPrivilege.2014-08-15";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -137,6 +121,12 @@ public class GrantAccountPrivilegeRequest implements AliyunRequest<GrantAccountP
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -144,18 +134,36 @@ public class GrantAccountPrivilegeRequest implements AliyunRequest<GrantAccountP
         this.udfParams.put(key, value);
     }
 
-    public Class<GrantAccountPrivilegeResponse> getResponseClass() {
-        return GrantAccountPrivilegeResponse.class;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(accountName, "accountName");
-        RequestCheckUtils.checkNotEmpty(accountPrivilege, "accountPrivilege");
-        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
-        RequestCheckUtils.checkNotEmpty(dBName, "dBName");
+    public void setAccountPrivilege(String accountPrivilege) {
+        this.accountPrivilege = accountPrivilege;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

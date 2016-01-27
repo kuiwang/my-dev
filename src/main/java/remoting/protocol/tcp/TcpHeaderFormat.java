@@ -17,13 +17,13 @@ package remoting.protocol.tcp;
 
 public class TcpHeaderFormat {
 
-    public final static byte Void = 0;
+    public final static byte Byte = 2;
 
     public final static byte CountedString = 1;
 
-    public final static byte Byte = 2;
+    public final static byte Int32 = 4;
 
     public final static byte UInt16 = 3;
 
-    public final static byte Int32 = 4;
+    public final static byte Void = 0;
 }

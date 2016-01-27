@@ -19,12 +19,12 @@ public class SimbaRptCampadgroupbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_campadgroup_base_list")
     private String rptCampadgroupBaseList;
 
-    public void setRptCampadgroupBaseList(String rptCampadgroupBaseList) {
-        this.rptCampadgroupBaseList = rptCampadgroupBaseList;
-    }
-
     public String getRptCampadgroupBaseList() {
         return this.rptCampadgroupBaseList;
+    }
+
+    public void setRptCampadgroupBaseList(String rptCampadgroupBaseList) {
+        this.rptCampadgroupBaseList = rptCampadgroupBaseList;
     }
 
 }

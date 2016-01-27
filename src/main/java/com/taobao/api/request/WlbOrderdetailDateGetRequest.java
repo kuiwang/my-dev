@@ -17,16 +17,12 @@ import com.taobao.api.response.WlbOrderdetailDateGetResponse;
  */
 public class WlbOrderdetailDateGetRequest implements TaobaoRequest<WlbOrderdetailDateGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询条件截止日期
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页查询参数，指定查询页数，默认为1
@@ -43,50 +39,48 @@ public class WlbOrderdetailDateGetRequest implements TaobaoRequest<WlbOrderdetai
      */
     private Date startTime;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.orderdetail.date.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<WlbOrderdetailDateGetResponse> getResponseClass() {
+        return WlbOrderdetailDateGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.orderdetail.date.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -99,6 +93,12 @@ public class WlbOrderdetailDateGetRequest implements TaobaoRequest<WlbOrderdetai
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,16 +106,24 @@ public class WlbOrderdetailDateGetRequest implements TaobaoRequest<WlbOrderdetai
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbOrderdetailDateGetResponse> getResponseClass() {
-        return WlbOrderdetailDateGetResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

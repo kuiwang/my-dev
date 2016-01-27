@@ -17,16 +17,12 @@ import com.taobao.api.response.TmallPromotagTagApplyResponse;
  */
 public class TmallPromotagTagApplyRequest implements TaobaoRequest<TmallPromotagTagApplyResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 标签结束时间
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 标签开始时间
@@ -43,50 +39,50 @@ public class TmallPromotagTagApplyRequest implements TaobaoRequest<TmallPromotag
      */
     private String tagName;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+        RequestCheckUtils.checkNotEmpty(tagDesc, "tagDesc");
+        RequestCheckUtils.checkNotEmpty(tagName, "tagName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.promotag.tag.apply";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TmallPromotagTagApplyResponse> getResponseClass() {
+        return TmallPromotagTagApplyResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setTagDesc(String tagDesc) {
-        this.tagDesc = tagDesc;
-    }
-
     public String getTagDesc() {
         return this.tagDesc;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
     }
 
     public String getTagName() {
         return this.tagName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.promotag.tag.apply";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -99,6 +95,12 @@ public class TmallPromotagTagApplyRequest implements TaobaoRequest<TmallPromotag
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,18 +108,24 @@ public class TmallPromotagTagApplyRequest implements TaobaoRequest<TmallPromotag
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallPromotagTagApplyResponse> getResponseClass() {
-        return TmallPromotagTagApplyResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
-        RequestCheckUtils.checkNotEmpty(tagDesc, "tagDesc");
-        RequestCheckUtils.checkNotEmpty(tagName, "tagName");
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTagDesc(String tagDesc) {
+        this.tagDesc = tagDesc;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

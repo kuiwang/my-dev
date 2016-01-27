@@ -29,12 +29,12 @@ public class TmallTmCat extends TaobaoObject {
         return this.subCatId;
     }
 
-    public void setSubCatId(Long subCatId) {
-        this.subCatId = subCatId;
-    }
-
     public String getSubCatName() {
         return this.subCatName;
+    }
+
+    public void setSubCatId(Long subCatId) {
+        this.subCatId = subCatId;
     }
 
     public void setSubCatName(String subCatName) {

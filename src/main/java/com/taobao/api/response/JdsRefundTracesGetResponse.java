@@ -24,12 +24,12 @@ public class JdsRefundTracesGetResponse extends TaobaoResponse {
     @ApiField("refund_trace")
     private List<RefundTrace> traces;
 
-    public void setTraces(List<RefundTrace> traces) {
-        this.traces = traces;
-    }
-
     public List<RefundTrace> getTraces() {
         return this.traces;
+    }
+
+    public void setTraces(List<RefundTrace> traces) {
+        this.traces = traces;
     }
 
 }

@@ -61,52 +61,52 @@ public class InsightCategoryInfoDTO extends TaobaoObject {
         return this.catId;
     }
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
-
     public Long getCatLevel() {
         return this.catLevel;
-    }
-
-    public void setCatLevel(Long catLevel) {
-        this.catLevel = catLevel;
     }
 
     public String getCatName() {
         return this.catName;
     }
 
-    public void setCatName(String catName) {
-        this.catName = catName;
-    }
-
     public String getCatPathId() {
         return this.catPathId;
-    }
-
-    public void setCatPathId(String catPathId) {
-        this.catPathId = catPathId;
     }
 
     public String getCatPathName() {
         return this.catPathName;
     }
 
-    public void setCatPathName(String catPathName) {
-        this.catPathName = catPathName;
-    }
-
     public Date getLastSyncTime() {
         return this.lastSyncTime;
     }
 
-    public void setLastSyncTime(Date lastSyncTime) {
-        this.lastSyncTime = lastSyncTime;
-    }
-
     public Long getParentCatId() {
         return this.parentCatId;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
+    }
+
+    public void setCatLevel(Long catLevel) {
+        this.catLevel = catLevel;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    public void setCatPathId(String catPathId) {
+        this.catPathId = catPathId;
+    }
+
+    public void setCatPathName(String catPathName) {
+        this.catPathName = catPathName;
+    }
+
+    public void setLastSyncTime(Date lastSyncTime) {
+        this.lastSyncTime = lastSyncTime;
     }
 
     public void setParentCatId(Long parentCatId) {

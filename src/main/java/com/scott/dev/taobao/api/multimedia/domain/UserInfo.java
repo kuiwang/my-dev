@@ -46,52 +46,52 @@ public class UserInfo {
         return this.availableSpace;
     }
 
-    public void setAvailableSpace(String availableSpace) {
-        this.availableSpace = availableSpace;
-    }
-
     public String getFreeSpace() {
         return this.freeSpace;
-    }
-
-    public void setFreeSpace(String freeSpace) {
-        this.freeSpace = freeSpace;
     }
 
     public String getOrderExpiryDate() {
         return this.orderExpiryDate;
     }
 
-    public void setOrderExpiryDate(String orderExpiryDate) {
-        this.orderExpiryDate = orderExpiryDate;
-    }
-
     public String getOrderSpace() {
         return this.orderSpace;
-    }
-
-    public void setOrderSpace(String orderSpace) {
-        this.orderSpace = orderSpace;
     }
 
     public String getRemainingSpace() {
         return this.remainingSpace;
     }
 
-    public void setRemainingSpace(String remainingSpace) {
-        this.remainingSpace = remainingSpace;
-    }
-
     public String getUsedSpace() {
         return this.usedSpace;
     }
 
-    public void setUsedSpace(String usedSpace) {
-        this.usedSpace = usedSpace;
-    }
-
     public String getWaterMark() {
         return this.waterMark;
+    }
+
+    public void setAvailableSpace(String availableSpace) {
+        this.availableSpace = availableSpace;
+    }
+
+    public void setFreeSpace(String freeSpace) {
+        this.freeSpace = freeSpace;
+    }
+
+    public void setOrderExpiryDate(String orderExpiryDate) {
+        this.orderExpiryDate = orderExpiryDate;
+    }
+
+    public void setOrderSpace(String orderSpace) {
+        this.orderSpace = orderSpace;
+    }
+
+    public void setRemainingSpace(String remainingSpace) {
+        this.remainingSpace = remainingSpace;
+    }
+
+    public void setUsedSpace(String usedSpace) {
+        this.usedSpace = usedSpace;
     }
 
     public void setWaterMark(String waterMark) {

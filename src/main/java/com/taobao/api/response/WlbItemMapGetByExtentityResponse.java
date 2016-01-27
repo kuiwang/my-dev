@@ -19,12 +19,12 @@ public class WlbItemMapGetByExtentityResponse extends TaobaoResponse {
     @ApiField("item_id")
     private Long itemId;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemId() {
         return this.itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.TmcGroupAddResponse;
  */
 public class TmcGroupAddRequest implements TaobaoRequest<TmcGroupAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分组名称，同一个应用下需要保证唯一性，最长32个字符。添加分组后，消息通道会为用户的消息分配独立分组，但之前的消息还是存储于默认分组中。
      * 不能以default开头，default开头为系统默认组。<br />
@@ -30,39 +24,49 @@ public class TmcGroupAddRequest implements TaobaoRequest<TmcGroupAddResponse> {
      */
     private String groupName;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 用户昵称列表，以半角逗号分隔，支持子账号，支持增量添加用户
      */
     private String nicks;
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(groupName, "groupName");
+        RequestCheckUtils.checkMaxLength(groupName, 32, "groupName");
+        RequestCheckUtils.checkNotEmpty(nicks, "nicks");
+        RequestCheckUtils.checkMaxListSize(nicks, 200, "nicks");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tmc.group.add";
     }
 
     public String getGroupName() {
         return this.groupName;
     }
 
-    public void setNicks(String nicks) {
-        this.nicks = nicks;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNicks() {
         return this.nicks;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmcGroupAddResponse> getResponseClass() {
+        return TmcGroupAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tmc.group.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_name", this.groupName);
@@ -73,6 +77,12 @@ public class TmcGroupAddRequest implements TaobaoRequest<TmcGroupAddResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,18 +90,16 @@ public class TmcGroupAddRequest implements TaobaoRequest<TmcGroupAddResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcGroupAddResponse> getResponseClass() {
-        return TmcGroupAddResponse.class;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(groupName, "groupName");
-        RequestCheckUtils.checkMaxLength(groupName, 32, "groupName");
-        RequestCheckUtils.checkNotEmpty(nicks, "nicks");
-        RequestCheckUtils.checkMaxListSize(nicks, 200, "nicks");
+    public void setNicks(String nicks) {
+        this.nicks = nicks;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

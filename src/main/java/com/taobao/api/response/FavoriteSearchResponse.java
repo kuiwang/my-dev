@@ -30,20 +30,20 @@ public class FavoriteSearchResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setCollectItems(List<CollectItem> collectItems) {
-        this.collectItems = collectItems;
-    }
-
     public List<CollectItem> getCollectItems() {
         return this.collectItems;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setCollectItems(List<CollectItem> collectItems) {
+        this.collectItems = collectItems;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

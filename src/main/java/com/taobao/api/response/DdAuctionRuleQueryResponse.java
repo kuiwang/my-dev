@@ -24,12 +24,12 @@ public class DdAuctionRuleQueryResponse extends TaobaoResponse {
     @ApiField("dd_top_auction_rule_v_o")
     private List<DdTopAuctionRuleVO> result;
 
-    public void setResult(List<DdTopAuctionRuleVO> result) {
-        this.result = result;
-    }
-
     public List<DdTopAuctionRuleVO> getResult() {
         return this.result;
+    }
+
+    public void setResult(List<DdTopAuctionRuleVO> result) {
+        this.result = result;
     }
 
 }

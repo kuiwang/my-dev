@@ -27,20 +27,20 @@ public class WlbOrderCreateResponse extends TaobaoResponse {
     @ApiField("order_code")
     private String orderCode;
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
-    }
-
     public String getOrderCode() {
         return this.orderCode;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
     }
 
 }

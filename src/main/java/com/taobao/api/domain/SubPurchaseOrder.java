@@ -218,228 +218,228 @@ public class SubPurchaseOrder extends TaobaoObject {
         return this.auctionPrice;
     }
 
-    public void setAuctionPrice(String auctionPrice) {
-        this.auctionPrice = auctionPrice;
-    }
-
     public String getBillFee() {
         return this.billFee;
-    }
-
-    public void setBillFee(String billFee) {
-        this.billFee = billFee;
     }
 
     public String getBuyerPayment() {
         return this.buyerPayment;
     }
 
-    public void setBuyerPayment(String buyerPayment) {
-        this.buyerPayment = buyerPayment;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getDiscountFee() {
         return this.discountFee;
     }
 
-    public void setDiscountFee(String discountFee) {
-        this.discountFee = discountFee;
-    }
-
     public String getDistributorPayment() {
         return this.distributorPayment;
-    }
-
-    public void setDistributorPayment(String distributorPayment) {
-        this.distributorPayment = distributorPayment;
     }
 
     public List<Feature> getFeatures() {
         return this.features;
     }
 
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
-    }
-
     public Long getFenxiaoId() {
         return this.fenxiaoId;
-    }
-
-    public void setFenxiaoId(Long fenxiaoId) {
-        this.fenxiaoId = fenxiaoId;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getItemOuterId() {
         return this.itemOuterId;
     }
 
-    public void setItemOuterId(String itemOuterId) {
-        this.itemOuterId = itemOuterId;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public String getOldSkuProperties() {
         return this.oldSkuProperties;
     }
 
-    public void setOldSkuProperties(String oldSkuProperties) {
-        this.oldSkuProperties = oldSkuProperties;
-    }
-
     public String getOrder200Status() {
         return this.order200Status;
-    }
-
-    public void setOrder200Status(String order200Status) {
-        this.order200Status = order200Status;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPromotionType() {
         return this.promotionType;
-    }
-
-    public void setPromotionType(String promotionType) {
-        this.promotionType = promotionType;
     }
 
     public String getRefundFee() {
         return this.refundFee;
     }
 
-    public void setRefundFee(String refundFee) {
-        this.refundFee = refundFee;
-    }
-
     public Long getScItemId() {
         return this.scItemId;
-    }
-
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public String getSkuOuterId() {
         return this.skuOuterId;
-    }
-
-    public void setSkuOuterId(String skuOuterId) {
-        this.skuOuterId = skuOuterId;
     }
 
     public String getSkuProperties() {
         return this.skuProperties;
     }
 
-    public void setSkuProperties(String skuProperties) {
-        this.skuProperties = skuProperties;
-    }
-
     public String getSnapshotUrl() {
         return this.snapshotUrl;
-    }
-
-    public void setSnapshotUrl(String snapshotUrl) {
-        this.snapshotUrl = snapshotUrl;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getTcAdjustFee() {
         return this.tcAdjustFee;
-    }
-
-    public void setTcAdjustFee(Long tcAdjustFee) {
-        this.tcAdjustFee = tcAdjustFee;
     }
 
     public Long getTcDiscountFee() {
         return this.tcDiscountFee;
     }
 
-    public void setTcDiscountFee(Long tcDiscountFee) {
-        this.tcDiscountFee = tcDiscountFee;
-    }
-
     public Long getTcOrderId() {
         return this.tcOrderId;
-    }
-
-    public void setTcOrderId(Long tcOrderId) {
-        this.tcOrderId = tcOrderId;
     }
 
     public String getTcPreferentialType() {
         return this.tcPreferentialType;
     }
 
-    public void setTcPreferentialType(String tcPreferentialType) {
-        this.tcPreferentialType = tcPreferentialType;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
+    }
+
+    public void setAuctionPrice(String auctionPrice) {
+        this.auctionPrice = auctionPrice;
+    }
+
+    public void setBillFee(String billFee) {
+        this.billFee = billFee;
+    }
+
+    public void setBuyerPayment(String buyerPayment) {
+        this.buyerPayment = buyerPayment;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDiscountFee(String discountFee) {
+        this.discountFee = discountFee;
+    }
+
+    public void setDistributorPayment(String distributorPayment) {
+        this.distributorPayment = distributorPayment;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void setFenxiaoId(Long fenxiaoId) {
+        this.fenxiaoId = fenxiaoId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemOuterId(String itemOuterId) {
+        this.itemOuterId = itemOuterId;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setOldSkuProperties(String oldSkuProperties) {
+        this.oldSkuProperties = oldSkuProperties;
+    }
+
+    public void setOrder200Status(String order200Status) {
+        this.order200Status = order200Status;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPromotionType(String promotionType) {
+        this.promotionType = promotionType;
+    }
+
+    public void setRefundFee(String refundFee) {
+        this.refundFee = refundFee;
+    }
+
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuOuterId(String skuOuterId) {
+        this.skuOuterId = skuOuterId;
+    }
+
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties;
+    }
+
+    public void setSnapshotUrl(String snapshotUrl) {
+        this.snapshotUrl = snapshotUrl;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTcAdjustFee(Long tcAdjustFee) {
+        this.tcAdjustFee = tcAdjustFee;
+    }
+
+    public void setTcDiscountFee(Long tcDiscountFee) {
+        this.tcDiscountFee = tcDiscountFee;
+    }
+
+    public void setTcOrderId(Long tcOrderId) {
+        this.tcOrderId = tcOrderId;
+    }
+
+    public void setTcPreferentialType(String tcPreferentialType) {
+        this.tcPreferentialType = tcPreferentialType;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setTotalFee(String totalFee) {

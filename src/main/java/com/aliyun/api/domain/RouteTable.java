@@ -51,36 +51,36 @@ public class RouteTable extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public List<RouteEntry> getRouteEntrys() {
         return this.routeEntrys;
-    }
-
-    public void setRouteEntrys(List<RouteEntry> routeEntrys) {
-        this.routeEntrys = routeEntrys;
     }
 
     public String getRouteTableId() {
         return this.routeTableId;
     }
 
-    public void setRouteTableId(String routeTableId) {
-        this.routeTableId = routeTableId;
-    }
-
     public String getRouteTableType() {
         return this.routeTableType;
     }
 
-    public void setRouteTableType(String routeTableType) {
-        this.routeTableType = routeTableType;
-    }
-
     public String getvRouterId() {
         return this.vRouterId;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setRouteEntrys(List<RouteEntry> routeEntrys) {
+        this.routeEntrys = routeEntrys;
+    }
+
+    public void setRouteTableId(String routeTableId) {
+        this.routeTableId = routeTableId;
+    }
+
+    public void setRouteTableType(String routeTableType) {
+        this.routeTableType = routeTableType;
     }
 
     public void setvRouterId(String vRouterId) {

@@ -125,140 +125,140 @@ public class DescribeInstanceAttributeResponse extends AliyunResponse {
     @ApiField("ZoneId")
     private String zoneId;
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getCreationTime() {
         return this.creationTime;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
     }
 
     public String getHostName() {
         return this.hostName;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-
     public String getImageId() {
         return this.imageId;
-    }
-
-    public void setInnerIpAddress(List<IpAddress> innerIpAddress) {
-        this.innerIpAddress = innerIpAddress;
     }
 
     public List<IpAddress> getInnerIpAddress() {
         return this.innerIpAddress;
     }
 
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
     }
 
     public String getInstanceName() {
         return this.instanceName;
     }
 
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-
     public String getInstanceType() {
         return this.instanceType;
-    }
-
-    public void setInternetChargeType(String internetChargeType) {
-        this.internetChargeType = internetChargeType;
     }
 
     public String getInternetChargeType() {
         return this.internetChargeType;
     }
 
-    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
-        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
-    }
-
     public Long getInternetMaxBandwidthIn() {
         return this.internetMaxBandwidthIn;
-    }
-
-    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
-        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
     }
 
     public Long getInternetMaxBandwidthOut() {
         return this.internetMaxBandwidthOut;
     }
 
-    public void setPublicIpAddress(List<IpAddress> publicIpAddress) {
-        this.publicIpAddress = publicIpAddress;
-    }
-
     public List<IpAddress> getPublicIpAddress() {
         return this.publicIpAddress;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
     }
 
     public String getRegionId() {
         return this.regionId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setSecurityGroupIds(List<SecurityGroupId> securityGroupIds) {
-        this.securityGroupIds = securityGroupIds;
     }
 
     public List<SecurityGroupId> getSecurityGroupIds() {
         return this.securityGroupIds;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setVlanId(String vlanId) {
-        this.vlanId = vlanId;
     }
 
     public String getVlanId() {
         return this.vlanId;
     }
 
-    public void setZoneId(String zoneId) {
-        this.zoneId = zoneId;
-    }
-
     public String getZoneId() {
         return this.zoneId;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setInnerIpAddress(List<IpAddress> innerIpAddress) {
+        this.innerIpAddress = innerIpAddress;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
+    }
+
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    public void setInternetChargeType(String internetChargeType) {
+        this.internetChargeType = internetChargeType;
+    }
+
+    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
+        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
+    }
+
+    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
+        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
+    }
+
+    public void setPublicIpAddress(List<IpAddress> publicIpAddress) {
+        this.publicIpAddress = publicIpAddress;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSecurityGroupIds(List<SecurityGroupId> securityGroupIds) {
+        this.securityGroupIds = securityGroupIds;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setVlanId(String vlanId) {
+        this.vlanId = vlanId;
+    }
+
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
     }
 
 }

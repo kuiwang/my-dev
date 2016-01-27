@@ -23,7 +23,21 @@
  */
 package com.taobao.top.link.embedded.websocket.impl;
 
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3007;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3008;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3009;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3010;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3020;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3021;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3030;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3031;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3039;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3040;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3041;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3042;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3043;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3044;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3550;
 import static java.nio.channels.SelectionKey.OP_READ;
 import static java.nio.channels.SelectionKey.OP_WRITE;
 
@@ -40,7 +54,13 @@ import java.nio.channels.SocketChannel;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,7 +71,13 @@ import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
 import com.taobao.top.link.embedded.websocket.frame.Frame;
 import com.taobao.top.link.embedded.websocket.frame.FrameParser;
 import com.taobao.top.link.embedded.websocket.frame.draft76.BinaryFrame;
-import com.taobao.top.link.embedded.websocket.handler.*;
+import com.taobao.top.link.embedded.websocket.handler.PacketDumpStreamHandler;
+import com.taobao.top.link.embedded.websocket.handler.SSLStreamHandler;
+import com.taobao.top.link.embedded.websocket.handler.StreamHandlerAdapter;
+import com.taobao.top.link.embedded.websocket.handler.StreamHandlerChain;
+import com.taobao.top.link.embedded.websocket.handler.WebSocketHandler;
+import com.taobao.top.link.embedded.websocket.handler.WebSocketPipeline;
+import com.taobao.top.link.embedded.websocket.handler.WebSocketStreamHandler;
 import com.taobao.top.link.embedded.websocket.handshake.Handshake;
 import com.taobao.top.link.embedded.websocket.handshake.ProxyHandshake;
 import com.taobao.top.link.embedded.websocket.handshake.SSLHandshake;
@@ -65,105 +91,256 @@ import com.taobao.top.link.embedded.websocket.util.StringUtil;
  */
 abstract public class WebSocketBase implements WebSocket {
 
+    /**
+     * <pre>
+     * CONNECTED -> HANDSHAKE, CLOSED
+     * HANDSHAKE -> WAIT, CLOSED
+     * WAIT -> WAIT, CLOSED
+     * CLOSED -> CONNECTED, CLOSED
+     * </pre>
+     * 
+     * .
+     *
+     * @author Takahiro Hashimoto
+     */
+    enum State {
+
+        /** The CLOSED. */
+        CLOSED,
+        /** The CLOSING. */
+        CLOSING,
+        /** The CONNECTED. */
+        CONNECTED,
+        /** The HANDSHAKE. */
+        HANDSHAKE,
+        /** The WAIT. */
+        WAIT;
+
+        /** The state map. */
+        private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
+                State.class);
+        static {
+            stateMap.put(CONNECTED, EnumSet.of(State.HANDSHAKE, State.CLOSED));
+            stateMap.put(HANDSHAKE, EnumSet.of(State.WAIT, State.CLOSED));
+            stateMap.put(WAIT, EnumSet.of(State.WAIT, State.CLOSING, State.CLOSED));
+            stateMap.put(CLOSING, EnumSet.of(State.CLOSED));
+            stateMap.put(CLOSED, EnumSet.of(State.CONNECTED, State.CLOSED));
+        }
+
+        /**
+         * Can transition to.
+         *
+         * @param state the state
+         * @return true, if successful
+         */
+        boolean canTransitionTo(State state) {
+            EnumSet<State> set = stateMap.get(this);
+            if (set == null) {
+                return false;
+            }
+            return set.contains(state);
+        }
+
+        /**
+         * Checks if is connected.
+         *
+         * @return true, if is connected
+         */
+        boolean isConnected() {
+            switch (this) {
+                case CONNECTED:
+                case HANDSHAKE:
+                case WAIT:
+                    return true;
+                default:
+                    break;
+            }
+            return false;
+        }
+    }
+
     /** The log. */
     private static Logger log = Logger.getLogger(WebSocketBase.class.getName());
 
-    /** The location. */
-    protected URI location;
+    /**
+     * Adds the header.
+     *
+     * @param sb the sb
+     * @param key the key
+     * @param value the value
+     */
+    protected static void addHeader(StringBuilder sb, String key, String value) {
+        StringUtil.addHeader(sb, key, value);
+    }
 
-    /** the URL to which to connect. */
-    protected String path;
+    /**
+     * Join.
+     *
+     * @param delim the delim
+     * @param collections the collections
+     * @return the string
+     */
+    protected static String join(String delim, Collection<String> collections) {
+        return StringUtil.join(delim, collections);
+    }
 
-    /** The use ssl. */
-    protected boolean useSsl = false;
+    /**
+     * Join.
+     *
+     * @param delim the delim
+     * @param start the start
+     * @param end the end
+     * @param strings the strings
+     * @return the string
+     */
+    protected static String join(String delim, int start, int end, String... strings) {
+        return StringUtil.join(delim, start, end, strings);
+    }
 
-    /** The ssl handshake. */
-    protected SSLHandshake sslHandshake;
-
-    /** endpoint. */
-    protected InetSocketAddress endpointAddress;
-
-    /** proxy. */
-    protected Proxy proxy;
-
-    /** connection timeout(second). */
-    protected int connectionTimeout = 60 * 1000;
-
-    /** connection read timeout(second). */
-    protected int connectionReadTimeout = 0;
+    /**
+     * Join.
+     *
+     * @param delim the delim
+     * @param strings the strings
+     * @return the string
+     */
+    protected static String join(String delim, String... strings) {
+        return StringUtil.join(delim, strings);
+    }
 
     /** blocking mode. */
     private boolean blockingMode = true;
 
-    /** The packet dump mode. */
-    private int packetDumpMode;
-
-    /** quit flag. */
-    volatile protected boolean quit;
-
-    /** subprotocol name array. */
-    protected String[] protocols;
-
-    /** The server protocols. */
-    protected String[] serverProtocols;
-
     /** The buffer size. */
     protected int bufferSize;
-
-    /** The upstream buffer. */
-    protected ByteBuffer upstreamBuffer;
-
-    /** The downstream buffer. */
-    protected ByteBuffer downstreamBuffer;
-
-    /** The origin. */
-    protected String origin;
-
-    /** The upstream queue. */
-    protected BlockingQueue<ByteBuffer> upstreamQueue;
-
-    /** websocket handler. */
-    protected WebSocketHandler handler;
-
-    /** The pipeline. */
-    protected WebSocketPipeline pipeline;
-
-    /** The socket. */
-    protected SocketChannel socket;
-
-    /** The selector. */
-    protected Selector selector;
-
-    /** The handshake. */
-    private Handshake handshake;
-
-    /** The frame parser. */
-    private FrameParser frameParser;
-
-    /** The response header map. */
-    protected HttpHeader responseHeader;
-
-    /** The request header map. */
-    protected HttpHeader requestHeader;
-
-    /** The response status. */
-    protected int responseStatus;
-
-    /** The state. */
-    volatile protected State state = State.CLOSED;
 
     /** The close latch. */
     protected CountDownLatch closeLatch;
 
-    /** The handshake latch. */
-    protected CountDownLatch handshakeLatch;
+    /** connection read timeout(second). */
+    protected int connectionReadTimeout = 0;
+
+    /** connection timeout(second). */
+    protected int connectionTimeout = 60 * 1000;
+
+    /** The downstream buffer. */
+    protected ByteBuffer downstreamBuffer;
+
+    /** endpoint. */
+    protected InetSocketAddress endpointAddress;
 
     /** worker. */
     protected ExecutorService executorService;
 
+    private String executorThreadName;
+
     private AtomicInteger executorThreadNumber = new AtomicInteger(0);
 
-    private String executorThreadName;
+    /** The frame parser. */
+    private FrameParser frameParser;
+
+    /** websocket handler. */
+    protected WebSocketHandler handler;
+
+    /** The handshake. */
+    private Handshake handshake;
+
+    /** The handshake latch. */
+    protected CountDownLatch handshakeLatch;
+
+    /** The location. */
+    protected URI location;
+
+    /** The origin. */
+    protected String origin;
+
+    /** The packet dump mode. */
+    private int packetDumpMode;
+
+    /** the URL to which to connect. */
+    protected String path;
+
+    /** The pipeline. */
+    protected WebSocketPipeline pipeline;
+
+    /** subprotocol name array. */
+    protected String[] protocols;
+
+    /** proxy. */
+    protected Proxy proxy;
+
+    /** quit flag. */
+    volatile protected boolean quit;
+
+    /** The request header map. */
+    protected HttpHeader requestHeader;
+
+    /** The response header map. */
+    protected HttpHeader responseHeader;
+
+    /** The response status. */
+    protected int responseStatus;
+
+    /** The selector. */
+    protected Selector selector;
+
+    /** The server protocols. */
+    protected String[] serverProtocols;
+
+    /** The socket. */
+    protected SocketChannel socket;
+
+    /** The ssl handshake. */
+    protected SSLHandshake sslHandshake;
+
+    /** The state. */
+    volatile protected State state = State.CLOSED;
+
+    /** The upstream buffer. */
+    protected ByteBuffer upstreamBuffer;
+
+    /** The upstream queue. */
+    protected BlockingQueue<ByteBuffer> upstreamQueue;
+
+    /** The use ssl. */
+    protected boolean useSsl = false;
+
+    /**
+     * Instantiates a new web socket base.
+     *
+     * @param url the url
+     * @param proxy the proxy
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketBase(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
+            throws WebSocketException {
+        this.protocols = protocols;
+        this.handler = handler;
+        this.proxy = proxy;
+        init(url);
+        this.origin = this.location.getHost() + ":" + this.location.getPort();
+    }
+
+    /**
+     * Instantiates a new web socket base.
+     *
+     * @param url the url
+     * @param origin the origin
+     * @param proxy the proxy
+     * @param handler the handler
+     * @param protocols the protocols
+     * @throws WebSocketException the web socket exception
+     */
+    public WebSocketBase(String url, String origin, Proxy proxy, WebSocketHandler handler,
+            String... protocols) throws WebSocketException {
+        this.origin = origin;
+        this.protocols = protocols;
+        this.handler = handler;
+        this.proxy = proxy;
+        init(url);
+    }
 
     /**
      * Instantiates a new web socket base.
@@ -201,325 +378,74 @@ abstract public class WebSocketBase implements WebSocket {
                 + (this.location.getPort() > 0 ? ":" + this.location.getPort() : "");
     }
 
-    /**
-     * Instantiates a new web socket base.
-     *
-     * @param url the url
-     * @param origin the origin
-     * @param proxy the proxy
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
-     */
-    public WebSocketBase(String url, String origin, Proxy proxy, WebSocketHandler handler,
-            String... protocols) throws WebSocketException {
-        this.origin = origin;
-        this.protocols = protocols;
-        this.handler = handler;
-        this.proxy = proxy;
-        init(url);
+    @Override
+    public void awaitClose() throws InterruptedException {
+        closeLatch.await();
     }
 
     /**
-     * Instantiates a new web socket base.
+     * Await termination.
      *
-     * @param url the url
-     * @param proxy the proxy
-     * @param handler the handler
-     * @param protocols the protocols
-     * @throws WebSocketException the web socket exception
+     * @param timeout the timeout
+     * @param unit the unit
+     * @throws InterruptedException the interrupted exception
      */
-    public WebSocketBase(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
-            throws WebSocketException {
-        this.protocols = protocols;
-        this.handler = handler;
-        this.proxy = proxy;
-        init(url);
-        this.origin = this.location.getHost() + ":" + this.location.getPort();
-    }
-
-    /**
-     * Inits the.
-     *
-     * @param url the url
-     * @throws WebSocketException the web socket exception
-     */
-    protected void init(String url) throws WebSocketException {
-        // init properties
-        initializeProperties();
-        parseUrl(url);
-        // parse url
-        initializePipeline();
-    }
-
-    /**
-     * Initialize properties.
-     *
-     * @throws WebSocketException the web socket exception
-     */
-    protected void initializeProperties() throws WebSocketException {
-        this.bufferSize = Integer.getInteger("websocket.bufferSize", 0x7FFF);
-        int upstreamQueueSize = Integer.getInteger("websocket.upstreamQueueSize", 500);
-        this.upstreamQueue = new LinkedBlockingQueue<ByteBuffer>(upstreamQueueSize);
-        this.downstreamBuffer = ByteBuffer.allocate(this.bufferSize);
-        this.upstreamBuffer = ByteBuffer.allocate(this.bufferSize);
-        packetDumpMode = Integer.getInteger("websocket.packatdump", 0);
-        this.requestHeader = new HttpHeader();
-    }
-
-    /**
-     * Initialize pipeline.
-     *
-     * @throws WebSocketException the web socket exception
-     */
-    protected void initializePipeline() throws WebSocketException {
-        // setup pipeline
-        this.pipeline = new WebSocketPipeline();
-
-        // Add upstream qeueue handler first.
-        // it push the upstream buffer to a sendqueue and then wakeup a selector
-        this.pipeline.addStreamHandler(new StreamHandlerAdapter() {
-
-            public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
-                    StreamHandlerChain chain) throws WebSocketException {
-                if (!upstreamQueue.offer(buffer)) {
-                    throw new WebSocketException(E3030);
-                }
-                selector.wakeup();
-            }
-
-            public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
-                    StreamHandlerChain chain) throws WebSocketException {
-                if (!upstreamQueue.offer(buffer)) {
-                    throw new WebSocketException(E3031);
-                }
-                selector.wakeup();
-            }
-        });
-
-        if (this.useSsl) {
-            this.sslHandshake = new SSLHandshake(this.endpointAddress, this);
-            this.pipeline.addStreamHandler(new PacketDumpStreamHandler());
-            this.pipeline
-                    .addStreamHandler(new SSLStreamHandler(this.sslHandshake, this.bufferSize));
-        }
-
-        // orverriding initilize method by subclass
-        initializePipeline(pipeline);
-    }
-
-    /**
-     * Initialize pipeline.
-     *
-     * @param pipeline the pipeline
-     * @throws WebSocketException the web socket exception
-     */
-    protected void initializePipeline(WebSocketPipeline pipeline) throws WebSocketException {
-        // for debug
-        this.pipeline.addStreamHandler(new PacketDumpStreamHandler());
-        this.pipeline
-                .addStreamHandler(new WebSocketStreamHandler(getHandshake(), getFrameParser()));
-    }
-
-    /**
-     * Parses the url.
-     *
-     * @param urlStr the url str
-     * @throws WebSocketException the web socket exception
-     */
-    private void parseUrl(String urlStr) throws WebSocketException {
-        try {
-            URI uri = new URI(urlStr);
-            if (!(uri.getScheme().equals("ws") || uri.getScheme().equals("wss"))) {
-                throw new WebSocketException(E3007, uri.toString());
-            }
-            if (uri.getScheme().equals("wss")) {
-                useSsl = true;
-            }
-            path = (uri.getPath().equals("") ? "/" : uri.getPath())
-                    + (uri.getQuery() != null ? "?" + uri.getQuery() : "");
-            int port = uri.getPort();
-            if (port < 0) {
-                if (uri.getScheme().equals("ws")) {
-                    port = 80;
-                } else if (uri.getScheme().equals("wss")) {
-                    port = 443;
-                    useSsl = true;
-                } else {
-                    throw new WebSocketException(E3008, uri.toString());
-                }
-            }
-            endpointAddress = new InetSocketAddress(uri.getHost(), port);
-            location = uri;
-        } catch (URISyntaxException e) {
-            throw new WebSocketException(E3009, e);
+    protected void awaitTermination(int timeout, TimeUnit unit) throws InterruptedException {
+        if (executorService != null) {
+            executorService.awaitTermination(timeout, unit);
         }
     }
 
     /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#getLocation()
+     * @see jp.a840.websocket.WebSocket#close()
      */
-    public URI getLocation() {
-        return location;
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#send(jp.a840.websocket.frame.Frame)
-     */
-    public void send(Frame frame) throws WebSocketException {
-        if (!isConnected()) {
-            throw new WebSocketException(E3010);
-        }
-        pipeline.sendUpstream(this, null, frame);
-    }
-
-    /**
-     * Send.
-     *
-     * @param obj the obj
-     * @throws WebSocketException the web socket exception
-     */
-    public void send(Object obj) throws WebSocketException {
-        send(createFrame(obj));
-    }
-
-    public void send(ByteBuffer buffer) throws WebSocketException {
-        send(createFrame(buffer));
-    }
-
-    public void send(byte[] bytes) throws WebSocketException {
-        send(createFrame(bytes));
-    }
-
-    public void send(String str) throws WebSocketException {
-        send(createFrame(str));
-    }
-
-    /**
-     * <pre>
-     * CONNECTED -> HANDSHAKE, CLOSED
-     * HANDSHAKE -> WAIT, CLOSED
-     * WAIT -> WAIT, CLOSED
-     * CLOSED -> CONNECTED, CLOSED
-     * </pre>
-     * 
-     * .
-     *
-     * @author Takahiro Hashimoto
-     */
-    enum State {
-
-        /** The CONNECTED. */
-        CONNECTED,
-        /** The HANDSHAKE. */
-        HANDSHAKE,
-        /** The WAIT. */
-        WAIT,
-        /** The CLOSING. */
-        CLOSING,
-        /** The CLOSED. */
-        CLOSED;
-
-        /** The state map. */
-        private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
-                State.class);
-        static {
-            stateMap.put(CONNECTED, EnumSet.of(State.HANDSHAKE, State.CLOSED));
-            stateMap.put(HANDSHAKE, EnumSet.of(State.WAIT, State.CLOSED));
-            stateMap.put(WAIT, EnumSet.of(State.WAIT, State.CLOSING, State.CLOSED));
-            stateMap.put(CLOSING, EnumSet.of(State.CLOSED));
-            stateMap.put(CLOSED, EnumSet.of(State.CONNECTED, State.CLOSED));
-        }
-
-        /**
-         * Can transition to.
-         *
-         * @param state the state
-         * @return true, if successful
-         */
-        boolean canTransitionTo(State state) {
-            EnumSet<State> set = stateMap.get(this);
-            if (set == null) return false;
-            return set.contains(state);
-        }
-
-        /**
-         * Checks if is connected.
-         *
-         * @return true, if is connected
-         */
-        boolean isConnected() {
-            switch (this) {
-                case CONNECTED:
-                case HANDSHAKE:
-                case WAIT:
-                    return true;
-                default:
-                    break;
-            }
-            return false;
-        }
-    }
-
-    /**
-     * Transition to.
-     *
-     * @param to the to
-     * @return the state
-     */
-    protected State transitionTo(State to) {
-        if (state.canTransitionTo(to)) {
-            State old = state;
-            state = to;
-            return old;
-        } else {
-            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
-        }
-    }
-
-    /**
-     * State.
-     *
-     * @return the state
-     */
-    protected State state() {
-        return state;
-    }
-
-    /**
-     * Read.
-     *
-     * @param socket the socket
-     * @param buffer the buffer
-     * @throws WebSocketException the web socket exception
-     */
-    protected void read(SocketChannel socket, ByteBuffer buffer) throws WebSocketException {
+    @Override
+    public void close() {
         try {
-            buffer.clear();
-            if (socket.read(buffer) < 0) {
-                throw new WebSocketException(E3020);
+            if (state == State.WAIT) {
+                closeWebSocket();
+                selector.wakeup();
+                //				if(state == State.CLOSING){
+                if (!Thread.currentThread().getName().equals(this.executorThreadName)) {
+                    try {
+                        closeLatch.await(30, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        ;
+                    }
+                    //				}
+                    if (executorService != null) {
+                        try {
+                            executorService.shutdown();
+                            executorService.awaitTermination(30, TimeUnit.SECONDS);
+                        } catch (InterruptedException e) {
+                            ;
+                        } finally {
+                            synchronized (this) {
+                                executorService = null;
+                            }
+                        }
+                    }
+                }
             }
-            buffer.flip();
-        } catch (IOException ioe) {
-            throw new WebSocketException(E3021, ioe);
+        } catch (WebSocketException e) {
+            handler.onError(this, e);
         }
     }
 
     /**
-     * Creates the socket.
+     * Close web socket.
      *
-     * @return the socket channel
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws WebSocketException the web socket exception
      */
-    protected SocketChannel createSocket() throws IOException {
-        SocketChannel socket = SocketChannel.open();
-        socket.configureBlocking(false);
-        return socket;
+    protected void closeWebSocket() throws WebSocketException {
+        quit = true;
+        transitionTo(State.CLOSED);
     }
 
     /* (non-Javadoc)
      * @see jp.a840.websocket.WebSocket#connect()
      */
+    @Override
     public void connect() throws WebSocketException {
         try {
             // check connection status
@@ -576,13 +502,14 @@ abstract public class WebSocketBase implements WebSocket {
 
             Runnable worker = new Runnable() {
 
+                @Override
                 public void run() {
                     try {
                         while (!quit) {
                             selector.select(100);
                             for (SelectionKey key : selector.selectedKeys()) {
                                 if (key.isValid() && key.isWritable()
-                                        && upstreamQueue.peek() != null) {
+                                        && (upstreamQueue.peek() != null)) {
                                     SocketChannel channel = (SocketChannel) key.channel();
                                     channel.write(upstreamQueue.poll());
                                     socket.register(selector, OP_READ);
@@ -654,6 +581,7 @@ abstract public class WebSocketBase implements WebSocket {
                         + executorThreadNumber.incrementAndGet();
                 executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
 
+                    @Override
                     public Thread newThread(Runnable r) {
                         Thread t = new Thread(r, executorThreadName);
                         t.setDaemon(true);
@@ -680,88 +608,20 @@ abstract public class WebSocketBase implements WebSocket {
         }
     }
 
-    /**
-     * Process buffer.
-     *
-     * @param buffer the buffer
-     * @throws WebSocketException the web socket exception
-     */
-    protected void processBuffer(ByteBuffer buffer) throws WebSocketException {
-        while (buffer.hasRemaining()) {
-            pipeline.sendDownstream(this, buffer, null);
-        }
-        return;
-    }
-
     /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#isConnected()
+     * @see jp.a840.websocket.WebSocket#createFrame(java.lang.Object)
      */
-    public boolean isConnected() {
-        return state.isConnected();
+    @Override
+    abstract public Frame createFrame(byte[] bytes) throws WebSocketException;
+
+    @Override
+    public Frame createFrame(ByteBuffer buffer) throws WebSocketException {
+        byte[] bytes = new byte[buffer.limit()];
+        buffer.get(bytes);
+        return createFrame(bytes);
     }
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#close()
-     */
-    public void close() {
-        try {
-            if (state == State.WAIT) {
-                closeWebSocket();
-                selector.wakeup();
-                //				if(state == State.CLOSING){
-                if (!Thread.currentThread().getName().equals(this.executorThreadName)) {
-                    try {
-                        closeLatch.await(30, TimeUnit.SECONDS);
-                    } catch (InterruptedException e) {
-                        ;
-                    }
-                    //				}
-                    if (executorService != null) {
-                        try {
-                            executorService.shutdown();
-                            executorService.awaitTermination(30, TimeUnit.SECONDS);
-                        } catch (InterruptedException e) {
-                            ;
-                        } finally {
-                            synchronized (this) {
-                                executorService = null;
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (WebSocketException e) {
-            handler.onError(this, e);
-        }
-    }
-
-    /**
-     * Await termination.
-     *
-     * @param timeout the timeout
-     * @param unit the unit
-     * @throws InterruptedException the interrupted exception
-     */
-    protected void awaitTermination(int timeout, TimeUnit unit) throws InterruptedException {
-        if (executorService != null) {
-            executorService.awaitTermination(timeout, unit);
-        }
-    }
-
-    public void awaitClose() throws InterruptedException {
-        closeLatch.await();
-    }
-
-    /**
-     * Close web socket.
-     *
-     * @throws WebSocketException the web socket exception
-     */
-    protected void closeWebSocket() throws WebSocketException {
-        quit = true;
-        transitionTo(State.CLOSED);
-    }
-
+    @Override
     public Frame createFrame(Object obj) throws WebSocketException {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -775,100 +635,56 @@ abstract public class WebSocketBase implements WebSocket {
         }
     }
 
-    public Frame createFrame(ByteBuffer buffer) throws WebSocketException {
-        byte[] bytes = new byte[buffer.limit()];
-        buffer.get(bytes);
-        return createFrame(bytes);
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#createFrame(java.lang.Object)
-     */
-    abstract public Frame createFrame(byte[] bytes) throws WebSocketException;
-
     /* (non-Javadoc)
      * @see jp.a840.websocket.WebSocket#createFrame(java.lang.String)
      */
+    @Override
     abstract public Frame createFrame(String str) throws WebSocketException;
 
     /**
-     * Join.
+     * Creates the socket.
      *
-     * @param delim the delim
-     * @param collections the collections
-     * @return the string
+     * @return the socket channel
+     * @throws IOException Signals that an I/O exception has occurred.
      */
-    protected static String join(String delim, Collection<String> collections) {
-        return StringUtil.join(delim, collections);
+    protected SocketChannel createSocket() throws IOException {
+        SocketChannel socket = SocketChannel.open();
+        socket.configureBlocking(false);
+        return socket;
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#getBufferSize()
+     */
+    @Override
+    public int getBufferSize() {
+        return bufferSize;
     }
 
     /**
-     * Join.
+     * Gets the connection read timeout.
      *
-     * @param delim the delim
-     * @param strings the strings
-     * @return the string
+     * @return the connection read timeout
      */
-    protected static String join(String delim, String... strings) {
-        return StringUtil.join(delim, strings);
+    public int getConnectionReadTimeout() {
+        return connectionReadTimeout;
     }
 
-    /**
-     * Join.
-     *
-     * @param delim the delim
-     * @param start the start
-     * @param end the end
-     * @param strings the strings
-     * @return the string
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#getConnectionTimeout()
      */
-    protected static String join(String delim, int start, int end, String... strings) {
-        return StringUtil.join(delim, start, end, strings);
+    @Override
+    public int getConnectionTimeout() {
+        return connectionTimeout;
     }
 
-    /**
-     * Adds the header.
-     *
-     * @param sb the sb
-     * @param key the key
-     * @param value the value
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#getEndpoint()
      */
-    protected static void addHeader(StringBuilder sb, String key, String value) {
-        StringUtil.addHeader(sb, key, value);
+    @Override
+    public InetSocketAddress getEndpoint() {
+        return endpointAddress;
     }
-
-    /**
-     * Gets the web socket version.
-     *
-     * @return the web socket version
-     */
-    abstract protected int getWebSocketVersion();
-
-    /**
-     * New handshake instance.
-     *
-     * @return the handshake
-     */
-    abstract protected Handshake newHandshakeInstance();
-
-    /**
-     * Gets the handshake.
-     *
-     * @return the handshake
-     */
-    protected synchronized Handshake getHandshake() {
-        if (handshake == null) {
-            handshake = newHandshakeInstance();
-        }
-        return handshake;
-    }
-
-    /**
-     * New frame parser instance.
-     *
-     * @return the frame parser
-     */
-    abstract protected FrameParser newFrameParserInstance();
 
     /**
      * Gets the frame parser.
@@ -882,61 +698,24 @@ abstract public class WebSocketBase implements WebSocket {
         return frameParser;
     }
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#isBlockingMode()
-     */
-    public boolean isBlockingMode() {
-        return blockingMode;
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#setBlockingMode(boolean)
-     */
-    public void setBlockingMode(boolean blockingMode) {
-        this.blockingMode = blockingMode;
-    }
-
     /**
-     * Gets the server protocols.
+     * Gets the handshake.
      *
-     * @return the server protocols
+     * @return the handshake
      */
-    public String[] getServerProtocols() {
-        return serverProtocols;
-    }
-
-    /**
-     * Sets the server protocols.
-     *
-     * @param serverProtocols the new server protocols
-     */
-    public void setServerProtocols(String[] serverProtocols) {
-        this.serverProtocols = serverProtocols;
-    }
-
-    /**
-     * Gets the path.
-     *
-     * @return the path
-     */
-    public String getPath() {
-        return path;
+    protected synchronized Handshake getHandshake() {
+        if (handshake == null) {
+            handshake = newHandshakeInstance();
+        }
+        return handshake;
     }
 
     /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#getEndpoint()
+     * @see jp.a840.websocket.WebSocket#getLocation()
      */
-    public InetSocketAddress getEndpoint() {
-        return endpointAddress;
-    }
-
-    /**
-     * Gets the protocols.
-     *
-     * @return the protocols
-     */
-    public String[] getProtocols() {
-        return protocols;
+    @Override
+    public URI getLocation() {
+        return location;
     }
 
     /**
@@ -949,12 +728,30 @@ abstract public class WebSocketBase implements WebSocket {
     }
 
     /**
-     * Gets the response header.
+     * Gets the packet dump mode.
      *
-     * @return the response header
+     * @return the packet dump mode
      */
-    public HttpHeader getResponseHeader() {
-        return responseHeader;
+    public int getPacketDumpMode() {
+        return this.packetDumpMode;
+    }
+
+    /**
+     * Gets the path.
+     *
+     * @return the path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * Gets the protocols.
+     *
+     * @return the protocols
+     */
+    public String[] getProtocols() {
+        return protocols;
     }
 
     /**
@@ -967,6 +764,15 @@ abstract public class WebSocketBase implements WebSocket {
     }
 
     /**
+     * Gets the response header.
+     *
+     * @return the response header
+     */
+    public HttpHeader getResponseHeader() {
+        return responseHeader;
+    }
+
+    /**
      * Gets the response status.
      *
      * @return the response status
@@ -975,27 +781,246 @@ abstract public class WebSocketBase implements WebSocket {
         return responseStatus;
     }
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#getConnectionTimeout()
+    /**
+     * Gets the server protocols.
+     *
+     * @return the server protocols
      */
-    public int getConnectionTimeout() {
-        return connectionTimeout;
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#setConnectionTimeout(int)
-     */
-    public void setConnectionTimeout(int connectionTimeout) {
-        this.connectionTimeout = connectionTimeout * 1000;
+    public String[] getServerProtocols() {
+        return serverProtocols;
     }
 
     /**
-     * Gets the connection read timeout.
+     * Gets the web socket version.
      *
-     * @return the connection read timeout
+     * @return the web socket version
      */
-    public int getConnectionReadTimeout() {
-        return connectionReadTimeout;
+    abstract protected int getWebSocketVersion();
+
+    /**
+     * Inits the.
+     *
+     * @param url the url
+     * @throws WebSocketException the web socket exception
+     */
+    protected void init(String url) throws WebSocketException {
+        // init properties
+        initializeProperties();
+        parseUrl(url);
+        // parse url
+        initializePipeline();
+    }
+
+    /**
+     * Initialize pipeline.
+     *
+     * @throws WebSocketException the web socket exception
+     */
+    protected void initializePipeline() throws WebSocketException {
+        // setup pipeline
+        this.pipeline = new WebSocketPipeline();
+
+        // Add upstream qeueue handler first.
+        // it push the upstream buffer to a sendqueue and then wakeup a selector
+        this.pipeline.addStreamHandler(new StreamHandlerAdapter() {
+
+            @Override
+            public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
+                    StreamHandlerChain chain) throws WebSocketException {
+                if (!upstreamQueue.offer(buffer)) {
+                    throw new WebSocketException(E3031);
+                }
+                selector.wakeup();
+            }
+
+            @Override
+            public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
+                    StreamHandlerChain chain) throws WebSocketException {
+                if (!upstreamQueue.offer(buffer)) {
+                    throw new WebSocketException(E3030);
+                }
+                selector.wakeup();
+            }
+        });
+
+        if (this.useSsl) {
+            this.sslHandshake = new SSLHandshake(this.endpointAddress, this);
+            this.pipeline.addStreamHandler(new PacketDumpStreamHandler());
+            this.pipeline
+                    .addStreamHandler(new SSLStreamHandler(this.sslHandshake, this.bufferSize));
+        }
+
+        // orverriding initilize method by subclass
+        initializePipeline(pipeline);
+    }
+
+    /**
+     * Initialize pipeline.
+     *
+     * @param pipeline the pipeline
+     * @throws WebSocketException the web socket exception
+     */
+    protected void initializePipeline(WebSocketPipeline pipeline) throws WebSocketException {
+        // for debug
+        this.pipeline.addStreamHandler(new PacketDumpStreamHandler());
+        this.pipeline
+                .addStreamHandler(new WebSocketStreamHandler(getHandshake(), getFrameParser()));
+    }
+
+    /**
+     * Initialize properties.
+     *
+     * @throws WebSocketException the web socket exception
+     */
+    protected void initializeProperties() throws WebSocketException {
+        this.bufferSize = Integer.getInteger("websocket.bufferSize", 0x7FFF);
+        int upstreamQueueSize = Integer.getInteger("websocket.upstreamQueueSize", 500);
+        this.upstreamQueue = new LinkedBlockingQueue<ByteBuffer>(upstreamQueueSize);
+        this.downstreamBuffer = ByteBuffer.allocate(this.bufferSize);
+        this.upstreamBuffer = ByteBuffer.allocate(this.bufferSize);
+        packetDumpMode = Integer.getInteger("websocket.packatdump", 0);
+        this.requestHeader = new HttpHeader();
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#isBlockingMode()
+     */
+    @Override
+    public boolean isBlockingMode() {
+        return blockingMode;
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#isConnected()
+     */
+    @Override
+    public boolean isConnected() {
+        return state.isConnected();
+    }
+
+    /**
+     * New frame parser instance.
+     *
+     * @return the frame parser
+     */
+    abstract protected FrameParser newFrameParserInstance();
+
+    /**
+     * New handshake instance.
+     *
+     * @return the handshake
+     */
+    abstract protected Handshake newHandshakeInstance();
+
+    /**
+     * Parses the url.
+     *
+     * @param urlStr the url str
+     * @throws WebSocketException the web socket exception
+     */
+    private void parseUrl(String urlStr) throws WebSocketException {
+        try {
+            URI uri = new URI(urlStr);
+            if (!(uri.getScheme().equals("ws") || uri.getScheme().equals("wss"))) {
+                throw new WebSocketException(E3007, uri.toString());
+            }
+            if (uri.getScheme().equals("wss")) {
+                useSsl = true;
+            }
+            path = (uri.getPath().equals("") ? "/" : uri.getPath())
+                    + (uri.getQuery() != null ? "?" + uri.getQuery() : "");
+            int port = uri.getPort();
+            if (port < 0) {
+                if (uri.getScheme().equals("ws")) {
+                    port = 80;
+                } else if (uri.getScheme().equals("wss")) {
+                    port = 443;
+                    useSsl = true;
+                } else {
+                    throw new WebSocketException(E3008, uri.toString());
+                }
+            }
+            endpointAddress = new InetSocketAddress(uri.getHost(), port);
+            location = uri;
+        } catch (URISyntaxException e) {
+            throw new WebSocketException(E3009, e);
+        }
+    }
+
+    /**
+     * Process buffer.
+     *
+     * @param buffer the buffer
+     * @throws WebSocketException the web socket exception
+     */
+    protected void processBuffer(ByteBuffer buffer) throws WebSocketException {
+        while (buffer.hasRemaining()) {
+            pipeline.sendDownstream(this, buffer, null);
+        }
+        return;
+    }
+
+    /**
+     * Read.
+     *
+     * @param socket the socket
+     * @param buffer the buffer
+     * @throws WebSocketException the web socket exception
+     */
+    protected void read(SocketChannel socket, ByteBuffer buffer) throws WebSocketException {
+        try {
+            buffer.clear();
+            if (socket.read(buffer) < 0) {
+                throw new WebSocketException(E3020);
+            }
+            buffer.flip();
+        } catch (IOException ioe) {
+            throw new WebSocketException(E3021, ioe);
+        }
+    }
+
+    @Override
+    public void send(byte[] bytes) throws WebSocketException {
+        send(createFrame(bytes));
+    }
+
+    @Override
+    public void send(ByteBuffer buffer) throws WebSocketException {
+        send(createFrame(buffer));
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#send(jp.a840.websocket.frame.Frame)
+     */
+    @Override
+    public void send(Frame frame) throws WebSocketException {
+        if (!isConnected()) {
+            throw new WebSocketException(E3010);
+        }
+        pipeline.sendUpstream(this, null, frame);
+    }
+
+    /**
+     * Send.
+     *
+     * @param obj the obj
+     * @throws WebSocketException the web socket exception
+     */
+    public void send(Object obj) throws WebSocketException {
+        send(createFrame(obj));
+    }
+
+    @Override
+    public void send(String str) throws WebSocketException {
+        send(createFrame(str));
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#setBlockingMode(boolean)
+     */
+    @Override
+    public void setBlockingMode(boolean blockingMode) {
+        this.blockingMode = blockingMode;
     }
 
     /**
@@ -1007,6 +1032,14 @@ abstract public class WebSocketBase implements WebSocket {
         this.connectionReadTimeout = connectionReadTimeout * 1000;
     }
 
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.WebSocket#setConnectionTimeout(int)
+     */
+    @Override
+    public void setConnectionTimeout(int connectionTimeout) {
+        this.connectionTimeout = connectionTimeout * 1000;
+    }
+
     /**
      * Sets the origin.
      *
@@ -1016,22 +1049,6 @@ abstract public class WebSocketBase implements WebSocket {
         this.origin = origin;
     }
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.WebSocket#getBufferSize()
-     */
-    public int getBufferSize() {
-        return bufferSize;
-    }
-
-    /**
-     * Gets the packet dump mode.
-     *
-     * @return the packet dump mode
-     */
-    public int getPacketDumpMode() {
-        return this.packetDumpMode;
-    }
-
     /**
      * Sets the packet dump mode.
      *
@@ -1039,6 +1056,40 @@ abstract public class WebSocketBase implements WebSocket {
      */
     public void setPacketDumpMode(int packetDumpMode) {
         this.packetDumpMode = packetDumpMode;
+    }
+
+    /**
+     * Sets the server protocols.
+     *
+     * @param serverProtocols the new server protocols
+     */
+    public void setServerProtocols(String[] serverProtocols) {
+        this.serverProtocols = serverProtocols;
+    }
+
+    /**
+     * State.
+     *
+     * @return the state
+     */
+    protected State state() {
+        return state;
+    }
+
+    /**
+     * Transition to.
+     *
+     * @param to the to
+     * @return the state
+     */
+    protected State transitionTo(State to) {
+        if (state.canTransitionTo(to)) {
+            State old = state;
+            state = to;
+            return old;
+        } else {
+            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
+        }
     }
 
 }

@@ -47,36 +47,36 @@ public class RouteEntry extends TaobaoObject {
         return this.destinationCidrBlock;
     }
 
-    public void setDestinationCidrBlock(String destinationCidrBlock) {
-        this.destinationCidrBlock = destinationCidrBlock;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
     }
 
     public String getRouteTableId() {
         return this.routeTableId;
     }
 
-    public void setRouteTableId(String routeTableId) {
-        this.routeTableId = routeTableId;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setDestinationCidrBlock(String destinationCidrBlock) {
+        this.destinationCidrBlock = destinationCidrBlock;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setRouteTableId(String routeTableId) {
+        this.routeTableId = routeTableId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setType(String type) {

@@ -37,20 +37,20 @@ public class KfcSearchResult extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getLevel() {
         return this.level;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
     public Boolean getMatched() {
         return this.matched;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public void setMatched(Boolean matched) {

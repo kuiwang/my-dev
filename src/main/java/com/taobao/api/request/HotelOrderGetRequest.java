@@ -17,10 +17,6 @@ public class HotelOrderGetRequest implements TaobaoRequest<HotelOrderGetResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否需要返回该订单的入住人列表。可选值：true，false。
      */
@@ -41,50 +37,42 @@ public class HotelOrderGetRequest implements TaobaoRequest<HotelOrderGetResponse
      */
     private Long tid;
 
-    public void setNeedGuest(Boolean needGuest) {
-        this.needGuest = needGuest;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.order.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getNeedGuest() {
         return this.needGuest;
     }
 
-    public void setNeedMessage(Boolean needMessage) {
-        this.needMessage = needMessage;
-    }
-
     public Boolean getNeedMessage() {
         return this.needMessage;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Class<HotelOrderGetResponse> getResponseClass() {
+        return HotelOrderGetResponse.class;
     }
 
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.order.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("need_guest", this.needGuest);
@@ -97,6 +85,16 @@ public class HotelOrderGetRequest implements TaobaoRequest<HotelOrderGetResponse
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -104,14 +102,24 @@ public class HotelOrderGetRequest implements TaobaoRequest<HotelOrderGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelOrderGetResponse> getResponseClass() {
-        return HotelOrderGetResponse.class;
+    public void setNeedGuest(Boolean needGuest) {
+        this.needGuest = needGuest;
     }
 
-    public void check() throws ApiRuleException {
+    public void setNeedMessage(Boolean needMessage) {
+        this.needMessage = needMessage;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

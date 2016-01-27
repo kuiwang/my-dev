@@ -18,12 +18,6 @@ import com.taobao.api.response.LogisticsOrdertracePushResponse;
 public class LogisticsOrdertracePushRequest implements
         TaobaoRequest<LogisticsOrdertracePushResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流公司名称<br />
      * 支持最大长度为：20<br />
@@ -44,6 +38,8 @@ public class LogisticsOrdertracePushRequest implements
      * 支持的最大列表长度为：100
      */
     private String facilityName;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 快递单号。各个快递公司的运单号格式不同。
@@ -90,98 +86,82 @@ public class LogisticsOrdertracePushRequest implements
      */
     private String operatorName;
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(companyName, "companyName");
+        RequestCheckUtils.checkMaxLength(companyName, 20, "companyName");
+        RequestCheckUtils.checkMaxLength(currentCity, 20, "currentCity");
+        RequestCheckUtils.checkMaxLength(facilityName, 100, "facilityName");
+        RequestCheckUtils.checkNotEmpty(mailNo, "mailNo");
+        RequestCheckUtils.checkMaxLength(nextCity, 20, "nextCity");
+        RequestCheckUtils.checkMaxLength(nodeDescription, 20, "nodeDescription");
+        RequestCheckUtils.checkNotEmpty(occureTime, "occureTime");
+        RequestCheckUtils.checkNotEmpty(operateDetail, "operateDetail");
+        RequestCheckUtils.checkMaxLength(operateDetail, 200, "operateDetail");
+        RequestCheckUtils.checkMaxLength(operatorContact, 20, "operatorContact");
+        RequestCheckUtils.checkMaxLength(operatorName, 20, "operatorName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.ordertrace.push";
     }
 
     public String getCompanyName() {
         return this.companyName;
     }
 
-    public void setCurrentCity(String currentCity) {
-        this.currentCity = currentCity;
-    }
-
     public String getCurrentCity() {
         return this.currentCity;
-    }
-
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
     }
 
     public String getFacilityName() {
         return this.facilityName;
     }
 
-    public void setMailNo(String mailNo) {
-        this.mailNo = mailNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMailNo() {
         return this.mailNo;
     }
 
-    public void setNextCity(String nextCity) {
-        this.nextCity = nextCity;
-    }
-
     public String getNextCity() {
         return this.nextCity;
-    }
-
-    public void setNodeDescription(String nodeDescription) {
-        this.nodeDescription = nodeDescription;
     }
 
     public String getNodeDescription() {
         return this.nodeDescription;
     }
 
-    public void setOccureTime(Date occureTime) {
-        this.occureTime = occureTime;
-    }
-
     public Date getOccureTime() {
         return this.occureTime;
-    }
-
-    public void setOperateDetail(String operateDetail) {
-        this.operateDetail = operateDetail;
     }
 
     public String getOperateDetail() {
         return this.operateDetail;
     }
 
-    public void setOperatorContact(String operatorContact) {
-        this.operatorContact = operatorContact;
-    }
-
     public String getOperatorContact() {
         return this.operatorContact;
-    }
-
-    public void setOperatorName(String operatorName) {
-        this.operatorName = operatorName;
     }
 
     public String getOperatorName() {
         return this.operatorName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<LogisticsOrdertracePushResponse> getResponseClass() {
+        return LogisticsOrdertracePushResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.ordertrace.push";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("company_name", this.companyName);
@@ -200,6 +180,12 @@ public class LogisticsOrdertracePushRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -207,26 +193,48 @@ public class LogisticsOrdertracePushRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsOrdertracePushResponse> getResponseClass() {
-        return LogisticsOrdertracePushResponse.class;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(companyName, "companyName");
-        RequestCheckUtils.checkMaxLength(companyName, 20, "companyName");
-        RequestCheckUtils.checkMaxLength(currentCity, 20, "currentCity");
-        RequestCheckUtils.checkMaxLength(facilityName, 100, "facilityName");
-        RequestCheckUtils.checkNotEmpty(mailNo, "mailNo");
-        RequestCheckUtils.checkMaxLength(nextCity, 20, "nextCity");
-        RequestCheckUtils.checkMaxLength(nodeDescription, 20, "nodeDescription");
-        RequestCheckUtils.checkNotEmpty(occureTime, "occureTime");
-        RequestCheckUtils.checkNotEmpty(operateDetail, "operateDetail");
-        RequestCheckUtils.checkMaxLength(operateDetail, 200, "operateDetail");
-        RequestCheckUtils.checkMaxLength(operatorContact, 20, "operatorContact");
-        RequestCheckUtils.checkMaxLength(operatorName, 20, "operatorName");
+    public void setCurrentCity(String currentCity) {
+        this.currentCity = currentCity;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
+    }
+
+    public void setMailNo(String mailNo) {
+        this.mailNo = mailNo;
+    }
+
+    public void setNextCity(String nextCity) {
+        this.nextCity = nextCity;
+    }
+
+    public void setNodeDescription(String nodeDescription) {
+        this.nodeDescription = nodeDescription;
+    }
+
+    public void setOccureTime(Date occureTime) {
+        this.occureTime = occureTime;
+    }
+
+    public void setOperateDetail(String operateDetail) {
+        this.operateDetail = operateDetail;
+    }
+
+    public void setOperatorContact(String operatorContact) {
+        this.operatorContact = operatorContact;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

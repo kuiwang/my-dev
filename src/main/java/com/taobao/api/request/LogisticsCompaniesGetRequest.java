@@ -16,12 +16,6 @@ import com.taobao.api.response.LogisticsCompaniesGetResponse;
  */
 public class LogisticsCompaniesGetRequest implements TaobaoRequest<LogisticsCompaniesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表。可选值:LogisticCompany 结构中的所有字段;多个字段间用","逗号隔开.
      * 如:id,code,name,reg_mail_no <br>
@@ -32,6 +26,8 @@ public class LogisticsCompaniesGetRequest implements TaobaoRequest<LogisticsComp
      * reg_mail_no：物流公司对应的运单规则
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否查询推荐物流公司.可选值:true,false.如果不提供此参数,将会返回所有支持电话联系的物流公司.
@@ -45,42 +41,43 @@ public class LogisticsCompaniesGetRequest implements TaobaoRequest<LogisticsComp
      */
     private String orderMode;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.companies.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setIsRecommended(Boolean isRecommended) {
-        this.isRecommended = isRecommended;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsRecommended() {
         return this.isRecommended;
     }
 
-    public void setOrderMode(String orderMode) {
-        this.orderMode = orderMode;
-    }
-
     public String getOrderMode() {
         return this.orderMode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<LogisticsCompaniesGetResponse> getResponseClass() {
+        return LogisticsCompaniesGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.companies.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -92,6 +89,12 @@ public class LogisticsCompaniesGetRequest implements TaobaoRequest<LogisticsComp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -99,15 +102,20 @@ public class LogisticsCompaniesGetRequest implements TaobaoRequest<LogisticsComp
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsCompaniesGetResponse> getResponseClass() {
-        return LogisticsCompaniesGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    public void setIsRecommended(Boolean isRecommended) {
+        this.isRecommended = isRecommended;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderMode(String orderMode) {
+        this.orderMode = orderMode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

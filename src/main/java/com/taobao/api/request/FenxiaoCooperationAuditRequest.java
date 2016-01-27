@@ -17,16 +17,12 @@ import com.taobao.api.response.FenxiaoCooperationAuditResponse;
 public class FenxiaoCooperationAuditRequest implements
         TaobaoRequest<FenxiaoCooperationAuditResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 1:审批通过，审批通过后要加入授权产品线列表； 2:审批拒绝
      */
     private Long auditResult;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 当审批通过时需要指定授权产品线id列表(代销)，如果没传则表示不开通，且经销和代销的授权产品线列表至少传入一种，同时传入则表示都开通。
@@ -48,58 +44,53 @@ public class FenxiaoCooperationAuditRequest implements
      */
     private Long requisitionId;
 
-    public void setAuditResult(Long auditResult) {
-        this.auditResult = auditResult;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auditResult, "auditResult");
+        RequestCheckUtils.checkNotEmpty(remark, "remark");
+        RequestCheckUtils.checkNotEmpty(requisitionId, "requisitionId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.cooperation.audit";
     }
 
     public Long getAuditResult() {
         return this.auditResult;
     }
 
-    public void setProductLineListAgent(String productLineListAgent) {
-        this.productLineListAgent = productLineListAgent;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getProductLineListAgent() {
         return this.productLineListAgent;
     }
 
-    public void setProductLineListDealer(String productLineListDealer) {
-        this.productLineListDealer = productLineListDealer;
-    }
-
     public String getProductLineListDealer() {
         return this.productLineListDealer;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setRequisitionId(Long requisitionId) {
-        this.requisitionId = requisitionId;
-    }
-
     public Long getRequisitionId() {
         return this.requisitionId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoCooperationAuditResponse> getResponseClass() {
+        return FenxiaoCooperationAuditResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.cooperation.audit";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("audit_result", this.auditResult);
@@ -113,6 +104,12 @@ public class FenxiaoCooperationAuditRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,17 +117,28 @@ public class FenxiaoCooperationAuditRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoCooperationAuditResponse> getResponseClass() {
-        return FenxiaoCooperationAuditResponse.class;
+    public void setAuditResult(Long auditResult) {
+        this.auditResult = auditResult;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auditResult, "auditResult");
-        RequestCheckUtils.checkNotEmpty(remark, "remark");
-        RequestCheckUtils.checkNotEmpty(requisitionId, "requisitionId");
+    public void setProductLineListAgent(String productLineListAgent) {
+        this.productLineListAgent = productLineListAgent;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProductLineListDealer(String productLineListDealer) {
+        this.productLineListDealer = productLineListDealer;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setRequisitionId(Long requisitionId) {
+        this.requisitionId = requisitionId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

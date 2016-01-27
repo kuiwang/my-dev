@@ -24,12 +24,12 @@ public class LogisticsAddressReachablebatchGetResponse extends TaobaoResponse {
     @ApiField("address_reachable_top_result")
     private List<AddressReachableTopResult> reachableResults;
 
-    public void setReachableResults(List<AddressReachableTopResult> reachableResults) {
-        this.reachableResults = reachableResults;
-    }
-
     public List<AddressReachableTopResult> getReachableResults() {
         return this.reachableResults;
+    }
+
+    public void setReachableResults(List<AddressReachableTopResult> reachableResults) {
+        this.reachableResults = reachableResults;
     }
 
 }

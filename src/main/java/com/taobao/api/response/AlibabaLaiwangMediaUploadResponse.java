@@ -25,20 +25,20 @@ public class AlibabaLaiwangMediaUploadResponse extends TaobaoResponse {
     @ApiField("url")
     private String url;
 
-    public void setMediaid(String mediaid) {
-        this.mediaid = mediaid;
-    }
-
     public String getMediaid() {
         return this.mediaid;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getUrl() {
         return this.url;
+    }
+
+    public void setMediaid(String mediaid) {
+        this.mediaid = mediaid;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

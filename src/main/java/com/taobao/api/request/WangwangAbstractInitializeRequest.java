@@ -16,37 +16,41 @@ import com.taobao.api.response.WangwangAbstractInitializeResponse;
 public class WangwangAbstractInitializeRequest implements
         TaobaoRequest<WangwangAbstractInitializeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入参数的字符集
      */
     private String charset;
 
-    public void setCharset(String charset) {
-        this.charset = charset;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.abstract.initialize";
     }
 
     public String getCharset() {
         return this.charset;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WangwangAbstractInitializeResponse> getResponseClass() {
+        return WangwangAbstractInitializeResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.wangwang.abstract.initialize";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charset", this.charset);
@@ -56,6 +60,12 @@ public class WangwangAbstractInitializeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,14 +73,12 @@ public class WangwangAbstractInitializeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangAbstractInitializeResponse> getResponseClass() {
-        return WangwangAbstractInitializeResponse.class;
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

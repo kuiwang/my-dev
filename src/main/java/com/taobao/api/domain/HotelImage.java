@@ -29,12 +29,12 @@ public class HotelImage extends TaobaoObject {
         return this.hid;
     }
 
-    public void setHid(Long hid) {
-        this.hid = hid;
-    }
-
     public String getPic() {
         return this.pic;
+    }
+
+    public void setHid(Long hid) {
+        this.hid = hid;
     }
 
     public void setPic(String pic) {

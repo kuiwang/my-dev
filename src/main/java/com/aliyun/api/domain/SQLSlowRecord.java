@@ -65,60 +65,60 @@ public class SQLSlowRecord extends TaobaoObject {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getExecutionStartTime() {
         return this.executionStartTime;
-    }
-
-    public void setExecutionStartTime(String executionStartTime) {
-        this.executionStartTime = executionStartTime;
     }
 
     public String getHostAddress() {
         return this.hostAddress;
     }
 
-    public void setHostAddress(String hostAddress) {
-        this.hostAddress = hostAddress;
-    }
-
     public Long getLockTimes() {
         return this.lockTimes;
-    }
-
-    public void setLockTimes(Long lockTimes) {
-        this.lockTimes = lockTimes;
     }
 
     public Long getParseRowCounts() {
         return this.parseRowCounts;
     }
 
-    public void setParseRowCounts(Long parseRowCounts) {
-        this.parseRowCounts = parseRowCounts;
-    }
-
     public Long getQueryTimes() {
         return this.queryTimes;
-    }
-
-    public void setQueryTimes(Long queryTimes) {
-        this.queryTimes = queryTimes;
     }
 
     public Long getReturnRowCounts() {
         return this.returnRowCounts;
     }
 
-    public void setReturnRowCounts(Long returnRowCounts) {
-        this.returnRowCounts = returnRowCounts;
-    }
-
     public String getsQLText() {
         return this.sQLText;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setExecutionStartTime(String executionStartTime) {
+        this.executionStartTime = executionStartTime;
+    }
+
+    public void setHostAddress(String hostAddress) {
+        this.hostAddress = hostAddress;
+    }
+
+    public void setLockTimes(Long lockTimes) {
+        this.lockTimes = lockTimes;
+    }
+
+    public void setParseRowCounts(Long parseRowCounts) {
+        this.parseRowCounts = parseRowCounts;
+    }
+
+    public void setQueryTimes(Long queryTimes) {
+        this.queryTimes = queryTimes;
+    }
+
+    public void setReturnRowCounts(Long returnRowCounts) {
+        this.returnRowCounts = returnRowCounts;
     }
 
     public void setsQLText(String sQLText) {

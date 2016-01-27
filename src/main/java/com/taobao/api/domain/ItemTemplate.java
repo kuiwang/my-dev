@@ -35,20 +35,20 @@ public class ItemTemplate extends TaobaoObject {
         return this.shopType;
     }
 
-    public void setShopType(Long shopType) {
-        this.shopType = shopType;
-    }
-
     public Long getTemplateId() {
         return this.templateId;
     }
 
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
-    }
-
     public String getTemplateName() {
         return this.templateName;
+    }
+
+    public void setShopType(Long shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
     }
 
     public void setTemplateName(String templateName) {

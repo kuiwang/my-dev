@@ -18,10 +18,6 @@ public class ItemCspuMoveRequest implements TaobaoRequest<ItemCspuMoveResponse> 
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品id，必填
      */
@@ -44,50 +40,47 @@ public class ItemCspuMoveRequest implements TaobaoRequest<ItemCspuMoveResponse> 
      */
     private Long spuId;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.cspu.move";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setSkuCspuMapping(String skuCspuMapping) {
-        this.skuCspuMapping = skuCspuMapping;
+    @Override
+    public Class<ItemCspuMoveResponse> getResponseClass() {
+        return ItemCspuMoveResponse.class;
     }
 
     public String getSkuCspuMapping() {
         return this.skuCspuMapping;
     }
 
-    public void setSkuMealpropertyMapping(String skuMealpropertyMapping) {
-        this.skuMealpropertyMapping = skuMealpropertyMapping;
-    }
-
     public String getSkuMealpropertyMapping() {
         return this.skuMealpropertyMapping;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
     }
 
     public Long getSpuId() {
         return this.spuId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.cspu.move";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -100,6 +93,12 @@ public class ItemCspuMoveRequest implements TaobaoRequest<ItemCspuMoveResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,15 +106,24 @@ public class ItemCspuMoveRequest implements TaobaoRequest<ItemCspuMoveResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemCspuMoveResponse> getResponseClass() {
-        return ItemCspuMoveResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setSkuCspuMapping(String skuCspuMapping) {
+        this.skuCspuMapping = skuCspuMapping;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSkuMealpropertyMapping(String skuMealpropertyMapping) {
+        this.skuMealpropertyMapping = skuMealpropertyMapping;
+    }
+
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

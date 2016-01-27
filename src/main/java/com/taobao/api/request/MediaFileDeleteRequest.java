@@ -16,12 +16,6 @@ import com.taobao.api.response.MediaFileDeleteResponse;
  */
 public class MediaFileDeleteRequest implements TaobaoRequest<MediaFileDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 接入多媒体平台的业务code 每个应用有一个特有的业务code
      */
@@ -32,34 +26,43 @@ public class MediaFileDeleteRequest implements TaobaoRequest<MediaFileDeleteResp
      */
     private String fileIds;
 
-    public void setBizCode(String bizCode) {
-        this.bizCode = bizCode;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
+        RequestCheckUtils.checkNotEmpty(fileIds, "fileIds");
+        RequestCheckUtils.checkMaxListSize(fileIds, 50, "fileIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.media.file.delete";
     }
 
     public String getBizCode() {
         return this.bizCode;
     }
 
-    public void setFileIds(String fileIds) {
-        this.fileIds = fileIds;
-    }
-
     public String getFileIds() {
         return this.fileIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<MediaFileDeleteResponse> getResponseClass() {
+        return MediaFileDeleteResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.media.file.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_code", this.bizCode);
@@ -70,6 +73,12 @@ public class MediaFileDeleteRequest implements TaobaoRequest<MediaFileDeleteResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,17 +86,16 @@ public class MediaFileDeleteRequest implements TaobaoRequest<MediaFileDeleteResp
         this.udfParams.put(key, value);
     }
 
-    public Class<MediaFileDeleteResponse> getResponseClass() {
-        return MediaFileDeleteResponse.class;
+    public void setBizCode(String bizCode) {
+        this.bizCode = bizCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
-        RequestCheckUtils.checkNotEmpty(fileIds, "fileIds");
-        RequestCheckUtils.checkMaxListSize(fileIds, 50, "fileIds");
+    public void setFileIds(String fileIds) {
+        this.fileIds = fileIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

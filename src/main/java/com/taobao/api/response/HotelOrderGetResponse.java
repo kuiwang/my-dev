@@ -20,12 +20,12 @@ public class HotelOrderGetResponse extends TaobaoResponse {
     @ApiField("hotel_order")
     private HotelOrder hotelOrder;
 
-    public void setHotelOrder(HotelOrder hotelOrder) {
-        this.hotelOrder = hotelOrder;
-    }
-
     public HotelOrder getHotelOrder() {
         return this.hotelOrder;
+    }
+
+    public void setHotelOrder(HotelOrder hotelOrder) {
+        this.hotelOrder = hotelOrder;
     }
 
 }

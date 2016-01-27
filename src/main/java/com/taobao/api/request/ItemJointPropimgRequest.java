@@ -18,10 +18,6 @@ public class ItemJointPropimgRequest implements TaobaoRequest<ItemJointPropimgRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 属性图片ID。如果是新增不需要填写
      */
@@ -48,58 +44,54 @@ public class ItemJointPropimgRequest implements TaobaoRequest<ItemJointPropimgRe
      */
     private String properties;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+        RequestCheckUtils.checkNotEmpty(picPath, "picPath");
+        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.joint.propimg";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
     }
 
     public String getPicPath() {
         return this.picPath;
     }
 
-    public void setPosition(Long position) {
-        this.position = position;
-    }
-
     public Long getPosition() {
         return this.position;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemJointPropimgResponse> getResponseClass() {
+        return ItemJointPropimgResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.joint.propimg";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -113,6 +105,12 @@ public class ItemJointPropimgRequest implements TaobaoRequest<ItemJointPropimgRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,18 +118,28 @@ public class ItemJointPropimgRequest implements TaobaoRequest<ItemJointPropimgRe
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemJointPropimgResponse> getResponseClass() {
-        return ItemJointPropimgResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
-        RequestCheckUtils.checkNotEmpty(picPath, "picPath");
-        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPosition(Long position) {
+        this.position = position;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

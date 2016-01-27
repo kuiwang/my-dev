@@ -67,60 +67,60 @@ public class Campaign extends TaobaoObject {
         return this.campaignId;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
     public String getSettleReason() {
         return this.settleReason;
-    }
-
-    public void setSettleReason(String settleReason) {
-        this.settleReason = settleReason;
     }
 
     public String getSettleStatus() {
         return this.settleStatus;
     }
 
-    public void setSettleStatus(String settleStatus) {
-        this.settleStatus = settleStatus;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    public void setSettleReason(String settleReason) {
+        this.settleReason = settleReason;
+    }
+
+    public void setSettleStatus(String settleStatus) {
+        this.settleStatus = settleStatus;
     }
 
     public void setTitle(String title) {

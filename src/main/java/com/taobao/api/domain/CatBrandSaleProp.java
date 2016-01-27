@@ -47,36 +47,36 @@ public class CatBrandSaleProp extends TaobaoObject {
         return this.brandId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
     public Long getCatId() {
         return this.catId;
-    }
-
-    public void setCatId(Long catId) {
-        this.catId = catId;
     }
 
     public Long getDefMarketPropValue() {
         return this.defMarketPropValue;
     }
 
-    public void setDefMarketPropValue(Long defMarketPropValue) {
-        this.defMarketPropValue = defMarketPropValue;
-    }
-
     public Boolean getIsNotSpec() {
         return this.isNotSpec;
     }
 
-    public void setIsNotSpec(Boolean isNotSpec) {
-        this.isNotSpec = isNotSpec;
-    }
-
     public Long getPropertyId() {
         return this.propertyId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
+    }
+
+    public void setDefMarketPropValue(Long defMarketPropValue) {
+        this.defMarketPropValue = defMarketPropValue;
+    }
+
+    public void setIsNotSpec(Boolean isNotSpec) {
+        this.isNotSpec = isNotSpec;
     }
 
     public void setPropertyId(Long propertyId) {

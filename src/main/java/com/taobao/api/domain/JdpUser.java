@@ -35,20 +35,20 @@ public class JdpUser extends TaobaoObject {
         return this.rdsName;
     }
 
-    public void setRdsName(String rdsName) {
-        this.rdsName = rdsName;
-    }
-
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setRdsName(String rdsName) {
+        this.rdsName = rdsName;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public void setUserNick(String userNick) {

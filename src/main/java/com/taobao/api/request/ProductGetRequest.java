@@ -16,12 +16,6 @@ import com.taobao.api.response.ProductGetResponse;
  */
 public class ProductGetRequest implements TaobaoRequest<ProductGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品类目id.调用taobao.itemcats.get获取;必须是叶子类目id,如果没有传product_id,
      * 那么cid和props必须要传.
@@ -39,6 +33,8 @@ public class ProductGetRequest implements TaobaoRequest<ProductGetResponse> {
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 市场ID，1为取C2C市场的产品信息， 2为取B2C市场的产品信息。 不填写此值则默认取C2C的产品信息。
      */
@@ -55,66 +51,55 @@ public class ProductGetRequest implements TaobaoRequest<ProductGetResponse> {
      */
     private String props;
 
-    public void setCid(Long cid) {
-        this.cid = cid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.product.get";
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCustomerProps(String customerProps) {
-        this.customerProps = customerProps;
-    }
-
     public String getCustomerProps() {
         return this.customerProps;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMarketId() {
         return this.marketId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setProps(String props) {
-        this.props = props;
     }
 
     public String getProps() {
         return this.props;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ProductGetResponse> getResponseClass() {
+        return ProductGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.product.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cid", this.cid);
@@ -129,6 +114,12 @@ public class ProductGetRequest implements TaobaoRequest<ProductGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -136,15 +127,32 @@ public class ProductGetRequest implements TaobaoRequest<ProductGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<ProductGetResponse> getResponseClass() {
-        return ProductGetResponse.class;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    public void setCustomerProps(String customerProps) {
+        this.customerProps = customerProps;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

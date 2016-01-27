@@ -16,50 +16,52 @@ import com.taobao.api.response.VasSubscribeGetResponse;
  */
 public class VasSubscribeGetRequest implements TaobaoRequest<VasSubscribeGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品编码，从合作伙伴后台（my.open.taobao.com）-收费管理-收费项目列表 能够获得该应用的商品代码
      */
     private String articleCode;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 淘宝会员名
      */
     private String nick;
 
-    public void setArticleCode(String articleCode) {
-        this.articleCode = articleCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.vas.subscribe.get";
     }
 
     public String getArticleCode() {
         return this.articleCode;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<VasSubscribeGetResponse> getResponseClass() {
+        return VasSubscribeGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.vas.subscribe.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("article_code", this.articleCode);
@@ -70,6 +72,12 @@ public class VasSubscribeGetRequest implements TaobaoRequest<VasSubscribeGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class VasSubscribeGetRequest implements TaobaoRequest<VasSubscribeGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<VasSubscribeGetResponse> getResponseClass() {
-        return VasSubscribeGetResponse.class;
+    public void setArticleCode(String articleCode) {
+        this.articleCode = articleCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

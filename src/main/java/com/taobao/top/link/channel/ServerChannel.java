@@ -5,15 +5,15 @@ import com.taobao.top.link.LoggerFactory;
 
 public abstract class ServerChannel {
 
-    protected LoggerFactory loggerFactory;
+    protected ChannelHandler channelHandler;
 
     protected Logger logger;
 
-    protected ChannelHandler channelHandler;
-
-    protected int port;
+    protected LoggerFactory loggerFactory;
 
     protected int maxIdleTimeSeconds = 0;
+
+    protected int port;
 
     public ServerChannel(LoggerFactory factory, int port) {
         this.loggerFactory = factory;
@@ -21,15 +21,15 @@ public abstract class ServerChannel {
         this.port = port;
     }
 
-    public void setMaxIdleTimeSeconds(int value) {
-        this.maxIdleTimeSeconds = value;
-    }
+    public abstract void run();
 
     public void setChannelHandler(ChannelHandler channelHandler) {
         this.channelHandler = channelHandler;
     }
 
-    public abstract void run();
+    public void setMaxIdleTimeSeconds(int value) {
+        this.maxIdleTimeSeconds = value;
+    }
 
     public abstract void stop();
 }

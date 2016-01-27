@@ -24,12 +24,12 @@ public class PromotionMealGetResponse extends TaobaoResponse {
     @ApiField("meal")
     private List<Meal> mealList;
 
-    public void setMealList(List<Meal> mealList) {
-        this.mealList = mealList;
-    }
-
     public List<Meal> getMealList() {
         return this.mealList;
+    }
+
+    public void setMealList(List<Meal> mealList) {
+        this.mealList = mealList;
     }
 
 }

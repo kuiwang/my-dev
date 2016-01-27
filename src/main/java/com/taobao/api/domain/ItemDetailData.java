@@ -77,76 +77,76 @@ public class ItemDetailData extends TaobaoObject {
         return this.deliveryInfo;
     }
 
-    public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
-        this.deliveryInfo = deliveryInfo;
-    }
-
     public DescInfo getDescInfo() {
         return this.descInfo;
-    }
-
-    public void setDescInfo(DescInfo descInfo) {
-        this.descInfo = descInfo;
     }
 
     public ItemInfo getItemInfo() {
         return this.itemInfo;
     }
 
-    public void setItemInfo(ItemInfo itemInfo) {
-        this.itemInfo = itemInfo;
-    }
-
     public MobileDescInfo getMobileDescInfo() {
         return this.mobileDescInfo;
-    }
-
-    public void setMobileDescInfo(MobileDescInfo mobileDescInfo) {
-        this.mobileDescInfo = mobileDescInfo;
     }
 
     public DetailPriceInfo getPriceInfo() {
         return this.priceInfo;
     }
 
-    public void setPriceInfo(DetailPriceInfo priceInfo) {
-        this.priceInfo = priceInfo;
-    }
-
     public RateInfo getRateInfo() {
         return this.rateInfo;
-    }
-
-    public void setRateInfo(RateInfo rateInfo) {
-        this.rateInfo = rateInfo;
     }
 
     public SellerInfo getSellerInfo() {
         return this.sellerInfo;
     }
 
-    public void setSellerInfo(SellerInfo sellerInfo) {
-        this.sellerInfo = sellerInfo;
-    }
-
     public SkuInfo getSkuInfo() {
         return this.skuInfo;
-    }
-
-    public void setSkuInfo(SkuInfo skuInfo) {
-        this.skuInfo = skuInfo;
     }
 
     public StockInfo getStockInfo() {
         return this.stockInfo;
     }
 
-    public void setStockInfo(StockInfo stockInfo) {
-        this.stockInfo = stockInfo;
-    }
-
     public RetailStoreInfo getStoreInfo() {
         return this.storeInfo;
+    }
+
+    public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
+        this.deliveryInfo = deliveryInfo;
+    }
+
+    public void setDescInfo(DescInfo descInfo) {
+        this.descInfo = descInfo;
+    }
+
+    public void setItemInfo(ItemInfo itemInfo) {
+        this.itemInfo = itemInfo;
+    }
+
+    public void setMobileDescInfo(MobileDescInfo mobileDescInfo) {
+        this.mobileDescInfo = mobileDescInfo;
+    }
+
+    public void setPriceInfo(DetailPriceInfo priceInfo) {
+        this.priceInfo = priceInfo;
+    }
+
+    public void setRateInfo(RateInfo rateInfo) {
+        this.rateInfo = rateInfo;
+    }
+
+    public void setSellerInfo(SellerInfo sellerInfo) {
+        this.sellerInfo = sellerInfo;
+    }
+
+    public void setSkuInfo(SkuInfo skuInfo) {
+        this.skuInfo = skuInfo;
+    }
+
+    public void setStockInfo(StockInfo stockInfo) {
+        this.stockInfo = stockInfo;
     }
 
     public void setStoreInfo(RetailStoreInfo storeInfo) {

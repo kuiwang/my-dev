@@ -29,12 +29,12 @@ public class AdviceOnMissPK extends TaobaoObject {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getTableName() {
         return this.tableName;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
     }
 
     public void setTableName(String tableName) {

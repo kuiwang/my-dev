@@ -49,44 +49,44 @@ public class ScitemQueryResponse extends TaobaoResponse {
     @ApiField("total_page")
     private Long totalPage;
 
-    public void setPageIndex(Long pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
     public Long getPageIndex() {
         return this.pageIndex;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setQueryPagination(QueryPagination queryPagination) {
-        this.queryPagination = queryPagination;
-    }
-
     public QueryPagination getQueryPagination() {
         return this.queryPagination;
-    }
-
-    public void setScItemList(List<ScItem> scItemList) {
-        this.scItemList = scItemList;
     }
 
     public List<ScItem> getScItemList() {
         return this.scItemList;
     }
 
-    public void setTotalPage(Long totalPage) {
-        this.totalPage = totalPage;
-    }
-
     public Long getTotalPage() {
         return this.totalPage;
+    }
+
+    public void setPageIndex(Long pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setQueryPagination(QueryPagination queryPagination) {
+        this.queryPagination = queryPagination;
+    }
+
+    public void setScItemList(List<ScItem> scItemList) {
+        this.scItemList = scItemList;
+    }
+
+    public void setTotalPage(Long totalPage) {
+        this.totalPage = totalPage;
     }
 
 }

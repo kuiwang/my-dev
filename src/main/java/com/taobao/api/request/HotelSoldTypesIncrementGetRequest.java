@@ -18,17 +18,13 @@ import com.taobao.api.response.HotelSoldTypesIncrementGetResponse;
 public class HotelSoldTypesIncrementGetRequest implements
         TaobaoRequest<HotelSoldTypesIncrementGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 【不推荐使用，现在总是返回从修改开始时间到目前为止的所有记录，与修改结束时间不再相关】查询修改结束时间，必须大于修改开始时间（
      * 修改时间跨度不能大于1天）。格式：yyyy-MM-dd HH:mm:ss。
      */
     private Date endModified;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页页码。取值范围，大于零的整数，默认值1，即返回第一页的数据。
@@ -45,64 +41,53 @@ public class HotelSoldTypesIncrementGetRequest implements
      */
     private Date startModified;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 【不推荐使用，现在返回结果总会包含总记录数和是否存在下一页】是否使用has_next的分页方式，如果指定true，
      * 则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的字段，效率比总记录数高
      */
     private Boolean useHasNext;
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(startModified, "startModified");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.sold.types.increment.get";
     }
 
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
+    @Override
+    public Class<HotelSoldTypesIncrementGetResponse> getResponseClass() {
+        return HotelSoldTypesIncrementGetResponse.class;
     }
 
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public void setUseHasNext(Boolean useHasNext) {
-        this.useHasNext = useHasNext;
-    }
-
-    public Boolean getUseHasNext() {
-        return this.useHasNext;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.sold.types.increment.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_modified", this.endModified);
@@ -116,6 +101,16 @@ public class HotelSoldTypesIncrementGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Boolean getUseHasNext() {
+        return this.useHasNext;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -123,15 +118,28 @@ public class HotelSoldTypesIncrementGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelSoldTypesIncrementGetResponse> getResponseClass() {
-        return HotelSoldTypesIncrementGetResponse.class;
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(startModified, "startModified");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUseHasNext(Boolean useHasNext) {
+        this.useHasNext = useHasNext;
     }
 }

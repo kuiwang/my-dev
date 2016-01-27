@@ -19,12 +19,12 @@ public class SimbaRptAdgroupkeywordeffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_adgroupkeyword_effect_list")
     private String rptAdgroupkeywordEffectList;
 
-    public void setRptAdgroupkeywordEffectList(String rptAdgroupkeywordEffectList) {
-        this.rptAdgroupkeywordEffectList = rptAdgroupkeywordEffectList;
-    }
-
     public String getRptAdgroupkeywordEffectList() {
         return this.rptAdgroupkeywordEffectList;
+    }
+
+    public void setRptAdgroupkeywordEffectList(String rptAdgroupkeywordEffectList) {
+        this.rptAdgroupkeywordEffectList = rptAdgroupkeywordEffectList;
     }
 
 }

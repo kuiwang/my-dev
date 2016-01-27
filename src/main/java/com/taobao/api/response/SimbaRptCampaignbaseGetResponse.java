@@ -19,12 +19,12 @@ public class SimbaRptCampaignbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_campaign_base_list")
     private String rptCampaignBaseList;
 
-    public void setRptCampaignBaseList(String rptCampaignBaseList) {
-        this.rptCampaignBaseList = rptCampaignBaseList;
-    }
-
     public String getRptCampaignBaseList() {
         return this.rptCampaignBaseList;
+    }
+
+    public void setRptCampaignBaseList(String rptCampaignBaseList) {
+        this.rptCampaignBaseList = rptCampaignBaseList;
     }
 
 }

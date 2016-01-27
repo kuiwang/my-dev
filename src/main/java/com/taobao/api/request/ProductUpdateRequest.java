@@ -18,10 +18,6 @@ import com.taobao.api.response.ProductUpdateResponse;
  */
 public class ProductUpdateRequest implements TaobaoUploadRequest<ProductUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 非关键属性.调用taobao.itemprops.get获取pid,调用taobao.itempropvalues.get获取vid;
      * 格式:pid:vid;pid:vid
@@ -39,6 +35,8 @@ public class ProductUpdateRequest implements TaobaoUploadRequest<ProductUpdateRe
      * 支持的最大列表长度为：25000
      */
     private String extraInfo;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品主图.最大500K,目前仅支持GIF,JPG<br />
@@ -99,132 +97,97 @@ public class ProductUpdateRequest implements TaobaoUploadRequest<ProductUpdateRe
      */
     private String sellPt;
 
-    public void setBinds(String binds) {
-        this.binds = binds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(extraInfo, 25000, "extraInfo");
+        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.product.update";
     }
 
     public String getBinds() {
         return this.binds;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setExtraInfo(String extraInfo) {
-        this.extraInfo = extraInfo;
     }
 
     public String getExtraInfo() {
         return this.extraInfo;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImage() {
         return this.image;
     }
 
-    public void setMajor(Boolean major) {
-        this.major = major;
-    }
-
     public Boolean getMajor() {
         return this.major;
-    }
-
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
     }
 
     public String getMarketId() {
         return this.marketId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setNativeUnkeyprops(String nativeUnkeyprops) {
-        this.nativeUnkeyprops = nativeUnkeyprops;
     }
 
     public String getNativeUnkeyprops() {
         return this.nativeUnkeyprops;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setPackingList(String packingList) {
-        this.packingList = packingList;
     }
 
     public String getPackingList() {
         return this.packingList;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setSaleProps(String saleProps) {
-        this.saleProps = saleProps;
+    @Override
+    public Class<ProductUpdateResponse> getResponseClass() {
+        return ProductUpdateResponse.class;
     }
 
     public String getSaleProps() {
         return this.saleProps;
     }
 
-    public void setSellPt(String sellPt) {
-        this.sellPt = sellPt;
-    }
-
     public String getSellPt() {
         return this.sellPt;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.product.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("binds", this.binds);
@@ -246,6 +209,12 @@ public class ProductUpdateRequest implements TaobaoUploadRequest<ProductUpdateRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -253,24 +222,64 @@ public class ProductUpdateRequest implements TaobaoUploadRequest<ProductUpdateRe
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setBinds(String binds) {
+        this.binds = binds;
     }
 
-    public Class<ProductUpdateResponse> getResponseClass() {
-        return ProductUpdateResponse.class;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(extraInfo, 25000, "extraInfo");
-        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setMajor(Boolean major) {
+        this.major = major;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNativeUnkeyprops(String nativeUnkeyprops) {
+        this.nativeUnkeyprops = nativeUnkeyprops;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPackingList(String packingList) {
+        this.packingList = packingList;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setSaleProps(String saleProps) {
+        this.saleProps = saleProps;
+    }
+
+    public void setSellPt(String sellPt) {
+        this.sellPt = sellPt;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

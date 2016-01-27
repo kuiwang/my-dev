@@ -16,28 +16,12 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class DescribeImagesRequest implements AliyunRequest<DescribeImagesResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 镜像系统类型：i386 | x86_64
      */
     private String architecture;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 镜像ID，可以输入多个，以”,”分割
@@ -55,6 +39,12 @@ public class DescribeImagesRequest implements AliyunRequest<DescribeImagesRespon
      * 阿里云官方提供镜像 self 用户自定义镜像 others 非自己的可用镜像 ？ marketplace 镜像市场提供的镜像
      */
     private String imageOwnerAlias;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * 实例状态列表的页码，起始值为1，默认值为1<br />
@@ -75,110 +65,88 @@ public class DescribeImagesRequest implements AliyunRequest<DescribeImagesRespon
     private String regionId;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * 创建镜像的快照ID
      */
     private String snapshotId;
 
-    public void setArchitecture(String architecture) {
-        this.architecture = architecture;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(pageNumber, 1L, "pageNumber");
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.DescribeImages.2014-05-26";
     }
 
     public String getArchitecture() {
         return this.architecture;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getImageId() {
         return this.imageId;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
     public String getImageName() {
         return this.imageName;
-    }
-
-    public void setImageOwnerAlias(String imageOwnerAlias) {
-        this.imageOwnerAlias = imageOwnerAlias;
     }
 
     public String getImageOwnerAlias() {
         return this.imageOwnerAlias;
     }
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public Long getPageNumber() {
-        return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Long getPageSize() {
-        return this.pageSize;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setSnapshotId(String snapshotId) {
-        this.snapshotId = snapshotId;
-    }
-
-    public String getSnapshotId() {
-        return this.snapshotId;
+    public String getOwnerAccount() {
+        return ownerAccount;
     }
 
     public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    public Long getPageNumber() {
+        return this.pageNumber;
     }
 
-    public String getOwnerAccount() {
-        return ownerAccount;
+    public Long getPageSize() {
+        return this.pageSize;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeImagesResponse> getResponseClass() {
+        return DescribeImagesResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSnapshotId() {
+        return this.snapshotId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.DescribeImages.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -198,6 +166,12 @@ public class DescribeImagesRequest implements AliyunRequest<DescribeImagesRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -205,18 +179,52 @@ public class DescribeImagesRequest implements AliyunRequest<DescribeImagesRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeImagesResponse> getResponseClass() {
-        return DescribeImagesResponse.class;
+    public void setArchitecture(String architecture) {
+        this.architecture = architecture;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(pageNumber, 1L, "pageNumber");
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public void setImageOwnerAlias(String imageOwnerAlias) {
+        this.imageOwnerAlias = imageOwnerAlias;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSnapshotId(String snapshotId) {
+        this.snapshotId = snapshotId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

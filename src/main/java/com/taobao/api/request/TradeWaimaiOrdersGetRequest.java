@@ -18,10 +18,6 @@ public class TradeWaimaiOrdersGetRequest implements TaobaoRequest<TradeWaimaiOrd
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * true 仅有支付宝订单,false 包括所有类型订单(货到付款,支付券等)
      */
@@ -60,74 +56,63 @@ public class TradeWaimaiOrdersGetRequest implements TaobaoRequest<TradeWaimaiOrd
      */
     private Long shopId;
 
-    public void setIsAllOrder(Boolean isAllOrder) {
-        this.isAllOrder = isAllOrder;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(isAllShop, "isAllShop");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.waimai.orders.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsAllOrder() {
         return this.isAllOrder;
     }
 
-    public void setIsAllShop(Boolean isAllShop) {
-        this.isAllShop = isAllShop;
-    }
-
     public Boolean getIsAllShop() {
         return this.isAllShop;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
     }
 
     public String getKeyword() {
         return this.keyword;
     }
 
-    public void setOrderStatus(Long orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public Long getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
+    @Override
+    public Class<TradeWaimaiOrdersGetResponse> getResponseClass() {
+        return TradeWaimaiOrdersGetResponse.class;
     }
 
     public Long getShopId() {
         return this.shopId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.waimai.orders.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_all_order", this.isAllOrder);
@@ -143,6 +128,12 @@ public class TradeWaimaiOrdersGetRequest implements TaobaoRequest<TradeWaimaiOrd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -150,19 +141,36 @@ public class TradeWaimaiOrdersGetRequest implements TaobaoRequest<TradeWaimaiOrd
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeWaimaiOrdersGetResponse> getResponseClass() {
-        return TradeWaimaiOrdersGetResponse.class;
+    public void setIsAllOrder(Boolean isAllOrder) {
+        this.isAllOrder = isAllOrder;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(isAllShop, "isAllShop");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
+    public void setIsAllShop(Boolean isAllShop) {
+        this.isAllShop = isAllShop;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

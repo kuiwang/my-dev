@@ -24,12 +24,12 @@ public class PromotionLimitdiscountDetailGetResponse extends TaobaoResponse {
     @ApiField("limit_discount_detail")
     private List<LimitDiscountDetail> itemDiscountDetailList;
 
-    public void setItemDiscountDetailList(List<LimitDiscountDetail> itemDiscountDetailList) {
-        this.itemDiscountDetailList = itemDiscountDetailList;
-    }
-
     public List<LimitDiscountDetail> getItemDiscountDetailList() {
         return this.itemDiscountDetailList;
+    }
+
+    public void setItemDiscountDetailList(List<LimitDiscountDetail> itemDiscountDetailList) {
+        this.itemDiscountDetailList = itemDiscountDetailList;
     }
 
 }

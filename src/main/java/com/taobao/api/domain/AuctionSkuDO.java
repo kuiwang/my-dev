@@ -75,68 +75,68 @@ public class AuctionSkuDO extends TaobaoObject {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public Long getPrice() {
         return this.price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public List<AuctionPVPairDO> getPvList() {
         return this.pvList;
-    }
-
-    public void setPvList(List<AuctionPVPairDO> pvList) {
-        this.pvList = pvList;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setPvList(List<AuctionPVPairDO> pvList) {
+        this.pvList = pvList;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public void setStatus(Long status) {

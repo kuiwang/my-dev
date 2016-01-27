@@ -30,20 +30,20 @@ public class WlbItemAuthorizationQueryResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setAuthorizationList(List<WlbAuthorization> authorizationList) {
-        this.authorizationList = authorizationList;
-    }
-
     public List<WlbAuthorization> getAuthorizationList() {
         return this.authorizationList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setAuthorizationList(List<WlbAuthorization> authorizationList) {
+        this.authorizationList = authorizationList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

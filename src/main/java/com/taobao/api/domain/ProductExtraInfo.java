@@ -41,28 +41,28 @@ public class ProductExtraInfo extends TaobaoObject {
         return this.fieldKey;
     }
 
-    public void setFieldKey(String fieldKey) {
-        this.fieldKey = fieldKey;
-    }
-
     public String getFieldName() {
         return this.fieldName;
-    }
-
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
     }
 
     public String getFieldValue() {
         return this.fieldValue;
     }
 
-    public void setFieldValue(String fieldValue) {
-        this.fieldValue = fieldValue;
-    }
-
     public Long getProductId() {
         return this.productId;
+    }
+
+    public void setFieldKey(String fieldKey) {
+        this.fieldKey = fieldKey;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public void setFieldValue(String fieldValue) {
+        this.fieldValue = fieldValue;
     }
 
     public void setProductId(Long productId) {

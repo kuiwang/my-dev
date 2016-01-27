@@ -29,12 +29,12 @@ public class TmallBrand extends TaobaoObject {
         return this.brandId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
     public String getBrandName() {
         return this.brandName;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public void setBrandName(String brandName) {

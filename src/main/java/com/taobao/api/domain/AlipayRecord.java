@@ -83,84 +83,84 @@ public class AlipayRecord extends TaobaoObject {
         return this.alipayOrderNo;
     }
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public String getBalance() {
         return this.balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
     }
 
     public String getBusinessType() {
         return this.businessType;
     }
 
-    public void setBusinessType(String businessType) {
-        this.businessType = businessType;
-    }
-
     public String getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
     }
 
     public String getInAmount() {
         return this.inAmount;
     }
 
-    public void setInAmount(String inAmount) {
-        this.inAmount = inAmount;
-    }
-
     public String getMemo() {
         return this.memo;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
     }
 
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
     }
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
-    }
-
     public String getOptUserId() {
         return this.optUserId;
-    }
-
-    public void setOptUserId(String optUserId) {
-        this.optUserId = optUserId;
     }
 
     public String getOutAmount() {
         return this.outAmount;
     }
 
-    public void setOutAmount(String outAmount) {
-        this.outAmount = outAmount;
-    }
-
     public String getSelfUserId() {
         return this.selfUserId;
     }
 
-    public void setSelfUserId(String selfUserId) {
-        this.selfUserId = selfUserId;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public void setBusinessType(String businessType) {
+        this.businessType = businessType;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setInAmount(String inAmount) {
+        this.inAmount = inAmount;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setOptUserId(String optUserId) {
+        this.optUserId = optUserId;
+    }
+
+    public void setOutAmount(String outAmount) {
+        this.outAmount = outAmount;
+    }
+
+    public void setSelfUserId(String selfUserId) {
+        this.selfUserId = selfUserId;
     }
 
     public void setType(String type) {

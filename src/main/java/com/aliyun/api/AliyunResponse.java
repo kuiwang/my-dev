@@ -15,50 +15,50 @@ public abstract class AliyunResponse implements Serializable {
 
     private static final long serialVersionUID = 7294025168689095197L;
 
+    private String body;
+
     @ApiField("Code")
     private String errorCode;
 
     @ApiField("Message")
     private String message;
 
-    private String body;
-
     private Map<String, String> params;
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
 
     public String getBody() {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public Map<String, String> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<String, String> params) {
-        this.params = params;
-    }
-
-    public boolean isSuccess() {
-        return this.errorCode == null;
+    public String getErrorCode() {
+        return errorCode;
     }
 
     public String getMessage() {
         return message;
     }
 
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public boolean isSuccess() {
+        return this.errorCode == null;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.params = params;
     }
 
 }

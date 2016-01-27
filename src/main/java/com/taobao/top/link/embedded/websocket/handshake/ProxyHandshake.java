@@ -23,8 +23,14 @@
  */
 package com.taobao.top.link.embedded.websocket.handshake;
 
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
-import static java.nio.channels.SelectionKey.*;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3100;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3101;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3102;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3200;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3201;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3202;
+import static java.nio.channels.SelectionKey.OP_READ;
+import static java.nio.channels.SelectionKey.OP_WRITE;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -63,32 +69,6 @@ public class ProxyHandshake {
     /** The log. */
     //private static Logger log = Logger.getLogger(ProxyHandshake.class.getName());
 
-    /** The PROXY_AUTHENTICATE. */
-    private static String PROXY_AUTHENTICATE = "Proxy-Authenticate";
-
-    /** The proxy. */
-    private final InetSocketAddress proxyAddress;
-
-    /** The origin. */
-    private final InetSocketAddress originAddress;
-
-    /** connection read timeout(second). */
-    private int connectionReadTimeout = 0;
-
-    /** The need authorize. */
-    private boolean needAuthorize;
-
-    /** The authenticator. */
-    private Authenticator authenticator;
-
-    /** The selector. */
-    private Selector selector;
-
-    /** The http response header parser. */
-    private HttpResponseHeaderParser httpResponseHeaderParser;
-
-    private WebSocket webSocket;
-
     /**
      * The Enum State.
      *
@@ -96,16 +76,16 @@ public class ProxyHandshake {
      */
     enum State {
 
-        /** The INIT. */
-        INIT,
-        /** The METHOD. */
-        METHOD,
-        /** The HEADER. */
-        HEADER,
         /** The BODY. */
         AUTH,
         /** The DONE. */
-        DONE;
+        DONE,
+        /** The HEADER. */
+        HEADER,
+        /** The INIT. */
+        INIT,
+        /** The METHOD. */
+        METHOD;
 
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
@@ -126,37 +106,55 @@ public class ProxyHandshake {
          */
         boolean canTransitionTo(State state) {
             EnumSet<State> set = stateMap.get(this);
-            if (set == null) return false;
+            if (set == null) {
+                return false;
+            }
             return set.contains(state);
         }
     }
 
-    /**
-     * Transition to.
-     *
-     * @param to the to
-     * @return the state
-     */
-    protected State transitionTo(State to) {
-        if (state.canTransitionTo(to)) {
-            State old = state;
-            state = to;
-            return old;
-        } else {
-            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
-        }
-    }
+    /** The PROXY_AUTHENTICATE. */
+    private static String PROXY_AUTHENTICATE = "Proxy-Authenticate";
+
+    /** The authenticator. */
+    private Authenticator authenticator;
+
+    /** connection read timeout(second). */
+    private int connectionReadTimeout = 0;
+
+    /** The http response header parser. */
+    private HttpResponseHeaderParser httpResponseHeaderParser;
+
+    /** The need authorize. */
+    private boolean needAuthorize;
+
+    /** The origin. */
+    private final InetSocketAddress originAddress;
+
+    /** The proxy. */
+    private final InetSocketAddress proxyAddress;
+
+    /** The selector. */
+    private Selector selector;
 
     /** The state. */
     volatile private State state = State.INIT;
 
+    private WebSocket webSocket;
+
     /**
-     * State.
+     * Instantiates a new proxy handshake.
      *
-     * @return the state
+     * @param proxy the proxy
+     * @param origin the origin
+     * @param authenticator the authenticator
      */
-    protected State state() {
-        return state;
+    public ProxyHandshake(InetSocketAddress proxy, InetSocketAddress origin,
+            Authenticator authenticator, WebSocket webSocket) {
+        this.proxyAddress = proxy;
+        this.originAddress = origin;
+        this.authenticator = authenticator;
+        this.webSocket = webSocket;
     }
 
     /**
@@ -172,18 +170,47 @@ public class ProxyHandshake {
     }
 
     /**
-     * Instantiates a new proxy handshake.
+     * Creates the authorize request.
      *
-     * @param proxy the proxy
-     * @param origin the origin
-     * @param authenticator the authenticator
+     * @param creadectialsStr the creadectials str
+     * @return the byte buffer
      */
-    public ProxyHandshake(InetSocketAddress proxy, InetSocketAddress origin,
-            Authenticator authenticator, WebSocket webSocket) {
-        this.proxyAddress = proxy;
-        this.originAddress = origin;
-        this.authenticator = authenticator;
-        this.webSocket = webSocket;
+    public ByteBuffer createAuthorizeRequest(String creadectialsStr) {
+        // Send GET request to server
+        StringBuilder sb = new StringBuilder();
+        String host = originAddress.getHostName() + ":" + originAddress.getPort();
+        sb.append("CONNECT " + host + " HTTP/1.1\r\n");
+        StringUtil.addHeader(sb, "Host", host);
+        StringUtil.addHeader(sb, "Proxy-Authorization", creadectialsStr);
+        sb.append("\r\n");
+
+        try {
+            return ByteBuffer.wrap(sb.toString().getBytes("US-ASCII"));
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+
+    }
+
+    /**
+     * Creates the handshake request.
+     *
+     * @param method the method
+     * @param host the host
+     * @return the byte buffer
+     */
+    public ByteBuffer createHandshakeRequest(String method, String host) {
+        // Send GET request to server
+        StringBuilder sb = new StringBuilder();
+        sb.append(method + " " + host + " HTTP/1.1\r\n");
+        StringUtil.addHeader(sb, "Host", host);
+        sb.append("\r\n");
+
+        try {
+            return ByteBuffer.wrap(sb.toString().getBytes("US-ASCII"));
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
     }
 
     /**
@@ -282,47 +309,30 @@ public class ProxyHandshake {
     }
 
     /**
-     * Creates the handshake request.
+     * Gets the connection read timeout.
      *
-     * @param method the method
-     * @param host the host
-     * @return the byte buffer
+     * @return the connection read timeout
      */
-    public ByteBuffer createHandshakeRequest(String method, String host) {
-        // Send GET request to server
-        StringBuilder sb = new StringBuilder();
-        sb.append(method + " " + host + " HTTP/1.1\r\n");
-        StringUtil.addHeader(sb, "Host", host);
-        sb.append("\r\n");
-
-        try {
-            return ByteBuffer.wrap(sb.toString().getBytes("US-ASCII"));
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+    public int getConnectionReadTimeout() {
+        return connectionReadTimeout;
     }
 
     /**
-     * Creates the authorize request.
+     * Gets the origin address.
      *
-     * @param creadectialsStr the creadectials str
-     * @return the byte buffer
+     * @return the origin address
      */
-    public ByteBuffer createAuthorizeRequest(String creadectialsStr) {
-        // Send GET request to server
-        StringBuilder sb = new StringBuilder();
-        String host = originAddress.getHostName() + ":" + originAddress.getPort();
-        sb.append("CONNECT " + host + " HTTP/1.1\r\n");
-        StringUtil.addHeader(sb, "Host", host);
-        StringUtil.addHeader(sb, "Proxy-Authorization", creadectialsStr);
-        sb.append("\r\n");
+    public InetSocketAddress getOriginAddress() {
+        return originAddress;
+    }
 
-        try {
-            return ByteBuffer.wrap(sb.toString().getBytes("US-ASCII"));
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
-
+    /**
+     * Gets the proxy address.
+     *
+     * @return the proxy address
+     */
+    public InetSocketAddress getProxyAddress() {
+        return proxyAddress;
     }
 
     /**
@@ -361,15 +371,6 @@ public class ProxyHandshake {
     }
 
     /**
-     * Gets the connection read timeout.
-     *
-     * @return the connection read timeout
-     */
-    public int getConnectionReadTimeout() {
-        return connectionReadTimeout;
-    }
-
-    /**
      * Sets the connection read timeout.
      *
      * @param connectionReadTimeout the new connection read timeout
@@ -379,21 +380,28 @@ public class ProxyHandshake {
     }
 
     /**
-     * Gets the proxy address.
+     * State.
      *
-     * @return the proxy address
+     * @return the state
      */
-    public InetSocketAddress getProxyAddress() {
-        return proxyAddress;
+    protected State state() {
+        return state;
     }
 
     /**
-     * Gets the origin address.
+     * Transition to.
      *
-     * @return the origin address
+     * @param to the to
+     * @return the state
      */
-    public InetSocketAddress getOriginAddress() {
-        return originAddress;
+    protected State transitionTo(State to) {
+        if (state.canTransitionTo(to)) {
+            State old = state;
+            state = to;
+            return old;
+        } else {
+            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
+        }
     }
 
 }

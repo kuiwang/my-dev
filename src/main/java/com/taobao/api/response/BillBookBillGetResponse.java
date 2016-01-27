@@ -20,12 +20,12 @@ public class BillBookBillGetResponse extends TaobaoResponse {
     @ApiField("bookbill")
     private BookBill bookbill;
 
-    public void setBookbill(BookBill bookbill) {
-        this.bookbill = bookbill;
-    }
-
     public BookBill getBookbill() {
         return this.bookbill;
+    }
+
+    public void setBookbill(BookBill bookbill) {
+        this.bookbill = bookbill;
     }
 
 }

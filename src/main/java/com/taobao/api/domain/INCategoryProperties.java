@@ -35,20 +35,20 @@ public class INCategoryProperties extends TaobaoObject {
         return this.propertiesDesc;
     }
 
-    public void setPropertiesDesc(String propertiesDesc) {
-        this.propertiesDesc = propertiesDesc;
-    }
-
     public Long getPropertiesId() {
         return this.propertiesId;
     }
 
-    public void setPropertiesId(Long propertiesId) {
-        this.propertiesId = propertiesId;
-    }
-
     public String getPropertiesName() {
         return this.propertiesName;
+    }
+
+    public void setPropertiesDesc(String propertiesDesc) {
+        this.propertiesDesc = propertiesDesc;
+    }
+
+    public void setPropertiesId(Long propertiesId) {
+        this.propertiesId = propertiesId;
     }
 
     public void setPropertiesName(String propertiesName) {

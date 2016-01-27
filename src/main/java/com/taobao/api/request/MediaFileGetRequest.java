@@ -17,12 +17,6 @@ import com.taobao.api.response.MediaFileGetResponse;
  */
 public class MediaFileGetRequest implements TaobaoRequest<MediaFileGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 多媒体应用接入biz_code
      */
@@ -44,6 +38,8 @@ public class MediaFileGetRequest implements TaobaoRequest<MediaFileGetResponse> 
      * 支持最大值为：9223372036854775807
      */
     private Long fileId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 文件名称查询，like查询
@@ -71,103 +67,74 @@ public class MediaFileGetRequest implements TaobaoRequest<MediaFileGetResponse> 
      */
     private Date startDate;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 图片url查询接口
      */
     private String urls;
 
-    public void setBizCode(String bizCode) {
-        this.bizCode = bizCode;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
+        RequestCheckUtils.checkMaxValue(dirId, 9223372036854775807L, "dirId");
+        RequestCheckUtils.checkMaxValue(fileId, 9223372036854775807L, "fileId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.media.file.get";
     }
 
     public String getBizCode() {
         return this.bizCode;
     }
 
-    public void setDirId(Long dirId) {
-        this.dirId = dirId;
-    }
-
     public Long getDirId() {
         return this.dirId;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setFileId(Long fileId) {
-        this.fileId = fileId;
-    }
-
     public Long getFileId() {
         return this.fileId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<MediaFileGetResponse> getResponseClass() {
+        return MediaFileGetResponse.class;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setUrls(String urls) {
-        this.urls = urls;
-    }
-
-    public String getUrls() {
-        return this.urls;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.media.file.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_code", this.bizCode);
@@ -186,6 +153,16 @@ public class MediaFileGetRequest implements TaobaoRequest<MediaFileGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUrls() {
+        return this.urls;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -193,17 +170,48 @@ public class MediaFileGetRequest implements TaobaoRequest<MediaFileGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<MediaFileGetResponse> getResponseClass() {
-        return MediaFileGetResponse.class;
+    public void setBizCode(String bizCode) {
+        this.bizCode = bizCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
-        RequestCheckUtils.checkMaxValue(dirId, 9223372036854775807L, "dirId");
-        RequestCheckUtils.checkMaxValue(fileId, 9223372036854775807L, "fileId");
+    public void setDirId(Long dirId) {
+        this.dirId = dirId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUrls(String urls) {
+        this.urls = urls;
     }
 }

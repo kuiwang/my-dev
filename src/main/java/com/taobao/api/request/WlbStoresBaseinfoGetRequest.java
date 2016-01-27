@@ -17,8 +17,6 @@ public class WlbStoresBaseinfoGetRequest implements TaobaoRequest<WlbStoresBasei
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
     /**
@@ -26,26 +24,28 @@ public class WlbStoresBaseinfoGetRequest implements TaobaoRequest<WlbStoresBasei
      */
     private Long type;
 
-    public void setType(Long type) {
-        this.type = type;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wlb.stores.baseinfo.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbStoresBaseinfoGetResponse> getResponseClass() {
+        return WlbStoresBaseinfoGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("type", this.type);
@@ -55,6 +55,16 @@ public class WlbStoresBaseinfoGetRequest implements TaobaoRequest<WlbStoresBasei
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class WlbStoresBaseinfoGetRequest implements TaobaoRequest<WlbStoresBasei
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbStoresBaseinfoGetResponse> getResponseClass() {
-        return WlbStoresBaseinfoGetResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setType(Long type) {
+        this.type = type;
     }
 }

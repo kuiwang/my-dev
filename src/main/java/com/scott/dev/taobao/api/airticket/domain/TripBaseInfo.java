@@ -99,132 +99,132 @@ public class TripBaseInfo {
         return this.alipayTradeNo;
     }
 
-    public void setAlipayTradeNo(String alipayTradeNo) {
-        this.alipayTradeNo = alipayTradeNo;
-    }
-
     public String getCommission() {
         return this.commission;
-    }
-
-    public void setCommission(String commission) {
-        this.commission = commission;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public String getExtra() {
         return this.extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
     }
 
     public Boolean getForceInsure() {
         return this.forceInsure;
     }
 
-    public void setForceInsure(Boolean forceInsure) {
-        this.forceInsure = forceInsure;
-    }
-
     public Boolean getInsurePromotion() {
         return this.insurePromotion;
-    }
-
-    public void setInsurePromotion(Boolean insurePromotion) {
-        this.insurePromotion = insurePromotion;
     }
 
     public Date getModifyTime() {
         return this.modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public Long getOrderId() {
         return this.orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public Date getPayLatestTime() {
         return this.payLatestTime;
     }
 
-    public void setPayLatestTime(Date payLatestTime) {
-        this.payLatestTime = payLatestTime;
-    }
-
     public Long getPayStatus() {
         return this.payStatus;
-    }
-
-    public void setPayStatus(Long payStatus) {
-        this.payStatus = payStatus;
     }
 
     public String getRelationEmail() {
         return this.relationEmail;
     }
 
-    public void setRelationEmail(String relationEmail) {
-        this.relationEmail = relationEmail;
-    }
-
     public String getRelationMobile() {
         return this.relationMobile;
-    }
-
-    public void setRelationMobile(String relationMobile) {
-        this.relationMobile = relationMobile;
     }
 
     public String getRelationName() {
         return this.relationName;
     }
 
-    public void setRelationName(String relationName) {
-        this.relationName = relationName;
-    }
-
     public String getRelationPhoneBak() {
         return this.relationPhoneBak;
-    }
-
-    public void setRelationPhoneBak(String relationPhoneBak) {
-        this.relationPhoneBak = relationPhoneBak;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public Long getTotalPrice() {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public Long getTripType() {
         return this.tripType;
+    }
+
+    public void setAlipayTradeNo(String alipayTradeNo) {
+        this.alipayTradeNo = alipayTradeNo;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setForceInsure(Boolean forceInsure) {
+        this.forceInsure = forceInsure;
+    }
+
+    public void setInsurePromotion(Boolean insurePromotion) {
+        this.insurePromotion = insurePromotion;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPayLatestTime(Date payLatestTime) {
+        this.payLatestTime = payLatestTime;
+    }
+
+    public void setPayStatus(Long payStatus) {
+        this.payStatus = payStatus;
+    }
+
+    public void setRelationEmail(String relationEmail) {
+        this.relationEmail = relationEmail;
+    }
+
+    public void setRelationMobile(String relationMobile) {
+        this.relationMobile = relationMobile;
+    }
+
+    public void setRelationName(String relationName) {
+        this.relationName = relationName;
+    }
+
+    public void setRelationPhoneBak(String relationPhoneBak) {
+        this.relationPhoneBak = relationPhoneBak;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public void setTripType(Long tripType) {

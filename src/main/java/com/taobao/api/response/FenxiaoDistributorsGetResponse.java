@@ -24,12 +24,12 @@ public class FenxiaoDistributorsGetResponse extends TaobaoResponse {
     @ApiField("distributor")
     private List<Distributor> distributors;
 
-    public void setDistributors(List<Distributor> distributors) {
-        this.distributors = distributors;
-    }
-
     public List<Distributor> getDistributors() {
         return this.distributors;
+    }
+
+    public void setDistributors(List<Distributor> distributors) {
+        this.distributors = distributors;
     }
 
 }

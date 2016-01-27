@@ -19,12 +19,12 @@ public class SimbaRptCampadgroupeffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_campadgroup_effect_list")
     private String rptCampadgroupEffectList;
 
-    public void setRptCampadgroupEffectList(String rptCampadgroupEffectList) {
-        this.rptCampadgroupEffectList = rptCampadgroupEffectList;
-    }
-
     public String getRptCampadgroupEffectList() {
         return this.rptCampadgroupEffectList;
+    }
+
+    public void setRptCampadgroupEffectList(String rptCampadgroupEffectList) {
+        this.rptCampadgroupEffectList = rptCampadgroupEffectList;
     }
 
 }

@@ -17,7 +17,7 @@ package remoting.protocol.tcp;
 
 public class TcpContentDelimiter {
 
-    public static final short ContentLength = 0;
-
     public static final short Chunked = 1;
+
+    public static final short ContentLength = 0;
 }

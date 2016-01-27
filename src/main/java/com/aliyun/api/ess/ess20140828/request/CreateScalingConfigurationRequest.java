@@ -19,22 +19,6 @@ public class CreateScalingConfigurationRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 镜像文件ID，表示启动实例时选择的镜像资源
      */
@@ -72,6 +56,18 @@ public class CreateScalingConfigurationRequest implements
      */
     private Long internetMaxBandwidthOut;
 
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * Scaling Group关联的Scaling Configuration名称。同一用户账号，同一region，同一伸缩组下唯一。
      * 如果没有指定该参数，默认值为实例的ScalingConfigurationId 英文或中文字符为2-40
@@ -94,114 +90,82 @@ public class CreateScalingConfigurationRequest implements
      */
     private String systemDiskCategory;
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(imageId, "imageId");
+        RequestCheckUtils.checkNotEmpty(instanceType, "instanceType");
+        RequestCheckUtils.checkNotEmpty(scalingGroupId, "scalingGroupId");
+        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.CreateScalingConfiguration.2014-08-28";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getImageId() {
         return this.imageId;
     }
 
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-
     public String getInstanceType() {
         return this.instanceType;
-    }
-
-    public void setInternetChargeType(String internetChargeType) {
-        this.internetChargeType = internetChargeType;
     }
 
     public String getInternetChargeType() {
         return this.internetChargeType;
     }
 
-    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
-        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
-    }
-
     public Long getInternetMaxBandwidthIn() {
         return this.internetMaxBandwidthIn;
-    }
-
-    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
-        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
     }
 
     public Long getInternetMaxBandwidthOut() {
         return this.internetMaxBandwidthOut;
     }
 
-    public void setScalingConfigurationName(String scalingConfigurationName) {
-        this.scalingConfigurationName = scalingConfigurationName;
-    }
-
-    public String getScalingConfigurationName() {
-        return this.scalingConfigurationName;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
-    public String getScalingGroupId() {
-        return this.scalingGroupId;
-    }
-
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
-    public String getSecurityGroupId() {
-        return this.securityGroupId;
-    }
-
-    public void setSystemDiskCategory(String systemDiskCategory) {
-        this.systemDiskCategory = systemDiskCategory;
-    }
-
-    public String getSystemDiskCategory() {
-        return this.systemDiskCategory;
+    public String getOwnerAccount() {
+        return ownerAccount;
     }
 
     public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerAccount() {
-        return ownerAccount;
-    }
-
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
-    }
-
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateScalingConfigurationResponse> getResponseClass() {
+        return CreateScalingConfigurationResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingConfigurationName() {
+        return this.scalingConfigurationName;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingGroupId() {
+        return this.scalingGroupId;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.CreateScalingConfiguration.2014-08-28";
+    public String getSecurityGroupId() {
+        return this.securityGroupId;
     }
 
+    public String getSystemDiskCategory() {
+        return this.systemDiskCategory;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -222,6 +186,12 @@ public class CreateScalingConfigurationRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -229,18 +199,56 @@ public class CreateScalingConfigurationRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateScalingConfigurationResponse> getResponseClass() {
-        return CreateScalingConfigurationResponse.class;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(imageId, "imageId");
-        RequestCheckUtils.checkNotEmpty(instanceType, "instanceType");
-        RequestCheckUtils.checkNotEmpty(scalingGroupId, "scalingGroupId");
-        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setInternetChargeType(String internetChargeType) {
+        this.internetChargeType = internetChargeType;
+    }
+
+    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
+        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
+    }
+
+    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
+        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingConfigurationName(String scalingConfigurationName) {
+        this.scalingConfigurationName = scalingConfigurationName;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
+    }
+
+    public void setSystemDiskCategory(String systemDiskCategory) {
+        this.systemDiskCategory = systemDiskCategory;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

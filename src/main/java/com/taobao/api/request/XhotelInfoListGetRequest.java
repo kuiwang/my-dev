@@ -16,12 +16,6 @@ import com.taobao.api.response.XhotelInfoListGetResponse;
  */
 public class XhotelInfoListGetRequest implements TaobaoRequest<XhotelInfoListGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 城市code
      */
@@ -31,6 +25,8 @@ public class XhotelInfoListGetRequest implements TaobaoRequest<XhotelInfoListGet
      * 分页参数：当前页数，从1开始计数。 默认值：1
      */
     private Long currentPage;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页参数：每页酒店数量。最小值1，最大值为50。默认值：20
@@ -47,58 +43,51 @@ public class XhotelInfoListGetRequest implements TaobaoRequest<XhotelInfoListGet
      */
     private Long shid;
 
-    public void setCityCode(Long cityCode) {
-        this.cityCode = cityCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cityCode, "cityCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.xhotel.info.list.get";
     }
 
     public Long getCityCode() {
         return this.cityCode;
     }
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
-    }
-
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getPid() {
         return this.pid;
     }
 
-    public void setShid(Long shid) {
-        this.shid = shid;
+    @Override
+    public Class<XhotelInfoListGetResponse> getResponseClass() {
+        return XhotelInfoListGetResponse.class;
     }
 
     public Long getShid() {
         return this.shid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.xhotel.info.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("city_code", this.cityCode);
@@ -112,6 +101,12 @@ public class XhotelInfoListGetRequest implements TaobaoRequest<XhotelInfoListGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,15 +114,28 @@ public class XhotelInfoListGetRequest implements TaobaoRequest<XhotelInfoListGet
         this.udfParams.put(key, value);
     }
 
-    public Class<XhotelInfoListGetResponse> getResponseClass() {
-        return XhotelInfoListGetResponse.class;
+    public void setCityCode(Long cityCode) {
+        this.cityCode = cityCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cityCode, "cityCode");
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public void setShid(Long shid) {
+        this.shid = shid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

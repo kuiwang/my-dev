@@ -16,16 +16,12 @@ import com.taobao.api.response.RdsDbDeleteResponse;
  */
 public class RdsDbDeleteRequest implements TaobaoRequest<RdsDbDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 数据库的name，可以通过 taobao.rds.db.get 获取
      */
     private String dbName;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * rds的实例名<br />
@@ -34,34 +30,41 @@ public class RdsDbDeleteRequest implements TaobaoRequest<RdsDbDeleteResponse> {
      */
     private String instanceName;
 
-    public void setDbName(String dbName) {
-        this.dbName = dbName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dbName, "dbName");
+        RequestCheckUtils.checkNotEmpty(instanceName, "instanceName");
+        RequestCheckUtils.checkMaxLength(instanceName, 30, "instanceName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rds.db.delete";
     }
 
     public String getDbName() {
         return this.dbName;
     }
 
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getInstanceName() {
         return this.instanceName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RdsDbDeleteResponse> getResponseClass() {
+        return RdsDbDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rds.db.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("db_name", this.dbName);
@@ -72,6 +75,12 @@ public class RdsDbDeleteRequest implements TaobaoRequest<RdsDbDeleteResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class RdsDbDeleteRequest implements TaobaoRequest<RdsDbDeleteResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<RdsDbDeleteResponse> getResponseClass() {
-        return RdsDbDeleteResponse.class;
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dbName, "dbName");
-        RequestCheckUtils.checkNotEmpty(instanceName, "instanceName");
-        RequestCheckUtils.checkMaxLength(instanceName, 30, "instanceName");
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

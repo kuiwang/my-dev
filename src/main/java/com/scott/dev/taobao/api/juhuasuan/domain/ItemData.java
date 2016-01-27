@@ -166,244 +166,244 @@ public class ItemData {
         return activityPrice;
     }
 
-    public void setActivityPrice(Long activityPrice) {
-        this.activityPrice = activityPrice;
-    }
-
     public Long getCategoryId() {
         return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Long getChildCategory() {
         return childCategory;
     }
 
-    public void setChildCategory(Long childCategory) {
-        this.childCategory = childCategory;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Long getCurrentStock() {
         return currentStock;
     }
 
-    public void setCurrentStock(Long currentStock) {
-        this.currentStock = currentStock;
-    }
-
     public String getDiscount() {
         return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
     }
 
     public Boolean getExistHoldStock() {
         return existHoldStock;
     }
 
-    public void setExistHoldStock(Boolean existHoldStock) {
-        this.existHoldStock = existHoldStock;
-    }
-
     public Long getGroupId() {
         return groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public Boolean getIsLock() {
         return isLock;
     }
 
-    public void setIsLock(Boolean isLock) {
-        this.isLock = isLock;
-    }
-
     public String getItemDesc() {
         return itemDesc;
-    }
-
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc;
     }
 
     public String getItemGuarantee() {
         return itemGuarantee;
     }
 
-    public void setItemGuarantee(String itemGuarantee) {
-        this.itemGuarantee = itemGuarantee;
-    }
-
     public Long getItemId() {
         return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getItemStatus() {
         return itemStatus;
     }
 
-    public void setItemStatus(String itemStatus) {
-        this.itemStatus = itemStatus;
-    }
-
     public String getItemUrl() {
         return itemUrl;
-    }
-
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
     }
 
     public String getLongName() {
         return longName;
     }
 
-    public void setLongName(String longName) {
-        this.longName = longName;
-    }
-
     public Long getOnlineEndTime() {
         return onlineEndTime;
-    }
-
-    public void setOnlineEndTime(Long onlineEndTime) {
-        this.onlineEndTime = onlineEndTime;
     }
 
     public Long getOnlineStartTime() {
         return onlineStartTime;
     }
 
-    public void setOnlineStartTime(Long onlineStartTime) {
-        this.onlineStartTime = onlineStartTime;
-    }
-
     public Long getOriginalPrice() {
         return originalPrice;
-    }
-
-    public void setOriginalPrice(Long originalPrice) {
-        this.originalPrice = originalPrice;
     }
 
     public Long getParentCategory() {
         return parentCategory;
     }
 
-    public void setParentCategory(Long parentCategory) {
-        this.parentCategory = parentCategory;
-    }
-
     public Boolean getPayPostage() {
         return payPostage;
-    }
-
-    public void setPayPostage(Boolean payPostage) {
-        this.payPostage = payPostage;
     }
 
     public String getPicUrl() {
         return picUrl;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
     public String getPicUrlFromIc() {
         return picUrlFromIc;
-    }
-
-    public void setPicUrlFromIc(String picUrlFromIc) {
-        this.picUrlFromIc = picUrlFromIc;
     }
 
     public String getPicWideUrl() {
         return picWideUrl;
     }
 
-    public void setPicWideUrl(String picWideUrl) {
-        this.picWideUrl = picWideUrl;
-    }
-
     public Long getPlatformId() {
         return platformId;
-    }
-
-    public void setPlatformId(Long platformId) {
-        this.platformId = platformId;
     }
 
     public Long getSellerCredit() {
         return sellerCredit;
     }
 
-    public void setSellerCredit(Long sellerCredit) {
-        this.sellerCredit = sellerCredit;
-    }
-
     public Long getSellerId() {
         return sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
     }
 
     public String getSellerNick() {
         return sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public List<ShopPositionData> getShopPositionList() {
         return shopPositionList;
-    }
-
-    public void setShopPositionList(List<ShopPositionData> shopPositionList) {
-        this.shopPositionList = shopPositionList;
     }
 
     public String getShopType() {
         return shopType;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
-    }
-
     public String getShortName() {
         return shortName;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
-
     public Long getSoldCount() {
         return soldCount;
+    }
+
+    public void setActivityPrice(Long activityPrice) {
+        this.activityPrice = activityPrice;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setChildCategory(Long childCategory) {
+        this.childCategory = childCategory;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCurrentStock(Long currentStock) {
+        this.currentStock = currentStock;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public void setExistHoldStock(Boolean existHoldStock) {
+        this.existHoldStock = existHoldStock;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setIsLock(Boolean isLock) {
+        this.isLock = isLock;
+    }
+
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
+    }
+
+    public void setItemGuarantee(String itemGuarantee) {
+        this.itemGuarantee = itemGuarantee;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setLongName(String longName) {
+        this.longName = longName;
+    }
+
+    public void setOnlineEndTime(Long onlineEndTime) {
+        this.onlineEndTime = onlineEndTime;
+    }
+
+    public void setOnlineStartTime(Long onlineStartTime) {
+        this.onlineStartTime = onlineStartTime;
+    }
+
+    public void setOriginalPrice(Long originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public void setParentCategory(Long parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    public void setPayPostage(Boolean payPostage) {
+        this.payPostage = payPostage;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPicUrlFromIc(String picUrlFromIc) {
+        this.picUrlFromIc = picUrlFromIc;
+    }
+
+    public void setPicWideUrl(String picWideUrl) {
+        this.picWideUrl = picWideUrl;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
+    }
+
+    public void setSellerCredit(Long sellerCredit) {
+        this.sellerCredit = sellerCredit;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setShopPositionList(List<ShopPositionData> shopPositionList) {
+        this.shopPositionList = shopPositionList;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     public void setSoldCount(Long soldCount) {

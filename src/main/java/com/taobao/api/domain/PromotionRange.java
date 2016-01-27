@@ -35,20 +35,20 @@ public class PromotionRange extends TaobaoObject {
         return this.activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
-    }
-
     public String getActivityName() {
         return this.activityName;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
-    }
-
     public Long getItemId() {
         return this.itemId;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
     public void setItemId(Long itemId) {

@@ -30,20 +30,20 @@ public class RefundMessagesGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setRefundMessages(List<RefundMessage> refundMessages) {
-        this.refundMessages = refundMessages;
-    }
-
     public List<RefundMessage> getRefundMessages() {
         return this.refundMessages;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setRefundMessages(List<RefundMessage> refundMessages) {
+        this.refundMessages = refundMessages;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

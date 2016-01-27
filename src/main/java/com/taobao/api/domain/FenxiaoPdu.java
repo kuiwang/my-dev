@@ -47,36 +47,36 @@ public class FenxiaoPdu extends TaobaoObject {
         return this.distributorId;
     }
 
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
-    }
-
     public String getDistributorName() {
         return this.distributorName;
-    }
-
-    public void setDistributorName(String distributorName) {
-        this.distributorName = distributorName;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getQuantityAgent() {
         return this.quantityAgent;
     }
 
-    public void setQuantityAgent(Long quantityAgent) {
-        this.quantityAgent = quantityAgent;
-    }
-
     public String getSkuProperties() {
         return this.skuProperties;
+    }
+
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
+    }
+
+    public void setDistributorName(String distributorName) {
+        this.distributorName = distributorName;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setQuantityAgent(Long quantityAgent) {
+        this.quantityAgent = quantityAgent;
     }
 
     public void setSkuProperties(String skuProperties) {

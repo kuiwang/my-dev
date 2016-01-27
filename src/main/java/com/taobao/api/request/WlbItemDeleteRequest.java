@@ -18,48 +18,46 @@ public class WlbItemDeleteRequest implements TaobaoRequest<WlbItemDeleteResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品ID
      */
     private Long itemId;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 商品所有人淘宝nick
      */
     private String userNick;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public Class<WlbItemDeleteResponse> getResponseClass() {
+        return WlbItemDeleteResponse.class;
     }
 
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -70,6 +68,16 @@ public class WlbItemDeleteRequest implements TaobaoRequest<WlbItemDeleteResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class WlbItemDeleteRequest implements TaobaoRequest<WlbItemDeleteResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemDeleteResponse> getResponseClass() {
-        return WlbItemDeleteResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

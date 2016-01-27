@@ -30,20 +30,20 @@ public class MaQrcodeCommonCreateResponse extends TaobaoResponse {
     @ApiField("suc")
     private Boolean suc;
 
-    public void setModules(List<QrcodeDO> modules) {
-        this.modules = modules;
-    }
-
     public List<QrcodeDO> getModules() {
         return this.modules;
     }
 
-    public void setSuc(Boolean suc) {
-        this.suc = suc;
-    }
-
     public Boolean getSuc() {
         return this.suc;
+    }
+
+    public void setModules(List<QrcodeDO> modules) {
+        this.modules = modules;
+    }
+
+    public void setSuc(Boolean suc) {
+        this.suc = suc;
     }
 
 }

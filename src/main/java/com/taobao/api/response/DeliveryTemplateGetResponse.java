@@ -30,20 +30,20 @@ public class DeliveryTemplateGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setDeliveryTemplates(List<DeliveryTemplate> deliveryTemplates) {
-        this.deliveryTemplates = deliveryTemplates;
-    }
-
     public List<DeliveryTemplate> getDeliveryTemplates() {
         return this.deliveryTemplates;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setDeliveryTemplates(List<DeliveryTemplate> deliveryTemplates) {
+        this.deliveryTemplates = deliveryTemplates;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

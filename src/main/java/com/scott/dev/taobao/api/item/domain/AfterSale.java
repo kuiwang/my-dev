@@ -24,20 +24,20 @@ public class AfterSale {
         return afterSaleId;
     }
 
-    public void setAfterSaleId(Number afterSaleId) {
-        this.afterSaleId = afterSaleId;
-    }
-
     public String getAfterSaleName() {
         return afterSaleName;
     }
 
-    public void setAfterSaleName(String afterSaleName) {
-        this.afterSaleName = afterSaleName;
-    }
-
     public String getAfterSalePath() {
         return afterSalePath;
+    }
+
+    public void setAfterSaleId(Number afterSaleId) {
+        this.afterSaleId = afterSaleId;
+    }
+
+    public void setAfterSaleName(String afterSaleName) {
+        this.afterSaleName = afterSaleName;
     }
 
     public void setAfterSalePath(String afterSalePath) {

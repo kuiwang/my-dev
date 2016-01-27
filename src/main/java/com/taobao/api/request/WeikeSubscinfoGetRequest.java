@@ -16,16 +16,12 @@ import com.taobao.api.response.WeikeSubscinfoGetResponse;
  */
 public class WeikeSubscinfoGetRequest implements TaobaoRequest<WeikeSubscinfoGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 时间范围结束时间
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码
@@ -42,50 +38,46 @@ public class WeikeSubscinfoGetRequest implements TaobaoRequest<WeikeSubscinfoGet
      */
     private Date startTime;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weike.subscinfo.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setPageNum(Long pageNum) {
-        this.pageNum = pageNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNum() {
         return this.pageNum;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    @Override
+    public Class<WeikeSubscinfoGetResponse> getResponseClass() {
+        return WeikeSubscinfoGetResponse.class;
     }
 
     public String getSellerName() {
         return this.sellerName;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.weike.subscinfo.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -98,6 +90,12 @@ public class WeikeSubscinfoGetRequest implements TaobaoRequest<WeikeSubscinfoGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,14 +103,24 @@ public class WeikeSubscinfoGetRequest implements TaobaoRequest<WeikeSubscinfoGet
         this.udfParams.put(key, value);
     }
 
-    public Class<WeikeSubscinfoGetResponse> getResponseClass() {
-        return WeikeSubscinfoGetResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPageNum(Long pageNum) {
+        this.pageNum = pageNum;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

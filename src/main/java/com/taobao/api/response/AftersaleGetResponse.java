@@ -24,12 +24,12 @@ public class AftersaleGetResponse extends TaobaoResponse {
     @ApiField("after_sale")
     private List<AfterSale> afterSales;
 
-    public void setAfterSales(List<AfterSale> afterSales) {
-        this.afterSales = afterSales;
-    }
-
     public List<AfterSale> getAfterSales() {
         return this.afterSales;
+    }
+
+    public void setAfterSales(List<AfterSale> afterSales) {
+        this.afterSales = afterSales;
     }
 
 }

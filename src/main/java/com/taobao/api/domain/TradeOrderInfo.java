@@ -131,140 +131,140 @@ public class TradeOrderInfo extends TaobaoObject {
         return this.aliOrder;
     }
 
-    public void setAliOrder(Boolean aliOrder) {
-        this.aliOrder = aliOrder;
-    }
-
     public WaybillAddress getConsigneeAddress() {
         return this.consigneeAddress;
-    }
-
-    public void setConsigneeAddress(WaybillAddress consigneeAddress) {
-        this.consigneeAddress = consigneeAddress;
     }
 
     public String getConsigneeName() {
         return this.consigneeName;
     }
 
-    public void setConsigneeName(String consigneeName) {
-        this.consigneeName = consigneeName;
-    }
-
     public String getConsigneePhone() {
         return this.consigneePhone;
-    }
-
-    public void setConsigneePhone(String consigneePhone) {
-        this.consigneePhone = consigneePhone;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public List<LogisticsService> getLogisticsServiceList() {
         return this.logisticsServiceList;
-    }
-
-    public void setLogisticsServiceList(List<LogisticsService> logisticsServiceList) {
-        this.logisticsServiceList = logisticsServiceList;
     }
 
     public String getOrderChannelsType() {
         return this.orderChannelsType;
     }
 
-    public void setOrderChannelsType(String orderChannelsType) {
-        this.orderChannelsType = orderChannelsType;
-    }
-
     public Long getOrderType() {
         return this.orderType;
-    }
-
-    public void setOrderType(Long orderType) {
-        this.orderType = orderType;
     }
 
     public List<PackageItem> getPackageItems() {
         return this.packageItems;
     }
 
-    public void setPackageItems(List<PackageItem> packageItems) {
-        this.packageItems = packageItems;
-    }
-
     public String getProductType() {
         return this.productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
     }
 
     public Long getRealUserId() {
         return this.realUserId;
     }
 
-    public void setRealUserId(Long realUserId) {
-        this.realUserId = realUserId;
-    }
-
     public String getSendName() {
         return this.sendName;
-    }
-
-    public void setSendName(String sendName) {
-        this.sendName = sendName;
     }
 
     public String getSendPhone() {
         return this.sendPhone;
     }
 
-    public void setSendPhone(String sendPhone) {
-        this.sendPhone = sendPhone;
-    }
-
     public String getShortAddress() {
         return this.shortAddress;
-    }
-
-    public void setShortAddress(String shortAddress) {
-        this.shortAddress = shortAddress;
     }
 
     public List<String> getTradeOrderList() {
         return this.tradeOrderList;
     }
 
-    public void setTradeOrderList(List<String> tradeOrderList) {
-        this.tradeOrderList = tradeOrderList;
-    }
-
     public Long getVolume() {
         return this.volume;
-    }
-
-    public void setVolume(Long volume) {
-        this.volume = volume;
     }
 
     public String getWaybillCode() {
         return this.waybillCode;
     }
 
-    public void setWaybillCode(String waybillCode) {
-        this.waybillCode = waybillCode;
-    }
-
     public Long getWeight() {
         return this.weight;
+    }
+
+    public void setAliOrder(Boolean aliOrder) {
+        this.aliOrder = aliOrder;
+    }
+
+    public void setConsigneeAddress(WaybillAddress consigneeAddress) {
+        this.consigneeAddress = consigneeAddress;
+    }
+
+    public void setConsigneeName(String consigneeName) {
+        this.consigneeName = consigneeName;
+    }
+
+    public void setConsigneePhone(String consigneePhone) {
+        this.consigneePhone = consigneePhone;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setLogisticsServiceList(List<LogisticsService> logisticsServiceList) {
+        this.logisticsServiceList = logisticsServiceList;
+    }
+
+    public void setOrderChannelsType(String orderChannelsType) {
+        this.orderChannelsType = orderChannelsType;
+    }
+
+    public void setOrderType(Long orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setPackageItems(List<PackageItem> packageItems) {
+        this.packageItems = packageItems;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public void setRealUserId(Long realUserId) {
+        this.realUserId = realUserId;
+    }
+
+    public void setSendName(String sendName) {
+        this.sendName = sendName;
+    }
+
+    public void setSendPhone(String sendPhone) {
+        this.sendPhone = sendPhone;
+    }
+
+    public void setShortAddress(String shortAddress) {
+        this.shortAddress = shortAddress;
+    }
+
+    public void setTradeOrderList(List<String> tradeOrderList) {
+        this.tradeOrderList = tradeOrderList;
+    }
+
+    public void setVolume(Long volume) {
+        this.volume = volume;
+    }
+
+    public void setWaybillCode(String waybillCode) {
+        this.waybillCode = waybillCode;
     }
 
     public void setWeight(Long weight) {

@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoCooperationProductcatAddResponse;
 public class FenxiaoCooperationProductcatAddRequest implements
         TaobaoRequest<FenxiaoCooperationProductcatAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 合作关系id
      */
@@ -33,47 +27,51 @@ public class FenxiaoCooperationProductcatAddRequest implements
      */
     private Long gradeId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 产品线id列表，若有多个，以逗号分隔
      */
     private String productLineList;
 
-    public void setCooperateId(Long cooperateId) {
-        this.cooperateId = cooperateId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cooperateId, "cooperateId");
+        RequestCheckUtils.checkNotEmpty(productLineList, "productLineList");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.cooperation.productcat.add";
     }
 
     public Long getCooperateId() {
         return this.cooperateId;
     }
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
-    }
-
     public Long getGradeId() {
         return this.gradeId;
     }
 
-    public void setProductLineList(String productLineList) {
-        this.productLineList = productLineList;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getProductLineList() {
         return this.productLineList;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoCooperationProductcatAddResponse> getResponseClass() {
+        return FenxiaoCooperationProductcatAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.cooperation.productcat.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cooperate_id", this.cooperateId);
@@ -85,6 +83,12 @@ public class FenxiaoCooperationProductcatAddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class FenxiaoCooperationProductcatAddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoCooperationProductcatAddResponse> getResponseClass() {
-        return FenxiaoCooperationProductcatAddResponse.class;
+    public void setCooperateId(Long cooperateId) {
+        this.cooperateId = cooperateId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cooperateId, "cooperateId");
-        RequestCheckUtils.checkNotEmpty(productLineList, "productLineList");
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProductLineList(String productLineList) {
+        this.productLineList = productLineList;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,12 +19,12 @@ public class AlipayPointBudgetGetResponse extends TaobaoResponse {
     @ApiField("budget_amount")
     private Long budgetAmount;
 
-    public void setBudgetAmount(Long budgetAmount) {
-        this.budgetAmount = budgetAmount;
-    }
-
     public Long getBudgetAmount() {
         return this.budgetAmount;
+    }
+
+    public void setBudgetAmount(Long budgetAmount) {
+        this.budgetAmount = budgetAmount;
     }
 
 }

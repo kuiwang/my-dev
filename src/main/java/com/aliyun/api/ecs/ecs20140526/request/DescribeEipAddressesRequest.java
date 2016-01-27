@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class DescribeEipAddressesRequest implements AliyunRequest<DescribeEipAddressesResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 申请Id
      */
@@ -43,6 +25,14 @@ public class DescribeEipAddressesRequest implements AliyunRequest<DescribeEipAdd
      * 弹性IP地址
      */
     private String eipAddress;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * 实例状态列表的页码，起始值为1，默认值为1<br />
@@ -62,94 +52,79 @@ public class DescribeEipAddressesRequest implements AliyunRequest<DescribeEipAdd
     private String regionId;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * Eip状态，单选 InUse | Available
      */
     private String status;
 
-    public void setAllocationId(String allocationId) {
-        this.allocationId = allocationId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(pageNumber, 1L, "pageNumber");
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
     }
 
     public String getAllocationId() {
         return this.allocationId;
     }
 
-    public void setEipAddress(String eipAddress) {
-        this.eipAddress = eipAddress;
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.DescribeEipAddresses.2014-05-26";
     }
 
     public String getEipAddress() {
         return this.eipAddress;
     }
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public Long getPageNumber() {
-        return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Long getPageSize() {
-        return this.pageSize;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPageNumber() {
+        return this.pageNumber;
+    }
+
+    public Long getPageSize() {
+        return this.pageSize;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeEipAddressesResponse> getResponseClass() {
+        return DescribeEipAddressesResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getStatus() {
+        return this.status;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.DescribeEipAddresses.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -167,6 +142,12 @@ public class DescribeEipAddressesRequest implements AliyunRequest<DescribeEipAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -174,17 +155,44 @@ public class DescribeEipAddressesRequest implements AliyunRequest<DescribeEipAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeEipAddressesResponse> getResponseClass() {
-        return DescribeEipAddressesResponse.class;
+    public void setAllocationId(String allocationId) {
+        this.allocationId = allocationId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(pageNumber, 1L, "pageNumber");
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    public void setEipAddress(String eipAddress) {
+        this.eipAddress = eipAddress;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

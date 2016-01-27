@@ -20,12 +20,12 @@ public class EbookYunpanTokenGetResponse extends TaobaoResponse {
     @ApiField("ebook_yunpan_token")
     private EbookYunpanToken ebookYunpanToken;
 
-    public void setEbookYunpanToken(EbookYunpanToken ebookYunpanToken) {
-        this.ebookYunpanToken = ebookYunpanToken;
-    }
-
     public EbookYunpanToken getEbookYunpanToken() {
         return this.ebookYunpanToken;
+    }
+
+    public void setEbookYunpanToken(EbookYunpanToken ebookYunpanToken) {
+        this.ebookYunpanToken = ebookYunpanToken;
     }
 
 }

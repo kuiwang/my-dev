@@ -20,12 +20,12 @@ public class WaimaiBcategoryGetResponse extends TaobaoResponse {
     @ApiField("result")
     private CategoryResult result;
 
-    public void setResult(CategoryResult result) {
-        this.result = result;
-    }
-
     public CategoryResult getResult() {
         return this.result;
+    }
+
+    public void setResult(CategoryResult result) {
+        this.result = result;
     }
 
 }

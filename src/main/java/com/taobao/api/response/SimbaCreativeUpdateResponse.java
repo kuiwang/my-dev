@@ -20,12 +20,12 @@ public class SimbaCreativeUpdateResponse extends TaobaoResponse {
     @ApiField("creativerecord")
     private CreativeRecord creativerecord;
 
-    public void setCreativerecord(CreativeRecord creativerecord) {
-        this.creativerecord = creativerecord;
-    }
-
     public CreativeRecord getCreativerecord() {
         return this.creativerecord;
+    }
+
+    public void setCreativerecord(CreativeRecord creativerecord) {
+        this.creativerecord = creativerecord;
     }
 
 }

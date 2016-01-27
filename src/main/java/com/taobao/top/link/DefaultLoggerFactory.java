@@ -20,13 +20,13 @@ public class DefaultLoggerFactory implements LoggerFactory {
 
     private boolean isDebugEnabled;
 
-    private boolean isInfoEnabled;
-
-    private boolean isWarnEnabled;
-
     private boolean isErrorEnabled;
 
     private boolean isFatalEnabled;
+
+    private boolean isInfoEnabled;
+
+    private boolean isWarnEnabled;
 
     public DefaultLoggerFactory() {
         this(false, true, true, true, true);
@@ -42,12 +42,6 @@ public class DefaultLoggerFactory implements LoggerFactory {
     }
 
     @Override
-    public Logger create(String type) {
-        return new DefaultLogger(type, this.isDebugEnabled, this.isInfoEnabled, this.isWarnEnabled,
-                this.isErrorEnabled, this.isFatalEnabled);
-    }
-
-    @Override
     public Logger create(Class<?> type) {
         return new DefaultLogger(type.getSimpleName(), this.isDebugEnabled, this.isInfoEnabled,
                 this.isWarnEnabled, this.isErrorEnabled, this.isFatalEnabled);
@@ -57,6 +51,12 @@ public class DefaultLoggerFactory implements LoggerFactory {
     public Logger create(Object object) {
         return new DefaultLogger(object.getClass().getSimpleName(), this.isDebugEnabled,
                 this.isInfoEnabled, this.isWarnEnabled, this.isErrorEnabled, this.isFatalEnabled);
+    }
+
+    @Override
+    public Logger create(String type) {
+        return new DefaultLogger(type, this.isDebugEnabled, this.isInfoEnabled, this.isWarnEnabled,
+                this.isErrorEnabled, this.isFatalEnabled);
     }
 
 }

@@ -12,13 +12,13 @@ public class BufferManager {
 
     private static int maxBufferSize = 1024 * 4;
 
-    public static void enableDirectBuffer(boolean enable) {
-        enableDirect = enable;
+    private static ByteBuffer allocate() {
+        return enableDirect ? ByteBuffer.allocateDirect(maxBufferSize) : ByteBuffer
+                .allocate(maxBufferSize);
     }
 
-    public static void setBufferSize(int max) {
-        maxBufferSize = max;
-        buffers.clear();
+    public static void enableDirectBuffer(boolean enable) {
+        enableDirect = enable;
     }
 
     public static ByteBuffer getBuffer() {
@@ -36,8 +36,8 @@ public class BufferManager {
         buffers.add(buffer);
     }
 
-    private static ByteBuffer allocate() {
-        return enableDirect ? ByteBuffer.allocateDirect(maxBufferSize) : ByteBuffer
-                .allocate(maxBufferSize);
+    public static void setBufferSize(int max) {
+        maxBufferSize = max;
+        buffers.clear();
     }
 }

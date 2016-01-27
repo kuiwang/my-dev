@@ -30,20 +30,20 @@ public class FenxiaoProductSkusGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setSkus(List<FenxiaoSku> skus) {
-        this.skus = skus;
-    }
-
     public List<FenxiaoSku> getSkus() {
         return this.skus;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setSkus(List<FenxiaoSku> skus) {
+        this.skus = skus;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

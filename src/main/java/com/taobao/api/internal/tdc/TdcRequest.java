@@ -13,43 +13,28 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class TdcRequest {
 
-    public static final String P_TOP = "top";
-
-    public static final String P_OFFSET = "offset";
-
-    public static final String P_WHERE = "where";
-
-    public static final String P_ORDERBY = "orderby";
-
     public static final String P_JOIN = "join";
-
-    public static final String P_SELECT = "select";
-
-    public static final String PATH_INFO = "path_info";
 
     public static final String P_MODE = "mode";
 
+    public static final String P_OFFSET = "offset";
+
+    public static final String P_ORDERBY = "orderby";
+
+    public static final String P_SELECT = "select";
+
     public static final String P_SQL = "sql";
 
-    /**
-     * TDC查询的参数top:获取结果的前几个
-     */
-    private String paramTop;
+    public static final String P_TOP = "top";
+
+    public static final String P_WHERE = "where";
+
+    public static final String PATH_INFO = "path_info";
 
     /**
-     * TDC查询的参数offset:忽略前N个结果,即从第N+1个结果开始输出
+     * 使用方法名时的参数
      */
-    private String paramOffset;
-
-    /**
-     * TDC查询的参数where:查询条件
-     */
-    private String paramWhere;
-
-    /**
-     * TDC查询的参数orderby:结果排序
-     */
-    private String paramOrderby;
+    private Map<String, String> methodParams;
 
     /**
      * TDC查询的参数join:多表联合查询
@@ -57,9 +42,29 @@ public class TdcRequest {
     private String paramJoin;
 
     /**
+     * TDC查询的参数offset:忽略前N个结果,即从第N+1个结果开始输出
+     */
+    private String paramOffset;
+
+    /**
+     * TDC查询的参数orderby:结果排序
+     */
+    private String paramOrderby;
+
+    /**
      * TDC查询的参数select:只选择某些字段进行查询
      */
     private String paramSelect;
+
+    /**
+     * TDC查询的参数top:获取结果的前几个
+     */
+    private String paramTop;
+
+    /**
+     * TDC查询的参数where:查询条件
+     */
+    private String paramWhere;
 
     /**
      * TDC查询的参数pathInfo:TDC查询路径
@@ -68,81 +73,20 @@ public class TdcRequest {
 
     private String sql;
 
-    /**
-     * 使用方法名时的参数
-     */
-    private Map<String, String> methodParams;
-
-    public String getParamTop() {
-        return paramTop;
-    }
-
-    public void setParamTop(String paramTop) {
-        this.paramTop = paramTop;
-    }
-
-    public String getParamOffset() {
-        return paramOffset;
-    }
-
-    public void setParamOffset(String paramOffset) {
-        this.paramOffset = paramOffset;
-    }
-
-    public String getParamWhere() {
-        return paramWhere;
-    }
-
-    public void setParamWhere(String paramWhere) {
-        this.paramWhere = paramWhere;
-    }
-
-    public String getParamOrderby() {
-        return paramOrderby;
-    }
-
-    public void setParamOrderby(String paramOrderby) {
-        this.paramOrderby = paramOrderby;
+    public Map<String, String> getMethodParams() {
+        return methodParams;
     }
 
     public String getParamJoin() {
         return paramJoin;
     }
 
-    public void setParamJoin(String paramJoin) {
-        this.paramJoin = paramJoin;
+    public String getParamOffset() {
+        return paramOffset;
     }
 
-    public String getParamSelect() {
-        return paramSelect;
-    }
-
-    public void setParamSelect(String paramSelect) {
-        this.paramSelect = paramSelect;
-    }
-
-    public String getPathInfo() {
-        return pathInfo;
-    }
-
-    public void setPathInfo(String pathInfo) {
-        this.pathInfo = pathInfo;
-    }
-
-    public Map<String, String> getMethodParams() {
-        return methodParams;
-    }
-
-    public void setMethodParams(Map<String, String> methodParams) {
-        this.methodParams = methodParams;
-    }
-
-    public String getSql() {
-        return sql;
-    }
-
-    public void setSql(String sql) {
-        this.sql = sql;
+    public String getParamOrderby() {
+        return paramOrderby;
     }
 
     public TaobaoHashMap getParams() {
@@ -169,11 +113,75 @@ public class TdcRequest {
             txtParams.put(P_MODE, TdcRequestMode.MODE_SQL_SELECT);
             txtParams.put(P_SQL, this.sql);
         }
-        if (null != methodParams && !methodParams.isEmpty()) {
+        if ((null != methodParams) && !methodParams.isEmpty()) {
             txtParams.putAll(methodParams);
         }
 
         return txtParams;
+    }
+
+    public String getParamSelect() {
+        return paramSelect;
+    }
+
+    public String getParamTop() {
+        return paramTop;
+    }
+
+    public String getParamWhere() {
+        return paramWhere;
+    }
+
+    public String getPathInfo() {
+        return pathInfo;
+    }
+
+    public String getSql() {
+        return sql;
+    }
+
+    /**
+     * 设置查询的join属性
+     * 
+     * @param join
+     * @return
+     */
+    public TdcRequest join(String join) {
+        this.paramJoin = join;
+        return this;
+    }
+
+    /**
+     * 设置使用方法名查询时的
+     * 
+     * @param methodParams
+     * @return
+     */
+    public TdcRequest methodParams(Map<String, String> methodParams) {
+        this.methodParams = methodParams;
+        return this;
+    }
+
+    /**
+     * 设置查询的offset属性
+     * 
+     * @param offset
+     * @return
+     */
+    public TdcRequest offset(String offset) {
+        this.paramOffset = offset;
+        return this;
+    }
+
+    /**
+     * 设置查询的orderby属性
+     * 
+     * @param orderby
+     * @return
+     */
+    public TdcRequest orderby(String orderby) {
+        this.paramOrderby = orderby;
+        return this;
     }
 
     /**
@@ -201,26 +209,40 @@ public class TdcRequest {
         return this;
     }
 
-    /**
-     * 设置查询的where属性
-     * 
-     * @param where
-     * @return
-     */
-    public TdcRequest where(String where) {
-        this.paramWhere = where;
-        return this;
+    public void setMethodParams(Map<String, String> methodParams) {
+        this.methodParams = methodParams;
     }
 
-    /**
-     * 设置查询的join属性
-     * 
-     * @param join
-     * @return
-     */
-    public TdcRequest join(String join) {
-        this.paramJoin = join;
-        return this;
+    public void setParamJoin(String paramJoin) {
+        this.paramJoin = paramJoin;
+    }
+
+    public void setParamOffset(String paramOffset) {
+        this.paramOffset = paramOffset;
+    }
+
+    public void setParamOrderby(String paramOrderby) {
+        this.paramOrderby = paramOrderby;
+    }
+
+    public void setParamSelect(String paramSelect) {
+        this.paramSelect = paramSelect;
+    }
+
+    public void setParamTop(String paramTop) {
+        this.paramTop = paramTop;
+    }
+
+    public void setParamWhere(String paramWhere) {
+        this.paramWhere = paramWhere;
+    }
+
+    public void setPathInfo(String pathInfo) {
+        this.pathInfo = pathInfo;
+    }
+
+    public void setSql(String sql) {
+        this.sql = sql;
     }
 
     /**
@@ -235,35 +257,13 @@ public class TdcRequest {
     }
 
     /**
-     * 设置查询的offset属性
+     * 设置查询的where属性
      * 
-     * @param offset
+     * @param where
      * @return
      */
-    public TdcRequest offset(String offset) {
-        this.paramOffset = offset;
-        return this;
-    }
-
-    /**
-     * 设置查询的orderby属性
-     * 
-     * @param orderby
-     * @return
-     */
-    public TdcRequest orderby(String orderby) {
-        this.paramOrderby = orderby;
-        return this;
-    }
-
-    /**
-     * 设置使用方法名查询时的
-     * 
-     * @param methodParams
-     * @return
-     */
-    public TdcRequest methodParams(Map<String, String> methodParams) {
-        this.methodParams = methodParams;
+    public TdcRequest where(String where) {
+        this.paramWhere = where;
         return this;
     }
 }

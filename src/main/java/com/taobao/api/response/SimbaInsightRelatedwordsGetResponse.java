@@ -24,12 +24,12 @@ public class SimbaInsightRelatedwordsGetResponse extends TaobaoResponse {
     @ApiField("insight_related_words")
     private List<InsightRelatedWords> relatedWordsResultList;
 
-    public void setRelatedWordsResultList(List<InsightRelatedWords> relatedWordsResultList) {
-        this.relatedWordsResultList = relatedWordsResultList;
-    }
-
     public List<InsightRelatedWords> getRelatedWordsResultList() {
         return this.relatedWordsResultList;
+    }
+
+    public void setRelatedWordsResultList(List<InsightRelatedWords> relatedWordsResultList) {
+        this.relatedWordsResultList = relatedWordsResultList;
     }
 
 }

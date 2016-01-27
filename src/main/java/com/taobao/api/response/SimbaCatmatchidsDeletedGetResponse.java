@@ -23,12 +23,12 @@ public class SimbaCatmatchidsDeletedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> deletedCatmatchIds;
 
-    public void setDeletedCatmatchIds(List<Long> deletedCatmatchIds) {
-        this.deletedCatmatchIds = deletedCatmatchIds;
-    }
-
     public List<Long> getDeletedCatmatchIds() {
         return this.deletedCatmatchIds;
+    }
+
+    public void setDeletedCatmatchIds(List<Long> deletedCatmatchIds) {
+        this.deletedCatmatchIds = deletedCatmatchIds;
     }
 
 }

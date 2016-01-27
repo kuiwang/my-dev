@@ -170,196 +170,196 @@ public class DdTopReservedVO extends TaobaoObject {
         return this.auctionPosition;
     }
 
-    public void setAuctionPosition(Long auctionPosition) {
-        this.auctionPosition = auctionPosition;
-    }
-
     public Long getAuctionServeMax() {
         return this.auctionServeMax;
-    }
-
-    public void setAuctionServeMax(Long auctionServeMax) {
-        this.auctionServeMax = auctionServeMax;
     }
 
     public Long getAuctionServeMin() {
         return this.auctionServeMin;
     }
 
-    public void setAuctionServeMin(Long auctionServeMin) {
-        this.auctionServeMin = auctionServeMin;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
     }
 
     public Date getCheckTime() {
         return this.checkTime;
     }
 
-    public void setCheckTime(Date checkTime) {
-        this.checkTime = checkTime;
-    }
-
     public Long getCity() {
         return this.city;
-    }
-
-    public void setCity(Long city) {
-        this.city = city;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Long getDeposit() {
         return this.deposit;
-    }
-
-    public void setDeposit(Long deposit) {
-        this.deposit = deposit;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Boolean getIsPrint() {
         return this.isPrint;
-    }
-
-    public void setIsPrint(Boolean isPrint) {
-        this.isPrint = isPrint;
     }
 
     public String getMenuOrderId() {
         return this.menuOrderId;
     }
 
-    public void setMenuOrderId(String menuOrderId) {
-        this.menuOrderId = menuOrderId;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public Date getPaidTime() {
         return this.paidTime;
     }
 
-    public void setPaidTime(Date paidTime) {
-        this.paidTime = paidTime;
-    }
-
     public Long getPeopleCount() {
         return this.peopleCount;
-    }
-
-    public void setPeopleCount(Long peopleCount) {
-        this.peopleCount = peopleCount;
     }
 
     public Date getRefundDeadline() {
         return this.refundDeadline;
     }
 
-    public void setRefundDeadline(Date refundDeadline) {
-        this.refundDeadline = refundDeadline;
-    }
-
     public Date getReserveTime() {
         return this.reserveTime;
-    }
-
-    public void setReserveTime(Date reserveTime) {
-        this.reserveTime = reserveTime;
     }
 
     public Long getSellerMark() {
         return this.sellerMark;
     }
 
-    public void setSellerMark(Long sellerMark) {
-        this.sellerMark = sellerMark;
-    }
-
     public String getSellerMemo() {
         return this.sellerMemo;
-    }
-
-    public void setSellerMemo(String sellerMemo) {
-        this.sellerMemo = sellerMemo;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public String getStoreId() {
         return this.storeId;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
     }
 
     public String getStoreName() {
         return this.storeName;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
     public String getTaobaoOrderId() {
         return this.taobaoOrderId;
-    }
-
-    public void setTaobaoOrderId(String taobaoOrderId) {
-        this.taobaoOrderId = taobaoOrderId;
     }
 
     public String getUserMemo() {
         return this.userMemo;
     }
 
-    public void setUserMemo(String userMemo) {
-        this.userMemo = userMemo;
-    }
-
     public String getUserName() {
         return this.userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserPhone() {
         return this.userPhone;
+    }
+
+    public void setAuctionPosition(Long auctionPosition) {
+        this.auctionPosition = auctionPosition;
+    }
+
+    public void setAuctionServeMax(Long auctionServeMax) {
+        this.auctionServeMax = auctionServeMax;
+    }
+
+    public void setAuctionServeMin(Long auctionServeMin) {
+        this.auctionServeMin = auctionServeMin;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setCheckTime(Date checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public void setCity(Long city) {
+        this.city = city;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDeposit(Long deposit) {
+        this.deposit = deposit;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsPrint(Boolean isPrint) {
+        this.isPrint = isPrint;
+    }
+
+    public void setMenuOrderId(String menuOrderId) {
+        this.menuOrderId = menuOrderId;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setPaidTime(Date paidTime) {
+        this.paidTime = paidTime;
+    }
+
+    public void setPeopleCount(Long peopleCount) {
+        this.peopleCount = peopleCount;
+    }
+
+    public void setRefundDeadline(Date refundDeadline) {
+        this.refundDeadline = refundDeadline;
+    }
+
+    public void setReserveTime(Date reserveTime) {
+        this.reserveTime = reserveTime;
+    }
+
+    public void setSellerMark(Long sellerMark) {
+        this.sellerMark = sellerMark;
+    }
+
+    public void setSellerMemo(String sellerMemo) {
+        this.sellerMemo = sellerMemo;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setTaobaoOrderId(String taobaoOrderId) {
+        this.taobaoOrderId = taobaoOrderId;
+    }
+
+    public void setUserMemo(String userMemo) {
+        this.userMemo = userMemo;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setUserPhone(String userPhone) {

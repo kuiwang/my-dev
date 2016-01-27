@@ -17,12 +17,6 @@ import com.taobao.api.response.WangwangEserviceChatpeersGetResponse;
 public class WangwangEserviceChatpeersGetRequest implements
         TaobaoRequest<WangwangEserviceChatpeersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 字符集
      */
@@ -38,55 +32,56 @@ public class WangwangEserviceChatpeersGetRequest implements
      */
     private String endDate;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 查询起始日期。如2010-02-01，与当前日期间隔小于1个月。
      */
     private String startDate;
 
-    public void setCharset(String charset) {
-        this.charset = charset;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(chatId, "chatId");
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.eservice.chatpeers.get";
     }
 
     public String getCharset() {
         return this.charset;
     }
 
-    public void setChatId(String chatId) {
-        this.chatId = chatId;
-    }
-
     public String getChatId() {
         return this.chatId;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WangwangEserviceChatpeersGetResponse> getResponseClass() {
+        return WangwangEserviceChatpeersGetResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.eservice.chatpeers.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charset", this.charset);
@@ -99,6 +94,12 @@ public class WangwangEserviceChatpeersGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,17 +107,24 @@ public class WangwangEserviceChatpeersGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceChatpeersGetResponse> getResponseClass() {
-        return WangwangEserviceChatpeersGetResponse.class;
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(chatId, "chatId");
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -24,12 +24,12 @@ public class SimbaInsightWordsbaseGetResponse extends TaobaoResponse {
     @ApiField("i_n_word_base")
     private List<INWordBase> inWordBases;
 
-    public void setInWordBases(List<INWordBase> inWordBases) {
-        this.inWordBases = inWordBases;
-    }
-
     public List<INWordBase> getInWordBases() {
         return this.inWordBases;
+    }
+
+    public void setInWordBases(List<INWordBase> inWordBases) {
+        this.inWordBases = inWordBases;
     }
 
 }

@@ -65,60 +65,60 @@ public class TranscodeTemplate extends TaobaoObject {
         return this.audioCodecConfiguration;
     }
 
-    public void setAudioCodecConfiguration(AudioCodecConfiguration audioCodecConfiguration) {
-        this.audioCodecConfiguration = audioCodecConfiguration;
-    }
-
     public String getBandWidth() {
         return this.bandWidth;
-    }
-
-    public void setBandWidth(String bandWidth) {
-        this.bandWidth = bandWidth;
     }
 
     public Container getContainer() {
         return this.container;
     }
 
-    public void setContainer(Container container) {
-        this.container = container;
-    }
-
     public String getTemplateDescription() {
         return this.templateDescription;
-    }
-
-    public void setTemplateDescription(String templateDescription) {
-        this.templateDescription = templateDescription;
     }
 
     public String getTemplateId() {
         return this.templateId;
     }
 
-    public void setTemplateId(String templateId) {
-        this.templateId = templateId;
-    }
-
     public String getTemplateName() {
         return this.templateName;
-    }
-
-    public void setTemplateName(String templateName) {
-        this.templateName = templateName;
     }
 
     public String getTemplateType() {
         return this.templateType;
     }
 
-    public void setTemplateType(String templateType) {
-        this.templateType = templateType;
-    }
-
     public VideoCodecConfiguration getVideoCodecConfiguration() {
         return this.videoCodecConfiguration;
+    }
+
+    public void setAudioCodecConfiguration(AudioCodecConfiguration audioCodecConfiguration) {
+        this.audioCodecConfiguration = audioCodecConfiguration;
+    }
+
+    public void setBandWidth(String bandWidth) {
+        this.bandWidth = bandWidth;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
+    }
+
+    public void setTemplateDescription(String templateDescription) {
+        this.templateDescription = templateDescription;
+    }
+
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
+    public void setTemplateType(String templateType) {
+        this.templateType = templateType;
     }
 
     public void setVideoCodecConfiguration(VideoCodecConfiguration videoCodecConfiguration) {

@@ -8,14 +8,9 @@ import java.util.Date;
 public class DeliveryTemplate {
 
     /*
-     * 模块ID
+     * 运费模板上设置的发货地址
      */
-    private Number templateId;
-
-    /*
-     * 模板名称，长度不能超过25个字节
-     */
-    private String name;
+    private String address;
 
     /*
      * 可选值：0,1,2,3
@@ -30,6 +25,42 @@ public class DeliveryTemplate {
     private Number assumer;
 
     /*
+     * 该模板上设置的卖家发货地址区域ID，
+     * 如：address为浙江省杭州市西湖去文三路XX号那么这个consign_area_id的值就是西湖区的ID
+     */
+    private Number consignAreaId;
+
+    /*
+     * 模板创建时间
+     */
+    private Date created;
+
+    /*
+     * 运费模板中运费详细信息对象，包含默认运费和指定地区运费
+     */
+    private TopFee[] feeList;
+
+    /*
+     * 模板修改时间
+     */
+    private Date modified;
+
+    /*
+     * 模板名称，长度不能超过25个字节
+     */
+    private String name;
+
+    /*
+     * 物流服务模板支持增值服务列表，多个用分号隔开。cod:货到付款 mops：刷卡付款
+     */
+    private String supports;
+
+    /*
+     * 模块ID
+     */
+    private Number templateId;
+
+    /*
      * 可选值：0 说明： 0:表示按宝贝件数计算运费 
 
     1:表示按宝贝重量计算运费 
@@ -38,115 +69,84 @@ public class DeliveryTemplate {
      */
     private Number valuation;
 
-    /*
-     * 运费模板中运费详细信息对象，包含默认运费和指定地区运费
-     */
-    private TopFee[] feeList;
-
-    /*
-     * 物流服务模板支持增值服务列表，多个用分号隔开。cod:货到付款 mops：刷卡付款
-     */
-    private String supports;
-
-    /*
-     * 模板创建时间
-     */
-    private Date created;
-
-    /*
-     * 模板修改时间
-     */
-    private Date modified;
-
-    /*
-     * 运费模板上设置的发货地址
-     */
-    private String address;
-
-    /*
-     * 该模板上设置的卖家发货地址区域ID，
-     * 如：address为浙江省杭州市西湖去文三路XX号那么这个consign_area_id的值就是西湖区的ID
-     */
-    private Number consignAreaId;
-
-    public Number getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(Number templateId) {
-        this.templateId = templateId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getAddress() {
+        return address;
     }
 
     public Number getAssumer() {
         return assumer;
     }
 
-    public void setAssumer(Number assumer) {
-        this.assumer = assumer;
-    }
-
-    public Number getValuation() {
-        return valuation;
-    }
-
-    public void setValuation(Number valuation) {
-        this.valuation = valuation;
-    }
-
-    public TopFee[] getFeeList() {
-        return feeList;
-    }
-
-    public void setFeeList(TopFee[] feeList) {
-        this.feeList = feeList;
-    }
-
-    public String getSupports() {
-        return supports;
-    }
-
-    public void setSupports(String supports) {
-        this.supports = supports;
+    public Number getConsignAreaId() {
+        return consignAreaId;
     }
 
     public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public TopFee[] getFeeList() {
+        return feeList;
     }
 
     public Date getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public String getName() {
+        return name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getSupports() {
+        return supports;
+    }
+
+    public Number getTemplateId() {
+        return templateId;
+    }
+
+    public Number getValuation() {
+        return valuation;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public Number getConsignAreaId() {
-        return consignAreaId;
+    public void setAssumer(Number assumer) {
+        this.assumer = assumer;
     }
 
     public void setConsignAreaId(Number consignAreaId) {
         this.consignAreaId = consignAreaId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setFeeList(TopFee[] feeList) {
+        this.feeList = feeList;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSupports(String supports) {
+        this.supports = supports;
+    }
+
+    public void setTemplateId(Number templateId) {
+        this.templateId = templateId;
+    }
+
+    public void setValuation(Number valuation) {
+        this.valuation = valuation;
     }
 
 }

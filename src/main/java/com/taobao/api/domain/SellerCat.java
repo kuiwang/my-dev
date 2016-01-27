@@ -68,60 +68,60 @@ public class SellerCat extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getParentCid() {
         return this.parentCid;
     }
 
-    public void setParentCid(Long parentCid) {
-        this.parentCid = parentCid;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public Long getSortOrder() {
         return this.sortOrder;
     }
 
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParentCid(Long parentCid) {
+        this.parentCid = parentCid;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public void setType(String type) {

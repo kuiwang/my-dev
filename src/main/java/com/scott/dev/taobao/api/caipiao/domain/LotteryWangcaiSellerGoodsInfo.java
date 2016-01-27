@@ -36,36 +36,36 @@ public class LotteryWangcaiSellerGoodsInfo {
         return this.actBeginTime;
     }
 
-    public void setActBeginTime(Date actBeginTime) {
-        this.actBeginTime = actBeginTime;
-    }
-
     public Date getActEndTime() {
         return this.actEndTime;
-    }
-
-    public void setActEndTime(Date actEndTime) {
-        this.actEndTime = actEndTime;
     }
 
     public Long getGoodsId() {
         return this.goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
-    }
-
     public Long getLotteryTypeId() {
         return this.lotteryTypeId;
     }
 
-    public void setLotteryTypeId(Long lotteryTypeId) {
-        this.lotteryTypeId = lotteryTypeId;
-    }
-
     public Long getPresentType() {
         return this.presentType;
+    }
+
+    public void setActBeginTime(Date actBeginTime) {
+        this.actBeginTime = actBeginTime;
+    }
+
+    public void setActEndTime(Date actEndTime) {
+        this.actEndTime = actEndTime;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public void setLotteryTypeId(Long lotteryTypeId) {
+        this.lotteryTypeId = lotteryTypeId;
     }
 
     public void setPresentType(Long presentType) {

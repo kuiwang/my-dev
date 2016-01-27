@@ -7,20 +7,16 @@ import com.taobao.top.link.Text;
 
 public class SynchronizedRemotingCallback extends RemotingCallback {
 
+    private Throwable failure;
+
     private CountDownLatch latch;
 
     private MethodReturn methodReturn;
 
     private boolean sucess;
 
-    private Throwable failure;
-
     public SynchronizedRemotingCallback() {
         this.latch = new CountDownLatch(1);
-    }
-
-    public boolean isSucess() {
-        return this.sucess;
     }
 
     public Throwable getFailure() {
@@ -31,11 +27,12 @@ public class SynchronizedRemotingCallback extends RemotingCallback {
         return this.methodReturn;
     }
 
-    @Override
-    public void onMethodReturn(MethodReturn methodReturn) {
-        this.sucess = true;
-        this.methodReturn = methodReturn;
-        this.nofityCall();
+    public boolean isSucess() {
+        return this.sucess;
+    }
+
+    private void nofityCall() {
+        this.latch.countDown();
     }
 
     @Override
@@ -45,18 +42,25 @@ public class SynchronizedRemotingCallback extends RemotingCallback {
         this.nofityCall();
     }
 
+    @Override
+    public void onMethodReturn(MethodReturn methodReturn) {
+        this.sucess = true;
+        this.methodReturn = methodReturn;
+        this.nofityCall();
+    }
+
     public void waitReturn(int timeout) throws RemotingException {
         try {
             if (timeout > 0) {
-                if (!this.latch.await(timeout, TimeUnit.MILLISECONDS)) throw new RemotingException(
-                        Text.RPC_EXECUTE_TIMEOUT);
-            } else this.latch.await();
+                if (!this.latch.await(timeout, TimeUnit.MILLISECONDS)) {
+                    throw new RemotingException(
+                            Text.RPC_EXECUTE_TIMEOUT);
+                }
+            } else {
+                this.latch.await();
+            }
         } catch (InterruptedException e) {
             throw new RemotingException(Text.RPC_WAIT_INTERRUPTED, e);
         }
-    }
-
-    private void nofityCall() {
-        this.latch.countDown();
     }
 }

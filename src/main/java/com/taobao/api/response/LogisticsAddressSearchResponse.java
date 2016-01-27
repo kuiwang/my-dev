@@ -24,12 +24,12 @@ public class LogisticsAddressSearchResponse extends TaobaoResponse {
     @ApiField("address_result")
     private List<AddressResult> addresses;
 
-    public void setAddresses(List<AddressResult> addresses) {
-        this.addresses = addresses;
-    }
-
     public List<AddressResult> getAddresses() {
         return this.addresses;
+    }
+
+    public void setAddresses(List<AddressResult> addresses) {
+        this.addresses = addresses;
     }
 
 }

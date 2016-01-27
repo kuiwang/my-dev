@@ -20,12 +20,12 @@ public class ItemPropimgDeleteResponse extends TaobaoResponse {
     @ApiField("prop_img")
     private PropImg propImg;
 
-    public void setPropImg(PropImg propImg) {
-        this.propImg = propImg;
-    }
-
     public PropImg getPropImg() {
         return this.propImg;
+    }
+
+    public void setPropImg(PropImg propImg) {
+        this.propImg = propImg;
     }
 
 }

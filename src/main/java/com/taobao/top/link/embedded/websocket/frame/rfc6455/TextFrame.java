@@ -34,6 +34,21 @@ import com.taobao.top.link.embedded.websocket.frame.rfc6455.FrameBuilderRfc6455.
  */
 public class TextFrame extends FrameRfc6455 {
 
+    /**
+     * Convert string to byte array.
+     *
+     * @param str the str
+     * @return the byte[]
+     */
+    private static byte[] convertStringToByteArray(String str) {
+        try {
+            return str.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            ;
+        }
+        return null;
+    }
+
     /** The converted string. */
     private String convertedString;
 
@@ -59,24 +74,10 @@ public class TextFrame extends FrameRfc6455 {
         setContents(body);
     }
 
-    /**
-     * Convert string to byte array.
-     *
-     * @param str the str
-     * @return the byte[]
-     */
-    private static byte[] convertStringToByteArray(String str) {
-        try {
-            return str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            ;
-        }
-        return null;
-    }
-
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         if (convertedString == null) {
             try {

@@ -35,20 +35,20 @@ public class TranscodeOutput extends TaobaoObject {
         return this.outputFileUrl;
     }
 
-    public void setOutputFileUrl(String outputFileUrl) {
-        this.outputFileUrl = outputFileUrl;
-    }
-
     public String getTemplateId() {
         return this.templateId;
     }
 
-    public void setTemplateId(String templateId) {
-        this.templateId = templateId;
-    }
-
     public VideoFeatures getVideoFeatures() {
         return this.videoFeatures;
+    }
+
+    public void setOutputFileUrl(String outputFileUrl) {
+        this.outputFileUrl = outputFileUrl;
+    }
+
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
     }
 
     public void setVideoFeatures(VideoFeatures videoFeatures) {

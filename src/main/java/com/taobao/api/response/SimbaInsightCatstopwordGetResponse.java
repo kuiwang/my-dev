@@ -23,12 +23,12 @@ public class SimbaInsightCatstopwordGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> topWords;
 
-    public void setTopWords(List<String> topWords) {
-        this.topWords = topWords;
-    }
-
     public List<String> getTopWords() {
         return this.topWords;
+    }
+
+    public void setTopWords(List<String> topWords) {
+        this.topWords = topWords;
     }
 
 }

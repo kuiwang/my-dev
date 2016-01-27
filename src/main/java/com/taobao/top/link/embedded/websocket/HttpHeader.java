@@ -46,6 +46,42 @@ public class HttpHeader {
     }
 
     /**
+     * Adds the header.
+     *
+     * @param name the name
+     * @param value the value
+     */
+    public void addHeader(String name, String value) {
+        name = name.toLowerCase();
+        List<String> list = headerMap.get(name);
+        if (list == null) {
+            list = new ArrayList<String>();
+            headerMap.put(name, list);
+        }
+        list.add(value);
+    }
+
+    /**
+     * Contains header.
+     *
+     * @param name the header name
+     * @return true, if successful
+     */
+    public boolean containsHeader(String name) {
+        name = name.toLowerCase();
+        return headerMap.containsKey(name);
+    }
+
+    /**
+     * Gets the header names.
+     *
+     * @return the header names
+     */
+    public List<String> getHeaderNames() {
+        return new ArrayList<String>(headerMap.keySet());
+    }
+
+    /**
      * Gets the header value.
      *
      * @param name the name
@@ -76,33 +112,6 @@ public class HttpHeader {
     }
 
     /**
-     * Contains header.
-     *
-     * @param name the header name
-     * @return true, if successful
-     */
-    public boolean containsHeader(String name) {
-        name = name.toLowerCase();
-        return headerMap.containsKey(name);
-    }
-
-    /**
-     * Adds the header.
-     *
-     * @param name the name
-     * @param value the value
-     */
-    public void addHeader(String name, String value) {
-        name = name.toLowerCase();
-        List<String> list = headerMap.get(name);
-        if (list == null) {
-            list = new ArrayList<String>();
-            headerMap.put(name, list);
-        }
-        list.add(value);
-    }
-
-    /**
      * Removes the header.
      *
      * @param name the name
@@ -110,14 +119,5 @@ public class HttpHeader {
     public void removeHeader(String name) {
         name = name.toLowerCase();
         headerMap.remove(name);
-    }
-
-    /**
-     * Gets the header names.
-     *
-     * @return the header names
-     */
-    public List<String> getHeaderNames() {
-        return new ArrayList<String>(headerMap.keySet());
     }
 }

@@ -34,12 +34,12 @@ public class ReplyStatOnDay extends TaobaoObject {
         return this.replyDate;
     }
 
-    public void setReplyDate(Date replyDate) {
-        this.replyDate = replyDate;
-    }
-
     public List<ReplyStatById> getReplyStatByIds() {
         return this.replyStatByIds;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
     }
 
     public void setReplyStatByIds(List<ReplyStatById> replyStatByIds) {

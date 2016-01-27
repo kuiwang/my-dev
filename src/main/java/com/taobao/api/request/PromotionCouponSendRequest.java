@@ -16,12 +16,6 @@ import com.taobao.api.response.PromotionCouponSendResponse;
  */
 public class PromotionCouponSendRequest implements TaobaoRequest<PromotionCouponSendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称用半角','号分割
      */
@@ -32,34 +26,43 @@ public class PromotionCouponSendRequest implements TaobaoRequest<PromotionCoupon
      */
     private Long couponId;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkMaxListSize(buyerNick, 100, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(couponId, "couponId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.coupon.send";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setCouponId(Long couponId) {
-        this.couponId = couponId;
-    }
-
     public Long getCouponId() {
         return this.couponId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<PromotionCouponSendResponse> getResponseClass() {
+        return PromotionCouponSendResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.promotion.coupon.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -70,6 +73,12 @@ public class PromotionCouponSendRequest implements TaobaoRequest<PromotionCoupon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,17 +86,16 @@ public class PromotionCouponSendRequest implements TaobaoRequest<PromotionCoupon
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionCouponSendResponse> getResponseClass() {
-        return PromotionCouponSendResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkMaxListSize(buyerNick, 100, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(couponId, "couponId");
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -15,37 +15,41 @@ import com.taobao.api.response.PromotionActivityGetResponse;
  */
 public class PromotionActivityGetRequest implements TaobaoRequest<PromotionActivityGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动的id
      */
     private Long activityId;
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
     public Long getActivityId() {
         return this.activityId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.promotion.activity.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<PromotionActivityGetResponse> getResponseClass() {
+        return PromotionActivityGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("activity_id", this.activityId);
@@ -55,6 +59,12 @@ public class PromotionActivityGetRequest implements TaobaoRequest<PromotionActiv
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class PromotionActivityGetRequest implements TaobaoRequest<PromotionActiv
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionActivityGetResponse> getResponseClass() {
-        return PromotionActivityGetResponse.class;
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

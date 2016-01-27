@@ -16,16 +16,12 @@ import com.taobao.api.response.FenxiaoCooperationGetResponse;
  */
 public class FenxiaoCooperationGetRequest implements TaobaoRequest<FenxiaoCooperationGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 合作结束时间yyyy-MM-dd HH:mm:ss
      */
     private Date endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码（大于0的整数，默认1）
@@ -47,71 +43,55 @@ public class FenxiaoCooperationGetRequest implements TaobaoRequest<FenxiaoCooper
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 分销方式：AGENT(代销) 、DEALER（经销）
      */
     private String tradeType;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.cooperation.get";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<FenxiaoCooperationGetResponse> getResponseClass() {
+        return FenxiaoCooperationGetResponse.class;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getTradeType() {
-        return this.tradeType;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.cooperation.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -126,6 +106,16 @@ public class FenxiaoCooperationGetRequest implements TaobaoRequest<FenxiaoCooper
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTradeType() {
+        return this.tradeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -133,14 +123,32 @@ public class FenxiaoCooperationGetRequest implements TaobaoRequest<FenxiaoCooper
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoCooperationGetResponse> getResponseClass() {
-        return FenxiaoCooperationGetResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

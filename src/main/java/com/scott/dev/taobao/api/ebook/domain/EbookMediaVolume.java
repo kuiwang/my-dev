@@ -31,12 +31,12 @@ public class EbookMediaVolume extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getVolumeId() {
         return this.volumeId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public void setVolumeId(Long volumeId) {

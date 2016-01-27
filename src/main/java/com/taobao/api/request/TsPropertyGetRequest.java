@@ -18,10 +18,6 @@ public class TsPropertyGetRequest implements TaobaoRequest<TsPropertyGetResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 服务收费项code<br />
      * 支持最大长度为：64<br />
@@ -29,26 +25,36 @@ public class TsPropertyGetRequest implements TaobaoRequest<TsPropertyGetResponse
      */
     private String serviceItemCode;
 
-    public void setServiceItemCode(String serviceItemCode) {
-        this.serviceItemCode = serviceItemCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(serviceItemCode, "serviceItemCode");
+        RequestCheckUtils.checkMaxLength(serviceItemCode, 64, "serviceItemCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ts.property.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TsPropertyGetResponse> getResponseClass() {
+        return TsPropertyGetResponse.class;
     }
 
     public String getServiceItemCode() {
         return this.serviceItemCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ts.property.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("service_item_code", this.serviceItemCode);
@@ -58,6 +64,12 @@ public class TsPropertyGetRequest implements TaobaoRequest<TsPropertyGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,16 +77,12 @@ public class TsPropertyGetRequest implements TaobaoRequest<TsPropertyGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<TsPropertyGetResponse> getResponseClass() {
-        return TsPropertyGetResponse.class;
+    public void setServiceItemCode(String serviceItemCode) {
+        this.serviceItemCode = serviceItemCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(serviceItemCode, "serviceItemCode");
-        RequestCheckUtils.checkMaxLength(serviceItemCode, 64, "serviceItemCode");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

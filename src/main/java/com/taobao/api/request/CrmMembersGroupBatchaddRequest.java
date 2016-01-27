@@ -17,12 +17,6 @@ import com.taobao.api.response.CrmMembersGroupBatchaddResponse;
 public class CrmMembersGroupBatchaddRequest implements
         TaobaoRequest<CrmMembersGroupBatchaddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 会员的id（一次最多传入10个）<br />
      * 支持最小值为：1
@@ -35,34 +29,44 @@ public class CrmMembersGroupBatchaddRequest implements
      */
     private String groupIds;
 
-    public void setBuyerIds(String buyerIds) {
-        this.buyerIds = buyerIds;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerIds, "buyerIds");
+        RequestCheckUtils.checkMaxListSize(buyerIds, 10, "buyerIds");
+        RequestCheckUtils.checkNotEmpty(groupIds, "groupIds");
+        RequestCheckUtils.checkMaxListSize(groupIds, 10, "groupIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.members.group.batchadd";
     }
 
     public String getBuyerIds() {
         return this.buyerIds;
     }
 
-    public void setGroupIds(String groupIds) {
-        this.groupIds = groupIds;
-    }
-
     public String getGroupIds() {
         return this.groupIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<CrmMembersGroupBatchaddResponse> getResponseClass() {
+        return CrmMembersGroupBatchaddResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.crm.members.group.batchadd";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_ids", this.buyerIds);
@@ -73,6 +77,12 @@ public class CrmMembersGroupBatchaddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,18 +90,16 @@ public class CrmMembersGroupBatchaddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMembersGroupBatchaddResponse> getResponseClass() {
-        return CrmMembersGroupBatchaddResponse.class;
+    public void setBuyerIds(String buyerIds) {
+        this.buyerIds = buyerIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerIds, "buyerIds");
-        RequestCheckUtils.checkMaxListSize(buyerIds, 10, "buyerIds");
-        RequestCheckUtils.checkNotEmpty(groupIds, "groupIds");
-        RequestCheckUtils.checkMaxListSize(groupIds, 10, "groupIds");
+    public void setGroupIds(String groupIds) {
+        this.groupIds = groupIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

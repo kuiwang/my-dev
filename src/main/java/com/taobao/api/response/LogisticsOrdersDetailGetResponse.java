@@ -30,20 +30,20 @@ public class LogisticsOrdersDetailGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setShippings(List<Shipping> shippings) {
-        this.shippings = shippings;
-    }
-
     public List<Shipping> getShippings() {
         return this.shippings;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setShippings(List<Shipping> shippings) {
+        this.shippings = shippings;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

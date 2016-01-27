@@ -18,10 +18,6 @@ public class SpContentDeletebyidsRequest implements TaobaoRequest<SpContentDelet
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 主键ID列表，以逗号,分割
      */
@@ -34,34 +30,41 @@ public class SpContentDeletebyidsRequest implements TaobaoRequest<SpContentDelet
      */
     private String siteKey;
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.deletebyids";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentDeletebyidsResponse> getResponseClass() {
+        return SpContentDeletebyidsResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.deletebyids";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ids", this.ids);
@@ -72,6 +75,12 @@ public class SpContentDeletebyidsRequest implements TaobaoRequest<SpContentDelet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class SpContentDeletebyidsRequest implements TaobaoRequest<SpContentDelet
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentDeletebyidsResponse> getResponseClass() {
-        return SpContentDeletebyidsResponse.class;
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

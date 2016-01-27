@@ -37,36 +37,36 @@ public class BaikeDruginfoQueryResponse extends TaobaoResponse {
     @ApiField("type_info")
     private String typeInfo;
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
     public String getData() {
         return this.data;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setSuc(Boolean suc) {
-        this.suc = suc;
-    }
-
     public Boolean getSuc() {
         return this.suc;
     }
 
-    public void setTypeInfo(String typeInfo) {
-        this.typeInfo = typeInfo;
-    }
-
     public String getTypeInfo() {
         return this.typeInfo;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setSuc(Boolean suc) {
+        this.suc = suc;
+    }
+
+    public void setTypeInfo(String typeInfo) {
+        this.typeInfo = typeInfo;
     }
 
 }

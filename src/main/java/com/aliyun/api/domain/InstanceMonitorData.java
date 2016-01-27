@@ -32,18 +32,6 @@ public class InstanceMonitorData extends TaobaoObject {
     private Long cPU;
 
     /**
-     * IO读操作，单位：次/s。
-     */
-    @ApiField("IOPSRead")
-    private Long iOPSRead;
-
-    /**
-     * IO写操作，单位：次/s。
-     */
-    @ApiField("IOPSWrite")
-    private Long iOPSWrite;
-
-    /**
      * 实例ID
      */
     @ApiField("InstanceId")
@@ -98,6 +86,18 @@ public class InstanceMonitorData extends TaobaoObject {
     private Long intranetTX;
 
     /**
+     * IO读操作，单位：次/s。
+     */
+    @ApiField("IOPSRead")
+    private Long iOPSRead;
+
+    /**
+     * IO写操作，单位：次/s。
+     */
+    @ApiField("IOPSWrite")
+    private Long iOPSWrite;
+
+    /**
      * 内存的大小，单位：MB。
      */
     @ApiField("Memory")
@@ -113,124 +113,124 @@ public class InstanceMonitorData extends TaobaoObject {
         return this.bPSRead;
     }
 
-    public void setbPSRead(Long bPSRead) {
-        this.bPSRead = bPSRead;
-    }
-
     public Long getbPSWrite() {
         return this.bPSWrite;
-    }
-
-    public void setbPSWrite(Long bPSWrite) {
-        this.bPSWrite = bPSWrite;
     }
 
     public Long getcPU() {
         return this.cPU;
     }
 
-    public void setcPU(Long cPU) {
-        this.cPU = cPU;
-    }
-
-    public Long getiOPSRead() {
-        return this.iOPSRead;
-    }
-
-    public void setiOPSRead(Long iOPSRead) {
-        this.iOPSRead = iOPSRead;
-    }
-
-    public Long getiOPSWrite() {
-        return this.iOPSWrite;
-    }
-
-    public void setiOPSWrite(Long iOPSWrite) {
-        this.iOPSWrite = iOPSWrite;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
     }
 
     public Long getInternetBandwidth() {
         return this.internetBandwidth;
     }
 
-    public void setInternetBandwidth(Long internetBandwidth) {
-        this.internetBandwidth = internetBandwidth;
-    }
-
     public Long getInternetFlow() {
         return this.internetFlow;
-    }
-
-    public void setInternetFlow(Long internetFlow) {
-        this.internetFlow = internetFlow;
     }
 
     public Long getInternetRX() {
         return this.internetRX;
     }
 
-    public void setInternetRX(Long internetRX) {
-        this.internetRX = internetRX;
-    }
-
     public Long getInternetTX() {
         return this.internetTX;
-    }
-
-    public void setInternetTX(Long internetTX) {
-        this.internetTX = internetTX;
     }
 
     public Long getIntranetBandwidth() {
         return this.intranetBandwidth;
     }
 
-    public void setIntranetBandwidth(Long intranetBandwidth) {
-        this.intranetBandwidth = intranetBandwidth;
-    }
-
     public Long getIntranetFlow() {
         return this.intranetFlow;
-    }
-
-    public void setIntranetFlow(Long intranetFlow) {
-        this.intranetFlow = intranetFlow;
     }
 
     public Long getIntranetRX() {
         return this.intranetRX;
     }
 
-    public void setIntranetRX(Long intranetRX) {
-        this.intranetRX = intranetRX;
-    }
-
     public Long getIntranetTX() {
         return this.intranetTX;
     }
 
-    public void setIntranetTX(Long intranetTX) {
-        this.intranetTX = intranetTX;
+    public Long getiOPSRead() {
+        return this.iOPSRead;
+    }
+
+    public Long getiOPSWrite() {
+        return this.iOPSWrite;
     }
 
     public Long getMemory() {
         return this.memory;
     }
 
-    public void setMemory(Long memory) {
-        this.memory = memory;
-    }
-
     public String getTimeStamp() {
         return this.timeStamp;
+    }
+
+    public void setbPSRead(Long bPSRead) {
+        this.bPSRead = bPSRead;
+    }
+
+    public void setbPSWrite(Long bPSWrite) {
+        this.bPSWrite = bPSWrite;
+    }
+
+    public void setcPU(Long cPU) {
+        this.cPU = cPU;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setInternetBandwidth(Long internetBandwidth) {
+        this.internetBandwidth = internetBandwidth;
+    }
+
+    public void setInternetFlow(Long internetFlow) {
+        this.internetFlow = internetFlow;
+    }
+
+    public void setInternetRX(Long internetRX) {
+        this.internetRX = internetRX;
+    }
+
+    public void setInternetTX(Long internetTX) {
+        this.internetTX = internetTX;
+    }
+
+    public void setIntranetBandwidth(Long intranetBandwidth) {
+        this.intranetBandwidth = intranetBandwidth;
+    }
+
+    public void setIntranetFlow(Long intranetFlow) {
+        this.intranetFlow = intranetFlow;
+    }
+
+    public void setIntranetRX(Long intranetRX) {
+        this.intranetRX = intranetRX;
+    }
+
+    public void setIntranetTX(Long intranetTX) {
+        this.intranetTX = intranetTX;
+    }
+
+    public void setiOPSRead(Long iOPSRead) {
+        this.iOPSRead = iOPSRead;
+    }
+
+    public void setiOPSWrite(Long iOPSWrite) {
+        this.iOPSWrite = iOPSWrite;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
     }
 
     public void setTimeStamp(String timeStamp) {

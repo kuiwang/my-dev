@@ -18,35 +18,40 @@ public class QtReportGetRequest implements TaobaoRequest<QtReportGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 质检编号
      */
     private String qtCode;
 
-    public void setQtCode(String qtCode) {
-        this.qtCode = qtCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(qtCode, "qtCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.qt.report.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getQtCode() {
         return this.qtCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<QtReportGetResponse> getResponseClass() {
+        return QtReportGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.qt.report.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("qt_code", this.qtCode);
@@ -56,6 +61,12 @@ public class QtReportGetRequest implements TaobaoRequest<QtReportGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class QtReportGetRequest implements TaobaoRequest<QtReportGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<QtReportGetResponse> getResponseClass() {
-        return QtReportGetResponse.class;
+    public void setQtCode(String qtCode) {
+        this.qtCode = qtCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(qtCode, "qtCode");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -39,20 +39,20 @@ public class Subtask extends TaobaoObject {
         return this.isSuccess;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public String getSubTaskRequest() {
         return this.subTaskRequest;
     }
 
-    public void setSubTaskRequest(String subTaskRequest) {
-        this.subTaskRequest = subTaskRequest;
-    }
-
     public String getSubTaskResult() {
         return this.subTaskResult;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setSubTaskRequest(String subTaskRequest) {
+        this.subTaskRequest = subTaskRequest;
     }
 
     public void setSubTaskResult(String subTaskResult) {

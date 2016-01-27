@@ -17,35 +17,39 @@ public class AlipayUserContractGetRequest implements TaobaoRequest<AlipayUserCon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订购者支付宝ID。session与subscriber_user_id二选一即可。
      */
     private String subscriberUserId;
 
-    public void setSubscriberUserId(String subscriberUserId) {
-        this.subscriberUserId = subscriberUserId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.user.contract.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<AlipayUserContractGetResponse> getResponseClass() {
+        return AlipayUserContractGetResponse.class;
     }
 
     public String getSubscriberUserId() {
         return this.subscriberUserId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.user.contract.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("subscriber_user_id", this.subscriberUserId);
@@ -55,6 +59,12 @@ public class AlipayUserContractGetRequest implements TaobaoRequest<AlipayUserCon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class AlipayUserContractGetRequest implements TaobaoRequest<AlipayUserCon
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayUserContractGetResponse> getResponseClass() {
-        return AlipayUserContractGetResponse.class;
+    public void setSubscriberUserId(String subscriberUserId) {
+        this.subscriberUserId = subscriberUserId;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

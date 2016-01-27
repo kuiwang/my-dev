@@ -35,20 +35,20 @@ public class DiskDeviceMapping extends TaobaoObject {
         return this.device;
     }
 
-    public void setDevice(String device) {
-        this.device = device;
-    }
-
     public String getSize() {
         return this.size;
     }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public String getSnapshotId() {
         return this.snapshotId;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public void setSnapshotId(String snapshotId) {

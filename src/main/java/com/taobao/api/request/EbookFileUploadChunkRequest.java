@@ -19,10 +19,6 @@ import com.taobao.api.response.EbookFileUploadChunkResponse;
 public class EbookFileUploadChunkRequest implements
         TaobaoUploadRequest<EbookFileUploadChunkResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 文件块总数
      */
@@ -53,81 +49,79 @@ public class EbookFileUploadChunkRequest implements
      */
     private Long fileSize;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 文件块序号
      */
     private Long sequence;
 
-    public void setChunkCount(Long chunkCount) {
-        this.chunkCount = chunkCount;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(chunkCount, "chunkCount");
+        RequestCheckUtils.checkNotEmpty(chunkData, "chunkData");
+        RequestCheckUtils.checkNotEmpty(chunkMd5, "chunkMd5");
+        RequestCheckUtils.checkNotEmpty(fileName, "fileName");
+        RequestCheckUtils.checkNotEmpty(fileSize, "fileSize");
+        RequestCheckUtils.checkNotEmpty(sequence, "sequence");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ebook.file.upload.chunk";
     }
 
     public Long getChunkCount() {
         return this.chunkCount;
     }
 
-    public void setChunkData(FileItem chunkData) {
-        this.chunkData = chunkData;
-    }
-
     public FileItem getChunkData() {
         return this.chunkData;
-    }
-
-    public void setChunkMd5(String chunkMd5) {
-        this.chunkMd5 = chunkMd5;
     }
 
     public String getChunkMd5() {
         return this.chunkMd5;
     }
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
-    }
-
     public String getFileId() {
         return this.fileId;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public String getFileName() {
         return this.fileName;
     }
 
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("chunk_data", this.chunkData);
+        return params;
     }
 
     public Long getFileSize() {
         return this.fileSize;
     }
 
-    public void setSequence(Long sequence) {
-        this.sequence = sequence;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<EbookFileUploadChunkResponse> getResponseClass() {
+        return EbookFileUploadChunkResponse.class;
     }
 
     public Long getSequence() {
         return this.sequence;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ebook.file.upload.chunk";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("chunk_count", this.chunkCount);
@@ -142,6 +136,12 @@ public class EbookFileUploadChunkRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -149,27 +149,36 @@ public class EbookFileUploadChunkRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("chunk_data", this.chunkData);
-        return params;
+    public void setChunkCount(Long chunkCount) {
+        this.chunkCount = chunkCount;
     }
 
-    public Class<EbookFileUploadChunkResponse> getResponseClass() {
-        return EbookFileUploadChunkResponse.class;
+    public void setChunkData(FileItem chunkData) {
+        this.chunkData = chunkData;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(chunkCount, "chunkCount");
-        RequestCheckUtils.checkNotEmpty(chunkData, "chunkData");
-        RequestCheckUtils.checkNotEmpty(chunkMd5, "chunkMd5");
-        RequestCheckUtils.checkNotEmpty(fileName, "fileName");
-        RequestCheckUtils.checkNotEmpty(fileSize, "fileSize");
-        RequestCheckUtils.checkNotEmpty(sequence, "sequence");
+    public void setChunkMd5(String chunkMd5) {
+        this.chunkMd5 = chunkMd5;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setSequence(Long sequence) {
+        this.sequence = sequence;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

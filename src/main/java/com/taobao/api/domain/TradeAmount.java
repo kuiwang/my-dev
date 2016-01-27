@@ -73,18 +73,18 @@ public class TradeAmount extends TaobaoObject {
     private List<OrderAmount> orderAmounts;
 
     /**
-     * 付款时间。格式:yyyy-MM-dd HH:mm:ss
-     */
-    @ApiField("pay_time")
-    private Date payTime;
-
-    /**
      * 主订单实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分，计算公式如下： 如果主订单只有一笔子订单 payment
      * = 子订单的实付金额 + 货到付款服务费(如果是货到付款订单) - 主订单的系统级优惠；如果主订单有多笔子订单 payment =
      * 各子订单的实付金额之和 + 货到付款服务费(如果是货到付款订单) + 邮费 - 主订单的系统级优惠
      */
     @ApiField("payment")
     private String payment;
+
+    /**
+     * 付款时间。格式:yyyy-MM-dd HH:mm:ss
+     */
+    @ApiField("pay_time")
+    private Date payTime;
 
     /**
      * 邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分。目前只提供整笔交易的邮费，暂不提供各子订单的邮费
@@ -122,124 +122,124 @@ public class TradeAmount extends TaobaoObject {
         return this.alipayNo;
     }
 
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
-    }
-
     public String getBuyerCodFee() {
         return this.buyerCodFee;
-    }
-
-    public void setBuyerCodFee(String buyerCodFee) {
-        this.buyerCodFee = buyerCodFee;
     }
 
     public Long getBuyerObtainPointFee() {
         return this.buyerObtainPointFee;
     }
 
-    public void setBuyerObtainPointFee(Long buyerObtainPointFee) {
-        this.buyerObtainPointFee = buyerObtainPointFee;
-    }
-
     public String getCodFee() {
         return this.codFee;
-    }
-
-    public void setCodFee(String codFee) {
-        this.codFee = codFee;
     }
 
     public String getCommissionFee() {
         return this.commissionFee;
     }
 
-    public void setCommissionFee(String commissionFee) {
-        this.commissionFee = commissionFee;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getExpressAgencyFee() {
         return this.expressAgencyFee;
-    }
-
-    public void setExpressAgencyFee(String expressAgencyFee) {
-        this.expressAgencyFee = expressAgencyFee;
     }
 
     public List<OrderAmount> getOrderAmounts() {
         return this.orderAmounts;
     }
 
-    public void setOrderAmounts(List<OrderAmount> orderAmounts) {
-        this.orderAmounts = orderAmounts;
+    public String getPayment() {
+        return this.payment;
     }
 
     public Date getPayTime() {
         return this.payTime;
     }
 
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
-    public String getPayment() {
-        return this.payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
-
     public String getPostFee() {
         return this.postFee;
-    }
-
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
     }
 
     public List<PromotionDetail> getPromotionDetails() {
         return this.promotionDetails;
     }
 
-    public void setPromotionDetails(List<PromotionDetail> promotionDetails) {
-        this.promotionDetails = promotionDetails;
-    }
-
     public String getSellerCodFee() {
         return this.sellerCodFee;
-    }
-
-    public void setSellerCodFee(String sellerCodFee) {
-        this.sellerCodFee = sellerCodFee;
     }
 
     public Long getTid() {
         return this.tid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
+    }
+
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
+    }
+
+    public void setBuyerCodFee(String buyerCodFee) {
+        this.buyerCodFee = buyerCodFee;
+    }
+
+    public void setBuyerObtainPointFee(Long buyerObtainPointFee) {
+        this.buyerObtainPointFee = buyerObtainPointFee;
+    }
+
+    public void setCodFee(String codFee) {
+        this.codFee = codFee;
+    }
+
+    public void setCommissionFee(String commissionFee) {
+        this.commissionFee = commissionFee;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setExpressAgencyFee(String expressAgencyFee) {
+        this.expressAgencyFee = expressAgencyFee;
+    }
+
+    public void setOrderAmounts(List<OrderAmount> orderAmounts) {
+        this.orderAmounts = orderAmounts;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPromotionDetails(List<PromotionDetail> promotionDetails) {
+        this.promotionDetails = promotionDetails;
+    }
+
+    public void setSellerCodFee(String sellerCodFee) {
+        this.sellerCodFee = sellerCodFee;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
     public void setTotalFee(String totalFee) {

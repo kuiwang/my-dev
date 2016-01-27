@@ -16,37 +16,42 @@ import com.taobao.api.response.CrmGrouptaskCheckResponse;
  */
 public class CrmGrouptaskCheckRequest implements TaobaoRequest<CrmGrouptaskCheckResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分组id
      */
     private Long groupId;
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.grouptask.check";
     }
 
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<CrmGrouptaskCheckResponse> getResponseClass() {
+        return CrmGrouptaskCheckResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.crm.grouptask.check";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_id", this.groupId);
@@ -56,6 +61,12 @@ public class CrmGrouptaskCheckRequest implements TaobaoRequest<CrmGrouptaskCheck
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class CrmGrouptaskCheckRequest implements TaobaoRequest<CrmGrouptaskCheck
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGrouptaskCheckResponse> getResponseClass() {
-        return CrmGrouptaskCheckResponse.class;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

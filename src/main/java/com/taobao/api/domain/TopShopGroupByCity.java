@@ -39,20 +39,20 @@ public class TopShopGroupByCity extends TaobaoObject {
         return this.cityid;
     }
 
-    public void setCityid(Long cityid) {
-        this.cityid = cityid;
-    }
-
     public String getCityname() {
         return this.cityname;
     }
 
-    public void setCityname(String cityname) {
-        this.cityname = cityname;
-    }
-
     public List<TopShop> getShoplist() {
         return this.shoplist;
+    }
+
+    public void setCityid(Long cityid) {
+        this.cityid = cityid;
+    }
+
+    public void setCityname(String cityname) {
+        this.cityname = cityname;
     }
 
     public void setShoplist(List<TopShop> shoplist) {

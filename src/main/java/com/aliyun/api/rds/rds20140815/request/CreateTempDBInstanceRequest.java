@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class CreateTempDBInstanceRequest implements AliyunRequest<CreateTempDBInstanceResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 备份ID
      */
@@ -44,71 +26,74 @@ public class CreateTempDBInstanceRequest implements AliyunRequest<CreateTempDBIn
      */
     private String dBInstanceId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * "用户指定7天内的任意时间点 Xx年xx月xx日 xx时xx分xx秒"
      */
     private String restoreTime;
 
-    public void setBackupId(Long backupId) {
-        this.backupId = backupId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "rds.aliyuncs.com.CreateTempDBInstance.2014-08-15";
     }
 
     public Long getBackupId() {
         return this.backupId;
     }
 
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
     }
 
-    public void setRestoreTime(String restoreTime) {
-        this.restoreTime = restoreTime;
-    }
-
-    public String getRestoreTime() {
-        return this.restoreTime;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateTempDBInstanceResponse> getResponseClass() {
+        return CreateTempDBInstanceResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getRestoreTime() {
+        return this.restoreTime;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "rds.aliyuncs.com.CreateTempDBInstance.2014-08-15";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -123,6 +108,12 @@ public class CreateTempDBInstanceRequest implements AliyunRequest<CreateTempDBIn
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -130,15 +121,32 @@ public class CreateTempDBInstanceRequest implements AliyunRequest<CreateTempDBIn
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateTempDBInstanceResponse> getResponseClass() {
-        return CreateTempDBInstanceResponse.class;
+    public void setBackupId(Long backupId) {
+        this.backupId = backupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setRestoreTime(String restoreTime) {
+        this.restoreTime = restoreTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

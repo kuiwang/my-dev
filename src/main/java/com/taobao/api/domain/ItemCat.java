@@ -64,52 +64,52 @@ public class ItemCat extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public List<Feature> getFeatures() {
         return this.features;
-    }
-
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
     }
 
     public Boolean getIsParent() {
         return this.isParent;
     }
 
-    public void setIsParent(Boolean isParent) {
-        this.isParent = isParent;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getParentCid() {
         return this.parentCid;
     }
 
-    public void setParentCid(Long parentCid) {
-        this.parentCid = parentCid;
-    }
-
     public Long getSortOrder() {
         return this.sortOrder;
     }
 
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void setIsParent(Boolean isParent) {
+        this.isParent = isParent;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParentCid(Long parentCid) {
+        this.parentCid = parentCid;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public void setStatus(String status) {

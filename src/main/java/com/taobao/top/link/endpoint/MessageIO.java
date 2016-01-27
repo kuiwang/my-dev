@@ -12,20 +12,20 @@ import com.taobao.top.link.endpoint.protocol.MessageEncoderFactory;
 // https://github.com/wsky/RemotingProtocolParser/issues/3
 public class MessageIO {
 
-    public interface MessageEncoder {
-
-        public void writeMessage(ByteBuffer buffer, Message message);
-    }
-
     public interface MessageDecoder {
 
         public Message readMessage(ByteBuffer buffer);
     }
 
-    // TODO codec will rewrite in v2.0, current design just for compatible
-    public static MessageEncoderFactory encoderFactory = new DefaultMessageEncoderFactory();
+    public interface MessageEncoder {
+
+        public void writeMessage(ByteBuffer buffer, Message message);
+    }
 
     public static MessageDecoderFactory decoderFactory = new DefaultMessageDecoderFactory();
+
+    // TODO codec will rewrite in v2.0, current design just for compatible
+    public static MessageEncoderFactory encoderFactory = new DefaultMessageEncoderFactory();
 
     public static Message readMessage(ByteBuffer buffer) {
         return decoderFactory.get(buffer).readMessage(buffer);

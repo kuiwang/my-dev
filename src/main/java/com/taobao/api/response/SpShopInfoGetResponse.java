@@ -20,12 +20,12 @@ public class SpShopInfoGetResponse extends TaobaoResponse {
     @ApiField("shop")
     private SpShop shop;
 
-    public void setShop(SpShop shop) {
-        this.shop = shop;
-    }
-
     public SpShop getShop() {
         return this.shop;
+    }
+
+    public void setShop(SpShop shop) {
+        this.shop = shop;
     }
 
 }

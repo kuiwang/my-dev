@@ -15,12 +15,6 @@ import com.taobao.api.response.ScitemUpdateResponse;
  */
 public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 条形码
      */
@@ -35,6 +29,8 @@ public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> 
      * brand_Name
      */
     private String brandName;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 高 单位：mm
@@ -116,6 +112,10 @@ public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> 
      */
     private Long spuId;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 需要更新的商品属性格式是 p1:v1,p2:v2,p3:v3
      */
@@ -141,210 +141,102 @@ public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> 
      */
     private String wmsCode;
 
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.scitem.update";
     }
 
     public String getBarCode() {
         return this.barCode;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
     public Long getBrandId() {
         return this.brandId;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
     }
 
     public String getBrandName() {
         return this.brandName;
     }
 
-    public void setHeight(Long height) {
-        this.height = height;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHeight() {
         return this.height;
     }
 
-    public void setIsAreaSale(Long isAreaSale) {
-        this.isAreaSale = isAreaSale;
-    }
-
     public Long getIsAreaSale() {
         return this.isAreaSale;
-    }
-
-    public void setIsCostly(Long isCostly) {
-        this.isCostly = isCostly;
     }
 
     public Long getIsCostly() {
         return this.isCostly;
     }
 
-    public void setIsDangerous(Long isDangerous) {
-        this.isDangerous = isDangerous;
-    }
-
     public Long getIsDangerous() {
         return this.isDangerous;
-    }
-
-    public void setIsFriable(Long isFriable) {
-        this.isFriable = isFriable;
     }
 
     public Long getIsFriable() {
         return this.isFriable;
     }
 
-    public void setIsWarranty(Long isWarranty) {
-        this.isWarranty = isWarranty;
-    }
-
     public Long getIsWarranty() {
         return this.isWarranty;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public String getItemName() {
         return this.itemName;
-    }
-
-    public void setItemType(Long itemType) {
-        this.itemType = itemType;
     }
 
     public Long getItemType() {
         return this.itemType;
     }
 
-    public void setLength(Long length) {
-        this.length = length;
-    }
-
     public Long getLength() {
         return this.length;
-    }
-
-    public void setMatterStatus(Long matterStatus) {
-        this.matterStatus = matterStatus;
     }
 
     public Long getMatterStatus() {
         return this.matterStatus;
     }
 
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
-    }
-
     public String getOuterCode() {
         return this.outerCode;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     public String getRemark() {
         return this.remark;
-    }
-
-    public void setRemoveProperties(String removeProperties) {
-        this.removeProperties = removeProperties;
     }
 
     public String getRemoveProperties() {
         return this.removeProperties;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
+    @Override
+    public Class<ScitemUpdateResponse> getResponseClass() {
+        return ScitemUpdateResponse.class;
     }
 
     public Long getSpuId() {
         return this.spuId;
     }
 
-    public void setUpdateProperties(String updateProperties) {
-        this.updateProperties = updateProperties;
-    }
-
-    public String getUpdateProperties() {
-        return this.updateProperties;
-    }
-
-    public void setVolume(Long volume) {
-        this.volume = volume;
-    }
-
-    public Long getVolume() {
-        return this.volume;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public Long getWeight() {
-        return this.weight;
-    }
-
-    public void setWidth(Long width) {
-        this.width = width;
-    }
-
-    public Long getWidth() {
-        return this.width;
-    }
-
-    public void setWmsCode(String wmsCode) {
-        this.wmsCode = wmsCode;
-    }
-
-    public String getWmsCode() {
-        return this.wmsCode;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.scitem.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bar_code", this.barCode);
@@ -377,6 +269,32 @@ public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUpdateProperties() {
+        return this.updateProperties;
+    }
+
+    public Long getVolume() {
+        return this.volume;
+    }
+
+    public Long getWeight() {
+        return this.weight;
+    }
+
+    public Long getWidth() {
+        return this.width;
+    }
+
+    public String getWmsCode() {
+        return this.wmsCode;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -384,14 +302,104 @@ public class ScitemUpdateRequest implements TaobaoRequest<ScitemUpdateResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<ScitemUpdateResponse> getResponseClass() {
-        return ScitemUpdateResponse.class;
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
 
-    public void check() throws ApiRuleException {
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public void setHeight(Long height) {
+        this.height = height;
+    }
+
+    public void setIsAreaSale(Long isAreaSale) {
+        this.isAreaSale = isAreaSale;
+    }
+
+    public void setIsCostly(Long isCostly) {
+        this.isCostly = isCostly;
+    }
+
+    public void setIsDangerous(Long isDangerous) {
+        this.isDangerous = isDangerous;
+    }
+
+    public void setIsFriable(Long isFriable) {
+        this.isFriable = isFriable;
+    }
+
+    public void setIsWarranty(Long isWarranty) {
+        this.isWarranty = isWarranty;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemType(Long itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
+    }
+
+    public void setMatterStatus(Long matterStatus) {
+        this.matterStatus = matterStatus;
+    }
+
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setRemoveProperties(String removeProperties) {
+        this.removeProperties = removeProperties;
+    }
+
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUpdateProperties(String updateProperties) {
+        this.updateProperties = updateProperties;
+    }
+
+    public void setVolume(Long volume) {
+        this.volume = volume;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
+    }
+
+    public void setWidth(Long width) {
+        this.width = width;
+    }
+
+    public void setWmsCode(String wmsCode) {
+        this.wmsCode = wmsCode;
     }
 }

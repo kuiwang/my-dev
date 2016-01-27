@@ -18,10 +18,6 @@ public class ProductImgDeleteRequest implements TaobaoRequest<ProductImgDeleteRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 非主图ID
      */
@@ -32,34 +28,40 @@ public class ProductImgDeleteRequest implements TaobaoRequest<ProductImgDeleteRe
      */
     private Long productId;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.product.img.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ProductImgDeleteResponse> getResponseClass() {
+        return ProductImgDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.product.img.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -70,6 +72,12 @@ public class ProductImgDeleteRequest implements TaobaoRequest<ProductImgDeleteRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class ProductImgDeleteRequest implements TaobaoRequest<ProductImgDeleteRe
         this.udfParams.put(key, value);
     }
 
-    public Class<ProductImgDeleteResponse> getResponseClass() {
-        return ProductImgDeleteResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -40,20 +40,20 @@ public class TicketItemProcessResult extends TaobaoObject {
         return this.broken;
     }
 
-    public void setBroken(Boolean broken) {
-        this.broken = broken;
-    }
-
     public List<String> getBrokenReasons() {
         return this.brokenReasons;
     }
 
-    public void setBrokenReasons(List<String> brokenReasons) {
-        this.brokenReasons = brokenReasons;
-    }
-
     public Long getItemId() {
         return this.itemId;
+    }
+
+    public void setBroken(Boolean broken) {
+        this.broken = broken;
+    }
+
+    public void setBrokenReasons(List<String> brokenReasons) {
+        this.brokenReasons = brokenReasons;
     }
 
     public void setItemId(Long itemId) {

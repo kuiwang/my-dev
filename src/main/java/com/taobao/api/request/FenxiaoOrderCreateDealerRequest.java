@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoOrderCreateDealerResponse;
 public class FenxiaoOrderCreateDealerRequest implements
         TaobaoRequest<FenxiaoOrderCreateDealerResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 街道
      */
@@ -44,6 +38,8 @@ public class FenxiaoOrderCreateDealerRequest implements
      * 区
      */
     private String country;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 运费，单位为分
@@ -93,135 +89,97 @@ public class FenxiaoOrderCreateDealerRequest implements
      */
     private String subOrderDetail;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 邮编
      */
     private String zipCode;
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(addr, "addr");
+        RequestCheckUtils.checkNotEmpty(buyerName, "buyerName");
+        RequestCheckUtils.checkMaxLength(buyerName, 20, "buyerName");
+        RequestCheckUtils.checkNotEmpty(logisticFee, "logisticFee");
+        RequestCheckUtils.checkNotEmpty(logisticType, "logisticType");
+        RequestCheckUtils.checkMaxLength(message, 200, "message");
+        RequestCheckUtils.checkNotEmpty(outerId, "outerId");
+        RequestCheckUtils.checkNotEmpty(payType, "payType");
+        RequestCheckUtils.checkNotEmpty(province, "province");
+        RequestCheckUtils.checkNotEmpty(subOrderDetail, "subOrderDetail");
     }
 
     public String getAddr() {
         return this.addr;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.order.create.dealer";
     }
 
     public String getBuyerName() {
         return this.buyerName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getCountry() {
         return this.country;
     }
 
-    public void setLogisticFee(Long logisticFee) {
-        this.logisticFee = logisticFee;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLogisticFee() {
         return this.logisticFee;
     }
 
-    public void setLogisticType(String logisticType) {
-        this.logisticType = logisticType;
-    }
-
     public String getLogisticType() {
         return this.logisticType;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
-
     public String getMobilePhone() {
         return this.mobilePhone;
-    }
-
-    public void setOuterId(Long outerId) {
-        this.outerId = outerId;
     }
 
     public Long getOuterId() {
         return this.outerId;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
-
     public String getPayType() {
         return this.payType;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getProvince() {
         return this.province;
     }
 
-    public void setSubOrderDetail(String subOrderDetail) {
-        this.subOrderDetail = subOrderDetail;
+    @Override
+    public Class<FenxiaoOrderCreateDealerResponse> getResponseClass() {
+        return FenxiaoOrderCreateDealerResponse.class;
     }
 
     public String getSubOrderDetail() {
         return this.subOrderDetail;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getZipCode() {
-        return this.zipCode;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.order.create.dealer";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("addr", this.addr);
@@ -244,6 +202,16 @@ public class FenxiaoOrderCreateDealerRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getZipCode() {
+        return this.zipCode;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -251,24 +219,64 @@ public class FenxiaoOrderCreateDealerRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoOrderCreateDealerResponse> getResponseClass() {
-        return FenxiaoOrderCreateDealerResponse.class;
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(addr, "addr");
-        RequestCheckUtils.checkNotEmpty(buyerName, "buyerName");
-        RequestCheckUtils.checkMaxLength(buyerName, 20, "buyerName");
-        RequestCheckUtils.checkNotEmpty(logisticFee, "logisticFee");
-        RequestCheckUtils.checkNotEmpty(logisticType, "logisticType");
-        RequestCheckUtils.checkMaxLength(message, 200, "message");
-        RequestCheckUtils.checkNotEmpty(outerId, "outerId");
-        RequestCheckUtils.checkNotEmpty(payType, "payType");
-        RequestCheckUtils.checkNotEmpty(province, "province");
-        RequestCheckUtils.checkNotEmpty(subOrderDetail, "subOrderDetail");
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setLogisticFee(Long logisticFee) {
+        this.logisticFee = logisticFee;
+    }
+
+    public void setLogisticType(String logisticType) {
+        this.logisticType = logisticType;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public void setOuterId(Long outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public void setSubOrderDetail(String subOrderDetail) {
+        this.subOrderDetail = subOrderDetail;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

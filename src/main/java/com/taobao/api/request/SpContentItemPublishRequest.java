@@ -16,12 +16,6 @@ import com.taobao.api.response.SpContentItemPublishResponse;
  */
 public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemPublishResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 内容的自定义分类，数值为文本内容，主要用于区分内容的分类（譬如连衣裙、T恤、阿迪达斯等），分类名称的长度限制为(0,5]
      * (单位是字符，不区分中英文)，分类名称中不能包含非法内容，且一个站点下所拥有的总自定义分类数量不能超过16个<br />
@@ -50,6 +44,8 @@ public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemP
      */
     private String detailurl;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 宝贝ID
      */
@@ -69,6 +65,8 @@ public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemP
      */
     private String tags;
 
+    private Long timestamp;
+
     /**
      * 内容标题,标题的长度限制为(0,32](单位是字符，不区分中英文)<br />
      * 支持最大长度为：32<br />
@@ -76,82 +74,66 @@ public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemP
      */
     private String title;
 
-    public void setClassname(String classname) {
-        this.classname = classname;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(classname, "classname");
+        RequestCheckUtils.checkMaxLength(classname, 5, "classname");
+        RequestCheckUtils.checkNotEmpty(comments, "comments");
+        RequestCheckUtils.checkMaxLength(comments, 140, "comments");
+        RequestCheckUtils.checkNotEmpty(detailurl, "detailurl");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 32, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.item.publish";
     }
 
     public String getClassname() {
         return this.classname;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
     public String getComments() {
         return this.comments;
-    }
-
-    public void setCoverpicurl(String coverpicurl) {
-        this.coverpicurl = coverpicurl;
     }
 
     public String getCoverpicurl() {
         return this.coverpicurl;
     }
 
-    public void setDetailurl(String detailurl) {
-        this.detailurl = detailurl;
-    }
-
     public String getDetailurl() {
         return this.detailurl;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentItemPublishResponse> getResponseClass() {
+        return SpContentItemPublishResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public String getTags() {
         return this.tags;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.item.publish";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("classname", this.classname);
@@ -168,6 +150,16 @@ public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemP
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -175,24 +167,40 @@ public class SpContentItemPublishRequest implements TaobaoRequest<SpContentItemP
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentItemPublishResponse> getResponseClass() {
-        return SpContentItemPublishResponse.class;
+    public void setClassname(String classname) {
+        this.classname = classname;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(classname, "classname");
-        RequestCheckUtils.checkMaxLength(classname, 5, "classname");
-        RequestCheckUtils.checkNotEmpty(comments, "comments");
-        RequestCheckUtils.checkMaxLength(comments, 140, "comments");
-        RequestCheckUtils.checkNotEmpty(detailurl, "detailurl");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 32, "title");
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCoverpicurl(String coverpicurl) {
+        this.coverpicurl = coverpicurl;
+    }
+
+    public void setDetailurl(String detailurl) {
+        this.detailurl = detailurl;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

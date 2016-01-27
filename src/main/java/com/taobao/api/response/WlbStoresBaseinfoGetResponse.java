@@ -30,20 +30,20 @@ public class WlbStoresBaseinfoGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setStoreInfoList(List<StoreInfo> storeInfoList) {
-        this.storeInfoList = storeInfoList;
-    }
-
     public List<StoreInfo> getStoreInfoList() {
         return this.storeInfoList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setStoreInfoList(List<StoreInfo> storeInfoList) {
+        this.storeInfoList = storeInfoList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

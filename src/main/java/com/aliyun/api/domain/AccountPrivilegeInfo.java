@@ -29,12 +29,12 @@ public class AccountPrivilegeInfo extends TaobaoObject {
         return this.account;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
     public String getAccountPrivilege() {
         return this.accountPrivilege;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public void setAccountPrivilege(String accountPrivilege) {

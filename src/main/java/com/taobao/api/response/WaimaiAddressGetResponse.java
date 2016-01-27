@@ -19,12 +19,12 @@ public class WaimaiAddressGetResponse extends TaobaoResponse {
     @ApiField("result")
     private String result;
 
-    public void setResult(String result) {
-        this.result = result;
-    }
-
     public String getResult() {
         return this.result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
 }

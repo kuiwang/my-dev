@@ -11,36 +11,36 @@ public class PromotionInShop {
     private String name;
 
     /*
-     * idValue值
-     */
-    private String promotionId;
-
-    /*
      * 优惠详情描述。
      */
     private String promotionDetailDesc;
 
+    /*
+     * idValue值
+     */
+    private String promotionId;
+
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPromotionId() {
-        return promotionId;
-    }
-
-    public void setPromotionId(String promotionId) {
-        this.promotionId = promotionId;
     }
 
     public String getPromotionDetailDesc() {
         return promotionDetailDesc;
     }
 
+    public String getPromotionId() {
+        return promotionId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setPromotionDetailDesc(String promotionDetailDesc) {
         this.promotionDetailDesc = promotionDetailDesc;
+    }
+
+    public void setPromotionId(String promotionId) {
+        this.promotionId = promotionId;
     }
 }

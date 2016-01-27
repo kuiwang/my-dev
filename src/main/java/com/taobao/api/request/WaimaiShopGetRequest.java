@@ -18,35 +18,40 @@ public class WaimaiShopGetRequest implements TaobaoRequest<WaimaiShopGetResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外卖店铺id
      */
     private Long shopid;
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.shop.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WaimaiShopGetResponse> getResponseClass() {
+        return WaimaiShopGetResponse.class;
     }
 
     public Long getShopid() {
         return this.shopid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.shop.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("shopid", this.shopid);
@@ -56,6 +61,12 @@ public class WaimaiShopGetRequest implements TaobaoRequest<WaimaiShopGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class WaimaiShopGetRequest implements TaobaoRequest<WaimaiShopGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiShopGetResponse> getResponseClass() {
-        return WaimaiShopGetResponse.class;
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(shopid, "shopid");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

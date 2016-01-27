@@ -16,16 +16,12 @@ import com.taobao.api.response.TmcMessagesConsumeResponse;
  */
 public class TmcMessagesConsumeRequest implements TaobaoRequest<TmcMessagesConsumeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 用户分组名称，不传表示消费默认分组，如果应用没有设置用户分组，传入分组名称将会返回错误
      */
     private String groupName;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 每次批量消费消息的条数<br />
@@ -34,34 +30,40 @@ public class TmcMessagesConsumeRequest implements TaobaoRequest<TmcMessagesConsu
      */
     private Long quantity;
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(quantity, 200L, "quantity");
+        RequestCheckUtils.checkMinValue(quantity, 10L, "quantity");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tmc.messages.consume";
     }
 
     public String getGroupName() {
         return this.groupName;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmcMessagesConsumeResponse> getResponseClass() {
+        return TmcMessagesConsumeResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tmc.messages.consume";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_name", this.groupName);
@@ -72,6 +74,12 @@ public class TmcMessagesConsumeRequest implements TaobaoRequest<TmcMessagesConsu
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,16 +87,16 @@ public class TmcMessagesConsumeRequest implements TaobaoRequest<TmcMessagesConsu
         this.udfParams.put(key, value);
     }
 
-    public Class<TmcMessagesConsumeResponse> getResponseClass() {
-        return TmcMessagesConsumeResponse.class;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(quantity, 200L, "quantity");
-        RequestCheckUtils.checkMinValue(quantity, 10L, "quantity");
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

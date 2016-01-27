@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaInsightCatsworddataGetResponse;
 public class SimbaInsightCatsworddataGetRequest implements
         TaobaoRequest<SimbaInsightCatsworddataGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要查询的关键词列表
      */
@@ -38,55 +32,58 @@ public class SimbaInsightCatsworddataGetRequest implements
      */
     private String endDate;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 开始时间，格式只能为：yyyy-MM-dd
      */
     private String startDate;
 
-    public void setBidwordList(String bidwordList) {
-        this.bidwordList = bidwordList;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
+        RequestCheckUtils.checkMaxListSize(bidwordList, 5, "bidwordList");
+        RequestCheckUtils.checkNotEmpty(catId, "catId");
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.catsworddata.get";
     }
 
     public String getBidwordList() {
         return this.bidwordList;
     }
 
-    public void setCatId(String catId) {
-        this.catId = catId;
-    }
-
     public String getCatId() {
         return this.catId;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SimbaInsightCatsworddataGetResponse> getResponseClass() {
+        return SimbaInsightCatsworddataGetResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.catsworddata.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bidword_list", this.bidwordList);
@@ -99,6 +96,12 @@ public class SimbaInsightCatsworddataGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,19 +109,24 @@ public class SimbaInsightCatsworddataGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightCatsworddataGetResponse> getResponseClass() {
-        return SimbaInsightCatsworddataGetResponse.class;
+    public void setBidwordList(String bidwordList) {
+        this.bidwordList = bidwordList;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
-        RequestCheckUtils.checkMaxListSize(bidwordList, 5, "bidwordList");
-        RequestCheckUtils.checkNotEmpty(catId, "catId");
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setCatId(String catId) {
+        this.catId = catId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

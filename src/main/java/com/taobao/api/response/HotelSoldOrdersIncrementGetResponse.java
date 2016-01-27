@@ -36,28 +36,28 @@ public class HotelSoldOrdersIncrementGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
     public Boolean getHasNext() {
         return this.hasNext;
-    }
-
-    public void setHotelOrders(List<HotelOrder> hotelOrders) {
-        this.hotelOrders = hotelOrders;
     }
 
     public List<HotelOrder> getHotelOrders() {
         return this.hotelOrders;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setHotelOrders(List<HotelOrder> hotelOrders) {
+        this.hotelOrders = hotelOrders;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

@@ -20,16 +20,16 @@ public class DescribeResourceUsageResponse extends AliyunResponse {
     private Long backupSize;
 
     /**
-     * 实例名
-     */
-    @ApiField("DBInstanceId")
-    private String dBInstanceId;
-
-    /**
      * 数据文件占用空间，单位：Byte， -1表示没有数据
      */
     @ApiField("DataSize")
     private Long dataSize;
+
+    /**
+     * 实例名
+     */
+    @ApiField("DBInstanceId")
+    private String dBInstanceId;
 
     /**
      * 已用空间（DataSize+ LogSize），单位：Byte，-1表示没有数据
@@ -55,60 +55,60 @@ public class DescribeResourceUsageResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setBackupSize(Long backupSize) {
-        this.backupSize = backupSize;
-    }
-
     public Long getBackupSize() {
         return this.backupSize;
-    }
-
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
-    }
-
-    public String getdBInstanceId() {
-        return this.dBInstanceId;
-    }
-
-    public void setDataSize(Long dataSize) {
-        this.dataSize = dataSize;
     }
 
     public Long getDataSize() {
         return this.dataSize;
     }
 
-    public void setDiskUsed(Long diskUsed) {
-        this.diskUsed = diskUsed;
+    public String getdBInstanceId() {
+        return this.dBInstanceId;
     }
 
     public Long getDiskUsed() {
         return this.diskUsed;
     }
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setLogSize(Long logSize) {
-        this.logSize = logSize;
     }
 
     public Long getLogSize() {
         return this.logSize;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setBackupSize(Long backupSize) {
+        this.backupSize = backupSize;
+    }
+
+    public void setDataSize(Long dataSize) {
+        this.dataSize = dataSize;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setDiskUsed(Long diskUsed) {
+        this.diskUsed = diskUsed;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setLogSize(Long logSize) {
+        this.logSize = logSize;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

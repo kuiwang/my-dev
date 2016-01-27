@@ -18,35 +18,40 @@ public class FenxiaoDistributorsGetRequest implements TaobaoRequest<FenxiaoDistr
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销商用户名列表。多个之间以“,”分隔;最多支持50个分销商用户名。
      */
     private String nicks;
 
-    public void setNicks(String nicks) {
-        this.nicks = nicks;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(nicks, "nicks");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.distributors.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNicks() {
         return this.nicks;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoDistributorsGetResponse> getResponseClass() {
+        return FenxiaoDistributorsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.distributors.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nicks", this.nicks);
@@ -56,6 +61,12 @@ public class FenxiaoDistributorsGetRequest implements TaobaoRequest<FenxiaoDistr
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class FenxiaoDistributorsGetRequest implements TaobaoRequest<FenxiaoDistr
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDistributorsGetResponse> getResponseClass() {
-        return FenxiaoDistributorsGetResponse.class;
+    public void setNicks(String nicks) {
+        this.nicks = nicks;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(nicks, "nicks");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

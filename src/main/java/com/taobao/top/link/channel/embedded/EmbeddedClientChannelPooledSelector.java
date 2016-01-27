@@ -9,18 +9,6 @@ import com.taobao.top.link.channel.ClientChannelPooledSelector;
 
 public class EmbeddedClientChannelPooledSelector extends ClientChannelPooledSelector {
 
-    public EmbeddedClientChannelPooledSelector() {
-        super();
-    }
-
-    public EmbeddedClientChannelPooledSelector(LoggerFactory loggerFactory) {
-        super(loggerFactory);
-    }
-
-    protected ChannelPool createChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
-        return new ChannelPool(loggerFactory, uri, timeout);
-    }
-
     public class EmbeddedChannelPool extends ChannelPool {
 
         public EmbeddedChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
@@ -33,5 +21,18 @@ public class EmbeddedClientChannelPooledSelector extends ClientChannelPooledSele
                     || uri.getScheme().equalsIgnoreCase("wss") ? EmbeddedWebSocketClient.connect(
                     this.loggerFactory, this.uri, this.timeout) : super.create();
         }
+    }
+
+    public EmbeddedClientChannelPooledSelector() {
+        super();
+    }
+
+    public EmbeddedClientChannelPooledSelector(LoggerFactory loggerFactory) {
+        super(loggerFactory);
+    }
+
+    @Override
+    protected ChannelPool createChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
+        return new ChannelPool(loggerFactory, uri, timeout);
     }
 }

@@ -23,12 +23,12 @@ public class UmpToolsGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> tools;
 
-    public void setTools(List<String> tools) {
-        this.tools = tools;
-    }
-
     public List<String> getTools() {
         return this.tools;
+    }
+
+    public void setTools(List<String> tools) {
+        this.tools = tools;
     }
 
 }

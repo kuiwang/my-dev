@@ -18,9 +18,7 @@ import com.taobao.api.response.ItemPropimgUploadResponse;
  */
 public class ItemPropimgUploadRequest implements TaobaoUploadRequest<ItemPropimgUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 属性图片ID。如果是新增不需要填写
@@ -51,60 +49,62 @@ public class ItemPropimgUploadRequest implements TaobaoUploadRequest<ItemPropimg
      */
     private String properties;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.propimg.upload";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
-    }
-
     public FileItem getImage() {
         return this.image;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setPosition(Long position) {
-        this.position = position;
-    }
-
     public Long getPosition() {
         return this.position;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemPropimgUploadResponse> getResponseClass() {
+        return ItemPropimgUploadResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.propimg.upload";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -117,6 +117,12 @@ public class ItemPropimgUploadRequest implements TaobaoUploadRequest<ItemPropimg
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -124,25 +130,28 @@ public class ItemPropimgUploadRequest implements TaobaoUploadRequest<ItemPropimg
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Class<ItemPropimgUploadResponse> getResponseClass() {
-        return ItemPropimgUploadResponse.class;
+    public void setImage(FileItem image) {
+        this.image = image;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
-        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPosition(Long position) {
+        this.position = position;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -33,13 +33,19 @@ public class NetCatCommandServerChannelHandler extends SimpleChannelHandler {
     public void onMessage(final ChannelContext context) {
         String line = (String) context.getMessage();
 
-        if (this.logger.isDebugEnabled()) this.logger.debug("command: ", line);
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("command: ", line);
+        }
 
-        if (line == null) return;
+        if (line == null) {
+            return;
+        }
 
         String[] arr = line.trim().split(" ");
 
-        if (arr.length == 0) return;
+        if (arr.length == 0) {
+            return;
+        }
         CommandProcessor processor = this.processors.get(arr[0]);
         if (processor == null) {
             this.logger.warn("processor not found for command: %s", arr[0]);
@@ -69,9 +75,11 @@ public class NetCatCommandServerChannelHandler extends SimpleChannelHandler {
     protected Map<String, String> parseInput(String[] input, int from) {
         Map<String, String> map = new HashMap<String, String>();
         for (int i = from; i < input.length; i += 2) {
-            if (i >= input.length) break;
+            if (i >= input.length) {
+                break;
+            }
             map.put(input[i].startsWith("-") ? input[i].substring(1) : input[i],
-                    i + 1 < input.length ? input[i + 1] : null);
+                    (i + 1) < input.length ? input[i + 1] : null);
         }
         return map;
     }

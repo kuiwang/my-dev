@@ -16,12 +16,6 @@ import com.taobao.api.response.TaeItemDetailGetResponse;
  */
 public class TaeItemDetailGetRequest implements TaobaoRequest<TaeItemDetailGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 用户所在位置ip
      */
@@ -32,47 +26,51 @@ public class TaeItemDetailGetRequest implements TaobaoRequest<TaeItemDetailGetRe
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商品open_iid
      */
     private String id;
 
-    public void setBuyerIp(String buyerIp) {
-        this.buyerIp = buyerIp;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(id, "id");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tae.item.detail.get";
     }
 
     public String getBuyerIp() {
         return this.buyerIp;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getId() {
         return this.id;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TaeItemDetailGetResponse> getResponseClass() {
+        return TaeItemDetailGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tae.item.detail.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_ip", this.buyerIp);
@@ -84,6 +82,12 @@ public class TaeItemDetailGetRequest implements TaobaoRequest<TaeItemDetailGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,16 +95,20 @@ public class TaeItemDetailGetRequest implements TaobaoRequest<TaeItemDetailGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<TaeItemDetailGetResponse> getResponseClass() {
-        return TaeItemDetailGetResponse.class;
+    public void setBuyerIp(String buyerIp) {
+        this.buyerIp = buyerIp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(id, "id");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -103,124 +103,124 @@ public class AlibabaGeoipGetResponse extends TaobaoResponse {
     @ApiField("regionid")
     private String regionid;
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCityid(String cityid) {
-        this.cityid = cityid;
     }
 
     public String getCityid() {
         return this.cityid;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getCountry() {
         return this.country;
-    }
-
-    public void setCountryid(String countryid) {
-        this.countryid = countryid;
     }
 
     public String getCountryid() {
         return this.countryid;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
     public String getCounty() {
         return this.county;
-    }
-
-    public void setCountyid(String countyid) {
-        this.countyid = countyid;
     }
 
     public String getCountyid() {
         return this.countyid;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
     public String getIp() {
         return this.ip;
-    }
-
-    public void setIsp(String isp) {
-        this.isp = isp;
     }
 
     public String getIsp() {
         return this.isp;
     }
 
-    public void setIspid(String ispid) {
-        this.ispid = ispid;
-    }
-
     public String getIspid() {
         return this.ispid;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     public String getLang() {
         return this.lang;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
     public String getLatitude() {
         return this.latitude;
-    }
-
-    public void setLip(Long lip) {
-        this.lip = lip;
     }
 
     public Long getLip() {
         return this.lip;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
     public String getLongitude() {
         return this.longitude;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
     }
 
     public String getRegion() {
         return this.region;
     }
 
-    public void setRegionid(String regionid) {
-        this.regionid = regionid;
-    }
-
     public String getRegionid() {
         return this.regionid;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCityid(String cityid) {
+        this.cityid = cityid;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCountryid(String countryid) {
+        this.countryid = countryid;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public void setCountyid(String countyid) {
+        this.countyid = countyid;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public void setIsp(String isp) {
+        this.isp = isp;
+    }
+
+    public void setIspid(String ispid) {
+        this.ispid = ispid;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLip(Long lip) {
+        this.lip = lip;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setRegionid(String regionid) {
+        this.regionid = regionid;
     }
 
 }

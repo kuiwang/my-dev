@@ -41,28 +41,28 @@ public class StoreInfo extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getRealName() {
         return this.realName;
     }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
     public String getServiceCode() {
         return this.serviceCode;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public void setServiceCode(String serviceCode) {

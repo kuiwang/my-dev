@@ -16,12 +16,6 @@ import com.taobao.api.response.SpItemListGetResponse;
  */
 public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所在地:省名
      */
@@ -58,6 +52,8 @@ public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse
      * 是否支持货到付款，设置为true表示该商品支持货到付款，设置为false或不设置表示不判断这个属性
      */
     private String hdfk;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否支持假一赔三，设置为true表示该商品支持假一赔三，设置为false或不设置表示不判断这个属性
@@ -123,10 +119,14 @@ public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse
      */
     private String startPrice;
 
+    private Long timestamp;
+
     /**
      * 是否商城的商品，设置为true表示该商品是属于淘宝商城的商品，设置为false或不设置表示不判断这个属性
      */
     private String tmallItem;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 是否支持消费者保障，设置为true表示该商品支持消费者保障，设置为false或不设置表示不判断这个属性
@@ -138,194 +138,104 @@ public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse
      */
     private String zpbz;
 
-    public void setArea(String area) {
-        this.area = area;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.item.list.get";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setEndBiz30day(String endBiz30day) {
-        this.endBiz30day = endBiz30day;
     }
 
     public String getEndBiz30day() {
         return this.endBiz30day;
     }
 
-    public void setEndCommissionRate(String endCommissionRate) {
-        this.endCommissionRate = endCommissionRate;
-    }
-
     public String getEndCommissionRate() {
         return this.endCommissionRate;
-    }
-
-    public void setEndCredit(String endCredit) {
-        this.endCredit = endCredit;
     }
 
     public String getEndCredit() {
         return this.endCredit;
     }
 
-    public void setEndPrice(String endPrice) {
-        this.endPrice = endPrice;
-    }
-
     public String getEndPrice() {
         return this.endPrice;
-    }
-
-    public void setHdfk(String hdfk) {
-        this.hdfk = hdfk;
     }
 
     public String getHdfk() {
         return this.hdfk;
     }
 
-    public void setJyps(String jyps) {
-        this.jyps = jyps;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getJyps() {
         return this.jyps;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
     public String getKeyword() {
         return this.keyword;
-    }
-
-    public void setMyf(String myf) {
-        this.myf = myf;
     }
 
     public String getMyf() {
         return this.myf;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setQtth(String qtth) {
-        this.qtth = qtth;
-    }
-
     public String getQtth() {
         return this.qtth;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpItemListGetResponse> getResponseClass() {
+        return SpItemListGetResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     public String getSort() {
         return this.sort;
-    }
-
-    public void setStartBiz30day(String startBiz30day) {
-        this.startBiz30day = startBiz30day;
     }
 
     public String getStartBiz30day() {
         return this.startBiz30day;
     }
 
-    public void setStartCommissionRate(String startCommissionRate) {
-        this.startCommissionRate = startCommissionRate;
-    }
-
     public String getStartCommissionRate() {
         return this.startCommissionRate;
-    }
-
-    public void setStartCredit(String startCredit) {
-        this.startCredit = startCredit;
     }
 
     public String getStartCredit() {
         return this.startCredit;
     }
 
-    public void setStartPrice(String startPrice) {
-        this.startPrice = startPrice;
-    }
-
     public String getStartPrice() {
         return this.startPrice;
     }
 
-    public void setTmallItem(String tmallItem) {
-        this.tmallItem = tmallItem;
-    }
-
-    public String getTmallItem() {
-        return this.tmallItem;
-    }
-
-    public void setXfzbz(String xfzbz) {
-        this.xfzbz = xfzbz;
-    }
-
-    public String getXfzbz() {
-        return this.xfzbz;
-    }
-
-    public void setZpbz(String zpbz) {
-        this.zpbz = zpbz;
-    }
-
-    public String getZpbz() {
-        return this.zpbz;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.item.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -356,6 +266,24 @@ public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTmallItem() {
+        return this.tmallItem;
+    }
+
+    public String getXfzbz() {
+        return this.xfzbz;
+    }
+
+    public String getZpbz() {
+        return this.zpbz;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -363,16 +291,96 @@ public class SpItemListGetRequest implements TaobaoRequest<SpItemListGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<SpItemListGetResponse> getResponseClass() {
-        return SpItemListGetResponse.class;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndBiz30day(String endBiz30day) {
+        this.endBiz30day = endBiz30day;
+    }
+
+    public void setEndCommissionRate(String endCommissionRate) {
+        this.endCommissionRate = endCommissionRate;
+    }
+
+    public void setEndCredit(String endCredit) {
+        this.endCredit = endCredit;
+    }
+
+    public void setEndPrice(String endPrice) {
+        this.endPrice = endPrice;
+    }
+
+    public void setHdfk(String hdfk) {
+        this.hdfk = hdfk;
+    }
+
+    public void setJyps(String jyps) {
+        this.jyps = jyps;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setMyf(String myf) {
+        this.myf = myf;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setQtth(String qtth) {
+        this.qtth = qtth;
+    }
+
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public void setStartBiz30day(String startBiz30day) {
+        this.startBiz30day = startBiz30day;
+    }
+
+    public void setStartCommissionRate(String startCommissionRate) {
+        this.startCommissionRate = startCommissionRate;
+    }
+
+    public void setStartCredit(String startCredit) {
+        this.startCredit = startCredit;
+    }
+
+    public void setStartPrice(String startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTmallItem(String tmallItem) {
+        this.tmallItem = tmallItem;
+    }
+
+    public void setXfzbz(String xfzbz) {
+        this.xfzbz = xfzbz;
+    }
+
+    public void setZpbz(String zpbz) {
+        this.zpbz = zpbz;
     }
 }

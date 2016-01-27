@@ -19,12 +19,12 @@ public class CertPicInfo {
         return certType;
     }
 
-    public void setCertType(Number certType) {
-        this.certType = certType;
-    }
-
     public String getPicUrl() {
         return picUrl;
+    }
+
+    public void setCertType(Number certType) {
+        this.certType = certType;
     }
 
     public void setPicUrl(String picUrl) {

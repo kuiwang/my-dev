@@ -53,44 +53,44 @@ public class ChannelOption extends TaobaoObject {
         return this.channelId;
     }
 
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
-    }
-
     public Boolean getIsNonsearch() {
         return this.isNonsearch;
-    }
-
-    public void setIsNonsearch(Boolean isNonsearch) {
-        this.isNonsearch = isNonsearch;
     }
 
     public Boolean getIsSearch() {
         return this.isSearch;
     }
 
-    public void setIsSearch(Boolean isSearch) {
-        this.isSearch = isSearch;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTrafficName() {
         return this.trafficName;
     }
 
-    public void setTrafficName(String trafficName) {
-        this.trafficName = trafficName;
-    }
-
     public String getTrafficType() {
         return this.trafficType;
+    }
+
+    public void setChannelId(Long channelId) {
+        this.channelId = channelId;
+    }
+
+    public void setIsNonsearch(Boolean isNonsearch) {
+        this.isNonsearch = isNonsearch;
+    }
+
+    public void setIsSearch(Boolean isSearch) {
+        this.isSearch = isSearch;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTrafficName(String trafficName) {
+        this.trafficName = trafficName;
     }
 
     public void setTrafficType(String trafficType) {

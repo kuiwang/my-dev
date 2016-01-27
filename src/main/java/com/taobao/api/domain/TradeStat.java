@@ -29,12 +29,12 @@ public class TradeStat extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public void setStatus(String status) {

@@ -18,35 +18,36 @@ public class SubuserDepartmentsGetRequest implements TaobaoRequest<SubuserDepart
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 主账号用户名
      */
     private String userNick;
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
     }
 
-    public String getUserNick() {
-        return this.userNick;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.subuser.departments.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SubuserDepartmentsGetResponse> getResponseClass() {
+        return SubuserDepartmentsGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("user_nick", this.userNick);
@@ -56,6 +57,16 @@ public class SubuserDepartmentsGetRequest implements TaobaoRequest<SubuserDepart
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class SubuserDepartmentsGetRequest implements TaobaoRequest<SubuserDepart
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserDepartmentsGetResponse> getResponseClass() {
-        return SubuserDepartmentsGetResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

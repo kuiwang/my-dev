@@ -19,10 +19,6 @@ public class SimbaInsightWordsanalysisGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 主人昵称
      */
@@ -34,47 +30,46 @@ public class SimbaInsightWordsanalysisGetRequest implements
      */
     private String stu;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 查询词组，最大长度200
      */
     private String words;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(stu, "stu");
+        RequestCheckUtils.checkNotEmpty(words, "words");
+        RequestCheckUtils.checkMaxListSize(words, 200, "words");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.wordsanalysis.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setStu(String stu) {
-        this.stu = stu;
+    @Override
+    public Class<SimbaInsightWordsanalysisGetResponse> getResponseClass() {
+        return SimbaInsightWordsanalysisGetResponse.class;
     }
 
     public String getStu() {
         return this.stu;
     }
 
-    public void setWords(String words) {
-        this.words = words;
-    }
-
-    public String getWords() {
-        return this.words;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.wordsanalysis.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -86,6 +81,16 @@ public class SimbaInsightWordsanalysisGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWords() {
+        return this.words;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,17 +98,20 @@ public class SimbaInsightWordsanalysisGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightWordsanalysisGetResponse> getResponseClass() {
-        return SimbaInsightWordsanalysisGetResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(stu, "stu");
-        RequestCheckUtils.checkNotEmpty(words, "words");
-        RequestCheckUtils.checkMaxListSize(words, 200, "words");
+    public void setStu(String stu) {
+        this.stu = stu;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWords(String words) {
+        this.words = words;
     }
 }

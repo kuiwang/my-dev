@@ -31,20 +31,20 @@ public class DescribeInstanceMonitorDataResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setMonitorData(List<InstanceMonitorData> monitorData) {
-        this.monitorData = monitorData;
-    }
-
     public List<InstanceMonitorData> getMonitorData() {
         return this.monitorData;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setMonitorData(List<InstanceMonitorData> monitorData) {
+        this.monitorData = monitorData;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

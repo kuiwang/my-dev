@@ -39,20 +39,20 @@ public class ImprFeedIdDO extends TaobaoObject {
         return this.feedInfoList;
     }
 
-    public void setFeedInfoList(List<ImprFeedInfoDO> feedInfoList) {
-        this.feedInfoList = feedInfoList;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getRate() {
         return this.rate;
+    }
+
+    public void setFeedInfoList(List<ImprFeedInfoDO> feedInfoList) {
+        this.feedInfoList = feedInfoList;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
     public void setRate(Long rate) {

@@ -13,19 +13,40 @@ public class TaobaoContext {
 
     public static final String APPKEY = "top_appkey";
 
+    public static final String PARAMETERS = "top_parameters";
+
     public static final String SESSION = "top_session";
 
     public static final String SIGNATURE = "top_sign";
-
-    public static final String PARAMETERS = "top_parameters";
 
     public static final String USER_ID = "visitor_id";
 
     public static final String USER_NICK = "visitor_nick";
 
+    private String callbackUrl;
+
     private Map<String, String> parameters = new HashMap<String, String>();
 
-    private String callbackUrl;
+    /**
+     * 添加一个参数。
+     * 
+     * @param key 参数名
+     * @param value 参数值
+     */
+    public void addParameter(String key, String value) {
+        this.parameters.put(key, value);
+    }
+
+    /**
+     * 批量添加参数。
+     * 
+     * @param parameters 参数映射
+     */
+    public void addParameters(Map<String, String> parameters) {
+        if ((parameters != null) && !parameters.isEmpty()) {
+            this.parameters.putAll(parameters);
+        }
+    }
 
     /**
      * 获取应用编号。
@@ -34,6 +55,23 @@ public class TaobaoContext {
      */
     public String getAppKey() {
         return getParameter(APPKEY);
+    }
+
+    /**
+     * 获取TOP回调过来的URL参数。
+     */
+    public String getCallbackUrl() {
+        return this.callbackUrl;
+    }
+
+    /**
+     * 获取指定参数的值。
+     * 
+     * @param key 参数名
+     * @return 参数值
+     */
+    public String getParameter(String key) {
+        return this.parameters.get(key);
     }
 
     /**
@@ -75,44 +113,6 @@ public class TaobaoContext {
      */
     public String getUserNick() {
         return getParameter(USER_NICK);
-    }
-
-    /**
-     * 获取指定参数的值。
-     * 
-     * @param key 参数名
-     * @return 参数值
-     */
-    public String getParameter(String key) {
-        return this.parameters.get(key);
-    }
-
-    /**
-     * 批量添加参数。
-     * 
-     * @param parameters 参数映射
-     */
-    public void addParameters(Map<String, String> parameters) {
-        if (parameters != null && !parameters.isEmpty()) {
-            this.parameters.putAll(parameters);
-        }
-    }
-
-    /**
-     * 添加一个参数。
-     * 
-     * @param key 参数名
-     * @param value 参数值
-     */
-    public void addParameter(String key, String value) {
-        this.parameters.put(key, value);
-    }
-
-    /**
-     * 获取TOP回调过来的URL参数。
-     */
-    public String getCallbackUrl() {
-        return this.callbackUrl;
     }
 
     public void setCallbackUrl(String callbackUrl) {

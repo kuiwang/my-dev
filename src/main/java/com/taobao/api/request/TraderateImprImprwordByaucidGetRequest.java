@@ -17,37 +17,42 @@ import com.taobao.api.response.TraderateImprImprwordByaucidGetResponse;
 public class TraderateImprImprwordByaucidGetRequest implements
         TaobaoRequest<TraderateImprImprwordByaucidGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝的商品id
      */
     private Long auctionId;
 
-    public void setAuctionId(Long auctionId) {
-        this.auctionId = auctionId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.impr.imprword.byaucid.get";
     }
 
     public Long getAuctionId() {
         return this.auctionId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<TraderateImprImprwordByaucidGetResponse> getResponseClass() {
+        return TraderateImprImprwordByaucidGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.traderate.impr.imprword.byaucid.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_id", this.auctionId);
@@ -57,6 +62,12 @@ public class TraderateImprImprwordByaucidGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class TraderateImprImprwordByaucidGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateImprImprwordByaucidGetResponse> getResponseClass() {
-        return TraderateImprImprwordByaucidGetResponse.class;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

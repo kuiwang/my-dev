@@ -18,35 +18,36 @@ public class JdsTradeTracesGetRequest implements TaobaoRequest<JdsTradeTracesGet
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝的订单tid
      */
     private Long tid;
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
     }
 
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.jds.trade.traces.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<JdsTradeTracesGetResponse> getResponseClass() {
+        return JdsTradeTracesGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("tid", this.tid);
@@ -56,6 +57,16 @@ public class JdsTradeTracesGetRequest implements TaobaoRequest<JdsTradeTracesGet
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class JdsTradeTracesGetRequest implements TaobaoRequest<JdsTradeTracesGet
         this.udfParams.put(key, value);
     }
 
-    public Class<JdsTradeTracesGetResponse> getResponseClass() {
-        return JdsTradeTracesGetResponse.class;
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

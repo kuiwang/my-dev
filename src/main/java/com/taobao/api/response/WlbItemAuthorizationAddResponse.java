@@ -23,12 +23,12 @@ public class WlbItemAuthorizationAddResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> ruleIdList;
 
-    public void setRuleIdList(List<Long> ruleIdList) {
-        this.ruleIdList = ruleIdList;
-    }
-
     public List<Long> getRuleIdList() {
         return this.ruleIdList;
+    }
+
+    public void setRuleIdList(List<Long> ruleIdList) {
+        this.ruleIdList = ruleIdList;
     }
 
 }

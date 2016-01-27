@@ -16,16 +16,12 @@ import com.taobao.api.response.HotelGetResponse;
  */
 public class HotelGetRequest implements TaobaoRequest<HotelGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * true表示查询酒店审核状态，false表示查询已审核通过酒店详细信息
      */
     private Boolean checkAudit;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 要查询的酒店id。必须为数字
@@ -37,42 +33,43 @@ public class HotelGetRequest implements TaobaoRequest<HotelGetResponse> {
      */
     private Boolean needRoomType;
 
-    public void setCheckAudit(Boolean checkAudit) {
-        this.checkAudit = checkAudit;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(hid, "hid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.get";
     }
 
     public Boolean getCheckAudit() {
         return this.checkAudit;
     }
 
-    public void setHid(Long hid) {
-        this.hid = hid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHid() {
         return this.hid;
     }
 
-    public void setNeedRoomType(Boolean needRoomType) {
-        this.needRoomType = needRoomType;
-    }
-
     public Boolean getNeedRoomType() {
         return this.needRoomType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelGetResponse> getResponseClass() {
+        return HotelGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("check_audit", this.checkAudit);
@@ -84,6 +81,12 @@ public class HotelGetRequest implements TaobaoRequest<HotelGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,15 +94,20 @@ public class HotelGetRequest implements TaobaoRequest<HotelGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelGetResponse> getResponseClass() {
-        return HotelGetResponse.class;
+    public void setCheckAudit(Boolean checkAudit) {
+        this.checkAudit = checkAudit;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(hid, "hid");
+    public void setHid(Long hid) {
+        this.hid = hid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNeedRoomType(Boolean needRoomType) {
+        this.needRoomType = needRoomType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

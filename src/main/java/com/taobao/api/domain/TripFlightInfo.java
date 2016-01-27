@@ -123,132 +123,132 @@ public class TripFlightInfo extends TaobaoObject {
         return this.airlineCode;
     }
 
-    public void setAirlineCode(String airlineCode) {
-        this.airlineCode = airlineCode;
-    }
-
     public String getArrAirportCode() {
         return this.arrAirportCode;
-    }
-
-    public void setArrAirportCode(String arrAirportCode) {
-        this.arrAirportCode = arrAirportCode;
     }
 
     public String getArrCityCode() {
         return this.arrCityCode;
     }
 
-    public void setArrCityCode(String arrCityCode) {
-        this.arrCityCode = arrCityCode;
-    }
-
     public String getArrTime() {
         return this.arrTime;
-    }
-
-    public void setArrTime(String arrTime) {
-        this.arrTime = arrTime;
     }
 
     public String getCarrier() {
         return this.carrier;
     }
 
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
-    }
-
     public String getDepAirportCode() {
         return this.depAirportCode;
-    }
-
-    public void setDepAirportCode(String depAirportCode) {
-        this.depAirportCode = depAirportCode;
     }
 
     public String getDepCityCode() {
         return this.depCityCode;
     }
 
-    public void setDepCityCode(String depCityCode) {
-        this.depCityCode = depCityCode;
-    }
-
     public String getDepTime() {
         return this.depTime;
-    }
-
-    public void setDepTime(String depTime) {
-        this.depTime = depTime;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Long getFlightId() {
         return this.flightId;
-    }
-
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
     }
 
     public String getFlightNo() {
         return this.flightNo;
     }
 
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
-    }
-
     public String getFlightType() {
         return this.flightType;
-    }
-
-    public void setFlightType(String flightType) {
-        this.flightType = flightType;
     }
 
     public List<TripFlightPassenger> getPassengers() {
         return this.passengers;
     }
 
-    public void setPassengers(List<TripFlightPassenger> passengers) {
-        this.passengers = passengers;
-    }
-
     public Long getSegmentNumber() {
         return this.segmentNumber;
-    }
-
-    public void setSegmentNumber(Long segmentNumber) {
-        this.segmentNumber = segmentNumber;
     }
 
     public Long getSegmentType() {
         return this.segmentType;
     }
 
-    public void setSegmentType(Long segmentType) {
-        this.segmentType = segmentType;
-    }
-
     public String getSpecialRule() {
         return this.specialRule;
     }
 
-    public void setSpecialRule(String specialRule) {
-        this.specialRule = specialRule;
-    }
-
     public Long getTicketPrice() {
         return this.ticketPrice;
+    }
+
+    public void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
+    }
+
+    public void setArrAirportCode(String arrAirportCode) {
+        this.arrAirportCode = arrAirportCode;
+    }
+
+    public void setArrCityCode(String arrCityCode) {
+        this.arrCityCode = arrCityCode;
+    }
+
+    public void setArrTime(String arrTime) {
+        this.arrTime = arrTime;
+    }
+
+    public void setCarrier(String carrier) {
+        this.carrier = carrier;
+    }
+
+    public void setDepAirportCode(String depAirportCode) {
+        this.depAirportCode = depAirportCode;
+    }
+
+    public void setDepCityCode(String depCityCode) {
+        this.depCityCode = depCityCode;
+    }
+
+    public void setDepTime(String depTime) {
+        this.depTime = depTime;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setFlightId(Long flightId) {
+        this.flightId = flightId;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
+    }
+
+    public void setFlightType(String flightType) {
+        this.flightType = flightType;
+    }
+
+    public void setPassengers(List<TripFlightPassenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public void setSegmentNumber(Long segmentNumber) {
+        this.segmentNumber = segmentNumber;
+    }
+
+    public void setSegmentType(Long segmentType) {
+        this.segmentType = segmentType;
+    }
+
+    public void setSpecialRule(String specialRule) {
+        this.specialRule = specialRule;
     }
 
     public void setTicketPrice(Long ticketPrice) {

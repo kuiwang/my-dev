@@ -30,20 +30,20 @@ public class XhotelPriceInfoGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setHotelPrices(List<HotelPriceSearchObject> hotelPrices) {
-        this.hotelPrices = hotelPrices;
-    }
-
     public List<HotelPriceSearchObject> getHotelPrices() {
         return this.hotelPrices;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setHotelPrices(List<HotelPriceSearchObject> hotelPrices) {
+        this.hotelPrices = hotelPrices;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

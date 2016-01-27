@@ -29,20 +29,20 @@ public class JdsTradesStatisticsDiffResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setTids(List<Long> tids) {
-        this.tids = tids;
-    }
-
     public List<Long> getTids() {
         return this.tids;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setTids(List<Long> tids) {
+        this.tids = tids;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

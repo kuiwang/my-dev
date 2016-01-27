@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGroupResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * Scaling Group关联的Scaling Configuration Id。
      */
@@ -48,6 +30,8 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
      */
     private Long defaultCooldown;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * caling Group下实例个数的最大值。用于控制成本。 弹性伸缩服务在扩展规模，即在需要创建实例时，会保证Scaling
      * Group内的实例个数不大于该值。 MaxSize的值必须大于或等于MinSize的值。 取值范围：[0, 100]
@@ -60,6 +44,12 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
      * Group内的实例个数不小于该值。 取值范围：[0, 100] 注：包含伸缩组自动创建和用户手工加入的既有ECS实例。
      */
     private Long minSize;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * 当需要释放实例时，按照指定的策略选择要释放的实例。 取值： OldestInstance：取实例中最早创建的实例
@@ -76,6 +66,12 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
     private String removalPolicy2;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * 伸缩组的ID
      */
     private String scalingGroupId;
@@ -85,106 +81,77 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
      */
     private String scalingGroupName;
 
-    public void setActiveScalingConfigurationId(String activeScalingConfigurationId) {
-        this.activeScalingConfigurationId = activeScalingConfigurationId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(defaultCooldown, 86400L, "defaultCooldown");
+        RequestCheckUtils.checkMinValue(defaultCooldown, 0L, "defaultCooldown");
+        RequestCheckUtils.checkNotEmpty(scalingGroupId, "scalingGroupId");
     }
 
     public String getActiveScalingConfigurationId() {
         return this.activeScalingConfigurationId;
     }
 
-    public void setDefaultCooldown(Long defaultCooldown) {
-        this.defaultCooldown = defaultCooldown;
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.ModifyScalingGroup.2014-08-28";
     }
 
     public Long getDefaultCooldown() {
         return this.defaultCooldown;
     }
 
-    public void setMaxSize(Long maxSize) {
-        this.maxSize = maxSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMaxSize() {
         return this.maxSize;
     }
 
-    public void setMinSize(Long minSize) {
-        this.minSize = minSize;
-    }
-
     public Long getMinSize() {
         return this.minSize;
-    }
-
-    public void setRemovalPolicy1(String removalPolicy1) {
-        this.removalPolicy1 = removalPolicy1;
-    }
-
-    public String getRemovalPolicy1() {
-        return this.removalPolicy1;
-    }
-
-    public void setRemovalPolicy2(String removalPolicy2) {
-        this.removalPolicy2 = removalPolicy2;
-    }
-
-    public String getRemovalPolicy2() {
-        return this.removalPolicy2;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
-    public String getScalingGroupId() {
-        return this.scalingGroupId;
-    }
-
-    public void setScalingGroupName(String scalingGroupName) {
-        this.scalingGroupName = scalingGroupName;
-    }
-
-    public String getScalingGroupName() {
-        return this.scalingGroupName;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getRemovalPolicy1() {
+        return this.removalPolicy1;
+    }
+
+    public String getRemovalPolicy2() {
+        return this.removalPolicy2;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<ModifyScalingGroupResponse> getResponseClass() {
+        return ModifyScalingGroupResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingGroupId() {
+        return this.scalingGroupId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingGroupName() {
+        return this.scalingGroupName;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.ModifyScalingGroup.2014-08-28";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -204,6 +171,12 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -211,17 +184,52 @@ public class ModifyScalingGroupRequest implements AliyunRequest<ModifyScalingGro
         this.udfParams.put(key, value);
     }
 
-    public Class<ModifyScalingGroupResponse> getResponseClass() {
-        return ModifyScalingGroupResponse.class;
+    public void setActiveScalingConfigurationId(String activeScalingConfigurationId) {
+        this.activeScalingConfigurationId = activeScalingConfigurationId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(defaultCooldown, 86400L, "defaultCooldown");
-        RequestCheckUtils.checkMinValue(defaultCooldown, 0L, "defaultCooldown");
-        RequestCheckUtils.checkNotEmpty(scalingGroupId, "scalingGroupId");
+    public void setDefaultCooldown(Long defaultCooldown) {
+        this.defaultCooldown = defaultCooldown;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMaxSize(Long maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public void setMinSize(Long minSize) {
+        this.minSize = minSize;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setRemovalPolicy1(String removalPolicy1) {
+        this.removalPolicy1 = removalPolicy1;
+    }
+
+    public void setRemovalPolicy2(String removalPolicy2) {
+        this.removalPolicy2 = removalPolicy2;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setScalingGroupName(String scalingGroupName) {
+        this.scalingGroupName = scalingGroupName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

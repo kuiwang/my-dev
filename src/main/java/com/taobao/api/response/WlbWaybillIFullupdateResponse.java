@@ -20,12 +20,12 @@ public class WlbWaybillIFullupdateResponse extends TaobaoResponse {
     @ApiField("waybill_apply_update_info")
     private WaybillApplyUpdateInfo waybillApplyUpdateInfo;
 
-    public void setWaybillApplyUpdateInfo(WaybillApplyUpdateInfo waybillApplyUpdateInfo) {
-        this.waybillApplyUpdateInfo = waybillApplyUpdateInfo;
-    }
-
     public WaybillApplyUpdateInfo getWaybillApplyUpdateInfo() {
         return this.waybillApplyUpdateInfo;
+    }
+
+    public void setWaybillApplyUpdateInfo(WaybillApplyUpdateInfo waybillApplyUpdateInfo) {
+        this.waybillApplyUpdateInfo = waybillApplyUpdateInfo;
     }
 
 }

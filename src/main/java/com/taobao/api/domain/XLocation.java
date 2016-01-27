@@ -29,12 +29,12 @@ public class XLocation extends TaobaoObject {
         return this.city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getState() {
         return this.state;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setState(String state) {

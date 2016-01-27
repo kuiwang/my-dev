@@ -22,32 +22,23 @@ class TmcHandler implements com.taobao.top.link.endpoint.MessageHandler {
 
     private static final Log log = LogFactory.getLog(TmcClient.class);
 
-    protected TmcClient tmcClient;
-
     protected volatile boolean stopped;
+
+    protected TmcClient tmcClient;
 
     public TmcHandler(TmcClient tmcClient) {
         this.tmcClient = tmcClient;
     }
 
-    public final void onMessage(Map<String, Object> message, Identity identity) {
-        if (log.isDebugEnabled()) {
-            log.debug("unexpected messsage: " + message);
-        }
-    }
-
-    public void onMessage(final EndpointContext context) throws Exception {
-        final Map<String, Object> rawMsg = context.getMessage();
-
-        if (log.isDebugEnabled()) {
-            log.debug(String.format("onMessage from %s: %s", context.getMessageFrom(), rawMsg));
-        }
-
-        handleMessage(parse(rawMsg), false);
-    }
-
     public void close() {
         this.stopped = true;
+    }
+
+    protected void confirm(Map<String, Object> message) throws LinkException {
+        Map<String, Object> msg = new HashMap<String, Object>();
+        msg.put(MessageFields.KIND, MessageKind.Confirm);
+        msg.put(MessageFields.CONFIRM_ID, message.get(MessageFields.OUTGOING_ID));
+        tmcClient.getClient().send(msg);
     }
 
     protected void handleMessage(final Message message, final boolean ignore) {
@@ -55,6 +46,7 @@ class TmcHandler implements com.taobao.top.link.endpoint.MessageHandler {
             try {
                 tmcClient.getThreadPool().submit(new Runnable() {
 
+                    @Override
                     public void run() {
                         MessageStatus status = new MessageStatus();
 
@@ -93,11 +85,22 @@ class TmcHandler implements com.taobao.top.link.endpoint.MessageHandler {
         }
     }
 
-    protected void confirm(Map<String, Object> message) throws LinkException {
-        Map<String, Object> msg = new HashMap<String, Object>();
-        msg.put(MessageFields.KIND, MessageKind.Confirm);
-        msg.put(MessageFields.CONFIRM_ID, message.get(MessageFields.OUTGOING_ID));
-        tmcClient.getClient().send(msg);
+    @Override
+    public void onMessage(final EndpointContext context) throws Exception {
+        final Map<String, Object> rawMsg = context.getMessage();
+
+        if (log.isDebugEnabled()) {
+            log.debug(String.format("onMessage from %s: %s", context.getMessageFrom(), rawMsg));
+        }
+
+        handleMessage(parse(rawMsg), false);
+    }
+
+    @Override
+    public final void onMessage(Map<String, Object> message, Identity identity) {
+        if (log.isDebugEnabled()) {
+            log.debug("unexpected messsage: " + message);
+        }
     }
 
     protected Message parse(Map<String, Object> raw) throws IOException {
@@ -111,12 +114,17 @@ class TmcHandler implements com.taobao.top.link.endpoint.MessageHandler {
         msg.setPubTime((Date) raw.get(MessageFields.DATA_PUBLISH_TIME));
 
         Object time = raw.get(MessageFields.DATA_ATTACH_OUTGOING_TIME);
-        if (time != null) msg.setOutgoingTime((Date) time);
+        if (time != null) {
+            msg.setOutgoingTime((Date) time);
+        }
 
         Object content = raw.get(MessageFields.DATA_CONTENT);
-        if (content instanceof String) msg.setContent((String) content);
-        else if (content instanceof byte[]) msg.setContent(new String(GZIPHelper
-                .unzip((byte[]) content), Constants.CHARSET_UTF8));
+        if (content instanceof String) {
+            msg.setContent((String) content);
+        } else if (content instanceof byte[]) {
+            msg.setContent(new String(GZIPHelper
+                    .unzip((byte[]) content), Constants.CHARSET_UTF8));
+        }
         return msg;
     }
 }

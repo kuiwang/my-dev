@@ -53,44 +53,44 @@ public class LaiwangUser extends TaobaoObject {
         return this.avatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String getAvatarBig() {
         return this.avatarBig;
-    }
-
-    public void setAvatarBig(String avatarBig) {
-        this.avatarBig = avatarBig;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getGender() {
         return this.gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getOpenid() {
         return this.openid;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setAvatarBig(String avatarBig) {
+        this.avatarBig = avatarBig;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setOpenid(String openid) {

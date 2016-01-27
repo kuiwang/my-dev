@@ -36,20 +36,20 @@ public class DeliveryTime extends TaobaoObject {
         return this.deliveryTime;
     }
 
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
     public String getDeliveryTimeType() {
         return this.deliveryTimeType;
     }
 
-    public void setDeliveryTimeType(String deliveryTimeType) {
-        this.deliveryTimeType = deliveryTimeType;
-    }
-
     public String getNeedDeliveryTime() {
         return this.needDeliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public void setDeliveryTimeType(String deliveryTimeType) {
+        this.deliveryTimeType = deliveryTimeType;
     }
 
     public void setNeedDeliveryTime(String needDeliveryTime) {

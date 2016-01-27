@@ -34,12 +34,12 @@ public class OnlineTimesOnDay extends TaobaoObject {
         return this.onlineDate;
     }
 
-    public void setOnlineDate(Date onlineDate) {
-        this.onlineDate = onlineDate;
-    }
-
     public List<OnlineTimeById> getOnlineTimeByIds() {
         return this.onlineTimeByIds;
+    }
+
+    public void setOnlineDate(Date onlineDate) {
+        this.onlineDate = onlineDate;
     }
 
     public void setOnlineTimeByIds(List<OnlineTimeById> onlineTimeByIds) {

@@ -41,28 +41,28 @@ public class AdviceOnStorage extends TaobaoObject {
         return this.adviseEngine;
     }
 
-    public void setAdviseEngine(String adviseEngine) {
-        this.adviseEngine = adviseEngine;
-    }
-
     public String getCurrentEngine() {
         return this.currentEngine;
-    }
-
-    public void setCurrentEngine(String currentEngine) {
-        this.currentEngine = currentEngine;
     }
 
     public String getdBName() {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getTableName() {
         return this.tableName;
+    }
+
+    public void setAdviseEngine(String adviseEngine) {
+        this.adviseEngine = adviseEngine;
+    }
+
+    public void setCurrentEngine(String currentEngine) {
+        this.currentEngine = currentEngine;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
     }
 
     public void setTableName(String tableName) {

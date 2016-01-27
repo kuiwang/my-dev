@@ -21,12 +21,12 @@ public class WlbNotifyMessageConfirmResponse extends TaobaoResponse {
     @ApiField("gmt_modified")
     private Date gmtModified;
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public Date getGmtModified() {
         return this.gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
 }

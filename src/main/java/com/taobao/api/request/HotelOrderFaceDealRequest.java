@@ -18,10 +18,6 @@ public class HotelOrderFaceDealRequest implements TaobaoRequest<HotelOrderFaceDe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 酒店订单oid
      */
@@ -48,50 +44,51 @@ public class HotelOrderFaceDealRequest implements TaobaoRequest<HotelOrderFaceDe
      */
     private String reasonType;
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(oid, "oid");
+        RequestCheckUtils.checkNotEmpty(operType, "operType");
+        RequestCheckUtils.checkMaxLength(operType, 1, "operType");
+        RequestCheckUtils.checkMaxLength(reasonText, 500, "reasonText");
+        RequestCheckUtils.checkMaxLength(reasonType, 1, "reasonType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.order.face.deal";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setOperType(String operType) {
-        this.operType = operType;
-    }
-
     public String getOperType() {
         return this.operType;
-    }
-
-    public void setReasonText(String reasonText) {
-        this.reasonText = reasonText;
     }
 
     public String getReasonText() {
         return this.reasonText;
     }
 
-    public void setReasonType(String reasonType) {
-        this.reasonType = reasonType;
-    }
-
     public String getReasonType() {
         return this.reasonType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelOrderFaceDealResponse> getResponseClass() {
+        return HotelOrderFaceDealResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.order.face.deal";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("oid", this.oid);
@@ -104,6 +101,12 @@ public class HotelOrderFaceDealRequest implements TaobaoRequest<HotelOrderFaceDe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -111,19 +114,24 @@ public class HotelOrderFaceDealRequest implements TaobaoRequest<HotelOrderFaceDe
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelOrderFaceDealResponse> getResponseClass() {
-        return HotelOrderFaceDealResponse.class;
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(oid, "oid");
-        RequestCheckUtils.checkNotEmpty(operType, "operType");
-        RequestCheckUtils.checkMaxLength(operType, 1, "operType");
-        RequestCheckUtils.checkMaxLength(reasonText, 500, "reasonText");
-        RequestCheckUtils.checkMaxLength(reasonType, 1, "reasonType");
+    public void setOperType(String operType) {
+        this.operType = operType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setReasonText(String reasonText) {
+        this.reasonText = reasonText;
+    }
+
+    public void setReasonType(String reasonType) {
+        this.reasonType = reasonType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

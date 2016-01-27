@@ -6,9 +6,9 @@ package com.scott.dev.taobao.api.relatedrecommend.domain;
 public class FavoriteShop {
 
     /*
-     * 店铺ID
+     * 店铺卖家信用
      */
-    private Number shopId;
+    private Number rate;
 
     /*
      * 卖家ID
@@ -19,6 +19,11 @@ public class FavoriteShop {
      * 卖家昵称
      */
     private String sellerNick;
+
+    /*
+     * 店铺ID
+     */
+    private Number shopId;
 
     /*
      * 店铺ID
@@ -35,64 +40,59 @@ public class FavoriteShop {
      */
     private String shopUrl;
 
-    /*
-     * 店铺卖家信用
-     */
-    private Number rate;
-
-    public Number getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Number shopId) {
-        this.shopId = shopId;
+    public Number getRate() {
+        return rate;
     }
 
     public Number getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(Number sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public String getSellerNick() {
         return sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
+    public Number getShopId() {
+        return shopId;
     }
 
     public String getShopName() {
         return shopName;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
     public String getShopPic() {
         return shopPic;
-    }
-
-    public void setShopPic(String shopPic) {
-        this.shopPic = shopPic;
     }
 
     public String getShopUrl() {
         return shopUrl;
     }
 
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
-    }
-
-    public Number getRate() {
-        return rate;
-    }
-
     public void setRate(Number rate) {
         this.rate = rate;
+    }
+
+    public void setSellerId(Number sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setShopId(Number shopId) {
+        this.shopId = shopId;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public void setShopPic(String shopPic) {
+        this.shopPic = shopPic;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
     }
 }

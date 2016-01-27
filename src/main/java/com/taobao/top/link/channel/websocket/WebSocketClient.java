@@ -48,7 +48,7 @@ public class WebSocketClient extends NettyClient {
             wsHandler.handshaker = handshaker;
             handshaker.handshake(channel);
             // return maybe fast than call
-            if (!wsHandler.handshaker.isHandshakeComplete() && handler.error == null) {
+            if (!wsHandler.handshaker.isHandshakeComplete() && (handler.error == null)) {
                 synchronized (handler.syncObject) {
                     handler.syncObject.wait(connectTimeoutMillis);
                 }
@@ -57,9 +57,13 @@ public class WebSocketClient extends NettyClient {
             throw new ChannelException(Text.WS_HANDSHAKE_ERROR, e);
         }
 
-        if (wsHandler.handshaker.isHandshakeComplete()) return clientChannel;
-        if (handler.error != null) throw new ChannelException(Text.CONNECT_FAIL + ": "
-                + handler.error.getMessage(), handler.error);
+        if (wsHandler.handshaker.isHandshakeComplete()) {
+            return clientChannel;
+        }
+        if (handler.error != null) {
+            throw new ChannelException(Text.CONNECT_FAIL + ": "
+                    + handler.error.getMessage(), handler.error);
+        }
 
         throw new ChannelException(Text.CONNECT_TIMEOUT);
     }

@@ -16,50 +16,51 @@ import com.taobao.api.response.TradeWaimaiConfirmResponse;
  */
 public class TradeWaimaiConfirmRequest implements TaobaoRequest<TradeWaimaiConfirmResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代送商ID
      */
     private Long agentId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 未确认发货的订单编号
      */
     private Long orderId;
 
-    public void setAgentId(Long agentId) {
-        this.agentId = agentId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
     }
 
     public Long getAgentId() {
         return this.agentId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.waimai.confirm";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TradeWaimaiConfirmResponse> getResponseClass() {
+        return TradeWaimaiConfirmResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.waimai.confirm";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("agent_id", this.agentId);
@@ -70,6 +71,12 @@ public class TradeWaimaiConfirmRequest implements TaobaoRequest<TradeWaimaiConfi
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,15 +84,16 @@ public class TradeWaimaiConfirmRequest implements TaobaoRequest<TradeWaimaiConfi
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeWaimaiConfirmResponse> getResponseClass() {
-        return TradeWaimaiConfirmResponse.class;
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

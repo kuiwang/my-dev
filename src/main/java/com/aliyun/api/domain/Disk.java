@@ -147,164 +147,164 @@ public class Disk extends TaobaoObject {
         return this.attachedTime;
     }
 
-    public void setAttachedTime(String attachedTime) {
-        this.attachedTime = attachedTime;
-    }
-
     public String getCategory() {
         return this.category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getCreationTime() {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getDeleteAutoSnapshot() {
         return this.deleteAutoSnapshot;
-    }
-
-    public void setDeleteAutoSnapshot(String deleteAutoSnapshot) {
-        this.deleteAutoSnapshot = deleteAutoSnapshot;
     }
 
     public String getDeleteWithInstance() {
         return this.deleteWithInstance;
     }
 
-    public void setDeleteWithInstance(String deleteWithInstance) {
-        this.deleteWithInstance = deleteWithInstance;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getDetachedTime() {
         return this.detachedTime;
     }
 
-    public void setDetachedTime(String detachedTime) {
-        this.detachedTime = detachedTime;
-    }
-
     public String getDevice() {
         return this.device;
-    }
-
-    public void setDevice(String device) {
-        this.device = device;
     }
 
     public String getDiskId() {
         return this.diskId;
     }
 
-    public void setDiskId(String diskId) {
-        this.diskId = diskId;
-    }
-
     public String getDiskName() {
         return this.diskName;
-    }
-
-    public void setDiskName(String diskName) {
-        this.diskName = diskName;
     }
 
     public String getImageId() {
         return this.imageId;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
     }
 
     public String getOperationLocks() {
         return this.operationLocks;
     }
 
-    public void setOperationLocks(String operationLocks) {
-        this.operationLocks = operationLocks;
-    }
-
     public String getPortable() {
         return this.portable;
-    }
-
-    public void setPortable(String portable) {
-        this.portable = portable;
     }
 
     public String getProductCode() {
         return this.productCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public String getRegionId() {
         return this.regionId;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
     }
 
     public Long getSize() {
         return this.size;
     }
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
     public String getSourceSnapshotId() {
         return this.sourceSnapshotId;
-    }
-
-    public void setSourceSnapshotId(String sourceSnapshotId) {
-        this.sourceSnapshotId = sourceSnapshotId;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getType() {
         return this.type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getZoneId() {
         return this.zoneId;
+    }
+
+    public void setAttachedTime(String attachedTime) {
+        this.attachedTime = attachedTime;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setDeleteAutoSnapshot(String deleteAutoSnapshot) {
+        this.deleteAutoSnapshot = deleteAutoSnapshot;
+    }
+
+    public void setDeleteWithInstance(String deleteWithInstance) {
+        this.deleteWithInstance = deleteWithInstance;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDetachedTime(String detachedTime) {
+        this.detachedTime = detachedTime;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public void setDiskId(String diskId) {
+        this.diskId = diskId;
+    }
+
+    public void setDiskName(String diskName) {
+        this.diskName = diskName;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setOperationLocks(String operationLocks) {
+        this.operationLocks = operationLocks;
+    }
+
+    public void setPortable(String portable) {
+        this.portable = portable;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public void setSourceSnapshotId(String sourceSnapshotId) {
+        this.sourceSnapshotId = sourceSnapshotId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setZoneId(String zoneId) {

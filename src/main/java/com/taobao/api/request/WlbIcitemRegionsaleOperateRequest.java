@@ -19,10 +19,6 @@ public class WlbIcitemRegionsaleOperateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 前台宝贝id
      */
@@ -33,34 +29,40 @@ public class WlbIcitemRegionsaleOperateRequest implements
      */
     private Long opType;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(opType, "opType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.icitem.regionsale.operate";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setOpType(Long opType) {
-        this.opType = opType;
-    }
-
     public Long getOpType() {
         return this.opType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbIcitemRegionsaleOperateResponse> getResponseClass() {
+        return WlbIcitemRegionsaleOperateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.icitem.regionsale.operate";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -71,6 +73,12 @@ public class WlbIcitemRegionsaleOperateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class WlbIcitemRegionsaleOperateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbIcitemRegionsaleOperateResponse> getResponseClass() {
-        return WlbIcitemRegionsaleOperateResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(opType, "opType");
+    public void setOpType(Long opType) {
+        this.opType = opType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

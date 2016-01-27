@@ -25,20 +25,20 @@ public class WeitaoCloudtagsGroupCustomAddResponse extends TaobaoResponse {
     @ApiField("result")
     private String result;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setResult(String result) {
-        this.result = result;
-    }
-
     public String getResult() {
         return this.result;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
 }

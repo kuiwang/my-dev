@@ -50,36 +50,36 @@ public class CampaignArea extends TaobaoObject {
         return this.area;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
     public void setNick(String nick) {

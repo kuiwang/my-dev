@@ -30,20 +30,20 @@ public class FenxiaoDistributorProductsGetResponse extends TaobaoResponse {
     @ApiField("fenxiao_product")
     private List<FenxiaoProduct> products;
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
     public Boolean getHasNext() {
         return this.hasNext;
     }
 
-    public void setProducts(List<FenxiaoProduct> products) {
-        this.products = products;
-    }
-
     public List<FenxiaoProduct> getProducts() {
         return this.products;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setProducts(List<FenxiaoProduct> products) {
+        this.products = products;
     }
 
 }

@@ -17,10 +17,6 @@ public class LogisticsAddressSearchRequest implements TaobaoRequest<LogisticsAdd
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 可选，参数列表如下：<br>
      * <font color='red'> no_def:查询非默认地址<br>
@@ -30,26 +26,34 @@ public class LogisticsAddressSearchRequest implements TaobaoRequest<LogisticsAdd
      */
     private String rdef;
 
-    public void setRdef(String rdef) {
-        this.rdef = rdef;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.address.search";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getRdef() {
         return this.rdef;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<LogisticsAddressSearchResponse> getResponseClass() {
+        return LogisticsAddressSearchResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.address.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("rdef", this.rdef);
@@ -59,6 +63,12 @@ public class LogisticsAddressSearchRequest implements TaobaoRequest<LogisticsAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -66,14 +76,12 @@ public class LogisticsAddressSearchRequest implements TaobaoRequest<LogisticsAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsAddressSearchResponse> getResponseClass() {
-        return LogisticsAddressSearchResponse.class;
+    public void setRdef(String rdef) {
+        this.rdef = rdef;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

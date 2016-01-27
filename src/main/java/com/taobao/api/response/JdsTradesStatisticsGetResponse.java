@@ -24,12 +24,12 @@ public class JdsTradesStatisticsGetResponse extends TaobaoResponse {
     @ApiField("trade_stat")
     private List<TradeStat> statusInfos;
 
-    public void setStatusInfos(List<TradeStat> statusInfos) {
-        this.statusInfos = statusInfos;
-    }
-
     public List<TradeStat> getStatusInfos() {
         return this.statusInfos;
+    }
+
+    public void setStatusInfos(List<TradeStat> statusInfos) {
+        this.statusInfos = statusInfos;
     }
 
 }

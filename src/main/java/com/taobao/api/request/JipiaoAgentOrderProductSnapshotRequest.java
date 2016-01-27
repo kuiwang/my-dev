@@ -19,35 +19,40 @@ public class JipiaoAgentOrderProductSnapshotRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订单号
      */
     private Long orderId;
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jipiao.agent.order.product.snapshot";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JipiaoAgentOrderProductSnapshotResponse> getResponseClass() {
+        return JipiaoAgentOrderProductSnapshotResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jipiao.agent.order.product.snapshot";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("order_id", this.orderId);
@@ -57,6 +62,12 @@ public class JipiaoAgentOrderProductSnapshotRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class JipiaoAgentOrderProductSnapshotRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<JipiaoAgentOrderProductSnapshotResponse> getResponseClass() {
-        return JipiaoAgentOrderProductSnapshotResponse.class;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

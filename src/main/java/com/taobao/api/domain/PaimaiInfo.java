@@ -53,44 +53,44 @@ public class PaimaiInfo extends TaobaoObject {
         return this.deposit;
     }
 
-    public void setDeposit(Long deposit) {
-        this.deposit = deposit;
-    }
-
     public Long getInterval() {
         return this.interval;
-    }
-
-    public void setInterval(Long interval) {
-        this.interval = interval;
     }
 
     public Long getMode() {
         return this.mode;
     }
 
-    public void setMode(Long mode) {
-        this.mode = mode;
-    }
-
     public String getReserve() {
         return this.reserve;
-    }
-
-    public void setReserve(String reserve) {
-        this.reserve = reserve;
     }
 
     public Long getValidHour() {
         return this.validHour;
     }
 
-    public void setValidHour(Long validHour) {
-        this.validHour = validHour;
-    }
-
     public Long getValidMinute() {
         return this.validMinute;
+    }
+
+    public void setDeposit(Long deposit) {
+        this.deposit = deposit;
+    }
+
+    public void setInterval(Long interval) {
+        this.interval = interval;
+    }
+
+    public void setMode(Long mode) {
+        this.mode = mode;
+    }
+
+    public void setReserve(String reserve) {
+        this.reserve = reserve;
+    }
+
+    public void setValidHour(Long validHour) {
+        this.validHour = validHour;
     }
 
     public void setValidMinute(Long validMinute) {

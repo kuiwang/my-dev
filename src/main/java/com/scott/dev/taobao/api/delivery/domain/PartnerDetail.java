@@ -21,79 +21,79 @@ public class PartnerDetail {
     private Number companyId;
 
     /*
-     * 物流公司全名
-     */
-    private String fullName;
-
-    /*
      * 物流公司简称
      */
     private String companyName;
 
     /*
-     * 旺旺id
+     * 物流公司全名
      */
-    private String wangwangId;
+    private String fullName;
 
     /*
      * 运单号验证正则表达式
      */
     private String regMailNo;
 
+    /*
+     * 旺旺id
+     */
+    private String wangwangId;
+
     public String getAccountNo() {
         return accountNo;
-    }
-
-    public void setAccountNo(String accountNo) {
-        this.accountNo = accountNo;
     }
 
     public String getCompanyCode() {
         return companyCode;
     }
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
-    }
-
     public Number getCompanyId() {
         return companyId;
-    }
-
-    public void setCompanyId(Number companyId) {
-        this.companyId = companyId;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getWangwangId() {
-        return wangwangId;
-    }
-
-    public void setWangwangId(String wangwangId) {
-        this.wangwangId = wangwangId;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getRegMailNo() {
         return regMailNo;
     }
 
+    public String getWangwangId() {
+        return wangwangId;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public void setCompanyId(Number companyId) {
+        this.companyId = companyId;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public void setRegMailNo(String regMailNo) {
         this.regMailNo = regMailNo;
+    }
+
+    public void setWangwangId(String wangwangId) {
+        this.wangwangId = wangwangId;
     }
 
 }

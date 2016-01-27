@@ -20,12 +20,12 @@ public class ShopUpdateResponse extends TaobaoResponse {
     @ApiField("shop")
     private Shop shop;
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
-    }
-
     public Shop getShop() {
         return this.shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
 }

@@ -24,12 +24,12 @@ public class TravelItemsareaGetResponse extends TaobaoResponse {
     @ApiField("travel_items_area_node")
     private List<TravelItemsAreaNode> travelItemsAreaNodes;
 
-    public void setTravelItemsAreaNodes(List<TravelItemsAreaNode> travelItemsAreaNodes) {
-        this.travelItemsAreaNodes = travelItemsAreaNodes;
-    }
-
     public List<TravelItemsAreaNode> getTravelItemsAreaNodes() {
         return this.travelItemsAreaNodes;
+    }
+
+    public void setTravelItemsAreaNodes(List<TravelItemsAreaNode> travelItemsAreaNodes) {
+        this.travelItemsAreaNodes = travelItemsAreaNodes;
     }
 
 }

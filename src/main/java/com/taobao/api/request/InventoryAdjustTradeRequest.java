@@ -17,16 +17,12 @@ import com.taobao.api.response.InventoryAdjustTradeResponse;
  */
 public class InventoryAdjustTradeRequest implements TaobaoRequest<InventoryAdjustTradeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商家外部定单号
      */
     private String bizUniqueCode;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品初始库存信息： [{ "TBOrderCode”:”淘宝交易号”,"TBSubOrderCode
@@ -48,50 +44,50 @@ public class InventoryAdjustTradeRequest implements TaobaoRequest<InventoryAdjus
      */
     private String tbOrderType;
 
-    public void setBizUniqueCode(String bizUniqueCode) {
-        this.bizUniqueCode = bizUniqueCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizUniqueCode, "bizUniqueCode");
+        RequestCheckUtils.checkNotEmpty(items, "items");
+        RequestCheckUtils.checkNotEmpty(operateTime, "operateTime");
+        RequestCheckUtils.checkNotEmpty(tbOrderType, "tbOrderType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.inventory.adjust.trade";
     }
 
     public String getBizUniqueCode() {
         return this.bizUniqueCode;
     }
 
-    public void setItems(String items) {
-        this.items = items;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItems() {
         return this.items;
     }
 
-    public void setOperateTime(Date operateTime) {
-        this.operateTime = operateTime;
-    }
-
     public Date getOperateTime() {
         return this.operateTime;
     }
 
-    public void setTbOrderType(String tbOrderType) {
-        this.tbOrderType = tbOrderType;
+    @Override
+    public Class<InventoryAdjustTradeResponse> getResponseClass() {
+        return InventoryAdjustTradeResponse.class;
     }
 
     public String getTbOrderType() {
         return this.tbOrderType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.inventory.adjust.trade";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_unique_code", this.bizUniqueCode);
@@ -104,6 +100,12 @@ public class InventoryAdjustTradeRequest implements TaobaoRequest<InventoryAdjus
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -111,18 +113,24 @@ public class InventoryAdjustTradeRequest implements TaobaoRequest<InventoryAdjus
         this.udfParams.put(key, value);
     }
 
-    public Class<InventoryAdjustTradeResponse> getResponseClass() {
-        return InventoryAdjustTradeResponse.class;
+    public void setBizUniqueCode(String bizUniqueCode) {
+        this.bizUniqueCode = bizUniqueCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizUniqueCode, "bizUniqueCode");
-        RequestCheckUtils.checkNotEmpty(items, "items");
-        RequestCheckUtils.checkNotEmpty(operateTime, "operateTime");
-        RequestCheckUtils.checkNotEmpty(tbOrderType, "tbOrderType");
+    public void setItems(String items) {
+        this.items = items;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOperateTime(Date operateTime) {
+        this.operateTime = operateTime;
+    }
+
+    public void setTbOrderType(String tbOrderType) {
+        this.tbOrderType = tbOrderType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

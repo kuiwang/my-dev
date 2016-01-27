@@ -6,12 +6,6 @@ package com.scott.dev.taobao.api.user.domain;
 public class Location {
 
     /*
-     * 邮政编码
-     * 隐私:y
-     */
-    private String zip;
-
-    /*
      * 详细地址，最大256个字节（128个中文）
      * 隐私:y
      */
@@ -23,11 +17,6 @@ public class Location {
     private String city;
 
     /*
-     * 所在省份（中文名称）
-     */
-    private String state;
-
-    /*
      * 国家名称
      */
     private String country;
@@ -37,52 +26,63 @@ public class Location {
      */
     private String district;
 
-    public String getZip() {
-        return zip;
-    }
+    /*
+     * 所在省份（中文名称）
+     */
+    private String state;
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
+    /*
+     * 邮政编码
+     * 隐私:y
+     */
+    private String zip;
 
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getCountry() {
         return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getDistrict() {
         return district;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
 }

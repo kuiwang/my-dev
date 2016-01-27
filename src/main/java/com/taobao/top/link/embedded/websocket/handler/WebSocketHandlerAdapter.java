@@ -41,7 +41,20 @@ abstract public class WebSocketHandlerAdapter implements WebSocketHandler {
      * jp.a840.websocket.handler.WebSocketHandler#onClose(jp.a840.websocket.
      * WebSocket)
      */
+    @Override
     public void onClose(WebSocket socket) {
+        ;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * jp.a840.websocket.handler.WebSocketHandler#onCloseFrame(jp.a840.websocket
+     * .WebSocket, int statusCode, String reasonText)
+     */
+    @Override
+    public void onCloseFrame(WebSocket socket, int statusCode, String reasonText) {
         ;
     }
 
@@ -52,6 +65,7 @@ abstract public class WebSocketHandlerAdapter implements WebSocketHandler {
      * jp.a840.websocket.handler.WebSocketHandler#onError(jp.a840.websocket.
      * WebSocket, jp.a840.websocket.exception.WebSocketException)
      */
+    @Override
     public void onError(WebSocket socket, WebSocketException e) {
         e.printStackTrace();
     }
@@ -63,6 +77,7 @@ abstract public class WebSocketHandlerAdapter implements WebSocketHandler {
      * jp.a840.websocket.handler.WebSocketHandler#onMessage(jp.a840.websocket
      * .WebSocket, jp.a840.websocket.frame.Frame)
      */
+    @Override
     public void onMessage(WebSocket socket, Frame frame) {
         ;
     }
@@ -74,18 +89,8 @@ abstract public class WebSocketHandlerAdapter implements WebSocketHandler {
      * jp.a840.websocket.handler.WebSocketHandler#onOpen(jp.a840.websocket.WebSocket
      * )
      */
+    @Override
     public void onOpen(WebSocket socket) {
-        ;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * jp.a840.websocket.handler.WebSocketHandler#onCloseFrame(jp.a840.websocket
-     * .WebSocket, int statusCode, String reasonText)
-     */
-    public void onCloseFrame(WebSocket socket, int statusCode, String reasonText) {
         ;
     }
 

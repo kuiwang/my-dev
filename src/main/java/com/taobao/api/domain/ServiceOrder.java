@@ -95,100 +95,100 @@ public class ServiceOrder extends TaobaoObject {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public Long getItemOid() {
         return this.itemOid;
-    }
-
-    public void setItemOid(Long itemOid) {
-        this.itemOid = itemOid;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public Long getOid() {
         return this.oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
     }
 
     public String getPayment() {
         return this.payment;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getRefundId() {
         return this.refundId;
-    }
-
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getServiceDetailUrl() {
         return this.serviceDetailUrl;
-    }
-
-    public void setServiceDetailUrl(String serviceDetailUrl) {
-        this.serviceDetailUrl = serviceDetailUrl;
     }
 
     public Long getServiceId() {
         return this.serviceId;
     }
 
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setItemOid(Long itemOid) {
+        this.itemOid = itemOid;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setServiceDetailUrl(String serviceDetailUrl) {
+        this.serviceDetailUrl = serviceDetailUrl;
+    }
+
+    public void setServiceId(Long serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setTotalFee(String totalFee) {

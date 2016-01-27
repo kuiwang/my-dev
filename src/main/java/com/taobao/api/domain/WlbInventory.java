@@ -54,44 +54,44 @@ public class WlbInventory extends TaobaoObject {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getLockQuantity() {
         return this.lockQuantity;
-    }
-
-    public void setLockQuantity(Long lockQuantity) {
-        this.lockQuantity = lockQuantity;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public String getStoreCode() {
         return this.storeCode;
-    }
-
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
     }
 
     public String getType() {
         return this.type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setLockQuantity(Long lockQuantity) {
+        this.lockQuantity = lockQuantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setUserId(Long userId) {

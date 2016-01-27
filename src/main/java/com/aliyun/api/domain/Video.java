@@ -75,68 +75,68 @@ public class Video extends TaobaoObject {
         return this.addedTime;
     }
 
-    public void setAddedTime(String addedTime) {
-        this.addedTime = addedTime;
-    }
-
     public String getCoverUrl() {
         return this.coverUrl;
-    }
-
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public OSSFile getInputFile() {
         return this.inputFile;
-    }
-
-    public void setInputFile(OSSFile inputFile) {
-        this.inputFile = inputFile;
     }
 
     public String getMediaId() {
         return this.mediaId;
     }
 
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
     public List<VideoTag> getTags() {
         return this.tags;
-    }
-
-    public void setTags(List<VideoTag> tags) {
-        this.tags = tags;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public VideoFeatures getVideoFeatures() {
         return this.videoFeatures;
     }
 
-    public void setVideoFeatures(VideoFeatures videoFeatures) {
-        this.videoFeatures = videoFeatures;
-    }
-
     public String getVideoStatus() {
         return this.videoStatus;
+    }
+
+    public void setAddedTime(String addedTime) {
+        this.addedTime = addedTime;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setInputFile(OSSFile inputFile) {
+        this.inputFile = inputFile;
+    }
+
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
+    }
+
+    public void setTags(List<VideoTag> tags) {
+        this.tags = tags;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setVideoFeatures(VideoFeatures videoFeatures) {
+        this.videoFeatures = videoFeatures;
     }
 
     public void setVideoStatus(String videoStatus) {

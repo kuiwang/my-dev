@@ -23,11 +23,11 @@ import com.taobao.top.link.remoting.protocol.RemotingTransportHeader;
 
 public class RemotingClientChannelHandler extends SimpleChannelHandler {
 
-    private Logger logger;
+    private Map<Integer, RemotingCallback> callbacks;
 
     private AtomicInteger flagAtomic;
 
-    private Map<Integer, RemotingCallback> callbacks;
+    private Logger logger;
 
     private SerializationFactory serializationFactory;
 
@@ -38,16 +38,84 @@ public class RemotingClientChannelHandler extends SimpleChannelHandler {
         this.serializationFactory = new DefaultSerializationFactory();
     }
 
-    public void setSerializationFactory(SerializationFactory serializationFactory) {
-        this.serializationFactory = serializationFactory;
+    public void cancel(RemotingCallback callback) {
+        this.callbacks.remove(callback.flag);
     }
 
-    public ByteBuffer pending(RemotingCallback handler, short operation,
-            HashMap<String, Object> transportHeaders, MethodCall methodCall)
-            throws FormatterException {
-        byte[] data = this.serializationFactory.get(handler.serializationFormat)
-                .serializeMethodCall(methodCall);
-        return this.pending(handler, operation, transportHeaders, data, 0, data.length);
+    @Override
+    public void onClosed(String reason) {
+        RemotingException error = new RemotingException(Text.RPC_CHANNEL_BROKEN);
+        // all is fail!
+        for (Entry<Integer, RemotingCallback> i : this.callbacks.entrySet()) {
+            try {
+                i.getValue().onException(error);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        this.callbacks = new HashMap<Integer, RemotingCallback>();
+    }
+
+    @Override
+    public void onMessage(ChannelContext context) {
+        Object msg = context.getMessage();
+        RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer ? new RemotingTcpProtocolHandle(
+                (ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
+        protocol.ReadPreamble();
+        protocol.ReadMajorVersion();
+        protocol.ReadMinorVersion();
+
+        short operation = protocol.ReadOperation();
+        if (operation != TcpOperations.Reply) {
+            return;
+        }
+
+        protocol.ReadContentDelimiter();
+        protocol.ReadContentLength();
+
+        HashMap<String, Object> transportHeaders = null;
+        try {
+            transportHeaders = protocol.ReadTransportHeaders();
+        } catch (NotSupportedException e) {
+            this.logger.error(e);
+        }
+        Object flag;
+        if ((transportHeaders == null)
+                || ((flag = transportHeaders.get(RemotingTransportHeader.Flag)) == null)) {
+            return;
+        }
+
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug(Text.RPC_GET_RETURN, flag);
+        }
+
+        RemotingCallback callback = this.callbacks.remove(flag);
+        if (callback == null) {
+            return;
+        }
+
+        Object statusCode = transportHeaders.get(TcpTransportHeader.StatusCode);
+        Object statusPhrase = transportHeaders.get(TcpTransportHeader.StatusPhrase);
+        if ((statusCode != null) && (Integer.parseInt(statusCode.toString()) > 0)) {
+            callback.onException(new Exception(String.format(Text.RPC_RETURN_ERROR, statusCode,
+                    statusPhrase)));
+            return;
+        }
+
+        MethodReturn methodReturn = null;
+        try {
+            methodReturn = this.serializationFactory.get(callback.serializationFormat)
+                    .deserializeMethodReturn(protocol.ReadContent(), callback.returnType);
+        } catch (FormatterException e) {
+            callback.onException(e);
+            return;
+        }
+
+        try {
+            callback.onMethodReturn(methodReturn);
+        } catch (Exception e) {
+            this.logger.error(e);
+        }
     }
 
     // act as formatter sink
@@ -70,80 +138,22 @@ public class RemotingClientChannelHandler extends SimpleChannelHandler {
 
         handler.flag = flag;
         this.callbacks.put(handler.flag, handler);
-        if (this.logger.isDebugEnabled()) this.logger.debug(Text.RPC_PENDING_CALL, flag);
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug(Text.RPC_PENDING_CALL, flag);
+        }
 
         return requestBuffer;
     }
 
-    public void cancel(RemotingCallback callback) {
-        this.callbacks.remove(callback.flag);
+    public ByteBuffer pending(RemotingCallback handler, short operation,
+            HashMap<String, Object> transportHeaders, MethodCall methodCall)
+            throws FormatterException {
+        byte[] data = this.serializationFactory.get(handler.serializationFormat)
+                .serializeMethodCall(methodCall);
+        return this.pending(handler, operation, transportHeaders, data, 0, data.length);
     }
 
-    @Override
-    public void onMessage(ChannelContext context) {
-        Object msg = context.getMessage();
-        RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer ? new RemotingTcpProtocolHandle(
-                (ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
-        protocol.ReadPreamble();
-        protocol.ReadMajorVersion();
-        protocol.ReadMinorVersion();
-
-        short operation = protocol.ReadOperation();
-        if (operation != TcpOperations.Reply) return;
-
-        protocol.ReadContentDelimiter();
-        protocol.ReadContentLength();
-
-        HashMap<String, Object> transportHeaders = null;
-        try {
-            transportHeaders = protocol.ReadTransportHeaders();
-        } catch (NotSupportedException e) {
-            this.logger.error(e);
-        }
-        Object flag;
-        if (transportHeaders == null
-                || (flag = transportHeaders.get(RemotingTransportHeader.Flag)) == null) return;
-
-        if (this.logger.isDebugEnabled()) this.logger.debug(Text.RPC_GET_RETURN, flag);
-
-        RemotingCallback callback = this.callbacks.remove(flag);
-        if (callback == null) return;
-
-        Object statusCode = transportHeaders.get(TcpTransportHeader.StatusCode);
-        Object statusPhrase = transportHeaders.get(TcpTransportHeader.StatusPhrase);
-        if (statusCode != null && Integer.parseInt(statusCode.toString()) > 0) {
-            callback.onException(new Exception(String.format(Text.RPC_RETURN_ERROR, statusCode,
-                    statusPhrase)));
-            return;
-        }
-
-        MethodReturn methodReturn = null;
-        try {
-            methodReturn = this.serializationFactory.get(callback.serializationFormat)
-                    .deserializeMethodReturn(protocol.ReadContent(), callback.returnType);
-        } catch (FormatterException e) {
-            callback.onException(e);
-            return;
-        }
-
-        try {
-            callback.onMethodReturn(methodReturn);
-        } catch (Exception e) {
-            this.logger.error(e);
-        }
-    }
-
-    @Override
-    public void onClosed(String reason) {
-        RemotingException error = new RemotingException(Text.RPC_CHANNEL_BROKEN);
-        // all is fail!
-        for (Entry<Integer, RemotingCallback> i : this.callbacks.entrySet()) {
-            try {
-                i.getValue().onException(error);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        this.callbacks = new HashMap<Integer, RemotingCallback>();
+    public void setSerializationFactory(SerializationFactory serializationFactory) {
+        this.serializationFactory = serializationFactory;
     }
 }

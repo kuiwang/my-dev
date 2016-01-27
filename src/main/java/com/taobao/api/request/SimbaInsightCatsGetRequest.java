@@ -16,50 +16,52 @@ import com.taobao.api.response.SimbaInsightCatsGetResponse;
  */
 public class SimbaInsightCatsGetRequest implements TaobaoRequest<SimbaInsightCatsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询类目id数组，最大长度200
      */
     private String categoryIds;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setCategoryIds(String categoryIds) {
-        this.categoryIds = categoryIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(categoryIds, "categoryIds");
+        RequestCheckUtils.checkMaxListSize(categoryIds, 200, "categoryIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.cats.get";
     }
 
     public String getCategoryIds() {
         return this.categoryIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaInsightCatsGetResponse> getResponseClass() {
+        return SimbaInsightCatsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.cats.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("category_ids", this.categoryIds);
@@ -70,6 +72,12 @@ public class SimbaInsightCatsGetRequest implements TaobaoRequest<SimbaInsightCat
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class SimbaInsightCatsGetRequest implements TaobaoRequest<SimbaInsightCat
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightCatsGetResponse> getResponseClass() {
-        return SimbaInsightCatsGetResponse.class;
+    public void setCategoryIds(String categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(categoryIds, "categoryIds");
-        RequestCheckUtils.checkMaxListSize(categoryIds, 200, "categoryIds");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

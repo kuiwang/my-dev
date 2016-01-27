@@ -118,124 +118,124 @@ public class DdTopMenuDetailVO extends TaobaoObject {
         return this.contact;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Date getDiningTime() {
         return this.diningTime;
     }
 
-    public void setDiningTime(Date diningTime) {
-        this.diningTime = diningTime;
-    }
-
     public List<DdItemVO> getItems() {
         return this.items;
-    }
-
-    public void setItems(List<DdItemVO> items) {
-        this.items = items;
     }
 
     public Long getMenuId() {
         return this.menuId;
     }
 
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
-    }
-
     public String getMobile() {
         return this.mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 
     public String getNote() {
         return this.note;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public String getOutStoreId() {
         return this.outStoreId;
-    }
-
-    public void setOutStoreId(String outStoreId) {
-        this.outStoreId = outStoreId;
     }
 
     public Date getPayTime() {
         return this.payTime;
     }
 
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
     public Long getPeople() {
         return this.people;
-    }
-
-    public void setPeople(Long people) {
-        this.people = people;
     }
 
     public String getRealPrice() {
         return this.realPrice;
     }
 
-    public void setRealPrice(String realPrice) {
-        this.realPrice = realPrice;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
     public String getTableCode() {
         return this.tableCode;
-    }
-
-    public void setTableCode(String tableCode) {
-        this.tableCode = tableCode;
     }
 
     public String getTableName() {
         return this.tableName;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
     public String getTotalPrice() {
         return this.totalPrice;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDiningTime(Date diningTime) {
+        this.diningTime = diningTime;
+    }
+
+    public void setItems(List<DdItemVO> items) {
+        this.items = items;
+    }
+
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setOutStoreId(String outStoreId) {
+        this.outStoreId = outStoreId;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPeople(Long people) {
+        this.people = people;
+    }
+
+    public void setRealPrice(String realPrice) {
+        this.realPrice = realPrice;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setTableCode(String tableCode) {
+        this.tableCode = tableCode;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
     public void setTotalPrice(String totalPrice) {

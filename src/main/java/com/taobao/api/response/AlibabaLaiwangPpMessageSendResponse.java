@@ -19,12 +19,12 @@ public class AlibabaLaiwangPpMessageSendResponse extends TaobaoResponse {
     @ApiField("issuccess")
     private Boolean issuccess;
 
-    public void setIssuccess(Boolean issuccess) {
-        this.issuccess = issuccess;
-    }
-
     public Boolean getIssuccess() {
         return this.issuccess;
+    }
+
+    public void setIssuccess(Boolean issuccess) {
+        this.issuccess = issuccess;
     }
 
 }

@@ -25,105 +25,15 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class AliyunLogger {
 
-    private static final Log clog = LogFactory.getLog("sdk.comm.err");
-
     private static final Log blog = LogFactory.getLog("sdk.biz.err");
 
-    private static String osName = System.getProperties().getProperty("os.name");
+    private static final Log clog = LogFactory.getLog("sdk.comm.err");
 
     private static String ip = null;
 
     private static boolean needEnableLogger = true;
 
-    public static void setNeedEnableLogger(boolean needEnableLogger) {
-        AliyunLogger.needEnableLogger = needEnableLogger;
-    }
-
-    public static String getIp() {
-        if (ip == null) {
-            try {
-                ip = InetAddress.getLocalHost().getHostAddress();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return ip;
-    }
-
-    public static void setIp(String ip) {
-        AliyunLogger.ip = ip;
-    }
-
-    /**
-     * 通讯错误日志
-     */
-    public static void logCommError(Exception e, HttpURLConnection conn, String appKey,
-            String method, byte[] content) {
-        if (!needEnableLogger) {
-            return;
-        }
-        String contentString = null;
-        try {
-            contentString = new String(content, "UTF-8");
-            logCommError(e, conn, appKey, method, contentString);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-    }
-
-    /**
-     * 通讯错误日志
-     */
-    public static void logCommError(Exception e, String url, String appKey, String method,
-            byte[] content) {
-        if (!needEnableLogger) {
-            return;
-        }
-        String contentString = null;
-        try {
-            contentString = new String(content, "UTF-8");
-            logCommError(e, url, appKey, method, contentString);
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-    }
-
-    /**
-     * 通讯错误日志
-     */
-    public static void logCommError(Exception e, HttpURLConnection conn, String appKey,
-            String method, Map<String, String> params) {
-        if (!needEnableLogger) {
-            return;
-        }
-        _logCommError(e, conn, null, appKey, method, params);
-    }
-
-    public static void logCommError(Exception e, String url, String appKey, String method,
-            Map<String, String> params) {
-        if (!needEnableLogger) {
-            return;
-        }
-        _logCommError(e, null, url, appKey, method, params);
-    }
-
-    /**
-     * 通讯错误日志
-     */
-    private static void logCommError(Exception e, HttpURLConnection conn, String appKey,
-            String method, String content) {
-        Map<String, String> params = parseParam(content);
-        _logCommError(e, conn, null, appKey, method, params);
-    }
-
-    /**
-     * 通讯错误日志
-     */
-    private static void logCommError(Exception e, String url, String appKey, String method,
-            String content) {
-        Map<String, String> params = parseParam(content);
-        _logCommError(e, null, url, appKey, method, params);
-    }
+    private static String osName = System.getProperties().getProperty("os.name");
 
     /**
      * 通讯错误日志
@@ -165,21 +75,28 @@ public class AliyunLogger {
         clog.error(sb.toString());
     }
 
-    private static Map<String, String> parseParam(String contentString) {
-        Map<String, String> params = new HashMap<String, String>();
-        if (contentString == null || contentString.trim().equals("")) {
-            return params;
+    private static void appendLog(TaobaoHashMap map, StringBuilder sb) {
+        boolean first = true;
+        Set<Map.Entry<String, String>> set = map.entrySet();
+        for (Map.Entry<String, String> entry : set) {
+            if (!first) {
+                sb.append("&");
+            } else {
+                first = false;
+            }
+            sb.append(entry.getKey()).append("=").append(entry.getValue());
         }
-        String[] paramsArray = contentString.split("\\&");
-        if (paramsArray != null) {
-            for (String param : paramsArray) {
-                String[] keyValue = param.split("=");
-                if (keyValue != null && keyValue.length == 2) {
-                    params.put(keyValue[0], keyValue[1]);
-                }
+    }
+
+    public static String getIp() {
+        if (ip == null) {
+            try {
+                ip = InetAddress.getLocalHost().getHostAddress();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        return params;
+        return ip;
     }
 
     /**
@@ -196,6 +113,77 @@ public class AliyunLogger {
         sb.append("^_^");
         sb.append(rsp);
         blog.error(sb.toString());
+    }
+
+    /**
+     * 通讯错误日志
+     */
+    public static void logCommError(Exception e, HttpURLConnection conn, String appKey,
+            String method, byte[] content) {
+        if (!needEnableLogger) {
+            return;
+        }
+        String contentString = null;
+        try {
+            contentString = new String(content, "UTF-8");
+            logCommError(e, conn, appKey, method, contentString);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    /**
+     * 通讯错误日志
+     */
+    public static void logCommError(Exception e, HttpURLConnection conn, String appKey,
+            String method, Map<String, String> params) {
+        if (!needEnableLogger) {
+            return;
+        }
+        _logCommError(e, conn, null, appKey, method, params);
+    }
+
+    /**
+     * 通讯错误日志
+     */
+    private static void logCommError(Exception e, HttpURLConnection conn, String appKey,
+            String method, String content) {
+        Map<String, String> params = parseParam(content);
+        _logCommError(e, conn, null, appKey, method, params);
+    }
+
+    /**
+     * 通讯错误日志
+     */
+    public static void logCommError(Exception e, String url, String appKey, String method,
+            byte[] content) {
+        if (!needEnableLogger) {
+            return;
+        }
+        String contentString = null;
+        try {
+            contentString = new String(content, "UTF-8");
+            logCommError(e, url, appKey, method, contentString);
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public static void logCommError(Exception e, String url, String appKey, String method,
+            Map<String, String> params) {
+        if (!needEnableLogger) {
+            return;
+        }
+        _logCommError(e, null, url, appKey, method, params);
+    }
+
+    /**
+     * 通讯错误日志
+     */
+    private static void logCommError(Exception e, String url, String appKey, String method,
+            String content) {
+        Map<String, String> params = parseParam(content);
+        _logCommError(e, null, url, appKey, method, params);
     }
 
     /**
@@ -234,16 +222,28 @@ public class AliyunLogger {
         blog.error(sb.toString());
     }
 
-    private static void appendLog(TaobaoHashMap map, StringBuilder sb) {
-        boolean first = true;
-        Set<Map.Entry<String, String>> set = map.entrySet();
-        for (Map.Entry<String, String> entry : set) {
-            if (!first) {
-                sb.append("&");
-            } else {
-                first = false;
-            }
-            sb.append(entry.getKey()).append("=").append(entry.getValue());
+    private static Map<String, String> parseParam(String contentString) {
+        Map<String, String> params = new HashMap<String, String>();
+        if ((contentString == null) || contentString.trim().equals("")) {
+            return params;
         }
+        String[] paramsArray = contentString.split("\\&");
+        if (paramsArray != null) {
+            for (String param : paramsArray) {
+                String[] keyValue = param.split("=");
+                if ((keyValue != null) && (keyValue.length == 2)) {
+                    params.put(keyValue[0], keyValue[1]);
+                }
+            }
+        }
+        return params;
+    }
+
+    public static void setIp(String ip) {
+        AliyunLogger.ip = ip;
+    }
+
+    public static void setNeedEnableLogger(boolean needEnableLogger) {
+        AliyunLogger.needEnableLogger = needEnableLogger;
     }
 }

@@ -16,23 +16,8 @@ public class ClientChannelWrapper extends ChannelSenderWrapper implements Client
     }
 
     @Override
-    public boolean isConnected() {
-        return this.clientChannel.isConnected();
-    }
-
-    @Override
     public ChannelHandler getChannelHandler() {
         return this.clientChannel.getChannelHandler();
-    }
-
-    @Override
-    public void setChannelHandler(ChannelHandler handler) {
-        this.clientChannel.setChannelHandler(handler);
-    }
-
-    @Override
-    public void setUri(URI uri) {
-        this.clientChannel.setUri(uri);
     }
 
     @Override
@@ -41,7 +26,22 @@ public class ClientChannelWrapper extends ChannelSenderWrapper implements Client
     }
 
     @Override
+    public boolean isConnected() {
+        return this.clientChannel.isConnected();
+    }
+
+    @Override
+    public void setChannelHandler(ChannelHandler handler) {
+        this.clientChannel.setChannelHandler(handler);
+    }
+
+    @Override
     public void setHeartbeatTimer(ResetableTimer timer) {
         this.clientChannel.setHeartbeatTimer(timer);
+    }
+
+    @Override
+    public void setUri(URI uri) {
+        this.clientChannel.setUri(uri);
     }
 }

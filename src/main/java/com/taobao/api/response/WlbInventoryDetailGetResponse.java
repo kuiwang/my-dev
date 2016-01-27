@@ -30,20 +30,20 @@ public class WlbInventoryDetailGetResponse extends TaobaoResponse {
     @ApiField("item_id")
     private Long itemId;
 
-    public void setInventoryList(List<WlbInventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
-
     public List<WlbInventory> getInventoryList() {
         return this.inventoryList;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemId() {
         return this.itemId;
+    }
+
+    public void setInventoryList(List<WlbInventory> inventoryList) {
+        this.inventoryList = inventoryList;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
 }

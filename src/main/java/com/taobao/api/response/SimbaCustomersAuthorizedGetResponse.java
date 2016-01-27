@@ -23,12 +23,12 @@ public class SimbaCustomersAuthorizedGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> nicks;
 
-    public void setNicks(List<String> nicks) {
-        this.nicks = nicks;
-    }
-
     public List<String> getNicks() {
         return this.nicks;
+    }
+
+    public void setNicks(List<String> nicks) {
+        this.nicks = nicks;
     }
 
 }

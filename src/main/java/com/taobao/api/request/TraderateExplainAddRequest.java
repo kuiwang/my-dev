@@ -18,10 +18,6 @@ public class TraderateExplainAddRequest implements TaobaoRequest<TraderateExplai
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 子订单ID
      */
@@ -32,34 +28,40 @@ public class TraderateExplainAddRequest implements TaobaoRequest<TraderateExplai
      */
     private String reply;
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(oid, "oid");
+        RequestCheckUtils.checkNotEmpty(reply, "reply");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.explain.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public void setReply(String reply) {
-        this.reply = reply;
-    }
-
     public String getReply() {
         return this.reply;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TraderateExplainAddResponse> getResponseClass() {
+        return TraderateExplainAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.traderate.explain.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("oid", this.oid);
@@ -70,6 +72,12 @@ public class TraderateExplainAddRequest implements TaobaoRequest<TraderateExplai
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class TraderateExplainAddRequest implements TaobaoRequest<TraderateExplai
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateExplainAddResponse> getResponseClass() {
-        return TraderateExplainAddResponse.class;
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(oid, "oid");
-        RequestCheckUtils.checkNotEmpty(reply, "reply");
+    public void setReply(String reply) {
+        this.reply = reply;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

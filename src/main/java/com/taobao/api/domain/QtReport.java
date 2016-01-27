@@ -127,140 +127,140 @@ public class QtReport extends TaobaoObject {
         return this.extAttr;
     }
 
-    public void setExtAttr(String extAttr) {
-        this.extAttr = extAttr;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Date getGmtExpiry() {
         return this.gmtExpiry;
     }
 
-    public void setGmtExpiry(Date gmtExpiry) {
-        this.gmtExpiry = gmtExpiry;
-    }
-
     public Date getGmtReport() {
         return this.gmtReport;
-    }
-
-    public void setGmtReport(Date gmtReport) {
-        this.gmtReport = gmtReport;
     }
 
     public Date getGmtSubmit() {
         return this.gmtSubmit;
     }
 
-    public void setGmtSubmit(Date gmtSubmit) {
-        this.gmtSubmit = gmtSubmit;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Boolean getIsPassed() {
         return this.isPassed;
     }
 
-    public void setIsPassed(Boolean isPassed) {
-        this.isPassed = isPassed;
-    }
-
     public String getItemUrl() {
         return this.itemUrl;
-    }
-
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public String getQtCode() {
         return this.qtCode;
-    }
-
-    public void setQtCode(String qtCode) {
-        this.qtCode = qtCode;
     }
 
     public String getQtName() {
         return this.qtName;
     }
 
-    public void setQtName(String qtName) {
-        this.qtName = qtName;
-    }
-
     public String getQtStandard() {
         return this.qtStandard;
-    }
-
-    public void setQtStandard(String qtStandard) {
-        this.qtStandard = qtStandard;
     }
 
     public Long getQtType() {
         return this.qtType;
     }
 
-    public void setQtType(Long qtType) {
-        this.qtType = qtType;
-    }
-
     public String getReportUrl() {
         return this.reportUrl;
-    }
-
-    public void setReportUrl(String reportUrl) {
-        this.reportUrl = reportUrl;
     }
 
     public String getSpName() {
         return this.spName;
     }
 
-    public void setSpName(String spName) {
-        this.spName = spName;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setExtAttr(String extAttr) {
+        this.extAttr = extAttr;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtExpiry(Date gmtExpiry) {
+        this.gmtExpiry = gmtExpiry;
+    }
+
+    public void setGmtReport(Date gmtReport) {
+        this.gmtReport = gmtReport;
+    }
+
+    public void setGmtSubmit(Date gmtSubmit) {
+        this.gmtSubmit = gmtSubmit;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsPassed(Boolean isPassed) {
+        this.isPassed = isPassed;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setQtCode(String qtCode) {
+        this.qtCode = qtCode;
+    }
+
+    public void setQtName(String qtName) {
+        this.qtName = qtName;
+    }
+
+    public void setQtStandard(String qtStandard) {
+        this.qtStandard = qtStandard;
+    }
+
+    public void setQtType(Long qtType) {
+        this.qtType = qtType;
+    }
+
+    public void setReportUrl(String reportUrl) {
+        this.reportUrl = reportUrl;
+    }
+
+    public void setSpName(String spName) {
+        this.spName = spName;
     }
 
     public void setStatus(Long status) {

@@ -22,12 +22,12 @@ public class NonReplyStatOnDay {
         return this.nonreplyDate;
     }
 
-    public void setNonreplyDate(Date nonreplyDate) {
-        this.nonreplyDate = nonreplyDate;
-    }
-
     public List<NonreplyStatById> getNonreplyStatByIds() {
         return this.nonreplyStatByIds;
+    }
+
+    public void setNonreplyDate(Date nonreplyDate) {
+        this.nonreplyDate = nonreplyDate;
     }
 
     public void setNonreplyStatByIds(List<NonreplyStatById> nonreplyStatByIds) {

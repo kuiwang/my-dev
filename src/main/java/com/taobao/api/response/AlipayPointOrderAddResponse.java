@@ -25,20 +25,20 @@ public class AlipayPointOrderAddResponse extends TaobaoResponse {
     @ApiField("result_code")
     private Boolean resultCode;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
     }
 
-    public void setResultCode(Boolean resultCode) {
-        this.resultCode = resultCode;
-    }
-
     public Boolean getResultCode() {
         return this.resultCode;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setResultCode(Boolean resultCode) {
+        this.resultCode = resultCode;
     }
 
 }

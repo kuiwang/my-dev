@@ -48,36 +48,36 @@ public class VideoTranscodeJob extends TaobaoObject {
         return this.jobId;
     }
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
-
     public String getMediaId() {
         return this.mediaId;
-    }
-
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
     }
 
     public Long getPercent() {
         return this.percent;
     }
 
-    public void setPercent(Long percent) {
-        this.percent = percent;
-    }
-
     public String getState() {
         return this.state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getTemplateId() {
         return this.templateId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
+    }
+
+    public void setPercent(Long percent) {
+        this.percent = percent;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void setTemplateId(String templateId) {

@@ -105,108 +105,108 @@ public class Image extends TaobaoObject {
         return this.architecture;
     }
 
-    public void setArchitecture(String architecture) {
-        this.architecture = architecture;
-    }
-
     public String getCreationTime() {
         return this.creationTime;
-    }
-
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public List<DiskDeviceMapping> getDiskDeviceMappings() {
         return this.diskDeviceMappings;
-    }
-
-    public void setDiskDeviceMappings(List<DiskDeviceMapping> diskDeviceMappings) {
-        this.diskDeviceMappings = diskDeviceMappings;
     }
 
     public String getImageId() {
         return this.imageId;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-
     public String getImageName() {
         return this.imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
     }
 
     public String getImageOwnerAlias() {
         return this.imageOwnerAlias;
     }
 
-    public void setImageOwnerAlias(String imageOwnerAlias) {
-        this.imageOwnerAlias = imageOwnerAlias;
-    }
-
     public String getImageVersion() {
         return this.imageVersion;
-    }
-
-    public void setImageVersion(String imageVersion) {
-        this.imageVersion = imageVersion;
     }
 
     public String getIsSubscribed() {
         return this.isSubscribed;
     }
 
-    public void setIsSubscribed(String isSubscribed) {
-        this.isSubscribed = isSubscribed;
-    }
-
     public String getoSName() {
         return this.oSName;
-    }
-
-    public void setoSName(String oSName) {
-        this.oSName = oSName;
     }
 
     public String getPlatform() {
         return this.platform;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-
     public String getProductCode() {
         return this.productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
     }
 
     public Long getSize() {
         return this.size;
     }
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
     public String getVisibility() {
         return this.visibility;
+    }
+
+    public void setArchitecture(String architecture) {
+        this.architecture = architecture;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDiskDeviceMappings(List<DiskDeviceMapping> diskDeviceMappings) {
+        this.diskDeviceMappings = diskDeviceMappings;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public void setImageOwnerAlias(String imageOwnerAlias) {
+        this.imageOwnerAlias = imageOwnerAlias;
+    }
+
+    public void setImageVersion(String imageVersion) {
+        this.imageVersion = imageVersion;
+    }
+
+    public void setIsSubscribed(String isSubscribed) {
+        this.isSubscribed = isSubscribed;
+    }
+
+    public void setoSName(String oSName) {
+        this.oSName = oSName;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     public void setVisibility(String visibility) {

@@ -103,108 +103,108 @@ public class ADGroup extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public String getCategoryIds() {
         return this.categoryIds;
     }
 
-    public void setCategoryIds(String categoryIds) {
-        this.categoryIds = categoryIds;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Long getDefaultPrice() {
         return this.defaultPrice;
     }
 
-    public void setDefaultPrice(Long defaultPrice) {
-        this.defaultPrice = defaultPrice;
-    }
-
     public Boolean getIsNonsearchDefaultPrice() {
         return this.isNonsearchDefaultPrice;
-    }
-
-    public void setIsNonsearchDefaultPrice(Boolean isNonsearchDefaultPrice) {
-        this.isNonsearchDefaultPrice = isNonsearchDefaultPrice;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public Long getNonsearchMaxPrice() {
         return this.nonsearchMaxPrice;
     }
 
-    public void setNonsearchMaxPrice(Long nonsearchMaxPrice) {
-        this.nonsearchMaxPrice = nonsearchMaxPrice;
-    }
-
     public Long getNonsearchStatus() {
         return this.nonsearchStatus;
-    }
-
-    public void setNonsearchStatus(Long nonsearchStatus) {
-        this.nonsearchStatus = nonsearchStatus;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public String getOfflineType() {
         return this.offlineType;
-    }
-
-    public void setOfflineType(String offlineType) {
-        this.offlineType = offlineType;
     }
 
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
     public String getReason() {
         return this.reason;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCategoryIds(String categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDefaultPrice(Long defaultPrice) {
+        this.defaultPrice = defaultPrice;
+    }
+
+    public void setIsNonsearchDefaultPrice(Boolean isNonsearchDefaultPrice) {
+        this.isNonsearchDefaultPrice = isNonsearchDefaultPrice;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNonsearchMaxPrice(Long nonsearchMaxPrice) {
+        this.nonsearchMaxPrice = nonsearchMaxPrice;
+    }
+
+    public void setNonsearchStatus(Long nonsearchStatus) {
+        this.nonsearchStatus = nonsearchStatus;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOfflineType(String offlineType) {
+        this.offlineType = offlineType;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
     }
 
     public void setReason(String reason) {

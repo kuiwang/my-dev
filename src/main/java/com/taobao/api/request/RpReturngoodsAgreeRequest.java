@@ -16,16 +16,12 @@ import com.taobao.api.response.RpReturngoodsAgreeResponse;
  */
 public class RpReturngoodsAgreeRequest implements TaobaoRequest<RpReturngoodsAgreeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 卖家提供的退货地址，淘宝退款为必填项。
      */
     private String address;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 卖家手机，淘宝退款为必填项。
@@ -72,98 +68,71 @@ public class RpReturngoodsAgreeRequest implements TaobaoRequest<RpReturngoodsAgr
      */
     private String tel;
 
-    public void setAddress(String address) {
-        this.address = address;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rp.returngoods.agree";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMobile() {
         return this.mobile;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
     }
 
     public String getPost() {
         return this.post;
     }
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
-    }
-
     public Long getRefundId() {
         return this.refundId;
-    }
-
-    public void setRefundPhase(String refundPhase) {
-        this.refundPhase = refundPhase;
     }
 
     public String getRefundPhase() {
         return this.refundPhase;
     }
 
-    public void setRefundVersion(Long refundVersion) {
-        this.refundVersion = refundVersion;
-    }
-
     public Long getRefundVersion() {
         return this.refundVersion;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setSellerAddressId(Long sellerAddressId) {
-        this.sellerAddressId = sellerAddressId;
+    @Override
+    public Class<RpReturngoodsAgreeResponse> getResponseClass() {
+        return RpReturngoodsAgreeResponse.class;
     }
 
     public Long getSellerAddressId() {
         return this.sellerAddressId;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public String getTel() {
         return this.tel;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rp.returngoods.agree";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -182,6 +151,12 @@ public class RpReturngoodsAgreeRequest implements TaobaoRequest<RpReturngoodsAgr
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -189,15 +164,48 @@ public class RpReturngoodsAgreeRequest implements TaobaoRequest<RpReturngoodsAgr
         this.udfParams.put(key, value);
     }
 
-    public Class<RpReturngoodsAgreeResponse> getResponseClass() {
-        return RpReturngoodsAgreeResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRefundPhase(String refundPhase) {
+        this.refundPhase = refundPhase;
+    }
+
+    public void setRefundVersion(Long refundVersion) {
+        this.refundVersion = refundVersion;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setSellerAddressId(Long sellerAddressId) {
+        this.sellerAddressId = sellerAddressId;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

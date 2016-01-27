@@ -16,37 +16,42 @@ import com.taobao.api.response.FenxiaoGradeDeleteResponse;
  */
 public class FenxiaoGradeDeleteRequest implements TaobaoRequest<FenxiaoGradeDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 等级ID
      */
     private Long gradeId;
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.grade.delete";
     }
 
     public Long getGradeId() {
         return this.gradeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoGradeDeleteResponse> getResponseClass() {
+        return FenxiaoGradeDeleteResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.grade.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("grade_id", this.gradeId);
@@ -56,6 +61,12 @@ public class FenxiaoGradeDeleteRequest implements TaobaoRequest<FenxiaoGradeDele
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class FenxiaoGradeDeleteRequest implements TaobaoRequest<FenxiaoGradeDele
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoGradeDeleteResponse> getResponseClass() {
-        return FenxiaoGradeDeleteResponse.class;
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

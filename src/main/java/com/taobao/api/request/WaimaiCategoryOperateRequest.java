@@ -16,12 +16,6 @@ import com.taobao.api.response.WaimaiCategoryOperateResponse;
  */
 public class WaimaiCategoryOperateRequest implements TaobaoRequest<WaimaiCategoryOperateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 2，新增 参数：storeId ; 0=1 ; d=json数组
      * 
@@ -41,6 +35,8 @@ public class WaimaiCategoryOperateRequest implements TaobaoRequest<WaimaiCategor
      */
     private String data;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 0 查询 1 创建 2 更新 3 删除
      */
@@ -51,42 +47,44 @@ public class WaimaiCategoryOperateRequest implements TaobaoRequest<WaimaiCategor
      */
     private Long shopId;
 
-    public void setData(String data) {
-        this.data = data;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(operate, "operate");
+        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.category.operate";
     }
 
     public String getData() {
         return this.data;
     }
 
-    public void setOperate(Long operate) {
-        this.operate = operate;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOperate() {
         return this.operate;
     }
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
+    @Override
+    public Class<WaimaiCategoryOperateResponse> getResponseClass() {
+        return WaimaiCategoryOperateResponse.class;
     }
 
     public Long getShopId() {
         return this.shopId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.category.operate";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("data", this.data);
@@ -98,6 +96,12 @@ public class WaimaiCategoryOperateRequest implements TaobaoRequest<WaimaiCategor
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,16 +109,20 @@ public class WaimaiCategoryOperateRequest implements TaobaoRequest<WaimaiCategor
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiCategoryOperateResponse> getResponseClass() {
-        return WaimaiCategoryOperateResponse.class;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(operate, "operate");
-        RequestCheckUtils.checkNotEmpty(shopId, "shopId");
+    public void setOperate(Long operate) {
+        this.operate = operate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -25,34 +25,14 @@ import com.taobao.api.internal.util.XmlUtils;
  */
 public class XmlConverter implements Converter {
 
-    public <T extends AliyunResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
-        Element root = XmlUtils.getRootElementFromString(rsp);
-        return getModelFromXML(root, clazz);
-    }
-
     private <T> T getModelFromXML(final Element element, Class<T> clazz) throws ApiException {
-        if (element == null) return null;
+        if (element == null) {
+            return null;
+        }
 
         return Converters.convert(clazz, new Reader() {
 
-            public boolean hasReturnField(Object name) {
-                Element childE = XmlUtils.getChildElement(element, (String) name);
-                return childE != null;
-            }
-
-            public Object getPrimitiveObject(Object name) {
-                return XmlUtils.getChildElementValue(element, (String) name);
-            }
-
-            public Object getObject(Object name, Class<?> type) throws ApiException {
-                Element childE = XmlUtils.getChildElement(element, (String) name);
-                if (childE != null) {
-                    return getModelFromXML(childE, type);
-                } else {
-                    return null;
-                }
-            }
-
+            @Override
             public List<?> getListObjects(Object listName, Object itemName, Class<?> subType)
                     throws ApiException {
                 List<Object> list = null;
@@ -82,12 +62,41 @@ public class XmlConverter implements Converter {
                         } else {
                             obj = getModelFromXML(itemE, subType);
                         }
-                        if (obj != null) list.add(obj);
+                        if (obj != null) {
+                            list.add(obj);
+                        }
                     }
                 }
                 return list;
             }
+
+            @Override
+            public Object getObject(Object name, Class<?> type) throws ApiException {
+                Element childE = XmlUtils.getChildElement(element, (String) name);
+                if (childE != null) {
+                    return getModelFromXML(childE, type);
+                } else {
+                    return null;
+                }
+            }
+
+            @Override
+            public Object getPrimitiveObject(Object name) {
+                return XmlUtils.getChildElementValue(element, (String) name);
+            }
+
+            @Override
+            public boolean hasReturnField(Object name) {
+                Element childE = XmlUtils.getChildElement(element, (String) name);
+                return childE != null;
+            }
         });
+    }
+
+    @Override
+    public <T extends AliyunResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
+        Element root = XmlUtils.getRootElementFromString(rsp);
+        return getModelFromXML(root, clazz);
     }
 
 }

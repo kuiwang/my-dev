@@ -41,28 +41,28 @@ public class AdviceOnMissIndex extends TaobaoObject {
         return this.dBName;
     }
 
-    public void setdBName(String dBName) {
-        this.dBName = dBName;
-    }
-
     public String getQueryColumn() {
         return this.queryColumn;
-    }
-
-    public void setQueryColumn(String queryColumn) {
-        this.queryColumn = queryColumn;
     }
 
     public String getsQLText() {
         return this.sQLText;
     }
 
-    public void setsQLText(String sQLText) {
-        this.sQLText = sQLText;
-    }
-
     public String getTableName() {
         return this.tableName;
+    }
+
+    public void setdBName(String dBName) {
+        this.dBName = dBName;
+    }
+
+    public void setQueryColumn(String queryColumn) {
+        this.queryColumn = queryColumn;
+    }
+
+    public void setsQLText(String sQLText) {
+        this.sQLText = sQLText;
     }
 
     public void setTableName(String tableName) {

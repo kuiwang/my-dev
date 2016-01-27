@@ -17,12 +17,6 @@ import com.taobao.api.response.LogisticsOrdersGetResponse;
  */
 public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称
      */
@@ -47,6 +41,8 @@ public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersG
      * 谁承担运费.可选值:buyer(买家),seller(卖家).如:buyer
      */
     private String freightPayer;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码.该字段没传 或 值<1 ,则默认page_no为1
@@ -84,119 +80,77 @@ public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersG
      */
     private Long tid;
 
+    private Long timestamp;
+
     /**
      * 物流方式.可选值:post(平邮),express(快递),ems(EMS).如:post
      */
     private String type;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.orders.get";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setEndCreated(Date endCreated) {
-        this.endCreated = endCreated;
-    }
-
     public Date getEndCreated() {
         return this.endCreated;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
-    }
-
     public String getFreightPayer() {
         return this.freightPayer;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
     }
 
     public String getReceiverName() {
         return this.receiverName;
     }
 
-    public void setSellerConfirm(String sellerConfirm) {
-        this.sellerConfirm = sellerConfirm;
+    @Override
+    public Class<LogisticsOrdersGetResponse> getResponseClass() {
+        return LogisticsOrdersGetResponse.class;
     }
 
     public String getSellerConfirm() {
         return this.sellerConfirm;
     }
 
-    public void setStartCreated(Date startCreated) {
-        this.startCreated = startCreated;
-    }
-
     public Date getStartCreated() {
         return this.startCreated;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.orders.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -217,6 +171,20 @@ public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersG
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -224,16 +192,56 @@ public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersG
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsOrdersGetResponse> getResponseClass() {
-        return LogisticsOrdersGetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+    public void setEndCreated(Date endCreated) {
+        this.endCreated = endCreated;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setSellerConfirm(String sellerConfirm) {
+        this.sellerConfirm = sellerConfirm;
+    }
+
+    public void setStartCreated(Date startCreated) {
+        this.startCreated = startCreated;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

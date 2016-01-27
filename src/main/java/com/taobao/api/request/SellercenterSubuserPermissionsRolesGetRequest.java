@@ -19,10 +19,6 @@ public class SellercenterSubuserPermissionsRolesGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 子账号昵称(子账号标识)<br />
      * 支持最大长度为：100<br />
@@ -30,26 +26,36 @@ public class SellercenterSubuserPermissionsRolesGetRequest implements
      */
     private String nick;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+        RequestCheckUtils.checkMaxLength(nick, 100, "nick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sellercenter.subuser.permissions.roles.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SellercenterSubuserPermissionsRolesGetResponse> getResponseClass() {
+        return SellercenterSubuserPermissionsRolesGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sellercenter.subuser.permissions.roles.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -59,6 +65,12 @@ public class SellercenterSubuserPermissionsRolesGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -66,16 +78,12 @@ public class SellercenterSubuserPermissionsRolesGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SellercenterSubuserPermissionsRolesGetResponse> getResponseClass() {
-        return SellercenterSubuserPermissionsRolesGetResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
-        RequestCheckUtils.checkMaxLength(nick, 100, "nick");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

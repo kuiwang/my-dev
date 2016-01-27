@@ -19,13 +19,15 @@ public class ObjectXmlParser<T extends AliyunResponse> implements AliyunParser<T
         this.clazz = clazz;
     }
 
+    @Override
+    public Class<T> getResponseClass() {
+        return clazz;
+    }
+
+    @Override
     public T parse(String rsp) throws ApiException {
         Converter converter = new XmlConverter();
         return converter.toResponse(rsp, clazz);
-    }
-
-    public Class<T> getResponseClass() {
-        return clazz;
     }
 
 }

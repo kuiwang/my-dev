@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaAdgroupNonsearchpricesUpdateResponse;
 public class SimbaAdgroupNonsearchpricesUpdateRequest implements
         TaobaoRequest<SimbaAdgroupNonsearchpricesUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组id，通投位置价格，是否使用默认出价json 数组字符串，数组个数最多200个.
      * json数组中的key必须和对应实体ADGroup中的属性字段保持一致，否则对应的实体对象属性获取不到相应的值，
@@ -37,47 +31,51 @@ public class SimbaAdgroupNonsearchpricesUpdateRequest implements
      */
     private Long campaignId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setAdgroupidPriceJson(String adgroupidPriceJson) {
-        this.adgroupidPriceJson = adgroupidPriceJson;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupidPriceJson, "adgroupidPriceJson");
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
     }
 
     public String getAdgroupidPriceJson() {
         return this.adgroupidPriceJson;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.nonsearchprices.update";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaAdgroupNonsearchpricesUpdateResponse> getResponseClass() {
+        return SimbaAdgroupNonsearchpricesUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.nonsearchprices.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroupid_price_json", this.adgroupidPriceJson);
@@ -89,6 +87,12 @@ public class SimbaAdgroupNonsearchpricesUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -96,16 +100,20 @@ public class SimbaAdgroupNonsearchpricesUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupNonsearchpricesUpdateResponse> getResponseClass() {
-        return SimbaAdgroupNonsearchpricesUpdateResponse.class;
+    public void setAdgroupidPriceJson(String adgroupidPriceJson) {
+        this.adgroupidPriceJson = adgroupidPriceJson;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupidPriceJson, "adgroupidPriceJson");
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

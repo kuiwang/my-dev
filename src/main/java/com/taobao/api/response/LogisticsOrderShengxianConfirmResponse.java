@@ -26,20 +26,20 @@ public class LogisticsOrderShengxianConfirmResponse extends TaobaoResponse {
     @ApiField("ship_fresh")
     private ShipFresh shipFresh;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setShipFresh(ShipFresh shipFresh) {
-        this.shipFresh = shipFresh;
-    }
-
     public ShipFresh getShipFresh() {
         return this.shipFresh;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setShipFresh(ShipFresh shipFresh) {
+        this.shipFresh = shipFresh;
     }
 
 }

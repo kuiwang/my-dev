@@ -18,36 +18,41 @@ public class FenxiaoProductSkusGetRequest implements TaobaoRequest<FenxiaoProduc
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 产品ID<br />
      * 支持的最大列表长度为：64
      */
     private Long productId;
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.skus.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoProductSkusGetResponse> getResponseClass() {
+        return FenxiaoProductSkusGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.skus.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("product_id", this.productId);
@@ -57,6 +62,12 @@ public class FenxiaoProductSkusGetRequest implements TaobaoRequest<FenxiaoProduc
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class FenxiaoProductSkusGetRequest implements TaobaoRequest<FenxiaoProduc
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductSkusGetResponse> getResponseClass() {
-        return FenxiaoProductSkusGetResponse.class;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

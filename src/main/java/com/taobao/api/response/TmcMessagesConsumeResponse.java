@@ -24,12 +24,12 @@ public class TmcMessagesConsumeResponse extends TaobaoResponse {
     @ApiField("tmc_message")
     private List<TmcMessage> messages;
 
-    public void setMessages(List<TmcMessage> messages) {
-        this.messages = messages;
-    }
-
     public List<TmcMessage> getMessages() {
         return this.messages;
+    }
+
+    public void setMessages(List<TmcMessage> messages) {
+        this.messages = messages;
     }
 
 }

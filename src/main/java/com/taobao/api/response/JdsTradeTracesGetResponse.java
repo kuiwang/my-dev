@@ -24,12 +24,12 @@ public class JdsTradeTracesGetResponse extends TaobaoResponse {
     @ApiField("trade_trace")
     private List<TradeTrace> traces;
 
-    public void setTraces(List<TradeTrace> traces) {
-        this.traces = traces;
-    }
-
     public List<TradeTrace> getTraces() {
         return this.traces;
+    }
+
+    public void setTraces(List<TradeTrace> traces) {
+        this.traces = traces;
     }
 
 }

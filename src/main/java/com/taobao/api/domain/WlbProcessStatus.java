@@ -22,16 +22,16 @@ public class WlbProcessStatus extends TaobaoObject {
     private String content;
 
     /**
-     * 操作时间
-     */
-    @ApiField("operate_time")
-    private Date operateTime;
-
-    /**
      * 操作人
      */
     @ApiField("operater")
     private String operater;
+
+    /**
+     * 操作时间
+     */
+    @ApiField("operate_time")
+    private Date operateTime;
 
     /**
      * 物流宝订单编码
@@ -83,76 +83,76 @@ public class WlbProcessStatus extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getOperater() {
+        return this.operater;
     }
 
     public Date getOperateTime() {
         return this.operateTime;
     }
 
-    public void setOperateTime(Date operateTime) {
-        this.operateTime = operateTime;
-    }
-
-    public String getOperater() {
-        return this.operater;
-    }
-
-    public void setOperater(String operater) {
-        this.operater = operater;
-    }
-
     public String getOrderCode() {
         return this.orderCode;
-    }
-
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     public String getStatusCode() {
         return this.statusCode;
-    }
-
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
-
     public String getStoreTpCode() {
         return this.storeTpCode;
-    }
-
-    public void setStoreTpCode(String storeTpCode) {
-        this.storeTpCode = storeTpCode;
     }
 
     public String getTmsOrderCode() {
         return this.tmsOrderCode;
     }
 
-    public void setTmsOrderCode(String tmsOrderCode) {
-        this.tmsOrderCode = tmsOrderCode;
-    }
-
     public String getTmsTpCode() {
         return this.tmsTpCode;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setOperater(String operater) {
+        this.operater = operater;
+    }
+
+    public void setOperateTime(Date operateTime) {
+        this.operateTime = operateTime;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setStoreTpCode(String storeTpCode) {
+        this.storeTpCode = storeTpCode;
+    }
+
+    public void setTmsOrderCode(String tmsOrderCode) {
+        this.tmsOrderCode = tmsOrderCode;
     }
 
     public void setTmsTpCode(String tmsTpCode) {

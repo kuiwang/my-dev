@@ -29,12 +29,12 @@ public class CreateResult extends TaobaoObject {
         return this.resultData;
     }
 
-    public void setResultData(String resultData) {
-        this.resultData = resultData;
-    }
-
     public String getUsefulMsg() {
         return this.usefulMsg;
+    }
+
+    public void setResultData(String resultData) {
+        this.resultData = resultData;
     }
 
     public void setUsefulMsg(String usefulMsg) {

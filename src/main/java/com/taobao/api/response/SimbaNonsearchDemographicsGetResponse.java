@@ -24,12 +24,12 @@ public class SimbaNonsearchDemographicsGetResponse extends TaobaoResponse {
     @ApiField("demographic_setting")
     private List<DemographicSetting> demographicSettingList;
 
-    public void setDemographicSettingList(List<DemographicSetting> demographicSettingList) {
-        this.demographicSettingList = demographicSettingList;
-    }
-
     public List<DemographicSetting> getDemographicSettingList() {
         return this.demographicSettingList;
+    }
+
+    public void setDemographicSettingList(List<DemographicSetting> demographicSettingList) {
+        this.demographicSettingList = demographicSettingList;
     }
 
 }

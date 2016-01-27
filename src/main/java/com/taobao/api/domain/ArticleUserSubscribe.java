@@ -31,12 +31,12 @@ public class ArticleUserSubscribe extends TaobaoObject {
         return this.deadline;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
     public String getItemCode() {
         return this.itemCode;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     public void setItemCode(String itemCode) {

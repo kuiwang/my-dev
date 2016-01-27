@@ -19,10 +19,6 @@ public class WangwangEserviceGroupmemberGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 主帐号ID：cntaobao+淘宝nick，例如cntaobaotest<br />
      * 支持最大长度为：128<br />
@@ -30,26 +26,36 @@ public class WangwangEserviceGroupmemberGetRequest implements
      */
     private String managerId;
 
-    public void setManagerId(String managerId) {
-        this.managerId = managerId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(managerId, "managerId");
+        RequestCheckUtils.checkMaxLength(managerId, 128, "managerId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.eservice.groupmember.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getManagerId() {
         return this.managerId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WangwangEserviceGroupmemberGetResponse> getResponseClass() {
+        return WangwangEserviceGroupmemberGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.eservice.groupmember.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("manager_id", this.managerId);
@@ -59,6 +65,12 @@ public class WangwangEserviceGroupmemberGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -66,16 +78,12 @@ public class WangwangEserviceGroupmemberGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceGroupmemberGetResponse> getResponseClass() {
-        return WangwangEserviceGroupmemberGetResponse.class;
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(managerId, "managerId");
-        RequestCheckUtils.checkMaxLength(managerId, 128, "managerId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

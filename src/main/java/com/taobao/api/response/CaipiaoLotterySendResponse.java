@@ -19,12 +19,12 @@ public class CaipiaoLotterySendResponse extends TaobaoResponse {
     @ApiField("send_result")
     private Boolean sendResult;
 
-    public void setSendResult(Boolean sendResult) {
-        this.sendResult = sendResult;
-    }
-
     public Boolean getSendResult() {
         return this.sendResult;
+    }
+
+    public void setSendResult(Boolean sendResult) {
+        this.sendResult = sendResult;
     }
 
 }

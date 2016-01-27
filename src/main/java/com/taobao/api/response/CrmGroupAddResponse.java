@@ -25,20 +25,20 @@ public class CrmGroupAddResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

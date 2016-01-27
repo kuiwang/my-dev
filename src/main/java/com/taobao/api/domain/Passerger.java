@@ -96,100 +96,100 @@ public class Passerger extends TaobaoObject {
         return this.birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
     public String getCertNo() {
         return this.certNo;
-    }
-
-    public void setCertNo(String certNo) {
-        this.certNo = certNo;
     }
 
     public Long getCertType() {
         return this.certType;
     }
 
-    public void setCertType(Long certType) {
-        this.certType = certType;
-    }
-
     public String getEi() {
         return this.ei;
-    }
-
-    public void setEi(String ei) {
-        this.ei = ei;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Long getForceInsurePrice() {
         return this.forceInsurePrice;
-    }
-
-    public void setForceInsurePrice(Long forceInsurePrice) {
-        this.forceInsurePrice = forceInsurePrice;
     }
 
     public Long getInsurePromotionPrice() {
         return this.insurePromotionPrice;
     }
 
-    public void setInsurePromotionPrice(Long insurePromotionPrice) {
-        this.insurePromotionPrice = insurePromotionPrice;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getPassengerType() {
         return this.passengerType;
     }
 
-    public void setPassengerType(Long passengerType) {
-        this.passengerType = passengerType;
-    }
-
     public String getPnr() {
         return this.pnr;
-    }
-
-    public void setPnr(String pnr) {
-        this.pnr = pnr;
     }
 
     public String getTicketNo() {
         return this.ticketNo;
     }
 
-    public void setTicketNo(String ticketNo) {
-        this.ticketNo = ticketNo;
-    }
-
     public String getTripCardNo() {
         return this.tripCardNo;
     }
 
-    public void setTripCardNo(String tripCardNo) {
-        this.tripCardNo = tripCardNo;
-    }
-
     public String getTuigaiqian() {
         return this.tuigaiqian;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
+    }
+
+    public void setCertType(Long certType) {
+        this.certType = certType;
+    }
+
+    public void setEi(String ei) {
+        this.ei = ei;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setForceInsurePrice(Long forceInsurePrice) {
+        this.forceInsurePrice = forceInsurePrice;
+    }
+
+    public void setInsurePromotionPrice(Long insurePromotionPrice) {
+        this.insurePromotionPrice = insurePromotionPrice;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassengerType(Long passengerType) {
+        this.passengerType = passengerType;
+    }
+
+    public void setPnr(String pnr) {
+        this.pnr = pnr;
+    }
+
+    public void setTicketNo(String ticketNo) {
+        this.ticketNo = ticketNo;
+    }
+
+    public void setTripCardNo(String tripCardNo) {
+        this.tripCardNo = tripCardNo;
     }
 
     public void setTuigaiqian(String tuigaiqian) {

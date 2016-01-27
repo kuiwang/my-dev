@@ -19,10 +19,6 @@ public class PromotionmiscItemActivityListGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 页码。<br />
      * 支持最小值为：1
@@ -35,34 +31,42 @@ public class PromotionmiscItemActivityListGetRequest implements
      */
     private Long pageSize;
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotionmisc.item.activity.list.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PromotionmiscItemActivityListGetResponse> getResponseClass() {
+        return PromotionmiscItemActivityListGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotionmisc.item.activity.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("page_no", this.pageNo);
@@ -73,6 +77,12 @@ public class PromotionmiscItemActivityListGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,18 +90,16 @@ public class PromotionmiscItemActivityListGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionmiscItemActivityListGetResponse> getResponseClass() {
-        return PromotionmiscItemActivityListGetResponse.class;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -27,9 +27,9 @@ public abstract class NettyServerChannel extends ServerChannel {
     private static NioServerSocketChannelFactory nioServerSocketChannelFactory = new NioServerSocketChannelFactory(
             Executors.newCachedThreadPool(), Executors.newCachedThreadPool());
 
-    private ServerBootstrap bootstrap;
-
     protected ChannelGroup allChannels;
+
+    private ServerBootstrap bootstrap;
 
     protected SSLContext sslContext;
 
@@ -38,9 +38,10 @@ public abstract class NettyServerChannel extends ServerChannel {
         this.allChannels = new DefaultChannelGroup();
     }
 
-    public void setSSLContext(SSLContext sslContext) {
-        this.sslContext = sslContext;
+    protected void prepareBootstrap(ServerBootstrap bootstrap) {
     }
+
+    protected abstract void preparePipeline(ChannelPipeline pipeline);
 
     @Override
     public void run() {
@@ -91,16 +92,15 @@ public abstract class NettyServerChannel extends ServerChannel {
         this.logger.info(Text.SERVER_RUN, this.port);
     }
 
+    public void setSSLContext(SSLContext sslContext) {
+        this.sslContext = sslContext;
+    }
+
     @Override
     public void stop() {
         this.allChannels.close().awaitUninterruptibly();
         // FIXME releaseExternalResources will close nioServerSocketChannelFactory
         // this.bootstrap.releaseExternalResources();
         this.logger.info(Text.SERVER_STOP);
-    }
-
-    protected abstract void preparePipeline(ChannelPipeline pipeline);
-
-    protected void prepareBootstrap(ServerBootstrap bootstrap) {
     }
 }

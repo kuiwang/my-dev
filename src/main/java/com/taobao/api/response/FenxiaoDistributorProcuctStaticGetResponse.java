@@ -30,20 +30,20 @@ public class FenxiaoDistributorProcuctStaticGetResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setDistributorItemFlows(List<DistributorItemFlow> distributorItemFlows) {
-        this.distributorItemFlows = distributorItemFlows;
-    }
-
     public List<DistributorItemFlow> getDistributorItemFlows() {
         return this.distributorItemFlows;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setDistributorItemFlows(List<DistributorItemFlow> distributorItemFlows) {
+        this.distributorItemFlows = distributorItemFlows;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

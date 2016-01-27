@@ -24,12 +24,12 @@ public class SellercenterUserPermissionsGetResponse extends TaobaoResponse {
     @ApiField("permission")
     private List<Permission> permissions;
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
     public List<Permission> getPermissions() {
         return this.permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
 }

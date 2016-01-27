@@ -6,24 +6,9 @@ package com.scott.dev.taobao.api.delivery.domain;
 public class CarriageDetail {
 
     /*
-     * 物流公司揽收时间段
+     * 续费（单位：元）
      */
-    private String gotTime;
-
-    /*
-     * 快件送达所需的时间(单位：天)
-     */
-    private String wayDay;
-
-    /*
-     * 首重（单位：千克）
-     */
-    private Number initialWeight;
-
-    /*
-     * 首费（单位：元）
-     */
-    private Number initialFee;
+    private Number addFee;
 
     /*
      * 续重（单位：千克）
@@ -31,9 +16,24 @@ public class CarriageDetail {
     private Number addWeight;
 
     /*
-     * 续费（单位：元）
+     * 破损赔付
      */
-    private Number addFee;
+    private String damagePayment;
+
+    /*
+     * 物流公司揽收时间段
+     */
+    private String gotTime;
+
+    /*
+     * 首费（单位：元）
+     */
+    private Number initialFee;
+
+    /*
+     * 首重（单位：千克）
+     */
+    private Number initialWeight;
 
     /*
      * 丢单赔付
@@ -41,72 +41,72 @@ public class CarriageDetail {
     private String lostPayment;
 
     /*
-     * 破损赔付
+     * 快件送达所需的时间(单位：天)
      */
-    private String damagePayment;
+    private String wayDay;
 
-    public String getGotTime() {
-        return gotTime;
-    }
-
-    public void setGotTime(String gotTime) {
-        this.gotTime = gotTime;
-    }
-
-    public String getWayDay() {
-        return wayDay;
-    }
-
-    public void setWayDay(String wayDay) {
-        this.wayDay = wayDay;
-    }
-
-    public Number getInitialWeight() {
-        return initialWeight;
-    }
-
-    public void setInitialWeight(Number initialWeight) {
-        this.initialWeight = initialWeight;
-    }
-
-    public Number getInitialFee() {
-        return initialFee;
-    }
-
-    public void setInitialFee(Number initialFee) {
-        this.initialFee = initialFee;
+    public Number getAddFee() {
+        return addFee;
     }
 
     public Number getAddWeight() {
         return addWeight;
     }
 
-    public void setAddWeight(Number addWeight) {
-        this.addWeight = addWeight;
+    public String getDamagePayment() {
+        return damagePayment;
     }
 
-    public Number getAddFee() {
-        return addFee;
+    public String getGotTime() {
+        return gotTime;
     }
 
-    public void setAddFee(Number addFee) {
-        this.addFee = addFee;
+    public Number getInitialFee() {
+        return initialFee;
+    }
+
+    public Number getInitialWeight() {
+        return initialWeight;
     }
 
     public String getLostPayment() {
         return lostPayment;
     }
 
-    public void setLostPayment(String lostPayment) {
-        this.lostPayment = lostPayment;
+    public String getWayDay() {
+        return wayDay;
     }
 
-    public String getDamagePayment() {
-        return damagePayment;
+    public void setAddFee(Number addFee) {
+        this.addFee = addFee;
+    }
+
+    public void setAddWeight(Number addWeight) {
+        this.addWeight = addWeight;
     }
 
     public void setDamagePayment(String damagePayment) {
         this.damagePayment = damagePayment;
+    }
+
+    public void setGotTime(String gotTime) {
+        this.gotTime = gotTime;
+    }
+
+    public void setInitialFee(Number initialFee) {
+        this.initialFee = initialFee;
+    }
+
+    public void setInitialWeight(Number initialWeight) {
+        this.initialWeight = initialWeight;
+    }
+
+    public void setLostPayment(String lostPayment) {
+        this.lostPayment = lostPayment;
+    }
+
+    public void setWayDay(String wayDay) {
+        this.wayDay = wayDay;
     }
 
 }

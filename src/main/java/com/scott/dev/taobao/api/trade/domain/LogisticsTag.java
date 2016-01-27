@@ -6,28 +6,28 @@ package com.scott.dev.taobao.api.trade.domain;
 public class LogisticsTag {
 
     /*
-     * 主订单或子订单的订单号
-     */
-    private String orderId;
-
-    /*
      * 服务标签
      */
     private LogisticServiceTag[] logisticServiceTagList;
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+    /*
+     * 主订单或子订单的订单号
+     */
+    private String orderId;
 
     public LogisticServiceTag[] getLogisticServiceTagList() {
         return logisticServiceTagList;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
     public void setLogisticServiceTagList(LogisticServiceTag[] logisticServiceTagList) {
         this.logisticServiceTagList = logisticServiceTagList;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }

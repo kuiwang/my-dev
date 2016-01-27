@@ -17,24 +17,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class SwitchDBInstanceNetTypeRequest implements
         AliyunRequest<SwitchDBInstanceNetTypeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 新的用户连接，用户连接DB的地（前辍），需惟一性检查，由小写字母数字，中划线组成，字母开头，长度不超过30个字符
      */
@@ -45,6 +27,14 @@ public class SwitchDBInstanceNetTypeRequest implements
      */
     private String dBInstanceId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
     /**
      * 端口号,参数大小范围：3001~3999<br />
      * 支持最大值为：3999<br />
@@ -52,66 +42,64 @@ public class SwitchDBInstanceNetTypeRequest implements
      */
     private Long port;
 
-    public void setConnectionStringPrefix(String connectionStringPrefix) {
-        this.connectionStringPrefix = connectionStringPrefix;
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(connectionStringPrefix, "connectionStringPrefix");
+        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
+        RequestCheckUtils.checkMaxValue(port, 3999L, "port");
+        RequestCheckUtils.checkMinValue(port, 3001L, "port");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "rds.aliyuncs.com.SwitchDBInstanceNetType.2014-08-15";
     }
 
     public String getConnectionStringPrefix() {
         return this.connectionStringPrefix;
     }
 
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
     }
 
-    public void setPort(Long port) {
-        this.port = port;
-    }
-
-    public Long getPort() {
-        return this.port;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPort() {
+        return this.port;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<SwitchDBInstanceNetTypeResponse> getResponseClass() {
+        return SwitchDBInstanceNetTypeResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "rds.aliyuncs.com.SwitchDBInstanceNetType.2014-08-15";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -126,6 +114,12 @@ public class SwitchDBInstanceNetTypeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -133,18 +127,32 @@ public class SwitchDBInstanceNetTypeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SwitchDBInstanceNetTypeResponse> getResponseClass() {
-        return SwitchDBInstanceNetTypeResponse.class;
+    public void setConnectionStringPrefix(String connectionStringPrefix) {
+        this.connectionStringPrefix = connectionStringPrefix;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(connectionStringPrefix, "connectionStringPrefix");
-        RequestCheckUtils.checkNotEmpty(dBInstanceId, "dBInstanceId");
-        RequestCheckUtils.checkMaxValue(port, 3999L, "port");
-        RequestCheckUtils.checkMinValue(port, 3001L, "port");
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPort(Long port) {
+        this.port = port;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

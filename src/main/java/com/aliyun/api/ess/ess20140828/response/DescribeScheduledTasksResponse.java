@@ -48,44 +48,44 @@ public class DescribeScheduledTasksResponse extends AliyunResponse {
     @ApiField("TotalCount")
     private Long totalCount;
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
     public Long getPageNumber() {
         return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setScheduledTasks(List<ScheduledTaskModel> scheduledTasks) {
-        this.scheduledTasks = scheduledTasks;
     }
 
     public List<ScheduledTaskModel> getScheduledTasks() {
         return this.scheduledTasks;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScheduledTasks(List<ScheduledTaskModel> scheduledTasks) {
+        this.scheduledTasks = scheduledTasks;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

@@ -339,412 +339,412 @@ public class TravelItems extends TaobaoObject {
         return this.approveStatus;
     }
 
-    public void setApproveStatus(String approveStatus) {
-        this.approveStatus = approveStatus;
-    }
-
     public Long getAuctionPoint() {
         return this.auctionPoint;
-    }
-
-    public void setAuctionPoint(Long auctionPoint) {
-        this.auctionPoint = auctionPoint;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public Date getDelistTime() {
         return this.delistTime;
     }
 
-    public void setDelistTime(Date delistTime) {
-        this.delistTime = delistTime;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getDetailUrl() {
         return this.detailUrl;
     }
 
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
-    }
-
     public Long getDuration() {
         return this.duration;
-    }
-
-    public void setDuration(Long duration) {
-        this.duration = duration;
     }
 
     public String getFeeInclude() {
         return this.feeInclude;
     }
 
-    public void setFeeInclude(String feeInclude) {
-        this.feeInclude = feeInclude;
-    }
-
     public String getFeeNotInclude() {
         return this.feeNotInclude;
-    }
-
-    public void setFeeNotInclude(String feeNotInclude) {
-        this.feeNotInclude = feeNotInclude;
     }
 
     public String getFlightInfo() {
         return this.flightInfo;
     }
 
-    public void setFlightInfo(String flightInfo) {
-        this.flightInfo = flightInfo;
-    }
-
     public String getFreightPayer() {
         return this.freightPayer;
-    }
-
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
     }
 
     public String getGatheringPlace() {
         return this.gatheringPlace;
     }
 
-    public void setGatheringPlace(String gatheringPlace) {
-        this.gatheringPlace = gatheringPlace;
-    }
-
     public Boolean getHasDiscount() {
         return this.hasDiscount;
-    }
-
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
     }
 
     public Boolean getHasInvoice() {
         return this.hasInvoice;
     }
 
-    public void setHasInvoice(Boolean hasInvoice) {
-        this.hasInvoice = hasInvoice;
-    }
-
     public Boolean getHasShowcase() {
         return this.hasShowcase;
-    }
-
-    public void setHasShowcase(Boolean hasShowcase) {
-        this.hasShowcase = hasShowcase;
     }
 
     public String getHotelInfo() {
         return this.hotelInfo;
     }
 
-    public void setHotelInfo(String hotelInfo) {
-        this.hotelInfo = hotelInfo;
-    }
-
     public String getInputPids() {
         return this.inputPids;
-    }
-
-    public void setInputPids(String inputPids) {
-        this.inputPids = inputPids;
     }
 
     public String getInputStr() {
         return this.inputStr;
     }
 
-    public void setInputStr(String inputStr) {
-        this.inputStr = inputStr;
-    }
-
     public Boolean getIsTdcy() {
         return this.isTdcy;
-    }
-
-    public void setIsTdcy(Boolean isTdcy) {
-        this.isTdcy = isTdcy;
     }
 
     public Boolean getIsTiming() {
         return this.isTiming;
     }
 
-    public void setIsTiming(Boolean isTiming) {
-        this.isTiming = isTiming;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public List<TravelItemsImg> getItemImgs() {
         return this.itemImgs;
     }
 
-    public void setItemImgs(List<TravelItemsImg> itemImgs) {
-        this.itemImgs = itemImgs;
-    }
-
     public Date getListTime() {
         return this.listTime;
-    }
-
-    public void setListTime(Date listTime) {
-        this.listTime = listTime;
     }
 
     public TravelItemsLocalityLife getLocalityLife() {
         return this.localityLife;
     }
 
-    public void setLocalityLife(TravelItemsLocalityLife localityLife) {
-        this.localityLife = localityLife;
-    }
-
     public String getLocation() {
         return this.location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public Long getMaxShowcase() {
         return this.maxShowcase;
     }
 
-    public void setMaxShowcase(Long maxShowcase) {
-        this.maxShowcase = maxShowcase;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public String getOrderInfo() {
         return this.orderInfo;
     }
 
-    public void setOrderInfo(String orderInfo) {
-        this.orderInfo = orderInfo;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOwnExpense() {
         return this.ownExpense;
     }
 
-    public void setOwnExpense(String ownExpense) {
-        this.ownExpense = ownExpense;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
     public String getProps() {
         return this.props;
-    }
-
-    public void setProps(String props) {
-        this.props = props;
     }
 
     public String getPropsName() {
         return this.propsName;
     }
 
-    public void setPropsName(String propsName) {
-        this.propsName = propsName;
-    }
-
     public String getRefundRegulation() {
         return this.refundRegulation;
-    }
-
-    public void setRefundRegulation(String refundRegulation) {
-        this.refundRegulation = refundRegulation;
     }
 
     public String getSecondKill() {
         return this.secondKill;
     }
 
-    public void setSecondKill(String secondKill) {
-        this.secondKill = secondKill;
-    }
-
     public String getSellerCids() {
         return this.sellerCids;
-    }
-
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
     }
 
     public String getShopingInfo() {
         return this.shopingInfo;
     }
 
-    public void setShopingInfo(String shopingInfo) {
-        this.shopingInfo = shopingInfo;
-    }
-
     public List<TravelItemsSku> getSkus() {
         return this.skus;
-    }
-
-    public void setSkus(List<TravelItemsSku> skus) {
-        this.skus = skus;
     }
 
     public Date getStart() {
         return this.start;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
     public Long getSubStock() {
         return this.subStock;
-    }
-
-    public void setSubStock(Long subStock) {
-        this.subStock = subStock;
     }
 
     public String getTicketInfo() {
         return this.ticketInfo;
     }
 
-    public void setTicketInfo(String ticketInfo) {
-        this.ticketInfo = ticketInfo;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public List<TravelItemsCombo> getTravelItemsCombos() {
         return this.travelItemsCombos;
     }
 
-    public void setTravelItemsCombos(List<TravelItemsCombo> travelItemsCombos) {
-        this.travelItemsCombos = travelItemsCombos;
-    }
-
     public String getType() {
         return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Long getUsedShowcase() {
         return this.usedShowcase;
     }
 
-    public void setUsedShowcase(Long usedShowcase) {
-        this.usedShowcase = usedShowcase;
-    }
-
     public Boolean getViolation() {
         return this.violation;
-    }
-
-    public void setViolation(Boolean violation) {
-        this.violation = violation;
     }
 
     public String getWapDesc() {
         return this.wapDesc;
     }
 
-    public void setWapDesc(String wapDesc) {
-        this.wapDesc = wapDesc;
-    }
-
     public String getWapDetailUrl() {
         return this.wapDetailUrl;
+    }
+
+    public void setApproveStatus(String approveStatus) {
+        this.approveStatus = approveStatus;
+    }
+
+    public void setAuctionPoint(Long auctionPoint) {
+        this.auctionPoint = auctionPoint;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDelistTime(Date delistTime) {
+        this.delistTime = delistTime;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    public void setFeeInclude(String feeInclude) {
+        this.feeInclude = feeInclude;
+    }
+
+    public void setFeeNotInclude(String feeNotInclude) {
+        this.feeNotInclude = feeNotInclude;
+    }
+
+    public void setFlightInfo(String flightInfo) {
+        this.flightInfo = flightInfo;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setGatheringPlace(String gatheringPlace) {
+        this.gatheringPlace = gatheringPlace;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setHasInvoice(Boolean hasInvoice) {
+        this.hasInvoice = hasInvoice;
+    }
+
+    public void setHasShowcase(Boolean hasShowcase) {
+        this.hasShowcase = hasShowcase;
+    }
+
+    public void setHotelInfo(String hotelInfo) {
+        this.hotelInfo = hotelInfo;
+    }
+
+    public void setInputPids(String inputPids) {
+        this.inputPids = inputPids;
+    }
+
+    public void setInputStr(String inputStr) {
+        this.inputStr = inputStr;
+    }
+
+    public void setIsTdcy(Boolean isTdcy) {
+        this.isTdcy = isTdcy;
+    }
+
+    public void setIsTiming(Boolean isTiming) {
+        this.isTiming = isTiming;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemImgs(List<TravelItemsImg> itemImgs) {
+        this.itemImgs = itemImgs;
+    }
+
+    public void setListTime(Date listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setLocalityLife(TravelItemsLocalityLife localityLife) {
+        this.localityLife = localityLife;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setMaxShowcase(Long maxShowcase) {
+        this.maxShowcase = maxShowcase;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setOrderInfo(String orderInfo) {
+        this.orderInfo = orderInfo;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setOwnExpense(String ownExpense) {
+        this.ownExpense = ownExpense;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setPropsName(String propsName) {
+        this.propsName = propsName;
+    }
+
+    public void setRefundRegulation(String refundRegulation) {
+        this.refundRegulation = refundRegulation;
+    }
+
+    public void setSecondKill(String secondKill) {
+        this.secondKill = secondKill;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setShopingInfo(String shopingInfo) {
+        this.shopingInfo = shopingInfo;
+    }
+
+    public void setSkus(List<TravelItemsSku> skus) {
+        this.skus = skus;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public void setSubStock(Long subStock) {
+        this.subStock = subStock;
+    }
+
+    public void setTicketInfo(String ticketInfo) {
+        this.ticketInfo = ticketInfo;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTravelItemsCombos(List<TravelItemsCombo> travelItemsCombos) {
+        this.travelItemsCombos = travelItemsCombos;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUsedShowcase(Long usedShowcase) {
+        this.usedShowcase = usedShowcase;
+    }
+
+    public void setViolation(Boolean violation) {
+        this.violation = violation;
+    }
+
+    public void setWapDesc(String wapDesc) {
+        this.wapDesc = wapDesc;
     }
 
     public void setWapDetailUrl(String wapDetailUrl) {

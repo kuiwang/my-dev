@@ -23,12 +23,12 @@ public class JuCitiesGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> cities;
 
-    public void setCities(List<String> cities) {
-        this.cities = cities;
-    }
-
     public List<String> getCities() {
         return this.cities;
+    }
+
+    public void setCities(List<String> cities) {
+        this.cities = cities;
     }
 
 }

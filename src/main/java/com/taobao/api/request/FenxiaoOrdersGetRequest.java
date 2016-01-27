@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoOrdersGetResponse;
  */
 public class FenxiaoOrdersGetRequest implements TaobaoRequest<FenxiaoOrdersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结束时间 格式 yyyy-MM-dd
      * HH:mm:ss.支持到秒的查询。若不传时分秒，默认为0时0分0秒。若purchase_order_id没传，则此参数必传。
@@ -39,6 +33,8 @@ public class FenxiaoOrdersGetRequest implements TaobaoRequest<FenxiaoOrdersGetRe
      * sub_purchase_orders表示只返回子采购单列表
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。（大于0的整数。默认为1）<br />
@@ -92,95 +88,73 @@ public class FenxiaoOrdersGetRequest implements TaobaoRequest<FenxiaoOrdersGetRe
      */
     private Long tcOrderId;
 
+    private Long timestamp;
+
     /**
      * 可选值：trade_time_type(采购单按照成交时间范围查询),update_time_type(采购单按照更新时间范围查询)
      */
     private String timeType;
 
-    public void setEndCreated(Date endCreated) {
-        this.endCreated = endCreated;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageNo, 2147483647L, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, -21474836478L, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageSize, 2147483647L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, -21474836478L, "pageSize");
+        RequestCheckUtils.checkMaxValue(purchaseOrderId, 9223372036854775807L, "purchaseOrderId");
+        RequestCheckUtils.checkMinValue(purchaseOrderId, -9223372036854775808L, "purchaseOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.orders.get";
     }
 
     public Date getEndCreated() {
         return this.endCreated;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
     }
 
     public Long getPurchaseOrderId() {
         return this.purchaseOrderId;
     }
 
-    public void setStartCreated(Date startCreated) {
-        this.startCreated = startCreated;
+    @Override
+    public Class<FenxiaoOrdersGetResponse> getResponseClass() {
+        return FenxiaoOrdersGetResponse.class;
     }
 
     public Date getStartCreated() {
         return this.startCreated;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setTcOrderId(Long tcOrderId) {
-        this.tcOrderId = tcOrderId;
     }
 
     public Long getTcOrderId() {
         return this.tcOrderId;
     }
 
-    public void setTimeType(String timeType) {
-        this.timeType = timeType;
-    }
-
-    public String getTimeType() {
-        return this.timeType;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.orders.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_created", this.endCreated);
@@ -198,6 +172,16 @@ public class FenxiaoOrdersGetRequest implements TaobaoRequest<FenxiaoOrdersGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTimeType() {
+        return this.timeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -205,20 +189,44 @@ public class FenxiaoOrdersGetRequest implements TaobaoRequest<FenxiaoOrdersGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoOrdersGetResponse> getResponseClass() {
-        return FenxiaoOrdersGetResponse.class;
+    public void setEndCreated(Date endCreated) {
+        this.endCreated = endCreated;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageNo, 2147483647L, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, -21474836478L, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageSize, 2147483647L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, -21474836478L, "pageSize");
-        RequestCheckUtils.checkMaxValue(purchaseOrderId, 9223372036854775807L, "purchaseOrderId");
-        RequestCheckUtils.checkMinValue(purchaseOrderId, -9223372036854775808L, "purchaseOrderId");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
+    }
+
+    public void setStartCreated(Date startCreated) {
+        this.startCreated = startCreated;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTcOrderId(Long tcOrderId) {
+        this.tcOrderId = tcOrderId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTimeType(String timeType) {
+        this.timeType = timeType;
     }
 }

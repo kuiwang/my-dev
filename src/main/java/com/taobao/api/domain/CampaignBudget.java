@@ -55,44 +55,44 @@ public class CampaignBudget extends TaobaoObject {
         return this.budget;
     }
 
-    public void setBudget(Long budget) {
-        this.budget = budget;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Boolean getIsSmooth() {
         return this.isSmooth;
-    }
-
-    public void setIsSmooth(Boolean isSmooth) {
-        this.isSmooth = isSmooth;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
+    }
+
+    public void setBudget(Long budget) {
+        this.budget = budget;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setIsSmooth(Boolean isSmooth) {
+        this.isSmooth = isSmooth;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
     public void setNick(String nick) {

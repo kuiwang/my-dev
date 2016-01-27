@@ -143,164 +143,164 @@ public class AitaobaoItem extends TaobaoObject {
         return this.clickUrl;
     }
 
-    public void setClickUrl(String clickUrl) {
-        this.clickUrl = clickUrl;
-    }
-
     public String getCommission() {
         return this.commission;
-    }
-
-    public void setCommission(String commission) {
-        this.commission = commission;
     }
 
     public String getCommissionNum() {
         return this.commissionNum;
     }
 
-    public void setCommissionNum(String commissionNum) {
-        this.commissionNum = commissionNum;
-    }
-
     public String getCommissionRate() {
         return this.commissionRate;
-    }
-
-    public void setCommissionRate(String commissionRate) {
-        this.commissionRate = commissionRate;
     }
 
     public String getCommissionVolume() {
         return this.commissionVolume;
     }
 
-    public void setCommissionVolume(String commissionVolume) {
-        this.commissionVolume = commissionVolume;
-    }
-
     public String getCouponEndTime() {
         return this.couponEndTime;
-    }
-
-    public void setCouponEndTime(String couponEndTime) {
-        this.couponEndTime = couponEndTime;
     }
 
     public String getCouponPrice() {
         return this.couponPrice;
     }
 
-    public void setCouponPrice(String couponPrice) {
-        this.couponPrice = couponPrice;
-    }
-
     public String getCouponRate() {
         return this.couponRate;
-    }
-
-    public void setCouponRate(String couponRate) {
-        this.couponRate = couponRate;
     }
 
     public String getCouponStartTime() {
         return this.couponStartTime;
     }
 
-    public void setCouponStartTime(String couponStartTime) {
-        this.couponStartTime = couponStartTime;
-    }
-
     public String getItemLocation() {
         return this.itemLocation;
-    }
-
-    public void setItemLocation(String itemLocation) {
-        this.itemLocation = itemLocation;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public String getOpenIid() {
         return this.openIid;
     }
 
-    public void setOpenIid(String openIid) {
-        this.openIid = openIid;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPromotionPrice() {
         return this.promotionPrice;
-    }
-
-    public void setPromotionPrice(String promotionPrice) {
-        this.promotionPrice = promotionPrice;
     }
 
     public Long getSellerCreditScore() {
         return this.sellerCreditScore;
     }
 
-    public void setSellerCreditScore(Long sellerCreditScore) {
-        this.sellerCreditScore = sellerCreditScore;
-    }
-
     public Long getSellerId() {
         return this.sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
     }
 
     public String getShopType() {
         return this.shopType;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getVolume() {
         return this.volume;
+    }
+
+    public void setClickUrl(String clickUrl) {
+        this.clickUrl = clickUrl;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
+    }
+
+    public void setCommissionNum(String commissionNum) {
+        this.commissionNum = commissionNum;
+    }
+
+    public void setCommissionRate(String commissionRate) {
+        this.commissionRate = commissionRate;
+    }
+
+    public void setCommissionVolume(String commissionVolume) {
+        this.commissionVolume = commissionVolume;
+    }
+
+    public void setCouponEndTime(String couponEndTime) {
+        this.couponEndTime = couponEndTime;
+    }
+
+    public void setCouponPrice(String couponPrice) {
+        this.couponPrice = couponPrice;
+    }
+
+    public void setCouponRate(String couponRate) {
+        this.couponRate = couponRate;
+    }
+
+    public void setCouponStartTime(String couponStartTime) {
+        this.couponStartTime = couponStartTime;
+    }
+
+    public void setItemLocation(String itemLocation) {
+        this.itemLocation = itemLocation;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOpenIid(String openIid) {
+        this.openIid = openIid;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPromotionPrice(String promotionPrice) {
+        this.promotionPrice = promotionPrice;
+    }
+
+    public void setSellerCreditScore(Long sellerCreditScore) {
+        this.sellerCreditScore = sellerCreditScore;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setVolume(Long volume) {

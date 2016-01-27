@@ -215,252 +215,252 @@ public class TakeoutThirdOrder extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public List<DeliveryAgentVO> getAgentList() {
         return this.agentList;
-    }
-
-    public void setAgentList(List<DeliveryAgentVO> agentList) {
-        this.agentList = agentList;
     }
 
     public String getAlipayStreamId() {
         return this.alipayStreamId;
     }
 
-    public void setAlipayStreamId(String alipayStreamId) {
-        this.alipayStreamId = alipayStreamId;
-    }
-
     public Long getBuyerHistoryOrderCount() {
         return this.buyerHistoryOrderCount;
-    }
-
-    public void setBuyerHistoryOrderCount(Long buyerHistoryOrderCount) {
-        this.buyerHistoryOrderCount = buyerHistoryOrderCount;
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public String getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
     }
 
     public String getDeliveryPay() {
         return this.deliveryPay;
     }
 
-    public void setDeliveryPay(String deliveryPay) {
-        this.deliveryPay = deliveryPay;
-    }
-
     public Long getDistance() {
         return this.distance;
-    }
-
-    public void setDistance(Long distance) {
-        this.distance = distance;
     }
 
     public String getEndDeliverytime() {
         return this.endDeliverytime;
     }
 
-    public void setEndDeliverytime(String endDeliverytime) {
-        this.endDeliverytime = endDeliverytime;
-    }
-
     public Long getEndSeconds() {
         return this.endSeconds;
-    }
-
-    public void setEndSeconds(Long endSeconds) {
-        this.endSeconds = endSeconds;
     }
 
     public Long getFrom() {
         return this.from;
     }
 
-    public void setFrom(Long from) {
-        this.from = from;
-    }
-
     public List<OrderGoods> getGoodsList() {
         return this.goodsList;
-    }
-
-    public void setGoodsList(List<OrderGoods> goodsList) {
-        this.goodsList = goodsList;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getModifyTime() {
         return this.modifyTime;
-    }
-
-    public void setModifyTime(String modifyTime) {
-        this.modifyTime = modifyTime;
     }
 
     public String getNote() {
         return this.note;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public Long getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setOrderStatus(Long orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public String getOrderStatusInfo() {
         return this.orderStatusInfo;
     }
 
-    public void setOrderStatusInfo(String orderStatusInfo) {
-        this.orderStatusInfo = orderStatusInfo;
-    }
-
     public Long getOrderType() {
         return this.orderType;
-    }
-
-    public void setOrderType(Long orderType) {
-        this.orderType = orderType;
     }
 
     public String getPayAccount() {
         return this.payAccount;
     }
 
-    public void setPayAccount(String payAccount) {
-        this.payAccount = payAccount;
-    }
-
     public String getPayTime() {
         return this.payTime;
-    }
-
-    public void setPayTime(String payTime) {
-        this.payTime = payTime;
     }
 
     public Long getPeopleNumber() {
         return this.peopleNumber;
     }
 
-    public void setPeopleNumber(Long peopleNumber) {
-        this.peopleNumber = peopleNumber;
-    }
-
     public List<PromotionO> getPromotionList() {
         return this.promotionList;
-    }
-
-    public void setPromotionList(List<PromotionO> promotionList) {
-        this.promotionList = promotionList;
     }
 
     public String getStartDeliverytime() {
         return this.startDeliverytime;
     }
 
-    public void setStartDeliverytime(String startDeliverytime) {
-        this.startDeliverytime = startDeliverytime;
-    }
-
     public String getStoreContactphone() {
         return this.storeContactphone;
-    }
-
-    public void setStoreContactphone(String storeContactphone) {
-        this.storeContactphone = storeContactphone;
     }
 
     public Long getStoreId() {
         return this.storeId;
     }
 
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
-    }
-
     public String getStoreName() {
         return this.storeName;
-    }
-
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
     }
 
     public String getTimeOutStamp() {
         return this.timeOutStamp;
     }
 
-    public void setTimeOutStamp(String timeOutStamp) {
-        this.timeOutStamp = timeOutStamp;
-    }
-
     public String getTotalPay() {
         return this.totalPay;
-    }
-
-    public void setTotalPay(String totalPay) {
-        this.totalPay = totalPay;
     }
 
     public UserThirdAddress getUserAddress() {
         return this.userAddress;
     }
 
-    public void setUserAddress(UserThirdAddress userAddress) {
-        this.userAddress = userAddress;
-    }
-
     public Long getUserId() {
         return this.userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getX() {
         return this.x;
     }
 
-    public void setX(String x) {
-        this.x = x;
-    }
-
     public String getY() {
         return this.y;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAgentList(List<DeliveryAgentVO> agentList) {
+        this.agentList = agentList;
+    }
+
+    public void setAlipayStreamId(String alipayStreamId) {
+        this.alipayStreamId = alipayStreamId;
+    }
+
+    public void setBuyerHistoryOrderCount(Long buyerHistoryOrderCount) {
+        this.buyerHistoryOrderCount = buyerHistoryOrderCount;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDeliveryPay(String deliveryPay) {
+        this.deliveryPay = deliveryPay;
+    }
+
+    public void setDistance(Long distance) {
+        this.distance = distance;
+    }
+
+    public void setEndDeliverytime(String endDeliverytime) {
+        this.endDeliverytime = endDeliverytime;
+    }
+
+    public void setEndSeconds(Long endSeconds) {
+        this.endSeconds = endSeconds;
+    }
+
+    public void setFrom(Long from) {
+        this.from = from;
+    }
+
+    public void setGoodsList(List<OrderGoods> goodsList) {
+        this.goodsList = goodsList;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setModifyTime(String modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderStatusInfo(String orderStatusInfo) {
+        this.orderStatusInfo = orderStatusInfo;
+    }
+
+    public void setOrderType(Long orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setPayAccount(String payAccount) {
+        this.payAccount = payAccount;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPeopleNumber(Long peopleNumber) {
+        this.peopleNumber = peopleNumber;
+    }
+
+    public void setPromotionList(List<PromotionO> promotionList) {
+        this.promotionList = promotionList;
+    }
+
+    public void setStartDeliverytime(String startDeliverytime) {
+        this.startDeliverytime = startDeliverytime;
+    }
+
+    public void setStoreContactphone(String storeContactphone) {
+        this.storeContactphone = storeContactphone;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setTimeOutStamp(String timeOutStamp) {
+        this.timeOutStamp = timeOutStamp;
+    }
+
+    public void setTotalPay(String totalPay) {
+        this.totalPay = totalPay;
+    }
+
+    public void setUserAddress(UserThirdAddress userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setX(String x) {
+        this.x = x;
     }
 
     public void setY(String y) {

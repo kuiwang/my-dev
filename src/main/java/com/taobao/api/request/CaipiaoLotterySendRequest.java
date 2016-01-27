@@ -16,16 +16,12 @@ import com.taobao.api.response.CaipiaoLotterySendResponse;
  */
 public class CaipiaoLotterySendRequest implements TaobaoRequest<CaipiaoLotterySendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 彩票接收方淘宝数字ID，不可为空、0和负数。
      */
     private Long buyerNumId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 彩种ID，此彩种ID为彩票系统中的序号。
@@ -47,58 +43,53 @@ public class CaipiaoLotterySendRequest implements TaobaoRequest<CaipiaoLotterySe
      */
     private String sweetyWords;
 
-    public void setBuyerNumId(Long buyerNumId) {
-        this.buyerNumId = buyerNumId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNumId, "buyerNumId");
+        RequestCheckUtils.checkNotEmpty(sellerNumId, "sellerNumId");
+        RequestCheckUtils.checkNotEmpty(stakeCount, "stakeCount");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.caipiao.lottery.send";
     }
 
     public Long getBuyerNumId() {
         return this.buyerNumId;
     }
 
-    public void setLotteryTypeId(Long lotteryTypeId) {
-        this.lotteryTypeId = lotteryTypeId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLotteryTypeId() {
         return this.lotteryTypeId;
     }
 
-    public void setSellerNumId(Long sellerNumId) {
-        this.sellerNumId = sellerNumId;
+    @Override
+    public Class<CaipiaoLotterySendResponse> getResponseClass() {
+        return CaipiaoLotterySendResponse.class;
     }
 
     public Long getSellerNumId() {
         return this.sellerNumId;
     }
 
-    public void setStakeCount(Long stakeCount) {
-        this.stakeCount = stakeCount;
-    }
-
     public Long getStakeCount() {
         return this.stakeCount;
-    }
-
-    public void setSweetyWords(String sweetyWords) {
-        this.sweetyWords = sweetyWords;
     }
 
     public String getSweetyWords() {
         return this.sweetyWords;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.caipiao.lottery.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_num_id", this.buyerNumId);
@@ -112,6 +103,12 @@ public class CaipiaoLotterySendRequest implements TaobaoRequest<CaipiaoLotterySe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -119,17 +116,28 @@ public class CaipiaoLotterySendRequest implements TaobaoRequest<CaipiaoLotterySe
         this.udfParams.put(key, value);
     }
 
-    public Class<CaipiaoLotterySendResponse> getResponseClass() {
-        return CaipiaoLotterySendResponse.class;
+    public void setBuyerNumId(Long buyerNumId) {
+        this.buyerNumId = buyerNumId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNumId, "buyerNumId");
-        RequestCheckUtils.checkNotEmpty(sellerNumId, "sellerNumId");
-        RequestCheckUtils.checkNotEmpty(stakeCount, "stakeCount");
+    public void setLotteryTypeId(Long lotteryTypeId) {
+        this.lotteryTypeId = lotteryTypeId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSellerNumId(Long sellerNumId) {
+        this.sellerNumId = sellerNumId;
+    }
+
+    public void setStakeCount(Long stakeCount) {
+        this.stakeCount = stakeCount;
+    }
+
+    public void setSweetyWords(String sweetyWords) {
+        this.sweetyWords = sweetyWords;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

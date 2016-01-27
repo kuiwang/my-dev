@@ -23,7 +23,6 @@
  */
 package com.taobao.top.link.embedded.websocket.handler;
 
-import com.taobao.top.link.embedded.websocket.handler.StreamHandler;
 
 /**
  * The Interface WebSocketExtentionHandler.

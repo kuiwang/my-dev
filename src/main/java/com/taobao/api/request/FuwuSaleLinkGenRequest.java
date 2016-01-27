@@ -18,10 +18,6 @@ public class FuwuSaleLinkGenRequest implements TaobaoRequest<FuwuSaleLinkGenResp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 用户需要营销的目标人群中的用户nick
      */
@@ -32,34 +28,39 @@ public class FuwuSaleLinkGenRequest implements TaobaoRequest<FuwuSaleLinkGenResp
      */
     private String paramStr;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(paramStr, "paramStr");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fuwu.sale.link.gen";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setParamStr(String paramStr) {
-        this.paramStr = paramStr;
-    }
-
     public String getParamStr() {
         return this.paramStr;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FuwuSaleLinkGenResponse> getResponseClass() {
+        return FuwuSaleLinkGenResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fuwu.sale.link.gen";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -70,6 +71,12 @@ public class FuwuSaleLinkGenRequest implements TaobaoRequest<FuwuSaleLinkGenResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,15 +84,16 @@ public class FuwuSaleLinkGenRequest implements TaobaoRequest<FuwuSaleLinkGenResp
         this.udfParams.put(key, value);
     }
 
-    public Class<FuwuSaleLinkGenResponse> getResponseClass() {
-        return FuwuSaleLinkGenResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(paramStr, "paramStr");
+    public void setParamStr(String paramStr) {
+        this.paramStr = paramStr;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

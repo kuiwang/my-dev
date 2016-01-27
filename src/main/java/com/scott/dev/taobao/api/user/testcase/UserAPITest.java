@@ -2,17 +2,21 @@ package com.scott.dev.taobao.api.user.testcase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class UserAPITest {
 
-    protected static String testUrl = "http://gw.api.tbsandbox.com/router/rest";//沙箱环境调用地址
-
     protected static String appkey = "test";
 
     protected static String secret = "test";
+
+    protected static String testUrl = "http://gw.api.tbsandbox.com/router/rest";//沙箱环境调用地址
+
+    public static void main(String[] args) {
+        String result = Util.getResult(testUrl, testUserGet());
+        System.out.print(result);
+    }
 
     public static String testUserGet() {
 
@@ -36,8 +40,7 @@ public class UserAPITest {
         paramMap.put("sign", sign);
 
         StringBuilder param = new StringBuilder();
-        for (Iterator<Map.Entry<String, String>> it = paramMap.entrySet().iterator(); it.hasNext();) {
-            Map.Entry<String, String> e = it.next();
+        for (Entry<String, String> e : paramMap.entrySet()) {
             param.append("&").append(e.getKey()).append("=").append(e.getValue());
         }
 
@@ -45,10 +48,5 @@ public class UserAPITest {
         System.out.println("params:" + params);
 
         return param.toString().substring(1);
-    }
-
-    public static void main(String[] args) {
-        String result = Util.getResult(testUrl, testUserGet());
-        System.out.print(result);
     }
 }

@@ -47,52 +47,52 @@ public class PictureCategory {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public Long getParentId() {
         return this.parentId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     public Long getPictureCategoryId() {
         return this.pictureCategoryId;
-    }
-
-    public void setPictureCategoryId(Long pictureCategoryId) {
-        this.pictureCategoryId = pictureCategoryId;
     }
 
     public String getPictureCategoryName() {
         return this.pictureCategoryName;
     }
 
-    public void setPictureCategoryName(String pictureCategoryName) {
-        this.pictureCategoryName = pictureCategoryName;
-    }
-
     public Long getPosition() {
         return this.position;
     }
 
-    public void setPosition(Long position) {
-        this.position = position;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setPictureCategoryId(Long pictureCategoryId) {
+        this.pictureCategoryId = pictureCategoryId;
+    }
+
+    public void setPictureCategoryName(String pictureCategoryName) {
+        this.pictureCategoryName = pictureCategoryName;
+    }
+
+    public void setPosition(Long position) {
+        this.position = position;
     }
 
     public void setType(String type) {

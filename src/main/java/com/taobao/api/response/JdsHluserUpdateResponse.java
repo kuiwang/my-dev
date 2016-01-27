@@ -19,12 +19,12 @@ public class JdsHluserUpdateResponse extends TaobaoResponse {
     @ApiField("result")
     private Boolean result;
 
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
 }

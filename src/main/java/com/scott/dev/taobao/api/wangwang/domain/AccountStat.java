@@ -24,20 +24,20 @@ public class AccountStat {
         return this.loginStatus;
     }
 
-    public void setLoginStatus(Long loginStatus) {
-        this.loginStatus = loginStatus;
-    }
-
     public Long getOnserviceStatus() {
         return this.onserviceStatus;
     }
 
-    public void setOnserviceStatus(Long onserviceStatus) {
-        this.onserviceStatus = onserviceStatus;
-    }
-
     public String getTime() {
         return this.time;
+    }
+
+    public void setLoginStatus(Long loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public void setOnserviceStatus(Long onserviceStatus) {
+        this.onserviceStatus = onserviceStatus;
     }
 
     public void setTime(String time) {

@@ -30,20 +30,20 @@ public class PictureGetResponse extends TaobaoResponse {
     @ApiField("totalResults")
     private Long totalResults;
 
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
-    }
-
     public List<Picture> getPictures() {
         return this.pictures;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

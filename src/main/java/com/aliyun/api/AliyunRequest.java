@@ -13,11 +13,23 @@ import com.taobao.api.ApiRuleException;
 public interface AliyunRequest<T extends AliyunResponse> {
 
     /**
+     * 客户端参数检查，减少服务端无效调用
+     */
+    public void check() throws ApiRuleException;
+
+    /**
      * 获取TOP的API名称。
      * 
      * @return API名称
      */
     public String getApiMethodName();
+
+    /**
+     * 添加HTTP请求头参数
+     */
+    public Map<String, String> getHeaderMap();
+
+    public Class<T> getResponseClass();
 
     /**
      * 获取所有的Key-Value形式的文本请求参数集合。其中：
@@ -36,26 +48,14 @@ public interface AliyunRequest<T extends AliyunResponse> {
     public Long getTimestamp();
 
     /**
+     * 添加自定义请求参数
+     */
+    public void putOtherTextParam(String key, String value);
+
+    /**
      * 设置时间戳，如果不设置,发送请求时将使用当时的时间。
      * 
      * @param timestamp 时间戳
      */
     public void setTimestamp(Long timestamp);
-
-    public Class<T> getResponseClass();
-
-    /**
-     * 客户端参数检查，减少服务端无效调用
-     */
-    public void check() throws ApiRuleException;
-
-    /**
-     * 添加HTTP请求头参数
-     */
-    public Map<String, String> getHeaderMap();
-
-    /**
-     * 添加自定义请求参数
-     */
-    public void putOtherTextParam(String key, String value);
 }

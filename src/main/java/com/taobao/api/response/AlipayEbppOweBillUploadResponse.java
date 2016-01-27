@@ -37,36 +37,36 @@ public class AlipayEbppOweBillUploadResponse extends TaobaoResponse {
     @ApiField("sub_order_type")
     private String subOrderType;
 
-    public void setChargeInst(String chargeInst) {
-        this.chargeInst = chargeInst;
-    }
-
     public String getChargeInst() {
         return this.chargeInst;
-    }
-
-    public void setChargeoffInst(String chargeoffInst) {
-        this.chargeoffInst = chargeoffInst;
     }
 
     public String getChargeoffInst() {
         return this.chargeoffInst;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderType() {
         return this.orderType;
     }
 
-    public void setSubOrderType(String subOrderType) {
-        this.subOrderType = subOrderType;
-    }
-
     public String getSubOrderType() {
         return this.subOrderType;
+    }
+
+    public void setChargeInst(String chargeInst) {
+        this.chargeInst = chargeInst;
+    }
+
+    public void setChargeoffInst(String chargeoffInst) {
+        this.chargeoffInst = chargeoffInst;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setSubOrderType(String subOrderType) {
+        this.subOrderType = subOrderType;
     }
 
 }

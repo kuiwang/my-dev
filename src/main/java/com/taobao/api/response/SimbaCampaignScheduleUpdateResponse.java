@@ -20,12 +20,12 @@ public class SimbaCampaignScheduleUpdateResponse extends TaobaoResponse {
     @ApiField("campaign_schedule")
     private CampaignSchedule campaignSchedule;
 
-    public void setCampaignSchedule(CampaignSchedule campaignSchedule) {
-        this.campaignSchedule = campaignSchedule;
-    }
-
     public CampaignSchedule getCampaignSchedule() {
         return this.campaignSchedule;
+    }
+
+    public void setCampaignSchedule(CampaignSchedule campaignSchedule) {
+        this.campaignSchedule = campaignSchedule;
     }
 
 }

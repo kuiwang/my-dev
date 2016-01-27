@@ -22,6 +22,16 @@ public class AliyunSignature {
 
     private static String httpMethod = "POST";
 
+    private static String calculateSignature(String key, String stringToSign) throws Exception {
+        // 使用HmacSHA1算法计算HMAC值
+        final String ALGORITHM = "HmacSHA1";
+        Mac mac = Mac.getInstance(ALGORITHM);
+        mac.init(new SecretKeySpec(key.getBytes(ENCODING), ALGORITHM));
+        byte[] signData = mac.doFinal(stringToSign.getBytes(ENCODING));
+
+        return Base64.encodeToString(signData, false);
+    }
+
     public static String computeSignature(Map<String, String> parameters, String accessKeySecret)
             throws Exception {
         // 将参数Key按字典顺序排序
@@ -46,16 +56,6 @@ public class AliyunSignature {
         // 注意accessKeySecret后面要加入一个字符"&"
         String signature = calculateSignature(accessKeySecret + "&", stringToSign.toString());
         return signature;
-    }
-
-    private static String calculateSignature(String key, String stringToSign) throws Exception {
-        // 使用HmacSHA1算法计算HMAC值
-        final String ALGORITHM = "HmacSHA1";
-        Mac mac = Mac.getInstance(ALGORITHM);
-        mac.init(new SecretKeySpec(key.getBytes(ENCODING), ALGORITHM));
-        byte[] signData = mac.doFinal(stringToSign.getBytes(ENCODING));
-
-        return Base64.encodeToString(signData, false);
     }
 
     private static String percentEncode(String value) throws UnsupportedEncodingException {

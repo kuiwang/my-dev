@@ -35,20 +35,20 @@ public class ShopScore extends TaobaoObject {
         return this.deliveryScore;
     }
 
-    public void setDeliveryScore(String deliveryScore) {
-        this.deliveryScore = deliveryScore;
-    }
-
     public String getItemScore() {
         return this.itemScore;
     }
 
-    public void setItemScore(String itemScore) {
-        this.itemScore = itemScore;
-    }
-
     public String getServiceScore() {
         return this.serviceScore;
+    }
+
+    public void setDeliveryScore(String deliveryScore) {
+        this.deliveryScore = deliveryScore;
+    }
+
+    public void setItemScore(String itemScore) {
+        this.itemScore = itemScore;
     }
 
     public void setServiceScore(String serviceScore) {

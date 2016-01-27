@@ -41,28 +41,28 @@ public class ShipFresh extends TaobaoObject {
         return this.deliveryName;
     }
 
-    public void setDeliveryName(String deliveryName) {
-        this.deliveryName = deliveryName;
-    }
-
     public String getSendAddr() {
         return this.sendAddr;
-    }
-
-    public void setSendAddr(String sendAddr) {
-        this.sendAddr = sendAddr;
     }
 
     public String getTel() {
         return this.tel;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public String getWangwangId() {
         return this.wangwangId;
+    }
+
+    public void setDeliveryName(String deliveryName) {
+        this.deliveryName = deliveryName;
+    }
+
+    public void setSendAddr(String sendAddr) {
+        this.sendAddr = sendAddr;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public void setWangwangId(String wangwangId) {

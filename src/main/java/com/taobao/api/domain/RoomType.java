@@ -67,60 +67,60 @@ public class RoomType extends TaobaoObject {
         return this.aliasName;
     }
 
-    public void setAliasName(String aliasName) {
-        this.aliasName = aliasName;
-    }
-
     public String getAuditDenyReason() {
         return this.auditDenyReason;
-    }
-
-    public void setAuditDenyReason(String auditDenyReason) {
-        this.auditDenyReason = auditDenyReason;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getHid() {
         return this.hid;
-    }
-
-    public void setHid(Long hid) {
-        this.hid = hid;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getRid() {
         return this.rid;
     }
 
-    public void setRid(Long rid) {
-        this.rid = rid;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setAliasName(String aliasName) {
+        this.aliasName = aliasName;
+    }
+
+    public void setAuditDenyReason(String auditDenyReason) {
+        this.auditDenyReason = auditDenyReason;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setHid(Long hid) {
+        this.hid = hid;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRid(Long rid) {
+        this.rid = rid;
     }
 
     public void setStatus(Long status) {

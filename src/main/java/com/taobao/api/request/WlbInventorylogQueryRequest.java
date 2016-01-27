@@ -16,12 +16,6 @@ import com.taobao.api.response.WlbInventorylogQueryResponse;
  */
 public class WlbInventorylogQueryRequest implements TaobaoRequest<WlbInventorylogQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结束修改时间,小于等于该时间
      */
@@ -31,6 +25,8 @@ public class WlbInventorylogQueryRequest implements TaobaoRequest<WlbInventorylo
      * 起始修改时间,大于等于该时间
      */
     private Date gmtStart;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品ID
@@ -68,90 +64,66 @@ public class WlbInventorylogQueryRequest implements TaobaoRequest<WlbInventorylo
      */
     private String storeCode;
 
-    public void setGmtEnd(Date gmtEnd) {
-        this.gmtEnd = gmtEnd;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.inventorylog.query";
     }
 
     public Date getGmtEnd() {
         return this.gmtEnd;
     }
 
-    public void setGmtStart(Date gmtStart) {
-        this.gmtStart = gmtStart;
-    }
-
     public Date getGmtStart() {
         return this.gmtStart;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setOpType(String opType) {
-        this.opType = opType;
-    }
-
     public String getOpType() {
         return this.opType;
-    }
-
-    public void setOpUserId(Long opUserId) {
-        this.opUserId = opUserId;
     }
 
     public Long getOpUserId() {
         return this.opUserId;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
-    }
-
     public String getOrderCode() {
         return this.orderCode;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<WlbInventorylogQueryResponse> getResponseClass() {
+        return WlbInventorylogQueryResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.inventorylog.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("gmt_end", this.gmtEnd);
@@ -169,6 +141,12 @@ public class WlbInventorylogQueryRequest implements TaobaoRequest<WlbInventorylo
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -176,14 +154,44 @@ public class WlbInventorylogQueryRequest implements TaobaoRequest<WlbInventorylo
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbInventorylogQueryResponse> getResponseClass() {
-        return WlbInventorylogQueryResponse.class;
+    public void setGmtEnd(Date gmtEnd) {
+        this.gmtEnd = gmtEnd;
     }
 
-    public void check() throws ApiRuleException {
+    public void setGmtStart(Date gmtStart) {
+        this.gmtStart = gmtStart;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setOpType(String opType) {
+        this.opType = opType;
+    }
+
+    public void setOpUserId(Long opUserId) {
+        this.opUserId = opUserId;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

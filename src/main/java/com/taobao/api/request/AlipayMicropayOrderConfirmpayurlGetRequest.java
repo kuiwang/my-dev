@@ -17,12 +17,6 @@ import com.taobao.api.response.AlipayMicropayOrderConfirmpayurlGetResponse;
 public class AlipayMicropayOrderConfirmpayurlGetRequest implements
         TaobaoRequest<AlipayMicropayOrderConfirmpayurlGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝订单号，冻结流水号.这个是创建冻结订单支付宝返回的
      */
@@ -38,6 +32,8 @@ public class AlipayMicropayOrderConfirmpayurlGetRequest implements
      */
     private String authToken;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 支付备注
      */
@@ -48,71 +44,60 @@ public class AlipayMicropayOrderConfirmpayurlGetRequest implements
      */
     private String receiveUserId;
 
+    private Long timestamp;
+
     /**
      * 本次转账的外部单据号（只能由字母和数字组成,maxlength=32）
      */
     private String transferOutOrderNo;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(alipayOrderNo, "alipayOrderNo");
+        RequestCheckUtils.checkNotEmpty(amount, "amount");
+        RequestCheckUtils.checkNotEmpty(memo, "memo");
+        RequestCheckUtils.checkNotEmpty(receiveUserId, "receiveUserId");
+        RequestCheckUtils.checkNotEmpty(transferOutOrderNo, "transferOutOrderNo");
     }
 
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public String getAmount() {
         return this.amount;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    @Override
+    public String getApiMethodName() {
+        return "alipay.micropay.order.confirmpayurl.get";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setReceiveUserId(String receiveUserId) {
-        this.receiveUserId = receiveUserId;
-    }
-
     public String getReceiveUserId() {
         return this.receiveUserId;
     }
 
-    public void setTransferOutOrderNo(String transferOutOrderNo) {
-        this.transferOutOrderNo = transferOutOrderNo;
+    @Override
+    public Class<AlipayMicropayOrderConfirmpayurlGetResponse> getResponseClass() {
+        return AlipayMicropayOrderConfirmpayurlGetResponse.class;
     }
 
-    public String getTransferOutOrderNo() {
-        return this.transferOutOrderNo;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.micropay.order.confirmpayurl.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("alipay_order_no", this.alipayOrderNo);
@@ -127,6 +112,16 @@ public class AlipayMicropayOrderConfirmpayurlGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTransferOutOrderNo() {
+        return this.transferOutOrderNo;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,19 +129,32 @@ public class AlipayMicropayOrderConfirmpayurlGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayMicropayOrderConfirmpayurlGetResponse> getResponseClass() {
-        return AlipayMicropayOrderConfirmpayurlGetResponse.class;
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(alipayOrderNo, "alipayOrderNo");
-        RequestCheckUtils.checkNotEmpty(amount, "amount");
-        RequestCheckUtils.checkNotEmpty(memo, "memo");
-        RequestCheckUtils.checkNotEmpty(receiveUserId, "receiveUserId");
-        RequestCheckUtils.checkNotEmpty(transferOutOrderNo, "transferOutOrderNo");
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setReceiveUserId(String receiveUserId) {
+        this.receiveUserId = receiveUserId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTransferOutOrderNo(String transferOutOrderNo) {
+        this.transferOutOrderNo = transferOutOrderNo;
     }
 }

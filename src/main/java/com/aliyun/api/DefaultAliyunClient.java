@@ -36,35 +36,35 @@ import com.taobao.api.internal.util.TaobaoUtils;
  */
 public class DefaultAliyunClient implements AliyunClient {
 
-    private String serverUrl;
-
-    private String accessKeyId;
-
-    private String accessKeySecret;
-
-    private String format = AliyunConstants.FORMAT_JSON;
-
-    private String signatureMethod = AliyunConstants.SIGNATURE_METHOD_HMAC_SHA1;
-
-    private String signatureVersion = AliyunConstants.SIGNATURE_VERSION_1_0;
-
-    private ExecutorService executorService;
-
-    private int connectTimeout = 3000;//3秒
-
-    private int readTimeout = 80000;//80秒
-
-    private boolean needCheckRequest = true; // 是否在客户端校验请求
-
-    private boolean needEnableParser = true; // 是否对响应结果进行解释
-
-    private boolean useSimplifyJson = false; // 是否采用精简化的JSON返回
+    private static final int DEFAULT_THREAD_POOL_SIZE = 50;
 
     private static final String PARTNER_ID = "partner_id";
 
     private static final String SIMPLIFY = "simplify";
 
-    private static final int DEFAULT_THREAD_POOL_SIZE = 50;
+    private String accessKeyId;
+
+    private String accessKeySecret;
+
+    private int connectTimeout = 3000;//3秒
+
+    private ExecutorService executorService;
+
+    private String format = AliyunConstants.FORMAT_JSON;
+
+    private boolean needCheckRequest = true; // 是否在客户端校验请求
+
+    private boolean needEnableParser = true; // 是否对响应结果进行解释
+
+    private int readTimeout = 80000;//80秒
+
+    private String serverUrl;
+
+    private String signatureMethod = AliyunConstants.SIGNATURE_METHOD_HMAC_SHA1;
+
+    private String signatureVersion = AliyunConstants.SIGNATURE_VERSION_1_0;
+
+    private boolean useSimplifyJson = false; // 是否采用精简化的JSON返回
 
     public DefaultAliyunClient(String serverUrl, String accessKeyId, String accessKeySecret) {
         this.serverUrl = serverUrl;
@@ -91,45 +91,6 @@ public class DefaultAliyunClient implements AliyunClient {
         this.executorService = executorService;
     }
 
-    public <T extends AliyunResponse> T execute(AliyunRequest<T> request) throws ApiException {
-        AliyunParser<T> parser = null;
-        if (this.needEnableParser) {
-            if (AliyunConstants.FORMAT_XML.equals(this.format)) {
-                parser = new ObjectXmlParser<T>(request.getResponseClass());
-            } else {
-                parser = new ObjectJsonParser<T>(request.getResponseClass(), this.useSimplifyJson);
-            }
-        }
-        return _execute(request, parser);
-    }
-
-    public <T extends AliyunResponse> Future<T> executeAsync(final AliyunRequest<T> request,
-            final AliyunAsyncHandler<T> asyncHandler) throws ApiException {
-
-        if (executorService == null) {
-            synchronized (this) {
-                if (executorService == null) {
-                    executorService = Executors.newFixedThreadPool(DEFAULT_THREAD_POOL_SIZE);
-                }
-            }
-        }
-
-        return executorService.submit(new Callable<T>() {
-
-            public T call() throws ApiException {
-                T response;
-                try {
-                    response = execute(request);
-                } catch (ApiException e) {
-                    asyncHandler.onError(e);
-                    throw e;
-                }
-                asyncHandler.onSuccess(request, response);
-                return response;
-            }
-        });
-    }
-
     public <T extends AliyunResponse> T _execute(AliyunRequest<T> request, AliyunParser<T> parser)
             throws ApiException {
         if (this.needCheckRequest) {
@@ -149,7 +110,9 @@ public class DefaultAliyunClient implements AliyunClient {
         }
 
         Map<String, Object> rt = doPost(request);
-        if (rt == null) return null;
+        if (rt == null) {
+            return null;
+        }
 
         T tRsp = null;
         if (this.needEnableParser) {
@@ -172,6 +135,39 @@ public class DefaultAliyunClient implements AliyunClient {
             AliyunLogger.logErrorScene(rt, tRsp, accessKeyId);
         }
         return tRsp;
+    }
+
+    private <T extends AliyunResponse> void addProtocalMustParams(AliyunRequest<T> request,
+            TaobaoHashMap protocalMustParams) throws Exception {
+
+        String[] strArray = request.getApiMethodName().split("\\.");
+        if (strArray.length < 5) {
+            throw new ApiException("Wrong api name.");
+        }
+        String action = strArray[3];
+        protocalMustParams.put(AliyunConstants.ACTION, action);
+
+        String version = strArray[4];
+        protocalMustParams.put(AliyunConstants.VERSION, version);
+        protocalMustParams.put(AliyunConstants.ACCESS_KEY_ID, accessKeyId);
+        protocalMustParams.put(AliyunConstants.FORMAT, format);
+        Long timestamp = request.getTimestamp();// 允许用户设置时间戳
+        if (timestamp == null) {
+            timestamp = System.currentTimeMillis();
+        }
+        protocalMustParams.put(AliyunConstants.TIME_STAMP, formatIso8601Date(new Date(timestamp)));
+
+        protocalMustParams.put(AliyunConstants.SIGNATURE_METHOD, signatureMethod);
+        protocalMustParams.put(AliyunConstants.SIGNATURE_VERSION, signatureVersion);
+        protocalMustParams.put(AliyunConstants.SIGNATURE_NONCE, UUID.randomUUID().toString()); // 可以使用UUID作为SignatureNonce
+    }
+
+    private <T extends AliyunResponse> void addProtocalOptParams(TaobaoHashMap protocalOptParams) {
+        protocalOptParams.put(AliyunConstants.FORMAT, format);
+        protocalOptParams.put(PARTNER_ID, Constants.SDK_VERSION);
+        if (this.useSimplifyJson) {
+            protocalOptParams.put(SIMPLIFY, Boolean.TRUE.toString());
+        }
     }
 
     public <T extends AliyunResponse> Map<String, Object> doPost(AliyunRequest<T> request)
@@ -230,42 +226,62 @@ public class DefaultAliyunClient implements AliyunClient {
         return result;
     }
 
-    private <T extends AliyunResponse> void addProtocalMustParams(AliyunRequest<T> request,
-            TaobaoHashMap protocalMustParams) throws Exception {
-
-        String[] strArray = request.getApiMethodName().split("\\.");
-        if (strArray.length < 5) {
-            throw new ApiException("Wrong api name.");
+    @Override
+    public <T extends AliyunResponse> T execute(AliyunRequest<T> request) throws ApiException {
+        AliyunParser<T> parser = null;
+        if (this.needEnableParser) {
+            if (AliyunConstants.FORMAT_XML.equals(this.format)) {
+                parser = new ObjectXmlParser<T>(request.getResponseClass());
+            } else {
+                parser = new ObjectJsonParser<T>(request.getResponseClass(), this.useSimplifyJson);
+            }
         }
-        String action = strArray[3];
-        protocalMustParams.put(AliyunConstants.ACTION, action);
-
-        String version = strArray[4];
-        protocalMustParams.put(AliyunConstants.VERSION, version);
-        protocalMustParams.put(AliyunConstants.ACCESS_KEY_ID, accessKeyId);
-        protocalMustParams.put(AliyunConstants.FORMAT, format);
-        Long timestamp = request.getTimestamp();// 允许用户设置时间戳
-        if (timestamp == null) {
-            timestamp = System.currentTimeMillis();
-        }
-        protocalMustParams.put(AliyunConstants.TIME_STAMP, formatIso8601Date(new Date(timestamp)));
-
-        protocalMustParams.put(AliyunConstants.SIGNATURE_METHOD, signatureMethod);
-        protocalMustParams.put(AliyunConstants.SIGNATURE_VERSION, signatureVersion);
-        protocalMustParams.put(AliyunConstants.SIGNATURE_NONCE, UUID.randomUUID().toString()); // 可以使用UUID作为SignatureNonce
+        return _execute(request, parser);
     }
 
-    private <T extends AliyunResponse> void addProtocalOptParams(TaobaoHashMap protocalOptParams) {
-        protocalOptParams.put(AliyunConstants.FORMAT, format);
-        protocalOptParams.put(PARTNER_ID, Constants.SDK_VERSION);
-        if (this.useSimplifyJson) {
-            protocalOptParams.put(SIMPLIFY, Boolean.TRUE.toString());
+    @Override
+    public <T extends AliyunResponse> Future<T> executeAsync(final AliyunRequest<T> request,
+            final AliyunAsyncHandler<T> asyncHandler) throws ApiException {
+
+        if (executorService == null) {
+            synchronized (this) {
+                if (executorService == null) {
+                    executorService = Executors.newFixedThreadPool(DEFAULT_THREAD_POOL_SIZE);
+                }
+            }
         }
+
+        return executorService.submit(new Callable<T>() {
+
+            @Override
+            public T call() throws ApiException {
+                T response;
+                try {
+                    response = execute(request);
+                } catch (ApiException e) {
+                    asyncHandler.onError(e);
+                    throw e;
+                }
+                asyncHandler.onSuccess(request, response);
+                return response;
+            }
+        });
+    }
+
+    private String formatIso8601Date(Date date) {
+        SimpleDateFormat df = new SimpleDateFormat(AliyunConstants.DATE_FORMAT_ISO8601);
+        // 注意使用GMT时间
+        df.setTimeZone(new SimpleTimeZone(0, "GMT"));
+        return df.format(date);
+    }
+
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 
     private String paramsToQueryString(Map<String, String> params)
             throws UnsupportedEncodingException {
-        if (params == null || params.size() == 0) {
+        if ((params == null) || (params.size() == 0)) {
             return null;
         }
 
@@ -291,35 +307,24 @@ public class DefaultAliyunClient implements AliyunClient {
         return paramString.toString();
     }
 
-    private String formatIso8601Date(Date date) {
-        SimpleDateFormat df = new SimpleDateFormat(AliyunConstants.DATE_FORMAT_ISO8601);
-        // 注意使用GMT时间
-        df.setTimeZone(new SimpleTimeZone(0, "GMT"));
-        return df.format(date);
-    }
-
-    public void setNeedCheckRequest(boolean needCheckRequest) {
-        this.needCheckRequest = needCheckRequest;
-    }
-
-    public void setNeedEnableParser(boolean needEnableParser) {
-        this.needEnableParser = needEnableParser;
+    public void setExecutorService(ExecutorService executorService) {
+        this.executorService = executorService;
     }
 
     //	public void setUseSimplifyJson(boolean useSimplifyJson) {
     //		this.useSimplifyJson = useSimplifyJson;
     //	}
 
+    public void setNeedCheckRequest(boolean needCheckRequest) {
+        this.needCheckRequest = needCheckRequest;
+    }
+
     public void setNeedEnableLogger(boolean needEnableLogger) {
         TaobaoLogger.setNeedEnableLogger(needEnableLogger);
     }
 
-    public ExecutorService getExecutorService() {
-        return executorService;
-    }
-
-    public void setExecutorService(ExecutorService executorService) {
-        this.executorService = executorService;
+    public void setNeedEnableParser(boolean needEnableParser) {
+        this.needEnableParser = needEnableParser;
     }
 
     public void shutdown() {

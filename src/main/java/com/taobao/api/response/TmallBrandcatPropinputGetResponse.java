@@ -20,12 +20,12 @@ public class TmallBrandcatPropinputGetResponse extends TaobaoResponse {
     @ApiField("property_input")
     private PropertyInputDO propertyInput;
 
-    public void setPropertyInput(PropertyInputDO propertyInput) {
-        this.propertyInput = propertyInput;
-    }
-
     public PropertyInputDO getPropertyInput() {
         return this.propertyInput;
+    }
+
+    public void setPropertyInput(PropertyInputDO propertyInput) {
+        this.propertyInput = propertyInput;
     }
 
 }

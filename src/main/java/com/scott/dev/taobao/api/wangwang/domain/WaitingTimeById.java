@@ -19,12 +19,12 @@ public class WaitingTimeById {
         return this.avgWaitingTimes;
     }
 
-    public void setAvgWaitingTimes(Long avgWaitingTimes) {
-        this.avgWaitingTimes = avgWaitingTimes;
-    }
-
     public String getServiceStaffId() {
         return this.serviceStaffId;
+    }
+
+    public void setAvgWaitingTimes(Long avgWaitingTimes) {
+        this.avgWaitingTimes = avgWaitingTimes;
     }
 
     public void setServiceStaffId(String serviceStaffId) {

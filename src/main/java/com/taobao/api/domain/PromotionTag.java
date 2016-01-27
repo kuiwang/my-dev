@@ -49,36 +49,36 @@ public class PromotionTag extends TaobaoObject {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getStartTime() {
         return this.startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
     }
 
     public String getTagDesc() {
         return this.tagDesc;
     }
 
-    public void setTagDesc(String tagDesc) {
-        this.tagDesc = tagDesc;
-    }
-
     public Long getTagId() {
         return this.tagId;
     }
 
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
     public String getTagName() {
         return this.tagName;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setTagDesc(String tagDesc) {
+        this.tagDesc = tagDesc;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
     }
 
     public void setTagName(String tagName) {

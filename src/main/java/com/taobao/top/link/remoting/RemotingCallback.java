@@ -5,9 +5,9 @@ public abstract class RemotingCallback {
 
     public Integer flag;
 
-    public String serializationFormat;
-
     public Class<?> returnType;
+
+    public String serializationFormat;
 
     public abstract void onException(Throwable exception);
 

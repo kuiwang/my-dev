@@ -20,12 +20,12 @@ public class ProductImgUploadResponse extends TaobaoResponse {
     @ApiField("product_img")
     private ProductImg productImg;
 
-    public void setProductImg(ProductImg productImg) {
-        this.productImg = productImg;
-    }
-
     public ProductImg getProductImg() {
         return this.productImg;
+    }
+
+    public void setProductImg(ProductImg productImg) {
+        this.productImg = productImg;
     }
 
 }

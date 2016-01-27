@@ -38,20 +38,20 @@ public class BackendServer extends TaobaoObject {
         return this.serverHealthStatus;
     }
 
-    public void setServerHealthStatus(String serverHealthStatus) {
-        this.serverHealthStatus = serverHealthStatus;
-    }
-
     public String getServerId() {
         return this.serverId;
     }
 
-    public void setServerId(String serverId) {
-        this.serverId = serverId;
-    }
-
     public Long getWeight() {
         return this.weight;
+    }
+
+    public void setServerHealthStatus(String serverHealthStatus) {
+        this.serverHealthStatus = serverHealthStatus;
+    }
+
+    public void setServerId(String serverId) {
+        this.serverId = serverId;
     }
 
     public void setWeight(Long weight) {

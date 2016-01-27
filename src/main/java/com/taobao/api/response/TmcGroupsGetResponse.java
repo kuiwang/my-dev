@@ -30,20 +30,20 @@ public class TmcGroupsGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setGroups(List<TmcGroup> groups) {
-        this.groups = groups;
-    }
-
     public List<TmcGroup> getGroups() {
         return this.groups;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setGroups(List<TmcGroup> groups) {
+        this.groups = groups;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

@@ -29,12 +29,12 @@ public class DetailPrice extends TaobaoObject {
         return this.price;
     }
 
-    public void setPrice(PriceUnit price) {
-        this.price = price;
-    }
-
     public PriceUnit getPromotionPrice() {
         return this.promotionPrice;
+    }
+
+    public void setPrice(PriceUnit price) {
+        this.price = price;
     }
 
     public void setPromotionPrice(PriceUnit promotionPrice) {

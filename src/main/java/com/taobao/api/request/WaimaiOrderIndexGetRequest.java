@@ -16,16 +16,12 @@ import com.taobao.api.response.WaimaiOrderIndexGetResponse;
  */
 public class WaimaiOrderIndexGetRequest implements TaobaoRequest<WaimaiOrderIndexGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订单创建时间的结束时间,格式为 yyyy-MM-dd HH:mm:ss
      */
     private String endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 获取最近一定秒数的订单
@@ -65,82 +61,64 @@ public class WaimaiOrderIndexGetRequest implements TaobaoRequest<WaimaiOrderInde
      */
     private String startTime;
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.order.index.get";
     }
 
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setInterval(Long interval) {
-        this.interval = interval;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getInterval() {
         return this.interval;
     }
 
-    public void setOrderStatus(Long orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public Long getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setOrderType(Long orderType) {
-        this.orderType = orderType;
     }
 
     public Long getOrderType() {
         return this.orderType;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
+    @Override
+    public Class<WaimaiOrderIndexGetResponse> getResponseClass() {
+        return WaimaiOrderIndexGetResponse.class;
     }
 
     public Long getShopId() {
         return this.shopId;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
     public String getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.order.index.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -157,6 +135,12 @@ public class WaimaiOrderIndexGetRequest implements TaobaoRequest<WaimaiOrderInde
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -164,16 +148,40 @@ public class WaimaiOrderIndexGetRequest implements TaobaoRequest<WaimaiOrderInde
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiOrderIndexGetResponse> getResponseClass() {
-        return WaimaiOrderIndexGetResponse.class;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setInterval(Long interval) {
+        this.interval = interval;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderType(Long orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

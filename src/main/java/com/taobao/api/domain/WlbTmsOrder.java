@@ -41,28 +41,28 @@ public class WlbTmsOrder extends TaobaoObject {
         return this.code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getCompanyCode() {
         return this.companyCode;
-    }
-
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
     }
 
     public String getOrderCode() {
         return this.orderCode;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
     }
 
     public void setUserId(Long userId) {

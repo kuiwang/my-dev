@@ -19,12 +19,12 @@ public class SimbaRptDemographicbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_demographic_base")
     private String rptDemographicBase;
 
-    public void setRptDemographicBase(String rptDemographicBase) {
-        this.rptDemographicBase = rptDemographicBase;
-    }
-
     public String getRptDemographicBase() {
         return this.rptDemographicBase;
+    }
+
+    public void setRptDemographicBase(String rptDemographicBase) {
+        this.rptDemographicBase = rptDemographicBase;
     }
 
 }

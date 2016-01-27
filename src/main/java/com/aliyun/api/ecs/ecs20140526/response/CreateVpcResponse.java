@@ -20,39 +20,39 @@ public class CreateVpcResponse extends AliyunResponse {
     private String routeTableId;
 
     /**
-     * 虚拟路由器Id
-     */
-    @ApiField("VRouterId")
-    private String vRouterId;
-
-    /**
      * 系统分配的虚拟网络 ID
      */
     @ApiField("VpcId")
     private String vpcId;
 
-    public void setRouteTableId(String routeTableId) {
-        this.routeTableId = routeTableId;
-    }
+    /**
+     * 虚拟路由器Id
+     */
+    @ApiField("VRouterId")
+    private String vRouterId;
 
     public String getRouteTableId() {
         return this.routeTableId;
     }
 
-    public void setvRouterId(String vRouterId) {
-        this.vRouterId = vRouterId;
+    public String getVpcId() {
+        return this.vpcId;
     }
 
     public String getvRouterId() {
         return this.vRouterId;
     }
 
+    public void setRouteTableId(String routeTableId) {
+        this.routeTableId = routeTableId;
+    }
+
     public void setVpcId(String vpcId) {
         this.vpcId = vpcId;
     }
 
-    public String getVpcId() {
-        return this.vpcId;
+    public void setvRouterId(String vRouterId) {
+        this.vRouterId = vRouterId;
     }
 
 }

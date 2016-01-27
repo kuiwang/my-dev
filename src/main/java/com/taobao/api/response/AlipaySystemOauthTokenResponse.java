@@ -43,44 +43,44 @@ public class AlipaySystemOauthTokenResponse extends TaobaoResponse {
     @ApiField("refresh_token")
     private String refreshToken;
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
     public String getAccessToken() {
         return this.accessToken;
-    }
-
-    public void setAlipayUserId(String alipayUserId) {
-        this.alipayUserId = alipayUserId;
     }
 
     public String getAlipayUserId() {
         return this.alipayUserId;
     }
 
-    public void setExpiresIn(String expiresIn) {
-        this.expiresIn = expiresIn;
-    }
-
     public String getExpiresIn() {
         return this.expiresIn;
-    }
-
-    public void setReExpiresIn(String reExpiresIn) {
-        this.reExpiresIn = reExpiresIn;
     }
 
     public String getReExpiresIn() {
         return this.reExpiresIn;
     }
 
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
     public String getRefreshToken() {
         return this.refreshToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public void setAlipayUserId(String alipayUserId) {
+        this.alipayUserId = alipayUserId;
+    }
+
+    public void setExpiresIn(String expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public void setReExpiresIn(String reExpiresIn) {
+        this.reExpiresIn = reExpiresIn;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
 }

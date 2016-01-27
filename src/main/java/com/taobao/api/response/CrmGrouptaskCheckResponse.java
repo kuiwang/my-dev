@@ -19,12 +19,12 @@ public class CrmGrouptaskCheckResponse extends TaobaoResponse {
     @ApiField("is_finished")
     private Boolean isFinished;
 
-    public void setIsFinished(Boolean isFinished) {
-        this.isFinished = isFinished;
-    }
-
     public Boolean getIsFinished() {
         return this.isFinished;
+    }
+
+    public void setIsFinished(Boolean isFinished) {
+        this.isFinished = isFinished;
     }
 
 }

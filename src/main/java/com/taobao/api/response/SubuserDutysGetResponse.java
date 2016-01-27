@@ -24,12 +24,12 @@ public class SubuserDutysGetResponse extends TaobaoResponse {
     @ApiField("duty")
     private List<Duty> dutys;
 
-    public void setDutys(List<Duty> dutys) {
-        this.dutys = dutys;
-    }
-
     public List<Duty> getDutys() {
         return this.dutys;
+    }
+
+    public void setDutys(List<Duty> dutys) {
+        this.dutys = dutys;
     }
 
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.ProductsSearchResponse;
  */
 public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 按条码搜索产品信息,多个逗号隔开，不支持条码为全零的方式
      */
@@ -43,6 +37,8 @@ public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchRespon
      * price,tsc;多个字段之间用","分隔.新增字段status(product的当前状态)
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 市场ID，1为取C2C市场的产品信息， 2为取B2C市场的产品信息。 不填写此值则默认取C2C的产品信息。
@@ -83,120 +79,83 @@ public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchRespon
      */
     private String suiteItemsStr;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 传入值为：3表示3C表示3C垂直市场产品，4表示鞋城垂直市场产品，8表示网游垂直市场产品。一次只能指定一种垂直市场类型<br />
      * 支持最小值为：0
      */
     private Long verticalMarket;
 
-    public void setBarcodeStr(String barcodeStr) {
-        this.barcodeStr = barcodeStr;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxLength(status, 20, "status");
+        RequestCheckUtils.checkMinValue(verticalMarket, 0L, "verticalMarket");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.products.search";
     }
 
     public String getBarcodeStr() {
         return this.barcodeStr;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCustomerProps(String customerProps) {
-        this.customerProps = customerProps;
     }
 
     public String getCustomerProps() {
         return this.customerProps;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMarketId() {
         return this.marketId;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setProps(String props) {
-        this.props = props;
-    }
-
     public String getProps() {
         return this.props;
-    }
-
-    public void setQ(String q) {
-        this.q = q;
     }
 
     public String getQ() {
         return this.q;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<ProductsSearchResponse> getResponseClass() {
+        return ProductsSearchResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setSuiteItemsStr(String suiteItemsStr) {
-        this.suiteItemsStr = suiteItemsStr;
-    }
-
     public String getSuiteItemsStr() {
         return this.suiteItemsStr;
     }
 
-    public void setVerticalMarket(Long verticalMarket) {
-        this.verticalMarket = verticalMarket;
-    }
-
-    public Long getVerticalMarket() {
-        return this.verticalMarket;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.products.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("barcode_str", this.barcodeStr);
@@ -217,6 +176,16 @@ public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getVerticalMarket() {
+        return this.verticalMarket;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -224,17 +193,56 @@ public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<ProductsSearchResponse> getResponseClass() {
-        return ProductsSearchResponse.class;
+    public void setBarcodeStr(String barcodeStr) {
+        this.barcodeStr = barcodeStr;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxLength(status, 20, "status");
-        RequestCheckUtils.checkMinValue(verticalMarket, 0L, "verticalMarket");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCustomerProps(String customerProps) {
+        this.customerProps = customerProps;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setQ(String q) {
+        this.q = q;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSuiteItemsStr(String suiteItemsStr) {
+        this.suiteItemsStr = suiteItemsStr;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setVerticalMarket(Long verticalMarket) {
+        this.verticalMarket = verticalMarket;
     }
 }

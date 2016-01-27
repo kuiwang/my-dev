@@ -30,20 +30,20 @@ public class ItemAnchorGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setAnchorModules(List<IdsModule> anchorModules) {
-        this.anchorModules = anchorModules;
-    }
-
     public List<IdsModule> getAnchorModules() {
         return this.anchorModules;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setAnchorModules(List<IdsModule> anchorModules) {
+        this.anchorModules = anchorModules;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

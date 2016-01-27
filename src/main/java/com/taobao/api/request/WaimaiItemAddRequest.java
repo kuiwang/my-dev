@@ -16,12 +16,6 @@ import com.taobao.api.response.WaimaiItemAddResponse;
  */
 public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品描述，至少输入5个字
      */
@@ -46,6 +40,8 @@ public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse
      * 商品外部编码，没有则为空
      */
     private String goodsno;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 限购数量,不输入则表示该宝贝无限购数
@@ -92,6 +88,8 @@ public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse
      */
     private String skuInfo;
 
+    private Long timestamp;
+
     /**
      * 菜名<br />
      * 支持最大长度为：30<br />
@@ -99,143 +97,95 @@ public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse
      */
     private String title;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 宝贝副图，最多可上传4张
      */
     private String viceimage;
 
-    public void setAuctiondesc(String auctiondesc) {
-        this.auctiondesc = auctiondesc;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctiondesc, "auctiondesc");
+        RequestCheckUtils.checkNotEmpty(auctionstatus, "auctionstatus");
+        RequestCheckUtils.checkNotEmpty(categoryid, "categoryid");
+        RequestCheckUtils.checkNotEmpty(picurl, "picurl");
+        RequestCheckUtils.checkNotEmpty(price, "price");
+        RequestCheckUtils.checkMaxLength(price, 8, "price");
+        RequestCheckUtils.checkNotEmpty(quantity, "quantity");
+        RequestCheckUtils.checkNotEmpty(shopids, "shopids");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 30, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.item.add";
     }
 
     public String getAuctiondesc() {
         return this.auctiondesc;
     }
 
-    public void setAuctionstatus(Long auctionstatus) {
-        this.auctionstatus = auctionstatus;
-    }
-
     public Long getAuctionstatus() {
         return this.auctionstatus;
-    }
-
-    public void setCategoryid(Long categoryid) {
-        this.categoryid = categoryid;
     }
 
     public Long getCategoryid() {
         return this.categoryid;
     }
 
-    public void setCategoryids(String categoryids) {
-        this.categoryids = categoryids;
-    }
-
     public String getCategoryids() {
         return this.categoryids;
-    }
-
-    public void setGoodsno(String goodsno) {
-        this.goodsno = goodsno;
     }
 
     public String getGoodsno() {
         return this.goodsno;
     }
 
-    public void setLimitbuy(Long limitbuy) {
-        this.limitbuy = limitbuy;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLimitbuy() {
         return this.limitbuy;
     }
 
-    public void setOriprice(String oriprice) {
-        this.oriprice = oriprice;
-    }
-
     public String getOriprice() {
         return this.oriprice;
-    }
-
-    public void setPicurl(String picurl) {
-        this.picurl = picurl;
     }
 
     public String getPicurl() {
         return this.picurl;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
+    @Override
+    public Class<WaimaiItemAddResponse> getResponseClass() {
+        return WaimaiItemAddResponse.class;
     }
 
     public Long getRuleId() {
         return this.ruleId;
     }
 
-    public void setShopids(String shopids) {
-        this.shopids = shopids;
-    }
-
     public String getShopids() {
         return this.shopids;
-    }
-
-    public void setSkuInfo(String skuInfo) {
-        this.skuInfo = skuInfo;
     }
 
     public String getSkuInfo() {
         return this.skuInfo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setViceimage(String viceimage) {
-        this.viceimage = viceimage;
-    }
-
-    public String getViceimage() {
-        return this.viceimage;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.item.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auctiondesc", this.auctiondesc);
@@ -259,6 +209,20 @@ public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getViceimage() {
+        return this.viceimage;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -266,24 +230,68 @@ public class WaimaiItemAddRequest implements TaobaoRequest<WaimaiItemAddResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiItemAddResponse> getResponseClass() {
-        return WaimaiItemAddResponse.class;
+    public void setAuctiondesc(String auctiondesc) {
+        this.auctiondesc = auctiondesc;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctiondesc, "auctiondesc");
-        RequestCheckUtils.checkNotEmpty(auctionstatus, "auctionstatus");
-        RequestCheckUtils.checkNotEmpty(categoryid, "categoryid");
-        RequestCheckUtils.checkNotEmpty(picurl, "picurl");
-        RequestCheckUtils.checkNotEmpty(price, "price");
-        RequestCheckUtils.checkMaxLength(price, 8, "price");
-        RequestCheckUtils.checkNotEmpty(quantity, "quantity");
-        RequestCheckUtils.checkNotEmpty(shopids, "shopids");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 30, "title");
+    public void setAuctionstatus(Long auctionstatus) {
+        this.auctionstatus = auctionstatus;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCategoryid(Long categoryid) {
+        this.categoryid = categoryid;
+    }
+
+    public void setCategoryids(String categoryids) {
+        this.categoryids = categoryids;
+    }
+
+    public void setGoodsno(String goodsno) {
+        this.goodsno = goodsno;
+    }
+
+    public void setLimitbuy(Long limitbuy) {
+        this.limitbuy = limitbuy;
+    }
+
+    public void setOriprice(String oriprice) {
+        this.oriprice = oriprice;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRuleId(Long ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    public void setShopids(String shopids) {
+        this.shopids = shopids;
+    }
+
+    public void setSkuInfo(String skuInfo) {
+        this.skuInfo = skuInfo;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setViceimage(String viceimage) {
+        this.viceimage = viceimage;
     }
 }

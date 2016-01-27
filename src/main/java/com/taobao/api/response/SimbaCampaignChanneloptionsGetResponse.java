@@ -24,12 +24,12 @@ public class SimbaCampaignChanneloptionsGetResponse extends TaobaoResponse {
     @ApiField("channel_option")
     private List<ChannelOption> channelOptions;
 
-    public void setChannelOptions(List<ChannelOption> channelOptions) {
-        this.channelOptions = channelOptions;
-    }
-
     public List<ChannelOption> getChannelOptions() {
         return this.channelOptions;
+    }
+
+    public void setChannelOptions(List<ChannelOption> channelOptions) {
+        this.channelOptions = channelOptions;
     }
 
 }

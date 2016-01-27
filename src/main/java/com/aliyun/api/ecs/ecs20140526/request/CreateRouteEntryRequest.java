@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class CreateRouteEntryRequest implements AliyunRequest<CreateRouteEntryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 用于保证请求的幂等性。由客户端生成该参数值，要保证在不同请求间唯一，最大不值过64个ASCII字符。
      */
@@ -43,6 +25,8 @@ public class CreateRouteEntryRequest implements AliyunRequest<CreateRouteEntryRe
      * 新增路由条目的目的网段
      */
     private String destinationCidrBlock;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 新增路由条目的下一跳实例ID
@@ -54,87 +38,82 @@ public class CreateRouteEntryRequest implements AliyunRequest<CreateRouteEntryRe
      */
     private String nextHopType;
 
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * 虚拟路由表Id
      */
     private String routeTableId;
 
-    public void setClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(destinationCidrBlock, "destinationCidrBlock");
+        RequestCheckUtils.checkNotEmpty(nextHopId, "nextHopId");
+        RequestCheckUtils.checkNotEmpty(routeTableId, "routeTableId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.CreateRouteEntry.2014-05-26";
     }
 
     public String getClientToken() {
         return this.clientToken;
     }
 
-    public void setDestinationCidrBlock(String destinationCidrBlock) {
-        this.destinationCidrBlock = destinationCidrBlock;
-    }
-
     public String getDestinationCidrBlock() {
         return this.destinationCidrBlock;
     }
 
-    public void setNextHopId(String nextHopId) {
-        this.nextHopId = nextHopId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNextHopId() {
         return this.nextHopId;
     }
 
-    public void setNextHopType(String nextHopType) {
-        this.nextHopType = nextHopType;
-    }
-
     public String getNextHopType() {
         return this.nextHopType;
-    }
-
-    public void setRouteTableId(String routeTableId) {
-        this.routeTableId = routeTableId;
-    }
-
-    public String getRouteTableId() {
-        return this.routeTableId;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateRouteEntryResponse> getResponseClass() {
+        return CreateRouteEntryResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getRouteTableId() {
+        return this.routeTableId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.CreateRouteEntry.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -151,6 +130,12 @@ public class CreateRouteEntryRequest implements AliyunRequest<CreateRouteEntryRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -158,17 +143,40 @@ public class CreateRouteEntryRequest implements AliyunRequest<CreateRouteEntryRe
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateRouteEntryResponse> getResponseClass() {
-        return CreateRouteEntryResponse.class;
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(destinationCidrBlock, "destinationCidrBlock");
-        RequestCheckUtils.checkNotEmpty(nextHopId, "nextHopId");
-        RequestCheckUtils.checkNotEmpty(routeTableId, "routeTableId");
+    public void setDestinationCidrBlock(String destinationCidrBlock) {
+        this.destinationCidrBlock = destinationCidrBlock;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNextHopId(String nextHopId) {
+        this.nextHopId = nextHopId;
+    }
+
+    public void setNextHopType(String nextHopType) {
+        this.nextHopType = nextHopType;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setRouteTableId(String routeTableId) {
+        this.routeTableId = routeTableId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -45,36 +45,36 @@ public class QueryTranscodeTemplateListByIdsResponse extends AliyunResponse {
     @ApiField("TranscodeTemplate")
     private List<TranscodeTemplate> transcodeTemplates;
 
-    public void setNonExistTids(List<String> nonExistTids) {
-        this.nonExistTids = nonExistTids;
-    }
-
     public List<String> getNonExistTids() {
         return this.nonExistTids;
-    }
-
-    public void setPermissionDeniedTids(List<String> permissionDeniedTids) {
-        this.permissionDeniedTids = permissionDeniedTids;
     }
 
     public List<String> getPermissionDeniedTids() {
         return this.permissionDeniedTids;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTranscodeTemplates(List<TranscodeTemplate> transcodeTemplates) {
-        this.transcodeTemplates = transcodeTemplates;
-    }
-
     public List<TranscodeTemplate> getTranscodeTemplates() {
         return this.transcodeTemplates;
+    }
+
+    public void setNonExistTids(List<String> nonExistTids) {
+        this.nonExistTids = nonExistTids;
+    }
+
+    public void setPermissionDeniedTids(List<String> permissionDeniedTids) {
+        this.permissionDeniedTids = permissionDeniedTids;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTranscodeTemplates(List<TranscodeTemplate> transcodeTemplates) {
+        this.transcodeTemplates = transcodeTemplates;
     }
 
 }

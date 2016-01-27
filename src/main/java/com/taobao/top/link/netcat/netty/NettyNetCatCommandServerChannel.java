@@ -21,9 +21,8 @@ public class NettyNetCatCommandServerChannel extends TcpServerChannel {
         this.channelHandler = new NetCatCommandServerChannelHandler();
     }
 
-    @Override
-    public void setChannelHandler(ChannelHandler channelHandler) {
-        return;
+    public void addProcessor(CommandProcessor processor) {
+        ((NetCatCommandServerChannelHandler) this.channelHandler).addProcessor(processor);
     }
 
     @Override
@@ -31,7 +30,8 @@ public class NettyNetCatCommandServerChannel extends TcpServerChannel {
         pipeline.addLast("decoder", new StringDecoder());
     }
 
-    public void addProcessor(CommandProcessor processor) {
-        ((NetCatCommandServerChannelHandler) this.channelHandler).addProcessor(processor);
+    @Override
+    public void setChannelHandler(ChannelHandler channelHandler) {
+        return;
     }
 }

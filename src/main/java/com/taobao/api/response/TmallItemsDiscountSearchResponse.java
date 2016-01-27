@@ -84,84 +84,84 @@ public class TmallItemsDiscountSearchResponse extends TaobaoResponse {
     @ApiField("total_results")
     private String totalResults;
 
-    public void setBrandList(List<TmallBrand> brandList) {
-        this.brandList = brandList;
-    }
-
     public List<TmallBrand> getBrandList() {
         return this.brandList;
-    }
-
-    public void setCatList(List<TmallCat> catList) {
-        this.catList = catList;
     }
 
     public List<TmallCat> getCatList() {
         return this.catList;
     }
 
-    public void setItemList(List<TmallSearchItem> itemList) {
-        this.itemList = itemList;
-    }
-
     public List<TmallSearchItem> getItemList() {
         return this.itemList;
-    }
-
-    public void setMinisiteList(List<TmallMinisite> minisiteList) {
-        this.minisiteList = minisiteList;
     }
 
     public List<TmallMinisite> getMinisiteList() {
         return this.minisiteList;
     }
 
-    public void setPage(Long page) {
-        this.page = page;
-    }
-
     public Long getPage() {
         return this.page;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setParamValue(String paramValue) {
-        this.paramValue = paramValue;
-    }
-
     public String getParamValue() {
         return this.paramValue;
-    }
-
-    public void setSearchUrl(String searchUrl) {
-        this.searchUrl = searchUrl;
     }
 
     public String getSearchUrl() {
         return this.searchUrl;
     }
 
-    public void setTotalPage(Long totalPage) {
-        this.totalPage = totalPage;
-    }
-
     public Long getTotalPage() {
         return this.totalPage;
     }
 
-    public void setTotalResults(String totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public String getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setBrandList(List<TmallBrand> brandList) {
+        this.brandList = brandList;
+    }
+
+    public void setCatList(List<TmallCat> catList) {
+        this.catList = catList;
+    }
+
+    public void setItemList(List<TmallSearchItem> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setMinisiteList(List<TmallMinisite> minisiteList) {
+        this.minisiteList = minisiteList;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setParamValue(String paramValue) {
+        this.paramValue = paramValue;
+    }
+
+    public void setSearchUrl(String searchUrl) {
+        this.searchUrl = searchUrl;
+    }
+
+    public void setTotalPage(Long totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public void setTotalResults(String totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

@@ -33,12 +33,12 @@ public class TravelItemsCombo extends TaobaoObject {
         return this.combo;
     }
 
-    public void setCombo(TravelItemsPropValue combo) {
-        this.combo = combo;
-    }
-
     public List<TravelItemsPriceCalendar> getComboPriceCalendars() {
         return this.comboPriceCalendars;
+    }
+
+    public void setCombo(TravelItemsPropValue combo) {
+        this.combo = combo;
     }
 
     public void setComboPriceCalendars(List<TravelItemsPriceCalendar> comboPriceCalendars) {

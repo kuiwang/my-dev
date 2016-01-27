@@ -39,20 +39,20 @@ public class DeliveryInfo extends TaobaoObject {
         return this.carriageList;
     }
 
-    public void setCarriageList(List<Carriage> carriageList) {
-        this.carriageList = carriageList;
-    }
-
     public String getDestination() {
         return this.destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
     public String getLocation() {
         return this.location;
+    }
+
+    public void setCarriageList(List<Carriage> carriageList) {
+        this.carriageList = carriageList;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public void setLocation(String location) {

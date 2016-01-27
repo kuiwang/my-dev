@@ -24,12 +24,12 @@ public class SimbaInsightCatsforecastnewGetResponse extends TaobaoResponse {
     @ApiField("insight_category_forcast_d_t_o")
     private List<InsightCategoryForcastDTO> categoryForecastList;
 
-    public void setCategoryForecastList(List<InsightCategoryForcastDTO> categoryForecastList) {
-        this.categoryForecastList = categoryForecastList;
-    }
-
     public List<InsightCategoryForcastDTO> getCategoryForecastList() {
         return this.categoryForecastList;
+    }
+
+    public void setCategoryForecastList(List<InsightCategoryForcastDTO> categoryForecastList) {
+        this.categoryForecastList = categoryForecastList;
     }
 
 }

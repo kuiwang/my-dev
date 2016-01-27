@@ -143,164 +143,164 @@ public class TripFlightPassenger extends TaobaoObject {
         return this.birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
     public Long getCabinClass() {
         return this.cabinClass;
-    }
-
-    public void setCabinClass(Long cabinClass) {
-        this.cabinClass = cabinClass;
     }
 
     public String getCabinCode() {
         return this.cabinCode;
     }
 
-    public void setCabinCode(String cabinCode) {
-        this.cabinCode = cabinCode;
-    }
-
     public String getCertNo() {
         return this.certNo;
-    }
-
-    public void setCertNo(String certNo) {
-        this.certNo = certNo;
     }
 
     public Long getCertType() {
         return this.certType;
     }
 
-    public void setCertType(Long certType) {
-        this.certType = certType;
-    }
-
     public String getEi() {
         return this.ei;
-    }
-
-    public void setEi(String ei) {
-        this.ei = ei;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Long getFee() {
         return this.fee;
-    }
-
-    public void setFee(Long fee) {
-        this.fee = fee;
     }
 
     public Long getForceInsurePrice() {
         return this.forceInsurePrice;
     }
 
-    public void setForceInsurePrice(Long forceInsurePrice) {
-        this.forceInsurePrice = forceInsurePrice;
-    }
-
     public Long getInsurePromotionPrice() {
         return this.insurePromotionPrice;
-    }
-
-    public void setInsurePromotionPrice(Long insurePromotionPrice) {
-        this.insurePromotionPrice = insurePromotionPrice;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getPassengerType() {
         return this.passengerType;
     }
 
-    public void setPassengerType(Long passengerType) {
-        this.passengerType = passengerType;
-    }
-
     public String getPnr() {
         return this.pnr;
-    }
-
-    public void setPnr(String pnr) {
-        this.pnr = pnr;
     }
 
     public Long getPolicyId() {
         return this.policyId;
     }
 
-    public void setPolicyId(Long policyId) {
-        this.policyId = policyId;
-    }
-
     public Long getPolicyType() {
         return this.policyType;
-    }
-
-    public void setPolicyType(Long policyType) {
-        this.policyType = policyType;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
     public Long getTax() {
         return this.tax;
-    }
-
-    public void setTax(Long tax) {
-        this.tax = tax;
     }
 
     public String getTicketNo() {
         return this.ticketNo;
     }
 
-    public void setTicketNo(String ticketNo) {
-        this.ticketNo = ticketNo;
-    }
-
     public String getTripCardNo() {
         return this.tripCardNo;
     }
 
-    public void setTripCardNo(String tripCardNo) {
-        this.tripCardNo = tripCardNo;
-    }
-
     public String getTuigaiqian() {
         return this.tuigaiqian;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setCabinClass(Long cabinClass) {
+        this.cabinClass = cabinClass;
+    }
+
+    public void setCabinCode(String cabinCode) {
+        this.cabinCode = cabinCode;
+    }
+
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
+    }
+
+    public void setCertType(Long certType) {
+        this.certType = certType;
+    }
+
+    public void setEi(String ei) {
+        this.ei = ei;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setFee(Long fee) {
+        this.fee = fee;
+    }
+
+    public void setForceInsurePrice(Long forceInsurePrice) {
+        this.forceInsurePrice = forceInsurePrice;
+    }
+
+    public void setInsurePromotionPrice(Long insurePromotionPrice) {
+        this.insurePromotionPrice = insurePromotionPrice;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassengerType(Long passengerType) {
+        this.passengerType = passengerType;
+    }
+
+    public void setPnr(String pnr) {
+        this.pnr = pnr;
+    }
+
+    public void setPolicyId(Long policyId) {
+        this.policyId = policyId;
+    }
+
+    public void setPolicyType(Long policyType) {
+        this.policyType = policyType;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setTax(Long tax) {
+        this.tax = tax;
+    }
+
+    public void setTicketNo(String ticketNo) {
+        this.ticketNo = ticketNo;
+    }
+
+    public void setTripCardNo(String tripCardNo) {
+        this.tripCardNo = tripCardNo;
     }
 
     public void setTuigaiqian(String tuigaiqian) {

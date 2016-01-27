@@ -20,12 +20,12 @@ public class AlipayUserAccountGetResponse extends TaobaoResponse {
     @ApiField("alipay_account")
     private AlipayAccount alipayAccount;
 
-    public void setAlipayAccount(AlipayAccount alipayAccount) {
-        this.alipayAccount = alipayAccount;
-    }
-
     public AlipayAccount getAlipayAccount() {
         return this.alipayAccount;
+    }
+
+    public void setAlipayAccount(AlipayAccount alipayAccount) {
+        this.alipayAccount = alipayAccount;
     }
 
 }

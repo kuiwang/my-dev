@@ -17,12 +17,6 @@ import com.taobao.api.response.RefundsReceiveGetResponse;
  */
 public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称
      */
@@ -40,6 +34,8 @@ public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGet
      * order_status,refund_phase
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。取值范围:大于零的整数; 默认值:1<br />
@@ -67,6 +63,8 @@ public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGet
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 交易类型列表，一次查询多种类型可用半角逗号分隔，默认同时查询guarantee_trade,
      * auto_delivery的2种类型的数据。fixed(一口价) auction(拍卖) guarantee_trade(一口价、拍卖)
@@ -77,96 +75,67 @@ public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGet
      */
     private String type;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，
      * 通过此种方式获取增量退款，接口调用成功率在原有的基础上有所提升。
      */
     private Boolean useHasNext;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(fields, 100, "fields");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.refunds.receive.get";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
-    }
-
     public Date getEndModified() {
         return this.endModified;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
+    @Override
+    public Class<RefundsReceiveGetResponse> getResponseClass() {
+        return RefundsReceiveGetResponse.class;
     }
 
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setUseHasNext(Boolean useHasNext) {
-        this.useHasNext = useHasNext;
-    }
-
-    public Boolean getUseHasNext() {
-        return this.useHasNext;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.refunds.receive.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -184,6 +153,20 @@ public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public Boolean getUseHasNext() {
+        return this.useHasNext;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -191,19 +174,44 @@ public class RefundsReceiveGetRequest implements TaobaoRequest<RefundsReceiveGet
         this.udfParams.put(key, value);
     }
 
-    public Class<RefundsReceiveGetResponse> getResponseClass() {
-        return RefundsReceiveGetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(fields, 100, "fields");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUseHasNext(Boolean useHasNext) {
+        this.useHasNext = useHasNext;
     }
 }

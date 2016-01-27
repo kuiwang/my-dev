@@ -16,38 +16,37 @@ import com.taobao.top.link.logging.LogUtil;
 // easy support spring bean
 public class SpringServiceProxyBean implements FactoryBean, InitializingBean {
 
-    private static Object initObject;
+    private static RemotingClientChannelHandler channelHandler;
 
     private static ClientChannelSelector channelSelector;
 
-    private static RemotingClientChannelHandler channelHandler;
+    private static Object initObject;
 
-    private URI uri;
-
-    private Class<?> interfaceType;
+    private synchronized static void init(Object obj) {
+        if (initObject != null) {
+            return;
+        }
+        // default set 2M max message size for client
+        // TODO:change to growing buffer
+        BufferManager.setBufferSize(1024 * 1024 * 2);
+        LoggerFactory loggerFactory = LogUtil.getLoggerFactory(obj);
+        channelSelector = new ClientChannelSharedSelector(loggerFactory);
+        channelHandler = new RemotingClientChannelHandler(loggerFactory, new AtomicInteger(0));
+        channelHandler.setSerializationFactory(SerializerUtil.getSerializationFactory(obj));
+        initObject = new Object();
+    }
 
     private int executionTimeout;
 
     private String format;
 
-    public void setInterfaceName(String interfaceName) throws ClassNotFoundException {
-        this.interfaceType = Class.forName(interfaceName);
-    }
+    private Class<?> interfaceType;
 
-    public void setUri(String uri) throws URISyntaxException {
-        this.uri = new URI(uri);
-    }
+    private URI uri;
 
-    public void setExecutionTimeout(String executionTimeout) {
-        this.executionTimeout = Integer.parseInt(executionTimeout);
-    }
-
-    public void setHeaders(HandshakingHeadersBean headersBean) {
-        headersBean.setUri(this.uri);
-    }
-
-    public void setSerialization(String format) {
-        this.format = format;
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        init(this);
     }
 
     @Override
@@ -68,20 +67,23 @@ public class SpringServiceProxyBean implements FactoryBean, InitializingBean {
         return true;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        init(this);
+    public void setExecutionTimeout(String executionTimeout) {
+        this.executionTimeout = Integer.parseInt(executionTimeout);
     }
 
-    private synchronized static void init(Object obj) {
-        if (initObject != null) return;
-        // default set 2M max message size for client
-        // TODO:change to growing buffer
-        BufferManager.setBufferSize(1024 * 1024 * 2);
-        LoggerFactory loggerFactory = LogUtil.getLoggerFactory(obj);
-        channelSelector = new ClientChannelSharedSelector(loggerFactory);
-        channelHandler = new RemotingClientChannelHandler(loggerFactory, new AtomicInteger(0));
-        channelHandler.setSerializationFactory(SerializerUtil.getSerializationFactory(obj));
-        initObject = new Object();
+    public void setHeaders(HandshakingHeadersBean headersBean) {
+        headersBean.setUri(this.uri);
+    }
+
+    public void setInterfaceName(String interfaceName) throws ClassNotFoundException {
+        this.interfaceType = Class.forName(interfaceName);
+    }
+
+    public void setSerialization(String format) {
+        this.format = format;
+    }
+
+    public void setUri(String uri) throws URISyntaxException {
+        this.uri = new URI(uri);
     }
 }

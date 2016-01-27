@@ -15,37 +15,41 @@ import com.taobao.api.response.AlipayPointBudgetGetResponse;
  */
 public class AlipayPointBudgetGetRequest implements TaobaoRequest<AlipayPointBudgetGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝给用户的授权。如果没有top的授权，这个字段是必填项
      */
     private String authToken;
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.point.budget.get";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<AlipayPointBudgetGetResponse> getResponseClass() {
+        return AlipayPointBudgetGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "alipay.point.budget.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auth_token", this.authToken);
@@ -55,6 +59,12 @@ public class AlipayPointBudgetGetRequest implements TaobaoRequest<AlipayPointBud
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class AlipayPointBudgetGetRequest implements TaobaoRequest<AlipayPointBud
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayPointBudgetGetResponse> getResponseClass() {
-        return AlipayPointBudgetGetResponse.class;
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

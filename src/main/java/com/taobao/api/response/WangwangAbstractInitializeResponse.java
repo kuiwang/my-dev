@@ -25,20 +25,20 @@ public class WangwangAbstractInitializeResponse extends TaobaoResponse {
     @ApiField("ret_code")
     private Long retCode;
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
     public String getErrorMsg() {
         return this.errorMsg;
     }
 
-    public void setRetCode(Long retCode) {
-        this.retCode = retCode;
-    }
-
     public Long getRetCode() {
         return this.retCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setRetCode(Long retCode) {
+        this.retCode = retCode;
     }
 
 }

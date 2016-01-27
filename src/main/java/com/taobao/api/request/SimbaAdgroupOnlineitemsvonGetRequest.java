@@ -19,10 +19,6 @@ public class SimbaAdgroupOnlineitemsvonGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 主人昵称
      */
@@ -50,58 +46,52 @@ public class SimbaAdgroupOnlineitemsvonGetRequest implements
      */
     private Long pageSize;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageNo, 50L, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.onlineitemsvon.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setOrderBy(Boolean orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public Boolean getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setOrderField(String orderField) {
-        this.orderField = orderField;
     }
 
     public String getOrderField() {
         return this.orderField;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaAdgroupOnlineitemsvonGetResponse> getResponseClass() {
+        return SimbaAdgroupOnlineitemsvonGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.onlineitemsvon.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -115,6 +105,12 @@ public class SimbaAdgroupOnlineitemsvonGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,16 +118,28 @@ public class SimbaAdgroupOnlineitemsvonGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupOnlineitemsvonGetResponse> getResponseClass() {
-        return SimbaAdgroupOnlineitemsvonGetResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageNo, 50L, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    public void setOrderBy(Boolean orderBy) {
+        this.orderBy = orderBy;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderField(String orderField) {
+        this.orderField = orderField;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

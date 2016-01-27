@@ -33,12 +33,12 @@ public class INWordBase extends TaobaoObject {
         return this.inRecordBaseList;
     }
 
-    public void setInRecordBaseList(List<INRecordBase> inRecordBaseList) {
-        this.inRecordBaseList = inRecordBaseList;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setInRecordBaseList(List<INRecordBase> inRecordBaseList) {
+        this.inRecordBaseList = inRecordBaseList;
     }
 
     public void setWord(String word) {

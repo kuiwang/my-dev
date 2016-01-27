@@ -20,12 +20,12 @@ public class TmallItemDescModulesGetResponse extends TaobaoResponse {
     @ApiField("modular_desc_info")
     private ModularDescInfo modularDescInfo;
 
-    public void setModularDescInfo(ModularDescInfo modularDescInfo) {
-        this.modularDescInfo = modularDescInfo;
-    }
-
     public ModularDescInfo getModularDescInfo() {
         return this.modularDescInfo;
+    }
+
+    public void setModularDescInfo(ModularDescInfo modularDescInfo) {
+        this.modularDescInfo = modularDescInfo;
     }
 
 }

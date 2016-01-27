@@ -45,36 +45,36 @@ public class QueryTranscodeJobListByIdsResponse extends AliyunResponse {
     @ApiField("VideoTranscodeJob")
     private List<VideoTranscodeJob> transcodeJobs;
 
-    public void setNonExistMids(List<String> nonExistMids) {
-        this.nonExistMids = nonExistMids;
-    }
-
     public List<String> getNonExistMids() {
         return this.nonExistMids;
-    }
-
-    public void setPermissionDeniedMids(List<String> permissionDeniedMids) {
-        this.permissionDeniedMids = permissionDeniedMids;
     }
 
     public List<String> getPermissionDeniedMids() {
         return this.permissionDeniedMids;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTranscodeJobs(List<VideoTranscodeJob> transcodeJobs) {
-        this.transcodeJobs = transcodeJobs;
-    }
-
     public List<VideoTranscodeJob> getTranscodeJobs() {
         return this.transcodeJobs;
+    }
+
+    public void setNonExistMids(List<String> nonExistMids) {
+        this.nonExistMids = nonExistMids;
+    }
+
+    public void setPermissionDeniedMids(List<String> permissionDeniedMids) {
+        this.permissionDeniedMids = permissionDeniedMids;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTranscodeJobs(List<VideoTranscodeJob> transcodeJobs) {
+        this.transcodeJobs = transcodeJobs;
     }
 
 }

@@ -79,100 +79,100 @@ public class AtNSearchItemVO {
         return this.activityBonus;
     }
 
-    public void setActivityBonus(String activityBonus) {
-        this.activityBonus = activityBonus;
-    }
-
     public Long getAgentId() {
         return this.agentId;
-    }
-
-    public void setAgentId(Long agentId) {
-        this.agentId = agentId;
     }
 
     public String getAttributes() {
         return this.attributes;
     }
 
-    public void setAttributes(String attributes) {
-        this.attributes = attributes;
-    }
-
     public String getBasicCabinPrice() {
         return this.basicCabinPrice;
-    }
-
-    public void setBasicCabinPrice(String basicCabinPrice) {
-        this.basicCabinPrice = basicCabinPrice;
     }
 
     public Boolean getForceInsure() {
         return this.forceInsure;
     }
 
-    public void setForceInsure(Boolean forceInsure) {
-        this.forceInsure = forceInsure;
-    }
-
     public String getInsurePrice() {
         return this.insurePrice;
-    }
-
-    public void setInsurePrice(String insurePrice) {
-        this.insurePrice = insurePrice;
     }
 
     public Boolean getIsQijian() {
         return this.isQijian;
     }
 
-    public void setIsQijian(Boolean isQijian) {
-        this.isQijian = isQijian;
-    }
-
     public Long getItemType() {
         return this.itemType;
-    }
-
-    public void setItemType(Long itemType) {
-        this.itemType = itemType;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public List<AtNSearchSegmentVO> getSegments() {
         return this.segments;
-    }
-
-    public void setSegments(List<AtNSearchSegmentVO> segments) {
-        this.segments = segments;
     }
 
     public Boolean getSupportInsurePromotion() {
         return this.supportInsurePromotion;
     }
 
-    public void setSupportInsurePromotion(Boolean supportInsurePromotion) {
-        this.supportInsurePromotion = supportInsurePromotion;
-    }
-
     public String getTicketPrice() {
         return this.ticketPrice;
     }
 
-    public void setTicketPrice(String ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
     public Long getTripType() {
         return this.tripType;
+    }
+
+    public void setActivityBonus(String activityBonus) {
+        this.activityBonus = activityBonus;
+    }
+
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
+    }
+
+    public void setAttributes(String attributes) {
+        this.attributes = attributes;
+    }
+
+    public void setBasicCabinPrice(String basicCabinPrice) {
+        this.basicCabinPrice = basicCabinPrice;
+    }
+
+    public void setForceInsure(Boolean forceInsure) {
+        this.forceInsure = forceInsure;
+    }
+
+    public void setInsurePrice(String insurePrice) {
+        this.insurePrice = insurePrice;
+    }
+
+    public void setIsQijian(Boolean isQijian) {
+        this.isQijian = isQijian;
+    }
+
+    public void setItemType(Long itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setSegments(List<AtNSearchSegmentVO> segments) {
+        this.segments = segments;
+    }
+
+    public void setSupportInsurePromotion(Boolean supportInsurePromotion) {
+        this.supportInsurePromotion = supportInsurePromotion;
+    }
+
+    public void setTicketPrice(String ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public void setTripType(Long tripType) {

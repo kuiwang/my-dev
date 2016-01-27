@@ -18,10 +18,6 @@ public class RpRefundReviewRequest implements TaobaoRequest<RpRefundReviewRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 审核留言
      */
@@ -52,66 +48,60 @@ public class RpRefundReviewRequest implements TaobaoRequest<RpRefundReviewRespon
      */
     private Boolean result;
 
-    public void setMessage(String message) {
-        this.message = message;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(message, "message");
+        RequestCheckUtils.checkNotEmpty(operator, "operator");
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
+        RequestCheckUtils.checkNotEmpty(refundVersion, "refundVersion");
+        RequestCheckUtils.checkNotEmpty(result, "result");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rp.refund.review";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
     public String getOperator() {
         return this.operator;
-    }
-
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundPhase(String refundPhase) {
-        this.refundPhase = refundPhase;
-    }
-
     public String getRefundPhase() {
         return this.refundPhase;
-    }
-
-    public void setRefundVersion(Long refundVersion) {
-        this.refundVersion = refundVersion;
     }
 
     public Long getRefundVersion() {
         return this.refundVersion;
     }
 
-    public void setResult(Boolean result) {
-        this.result = result;
+    @Override
+    public Class<RpRefundReviewResponse> getResponseClass() {
+        return RpRefundReviewResponse.class;
     }
 
     public Boolean getResult() {
         return this.result;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rp.refund.review";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("message", this.message);
@@ -126,6 +116,12 @@ public class RpRefundReviewRequest implements TaobaoRequest<RpRefundReviewRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -133,20 +129,32 @@ public class RpRefundReviewRequest implements TaobaoRequest<RpRefundReviewRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<RpRefundReviewResponse> getResponseClass() {
-        return RpRefundReviewResponse.class;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(message, "message");
-        RequestCheckUtils.checkNotEmpty(operator, "operator");
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
-        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
-        RequestCheckUtils.checkNotEmpty(refundVersion, "refundVersion");
-        RequestCheckUtils.checkNotEmpty(result, "result");
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRefundPhase(String refundPhase) {
+        this.refundPhase = refundPhase;
+    }
+
+    public void setRefundVersion(Long refundVersion) {
+        this.refundVersion = refundVersion;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

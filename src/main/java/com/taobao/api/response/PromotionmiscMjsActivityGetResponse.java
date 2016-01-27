@@ -20,12 +20,12 @@ public class PromotionmiscMjsActivityGetResponse extends TaobaoResponse {
     @ApiField("mjs_promotion")
     private MjsPromotion mjsPromotion;
 
-    public void setMjsPromotion(MjsPromotion mjsPromotion) {
-        this.mjsPromotion = mjsPromotion;
-    }
-
     public MjsPromotion getMjsPromotion() {
         return this.mjsPromotion;
+    }
+
+    public void setMjsPromotion(MjsPromotion mjsPromotion) {
+        this.mjsPromotion = mjsPromotion;
     }
 
 }

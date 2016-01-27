@@ -17,12 +17,6 @@ import com.taobao.api.response.PromotionmiscMjsActivityListGetResponse;
 public class PromotionmiscMjsActivityListGetRequest implements
         TaobaoRequest<PromotionmiscMjsActivityListGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动类型： 1表示商品级别的活动；2表示店铺级别的活动。<br />
      * 支持最大值为：2<br />
@@ -30,6 +24,8 @@ public class PromotionmiscMjsActivityListGetRequest implements
      * 支持的最大列表长度为：1
      */
     private Long activityType;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。<br />
@@ -43,42 +39,49 @@ public class PromotionmiscMjsActivityListGetRequest implements
      */
     private Long pageSize;
 
-    public void setActivityType(Long activityType) {
-        this.activityType = activityType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(activityType, "activityType");
+        RequestCheckUtils.checkMaxValue(activityType, 2L, "activityType");
+        RequestCheckUtils.checkMinValue(activityType, 1L, "activityType");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
     }
 
     public Long getActivityType() {
         return this.activityType;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotionmisc.mjs.activity.list.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PromotionmiscMjsActivityListGetResponse> getResponseClass() {
+        return PromotionmiscMjsActivityListGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotionmisc.mjs.activity.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("activity_type", this.activityType);
@@ -90,6 +93,12 @@ public class PromotionmiscMjsActivityListGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -97,21 +106,20 @@ public class PromotionmiscMjsActivityListGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionmiscMjsActivityListGetResponse> getResponseClass() {
-        return PromotionmiscMjsActivityListGetResponse.class;
+    public void setActivityType(Long activityType) {
+        this.activityType = activityType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(activityType, "activityType");
-        RequestCheckUtils.checkMaxValue(activityType, 2L, "activityType");
-        RequestCheckUtils.checkMinValue(activityType, 1L, "activityType");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

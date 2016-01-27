@@ -59,52 +59,52 @@ public class ScalingInstanceModel extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getCreationType() {
         return this.creationType;
-    }
-
-    public void setCreationType(String creationType) {
-        this.creationType = creationType;
     }
 
     public String getHealthStatus() {
         return this.healthStatus;
     }
 
-    public void setHealthStatus(String healthStatus) {
-        this.healthStatus = healthStatus;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
     }
 
     public String getLifecycleState() {
         return this.lifecycleState;
     }
 
-    public void setLifecycleState(String lifecycleState) {
-        this.lifecycleState = lifecycleState;
-    }
-
     public String getScalingConfigurationId() {
         return this.scalingConfigurationId;
     }
 
-    public void setScalingConfigurationId(String scalingConfigurationId) {
-        this.scalingConfigurationId = scalingConfigurationId;
-    }
-
     public String getScalingGroupId() {
         return this.scalingGroupId;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setCreationType(String creationType) {
+        this.creationType = creationType;
+    }
+
+    public void setHealthStatus(String healthStatus) {
+        this.healthStatus = healthStatus;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setLifecycleState(String lifecycleState) {
+        this.lifecycleState = lifecycleState;
+    }
+
+    public void setScalingConfigurationId(String scalingConfigurationId) {
+        this.scalingConfigurationId = scalingConfigurationId;
     }
 
     public void setScalingGroupId(String scalingGroupId) {

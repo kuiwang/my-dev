@@ -32,20 +32,20 @@ public class PromotionmiscMjsActivityListGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setMjsPromotionList(List<MjsPromotion> mjsPromotionList) {
-        this.mjsPromotionList = mjsPromotionList;
-    }
-
     public List<MjsPromotion> getMjsPromotionList() {
         return this.mjsPromotionList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setMjsPromotionList(List<MjsPromotion> mjsPromotionList) {
+        this.mjsPromotionList = mjsPromotionList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

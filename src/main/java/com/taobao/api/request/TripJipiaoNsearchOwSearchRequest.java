@@ -17,12 +17,6 @@ import com.taobao.api.response.TripJipiaoNsearchOwSearchResponse;
 public class TripJipiaoNsearchOwSearchRequest implements
         TaobaoRequest<TripJipiaoNsearchOwSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 到达城市三字码<br />
      * 支持最大长度为：3<br />
@@ -58,6 +52,8 @@ public class TripJipiaoNsearchOwSearchRequest implements
      */
     private String flightNo;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 1-9分别表示乘机人数为1-9；乘机人数小于0即相当无限制，默认值-1<br />
      * 支持最大值为：9<br />
@@ -84,90 +80,79 @@ public class TripJipiaoNsearchOwSearchRequest implements
      */
     private Long supplyItinerary;
 
-    public void setArrCityCode(String arrCityCode) {
-        this.arrCityCode = arrCityCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(arrCityCode, "arrCityCode");
+        RequestCheckUtils.checkMaxLength(arrCityCode, 3, "arrCityCode");
+        RequestCheckUtils.checkMaxValue(cabinClass, 6L, "cabinClass");
+        RequestCheckUtils.checkMinValue(cabinClass, 0L, "cabinClass");
+        RequestCheckUtils.checkNotEmpty(depCityCode, "depCityCode");
+        RequestCheckUtils.checkMaxLength(depCityCode, 3, "depCityCode");
+        RequestCheckUtils.checkNotEmpty(depDate, "depDate");
+        RequestCheckUtils.checkMaxLength(depDate, 10, "depDate");
+        RequestCheckUtils.checkMaxLength(flightNo, 7, "flightNo");
+        RequestCheckUtils.checkMaxValue(passengerNum, 9L, "passengerNum");
+        RequestCheckUtils.checkMinValue(passengerNum, -1L, "passengerNum");
+        RequestCheckUtils.checkMaxLength(searchType, 10, "searchType");
+        RequestCheckUtils.checkMinValue(supplyItinerary, 0L, "supplyItinerary");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trip.jipiao.nsearch.ow.search";
     }
 
     public String getArrCityCode() {
         return this.arrCityCode;
     }
 
-    public void setCabinClass(Long cabinClass) {
-        this.cabinClass = cabinClass;
-    }
-
     public Long getCabinClass() {
         return this.cabinClass;
-    }
-
-    public void setDepCityCode(String depCityCode) {
-        this.depCityCode = depCityCode;
     }
 
     public String getDepCityCode() {
         return this.depCityCode;
     }
 
-    public void setDepDate(String depDate) {
-        this.depDate = depDate;
-    }
-
     public String getDepDate() {
         return this.depDate;
-    }
-
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
     }
 
     public String getFlightNo() {
         return this.flightNo;
     }
 
-    public void setPassengerNum(Long passengerNum) {
-        this.passengerNum = passengerNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPassengerNum() {
         return this.passengerNum;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getPid() {
         return this.pid;
     }
 
-    public void setSearchType(String searchType) {
-        this.searchType = searchType;
+    @Override
+    public Class<TripJipiaoNsearchOwSearchResponse> getResponseClass() {
+        return TripJipiaoNsearchOwSearchResponse.class;
     }
 
     public String getSearchType() {
         return this.searchType;
     }
 
-    public void setSupplyItinerary(Long supplyItinerary) {
-        this.supplyItinerary = supplyItinerary;
-    }
-
     public Long getSupplyItinerary() {
         return this.supplyItinerary;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trip.jipiao.nsearch.ow.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("arr_city_code", this.arrCityCode);
@@ -185,6 +170,12 @@ public class TripJipiaoNsearchOwSearchRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -192,27 +183,44 @@ public class TripJipiaoNsearchOwSearchRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TripJipiaoNsearchOwSearchResponse> getResponseClass() {
-        return TripJipiaoNsearchOwSearchResponse.class;
+    public void setArrCityCode(String arrCityCode) {
+        this.arrCityCode = arrCityCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(arrCityCode, "arrCityCode");
-        RequestCheckUtils.checkMaxLength(arrCityCode, 3, "arrCityCode");
-        RequestCheckUtils.checkMaxValue(cabinClass, 6L, "cabinClass");
-        RequestCheckUtils.checkMinValue(cabinClass, 0L, "cabinClass");
-        RequestCheckUtils.checkNotEmpty(depCityCode, "depCityCode");
-        RequestCheckUtils.checkMaxLength(depCityCode, 3, "depCityCode");
-        RequestCheckUtils.checkNotEmpty(depDate, "depDate");
-        RequestCheckUtils.checkMaxLength(depDate, 10, "depDate");
-        RequestCheckUtils.checkMaxLength(flightNo, 7, "flightNo");
-        RequestCheckUtils.checkMaxValue(passengerNum, 9L, "passengerNum");
-        RequestCheckUtils.checkMinValue(passengerNum, -1L, "passengerNum");
-        RequestCheckUtils.checkMaxLength(searchType, 10, "searchType");
-        RequestCheckUtils.checkMinValue(supplyItinerary, 0L, "supplyItinerary");
+    public void setCabinClass(Long cabinClass) {
+        this.cabinClass = cabinClass;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDepCityCode(String depCityCode) {
+        this.depCityCode = depCityCode;
+    }
+
+    public void setDepDate(String depDate) {
+        this.depDate = depDate;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
+    }
+
+    public void setPassengerNum(Long passengerNum) {
+        this.passengerNum = passengerNum;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    public void setSupplyItinerary(Long supplyItinerary) {
+        this.supplyItinerary = supplyItinerary;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

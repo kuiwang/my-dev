@@ -30,20 +30,20 @@ public class WaimaiItemlistGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setDataList(List<TopAuction> dataList) {
-        this.dataList = dataList;
-    }
-
     public List<TopAuction> getDataList() {
         return this.dataList;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setDataList(List<TopAuction> dataList) {
+        this.dataList = dataList;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

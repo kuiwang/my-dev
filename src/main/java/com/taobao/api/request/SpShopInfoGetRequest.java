@@ -18,10 +18,6 @@ public class SpShopInfoGetRequest implements TaobaoRequest<SpShopInfoGetResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 卖家Nick对应的Userid
      */
@@ -32,34 +28,40 @@ public class SpShopInfoGetRequest implements TaobaoRequest<SpShopInfoGetResponse
      */
     private String siteKey;
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(sellerId, "sellerId");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.shop.info.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SpShopInfoGetResponse> getResponseClass() {
+        return SpShopInfoGetResponse.class;
     }
 
     public Long getSellerId() {
         return this.sellerId;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
-    }
-
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.shop.info.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("seller_id", this.sellerId);
@@ -70,6 +72,12 @@ public class SpShopInfoGetRequest implements TaobaoRequest<SpShopInfoGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class SpShopInfoGetRequest implements TaobaoRequest<SpShopInfoGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<SpShopInfoGetResponse> getResponseClass() {
-        return SpShopInfoGetResponse.class;
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(sellerId, "sellerId");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -38,9 +38,9 @@ import com.taobao.top.link.channel.netty.NettyServerUpstreamHandler;
 //one handler per connection
 public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
 
-    private WebSocketServerHandshaker handshaker;
-
     private boolean cumulative;
+
+    private WebSocketServerHandshaker handshaker;
 
     public WebSocketServerUpstreamHandler(LoggerFactory loggerFactory,
             ChannelHandler channelHandler, ChannelGroup channelGroup, boolean cumulative) {
@@ -48,16 +48,19 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
         this.cumulative = cumulative;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-        Object msg = e.getMessage();
-        if (msg instanceof HttpRequest) {
-            this.handleHttpRequest(ctx, (HttpRequest) msg);
-        } else if (msg instanceof WebSocketFrame) {
-            this.handleWebSocketFrame(ctx, (WebSocketFrame) msg);
-        } else if (msg instanceof List<?>) {
-            this.handleWebSocketFrame(ctx, (List<WebSocketFrame>) msg);
+    protected ChannelSender createSender(Channel channel) {
+        return new WebSocketServerChannelSender(channel);
+    }
+
+    private void dump(HttpRequest request) {
+        if (!this.logger.isDebugEnabled()) {
+            return;
+        }
+        this.logger.debug(request.getMethod().getName());
+        this.logger.debug(request.getUri());
+        for (Entry<String, String> h : request.getHeaders()) {
+            this.logger.debug("%s=%s", h.getKey(), h.getValue());
         }
     }
 
@@ -97,13 +100,23 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
         this.handshaker.handshake(ctx.getChannel(), req).addListener(
                 WebSocketServerHandshaker.HANDSHAKE_LISTENER);
 
-        if (this.cumulative)
-        // use custom decoder for cumulative
-        ctx.getPipeline().replace(
-                WebSocket13FrameDecoder.class,
-                "wsdecoder-custom",
-                new CustomWebSocket13FrameDecoder(true, allowExtensions, this.handshaker
-                        .getMaxFramePayloadLength()));
+        if (this.cumulative) {
+            // use custom decoder for cumulative
+            ctx.getPipeline().replace(
+                    WebSocket13FrameDecoder.class,
+                    "wsdecoder-custom",
+                    new CustomWebSocket13FrameDecoder(true, allowExtensions, this.handshaker
+                            .getMaxFramePayloadLength()));
+        }
+    }
+
+    private void handleWebSocketFrame(final ChannelHandlerContext ctx, List<WebSocketFrame> frames)
+            throws Exception {
+        List<ByteBuffer> buffers = new ArrayList<ByteBuffer>();
+        for (WebSocketFrame f : frames) {
+            buffers.add(f.getBinaryData().toByteBuffer());
+        }
+        this.channelHandler.onMessage(this.createContext(buffers));
     }
 
     private void handleWebSocketFrame(final ChannelHandlerContext ctx, WebSocketFrame frame)
@@ -127,16 +140,29 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
                 this.channelHandler.onMessage(this.createContext(buffer.toByteBuffer()));
             }
         }
-        if (this.logger.isDebugEnabled()) this.logger.debug("unhandled frame: %s", frame);
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("unhandled frame: %s", frame);
+        }
     }
 
-    private void handleWebSocketFrame(final ChannelHandlerContext ctx, List<WebSocketFrame> frames)
-            throws Exception {
-        List<ByteBuffer> buffers = new ArrayList<ByteBuffer>();
-        for (WebSocketFrame f : frames) {
-            buffers.add(f.getBinaryData().toByteBuffer());
+    @SuppressWarnings("unchecked")
+    @Override
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+        Object msg = e.getMessage();
+        if (msg instanceof HttpRequest) {
+            this.handleHttpRequest(ctx, (HttpRequest) msg);
+        } else if (msg instanceof WebSocketFrame) {
+            this.handleWebSocketFrame(ctx, (WebSocketFrame) msg);
+        } else if (msg instanceof List<?>) {
+            this.handleWebSocketFrame(ctx, (List<WebSocketFrame>) msg);
         }
-        this.channelHandler.onMessage(this.createContext(buffers));
+    }
+
+    private void renderServerChannelContext(HttpRequest request) {
+        ServerChannelSender serverChannelSender = (WebSocketServerChannelSender) this.sender;
+        for (Entry<String, String> h : request.getHeaders()) {
+            serverChannelSender.setContext(h.getKey(), h.getValue());
+        }
     }
 
     private void sendHttpResponse(ChannelHandlerContext ctx, HttpRequest req, HttpResponse res) {
@@ -151,25 +177,5 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
         if (res.getStatus().getCode() != 200) {
             f.addListener(ChannelFutureListener.CLOSE);
         }
-    }
-
-    private void dump(HttpRequest request) {
-        if (!this.logger.isDebugEnabled()) return;
-        this.logger.debug(request.getMethod().getName());
-        this.logger.debug(request.getUri());
-        for (Entry<String, String> h : request.getHeaders()) {
-            this.logger.debug("%s=%s", h.getKey(), h.getValue());
-        }
-    }
-
-    private void renderServerChannelContext(HttpRequest request) {
-        ServerChannelSender serverChannelSender = (WebSocketServerChannelSender) this.sender;
-        for (Entry<String, String> h : request.getHeaders())
-            serverChannelSender.setContext(h.getKey(), h.getValue());
-    }
-
-    @Override
-    protected ChannelSender createSender(Channel channel) {
-        return new WebSocketServerChannelSender(channel);
     }
 }

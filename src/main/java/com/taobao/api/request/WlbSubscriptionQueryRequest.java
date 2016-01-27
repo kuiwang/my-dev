@@ -17,10 +17,6 @@ public class WlbSubscriptionQueryRequest implements TaobaoRequest<WlbSubscriptio
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 当前页
      */
@@ -37,42 +33,42 @@ public class WlbSubscriptionQueryRequest implements TaobaoRequest<WlbSubscriptio
      */
     private String status;
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.subscription.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<WlbSubscriptionQueryResponse> getResponseClass() {
+        return WlbSubscriptionQueryResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.subscription.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("page_no", this.pageNo);
@@ -84,6 +80,12 @@ public class WlbSubscriptionQueryRequest implements TaobaoRequest<WlbSubscriptio
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,14 +93,20 @@ public class WlbSubscriptionQueryRequest implements TaobaoRequest<WlbSubscriptio
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbSubscriptionQueryResponse> getResponseClass() {
-        return WlbSubscriptionQueryResponse.class;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

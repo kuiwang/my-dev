@@ -18,10 +18,6 @@ public class RpReturngoodsRefillRequest implements TaobaoRequest<RpReturngoodsRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流公司编号
      */
@@ -42,50 +38,50 @@ public class RpReturngoodsRefillRequest implements TaobaoRequest<RpReturngoodsRe
      */
     private String refundPhase;
 
-    public void setLogisticsCompanyCode(String logisticsCompanyCode) {
-        this.logisticsCompanyCode = logisticsCompanyCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(logisticsCompanyCode, "logisticsCompanyCode");
+        RequestCheckUtils.checkNotEmpty(logisticsWaybillNo, "logisticsWaybillNo");
+        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
+        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rp.returngoods.refill";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getLogisticsCompanyCode() {
         return this.logisticsCompanyCode;
     }
 
-    public void setLogisticsWaybillNo(String logisticsWaybillNo) {
-        this.logisticsWaybillNo = logisticsWaybillNo;
-    }
-
     public String getLogisticsWaybillNo() {
         return this.logisticsWaybillNo;
-    }
-
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundPhase(String refundPhase) {
-        this.refundPhase = refundPhase;
-    }
-
     public String getRefundPhase() {
         return this.refundPhase;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RpReturngoodsRefillResponse> getResponseClass() {
+        return RpReturngoodsRefillResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rp.returngoods.refill";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("logistics_company_code", this.logisticsCompanyCode);
@@ -98,6 +94,12 @@ public class RpReturngoodsRefillRequest implements TaobaoRequest<RpReturngoodsRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,18 +107,24 @@ public class RpReturngoodsRefillRequest implements TaobaoRequest<RpReturngoodsRe
         this.udfParams.put(key, value);
     }
 
-    public Class<RpReturngoodsRefillResponse> getResponseClass() {
-        return RpReturngoodsRefillResponse.class;
+    public void setLogisticsCompanyCode(String logisticsCompanyCode) {
+        this.logisticsCompanyCode = logisticsCompanyCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(logisticsCompanyCode, "logisticsCompanyCode");
-        RequestCheckUtils.checkNotEmpty(logisticsWaybillNo, "logisticsWaybillNo");
-        RequestCheckUtils.checkNotEmpty(refundId, "refundId");
-        RequestCheckUtils.checkNotEmpty(refundPhase, "refundPhase");
+    public void setLogisticsWaybillNo(String logisticsWaybillNo) {
+        this.logisticsWaybillNo = logisticsWaybillNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRefundPhase(String refundPhase) {
+        this.refundPhase = refundPhase;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

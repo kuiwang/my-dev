@@ -59,76 +59,76 @@ public class ItemSelect {
         return this.categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCid(Long cid) {
-        this.cid = cid;
     }
 
     public String getLastModified() {
         return this.lastModified;
     }
 
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public String getOpenIid() {
         return this.openIid;
     }
 
-    public void setOpenIid(String openIid) {
-        this.openIid = openIid;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getPictUrl() {
         return this.pictUrl;
     }
 
-    public void setPictUrl(String pictUrl) {
-        this.pictUrl = pictUrl;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getUserType() {
         return this.userType;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOpenIid(String openIid) {
+        this.openIid = openIid;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPictUrl(String pictUrl) {
+        this.pictUrl = pictUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setUserType(Long userType) {

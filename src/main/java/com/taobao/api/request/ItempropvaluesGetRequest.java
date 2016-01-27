@@ -16,12 +16,6 @@ import com.taobao.api.response.ItempropvaluesGetResponse;
  */
 public class ItempropvaluesGetRequest implements TaobaoRequest<ItempropvaluesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 属性的Key，支持多条，以“,”分隔
      */
@@ -38,10 +32,14 @@ public class ItempropvaluesGetRequest implements TaobaoRequest<ItempropvaluesGet
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 属性和属性值 id串，格式例如(pid1;pid2)或(pid1:vid1;pid2:vid2)或(pid1;pid2:vid2)
      */
     private String pvs;
+
+    private Long timestamp;
 
     /**
      * 获取类目的类型：1代表集市、2代表天猫<br />
@@ -50,58 +48,48 @@ public class ItempropvaluesGetRequest implements TaobaoRequest<ItempropvaluesGet
      */
     private Long type;
 
-    public void setAttrKeys(String attrKeys) {
-        this.attrKeys = attrKeys;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cid, "cid");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxValue(type, 2L, "type");
+        RequestCheckUtils.checkMinValue(type, 1L, "type");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.itempropvalues.get";
     }
 
     public String getAttrKeys() {
         return this.attrKeys;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setPvs(String pvs) {
-        this.pvs = pvs;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPvs() {
         return this.pvs;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    @Override
+    public Class<ItempropvaluesGetResponse> getResponseClass() {
+        return ItempropvaluesGetResponse.class;
     }
 
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.itempropvalues.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("attr_keys", this.attrKeys);
@@ -115,6 +103,16 @@ public class ItempropvaluesGetRequest implements TaobaoRequest<ItempropvaluesGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,18 +120,28 @@ public class ItempropvaluesGetRequest implements TaobaoRequest<ItempropvaluesGet
         this.udfParams.put(key, value);
     }
 
-    public Class<ItempropvaluesGetResponse> getResponseClass() {
-        return ItempropvaluesGetResponse.class;
+    public void setAttrKeys(String attrKeys) {
+        this.attrKeys = attrKeys;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cid, "cid");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxValue(type, 2L, "type");
-        RequestCheckUtils.checkMinValue(type, 1L, "type");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setPvs(String pvs) {
+        this.pvs = pvs;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

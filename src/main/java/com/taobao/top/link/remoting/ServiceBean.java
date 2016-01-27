@@ -11,12 +11,12 @@ public class ServiceBean {
         return this.interfaceName;
     }
 
-    public void setInterfaceName(String interfaceName) {
-        this.interfaceName = interfaceName;
-    }
-
     public Object getTarget() {
         return this.target;
+    }
+
+    public void setInterfaceName(String interfaceName) {
+        this.interfaceName = interfaceName;
     }
 
     public void setTarget(Object target) {

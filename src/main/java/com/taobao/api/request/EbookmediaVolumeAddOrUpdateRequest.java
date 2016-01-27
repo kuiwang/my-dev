@@ -17,12 +17,6 @@ import com.taobao.api.response.EbookmediaVolumeAddOrUpdateResponse;
 public class EbookmediaVolumeAddOrUpdateRequest implements
         TaobaoRequest<EbookmediaVolumeAddOrUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品数字ID
      */
@@ -35,10 +29,14 @@ public class EbookmediaVolumeAddOrUpdateRequest implements
      */
     private String desc;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 卷序号ID。此序号ID必须按照数字顺序添加，不能跳过，若有重复则覆盖原来的卷信息,序号不能超过50
      */
     private Long orderId;
+
+    private Long timestamp;
 
     /**
      * 电子书卷标题，不能超过30个字符<br />
@@ -47,50 +45,45 @@ public class EbookmediaVolumeAddOrUpdateRequest implements
      */
     private String title;
 
-    public void setAuctionId(Long auctionId) {
-        this.auctionId = auctionId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
+        RequestCheckUtils.checkMaxLength(desc, 2000, "desc");
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 30, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ebookmedia.volume.add.or.update";
     }
 
     public Long getAuctionId() {
         return this.auctionId;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<EbookmediaVolumeAddOrUpdateResponse> getResponseClass() {
+        return EbookmediaVolumeAddOrUpdateResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ebookmedia.volume.add.or.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_id", this.auctionId);
@@ -103,6 +96,16 @@ public class EbookmediaVolumeAddOrUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -110,19 +113,24 @@ public class EbookmediaVolumeAddOrUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<EbookmediaVolumeAddOrUpdateResponse> getResponseClass() {
-        return EbookmediaVolumeAddOrUpdateResponse.class;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
-        RequestCheckUtils.checkMaxLength(desc, 2000, "desc");
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 30, "title");
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

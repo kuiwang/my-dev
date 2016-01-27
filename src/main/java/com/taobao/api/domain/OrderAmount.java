@@ -99,100 +99,100 @@ public class OrderAmount extends TaobaoObject {
         return this.adjustFee;
     }
 
-    public void setAdjustFee(String adjustFee) {
-        this.adjustFee = adjustFee;
-    }
-
     public String getDiscountFee() {
         return this.discountFee;
-    }
-
-    public void setDiscountFee(String discountFee) {
-        this.discountFee = discountFee;
     }
 
     public String getDivideOrderFee() {
         return this.divideOrderFee;
     }
 
-    public void setDivideOrderFee(String divideOrderFee) {
-        this.divideOrderFee = divideOrderFee;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getOid() {
         return this.oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
     }
 
     public String getPartMjzDiscount() {
         return this.partMjzDiscount;
     }
 
-    public void setPartMjzDiscount(String partMjzDiscount) {
-        this.partMjzDiscount = partMjzDiscount;
-    }
-
     public String getPayment() {
         return this.payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPromotionName() {
         return this.promotionName;
-    }
-
-    public void setPromotionName(String promotionName) {
-        this.promotionName = promotionName;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public String getSkuPropertiesName() {
         return this.skuPropertiesName;
     }
 
-    public void setSkuPropertiesName(String skuPropertiesName) {
-        this.skuPropertiesName = skuPropertiesName;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setAdjustFee(String adjustFee) {
+        this.adjustFee = adjustFee;
+    }
+
+    public void setDiscountFee(String discountFee) {
+        this.discountFee = discountFee;
+    }
+
+    public void setDivideOrderFee(String divideOrderFee) {
+        this.divideOrderFee = divideOrderFee;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setPartMjzDiscount(String partMjzDiscount) {
+        this.partMjzDiscount = partMjzDiscount;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuPropertiesName(String skuPropertiesName) {
+        this.skuPropertiesName = skuPropertiesName;
     }
 
     public void setTitle(String title) {

@@ -37,28 +37,28 @@ public class BillBillsGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setBills(List<Bill> bills) {
-        this.bills = bills;
-    }
-
     public List<Bill> getBills() {
         return this.bills;
-    }
-
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
     }
 
     public Boolean getHasNext() {
         return this.hasNext;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

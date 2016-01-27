@@ -66,68 +66,68 @@ public class DescribeSlowLogsResponse extends AliyunResponse {
     @ApiField("TotalRecordCount")
     private Long totalRecordCount;
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public String getEndTime() {
         return this.endTime;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
     }
 
     public String getEngine() {
         return this.engine;
     }
 
-    public void setItems(List<SQLSlowLog> items) {
-        this.items = items;
-    }
-
     public List<SQLSlowLog> getItems() {
         return this.items;
-    }
-
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
     }
 
     public Long getPageNumber() {
         return this.pageNumber;
     }
 
-    public void setPageRecordCount(Long pageRecordCount) {
-        this.pageRecordCount = pageRecordCount;
-    }
-
     public Long getPageRecordCount() {
         return this.pageRecordCount;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
     }
 
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
     public String getStartTime() {
         return this.startTime;
     }
 
-    public void setTotalRecordCount(Long totalRecordCount) {
-        this.totalRecordCount = totalRecordCount;
-    }
-
     public Long getTotalRecordCount() {
         return this.totalRecordCount;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setItems(List<SQLSlowLog> items) {
+        this.items = items;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageRecordCount(Long pageRecordCount) {
+        this.pageRecordCount = pageRecordCount;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setTotalRecordCount(Long totalRecordCount) {
+        this.totalRecordCount = totalRecordCount;
     }
 
 }

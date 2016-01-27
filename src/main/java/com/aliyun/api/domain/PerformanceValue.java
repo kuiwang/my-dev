@@ -29,12 +29,12 @@ public class PerformanceValue extends TaobaoObject {
         return this.date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getValue() {
         return this.value;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setValue(String value) {

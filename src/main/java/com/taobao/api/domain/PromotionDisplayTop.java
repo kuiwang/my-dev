@@ -34,12 +34,12 @@ public class PromotionDisplayTop extends TaobaoObject {
         return this.promotionInItem;
     }
 
-    public void setPromotionInItem(List<PromotionInItem> promotionInItem) {
-        this.promotionInItem = promotionInItem;
-    }
-
     public List<PromotionInShop> getPromotionInShop() {
         return this.promotionInShop;
+    }
+
+    public void setPromotionInItem(List<PromotionInItem> promotionInItem) {
+        this.promotionInItem = promotionInItem;
     }
 
     public void setPromotionInShop(List<PromotionInShop> promotionInShop) {

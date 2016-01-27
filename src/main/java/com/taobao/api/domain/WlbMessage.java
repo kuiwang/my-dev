@@ -68,52 +68,52 @@ public class WlbMessage extends TaobaoObject {
         return this.gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getMsgCode() {
         return this.msgCode;
     }
 
-    public void setMsgCode(String msgCode) {
-        this.msgCode = msgCode;
-    }
-
     public String getMsgContent() {
         return this.msgContent;
-    }
-
-    public void setMsgContent(String msgContent) {
-        this.msgContent = msgContent;
     }
 
     public String getMsgDescription() {
         return this.msgDescription;
     }
 
-    public void setMsgDescription(String msgDescription) {
-        this.msgDescription = msgDescription;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMsgCode(String msgCode) {
+        this.msgCode = msgCode;
+    }
+
+    public void setMsgContent(String msgContent) {
+        this.msgContent = msgContent;
+    }
+
+    public void setMsgDescription(String msgDescription) {
+        this.msgDescription = msgDescription;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setUserId(Long userId) {

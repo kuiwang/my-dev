@@ -16,37 +16,42 @@ import com.taobao.api.response.UmpDetailGetResponse;
  */
 public class UmpDetailGetRequest implements TaobaoRequest<UmpDetailGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动详情的id
      */
     private Long detailId;
 
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(detailId, "detailId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.detail.get";
     }
 
     public Long getDetailId() {
         return this.detailId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<UmpDetailGetResponse> getResponseClass() {
+        return UmpDetailGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.ump.detail.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("detail_id", this.detailId);
@@ -56,6 +61,12 @@ public class UmpDetailGetRequest implements TaobaoRequest<UmpDetailGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class UmpDetailGetRequest implements TaobaoRequest<UmpDetailGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpDetailGetResponse> getResponseClass() {
-        return UmpDetailGetResponse.class;
+    public void setDetailId(Long detailId) {
+        this.detailId = detailId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(detailId, "detailId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

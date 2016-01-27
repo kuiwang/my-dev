@@ -43,44 +43,44 @@ public class DescribeSnapshotAttributeResponse extends AliyunResponse {
     @ApiField("SnapshotName")
     private String snapshotName;
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getCreationTime() {
         return this.creationTime;
-    }
-
-    public void setProgress(String progress) {
-        this.progress = progress;
     }
 
     public String getProgress() {
         return this.progress;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setSnapshotId(String snapshotId) {
-        this.snapshotId = snapshotId;
     }
 
     public String getSnapshotId() {
         return this.snapshotId;
     }
 
-    public void setSnapshotName(String snapshotName) {
-        this.snapshotName = snapshotName;
-    }
-
     public String getSnapshotName() {
         return this.snapshotName;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSnapshotId(String snapshotId) {
+        this.snapshotId = snapshotId;
+    }
+
+    public void setSnapshotName(String snapshotName) {
+        this.snapshotName = snapshotName;
     }
 
 }

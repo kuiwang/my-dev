@@ -35,20 +35,20 @@ public class Qualifications extends TaobaoObject {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getModel() {
         return this.model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public void setResult(Boolean result) {

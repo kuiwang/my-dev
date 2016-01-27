@@ -20,12 +20,12 @@ public class EbookmediaVolumeAddOrUpdateResponse extends TaobaoResponse {
     @ApiField("ebook_volume")
     private EbookMediaVolume ebookVolume;
 
-    public void setEbookVolume(EbookMediaVolume ebookVolume) {
-        this.ebookVolume = ebookVolume;
-    }
-
     public EbookMediaVolume getEbookVolume() {
         return this.ebookVolume;
+    }
+
+    public void setEbookVolume(EbookMediaVolume ebookVolume) {
+        this.ebookVolume = ebookVolume;
     }
 
 }

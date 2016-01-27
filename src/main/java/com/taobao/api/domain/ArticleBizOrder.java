@@ -121,132 +121,132 @@ public class ArticleBizOrder extends TaobaoObject {
         return this.articleCode;
     }
 
-    public void setArticleCode(String articleCode) {
-        this.articleCode = articleCode;
-    }
-
     public String getArticleItemName() {
         return this.articleItemName;
-    }
-
-    public void setArticleItemName(String articleItemName) {
-        this.articleItemName = articleItemName;
     }
 
     public String getArticleName() {
         return this.articleName;
     }
 
-    public void setArticleName(String articleName) {
-        this.articleName = articleName;
-    }
-
     public Long getBizOrderId() {
         return this.bizOrderId;
-    }
-
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
     }
 
     public Long getBizType() {
         return this.bizType;
     }
 
-    public void setBizType(Long bizType) {
-        this.bizType = bizType;
-    }
-
     public Date getCreate() {
         return this.create;
-    }
-
-    public void setCreate(Date create) {
-        this.create = create;
     }
 
     public String getFee() {
         return this.fee;
     }
 
-    public void setFee(String fee) {
-        this.fee = fee;
-    }
-
     public String getItemCode() {
         return this.itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getOrderCycle() {
         return this.orderCycle;
     }
 
-    public void setOrderCycle(String orderCycle) {
-        this.orderCycle = orderCycle;
-    }
-
     public Date getOrderCycleEnd() {
         return this.orderCycleEnd;
-    }
-
-    public void setOrderCycleEnd(Date orderCycleEnd) {
-        this.orderCycleEnd = orderCycleEnd;
     }
 
     public Date getOrderCycleStart() {
         return this.orderCycleStart;
     }
 
-    public void setOrderCycleStart(Date orderCycleStart) {
-        this.orderCycleStart = orderCycleStart;
-    }
-
     public Long getOrderId() {
         return this.orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public String getPromFee() {
         return this.promFee;
     }
 
-    public void setPromFee(String promFee) {
-        this.promFee = promFee;
-    }
-
     public String getRefundFee() {
         return this.refundFee;
     }
 
-    public void setRefundFee(String refundFee) {
-        this.refundFee = refundFee;
-    }
-
     public String getTotalPayFee() {
         return this.totalPayFee;
+    }
+
+    public void setArticleCode(String articleCode) {
+        this.articleCode = articleCode;
+    }
+
+    public void setArticleItemName(String articleItemName) {
+        this.articleItemName = articleItemName;
+    }
+
+    public void setArticleName(String articleName) {
+        this.articleName = articleName;
+    }
+
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
+    }
+
+    public void setBizType(Long bizType) {
+        this.bizType = bizType;
+    }
+
+    public void setCreate(Date create) {
+        this.create = create;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOrderCycle(String orderCycle) {
+        this.orderCycle = orderCycle;
+    }
+
+    public void setOrderCycleEnd(Date orderCycleEnd) {
+        this.orderCycleEnd = orderCycleEnd;
+    }
+
+    public void setOrderCycleStart(Date orderCycleStart) {
+        this.orderCycleStart = orderCycleStart;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPromFee(String promFee) {
+        this.promFee = promFee;
+    }
+
+    public void setRefundFee(String refundFee) {
+        this.refundFee = refundFee;
     }
 
     public void setTotalPayFee(String totalPayFee) {

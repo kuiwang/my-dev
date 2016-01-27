@@ -36,36 +36,36 @@ public class AtOrder {
         return this.baseInfo;
     }
 
-    public void setBaseInfo(BaseInfo baseInfo) {
-        this.baseInfo = baseInfo;
-    }
-
     public CorpInfo getCorpInfo() {
         return this.corpInfo;
-    }
-
-    public void setCorpInfo(CorpInfo corpInfo) {
-        this.corpInfo = corpInfo;
     }
 
     public String getExtra() {
         return this.extra;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
     public Itinerary getItinerary() {
         return this.itinerary;
     }
 
-    public void setItinerary(Itinerary itinerary) {
-        this.itinerary = itinerary;
-    }
-
     public List<SegmentInfo> getSegmentInfos() {
         return this.segmentInfos;
+    }
+
+    public void setBaseInfo(BaseInfo baseInfo) {
+        this.baseInfo = baseInfo;
+    }
+
+    public void setCorpInfo(CorpInfo corpInfo) {
+        this.corpInfo = corpInfo;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public void setItinerary(Itinerary itinerary) {
+        this.itinerary = itinerary;
     }
 
     public void setSegmentInfos(List<SegmentInfo> segmentInfos) {

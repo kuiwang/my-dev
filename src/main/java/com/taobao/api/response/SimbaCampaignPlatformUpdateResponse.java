@@ -20,12 +20,12 @@ public class SimbaCampaignPlatformUpdateResponse extends TaobaoResponse {
     @ApiField("campaign_platform")
     private CampaignPlatform campaignPlatform;
 
-    public void setCampaignPlatform(CampaignPlatform campaignPlatform) {
-        this.campaignPlatform = campaignPlatform;
-    }
-
     public CampaignPlatform getCampaignPlatform() {
         return this.campaignPlatform;
+    }
+
+    public void setCampaignPlatform(CampaignPlatform campaignPlatform) {
+        this.campaignPlatform = campaignPlatform;
     }
 
 }

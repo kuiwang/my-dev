@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoDistributorItemsGetResponse;
 public class FenxiaoDistributorItemsGetRequest implements
         TaobaoRequest<FenxiaoDistributorItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销商ID 。
      */
@@ -32,6 +26,8 @@ public class FenxiaoDistributorItemsGetRequest implements
      * 设置结束时间,空为不设置。
      */
     private Date endModified;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码（大于0的整数，默认1）
@@ -53,66 +49,54 @@ public class FenxiaoDistributorItemsGetRequest implements
      */
     private Date startModified;
 
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.distributor.items.get";
     }
 
     public Long getDistributorId() {
         return this.distributorId;
     }
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
-    }
-
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
+    @Override
+    public Class<FenxiaoDistributorItemsGetResponse> getResponseClass() {
+        return FenxiaoDistributorItemsGetResponse.class;
     }
 
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.distributor.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("distributor_id", this.distributorId);
@@ -127,6 +111,12 @@ public class FenxiaoDistributorItemsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,14 +124,32 @@ public class FenxiaoDistributorItemsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDistributorItemsGetResponse> getResponseClass() {
-        return FenxiaoDistributorItemsGetResponse.class;
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

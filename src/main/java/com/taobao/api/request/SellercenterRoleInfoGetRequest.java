@@ -19,36 +19,41 @@ public class SellercenterRoleInfoGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 角色id<br />
      * 支持的最大列表长度为：100
      */
     private Long roleId;
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(roleId, "roleId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sellercenter.role.info.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SellercenterRoleInfoGetResponse> getResponseClass() {
+        return SellercenterRoleInfoGetResponse.class;
     }
 
     public Long getRoleId() {
         return this.roleId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sellercenter.role.info.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("role_id", this.roleId);
@@ -58,6 +63,12 @@ public class SellercenterRoleInfoGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,15 +76,12 @@ public class SellercenterRoleInfoGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SellercenterRoleInfoGetResponse> getResponseClass() {
-        return SellercenterRoleInfoGetResponse.class;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(roleId, "roleId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -35,20 +35,20 @@ public class DeliveryAgentVO extends TaobaoObject {
         return this.agentId;
     }
 
-    public void setAgentId(Long agentId) {
-        this.agentId = agentId;
-    }
-
     public String getAgentName() {
         return this.agentName;
     }
 
-    public void setAgentName(String agentName) {
-        this.agentName = agentName;
-    }
-
     public Long getAgentUserId() {
         return this.agentUserId;
+    }
+
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
     }
 
     public void setAgentUserId(Long agentUserId) {

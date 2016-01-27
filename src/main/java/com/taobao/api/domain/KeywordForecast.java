@@ -53,44 +53,44 @@ public class KeywordForecast extends TaobaoObject {
         return this.keywordId;
     }
 
-    public void setKeywordId(Long keywordId) {
-        this.keywordId = keywordId;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getPriceClick() {
         return this.priceClick;
     }
 
-    public void setPriceClick(String priceClick) {
-        this.priceClick = priceClick;
-    }
-
     public String getPriceCust() {
         return this.priceCust;
-    }
-
-    public void setPriceCust(String priceCust) {
-        this.priceCust = priceCust;
     }
 
     public String getPriceRank() {
         return this.priceRank;
     }
 
-    public void setPriceRank(String priceRank) {
-        this.priceRank = priceRank;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setKeywordId(Long keywordId) {
+        this.keywordId = keywordId;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPriceClick(String priceClick) {
+        this.priceClick = priceClick;
+    }
+
+    public void setPriceCust(String priceCust) {
+        this.priceCust = priceCust;
+    }
+
+    public void setPriceRank(String priceRank) {
+        this.priceRank = priceRank;
     }
 
     public void setWord(String word) {

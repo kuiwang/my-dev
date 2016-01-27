@@ -33,12 +33,12 @@ public class InsightRelatedWords extends TaobaoObject {
         return this.bidword;
     }
 
-    public void setBidword(String bidword) {
-        this.bidword = bidword;
-    }
-
     public List<InsightRelatedWord> getRelatedWordItemsList() {
         return this.relatedWordItemsList;
+    }
+
+    public void setBidword(String bidword) {
+        this.bidword = bidword;
     }
 
     public void setRelatedWordItemsList(List<InsightRelatedWord> relatedWordItemsList) {

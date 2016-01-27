@@ -41,28 +41,28 @@ public class INWordAnalysis extends TaobaoObject {
         return this.word;
     }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
     public String getWordAreaPer() {
         return this.wordAreaPer;
-    }
-
-    public void setWordAreaPer(String wordAreaPer) {
-        this.wordAreaPer = wordAreaPer;
     }
 
     public String getWordHpPrice() {
         return this.wordHpPrice;
     }
 
-    public void setWordHpPrice(String wordHpPrice) {
-        this.wordHpPrice = wordHpPrice;
-    }
-
     public String getWordSourcePer() {
         return this.wordSourcePer;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public void setWordAreaPer(String wordAreaPer) {
+        this.wordAreaPer = wordAreaPer;
+    }
+
+    public void setWordHpPrice(String wordHpPrice) {
+        this.wordHpPrice = wordHpPrice;
     }
 
     public void setWordSourcePer(String wordSourcePer) {

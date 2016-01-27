@@ -16,12 +16,6 @@ import com.taobao.api.response.AlipayUserTradeSearchResponse;
  */
 public class AlipayUserTradeSearchRequest implements TaobaoRequest<AlipayUserTradeSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝订单号，为空查询所有记录
      */
@@ -31,6 +25,8 @@ public class AlipayUserTradeSearchRequest implements TaobaoRequest<AlipayUserTra
      * 结束时间。与开始时间间隔在七天之内
      */
     private String endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商户订单号，为空查询所有记录
@@ -67,90 +63,69 @@ public class AlipayUserTradeSearchRequest implements TaobaoRequest<AlipayUserTra
      */
     private String startTime;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
     }
 
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    @Override
+    public String getApiMethodName() {
+        return "alipay.user.trade.search";
     }
 
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
     }
 
-    public void setOrderFrom(String orderFrom) {
-        this.orderFrom = orderFrom;
-    }
-
     public String getOrderFrom() {
         return this.orderFrom;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public String getOrderStatus() {
         return this.orderStatus;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderType() {
         return this.orderType;
-    }
-
-    public void setPageNo(String pageNo) {
-        this.pageNo = pageNo;
     }
 
     public String getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public String getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<AlipayUserTradeSearchResponse> getResponseClass() {
+        return AlipayUserTradeSearchResponse.class;
     }
 
     public String getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.user.trade.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("alipay_order_no", this.alipayOrderNo);
@@ -168,6 +143,12 @@ public class AlipayUserTradeSearchRequest implements TaobaoRequest<AlipayUserTra
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -175,17 +156,44 @@ public class AlipayUserTradeSearchRequest implements TaobaoRequest<AlipayUserTra
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayUserTradeSearchResponse> getResponseClass() {
-        return AlipayUserTradeSearchResponse.class;
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setOrderFrom(String orderFrom) {
+        this.orderFrom = orderFrom;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setPageNo(String pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(String pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -18,35 +18,41 @@ public class UmpMbbsListGetRequest implements TaobaoRequest<UmpMbbsListGetRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 营销积木块id组成的字符串。
      */
     private String ids;
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+        RequestCheckUtils.checkMaxListSize(ids, 20, "ids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.mbbs.list.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<UmpMbbsListGetResponse> getResponseClass() {
+        return UmpMbbsListGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ump.mbbs.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ids", this.ids);
@@ -56,6 +62,12 @@ public class UmpMbbsListGetRequest implements TaobaoRequest<UmpMbbsListGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,16 +75,12 @@ public class UmpMbbsListGetRequest implements TaobaoRequest<UmpMbbsListGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpMbbsListGetResponse> getResponseClass() {
-        return UmpMbbsListGetResponse.class;
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
-        RequestCheckUtils.checkMaxListSize(ids, 20, "ids");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

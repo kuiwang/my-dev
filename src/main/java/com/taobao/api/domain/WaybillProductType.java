@@ -39,20 +39,20 @@ public class WaybillProductType extends TaobaoObject {
         return this.code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<WaybillServiceType> getServiceTypes() {
         return this.serviceTypes;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setServiceTypes(List<WaybillServiceType> serviceTypes) {

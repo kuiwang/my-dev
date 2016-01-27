@@ -35,6 +35,12 @@ import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
 public interface Authenticator {
 
     /**
+     * finish authenticate phase. if retry authenticate, need to create a
+     * new Authenticator instance.
+     */
+    public void done();
+
+    /**
      * Gets the credentials.
      *
      * @param method request method GET,POST,CONNECT(proxy)
@@ -55,13 +61,7 @@ public interface Authenticator {
      */
     public void init(WebSocket websocket, Credentials credentials);
 
-    /**
-     * finish authenticate phase. if retry authenticate, need to create a
-     * new Authenticator instance.
-     */
-    public void done();
+    public boolean isDone();
 
     public boolean isNeedAuthenticate();
-
-    public boolean isDone();
 }

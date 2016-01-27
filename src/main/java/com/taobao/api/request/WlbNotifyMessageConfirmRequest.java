@@ -19,36 +19,41 @@ public class WlbNotifyMessageConfirmRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流宝通知消息的id，通过taobao.wlb.notify.message.page.
      * get接口得到的WlbMessage数据结构中的id字段
      */
     private Long messageId;
 
-    public void setMessageId(Long messageId) {
-        this.messageId = messageId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(messageId, "messageId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.notify.message.confirm";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMessageId() {
         return this.messageId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbNotifyMessageConfirmResponse> getResponseClass() {
+        return WlbNotifyMessageConfirmResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.notify.message.confirm";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("message_id", this.messageId);
@@ -58,6 +63,12 @@ public class WlbNotifyMessageConfirmRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,15 +76,12 @@ public class WlbNotifyMessageConfirmRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbNotifyMessageConfirmResponse> getResponseClass() {
-        return WlbNotifyMessageConfirmResponse.class;
+    public void setMessageId(Long messageId) {
+        this.messageId = messageId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(messageId, "messageId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

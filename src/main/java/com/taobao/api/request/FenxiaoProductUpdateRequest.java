@@ -19,10 +19,6 @@ import com.taobao.api.response.FenxiaoProductUpdateResponse;
 public class FenxiaoProductUpdateRequest implements
         TaobaoUploadRequest<FenxiaoProductUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 警戒库存必须是0到29999。
      */
@@ -67,6 +63,8 @@ public class FenxiaoProductUpdateRequest implements
      * 是否有发票，可选值：false（否）、true（是），默认false。
      */
     private String haveInvoice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主图图片，如果pic_path参数不空，则优先使用pic_path，忽略该参数<br />
@@ -224,324 +222,192 @@ public class FenxiaoProductUpdateRequest implements
      */
     private String status;
 
-    public void setAlarmNumber(Long alarmNumber) {
-        this.alarmNumber = alarmNumber;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(image, 512000, "image");
+        RequestCheckUtils.checkNotEmpty(pid, "pid");
     }
 
     public Long getAlarmNumber() {
         return this.alarmNumber;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.update";
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCostPrice(String costPrice) {
-        this.costPrice = costPrice;
     }
 
     public String getCostPrice() {
         return this.costPrice;
     }
 
-    public void setDealerCostPrice(String dealerCostPrice) {
-        this.dealerCostPrice = dealerCostPrice;
-    }
-
     public String getDealerCostPrice() {
         return this.dealerCostPrice;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
-    }
-
     public Long getDiscountId() {
         return this.discountId;
     }
 
-    public void setHaveGuarantee(String haveGuarantee) {
-        this.haveGuarantee = haveGuarantee;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
     }
 
     public String getHaveGuarantee() {
         return this.haveGuarantee;
     }
 
-    public void setHaveInvoice(String haveInvoice) {
-        this.haveInvoice = haveInvoice;
-    }
-
     public String getHaveInvoice() {
         return this.haveInvoice;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImage() {
         return this.image;
     }
 
-    public void setInputProperties(String inputProperties) {
-        this.inputProperties = inputProperties;
-    }
-
     public String getInputProperties() {
         return this.inputProperties;
-    }
-
-    public void setIsAuthz(String isAuthz) {
-        this.isAuthz = isAuthz;
     }
 
     public String getIsAuthz() {
         return this.isAuthz;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public Long getPid() {
         return this.pid;
     }
 
-    public void setPostageEms(String postageEms) {
-        this.postageEms = postageEms;
-    }
-
     public String getPostageEms() {
         return this.postageEms;
-    }
-
-    public void setPostageFast(String postageFast) {
-        this.postageFast = postageFast;
     }
 
     public String getPostageFast() {
         return this.postageFast;
     }
 
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
-    }
-
     public Long getPostageId() {
         return this.postageId;
-    }
-
-    public void setPostageOrdinary(String postageOrdinary) {
-        this.postageOrdinary = postageOrdinary;
     }
 
     public String getPostageOrdinary() {
         return this.postageOrdinary;
     }
 
-    public void setPostageType(String postageType) {
-        this.postageType = postageType;
-    }
-
     public String getPostageType() {
         return this.postageType;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
-    }
-
     public String getPropertyAlias() {
         return this.propertyAlias;
-    }
-
-    public void setProv(String prov) {
-        this.prov = prov;
     }
 
     public String getProv() {
         return this.prov;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setRetailPriceHigh(String retailPriceHigh) {
-        this.retailPriceHigh = retailPriceHigh;
+    @Override
+    public Class<FenxiaoProductUpdateResponse> getResponseClass() {
+        return FenxiaoProductUpdateResponse.class;
     }
 
     public String getRetailPriceHigh() {
         return this.retailPriceHigh;
     }
 
-    public void setRetailPriceLow(String retailPriceLow) {
-        this.retailPriceLow = retailPriceLow;
-    }
-
     public String getRetailPriceLow() {
         return this.retailPriceLow;
-    }
-
-    public void setSkuCostPrices(String skuCostPrices) {
-        this.skuCostPrices = skuCostPrices;
     }
 
     public String getSkuCostPrices() {
         return this.skuCostPrices;
     }
 
-    public void setSkuDealerCostPrices(String skuDealerCostPrices) {
-        this.skuDealerCostPrices = skuDealerCostPrices;
-    }
-
     public String getSkuDealerCostPrices() {
         return this.skuDealerCostPrices;
-    }
-
-    public void setSkuIds(String skuIds) {
-        this.skuIds = skuIds;
     }
 
     public String getSkuIds() {
         return this.skuIds;
     }
 
-    public void setSkuOuterIds(String skuOuterIds) {
-        this.skuOuterIds = skuOuterIds;
-    }
-
     public String getSkuOuterIds() {
         return this.skuOuterIds;
-    }
-
-    public void setSkuProperties(String skuProperties) {
-        this.skuProperties = skuProperties;
     }
 
     public String getSkuProperties() {
         return this.skuProperties;
     }
 
-    public void setSkuPropertiesDel(String skuPropertiesDel) {
-        this.skuPropertiesDel = skuPropertiesDel;
-    }
-
     public String getSkuPropertiesDel() {
         return this.skuPropertiesDel;
-    }
-
-    public void setSkuQuantitys(String skuQuantitys) {
-        this.skuQuantitys = skuQuantitys;
     }
 
     public String getSkuQuantitys() {
         return this.skuQuantitys;
     }
 
-    public void setSkuStandardPrices(String skuStandardPrices) {
-        this.skuStandardPrices = skuStandardPrices;
-    }
-
     public String getSkuStandardPrices() {
         return this.skuStandardPrices;
-    }
-
-    public void setStandardPrice(String standardPrice) {
-        this.standardPrice = standardPrice;
     }
 
     public String getStandardPrice() {
         return this.standardPrice;
     }
 
-    public void setStandardRetailPrice(String standardRetailPrice) {
-        this.standardRetailPrice = standardRetailPrice;
-    }
-
     public String getStandardRetailPrice() {
         return this.standardRetailPrice;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("alarm_number", this.alarmNumber);
@@ -587,6 +453,12 @@ public class FenxiaoProductUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -594,23 +466,160 @@ public class FenxiaoProductUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setAlarmNumber(Long alarmNumber) {
+        this.alarmNumber = alarmNumber;
     }
 
-    public Class<FenxiaoProductUpdateResponse> getResponseClass() {
-        return FenxiaoProductUpdateResponse.class;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(image, 512000, "image");
-        RequestCheckUtils.checkNotEmpty(pid, "pid");
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCostPrice(String costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    public void setDealerCostPrice(String dealerCostPrice) {
+        this.dealerCostPrice = dealerCostPrice;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
+    }
+
+    public void setHaveGuarantee(String haveGuarantee) {
+        this.haveGuarantee = haveGuarantee;
+    }
+
+    public void setHaveInvoice(String haveInvoice) {
+        this.haveInvoice = haveInvoice;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setInputProperties(String inputProperties) {
+        this.inputProperties = inputProperties;
+    }
+
+    public void setIsAuthz(String isAuthz) {
+        this.isAuthz = isAuthz;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setPostageEms(String postageEms) {
+        this.postageEms = postageEms;
+    }
+
+    public void setPostageFast(String postageFast) {
+        this.postageFast = postageFast;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setPostageOrdinary(String postageOrdinary) {
+        this.postageOrdinary = postageOrdinary;
+    }
+
+    public void setPostageType(String postageType) {
+        this.postageType = postageType;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRetailPriceHigh(String retailPriceHigh) {
+        this.retailPriceHigh = retailPriceHigh;
+    }
+
+    public void setRetailPriceLow(String retailPriceLow) {
+        this.retailPriceLow = retailPriceLow;
+    }
+
+    public void setSkuCostPrices(String skuCostPrices) {
+        this.skuCostPrices = skuCostPrices;
+    }
+
+    public void setSkuDealerCostPrices(String skuDealerCostPrices) {
+        this.skuDealerCostPrices = skuDealerCostPrices;
+    }
+
+    public void setSkuIds(String skuIds) {
+        this.skuIds = skuIds;
+    }
+
+    public void setSkuOuterIds(String skuOuterIds) {
+        this.skuOuterIds = skuOuterIds;
+    }
+
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties;
+    }
+
+    public void setSkuPropertiesDel(String skuPropertiesDel) {
+        this.skuPropertiesDel = skuPropertiesDel;
+    }
+
+    public void setSkuQuantitys(String skuQuantitys) {
+        this.skuQuantitys = skuQuantitys;
+    }
+
+    public void setSkuStandardPrices(String skuStandardPrices) {
+        this.skuStandardPrices = skuStandardPrices;
+    }
+
+    public void setStandardPrice(String standardPrice) {
+        this.standardPrice = standardPrice;
+    }
+
+    public void setStandardRetailPrice(String standardRetailPrice) {
+        this.standardRetailPrice = standardRetailPrice;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -41,28 +41,28 @@ public class ItemKnowledgeType extends TaobaoObject {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTypeDesc() {
         return this.typeDesc;
-    }
-
-    public void setTypeDesc(String typeDesc) {
-        this.typeDesc = typeDesc;
     }
 
     public String getTypeKey() {
         return this.typeKey;
     }
 
-    public void setTypeKey(String typeKey) {
-        this.typeKey = typeKey;
-    }
-
     public String getTypeName() {
         return this.typeName;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTypeDesc(String typeDesc) {
+        this.typeDesc = typeDesc;
+    }
+
+    public void setTypeKey(String typeKey) {
+        this.typeKey = typeKey;
     }
 
     public void setTypeName(String typeName) {

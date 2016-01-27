@@ -21,12 +21,12 @@ public class WlbOrderConsignResponse extends TaobaoResponse {
     @ApiField("modify_time")
     private Date modifyTime;
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public Date getModifyTime() {
         return this.modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 
 }

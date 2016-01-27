@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipMonitorDataResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * Eip 的申请Id
      */
@@ -45,10 +27,24 @@ public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipM
      */
     private String endTime;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
     /**
      * 获取监控数据的精度，默认60秒，只能为60的倍数。
      */
     private Long period;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
 
     /**
      * 获取数据的起始时间点：ISO8601 表示法，并使用UTC时间。格式为：
@@ -56,74 +52,61 @@ public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipM
      */
     private String startTime;
 
-    public void setAllocationId(String allocationId) {
-        this.allocationId = allocationId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(allocationId, "allocationId");
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
     }
 
     public String getAllocationId() {
         return this.allocationId;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.DescribeEipMonitorData.2014-05-26";
     }
 
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setPeriod(Long period) {
-        this.period = period;
-    }
-
-    public Long getPeriod() {
-        return this.period;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getStartTime() {
-        return this.startTime;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPeriod() {
+        return this.period;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeEipMonitorDataResponse> getResponseClass() {
+        return DescribeEipMonitorDataResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getStartTime() {
+        return this.startTime;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.DescribeEipMonitorData.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -139,6 +122,12 @@ public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipM
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -146,17 +135,36 @@ public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipM
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeEipMonitorDataResponse> getResponseClass() {
-        return DescribeEipMonitorDataResponse.class;
+    public void setAllocationId(String allocationId) {
+        this.allocationId = allocationId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(allocationId, "allocationId");
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPeriod(Long period) {
+        this.period = period;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,12 +19,12 @@ public class HotelMatchFeedbackResponse extends TaobaoResponse {
     @ApiField("succ")
     private Boolean succ;
 
-    public void setSucc(Boolean succ) {
-        this.succ = succ;
-    }
-
     public Boolean getSucc() {
         return this.succ;
+    }
+
+    public void setSucc(Boolean succ) {
+        this.succ = succ;
     }
 
 }

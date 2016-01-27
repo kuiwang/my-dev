@@ -17,12 +17,6 @@ import com.taobao.api.response.ItemsInventoryGetResponse;
  */
 public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分类字段。可选值:<br>
      * regular_shelved(定时上架)<br>
@@ -34,8 +28,8 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
      * violation_off_shelf(违规下架的)<br>
      * 默认查询for_shelved(等待所有上架)这个状态的商品<br>
      * <font color=
-     * 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+never_on_shelf(从未上架)+off_shelf(我下架的)</f
-     * o n t >
+     * 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+never_on_shelf(从未上架)+off_shelf(我下架的)<
+     * / f o n t >
      */
     private String banner;
 
@@ -64,6 +58,8 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
      * 是否参与会员折扣。可选值：true，false。默认不过滤该条件
      */
     private Boolean hasDiscount;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否挂接了达尔文标准产品体系。
@@ -116,130 +112,90 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
      */
     private Date startModified;
 
-    public void setBanner(String banner) {
-        this.banner = banner;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxValue(pageNo, 101L, "pageNo");
+        RequestCheckUtils.checkMaxListSize(sellerCids, 32, "sellerCids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.items.inventory.get";
     }
 
     public String getBanner() {
         return this.banner;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
     }
 
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
-    }
-
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
     }
 
     public Boolean getHasDiscount() {
         return this.hasDiscount;
     }
 
-    public void setIsCspu(Boolean isCspu) {
-        this.isCspu = isCspu;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsCspu() {
         return this.isCspu;
     }
 
-    public void setIsEx(Boolean isEx) {
-        this.isEx = isEx;
-    }
-
     public Boolean getIsEx() {
         return this.isEx;
-    }
-
-    public void setIsTaobao(Boolean isTaobao) {
-        this.isTaobao = isTaobao;
     }
 
     public Boolean getIsTaobao() {
         return this.isTaobao;
     }
 
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-    }
-
     public String getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setQ(String q) {
-        this.q = q;
     }
 
     public String getQ() {
         return this.q;
     }
 
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
+    @Override
+    public Class<ItemsInventoryGetResponse> getResponseClass() {
+        return ItemsInventoryGetResponse.class;
     }
 
     public String getSellerCids() {
         return this.sellerCids;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
-    }
-
     public Date getStartModified() {
         return this.startModified;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.items.inventory.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("banner", this.banner);
@@ -262,6 +218,12 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -269,18 +231,64 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemsInventoryGetResponse> getResponseClass() {
-        return ItemsInventoryGetResponse.class;
+    public void setBanner(String banner) {
+        this.banner = banner;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxValue(pageNo, 101L, "pageNo");
-        RequestCheckUtils.checkMaxListSize(sellerCids, 32, "sellerCids");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setIsCspu(Boolean isCspu) {
+        this.isCspu = isCspu;
+    }
+
+    public void setIsEx(Boolean isEx) {
+        this.isEx = isEx;
+    }
+
+    public void setIsTaobao(Boolean isTaobao) {
+        this.isTaobao = isTaobao;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setQ(String q) {
+        this.q = q;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -64,52 +64,52 @@ public class ItemInfo extends TaobaoObject {
         return this.inSale;
     }
 
-    public void setInSale(String inSale) {
-        this.inSale = inSale;
-    }
-
     public List<ItemProperty> getItemProps() {
         return this.itemProps;
-    }
-
-    public void setItemProps(List<ItemProperty> itemProps) {
-        this.itemProps = itemProps;
     }
 
     public List<String> getPics() {
         return this.pics;
     }
 
-    public void setPics(List<String> pics) {
-        this.pics = pics;
-    }
-
     public String getSkuItem() {
         return this.skuItem;
-    }
-
-    public void setSkuItem(String skuItem) {
-        this.skuItem = skuItem;
     }
 
     public String getStart() {
         return this.start;
     }
 
-    public void setStart(String start) {
-        this.start = start;
-    }
-
     public String getSubTitle() {
         return this.subTitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setInSale(String inSale) {
+        this.inSale = inSale;
+    }
+
+    public void setItemProps(List<ItemProperty> itemProps) {
+        this.itemProps = itemProps;
+    }
+
+    public void setPics(List<String> pics) {
+        this.pics = pics;
+    }
+
+    public void setSkuItem(String skuItem) {
+        this.skuItem = skuItem;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 
     public void setTitle(String title) {

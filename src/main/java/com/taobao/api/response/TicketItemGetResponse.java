@@ -20,12 +20,12 @@ public class TicketItemGetResponse extends TaobaoResponse {
     @ApiField("ticket_item")
     private TicketItem ticketItem;
 
-    public void setTicketItem(TicketItem ticketItem) {
-        this.ticketItem = ticketItem;
-    }
-
     public TicketItem getTicketItem() {
         return this.ticketItem;
+    }
+
+    public void setTicketItem(TicketItem ticketItem) {
+        this.ticketItem = ticketItem;
     }
 
 }

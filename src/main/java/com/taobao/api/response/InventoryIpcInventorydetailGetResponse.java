@@ -24,12 +24,12 @@ public class InventoryIpcInventorydetailGetResponse extends TaobaoResponse {
     @ApiField("ipc_inventory_detail_do")
     private List<IpcInventoryDetailDo> inventoryDetails;
 
-    public void setInventoryDetails(List<IpcInventoryDetailDo> inventoryDetails) {
-        this.inventoryDetails = inventoryDetails;
-    }
-
     public List<IpcInventoryDetailDo> getInventoryDetails() {
         return this.inventoryDetails;
+    }
+
+    public void setInventoryDetails(List<IpcInventoryDetailDo> inventoryDetails) {
+        this.inventoryDetails = inventoryDetails;
     }
 
 }

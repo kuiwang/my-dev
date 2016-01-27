@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaAdgroupsItemExistResponse;
  */
 public class SimbaAdgroupsItemExistRequest implements TaobaoRequest<SimbaAdgroupsItemExistResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品Id
@@ -37,42 +33,44 @@ public class SimbaAdgroupsItemExistRequest implements TaobaoRequest<SimbaAdgroup
      */
     private String nick;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroups.item.exist";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaAdgroupsItemExistResponse> getResponseClass() {
+        return SimbaAdgroupsItemExistResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroups.item.exist";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -84,6 +82,12 @@ public class SimbaAdgroupsItemExistRequest implements TaobaoRequest<SimbaAdgroup
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,16 +95,20 @@ public class SimbaAdgroupsItemExistRequest implements TaobaoRequest<SimbaAdgroup
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupsItemExistResponse> getResponseClass() {
-        return SimbaAdgroupsItemExistResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

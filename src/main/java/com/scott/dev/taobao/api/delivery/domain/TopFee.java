@@ -6,9 +6,14 @@ package com.scott.dev.taobao.api.delivery.domain;
 public class TopFee {
 
     /*
-     * 可选值：post:平邮; cod:货到付款; ems:EMS; express:快递公司
+     * 增费：输入0.00-999.99（最多包含两位小数） 不能为空不输入运费时必须输入0
      */
-    private String serviceType;
+    private String addFee;
+
+    /*
+     * 增费标准：当valuation(记价方式)为0时输入1-9999范围内的整数
+     */
+    private String addStandard;
 
     /*
      * 邮费子项涉及的地区,多个地区用逗号连接数量串;
@@ -20,9 +25,9 @@ public class TopFee {
     private String destination;
 
     /*
-     * 首费标准：当valuation(记价方式)为0时输入1-9999范围内的整数
+     * 可选值：post:平邮; cod:货到付款; ems:EMS; express:快递公司
      */
-    private String startStandard;
+    private String serviceType;
 
     /*
      * 首费：输入0.01-999.99（最多包含两位小数） 不能为空也不能为0
@@ -30,60 +35,55 @@ public class TopFee {
     private String startFee;
 
     /*
-     * 增费标准：当valuation(记价方式)为0时输入1-9999范围内的整数
+     * 首费标准：当valuation(记价方式)为0时输入1-9999范围内的整数
      */
-    private String addStandard;
+    private String startStandard;
 
-    /*
-     * 增费：输入0.00-999.99（最多包含两位小数） 不能为空不输入运费时必须输入0
-     */
-    private String addFee;
-
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public String getStartStandard() {
-        return startStandard;
-    }
-
-    public void setStartStandard(String startStandard) {
-        this.startStandard = startStandard;
-    }
-
-    public String getStartFee() {
-        return startFee;
-    }
-
-    public void setStartFee(String startFee) {
-        this.startFee = startFee;
+    public String getAddFee() {
+        return addFee;
     }
 
     public String getAddStandard() {
         return addStandard;
     }
 
-    public void setAddStandard(String addStandard) {
-        this.addStandard = addStandard;
+    public String getDestination() {
+        return destination;
     }
 
-    public String getAddFee() {
-        return addFee;
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public String getStartFee() {
+        return startFee;
+    }
+
+    public String getStartStandard() {
+        return startStandard;
     }
 
     public void setAddFee(String addFee) {
         this.addFee = addFee;
+    }
+
+    public void setAddStandard(String addStandard) {
+        this.addStandard = addStandard;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public void setStartFee(String startFee) {
+        this.startFee = startFee;
+    }
+
+    public void setStartStandard(String startStandard) {
+        this.startStandard = startStandard;
     }
 }

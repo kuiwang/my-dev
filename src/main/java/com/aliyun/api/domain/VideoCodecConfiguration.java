@@ -29,12 +29,12 @@ public class VideoCodecConfiguration extends TaobaoObject {
         return this.codec;
     }
 
-    public void setCodec(String codec) {
-        this.codec = codec;
-    }
-
     public VideoCodecOptions getCodecOptions() {
         return this.codecOptions;
+    }
+
+    public void setCodec(String codec) {
+        this.codec = codec;
     }
 
     public void setCodecOptions(VideoCodecOptions codecOptions) {

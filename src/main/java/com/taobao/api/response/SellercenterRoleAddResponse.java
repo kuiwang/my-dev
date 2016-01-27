@@ -20,12 +20,12 @@ public class SellercenterRoleAddResponse extends TaobaoResponse {
     @ApiField("role")
     private Role role;
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public Role getRole() {
         return this.role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }

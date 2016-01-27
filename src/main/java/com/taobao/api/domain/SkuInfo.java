@@ -34,12 +34,12 @@ public class SkuInfo extends TaobaoObject {
         return this.pvMapSkuList;
     }
 
-    public void setPvMapSkuList(List<PvMapSku> pvMapSkuList) {
-        this.pvMapSkuList = pvMapSkuList;
-    }
-
     public List<SkuProperty> getSkuProps() {
         return this.skuProps;
+    }
+
+    public void setPvMapSkuList(List<PvMapSku> pvMapSkuList) {
+        this.pvMapSkuList = pvMapSkuList;
     }
 
     public void setSkuProps(List<SkuProperty> skuProps) {

@@ -36,28 +36,28 @@ public class WangwangEserviceNewevalsGetResponse extends TaobaoResponse {
     @ApiField("eval_detail")
     private List<EvalDetail> staffEvalDetails;
 
-    public void setResultCode(Long resultCode) {
-        this.resultCode = resultCode;
-    }
-
     public Long getResultCode() {
         return this.resultCode;
-    }
-
-    public void setResultCount(Long resultCount) {
-        this.resultCount = resultCount;
     }
 
     public Long getResultCount() {
         return this.resultCount;
     }
 
-    public void setStaffEvalDetails(List<EvalDetail> staffEvalDetails) {
-        this.staffEvalDetails = staffEvalDetails;
-    }
-
     public List<EvalDetail> getStaffEvalDetails() {
         return this.staffEvalDetails;
+    }
+
+    public void setResultCode(Long resultCode) {
+        this.resultCode = resultCode;
+    }
+
+    public void setResultCount(Long resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public void setStaffEvalDetails(List<EvalDetail> staffEvalDetails) {
+        this.staffEvalDetails = staffEvalDetails;
     }
 
 }

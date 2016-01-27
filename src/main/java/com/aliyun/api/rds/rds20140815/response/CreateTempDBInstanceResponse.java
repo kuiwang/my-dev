@@ -25,20 +25,20 @@ public class CreateTempDBInstanceResponse extends AliyunResponse {
     @ApiField("TempDBInstanceId")
     private String tempDBInstanceId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTempDBInstanceId(String tempDBInstanceId) {
-        this.tempDBInstanceId = tempDBInstanceId;
-    }
-
     public String getTempDBInstanceId() {
         return this.tempDBInstanceId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTempDBInstanceId(String tempDBInstanceId) {
+        this.tempDBInstanceId = tempDBInstanceId;
     }
 
 }

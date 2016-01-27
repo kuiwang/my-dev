@@ -114,124 +114,124 @@ public class Sku extends TaobaoObject {
         return this.barcode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
     public String getChangeProp() {
         return this.changeProp;
-    }
-
-    public void setChangeProp(String changeProp) {
-        this.changeProp = changeProp;
     }
 
     public String getCreated() {
         return this.created;
     }
 
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
     public String getIid() {
         return this.iid;
-    }
-
-    public void setIid(String iid) {
-        this.iid = iid;
     }
 
     public String getModified() {
         return this.modified;
     }
 
-    public void setModified(String modified) {
-        this.modified = modified;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getPropertiesName() {
         return this.propertiesName;
-    }
-
-    public void setPropertiesName(String propertiesName) {
-        this.propertiesName = propertiesName;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public String getSkuDeliveryTime() {
         return this.skuDeliveryTime;
-    }
-
-    public void setSkuDeliveryTime(String skuDeliveryTime) {
-        this.skuDeliveryTime = skuDeliveryTime;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getSkuSpecId() {
         return this.skuSpecId;
-    }
-
-    public void setSkuSpecId(Long skuSpecId) {
-        this.skuSpecId = skuSpecId;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getWithHoldQuantity() {
         return this.withHoldQuantity;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setChangeProp(String changeProp) {
+        this.changeProp = changeProp;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public void setIid(String iid) {
+        this.iid = iid;
+    }
+
+    public void setModified(String modified) {
+        this.modified = modified;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setPropertiesName(String propertiesName) {
+        this.propertiesName = propertiesName;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSkuDeliveryTime(String skuDeliveryTime) {
+        this.skuDeliveryTime = skuDeliveryTime;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuSpecId(Long skuSpecId) {
+        this.skuSpecId = skuSpecId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setWithHoldQuantity(Long withHoldQuantity) {

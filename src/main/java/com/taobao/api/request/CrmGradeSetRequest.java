@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmGradeSetResponse;
  */
 public class CrmGradeSetRequest implements TaobaoRequest<CrmGradeSetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 只对设置的层级等级有效，必须要在amount和count参数中选择一个<br>
      * amount参数的填写规范：升级到下一个级别的需要的交易额，单位为分,必须全部填写.例如10000,20000,30000，
@@ -54,64 +48,66 @@ public class CrmGradeSetRequest implements TaobaoRequest<CrmGradeSetResponse> {
      */
     private String grade;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 是否设置达到某一会员等级的交易量和交易额，必填。4个级别都需要设置，如入参为true,true,true,false时，
      * 表示设置达到高级会员、VIP会员的交易量或者交易额，不设置达到至尊会员的交易量和交易额
      */
     private String hierarchy;
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(amount, 4, "amount");
+        RequestCheckUtils.checkMaxListSize(count, 4, "count");
+        RequestCheckUtils.checkNotEmpty(discount, "discount");
+        RequestCheckUtils.checkMaxListSize(discount, 4, "discount");
+        RequestCheckUtils.checkNotEmpty(grade, "grade");
+        RequestCheckUtils.checkMaxListSize(grade, 4, "grade");
+        RequestCheckUtils.checkNotEmpty(hierarchy, "hierarchy");
+        RequestCheckUtils.checkMaxListSize(hierarchy, 4, "hierarchy");
     }
 
     public String getAmount() {
         return this.amount;
     }
 
-    public void setCount(String count) {
-        this.count = count;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.grade.set";
     }
 
     public String getCount() {
         return this.count;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
-
     public String getDiscount() {
         return this.discount;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
     }
 
     public String getGrade() {
         return this.grade;
     }
 
-    public void setHierarchy(String hierarchy) {
-        this.hierarchy = hierarchy;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHierarchy() {
         return this.hierarchy;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmGradeSetResponse> getResponseClass() {
+        return CrmGradeSetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.grade.set";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("amount", this.amount);
@@ -125,6 +121,12 @@ public class CrmGradeSetRequest implements TaobaoRequest<CrmGradeSetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -132,22 +134,28 @@ public class CrmGradeSetRequest implements TaobaoRequest<CrmGradeSetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGradeSetResponse> getResponseClass() {
-        return CrmGradeSetResponse.class;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(amount, 4, "amount");
-        RequestCheckUtils.checkMaxListSize(count, 4, "count");
-        RequestCheckUtils.checkNotEmpty(discount, "discount");
-        RequestCheckUtils.checkMaxListSize(discount, 4, "discount");
-        RequestCheckUtils.checkNotEmpty(grade, "grade");
-        RequestCheckUtils.checkMaxListSize(grade, 4, "grade");
-        RequestCheckUtils.checkNotEmpty(hierarchy, "hierarchy");
-        RequestCheckUtils.checkMaxListSize(hierarchy, 4, "hierarchy");
+    public void setCount(String count) {
+        this.count = count;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public void setHierarchy(String hierarchy) {
+        this.hierarchy = hierarchy;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

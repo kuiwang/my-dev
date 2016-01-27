@@ -18,10 +18,6 @@ public class SpContentUpdatetagRequest implements TaobaoRequest<SpContentUpdatet
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 新的标签名称<br />
      * 支持最大长度为：6<br />
@@ -43,42 +39,48 @@ public class SpContentUpdatetagRequest implements TaobaoRequest<SpContentUpdatet
      */
     private String siteKey;
 
-    public void setNewname(String newname) {
-        this.newname = newname;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(newname, "newname");
+        RequestCheckUtils.checkMaxLength(newname, 6, "newname");
+        RequestCheckUtils.checkNotEmpty(oldname, "oldname");
+        RequestCheckUtils.checkMaxLength(oldname, 6, "oldname");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.updatetag";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNewname() {
         return this.newname;
     }
 
-    public void setOldname(String oldname) {
-        this.oldname = oldname;
-    }
-
     public String getOldname() {
         return this.oldname;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentUpdatetagResponse> getResponseClass() {
+        return SpContentUpdatetagResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.updatetag";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("newname", this.newname);
@@ -90,6 +92,12 @@ public class SpContentUpdatetagRequest implements TaobaoRequest<SpContentUpdatet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -97,20 +105,20 @@ public class SpContentUpdatetagRequest implements TaobaoRequest<SpContentUpdatet
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentUpdatetagResponse> getResponseClass() {
-        return SpContentUpdatetagResponse.class;
+    public void setNewname(String newname) {
+        this.newname = newname;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(newname, "newname");
-        RequestCheckUtils.checkMaxLength(newname, 6, "newname");
-        RequestCheckUtils.checkNotEmpty(oldname, "oldname");
-        RequestCheckUtils.checkMaxLength(oldname, 6, "oldname");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setOldname(String oldname) {
+        this.oldname = oldname;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

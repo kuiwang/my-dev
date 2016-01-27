@@ -18,35 +18,36 @@ public class WlbWaybillICancelRequest implements TaobaoRequest<WlbWaybillICancel
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 取消接口入参
      */
     private String waybillApplyCancelRequest;
 
-    public void setWaybillApplyCancelRequest(String waybillApplyCancelRequest) {
-        this.waybillApplyCancelRequest = waybillApplyCancelRequest;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(waybillApplyCancelRequest, "waybillApplyCancelRequest");
     }
 
-    public String getWaybillApplyCancelRequest() {
-        return this.waybillApplyCancelRequest;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wlb.waybill.i.cancel";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbWaybillICancelResponse> getResponseClass() {
+        return WlbWaybillICancelResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("waybill_apply_cancel_request", this.waybillApplyCancelRequest);
@@ -56,6 +57,16 @@ public class WlbWaybillICancelRequest implements TaobaoRequest<WlbWaybillICancel
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWaybillApplyCancelRequest() {
+        return this.waybillApplyCancelRequest;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class WlbWaybillICancelRequest implements TaobaoRequest<WlbWaybillICancel
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbWaybillICancelResponse> getResponseClass() {
-        return WlbWaybillICancelResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(waybillApplyCancelRequest, "waybillApplyCancelRequest");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setWaybillApplyCancelRequest(String waybillApplyCancelRequest) {
+        this.waybillApplyCancelRequest = waybillApplyCancelRequest;
     }
 }

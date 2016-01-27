@@ -69,60 +69,60 @@ public class WaybillBranchAccount extends TaobaoObject {
         return this.allocatedQuantity;
     }
 
-    public void setAllocatedQuantity(Long allocatedQuantity) {
-        this.allocatedQuantity = allocatedQuantity;
-    }
-
     public String getBranchCode() {
         return this.branchCode;
-    }
-
-    public void setBranchCode(String branchCode) {
-        this.branchCode = branchCode;
     }
 
     public Long getCancelQuantity() {
         return this.cancelQuantity;
     }
 
-    public void setCancelQuantity(Long cancelQuantity) {
-        this.cancelQuantity = cancelQuantity;
-    }
-
     public String getCpCode() {
         return this.cpCode;
-    }
-
-    public void setCpCode(String cpCode) {
-        this.cpCode = cpCode;
     }
 
     public Long getPrintQuantity() {
         return this.printQuantity;
     }
 
-    public void setPrintQuantity(Long printQuantity) {
-        this.printQuantity = printQuantity;
-    }
-
     public Long getQuantity() {
         return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getSellerId() {
         return this.sellerId;
     }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public List<WaybillAddress> getShippAddressCols() {
         return this.shippAddressCols;
+    }
+
+    public void setAllocatedQuantity(Long allocatedQuantity) {
+        this.allocatedQuantity = allocatedQuantity;
+    }
+
+    public void setBranchCode(String branchCode) {
+        this.branchCode = branchCode;
+    }
+
+    public void setCancelQuantity(Long cancelQuantity) {
+        this.cancelQuantity = cancelQuantity;
+    }
+
+    public void setCpCode(String cpCode) {
+        this.cpCode = cpCode;
+    }
+
+    public void setPrintQuantity(Long printQuantity) {
+        this.printQuantity = printQuantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
     }
 
     public void setShippAddressCols(List<WaybillAddress> shippAddressCols) {

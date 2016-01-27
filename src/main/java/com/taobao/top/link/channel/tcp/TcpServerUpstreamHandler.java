@@ -18,13 +18,15 @@ public class TcpServerUpstreamHandler extends NettyServerUpstreamHandler {
     }
 
     @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-        if (this.channelHandler != null) this.channelHandler.onMessage(this.createContext(e
-                .getMessage()));
+    protected ChannelSender createSender(Channel channel) {
+        return new TcpServerChannelSender(channel);
     }
 
     @Override
-    protected ChannelSender createSender(Channel channel) {
-        return new TcpServerChannelSender(channel);
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+        if (this.channelHandler != null) {
+            this.channelHandler.onMessage(this.createContext(e
+                    .getMessage()));
+        }
     }
 }

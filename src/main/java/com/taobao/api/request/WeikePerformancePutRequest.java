@@ -17,10 +17,6 @@ public class WeikePerformancePutRequest implements TaobaoRequest<WeikePerformanc
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 订单id
      */
@@ -31,34 +27,38 @@ public class WeikePerformancePutRequest implements TaobaoRequest<WeikePerformanc
      */
     private String perInfoWrapper;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weike.performance.put";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setPerInfoWrapper(String perInfoWrapper) {
-        this.perInfoWrapper = perInfoWrapper;
-    }
-
     public String getPerInfoWrapper() {
         return this.perInfoWrapper;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WeikePerformancePutResponse> getResponseClass() {
+        return WeikePerformancePutResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.weike.performance.put";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -69,6 +69,12 @@ public class WeikePerformancePutRequest implements TaobaoRequest<WeikePerformanc
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -76,14 +82,16 @@ public class WeikePerformancePutRequest implements TaobaoRequest<WeikePerformanc
         this.udfParams.put(key, value);
     }
 
-    public Class<WeikePerformancePutResponse> getResponseClass() {
-        return WeikePerformancePutResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPerInfoWrapper(String perInfoWrapper) {
+        this.perInfoWrapper = perInfoWrapper;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -29,28 +29,28 @@ public class RoomImage {
         return this.allImages;
     }
 
-    public void setAllImages(String allImages) {
-        this.allImages = allImages;
-    }
-
     public Long getGid() {
         return this.gid;
-    }
-
-    public void setGid(Long gid) {
-        this.gid = gid;
     }
 
     public String getImage() {
         return this.image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public Long getPosition() {
         return this.position;
+    }
+
+    public void setAllImages(String allImages) {
+        this.allImages = allImages;
+    }
+
+    public void setGid(Long gid) {
+        this.gid = gid;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setPosition(Long position) {

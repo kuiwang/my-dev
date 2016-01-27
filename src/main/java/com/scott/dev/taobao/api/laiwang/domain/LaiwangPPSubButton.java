@@ -19,52 +19,52 @@ public class LaiwangPPSubButton {
     private String target;
 
     /**
-     * 按钮跳转的url
-     */
-    private String url;
-
-    /**
      * 按钮的类型
      */
     private String type;
 
+    /**
+     * 按钮跳转的url
+     */
+    private String url;
+
     public String getKey() {
         return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getTarget() {
         return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getType() {
         return type;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

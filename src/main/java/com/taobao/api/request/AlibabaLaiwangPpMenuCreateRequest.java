@@ -19,35 +19,40 @@ public class AlibabaLaiwangPpMenuCreateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 菜单的定义,将定义转换成对应的json格式传入。
      */
     private String menudef;
 
-    public void setMenudef(String menudef) {
-        this.menudef = menudef;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(menudef, "menudef");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.laiwang.pp.menu.create";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMenudef() {
         return this.menudef;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlibabaLaiwangPpMenuCreateResponse> getResponseClass() {
+        return AlibabaLaiwangPpMenuCreateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.laiwang.pp.menu.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("menudef", this.menudef);
@@ -57,6 +62,12 @@ public class AlibabaLaiwangPpMenuCreateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class AlibabaLaiwangPpMenuCreateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaLaiwangPpMenuCreateResponse> getResponseClass() {
-        return AlibabaLaiwangPpMenuCreateResponse.class;
+    public void setMenudef(String menudef) {
+        this.menudef = menudef;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(menudef, "menudef");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

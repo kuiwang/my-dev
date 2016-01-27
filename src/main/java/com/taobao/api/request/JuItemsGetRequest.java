@@ -16,51 +16,52 @@ import com.taobao.api.response.JuItemsGetResponse;
  */
 public class JuItemsGetRequest implements TaobaoRequest<JuItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代表需要返回的商品对象字段。可选值：ItemData商品结构体中所有字段均可返回；多个字段用","分隔。如果fields为空，
      * 或者不传该参数，就默认获得所有的字段
      */
     private String fields;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商品ID列表。id列表超过6条也只返回前6条的商品
      */
     private String ids;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ju.items.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JuItemsGetResponse> getResponseClass() {
+        return JuItemsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ju.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -71,6 +72,12 @@ public class JuItemsGetRequest implements TaobaoRequest<JuItemsGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class JuItemsGetRequest implements TaobaoRequest<JuItemsGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<JuItemsGetResponse> getResponseClass() {
-        return JuItemsGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

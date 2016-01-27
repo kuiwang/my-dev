@@ -20,12 +20,12 @@ public class TsPropertyGetResponse extends TaobaoResponse {
     @ApiField("service_item_property")
     private ServiceItemProperty serviceItemProperty;
 
-    public void setServiceItemProperty(ServiceItemProperty serviceItemProperty) {
-        this.serviceItemProperty = serviceItemProperty;
-    }
-
     public ServiceItemProperty getServiceItemProperty() {
         return this.serviceItemProperty;
+    }
+
+    public void setServiceItemProperty(ServiceItemProperty serviceItemProperty) {
+        this.serviceItemProperty = serviceItemProperty;
     }
 
 }

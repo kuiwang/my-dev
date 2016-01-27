@@ -20,12 +20,12 @@ public class DeliveryTemplateAddResponse extends TaobaoResponse {
     @ApiField("delivery_template")
     private DeliveryTemplate deliveryTemplate;
 
-    public void setDeliveryTemplate(DeliveryTemplate deliveryTemplate) {
-        this.deliveryTemplate = deliveryTemplate;
-    }
-
     public DeliveryTemplate getDeliveryTemplate() {
         return this.deliveryTemplate;
+    }
+
+    public void setDeliveryTemplate(DeliveryTemplate deliveryTemplate) {
+        this.deliveryTemplate = deliveryTemplate;
     }
 
 }

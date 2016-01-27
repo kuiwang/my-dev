@@ -31,31 +31,31 @@ public class DefaultTdcClient implements TdcClient {
 
     private static final String FORMAT = "format";
 
-    private static final String TIMESTAMP = "timestamp";
+    private static final String PARTNER_ID = "partner_id";
+
+    private static final String PATH_INFO = "path_info";
+
+    private static final String SESSION = "session";
 
     private static final String SIGN = "sign";
 
     private static final String SIGN_METHOD = "sign_method";
 
-    private static final String PARTNER_ID = "partner_id";
-
-    private static final String SESSION = "session";
-
-    private static final String PATH_INFO = "path_info";
-
-    private String serverUrl;
+    private static final String TIMESTAMP = "timestamp";
 
     private String appKey;
 
     private String appSecret;
 
-    private String signMethod = Constants.SIGN_METHOD_MD5;
-
     private int connectTimeout = 3000;//3秒
+
+    private boolean needEnableParser = true;
 
     private int readTimeout = 15000;//15秒
 
-    private boolean needEnableParser = true;
+    private String serverUrl;
+
+    private String signMethod = Constants.SIGN_METHOD_MD5;
 
     public DefaultTdcClient(String serverUrl, String appKey, String appSecret) {
         this.appKey = appKey;
@@ -76,42 +76,6 @@ public class DefaultTdcClient implements TdcClient {
         this.signMethod = signMethod;
     }
 
-    public CsvTdcResponse csvExecute(TdcRequest request) throws ApiException {
-        return csvExecute(request, null);
-    }
-
-    public CsvTdcResponse csvExecute(TdcRequest request, String session) throws ApiException {
-        TdcParser parser = null;
-        if (needEnableParser) {
-            parser = new TdcCsvParser();
-        }
-        return (CsvTdcResponse) _execute(request, session, parser, "csv");
-    }
-
-    public JXTdcResponse jsonExecute(TdcRequest request) throws ApiException {
-        return jsonExecute(request, null);
-    }
-
-    public JXTdcResponse jsonExecute(TdcRequest request, String session) throws ApiException {
-        TdcParser parser = null;
-        if (needEnableParser) {
-            parser = new TdcJsonParser();
-        }
-        return (JXTdcResponse) _execute(request, session, parser, Constants.FORMAT_JSON);
-    }
-
-    public JXTdcResponse xmlExecute(TdcRequest request) throws ApiException {
-        return xmlExecute(request, null);
-    }
-
-    public JXTdcResponse xmlExecute(TdcRequest request, String session) throws ApiException {
-        TdcParser parser = null;
-        if (needEnableParser) {
-            parser = new TdcXmlParser();
-        }
-        return (JXTdcResponse) _execute(request, session, parser, Constants.FORMAT_XML);
-    }
-
     private TdcResponse _execute(TdcRequest request, String session, TdcParser parser, String format)
             throws ApiException {
         TdcResponse tdcRsp = null;
@@ -125,81 +89,18 @@ public class DefaultTdcClient implements TdcClient {
         return tdcRsp;
     }
 
-    private String doPost(TdcRequest request, String session, String format) throws ApiException {
-        RequestParametersHolder requestHolder = new RequestParametersHolder();
-        TaobaoHashMap appParams = request.getParams();
-        requestHolder.setApplicationParams(appParams);
-
-        // 添加协议级请求参数
-        TaobaoHashMap protocalMustParams = new TaobaoHashMap();
-        protocalMustParams.put(APP_KEY, appKey);
-        Long timestamp = System.currentTimeMillis();
-        DateFormat df = new SimpleDateFormat(Constants.DATE_TIME_FORMAT);
-        df.setTimeZone(TimeZone.getTimeZone(Constants.DATE_TIMEZONE));
-        protocalMustParams.put(TIMESTAMP, df.format(new Date(timestamp)));
-        protocalMustParams.put(PATH_INFO, request.getPathInfo());
-        requestHolder.setProtocalMustParams(protocalMustParams);
-        TaobaoHashMap protocalOptParams = new TaobaoHashMap();
-        protocalOptParams.put(FORMAT, format);
-        protocalOptParams.put(SIGN_METHOD, signMethod);
-        protocalOptParams.put(SESSION, session);
-        protocalOptParams.put(PARTNER_ID, Constants.SDK_VERSION);
-        requestHolder.setProtocalOptParams(protocalOptParams);
-
-        // 添加签名参数
-        try {
-            if (Constants.SIGN_METHOD_MD5.equals(signMethod)) {
-                protocalMustParams.put(SIGN,
-                        TaobaoUtils.signTopRequestNew(requestHolder, appSecret, false));
-            } else if (Constants.SIGN_METHOD_HMAC.equals(signMethod)) {
-                protocalMustParams.put(SIGN,
-                        TaobaoUtils.signTopRequestNew(requestHolder, appSecret, true));
-            } else {
-                protocalMustParams.put(SIGN, TaobaoUtils.signTopRequest(requestHolder, appSecret));
-            }
-        } catch (IOException e) {
-            throw new ApiException(e);
-        }
-
-        protocalMustParams.remove(PATH_INFO);
-        StringBuffer urlSb = new StringBuffer(serverUrl + request.getPathInfo());
-        try {
-            String sysMustQuery = WebUtils.buildQuery(requestHolder.getProtocalMustParams(),
-                    Constants.CHARSET_UTF8);
-            String sysOptQuery = WebUtils.buildQuery(requestHolder.getProtocalOptParams(),
-                    Constants.CHARSET_UTF8);
-
-            urlSb.append("?");
-            urlSb.append(sysMustQuery);
-            if (sysOptQuery != null & sysOptQuery.length() > 0) {
-                urlSb.append("&");
-                urlSb.append(sysOptQuery);
-            }
-        } catch (IOException e) {
-            throw new ApiException(e);
-        }
-        String rsp = null;
-        try {
-            rsp = WebUtils.doPost(urlSb.toString(), appParams, Constants.CHARSET_UTF8,
-                    connectTimeout, readTimeout);
-        } catch (IOException e) {
-            throw new ApiException(e);
-        }
-        return rsp;
+    @Override
+    public CsvTdcResponse csvExecute(TdcRequest request) throws ApiException {
+        return csvExecute(request, null);
     }
 
-    public void setNeedEnableParser(boolean needEnableParser) {
-        this.needEnableParser = needEnableParser;
-    }
-
-    public void setNeedEnableLogger(boolean needEnableLogger) {
-        TaobaoLogger.setNeedEnableLogger(needEnableLogger);
-    }
-
-    public TdcResponse execute(TdcReflowRequest request, String session) throws ApiException {
-        String rsp = doBackflowPost(request, session, Constants.FORMAT_JSON);
-        TdcParser parser = new TdcMbpBackParser();
-        return parser.parse(rsp);
+    @Override
+    public CsvTdcResponse csvExecute(TdcRequest request, String session) throws ApiException {
+        TdcParser parser = null;
+        if (needEnableParser) {
+            parser = new TdcCsvParser();
+        }
+        return (CsvTdcResponse) _execute(request, session, parser, "csv");
     }
 
     private String doBackflowPost(TdcReflowRequest request, String session, String format)
@@ -249,7 +150,7 @@ public class DefaultTdcClient implements TdcClient {
 
             urlSb.append("?");
             urlSb.append(sysMustQuery);
-            if (sysOptQuery != null & sysOptQuery.length() > 0) {
+            if ((sysOptQuery != null) & (sysOptQuery.length() > 0)) {
                 urlSb.append("&");
                 urlSb.append(sysOptQuery);
             }
@@ -264,6 +165,112 @@ public class DefaultTdcClient implements TdcClient {
             throw new ApiException(e);
         }
         return rsp;
+    }
+
+    private String doPost(TdcRequest request, String session, String format) throws ApiException {
+        RequestParametersHolder requestHolder = new RequestParametersHolder();
+        TaobaoHashMap appParams = request.getParams();
+        requestHolder.setApplicationParams(appParams);
+
+        // 添加协议级请求参数
+        TaobaoHashMap protocalMustParams = new TaobaoHashMap();
+        protocalMustParams.put(APP_KEY, appKey);
+        Long timestamp = System.currentTimeMillis();
+        DateFormat df = new SimpleDateFormat(Constants.DATE_TIME_FORMAT);
+        df.setTimeZone(TimeZone.getTimeZone(Constants.DATE_TIMEZONE));
+        protocalMustParams.put(TIMESTAMP, df.format(new Date(timestamp)));
+        protocalMustParams.put(PATH_INFO, request.getPathInfo());
+        requestHolder.setProtocalMustParams(protocalMustParams);
+        TaobaoHashMap protocalOptParams = new TaobaoHashMap();
+        protocalOptParams.put(FORMAT, format);
+        protocalOptParams.put(SIGN_METHOD, signMethod);
+        protocalOptParams.put(SESSION, session);
+        protocalOptParams.put(PARTNER_ID, Constants.SDK_VERSION);
+        requestHolder.setProtocalOptParams(protocalOptParams);
+
+        // 添加签名参数
+        try {
+            if (Constants.SIGN_METHOD_MD5.equals(signMethod)) {
+                protocalMustParams.put(SIGN,
+                        TaobaoUtils.signTopRequestNew(requestHolder, appSecret, false));
+            } else if (Constants.SIGN_METHOD_HMAC.equals(signMethod)) {
+                protocalMustParams.put(SIGN,
+                        TaobaoUtils.signTopRequestNew(requestHolder, appSecret, true));
+            } else {
+                protocalMustParams.put(SIGN, TaobaoUtils.signTopRequest(requestHolder, appSecret));
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        }
+
+        protocalMustParams.remove(PATH_INFO);
+        StringBuffer urlSb = new StringBuffer(serverUrl + request.getPathInfo());
+        try {
+            String sysMustQuery = WebUtils.buildQuery(requestHolder.getProtocalMustParams(),
+                    Constants.CHARSET_UTF8);
+            String sysOptQuery = WebUtils.buildQuery(requestHolder.getProtocalOptParams(),
+                    Constants.CHARSET_UTF8);
+
+            urlSb.append("?");
+            urlSb.append(sysMustQuery);
+            if ((sysOptQuery != null) & (sysOptQuery.length() > 0)) {
+                urlSb.append("&");
+                urlSb.append(sysOptQuery);
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        }
+        String rsp = null;
+        try {
+            rsp = WebUtils.doPost(urlSb.toString(), appParams, Constants.CHARSET_UTF8,
+                    connectTimeout, readTimeout);
+        } catch (IOException e) {
+            throw new ApiException(e);
+        }
+        return rsp;
+    }
+
+    @Override
+    public TdcResponse execute(TdcReflowRequest request, String session) throws ApiException {
+        String rsp = doBackflowPost(request, session, Constants.FORMAT_JSON);
+        TdcParser parser = new TdcMbpBackParser();
+        return parser.parse(rsp);
+    }
+
+    @Override
+    public JXTdcResponse jsonExecute(TdcRequest request) throws ApiException {
+        return jsonExecute(request, null);
+    }
+
+    @Override
+    public JXTdcResponse jsonExecute(TdcRequest request, String session) throws ApiException {
+        TdcParser parser = null;
+        if (needEnableParser) {
+            parser = new TdcJsonParser();
+        }
+        return (JXTdcResponse) _execute(request, session, parser, Constants.FORMAT_JSON);
+    }
+
+    public void setNeedEnableLogger(boolean needEnableLogger) {
+        TaobaoLogger.setNeedEnableLogger(needEnableLogger);
+    }
+
+    public void setNeedEnableParser(boolean needEnableParser) {
+        this.needEnableParser = needEnableParser;
+    }
+
+    @Override
+    public JXTdcResponse xmlExecute(TdcRequest request) throws ApiException {
+        return xmlExecute(request, null);
+    }
+
+    @Override
+    public JXTdcResponse xmlExecute(TdcRequest request, String session) throws ApiException {
+        TdcParser parser = null;
+        if (needEnableParser) {
+            parser = new TdcXmlParser();
+        }
+        return (JXTdcResponse) _execute(request, session, parser, Constants.FORMAT_XML);
     }
 
 }

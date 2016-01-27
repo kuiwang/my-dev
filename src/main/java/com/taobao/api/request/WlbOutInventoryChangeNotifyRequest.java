@@ -17,16 +17,12 @@ import com.taobao.api.response.WlbOutInventoryChangeNotifyResponse;
 public class WlbOutInventoryChangeNotifyRequest implements
         TaobaoRequest<WlbOutInventoryChangeNotifyResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 库存变化数量
      */
     private Long changeCount;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 物流宝商品id或前台宝贝id（由type类型决定）
@@ -64,95 +60,74 @@ public class WlbOutInventoryChangeNotifyRequest implements
      */
     private String storeCode;
 
+    private Long timestamp;
+
     /**
      * WLB_ITEM--物流宝商品 IC_ITEM--淘宝商品 IC_SKU--淘宝sku
      */
     private String type;
 
-    public void setChangeCount(Long changeCount) {
-        this.changeCount = changeCount;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(changeCount, "changeCount");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(opType, "opType");
+        RequestCheckUtils.checkNotEmpty(outBizCode, "outBizCode");
+        RequestCheckUtils.checkNotEmpty(resultCount, "resultCount");
+        RequestCheckUtils.checkNotEmpty(source, "source");
+        RequestCheckUtils.checkNotEmpty(type, "type");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.out.inventory.change.notify";
     }
 
     public Long getChangeCount() {
         return this.changeCount;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setOpType(String opType) {
-        this.opType = opType;
-    }
-
     public String getOpType() {
         return this.opType;
-    }
-
-    public void setOrderSourceCode(String orderSourceCode) {
-        this.orderSourceCode = orderSourceCode;
     }
 
     public String getOrderSourceCode() {
         return this.orderSourceCode;
     }
 
-    public void setOutBizCode(String outBizCode) {
-        this.outBizCode = outBizCode;
-    }
-
     public String getOutBizCode() {
         return this.outBizCode;
     }
 
-    public void setResultCount(Long resultCount) {
-        this.resultCount = resultCount;
+    @Override
+    public Class<WlbOutInventoryChangeNotifyResponse> getResponseClass() {
+        return WlbOutInventoryChangeNotifyResponse.class;
     }
 
     public Long getResultCount() {
         return this.resultCount;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getSource() {
         return this.source;
-    }
-
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.out.inventory.change.notify";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("change_count", this.changeCount);
@@ -170,6 +145,16 @@ public class WlbOutInventoryChangeNotifyRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -177,21 +162,44 @@ public class WlbOutInventoryChangeNotifyRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbOutInventoryChangeNotifyResponse> getResponseClass() {
-        return WlbOutInventoryChangeNotifyResponse.class;
+    public void setChangeCount(Long changeCount) {
+        this.changeCount = changeCount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(changeCount, "changeCount");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(opType, "opType");
-        RequestCheckUtils.checkNotEmpty(outBizCode, "outBizCode");
-        RequestCheckUtils.checkNotEmpty(resultCount, "resultCount");
-        RequestCheckUtils.checkNotEmpty(source, "source");
-        RequestCheckUtils.checkNotEmpty(type, "type");
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOpType(String opType) {
+        this.opType = opType;
+    }
+
+    public void setOrderSourceCode(String orderSourceCode) {
+        this.orderSourceCode = orderSourceCode;
+    }
+
+    public void setOutBizCode(String outBizCode) {
+        this.outBizCode = outBizCode;
+    }
+
+    public void setResultCount(Long resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

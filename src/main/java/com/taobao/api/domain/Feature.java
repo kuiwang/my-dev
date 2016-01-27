@@ -29,12 +29,12 @@ public class Feature extends TaobaoObject {
         return this.attrKey;
     }
 
-    public void setAttrKey(String attrKey) {
-        this.attrKey = attrKey;
-    }
-
     public String getAttrValue() {
         return this.attrValue;
+    }
+
+    public void setAttrKey(String attrKey) {
+        this.attrKey = attrKey;
     }
 
     public void setAttrValue(String attrValue) {

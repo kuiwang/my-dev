@@ -71,68 +71,68 @@ public class AddressReachableResult extends TaobaoObject {
         return this.divisionId;
     }
 
-    public void setDivisionId(Long divisionId) {
-        this.divisionId = divisionId;
-    }
-
     public String getErrorCode() {
         return this.errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
     }
 
     public String getErrorMsg() {
         return this.errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
     public String getPartnerCode() {
         return this.partnerCode;
-    }
-
-    public void setPartnerCode(String partnerCode) {
-        this.partnerCode = partnerCode;
     }
 
     public Long getPartnerId() {
         return this.partnerId;
     }
 
-    public void setPartnerId(Long partnerId) {
-        this.partnerId = partnerId;
-    }
-
     public String getPartnerName() {
         return this.partnerName;
-    }
-
-    public void setPartnerName(String partnerName) {
-        this.partnerName = partnerName;
     }
 
     public Long getReachable() {
         return this.reachable;
     }
 
-    public void setReachable(Long reachable) {
-        this.reachable = reachable;
-    }
-
     public Long getServiceType() {
         return this.serviceType;
     }
 
-    public void setServiceType(Long serviceType) {
-        this.serviceType = serviceType;
-    }
-
     public Boolean getSuccess() {
         return this.success;
+    }
+
+    public void setDivisionId(Long divisionId) {
+        this.divisionId = divisionId;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setPartnerCode(String partnerCode) {
+        this.partnerCode = partnerCode;
+    }
+
+    public void setPartnerId(Long partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
+
+    public void setReachable(Long reachable) {
+        this.reachable = reachable;
+    }
+
+    public void setServiceType(Long serviceType) {
+        this.serviceType = serviceType;
     }
 
     public void setSuccess(Boolean success) {

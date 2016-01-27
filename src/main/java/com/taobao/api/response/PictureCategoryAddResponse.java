@@ -20,12 +20,12 @@ public class PictureCategoryAddResponse extends TaobaoResponse {
     @ApiField("picture_category")
     private PictureCategory pictureCategory;
 
-    public void setPictureCategory(PictureCategory pictureCategory) {
-        this.pictureCategory = pictureCategory;
-    }
-
     public PictureCategory getPictureCategory() {
         return this.pictureCategory;
+    }
+
+    public void setPictureCategory(PictureCategory pictureCategory) {
+        this.pictureCategory = pictureCategory;
     }
 
 }

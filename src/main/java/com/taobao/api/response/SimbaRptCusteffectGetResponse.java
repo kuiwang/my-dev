@@ -19,12 +19,12 @@ public class SimbaRptCusteffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_cust_effect_list")
     private String rptCustEffectList;
 
-    public void setRptCustEffectList(String rptCustEffectList) {
-        this.rptCustEffectList = rptCustEffectList;
-    }
-
     public String getRptCustEffectList() {
         return this.rptCustEffectList;
+    }
+
+    public void setRptCustEffectList(String rptCustEffectList) {
+        this.rptCustEffectList = rptCustEffectList;
     }
 
 }

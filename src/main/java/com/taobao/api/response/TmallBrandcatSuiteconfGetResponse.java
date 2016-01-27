@@ -24,12 +24,12 @@ public class TmallBrandcatSuiteconfGetResponse extends TaobaoResponse {
     @ApiField("suite_conf_d_o")
     private List<SuiteConfDO> suiteConfList;
 
-    public void setSuiteConfList(List<SuiteConfDO> suiteConfList) {
-        this.suiteConfList = suiteConfList;
-    }
-
     public List<SuiteConfDO> getSuiteConfList() {
         return this.suiteConfList;
+    }
+
+    public void setSuiteConfList(List<SuiteConfDO> suiteConfList) {
+        this.suiteConfList = suiteConfList;
     }
 
 }

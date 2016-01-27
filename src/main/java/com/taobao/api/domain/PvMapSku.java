@@ -29,12 +29,12 @@ public class PvMapSku extends TaobaoObject {
         return this.pv;
     }
 
-    public void setPv(String pv) {
-        this.pv = pv;
-    }
-
     public String getSkuId() {
         return this.skuId;
+    }
+
+    public void setPv(String pv) {
+        this.pv = pv;
     }
 
     public void setSkuId(String skuId) {

@@ -18,10 +18,6 @@ public class FenxiaoRefundGetRequest implements TaobaoRequest<FenxiaoRefundGetRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否查询下游买家的退款信息
      */
@@ -32,34 +28,39 @@ public class FenxiaoRefundGetRequest implements TaobaoRequest<FenxiaoRefundGetRe
      */
     private Long subOrderId;
 
-    public void setQuerySellerRefund(Boolean querySellerRefund) {
-        this.querySellerRefund = querySellerRefund;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.refund.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getQuerySellerRefund() {
         return this.querySellerRefund;
     }
 
-    public void setSubOrderId(Long subOrderId) {
-        this.subOrderId = subOrderId;
+    @Override
+    public Class<FenxiaoRefundGetResponse> getResponseClass() {
+        return FenxiaoRefundGetResponse.class;
     }
 
     public Long getSubOrderId() {
         return this.subOrderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.refund.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("query_seller_refund", this.querySellerRefund);
@@ -70,6 +71,12 @@ public class FenxiaoRefundGetRequest implements TaobaoRequest<FenxiaoRefundGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,15 +84,16 @@ public class FenxiaoRefundGetRequest implements TaobaoRequest<FenxiaoRefundGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoRefundGetResponse> getResponseClass() {
-        return FenxiaoRefundGetResponse.class;
+    public void setQuerySellerRefund(Boolean querySellerRefund) {
+        this.querySellerRefund = querySellerRefund;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    public void setSubOrderId(Long subOrderId) {
+        this.subOrderId = subOrderId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -71,68 +71,68 @@ public class ScalingActivityModel extends TaobaoObject {
         return this.activityCode;
     }
 
-    public void setActivityCode(String activityCode) {
-        this.activityCode = activityCode;
-    }
-
     public String getCause() {
         return this.cause;
-    }
-
-    public void setCause(String cause) {
-        this.cause = cause;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getEndTime() {
         return this.endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public Long getProgress() {
         return this.progress;
     }
 
-    public void setProgress(Long progress) {
-        this.progress = progress;
-    }
-
     public String getScalingActivityId() {
         return this.scalingActivityId;
-    }
-
-    public void setScalingActivityId(String scalingActivityId) {
-        this.scalingActivityId = scalingActivityId;
     }
 
     public String getScalingGroupId() {
         return this.scalingGroupId;
     }
 
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
     public String getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
     public String getStatusMessage() {
         return this.statusMessage;
+    }
+
+    public void setActivityCode(String activityCode) {
+        this.activityCode = activityCode;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setProgress(Long progress) {
+        this.progress = progress;
+    }
+
+    public void setScalingActivityId(String scalingActivityId) {
+        this.scalingActivityId = scalingActivityId;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public void setStatusMessage(String statusMessage) {

@@ -18,10 +18,6 @@ public class ItemBarcodeUpdateRequest implements TaobaoRequest<ItemBarcodeUpdate
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否强制保存商品条码。 true：强制保存 false ：需要执行条码库校验
      */
@@ -52,66 +48,55 @@ public class ItemBarcodeUpdateRequest implements TaobaoRequest<ItemBarcodeUpdate
      */
     private String src;
 
-    public void setIsforce(Boolean isforce) {
-        this.isforce = isforce;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.barcode.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsforce() {
         return this.isforce;
     }
 
-    public void setItemBarcode(String itemBarcode) {
-        this.itemBarcode = itemBarcode;
-    }
-
     public String getItemBarcode() {
         return this.itemBarcode;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setSkuBarcodes(String skuBarcodes) {
-        this.skuBarcodes = skuBarcodes;
+    @Override
+    public Class<ItemBarcodeUpdateResponse> getResponseClass() {
+        return ItemBarcodeUpdateResponse.class;
     }
 
     public String getSkuBarcodes() {
         return this.skuBarcodes;
     }
 
-    public void setSkuIds(String skuIds) {
-        this.skuIds = skuIds;
-    }
-
     public String getSkuIds() {
         return this.skuIds;
-    }
-
-    public void setSrc(String src) {
-        this.src = src;
     }
 
     public String getSrc() {
         return this.src;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.barcode.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("isforce", this.isforce);
@@ -126,6 +111,12 @@ public class ItemBarcodeUpdateRequest implements TaobaoRequest<ItemBarcodeUpdate
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -133,15 +124,32 @@ public class ItemBarcodeUpdateRequest implements TaobaoRequest<ItemBarcodeUpdate
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemBarcodeUpdateResponse> getResponseClass() {
-        return ItemBarcodeUpdateResponse.class;
+    public void setIsforce(Boolean isforce) {
+        this.isforce = isforce;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+    public void setItemBarcode(String itemBarcode) {
+        this.itemBarcode = itemBarcode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setSkuBarcodes(String skuBarcodes) {
+        this.skuBarcodes = skuBarcodes;
+    }
+
+    public void setSkuIds(String skuIds) {
+        this.skuIds = skuIds;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

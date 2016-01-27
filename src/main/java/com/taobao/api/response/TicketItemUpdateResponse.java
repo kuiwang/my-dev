@@ -20,12 +20,12 @@ public class TicketItemUpdateResponse extends TaobaoResponse {
     @ApiField("ticket_item_process_result")
     private TicketItemProcessResult ticketItemProcessResult;
 
-    public void setTicketItemProcessResult(TicketItemProcessResult ticketItemProcessResult) {
-        this.ticketItemProcessResult = ticketItemProcessResult;
-    }
-
     public TicketItemProcessResult getTicketItemProcessResult() {
         return this.ticketItemProcessResult;
+    }
+
+    public void setTicketItemProcessResult(TicketItemProcessResult ticketItemProcessResult) {
+        this.ticketItemProcessResult = ticketItemProcessResult;
     }
 
 }

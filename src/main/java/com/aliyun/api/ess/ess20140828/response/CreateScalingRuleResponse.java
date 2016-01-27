@@ -31,28 +31,28 @@ public class CreateScalingRuleResponse extends AliyunResponse {
     @ApiField("ScalingRuleId")
     private String scalingRuleId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setScalingRuleAri(String scalingRuleAri) {
-        this.scalingRuleAri = scalingRuleAri;
     }
 
     public String getScalingRuleAri() {
         return this.scalingRuleAri;
     }
 
-    public void setScalingRuleId(String scalingRuleId) {
-        this.scalingRuleId = scalingRuleId;
-    }
-
     public String getScalingRuleId() {
         return this.scalingRuleId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScalingRuleAri(String scalingRuleAri) {
+        this.scalingRuleAri = scalingRuleAri;
+    }
+
+    public void setScalingRuleId(String scalingRuleId) {
+        this.scalingRuleId = scalingRuleId;
     }
 
 }

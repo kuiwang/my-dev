@@ -18,17 +18,17 @@ import com.taobao.top.link.channel.ChannelSender;
 
 public abstract class NettyServerUpstreamHandler extends SimpleChannelUpstreamHandler {
 
-    protected Logger logger;
-
-    protected Logger ioErrorLogger;
+    protected ChannelGroup allChannels;
 
     protected ChannelHandler channelHandler;
 
-    protected ChannelGroup allChannels;
+    protected String closedReason;
+
+    protected Logger ioErrorLogger;
+
+    protected Logger logger;
 
     protected ChannelSender sender;
-
-    protected String closedReason;
 
     public NettyServerUpstreamHandler(LoggerFactory loggerFactory, ChannelHandler channelHandler,
             ChannelGroup channelGroup) {
@@ -39,30 +39,20 @@ public abstract class NettyServerUpstreamHandler extends SimpleChannelUpstreamHa
     }
 
     @Override
+    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+        if (this.closedReason == null) {
+            this.logger.warn(Text.TCP_CHANNEL_CLOSED);
+        }
+        if (this.channelHandler != null) {
+            this.channelHandler.onClosed(this.closedReason);
+        }
+    }
+
+    @Override
     public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) {
         this.allChannels.add(e.getChannel());
         this.sender = this.createSender(e.getChannel());
     }
-
-    @Override
-    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-        if (this.closedReason == null) this.logger.warn(Text.TCP_CHANNEL_CLOSED);
-        if (this.channelHandler != null) this.channelHandler.onClosed(this.closedReason);
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
-        Throwable t = e.getCause();
-
-        if (this.channelHandler != null) this.channelHandler.onError(this.createContext(t));
-
-        e.getChannel().close();
-
-        if (t instanceof IOException) this.ioErrorLogger.error(Text.ERROR_AT_SERVER, t);
-        else this.logger.error(Text.ERROR_AT_SERVER, t);
-    }
-
-    protected abstract ChannelSender createSender(Channel channel);
 
     protected ChannelContext createContext(Object message) {
         ChannelContext ctx = new ChannelContext();
@@ -76,5 +66,24 @@ public abstract class NettyServerUpstreamHandler extends SimpleChannelUpstreamHa
         ctx.setSender(this.sender);
         ctx.setError(error);
         return ctx;
+    }
+
+    protected abstract ChannelSender createSender(Channel channel);
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
+        Throwable t = e.getCause();
+
+        if (this.channelHandler != null) {
+            this.channelHandler.onError(this.createContext(t));
+        }
+
+        e.getChannel().close();
+
+        if (t instanceof IOException) {
+            this.ioErrorLogger.error(Text.ERROR_AT_SERVER, t);
+        } else {
+            this.logger.error(Text.ERROR_AT_SERVER, t);
+        }
     }
 }

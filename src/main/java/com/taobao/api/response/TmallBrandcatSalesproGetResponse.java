@@ -24,12 +24,12 @@ public class TmallBrandcatSalesproGetResponse extends TaobaoResponse {
     @ApiField("cat_brand_sale_prop")
     private List<CatBrandSaleProp> catBrandSaleProps;
 
-    public void setCatBrandSaleProps(List<CatBrandSaleProp> catBrandSaleProps) {
-        this.catBrandSaleProps = catBrandSaleProps;
-    }
-
     public List<CatBrandSaleProp> getCatBrandSaleProps() {
         return this.catBrandSaleProps;
+    }
+
+    public void setCatBrandSaleProps(List<CatBrandSaleProp> catBrandSaleProps) {
+        this.catBrandSaleProps = catBrandSaleProps;
     }
 
 }

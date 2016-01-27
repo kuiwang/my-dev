@@ -31,28 +31,28 @@ public class CreateInstanceResponse extends AliyunResponse {
     @ApiField("ZoneId")
     private String zoneId;
 
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
     }
 
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setZoneId(String zoneId) {
-        this.zoneId = zoneId;
-    }
-
     public String getZoneId() {
         return this.zoneId;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
     }
 
 }

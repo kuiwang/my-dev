@@ -17,16 +17,12 @@ import com.taobao.api.response.SimbaCampaignPlatformUpdateResponse;
 public class SimbaCampaignPlatformUpdateRequest implements
         TaobaoRequest<SimbaCampaignPlatformUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 站内无线频道折扣。百分比，数值必须是大于等于 1小于等于200的整数
@@ -59,66 +55,62 @@ public class SimbaCampaignPlatformUpdateRequest implements
      */
     private String searchChannels;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(mobileDiscount, "mobileDiscount");
+        RequestCheckUtils.checkMaxListSize(nonsearchChannels, 10, "nonsearchChannels");
+        RequestCheckUtils.checkNotEmpty(outsideDiscount, "outsideDiscount");
+        RequestCheckUtils.checkMaxValue(outsideDiscount, 200L, "outsideDiscount");
+        RequestCheckUtils.checkMinValue(outsideDiscount, 1L, "outsideDiscount");
+        RequestCheckUtils.checkNotEmpty(searchChannels, "searchChannels");
+        RequestCheckUtils.checkMaxListSize(searchChannels, 10, "searchChannels");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.platform.update";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setMobileDiscount(Long mobileDiscount) {
-        this.mobileDiscount = mobileDiscount;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMobileDiscount() {
         return this.mobileDiscount;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNonsearchChannels(String nonsearchChannels) {
-        this.nonsearchChannels = nonsearchChannels;
     }
 
     public String getNonsearchChannels() {
         return this.nonsearchChannels;
     }
 
-    public void setOutsideDiscount(Long outsideDiscount) {
-        this.outsideDiscount = outsideDiscount;
-    }
-
     public Long getOutsideDiscount() {
         return this.outsideDiscount;
     }
 
-    public void setSearchChannels(String searchChannels) {
-        this.searchChannels = searchChannels;
+    @Override
+    public Class<SimbaCampaignPlatformUpdateResponse> getResponseClass() {
+        return SimbaCampaignPlatformUpdateResponse.class;
     }
 
     public String getSearchChannels() {
         return this.searchChannels;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.platform.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -133,6 +125,12 @@ public class SimbaCampaignPlatformUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -140,22 +138,32 @@ public class SimbaCampaignPlatformUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignPlatformUpdateResponse> getResponseClass() {
-        return SimbaCampaignPlatformUpdateResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(mobileDiscount, "mobileDiscount");
-        RequestCheckUtils.checkMaxListSize(nonsearchChannels, 10, "nonsearchChannels");
-        RequestCheckUtils.checkNotEmpty(outsideDiscount, "outsideDiscount");
-        RequestCheckUtils.checkMaxValue(outsideDiscount, 200L, "outsideDiscount");
-        RequestCheckUtils.checkMinValue(outsideDiscount, 1L, "outsideDiscount");
-        RequestCheckUtils.checkNotEmpty(searchChannels, "searchChannels");
-        RequestCheckUtils.checkMaxListSize(searchChannels, 10, "searchChannels");
+    public void setMobileDiscount(Long mobileDiscount) {
+        this.mobileDiscount = mobileDiscount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNonsearchChannels(String nonsearchChannels) {
+        this.nonsearchChannels = nonsearchChannels;
+    }
+
+    public void setOutsideDiscount(Long outsideDiscount) {
+        this.outsideDiscount = outsideDiscount;
+    }
+
+    public void setSearchChannels(String searchChannels) {
+        this.searchChannels = searchChannels;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

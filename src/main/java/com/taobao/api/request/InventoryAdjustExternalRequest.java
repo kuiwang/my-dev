@@ -18,12 +18,6 @@ import com.taobao.api.response.InventoryAdjustExternalResponse;
 public class InventoryAdjustExternalRequest implements
         TaobaoRequest<InventoryAdjustExternalResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外部订单类型：ALLOCATE:调拨、
      * RETURN:退货、PURCHACE：采购、BALANCE:盘点、NON_TAOBAO_TRADE：非淘宝交易、OTHERS：其他
@@ -34,6 +28,8 @@ public class InventoryAdjustExternalRequest implements
      * 商家外部定单号
      */
     private String bizUniqueCode;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品初始库存信息：
@@ -70,82 +66,68 @@ public class InventoryAdjustExternalRequest implements
      */
     private String storeCode;
 
-    public void setBizType(String bizType) {
-        this.bizType = bizType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizType, "bizType");
+        RequestCheckUtils.checkNotEmpty(bizUniqueCode, "bizUniqueCode");
+        RequestCheckUtils.checkNotEmpty(items, "items");
+        RequestCheckUtils.checkNotEmpty(operateTime, "operateTime");
+        RequestCheckUtils.checkNotEmpty(operateType, "operateType");
+        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.inventory.adjust.external";
     }
 
     public String getBizType() {
         return this.bizType;
     }
 
-    public void setBizUniqueCode(String bizUniqueCode) {
-        this.bizUniqueCode = bizUniqueCode;
-    }
-
     public String getBizUniqueCode() {
         return this.bizUniqueCode;
     }
 
-    public void setItems(String items) {
-        this.items = items;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItems() {
         return this.items;
     }
 
-    public void setOccupyOperateCode(String occupyOperateCode) {
-        this.occupyOperateCode = occupyOperateCode;
-    }
-
     public String getOccupyOperateCode() {
         return this.occupyOperateCode;
-    }
-
-    public void setOperateTime(Date operateTime) {
-        this.operateTime = operateTime;
     }
 
     public Date getOperateTime() {
         return this.operateTime;
     }
 
-    public void setOperateType(String operateType) {
-        this.operateType = operateType;
-    }
-
     public String getOperateType() {
         return this.operateType;
-    }
-
-    public void setReduceType(String reduceType) {
-        this.reduceType = reduceType;
     }
 
     public String getReduceType() {
         return this.reduceType;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<InventoryAdjustExternalResponse> getResponseClass() {
+        return InventoryAdjustExternalResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.inventory.adjust.external";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_type", this.bizType);
@@ -162,6 +144,12 @@ public class InventoryAdjustExternalRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -169,20 +157,40 @@ public class InventoryAdjustExternalRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<InventoryAdjustExternalResponse> getResponseClass() {
-        return InventoryAdjustExternalResponse.class;
+    public void setBizType(String bizType) {
+        this.bizType = bizType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizType, "bizType");
-        RequestCheckUtils.checkNotEmpty(bizUniqueCode, "bizUniqueCode");
-        RequestCheckUtils.checkNotEmpty(items, "items");
-        RequestCheckUtils.checkNotEmpty(operateTime, "operateTime");
-        RequestCheckUtils.checkNotEmpty(operateType, "operateType");
-        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
+    public void setBizUniqueCode(String bizUniqueCode) {
+        this.bizUniqueCode = bizUniqueCode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public void setOccupyOperateCode(String occupyOperateCode) {
+        this.occupyOperateCode = occupyOperateCode;
+    }
+
+    public void setOperateTime(Date operateTime) {
+        this.operateTime = operateTime;
+    }
+
+    public void setOperateType(String operateType) {
+        this.operateType = operateType;
+    }
+
+    public void setReduceType(String reduceType) {
+        this.reduceType = reduceType;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -75,68 +75,68 @@ public class WlbReplenish extends TaobaoObject {
         return this.estimateValue;
     }
 
-    public void setEstimateValue(String estimateValue) {
-        this.estimateValue = estimateValue;
-    }
-
     public String getHistoryValue() {
         return this.historyValue;
-    }
-
-    public void setHistoryValue(String historyValue) {
-        this.historyValue = historyValue;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getRetrievalCount() {
         return this.retrievalCount;
-    }
-
-    public void setRetrievalCount(Long retrievalCount) {
-        this.retrievalCount = retrievalCount;
     }
 
     public Long getSellCount() {
         return this.sellCount;
     }
 
-    public void setSellCount(Long sellCount) {
-        this.sellCount = sellCount;
-    }
-
     public String getStoreCode() {
         return this.storeCode;
-    }
-
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
     }
 
     public Long getTransportCount() {
         return this.transportCount;
     }
 
-    public void setTransportCount(Long transportCount) {
-        this.transportCount = transportCount;
-    }
-
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getWarnCount() {
         return this.warnCount;
+    }
+
+    public void setEstimateValue(String estimateValue) {
+        this.estimateValue = estimateValue;
+    }
+
+    public void setHistoryValue(String historyValue) {
+        this.historyValue = historyValue;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setRetrievalCount(Long retrievalCount) {
+        this.retrievalCount = retrievalCount;
+    }
+
+    public void setSellCount(Long sellCount) {
+        this.sellCount = sellCount;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setTransportCount(Long transportCount) {
+        this.transportCount = transportCount;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setWarnCount(Long warnCount) {

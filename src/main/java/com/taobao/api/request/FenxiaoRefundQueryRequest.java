@@ -17,16 +17,12 @@ import com.taobao.api.response.FenxiaoRefundQueryResponse;
  */
 public class FenxiaoRefundQueryRequest implements TaobaoRequest<FenxiaoRefundQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销采购退款最迟修改时间。与start_date的最大时间间隔不能超过30天
      */
     private Date endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码（大于0的整数。无值或小于1的值按默认值1计）
@@ -48,58 +44,52 @@ public class FenxiaoRefundQueryRequest implements TaobaoRequest<FenxiaoRefundQue
      */
     private Date startDate;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.refund.query";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setQuerySellerRefund(Boolean querySellerRefund) {
-        this.querySellerRefund = querySellerRefund;
     }
 
     public Boolean getQuerySellerRefund() {
         return this.querySellerRefund;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<FenxiaoRefundQueryResponse> getResponseClass() {
+        return FenxiaoRefundQueryResponse.class;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.refund.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -113,6 +103,12 @@ public class FenxiaoRefundQueryRequest implements TaobaoRequest<FenxiaoRefundQue
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,16 +116,28 @@ public class FenxiaoRefundQueryRequest implements TaobaoRequest<FenxiaoRefundQue
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoRefundQueryResponse> getResponseClass() {
-        return FenxiaoRefundQueryResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setQuerySellerRefund(Boolean querySellerRefund) {
+        this.querySellerRefund = querySellerRefund;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

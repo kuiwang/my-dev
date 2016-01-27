@@ -17,37 +17,42 @@ import com.taobao.api.response.WeitaoCloudtagsGroupGetbyidResponse;
 public class WeitaoCloudtagsGroupGetbyidRequest implements
         TaobaoRequest<WeitaoCloudtagsGroupGetbyidResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分组id
      */
     private String groupId;
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.cloudtags.group.getbyid";
     }
 
     public String getGroupId() {
         return this.groupId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WeitaoCloudtagsGroupGetbyidResponse> getResponseClass() {
+        return WeitaoCloudtagsGroupGetbyidResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.weitao.cloudtags.group.getbyid";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("group_id", this.groupId);
@@ -57,6 +62,12 @@ public class WeitaoCloudtagsGroupGetbyidRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class WeitaoCloudtagsGroupGetbyidRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoCloudtagsGroupGetbyidResponse> getResponseClass() {
-        return WeitaoCloudtagsGroupGetbyidResponse.class;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(groupId, "groupId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

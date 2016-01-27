@@ -17,50 +17,52 @@ import com.taobao.api.response.FenxiaoDistributorProcuctStaticGetResponse;
 public class FenxiaoDistributorProcuctStaticGetRequest implements
         TaobaoRequest<FenxiaoDistributorProcuctStaticGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销商淘宝店主nick
      */
     private String distributorUserNick;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 供应商商品id，一次可以传多个，每次最多40个。 以,(英文)作为分隔符。
      */
     private String productIdArray;
 
-    public void setDistributorUserNick(String distributorUserNick) {
-        this.distributorUserNick = distributorUserNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(distributorUserNick, "distributorUserNick");
+        RequestCheckUtils.checkNotEmpty(productIdArray, "productIdArray");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.distributor.procuct.static.get";
     }
 
     public String getDistributorUserNick() {
         return this.distributorUserNick;
     }
 
-    public void setProductIdArray(String productIdArray) {
-        this.productIdArray = productIdArray;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getProductIdArray() {
         return this.productIdArray;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoDistributorProcuctStaticGetResponse> getResponseClass() {
+        return FenxiaoDistributorProcuctStaticGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.distributor.procuct.static.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("distributor_user_nick", this.distributorUserNick);
@@ -71,6 +73,12 @@ public class FenxiaoDistributorProcuctStaticGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class FenxiaoDistributorProcuctStaticGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDistributorProcuctStaticGetResponse> getResponseClass() {
-        return FenxiaoDistributorProcuctStaticGetResponse.class;
+    public void setDistributorUserNick(String distributorUserNick) {
+        this.distributorUserNick = distributorUserNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(distributorUserNick, "distributorUserNick");
-        RequestCheckUtils.checkNotEmpty(productIdArray, "productIdArray");
+    public void setProductIdArray(String productIdArray) {
+        this.productIdArray = productIdArray;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

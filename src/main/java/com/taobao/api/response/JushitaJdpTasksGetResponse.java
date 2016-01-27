@@ -24,12 +24,12 @@ public class JushitaJdpTasksGetResponse extends TaobaoResponse {
     @ApiField("data_push_task")
     private List<DataPushTask> dataPushTasks;
 
-    public void setDataPushTasks(List<DataPushTask> dataPushTasks) {
-        this.dataPushTasks = dataPushTasks;
-    }
-
     public List<DataPushTask> getDataPushTasks() {
         return this.dataPushTasks;
+    }
+
+    public void setDataPushTasks(List<DataPushTask> dataPushTasks) {
+        this.dataPushTasks = dataPushTasks;
     }
 
 }

@@ -9,6 +9,11 @@ import java.util.List;
 public class GroupData {
 
     /**
+     * 团结束时间
+     */
+    private Date groupEndTime;
+
+    /**
      * 组id，唯一标识一个聚划算的组
      */
     private Long groupId;
@@ -19,19 +24,14 @@ public class GroupData {
     private String groupName;
 
     /**
-     * 商品组所对应的平台id，1001=聚划算
-     */
-    private Long platformId;
-
-    /**
      * 团开始时间
      */
     private Date groupStartTime;
 
     /**
-     * 团结束时间
+     * 聚划算商品对象列表
      */
-    private Date groupEndTime;
+    private List<ItemData> itemList;
 
     /**
      * 该组是否在聚划算平台显示
@@ -39,64 +39,64 @@ public class GroupData {
     private Boolean juView;
 
     /**
-     * 聚划算商品对象列表
+     * 商品组所对应的平台id，1001=聚划算
      */
-    private List<ItemData> itemList;
+    private Long platformId;
+
+    public Date getGroupEndTime() {
+        return groupEndTime;
+    }
 
     public Long getGroupId() {
         return groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public String getGroupName() {
         return groupName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public Long getPlatformId() {
-        return platformId;
-    }
-
-    public void setPlatformId(Long platformId) {
-        this.platformId = platformId;
-    }
-
     public Date getGroupStartTime() {
         return groupStartTime;
-    }
-
-    public void setGroupStartTime(Date groupStartTime) {
-        this.groupStartTime = groupStartTime;
-    }
-
-    public Date getGroupEndTime() {
-        return groupEndTime;
-    }
-
-    public void setGroupEndTime(Date groupEndTime) {
-        this.groupEndTime = groupEndTime;
-    }
-
-    public Boolean getJuView() {
-        return juView;
-    }
-
-    public void setJuView(Boolean juView) {
-        this.juView = juView;
     }
 
     public List<ItemData> getItemList() {
         return itemList;
     }
 
+    public Boolean getJuView() {
+        return juView;
+    }
+
+    public Long getPlatformId() {
+        return platformId;
+    }
+
+    public void setGroupEndTime(Date groupEndTime) {
+        this.groupEndTime = groupEndTime;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setGroupStartTime(Date groupStartTime) {
+        this.groupStartTime = groupStartTime;
+    }
+
     public void setItemList(List<ItemData> itemList) {
         this.itemList = itemList;
+    }
+
+    public void setJuView(Boolean juView) {
+        this.juView = juView;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
     }
 
 }

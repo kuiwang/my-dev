@@ -19,12 +19,12 @@ public class SimbaRptCustbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_cust_base_list")
     private String rptCustBaseList;
 
-    public void setRptCustBaseList(String rptCustBaseList) {
-        this.rptCustBaseList = rptCustBaseList;
-    }
-
     public String getRptCustBaseList() {
         return this.rptCustBaseList;
+    }
+
+    public void setRptCustBaseList(String rptCustBaseList) {
+        this.rptCustBaseList = rptCustBaseList;
     }
 
 }

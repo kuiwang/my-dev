@@ -35,20 +35,20 @@ public class TmallRateTagDetail extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public Boolean getPosi() {
         return this.posi;
     }
 
-    public void setPosi(Boolean posi) {
-        this.posi = posi;
-    }
-
     public String getTagName() {
         return this.tagName;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setPosi(Boolean posi) {
+        this.posi = posi;
     }
 
     public void setTagName(String tagName) {

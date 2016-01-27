@@ -17,35 +17,39 @@ public class TbkShopCouponGetRequest implements TaobaoRequest<TbkShopCouponGetRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 店铺Id
      */
     private Long shopId;
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tbk.shop.coupon.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TbkShopCouponGetResponse> getResponseClass() {
+        return TbkShopCouponGetResponse.class;
     }
 
     public Long getShopId() {
         return this.shopId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tbk.shop.coupon.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("shop_id", this.shopId);
@@ -55,6 +59,12 @@ public class TbkShopCouponGetRequest implements TaobaoRequest<TbkShopCouponGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class TbkShopCouponGetRequest implements TaobaoRequest<TbkShopCouponGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<TbkShopCouponGetResponse> getResponseClass() {
-        return TbkShopCouponGetResponse.class;
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,10 +19,6 @@ public class TradeShippingaddressUpdateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 收货地址。最大长度为228个字节。<br />
      * 支持最大长度为：228<br />
@@ -84,90 +80,71 @@ public class TradeShippingaddressUpdateRequest implements
      */
     private Long tid;
 
-    public void setReceiverAddress(String receiverAddress) {
-        this.receiverAddress = receiverAddress;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(receiverAddress, 228, "receiverAddress");
+        RequestCheckUtils.checkMaxLength(receiverCity, 32, "receiverCity");
+        RequestCheckUtils.checkMaxLength(receiverDistrict, 32, "receiverDistrict");
+        RequestCheckUtils.checkMaxLength(receiverMobile, 30, "receiverMobile");
+        RequestCheckUtils.checkMaxLength(receiverName, 50, "receiverName");
+        RequestCheckUtils.checkMaxLength(receiverPhone, 30, "receiverPhone");
+        RequestCheckUtils.checkMaxLength(receiverState, 32, "receiverState");
+        RequestCheckUtils.checkMaxLength(receiverZip, 6, "receiverZip");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.shippingaddress.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getReceiverAddress() {
         return this.receiverAddress;
     }
 
-    public void setReceiverCity(String receiverCity) {
-        this.receiverCity = receiverCity;
-    }
-
     public String getReceiverCity() {
         return this.receiverCity;
-    }
-
-    public void setReceiverDistrict(String receiverDistrict) {
-        this.receiverDistrict = receiverDistrict;
     }
 
     public String getReceiverDistrict() {
         return this.receiverDistrict;
     }
 
-    public void setReceiverMobile(String receiverMobile) {
-        this.receiverMobile = receiverMobile;
-    }
-
     public String getReceiverMobile() {
         return this.receiverMobile;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
     }
 
     public String getReceiverName() {
         return this.receiverName;
     }
 
-    public void setReceiverPhone(String receiverPhone) {
-        this.receiverPhone = receiverPhone;
-    }
-
     public String getReceiverPhone() {
         return this.receiverPhone;
-    }
-
-    public void setReceiverState(String receiverState) {
-        this.receiverState = receiverState;
     }
 
     public String getReceiverState() {
         return this.receiverState;
     }
 
-    public void setReceiverZip(String receiverZip) {
-        this.receiverZip = receiverZip;
-    }
-
     public String getReceiverZip() {
         return this.receiverZip;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Class<TradeShippingaddressUpdateResponse> getResponseClass() {
+        return TradeShippingaddressUpdateResponse.class;
     }
 
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.shippingaddress.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("receiver_address", this.receiverAddress);
@@ -185,6 +162,16 @@ public class TradeShippingaddressUpdateRequest implements
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -192,23 +179,44 @@ public class TradeShippingaddressUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeShippingaddressUpdateResponse> getResponseClass() {
-        return TradeShippingaddressUpdateResponse.class;
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(receiverAddress, 228, "receiverAddress");
-        RequestCheckUtils.checkMaxLength(receiverCity, 32, "receiverCity");
-        RequestCheckUtils.checkMaxLength(receiverDistrict, 32, "receiverDistrict");
-        RequestCheckUtils.checkMaxLength(receiverMobile, 30, "receiverMobile");
-        RequestCheckUtils.checkMaxLength(receiverName, 50, "receiverName");
-        RequestCheckUtils.checkMaxLength(receiverPhone, 30, "receiverPhone");
-        RequestCheckUtils.checkMaxLength(receiverState, 32, "receiverState");
-        RequestCheckUtils.checkMaxLength(receiverZip, 6, "receiverZip");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setReceiverCity(String receiverCity) {
+        this.receiverCity = receiverCity;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setReceiverDistrict(String receiverDistrict) {
+        this.receiverDistrict = receiverDistrict;
+    }
+
+    public void setReceiverMobile(String receiverMobile) {
+        this.receiverMobile = receiverMobile;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public void setReceiverState(String receiverState) {
+        this.receiverState = receiverState;
+    }
+
+    public void setReceiverZip(String receiverZip) {
+        this.receiverZip = receiverZip;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

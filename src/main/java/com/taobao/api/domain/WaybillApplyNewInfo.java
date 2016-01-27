@@ -71,68 +71,68 @@ public class WaybillApplyNewInfo extends TaobaoObject {
         return this.consigneeBranchCode;
     }
 
-    public void setConsigneeBranchCode(String consigneeBranchCode) {
-        this.consigneeBranchCode = consigneeBranchCode;
-    }
-
     public String getConsigneeBranchName() {
         return this.consigneeBranchName;
-    }
-
-    public void setConsigneeBranchName(String consigneeBranchName) {
-        this.consigneeBranchName = consigneeBranchName;
     }
 
     public String getFeature() {
         return this.feature;
     }
 
-    public void setFeature(String feature) {
-        this.feature = feature;
-    }
-
     public Long getResult() {
         return this.result;
-    }
-
-    public void setResult(Long result) {
-        this.result = result;
     }
 
     public String getShippingBranchCode() {
         return this.shippingBranchCode;
     }
 
-    public void setShippingBranchCode(String shippingBranchCode) {
-        this.shippingBranchCode = shippingBranchCode;
-    }
-
     public String getShippingBranchName() {
         return this.shippingBranchName;
-    }
-
-    public void setShippingBranchName(String shippingBranchName) {
-        this.shippingBranchName = shippingBranchName;
     }
 
     public String getShortAddress() {
         return this.shortAddress;
     }
 
-    public void setShortAddress(String shortAddress) {
-        this.shortAddress = shortAddress;
-    }
-
     public TradeOrderInfo getTradeOrderInfo() {
         return this.tradeOrderInfo;
     }
 
-    public void setTradeOrderInfo(TradeOrderInfo tradeOrderInfo) {
-        this.tradeOrderInfo = tradeOrderInfo;
-    }
-
     public String getWaybillCode() {
         return this.waybillCode;
+    }
+
+    public void setConsigneeBranchCode(String consigneeBranchCode) {
+        this.consigneeBranchCode = consigneeBranchCode;
+    }
+
+    public void setConsigneeBranchName(String consigneeBranchName) {
+        this.consigneeBranchName = consigneeBranchName;
+    }
+
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    public void setResult(Long result) {
+        this.result = result;
+    }
+
+    public void setShippingBranchCode(String shippingBranchCode) {
+        this.shippingBranchCode = shippingBranchCode;
+    }
+
+    public void setShippingBranchName(String shippingBranchName) {
+        this.shippingBranchName = shippingBranchName;
+    }
+
+    public void setShortAddress(String shortAddress) {
+        this.shortAddress = shortAddress;
+    }
+
+    public void setTradeOrderInfo(TradeOrderInfo tradeOrderInfo) {
+        this.tradeOrderInfo = tradeOrderInfo;
     }
 
     public void setWaybillCode(String waybillCode) {

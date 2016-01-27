@@ -27,18 +27,33 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class AlipaySignature {
 
+    public static PrivateKey getPrivateKeyFromPKCS8(String algorithm, InputStream ins)
+            throws Exception {
+        if ((ins == null) || StringUtils.isEmpty(algorithm)) {
+            return null;
+        }
+
+        KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
+
+        byte[] encodedKey = StreamUtil.readText(ins).getBytes();
+
+        encodedKey = Base64.decode(encodedKey);
+
+        return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(encodedKey));
+    }
+
     public static String getSignatureContent(RequestParametersHolder requestHolder) {
         Map<String, String> sortedParams = new TreeMap<String, String>();
         TaobaoHashMap appParams = requestHolder.getApplicationParams();
-        if (appParams != null && appParams.size() > 0) {
+        if ((appParams != null) && (appParams.size() > 0)) {
             sortedParams.putAll(appParams);
         }
         TaobaoHashMap protocalMustParams = requestHolder.getProtocalMustParams();
-        if (protocalMustParams != null && protocalMustParams.size() > 0) {
+        if ((protocalMustParams != null) && (protocalMustParams.size() > 0)) {
             sortedParams.putAll(protocalMustParams);
         }
         TaobaoHashMap protocalOptParams = requestHolder.getProtocalOptParams();
-        if (protocalOptParams != null && protocalOptParams.size() > 0) {
+        if ((protocalOptParams != null) && (protocalOptParams.size() > 0)) {
             sortedParams.putAll(protocalOptParams);
         }
 
@@ -75,21 +90,6 @@ public class AlipaySignature {
         } catch (Exception e) {
             throw new AlipayApiException("RSAcontent = " + content + "; charset = " + charset, e);
         }
-    }
-
-    public static PrivateKey getPrivateKeyFromPKCS8(String algorithm, InputStream ins)
-            throws Exception {
-        if (ins == null || StringUtils.isEmpty(algorithm)) {
-            return null;
-        }
-
-        KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-
-        byte[] encodedKey = StreamUtil.readText(ins).getBytes();
-
-        encodedKey = Base64.decode(encodedKey);
-
-        return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(encodedKey));
     }
 
 }

@@ -16,17 +16,13 @@ import com.taobao.api.response.RpRefundsAgreeResponse;
  */
 public class RpRefundsAgreeRequest implements TaobaoRequest<RpRefundsAgreeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 短信验证码，如果退款金额达到一定的数量，后端会返回调用失败，并同时往卖家的手机发送一条短信验证码。
      * 接下来用收到的短信验证码再次发起API调用即可完成退款操作。
      */
     private String code;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 退款信息，格式：refund_id|amount|version|phase，其中refund_id为退款编号，amount为退款金额（
@@ -35,34 +31,39 @@ public class RpRefundsAgreeRequest implements TaobaoRequest<RpRefundsAgreeRespon
      */
     private String refundInfos;
 
-    public void setCode(String code) {
-        this.code = code;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(refundInfos, "refundInfos");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.rp.refunds.agree";
     }
 
     public String getCode() {
         return this.code;
     }
 
-    public void setRefundInfos(String refundInfos) {
-        this.refundInfos = refundInfos;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getRefundInfos() {
         return this.refundInfos;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<RpRefundsAgreeResponse> getResponseClass() {
+        return RpRefundsAgreeResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.rp.refunds.agree";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("code", this.code);
@@ -73,6 +74,12 @@ public class RpRefundsAgreeRequest implements TaobaoRequest<RpRefundsAgreeRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,15 +87,16 @@ public class RpRefundsAgreeRequest implements TaobaoRequest<RpRefundsAgreeRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<RpRefundsAgreeResponse> getResponseClass() {
-        return RpRefundsAgreeResponse.class;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(refundInfos, "refundInfos");
+    public void setRefundInfos(String refundInfos) {
+        this.refundInfos = refundInfos;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

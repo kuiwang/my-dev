@@ -23,12 +23,12 @@ public class SimbaCatmatchidsChangedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> changedCatmatchIds;
 
-    public void setChangedCatmatchIds(List<Long> changedCatmatchIds) {
-        this.changedCatmatchIds = changedCatmatchIds;
-    }
-
     public List<Long> getChangedCatmatchIds() {
         return this.changedCatmatchIds;
+    }
+
+    public void setChangedCatmatchIds(List<Long> changedCatmatchIds) {
+        this.changedCatmatchIds = changedCatmatchIds;
     }
 
 }

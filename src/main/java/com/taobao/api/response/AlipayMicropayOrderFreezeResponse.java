@@ -20,12 +20,12 @@ public class AlipayMicropayOrderFreezeResponse extends TaobaoResponse {
     @ApiField("micro_pay_order_detail")
     private MicroPayOrderDetail microPayOrderDetail;
 
-    public void setMicroPayOrderDetail(MicroPayOrderDetail microPayOrderDetail) {
-        this.microPayOrderDetail = microPayOrderDetail;
-    }
-
     public MicroPayOrderDetail getMicroPayOrderDetail() {
         return this.microPayOrderDetail;
+    }
+
+    public void setMicroPayOrderDetail(MicroPayOrderDetail microPayOrderDetail) {
+        this.microPayOrderDetail = microPayOrderDetail;
     }
 
 }

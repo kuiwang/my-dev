@@ -18,10 +18,6 @@ import com.taobao.api.response.ItemEbookUpdateResponse;
  */
 public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品主图片。类型:JPG,PNG;最大:2M，可以选择不填，不填，则获得默认封面图片<br />
      * 支持的文件类型为：gif,jpg,jpeg,png<br />
@@ -35,6 +31,8 @@ public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpda
      * 支持的最大列表长度为：200000
      */
     private String desc;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 电子书商品数字id
@@ -56,6 +54,8 @@ public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpda
      */
     private Long probation;
 
+    private Long timestamp;
+
     /**
      * 宝贝标题。不能超过60字符，受违禁词控制<br />
      * 支持最大长度为：120<br />
@@ -63,76 +63,64 @@ public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpda
      */
     private String title;
 
-    public void setCover(FileItem cover) {
-        this.cover = cover;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(cover, 2097152, "cover");
+        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkMaxLength(title, 120, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.ebook.update";
     }
 
     public FileItem getCover() {
         return this.cover;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("cover", this.cover);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setProbation(Long probation) {
-        this.probation = probation;
-    }
-
     public Long getProbation() {
         return this.probation;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<ItemEbookUpdateResponse> getResponseClass() {
+        return ItemEbookUpdateResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.ebook.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("desc", this.desc);
@@ -147,6 +135,16 @@ public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -154,25 +152,36 @@ public class ItemEbookUpdateRequest implements TaobaoUploadRequest<ItemEbookUpda
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("cover", this.cover);
-        return params;
+    public void setCover(FileItem cover) {
+        this.cover = cover;
     }
 
-    public Class<ItemEbookUpdateResponse> getResponseClass() {
-        return ItemEbookUpdateResponse.class;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(cover, 2097152, "cover");
-        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkMaxLength(title, 120, "title");
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProbation(Long probation) {
+        this.probation = probation;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

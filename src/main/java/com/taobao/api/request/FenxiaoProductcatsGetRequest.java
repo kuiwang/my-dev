@@ -15,37 +15,41 @@ import com.taobao.api.response.FenxiaoProductcatsGetResponse;
  */
 public class FenxiaoProductcatsGetRequest implements TaobaoRequest<FenxiaoProductcatsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 返回字段列表
      */
     private String fields;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.productcats.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoProductcatsGetResponse> getResponseClass() {
+        return FenxiaoProductcatsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.productcats.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -55,6 +59,12 @@ public class FenxiaoProductcatsGetRequest implements TaobaoRequest<FenxiaoProduc
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class FenxiaoProductcatsGetRequest implements TaobaoRequest<FenxiaoProduc
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductcatsGetResponse> getResponseClass() {
-        return FenxiaoProductcatsGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,12 +19,12 @@ public class AlipayDataBillDownloadurlGetResponse extends TaobaoResponse {
     @ApiField("bill_download_url")
     private String billDownloadUrl;
 
-    public void setBillDownloadUrl(String billDownloadUrl) {
-        this.billDownloadUrl = billDownloadUrl;
-    }
-
     public String getBillDownloadUrl() {
         return this.billDownloadUrl;
+    }
+
+    public void setBillDownloadUrl(String billDownloadUrl) {
+        this.billDownloadUrl = billDownloadUrl;
     }
 
 }

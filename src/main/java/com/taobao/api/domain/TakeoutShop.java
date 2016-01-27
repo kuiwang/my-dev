@@ -77,76 +77,76 @@ public class TakeoutShop extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Long getMerchantType() {
         return this.merchantType;
     }
 
-    public void setMerchantType(Long merchantType) {
-        this.merchantType = merchantType;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public Long getPosx() {
         return this.posx;
     }
 
-    public void setPosx(Long posx) {
-        this.posx = posx;
-    }
-
     public Long getPosy() {
         return this.posy;
-    }
-
-    public void setPosy(Long posy) {
-        this.posy = posy;
     }
 
     public Long getShopid() {
         return this.shopid;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
-    }
-
     public String getShopoutid() {
         return this.shopoutid;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setMerchantType(Long merchantType) {
+        this.merchantType = merchantType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPosx(Long posx) {
+        this.posx = posx;
+    }
+
+    public void setPosy(Long posy) {
+        this.posy = posy;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
     }
 
     public void setShopoutid(String shopoutid) {

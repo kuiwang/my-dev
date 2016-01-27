@@ -13,12 +13,12 @@ public class QueryPagination {
         return pageIndex;
     }
 
-    public void setPageIndex(Number pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
     public Number getPageSize() {
         return pageSize;
+    }
+
+    public void setPageIndex(Number pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
     public void setPageSize(Number pageSize) {

@@ -111,116 +111,116 @@ public class SRoomType extends TaobaoObject {
         return this.area;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public String getBed() {
         return this.bed;
-    }
-
-    public void setBed(String bed) {
-        this.bed = bed;
     }
 
     public Date getCreatedTime() {
         return this.createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
-
     public String getExtend() {
         return this.extend;
-    }
-
-    public void setExtend(String extend) {
-        this.extend = extend;
     }
 
     public String getFacility() {
         return this.facility;
     }
 
-    public void setFacility(String facility) {
-        this.facility = facility;
-    }
-
     public String getFloor() {
         return this.floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor = floor;
     }
 
     public String getInternet() {
         return this.internet;
     }
 
-    public void setInternet(String internet) {
-        this.internet = internet;
-    }
-
     public Long getMaxOccupancy() {
         return this.maxOccupancy;
-    }
-
-    public void setMaxOccupancy(Long maxOccupancy) {
-        this.maxOccupancy = maxOccupancy;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPicUrl() {
         return this.picUrl;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
     public Long getShid() {
         return this.shid;
-    }
-
-    public void setShid(Long shid) {
-        this.shid = shid;
     }
 
     public Long getSrid() {
         return this.srid;
     }
 
-    public void setSrid(Long srid) {
-        this.srid = srid;
-    }
-
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
     public String getWindowType() {
         return this.windowType;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setBed(String bed) {
+        this.bed = bed;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public void setExtend(String extend) {
+        this.extend = extend;
+    }
+
+    public void setFacility(String facility) {
+        this.facility = facility;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public void setInternet(String internet) {
+        this.internet = internet;
+    }
+
+    public void setMaxOccupancy(Long maxOccupancy) {
+        this.maxOccupancy = maxOccupancy;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setShid(Long shid) {
+        this.shid = shid;
+    }
+
+    public void setSrid(Long srid) {
+        this.srid = srid;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public void setWindowType(String windowType) {

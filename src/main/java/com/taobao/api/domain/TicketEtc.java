@@ -59,52 +59,52 @@ public class TicketEtc extends TaobaoObject {
         return this.associationStatus;
     }
 
-    public void setAssociationStatus(Boolean associationStatus) {
-        this.associationStatus = associationStatus;
-    }
-
     public Long getAutoRefund() {
         return this.autoRefund;
-    }
-
-    public void setAutoRefund(Long autoRefund) {
-        this.autoRefund = autoRefund;
     }
 
     public String getMerchantId() {
         return this.merchantId;
     }
 
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
-    }
-
     public String getMerchantNick() {
         return this.merchantNick;
-    }
-
-    public void setMerchantNick(String merchantNick) {
-        this.merchantNick = merchantNick;
     }
 
     public String getNetworkId() {
         return this.networkId;
     }
 
-    public void setNetworkId(String networkId) {
-        this.networkId = networkId;
-    }
-
     public Long getOverduePay() {
         return this.overduePay;
     }
 
-    public void setOverduePay(Long overduePay) {
-        this.overduePay = overduePay;
-    }
-
     public Boolean getVerificationPay() {
         return this.verificationPay;
+    }
+
+    public void setAssociationStatus(Boolean associationStatus) {
+        this.associationStatus = associationStatus;
+    }
+
+    public void setAutoRefund(Long autoRefund) {
+        this.autoRefund = autoRefund;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public void setMerchantNick(String merchantNick) {
+        this.merchantNick = merchantNick;
+    }
+
+    public void setNetworkId(String networkId) {
+        this.networkId = networkId;
+    }
+
+    public void setOverduePay(Long overduePay) {
+        this.overduePay = overduePay;
     }
 
     public void setVerificationPay(Boolean verificationPay) {

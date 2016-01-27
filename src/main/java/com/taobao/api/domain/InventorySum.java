@@ -65,60 +65,60 @@ public class InventorySum extends TaobaoObject {
         return this.inventoryType;
     }
 
-    public void setInventoryType(Long inventoryType) {
-        this.inventoryType = inventoryType;
-    }
-
     public String getInventoryTypeName() {
         return this.inventoryTypeName;
-    }
-
-    public void setInventoryTypeName(String inventoryTypeName) {
-        this.inventoryTypeName = inventoryTypeName;
     }
 
     public Long getOccupyQuantity() {
         return this.occupyQuantity;
     }
 
-    public void setOccupyQuantity(Long occupyQuantity) {
-        this.occupyQuantity = occupyQuantity;
-    }
-
     public Long getQuantity() {
         return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getReserveQuantity() {
         return this.reserveQuantity;
     }
 
-    public void setReserveQuantity(Long reserveQuantity) {
-        this.reserveQuantity = reserveQuantity;
-    }
-
     public String getScItemCode() {
         return this.scItemCode;
-    }
-
-    public void setScItemCode(String scItemCode) {
-        this.scItemCode = scItemCode;
     }
 
     public Long getScItemId() {
         return this.scItemId;
     }
 
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
-    }
-
     public String getStoreCode() {
         return this.storeCode;
+    }
+
+    public void setInventoryType(Long inventoryType) {
+        this.inventoryType = inventoryType;
+    }
+
+    public void setInventoryTypeName(String inventoryTypeName) {
+        this.inventoryTypeName = inventoryTypeName;
+    }
+
+    public void setOccupyQuantity(Long occupyQuantity) {
+        this.occupyQuantity = occupyQuantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setReserveQuantity(Long reserveQuantity) {
+        this.reserveQuantity = reserveQuantity;
+    }
+
+    public void setScItemCode(String scItemCode) {
+        this.scItemCode = scItemCode;
+    }
+
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
     }
 
     public void setStoreCode(String storeCode) {

@@ -8,29 +8,9 @@ import java.util.Date;
 public class TmallRateInfo {
 
     /*
-     * 表示评价者的昵称
+     * 追加评价中带有的语义标签列表   
      */
-    private String userNick;
-
-    /*
-     * 评价内容
-     */
-    private String content;
-
-    /*
-     * 评价时间
-     */
-    private Date commentTime;
-
-    /*
-     * 原始评价对应的标签列表
-     */
-    private TmallRateTag[] tags;
-
-    /*
-     * 原始评价是否含有负向标签
-     */
-    private Boolean hasNegtv;
+    private TmallRateTag[] append_tags;
 
     /*
      * 追加评价内容
@@ -38,90 +18,110 @@ public class TmallRateInfo {
     private String appendContent;
 
     /*
+     * 追评中是否含有负向标签
+     */
+    private Boolean appendHasNegtv;
+
+    /*
      * 追加评价时间
      */
     private Date appendTime;
 
     /*
-     * 追加评价中带有的语义标签列表   
+     * 评价时间
      */
-    private TmallRateTag[] append_tags;
+    private Date commentTime;
 
     /*
-     * 追评中是否含有负向标签
+     * 评价内容
      */
-    private Boolean appendHasNegtv;
+    private String content;
 
-    public String getUserNick() {
-        return userNick;
-    }
+    /*
+     * 原始评价是否含有负向标签
+     */
+    private Boolean hasNegtv;
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
+    /*
+     * 原始评价对应的标签列表
+     */
+    private TmallRateTag[] tags;
 
-    public String getContent() {
-        return content;
-    }
+    /*
+     * 表示评价者的昵称
+     */
+    private String userNick;
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getCommentTime() {
-        return commentTime;
-    }
-
-    public void setCommentTime(Date commentTime) {
-        this.commentTime = commentTime;
-    }
-
-    public TmallRateTag[] getTags() {
-        return tags;
-    }
-
-    public void setTags(TmallRateTag[] tags) {
-        this.tags = tags;
-    }
-
-    public Boolean getHasNegtv() {
-        return hasNegtv;
-    }
-
-    public void setHasNegtv(Boolean hasNegtv) {
-        this.hasNegtv = hasNegtv;
+    public TmallRateTag[] getAppend_tags() {
+        return append_tags;
     }
 
     public String getAppendContent() {
         return appendContent;
     }
 
-    public void setAppendContent(String appendContent) {
-        this.appendContent = appendContent;
+    public Boolean getAppendHasNegtv() {
+        return appendHasNegtv;
     }
 
     public Date getAppendTime() {
         return appendTime;
     }
 
-    public void setAppendTime(Date appendTime) {
-        this.appendTime = appendTime;
+    public Date getCommentTime() {
+        return commentTime;
     }
 
-    public TmallRateTag[] getAppend_tags() {
-        return append_tags;
+    public String getContent() {
+        return content;
+    }
+
+    public Boolean getHasNegtv() {
+        return hasNegtv;
+    }
+
+    public TmallRateTag[] getTags() {
+        return tags;
+    }
+
+    public String getUserNick() {
+        return userNick;
     }
 
     public void setAppend_tags(TmallRateTag[] append_tags) {
         this.append_tags = append_tags;
     }
 
-    public Boolean getAppendHasNegtv() {
-        return appendHasNegtv;
+    public void setAppendContent(String appendContent) {
+        this.appendContent = appendContent;
     }
 
     public void setAppendHasNegtv(Boolean appendHasNegtv) {
         this.appendHasNegtv = appendHasNegtv;
+    }
+
+    public void setAppendTime(Date appendTime) {
+        this.appendTime = appendTime;
+    }
+
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setHasNegtv(Boolean hasNegtv) {
+        this.hasNegtv = hasNegtv;
+    }
+
+    public void setTags(TmallRateTag[] tags) {
+        this.tags = tags;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 
 }

@@ -12,13 +12,13 @@ public class NamedThreadFactory implements ThreadFactory {
 
     private static final AtomicInteger poolNumber = new AtomicInteger(1);
 
-    private final AtomicInteger threadNumber = new AtomicInteger(1);
-
     private final ThreadGroup group;
+
+    private final boolean isDaemon;
 
     private final String namePrefix;
 
-    private final boolean isDaemon;
+    private final AtomicInteger threadNumber = new AtomicInteger(1);
 
     public NamedThreadFactory() {
         this("pool-msg-consume");
@@ -35,6 +35,7 @@ public class NamedThreadFactory implements ThreadFactory {
         isDaemon = daemon;
     }
 
+    @Override
     public Thread newThread(Runnable r) {
         Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
         t.setDaemon(isDaemon);

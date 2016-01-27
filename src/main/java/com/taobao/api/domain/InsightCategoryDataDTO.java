@@ -131,148 +131,148 @@ public class InsightCategoryDataDTO extends TaobaoObject {
         return this.catId;
     }
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
-
     public String getCatName() {
         return this.catName;
-    }
-
-    public void setCatName(String catName) {
-        this.catName = catName;
     }
 
     public Long getClick() {
         return this.click;
     }
 
-    public void setClick(Long click) {
-        this.click = click;
-    }
-
     public Long getCompetition() {
         return this.competition;
-    }
-
-    public void setCompetition(Long competition) {
-        this.competition = competition;
     }
 
     public Long getCost() {
         return this.cost;
     }
 
-    public void setCost(Long cost) {
-        this.cost = cost;
-    }
-
     public String getCoverage() {
         return this.coverage;
-    }
-
-    public void setCoverage(String coverage) {
-        this.coverage = coverage;
     }
 
     public String getCpc() {
         return this.cpc;
     }
 
-    public void setCpc(String cpc) {
-        this.cpc = cpc;
-    }
-
     public String getCtr() {
         return this.ctr;
-    }
-
-    public void setCtr(String ctr) {
-        this.ctr = ctr;
     }
 
     public Long getDirecttransaction() {
         return this.directtransaction;
     }
 
-    public void setDirecttransaction(Long directtransaction) {
-        this.directtransaction = directtransaction;
-    }
-
     public Long getDirecttransactionshipping() {
         return this.directtransactionshipping;
-    }
-
-    public void setDirecttransactionshipping(Long directtransactionshipping) {
-        this.directtransactionshipping = directtransactionshipping;
     }
 
     public Long getFavitemtotal() {
         return this.favitemtotal;
     }
 
-    public void setFavitemtotal(Long favitemtotal) {
-        this.favitemtotal = favitemtotal;
-    }
-
     public Long getFavshoptotal() {
         return this.favshoptotal;
-    }
-
-    public void setFavshoptotal(Long favshoptotal) {
-        this.favshoptotal = favshoptotal;
     }
 
     public Long getFavtotal() {
         return this.favtotal;
     }
 
-    public void setFavtotal(Long favtotal) {
-        this.favtotal = favtotal;
-    }
-
     public Long getImpression() {
         return this.impression;
-    }
-
-    public void setImpression(Long impression) {
-        this.impression = impression;
     }
 
     public Long getIndirecttransaction() {
         return this.indirecttransaction;
     }
 
-    public void setIndirecttransaction(Long indirecttransaction) {
-        this.indirecttransaction = indirecttransaction;
-    }
-
     public Long getIndirecttransactionshipping() {
         return this.indirecttransactionshipping;
-    }
-
-    public void setIndirecttransactionshipping(Long indirecttransactionshipping) {
-        this.indirecttransactionshipping = indirecttransactionshipping;
     }
 
     public String getRoi() {
         return this.roi;
     }
 
-    public void setRoi(String roi) {
-        this.roi = roi;
-    }
-
     public Long getTransactionshippingtotal() {
         return this.transactionshippingtotal;
     }
 
-    public void setTransactionshippingtotal(Long transactionshippingtotal) {
-        this.transactionshippingtotal = transactionshippingtotal;
-    }
-
     public Long getTransactiontotal() {
         return this.transactiontotal;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    public void setClick(Long click) {
+        this.click = click;
+    }
+
+    public void setCompetition(Long competition) {
+        this.competition = competition;
+    }
+
+    public void setCost(Long cost) {
+        this.cost = cost;
+    }
+
+    public void setCoverage(String coverage) {
+        this.coverage = coverage;
+    }
+
+    public void setCpc(String cpc) {
+        this.cpc = cpc;
+    }
+
+    public void setCtr(String ctr) {
+        this.ctr = ctr;
+    }
+
+    public void setDirecttransaction(Long directtransaction) {
+        this.directtransaction = directtransaction;
+    }
+
+    public void setDirecttransactionshipping(Long directtransactionshipping) {
+        this.directtransactionshipping = directtransactionshipping;
+    }
+
+    public void setFavitemtotal(Long favitemtotal) {
+        this.favitemtotal = favitemtotal;
+    }
+
+    public void setFavshoptotal(Long favshoptotal) {
+        this.favshoptotal = favshoptotal;
+    }
+
+    public void setFavtotal(Long favtotal) {
+        this.favtotal = favtotal;
+    }
+
+    public void setImpression(Long impression) {
+        this.impression = impression;
+    }
+
+    public void setIndirecttransaction(Long indirecttransaction) {
+        this.indirecttransaction = indirecttransaction;
+    }
+
+    public void setIndirecttransactionshipping(Long indirecttransactionshipping) {
+        this.indirecttransactionshipping = indirecttransactionshipping;
+    }
+
+    public void setRoi(String roi) {
+        this.roi = roi;
+    }
+
+    public void setTransactionshippingtotal(Long transactionshippingtotal) {
+        this.transactionshippingtotal = transactionshippingtotal;
     }
 
     public void setTransactiontotal(Long transactiontotal) {

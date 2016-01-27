@@ -44,44 +44,44 @@ public class CreateDBInstanceForChannelResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setConnectionString(String connectionString) {
-        this.connectionString = connectionString;
-    }
-
     public String getConnectionString() {
         return this.connectionString;
-    }
-
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
     }
 
     public String getdBInstanceId() {
         return this.dBInstanceId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
     public String getOrderId() {
         return this.orderId;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
     }
 
     public String getPort() {
         return this.port;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setConnectionString(String connectionString) {
+        this.connectionString = connectionString;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

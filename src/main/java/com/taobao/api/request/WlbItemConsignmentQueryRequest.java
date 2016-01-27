@@ -18,12 +18,6 @@ import com.taobao.api.response.WlbItemConsignmentQueryResponse;
 public class WlbItemConsignmentQueryRequest implements
         TaobaoRequest<WlbItemConsignmentQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 授权结束时间
      */
@@ -33,6 +27,8 @@ public class WlbItemConsignmentQueryRequest implements
      * 授权开始时间
      */
     private Date authorizeStartTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 货主的用户昵称，未设置则查询全部
@@ -49,58 +45,52 @@ public class WlbItemConsignmentQueryRequest implements
      */
     private Long pageSize;
 
-    public void setAuthorizeEndTime(Date authorizeEndTime) {
-        this.authorizeEndTime = authorizeEndTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.consignment.query";
     }
 
     public Date getAuthorizeEndTime() {
         return this.authorizeEndTime;
     }
 
-    public void setAuthorizeStartTime(Date authorizeStartTime) {
-        this.authorizeStartTime = authorizeStartTime;
-    }
-
     public Date getAuthorizeStartTime() {
         return this.authorizeStartTime;
     }
 
-    public void setOwnerUserNick(String ownerUserNick) {
-        this.ownerUserNick = ownerUserNick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerUserNick() {
         return this.ownerUserNick;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WlbItemConsignmentQueryResponse> getResponseClass() {
+        return WlbItemConsignmentQueryResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.consignment.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("authorize_end_time", this.authorizeEndTime);
@@ -114,6 +104,12 @@ public class WlbItemConsignmentQueryRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -121,16 +117,28 @@ public class WlbItemConsignmentQueryRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemConsignmentQueryResponse> getResponseClass() {
-        return WlbItemConsignmentQueryResponse.class;
+    public void setAuthorizeEndTime(Date authorizeEndTime) {
+        this.authorizeEndTime = authorizeEndTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+    public void setAuthorizeStartTime(Date authorizeStartTime) {
+        this.authorizeStartTime = authorizeStartTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerUserNick(String ownerUserNick) {
+        this.ownerUserNick = ownerUserNick;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -24,12 +24,12 @@ public class AthenaItemSolutionGetResponse extends TaobaoResponse {
     @ApiField("item_knowledge_solution_v_o")
     private List<ItemKnowledgeSolutionVO> itemSolutions;
 
-    public void setItemSolutions(List<ItemKnowledgeSolutionVO> itemSolutions) {
-        this.itemSolutions = itemSolutions;
-    }
-
     public List<ItemKnowledgeSolutionVO> getItemSolutions() {
         return this.itemSolutions;
+    }
+
+    public void setItemSolutions(List<ItemKnowledgeSolutionVO> itemSolutions) {
+        this.itemSolutions = itemSolutions;
     }
 
 }

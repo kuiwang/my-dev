@@ -46,28 +46,28 @@ public class WlbItemBatchInventory extends TaobaoObject {
         return this.itemBatch;
     }
 
-    public void setItemBatch(List<WlbItemBatch> itemBatch) {
-        this.itemBatch = itemBatch;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public List<WlbItemInventory> getItemInventorys() {
         return this.itemInventorys;
     }
 
-    public void setItemInventorys(List<WlbItemInventory> itemInventorys) {
-        this.itemInventorys = itemInventorys;
-    }
-
     public Long getTotalQuantity() {
         return this.totalQuantity;
+    }
+
+    public void setItemBatch(List<WlbItemBatch> itemBatch) {
+        this.itemBatch = itemBatch;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemInventorys(List<WlbItemInventory> itemInventorys) {
+        this.itemInventorys = itemInventorys;
     }
 
     public void setTotalQuantity(Long totalQuantity) {

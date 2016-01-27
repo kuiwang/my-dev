@@ -17,51 +17,54 @@ import com.taobao.api.response.PromotionmiscActivityRangeAddResponse;
 public class PromotionmiscActivityRangeAddRequest implements
         TaobaoRequest<PromotionmiscActivityRangeAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动id。<br />
      * 支持最小值为：0
      */
     private Long activityId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 商品id,多个id用逗号隔开，一次不超过50个。
      */
     private String ids;
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(activityId, "activityId");
+        RequestCheckUtils.checkMinValue(activityId, 0L, "activityId");
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
     }
 
     public Long getActivityId() {
         return this.activityId;
     }
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotionmisc.activity.range.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PromotionmiscActivityRangeAddResponse> getResponseClass() {
+        return PromotionmiscActivityRangeAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotionmisc.activity.range.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("activity_id", this.activityId);
@@ -72,6 +75,12 @@ public class PromotionmiscActivityRangeAddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class PromotionmiscActivityRangeAddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionmiscActivityRangeAddResponse> getResponseClass() {
-        return PromotionmiscActivityRangeAddResponse.class;
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(activityId, "activityId");
-        RequestCheckUtils.checkMinValue(activityId, 0L, "activityId");
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

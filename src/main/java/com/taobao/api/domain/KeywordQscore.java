@@ -77,76 +77,76 @@ public class KeywordQscore extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public String getCreativeScore() {
         return this.creativeScore;
     }
 
-    public void setCreativeScore(String creativeScore) {
-        this.creativeScore = creativeScore;
-    }
-
     public String getCustScore() {
         return this.custScore;
-    }
-
-    public void setCustScore(String custScore) {
-        this.custScore = custScore;
     }
 
     public String getCvrScore() {
         return this.cvrScore;
     }
 
-    public void setCvrScore(String cvrScore) {
-        this.cvrScore = cvrScore;
-    }
-
     public Long getKeywordId() {
         return this.keywordId;
-    }
-
-    public void setKeywordId(Long keywordId) {
-        this.keywordId = keywordId;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getQscore() {
         return this.qscore;
-    }
-
-    public void setQscore(String qscore) {
-        this.qscore = qscore;
     }
 
     public String getReleScore() {
         return this.releScore;
     }
 
-    public void setReleScore(String releScore) {
-        this.releScore = releScore;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreativeScore(String creativeScore) {
+        this.creativeScore = creativeScore;
+    }
+
+    public void setCustScore(String custScore) {
+        this.custScore = custScore;
+    }
+
+    public void setCvrScore(String cvrScore) {
+        this.cvrScore = cvrScore;
+    }
+
+    public void setKeywordId(Long keywordId) {
+        this.keywordId = keywordId;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setQscore(String qscore) {
+        this.qscore = qscore;
+    }
+
+    public void setReleScore(String releScore) {
+        this.releScore = releScore;
     }
 
     public void setWord(String word) {

@@ -33,20 +33,20 @@ public class ItemcatsGetResponse extends TaobaoResponse {
     @ApiField("last_modified")
     private Date lastModified;
 
-    public void setItemCats(List<ItemCat> itemCats) {
-        this.itemCats = itemCats;
-    }
-
     public List<ItemCat> getItemCats() {
         return this.itemCats;
     }
 
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
-    }
-
     public Date getLastModified() {
         return this.lastModified;
+    }
+
+    public void setItemCats(List<ItemCat> itemCats) {
+        this.itemCats = itemCats;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 
 }

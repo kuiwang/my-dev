@@ -17,12 +17,6 @@ import com.taobao.api.response.BillBookBillsGetResponse;
  */
 public class BillBookBillsGetRequest implements TaobaoRequest<BillBookBillsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 虚拟账户科目编号
      */
@@ -39,6 +33,8 @@ public class BillBookBillsGetRequest implements TaobaoRequest<BillBookBillsGetRe
      * 支持的最大列表长度为：300
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 明细流水类型:流水类型:101、可用金充值；102、可用金扣除；103、冻结；104、解冻；105、冻结金充值；106、冻结金扣除
@@ -60,74 +56,64 @@ public class BillBookBillsGetRequest implements TaobaoRequest<BillBookBillsGetRe
      */
     private Date startTime;
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(accountId, "accountId");
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxLength(fields, 300, "fields");
+        RequestCheckUtils.checkMaxListSize(journalTypes, 10, "journalTypes");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
     }
 
     public Long getAccountId() {
         return this.accountId;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.bill.book.bills.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setJournalTypes(String journalTypes) {
-        this.journalTypes = journalTypes;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getJournalTypes() {
         return this.journalTypes;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<BillBookBillsGetResponse> getResponseClass() {
+        return BillBookBillsGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.bill.book.bills.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("account_id", this.accountId);
@@ -143,6 +129,12 @@ public class BillBookBillsGetRequest implements TaobaoRequest<BillBookBillsGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -150,20 +142,36 @@ public class BillBookBillsGetRequest implements TaobaoRequest<BillBookBillsGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<BillBookBillsGetResponse> getResponseClass() {
-        return BillBookBillsGetResponse.class;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(accountId, "accountId");
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxLength(fields, 300, "fields");
-        RequestCheckUtils.checkMaxListSize(journalTypes, 10, "journalTypes");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setJournalTypes(String journalTypes) {
+        this.journalTypes = journalTypes;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

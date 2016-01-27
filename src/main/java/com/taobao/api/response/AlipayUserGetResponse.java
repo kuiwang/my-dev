@@ -20,12 +20,12 @@ public class AlipayUserGetResponse extends TaobaoResponse {
     @ApiField("alipay_user_detail")
     private AlipayUserDetail alipayUserDetail;
 
-    public void setAlipayUserDetail(AlipayUserDetail alipayUserDetail) {
-        this.alipayUserDetail = alipayUserDetail;
-    }
-
     public AlipayUserDetail getAlipayUserDetail() {
         return this.alipayUserDetail;
+    }
+
+    public void setAlipayUserDetail(AlipayUserDetail alipayUserDetail) {
+        this.alipayUserDetail = alipayUserDetail;
     }
 
 }

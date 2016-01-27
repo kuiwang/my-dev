@@ -16,12 +16,6 @@ import com.taobao.api.response.ItempropsGetResponse;
  */
 public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 属性的Key，支持多条，以“,”分隔
      */
@@ -42,6 +36,8 @@ public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> 
      * 需要返回的字段列表，见：ItemProp，默认返回：pid, name, must, multi, prop_values
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否颜色属性。可选值:true(是),false(否) (删除的属性不会匹配和返回这个条件)
@@ -85,6 +81,8 @@ public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> 
      */
     private Long pid;
 
+    private Long timestamp;
+
     /**
      * 获取类目的类型：1代表集市、2代表天猫<br />
      * 支持最大值为：2<br />
@@ -92,122 +90,79 @@ public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> 
      */
     private Long type;
 
-    public void setAttrKeys(String attrKeys) {
-        this.attrKeys = attrKeys;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cid, "cid");
+        RequestCheckUtils.checkMaxValue(type, 2L, "type");
+        RequestCheckUtils.checkMinValue(type, 1L, "type");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.itemprops.get";
     }
 
     public String getAttrKeys() {
         return this.attrKeys;
     }
 
-    public void setChildPath(String childPath) {
-        this.childPath = childPath;
-    }
-
     public String getChildPath() {
         return this.childPath;
-    }
-
-    public void setCid(Long cid) {
-        this.cid = cid;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setIsColorProp(Boolean isColorProp) {
-        this.isColorProp = isColorProp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsColorProp() {
         return this.isColorProp;
     }
 
-    public void setIsEnumProp(Boolean isEnumProp) {
-        this.isEnumProp = isEnumProp;
-    }
-
     public Boolean getIsEnumProp() {
         return this.isEnumProp;
-    }
-
-    public void setIsInputProp(Boolean isInputProp) {
-        this.isInputProp = isInputProp;
     }
 
     public Boolean getIsInputProp() {
         return this.isInputProp;
     }
 
-    public void setIsItemProp(Boolean isItemProp) {
-        this.isItemProp = isItemProp;
-    }
-
     public Boolean getIsItemProp() {
         return this.isItemProp;
-    }
-
-    public void setIsKeyProp(Boolean isKeyProp) {
-        this.isKeyProp = isKeyProp;
     }
 
     public Boolean getIsKeyProp() {
         return this.isKeyProp;
     }
 
-    public void setIsSaleProp(Boolean isSaleProp) {
-        this.isSaleProp = isSaleProp;
-    }
-
     public Boolean getIsSaleProp() {
         return this.isSaleProp;
-    }
-
-    public void setParentPid(Long parentPid) {
-        this.parentPid = parentPid;
     }
 
     public Long getParentPid() {
         return this.parentPid;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     public Long getPid() {
         return this.pid;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    @Override
+    public Class<ItempropsGetResponse> getResponseClass() {
+        return ItempropsGetResponse.class;
     }
 
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.itemprops.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("attr_keys", this.attrKeys);
@@ -229,6 +184,16 @@ public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -236,17 +201,60 @@ public class ItempropsGetRequest implements TaobaoRequest<ItempropsGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<ItempropsGetResponse> getResponseClass() {
-        return ItempropsGetResponse.class;
+    public void setAttrKeys(String attrKeys) {
+        this.attrKeys = attrKeys;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cid, "cid");
-        RequestCheckUtils.checkMaxValue(type, 2L, "type");
-        RequestCheckUtils.checkMinValue(type, 1L, "type");
+    public void setChildPath(String childPath) {
+        this.childPath = childPath;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setIsColorProp(Boolean isColorProp) {
+        this.isColorProp = isColorProp;
+    }
+
+    public void setIsEnumProp(Boolean isEnumProp) {
+        this.isEnumProp = isEnumProp;
+    }
+
+    public void setIsInputProp(Boolean isInputProp) {
+        this.isInputProp = isInputProp;
+    }
+
+    public void setIsItemProp(Boolean isItemProp) {
+        this.isItemProp = isItemProp;
+    }
+
+    public void setIsKeyProp(Boolean isKeyProp) {
+        this.isKeyProp = isKeyProp;
+    }
+
+    public void setIsSaleProp(Boolean isSaleProp) {
+        this.isSaleProp = isSaleProp;
+    }
+
+    public void setParentPid(Long parentPid) {
+        this.parentPid = parentPid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

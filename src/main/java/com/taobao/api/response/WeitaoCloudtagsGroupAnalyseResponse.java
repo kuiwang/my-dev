@@ -26,20 +26,20 @@ public class WeitaoCloudtagsGroupAnalyseResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setDataList(AnalyzeDO dataList) {
-        this.dataList = dataList;
-    }
-
     public AnalyzeDO getDataList() {
         return this.dataList;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setDataList(AnalyzeDO dataList) {
+        this.dataList = dataList;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

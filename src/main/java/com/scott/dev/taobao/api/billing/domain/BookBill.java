@@ -56,68 +56,68 @@ public class BookBill {
         return this.accountId;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
     public Long getAmount() {
         return this.amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
     }
 
     public Long getBid() {
         return this.bid;
     }
 
-    public void setBid(Long bid) {
-        this.bid = bid;
-    }
-
     public Date getBookTime() {
         return this.bookTime;
-    }
-
-    public void setBookTime(Date bookTime) {
-        this.bookTime = bookTime;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Long getJournalType() {
         return this.journalType;
     }
 
-    public void setJournalType(Long journalType) {
-        this.journalType = journalType;
-    }
-
     public String getOtherAlipayId() {
         return this.otherAlipayId;
     }
 
-    public void setOtherAlipayId(String otherAlipayId) {
-        this.otherAlipayId = otherAlipayId;
-    }
-
     public String getTaobaoAlipayId() {
         return this.taobaoAlipayId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public void setBid(Long bid) {
+        this.bid = bid;
+    }
+
+    public void setBookTime(Date bookTime) {
+        this.bookTime = bookTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setJournalType(Long journalType) {
+        this.journalType = journalType;
+    }
+
+    public void setOtherAlipayId(String otherAlipayId) {
+        this.otherAlipayId = otherAlipayId;
     }
 
     public void setTaobaoAlipayId(String taobaoAlipayId) {

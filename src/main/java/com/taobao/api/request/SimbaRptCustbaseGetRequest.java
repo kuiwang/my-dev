@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaRptCustbaseGetResponse;
  */
 public class SimbaRptCustbaseGetRequest implements TaobaoRequest<SimbaRptCustbaseGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结束日期，格式yyyy-mm-dd
      */
     private String endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 昵称
@@ -59,74 +55,64 @@ public class SimbaRptCustbaseGetRequest implements TaobaoRequest<SimbaRptCustbas
      */
     private String subwayToken;
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(source, "source");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+        RequestCheckUtils.checkNotEmpty(subwayToken, "subwayToken");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.rpt.custbase.get";
     }
 
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    @Override
+    public Class<SimbaRptCustbaseGetResponse> getResponseClass() {
+        return SimbaRptCustbaseGetResponse.class;
     }
 
     public String getSource() {
         return this.source;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
     public String getStartTime() {
         return this.startTime;
-    }
-
-    public void setSubwayToken(String subwayToken) {
-        this.subwayToken = subwayToken;
     }
 
     public String getSubwayToken() {
         return this.subwayToken;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.rpt.custbase.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -142,6 +128,12 @@ public class SimbaRptCustbaseGetRequest implements TaobaoRequest<SimbaRptCustbas
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -149,20 +141,36 @@ public class SimbaRptCustbaseGetRequest implements TaobaoRequest<SimbaRptCustbas
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaRptCustbaseGetResponse> getResponseClass() {
-        return SimbaRptCustbaseGetResponse.class;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(source, "source");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
-        RequestCheckUtils.checkNotEmpty(subwayToken, "subwayToken");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setSubwayToken(String subwayToken) {
+        this.subwayToken = subwayToken;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

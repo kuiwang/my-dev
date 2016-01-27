@@ -45,28 +45,28 @@ public class CreativePage extends TaobaoObject {
         return this.creativeList;
     }
 
-    public void setCreativeList(List<Creative> creativeList) {
-        this.creativeList = creativeList;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getTotalItem() {
         return this.totalItem;
+    }
+
+    public void setCreativeList(List<Creative> creativeList) {
+        this.creativeList = creativeList;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
     public void setTotalItem(Long totalItem) {

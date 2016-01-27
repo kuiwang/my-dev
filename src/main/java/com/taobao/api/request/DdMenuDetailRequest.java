@@ -17,10 +17,6 @@ public class DdMenuDetailRequest implements TaobaoRequest<DdMenuDetailResponse> 
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 菜单编号
      */
@@ -41,50 +37,46 @@ public class DdMenuDetailRequest implements TaobaoRequest<DdMenuDetailResponse> 
      */
     private String storeId;
 
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.menu.detail";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getMenuId() {
         return this.menuId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public Long getOrderId() {
         return this.orderId;
-    }
-
-    public void setOutStoreId(String outStoreId) {
-        this.outStoreId = outStoreId;
     }
 
     public String getOutStoreId() {
         return this.outStoreId;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
+    @Override
+    public Class<DdMenuDetailResponse> getResponseClass() {
+        return DdMenuDetailResponse.class;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.menu.detail";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("menu_id", this.menuId);
@@ -97,6 +89,12 @@ public class DdMenuDetailRequest implements TaobaoRequest<DdMenuDetailResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -104,14 +102,24 @@ public class DdMenuDetailRequest implements TaobaoRequest<DdMenuDetailResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<DdMenuDetailResponse> getResponseClass() {
-        return DdMenuDetailResponse.class;
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOutStoreId(String outStoreId) {
+        this.outStoreId = outStoreId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

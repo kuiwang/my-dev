@@ -20,12 +20,12 @@ public class TmallPromotagTagFindResponse extends TaobaoResponse {
     @ApiField("query_result")
     private PromotionTagQuery queryResult;
 
-    public void setQueryResult(PromotionTagQuery queryResult) {
-        this.queryResult = queryResult;
-    }
-
     public PromotionTagQuery getQueryResult() {
         return this.queryResult;
+    }
+
+    public void setQueryResult(PromotionTagQuery queryResult) {
+        this.queryResult = queryResult;
     }
 
 }

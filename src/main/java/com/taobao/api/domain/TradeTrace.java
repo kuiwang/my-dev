@@ -61,52 +61,52 @@ public class TradeTrace extends TaobaoObject {
         return this.actionTime;
     }
 
-    public void setActionTime(Date actionTime) {
-        this.actionTime = actionTime;
-    }
-
     public String getAppTitle() {
         return this.appTitle;
-    }
-
-    public void setAppTitle(String appTitle) {
-        this.appTitle = appTitle;
     }
 
     public String getOrderIds() {
         return this.orderIds;
     }
 
-    public void setOrderIds(String orderIds) {
-        this.orderIds = orderIds;
-    }
-
     public String getRemark() {
         return this.remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getTid() {
         return this.tid;
+    }
+
+    public void setActionTime(Date actionTime) {
+        this.actionTime = actionTime;
+    }
+
+    public void setAppTitle(String appTitle) {
+        this.appTitle = appTitle;
+    }
+
+    public void setOrderIds(String orderIds) {
+        this.orderIds = orderIds;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setTid(Long tid) {

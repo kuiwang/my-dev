@@ -20,12 +20,12 @@ public class TradeAmountGetResponse extends TaobaoResponse {
     @ApiField("trade_amount")
     private TradeAmount tradeAmount;
 
-    public void setTradeAmount(TradeAmount tradeAmount) {
-        this.tradeAmount = tradeAmount;
-    }
-
     public TradeAmount getTradeAmount() {
         return this.tradeAmount;
+    }
+
+    public void setTradeAmount(TradeAmount tradeAmount) {
+        this.tradeAmount = tradeAmount;
     }
 
 }

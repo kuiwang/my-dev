@@ -24,12 +24,12 @@ public class ItemTemplatesGetResponse extends TaobaoResponse {
     @ApiField("item_template")
     private List<ItemTemplate> itemTemplateList;
 
-    public void setItemTemplateList(List<ItemTemplate> itemTemplateList) {
-        this.itemTemplateList = itemTemplateList;
-    }
-
     public List<ItemTemplate> getItemTemplateList() {
         return this.itemTemplateList;
+    }
+
+    public void setItemTemplateList(List<ItemTemplate> itemTemplateList) {
+        this.itemTemplateList = itemTemplateList;
     }
 
 }

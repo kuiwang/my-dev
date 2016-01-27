@@ -47,36 +47,36 @@ public class OrderGuest extends TaobaoObject {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getOid() {
         return this.oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
     }
 
     public Long getPersonPos() {
         return this.personPos;
     }
 
-    public void setPersonPos(Long personPos) {
-        this.personPos = personPos;
-    }
-
     public Long getRoomPos() {
         return this.roomPos;
     }
 
-    public void setRoomPos(Long roomPos) {
-        this.roomPos = roomPos;
-    }
-
     public String getTel() {
         return this.tel;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setPersonPos(Long personPos) {
+        this.personPos = personPos;
+    }
+
+    public void setRoomPos(Long roomPos) {
+        this.roomPos = roomPos;
     }
 
     public void setTel(String tel) {

@@ -35,6 +35,28 @@ import com.taobao.top.link.embedded.websocket.frame.FrameHeader;
 public class BinaryFrame extends FrameDraft76 {
 
     /**
+     * Gets the contents length.
+     *
+     * @param body the contents
+     * @return the contents length
+     */
+    private static byte[] getBodyLength(byte[] body) {
+        byte[] tmp = new byte[(body.length / 7) + 1];
+        int length = body.length;
+        int i = 0;
+        while (length != 0) {
+            tmp[i] = (byte) ((length | 0x7F) | 0x80);
+            length = length >> 7;
+            i++;
+        }
+        i--;
+        tmp[i] = (byte) (tmp[i] | 0x7F);
+        byte[] bodyLengthBuf = new byte[i];
+        System.arraycopy(tmp, 0, bodyLengthBuf, 0, bodyLengthBuf.length);
+        return bodyLengthBuf;
+    }
+
+    /**
      * Instantiates a new binary frame.
      *
      * @param bodyData the contents data
@@ -68,27 +90,5 @@ public class BinaryFrame extends FrameDraft76 {
         buf.put(contents);
         buf.flip();
         return buf;
-    }
-
-    /**
-     * Gets the contents length.
-     *
-     * @param body the contents
-     * @return the contents length
-     */
-    private static byte[] getBodyLength(byte[] body) {
-        byte[] tmp = new byte[body.length / 7 + 1];
-        int length = body.length;
-        int i = 0;
-        while (length != 0) {
-            tmp[i] = (byte) ((length | 0x7F) | 0x80);
-            length = length >> 7;
-            i++;
-        }
-        i--;
-        tmp[i] = (byte) (tmp[i] | 0x7F);
-        byte[] bodyLengthBuf = new byte[i];
-        System.arraycopy(tmp, 0, bodyLengthBuf, 0, bodyLengthBuf.length);
-        return bodyLengthBuf;
     }
 }

@@ -30,20 +30,20 @@ public class DescribeAccountsResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setAccounts(List<DBInstanceAccount> accounts) {
-        this.accounts = accounts;
-    }
-
     public List<DBInstanceAccount> getAccounts() {
         return this.accounts;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setAccounts(List<DBInstanceAccount> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

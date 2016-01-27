@@ -19,12 +19,12 @@ public class StreamWeight {
         return this.user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Long getWeight() {
         return this.weight;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void setWeight(Long weight) {

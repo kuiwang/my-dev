@@ -19,12 +19,12 @@ public class DdAuctionRuleAddResponse extends TaobaoResponse {
     @ApiField("result")
     private Long result;
 
-    public void setResult(Long result) {
-        this.result = result;
-    }
-
     public Long getResult() {
         return this.result;
+    }
+
+    public void setResult(Long result) {
+        this.result = result;
     }
 
 }

@@ -19,10 +19,6 @@ public class FenxiaoRefundMessageGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 页码。（大于0的整数。默认为1）
      */
@@ -38,42 +34,43 @@ public class FenxiaoRefundMessageGetRequest implements
      */
     private Long subOrderId;
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.refund.message.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setSubOrderId(Long subOrderId) {
-        this.subOrderId = subOrderId;
+    @Override
+    public Class<FenxiaoRefundMessageGetResponse> getResponseClass() {
+        return FenxiaoRefundMessageGetResponse.class;
     }
 
     public Long getSubOrderId() {
         return this.subOrderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.refund.message.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("page_no", this.pageNo);
@@ -85,6 +82,12 @@ public class FenxiaoRefundMessageGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,15 +95,20 @@ public class FenxiaoRefundMessageGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoRefundMessageGetResponse> getResponseClass() {
-        return FenxiaoRefundMessageGetResponse.class;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSubOrderId(Long subOrderId) {
+        this.subOrderId = subOrderId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

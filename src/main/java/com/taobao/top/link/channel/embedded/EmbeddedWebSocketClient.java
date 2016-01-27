@@ -34,8 +34,9 @@ public class EmbeddedWebSocketClient {
             // also use default headers setting
             Map<String, String> headers = WebSocketClientHelper.getHeaders(uri);
             if (headers != null) {
-                for (String h : headers.keySet())
+                for (String h : headers.keySet()) {
                     ((WebSocketImpl) socket).getRequestHeader().addHeader(h, headers.get(h));
+                }
             }
             // startSocket.connect(); is sync
             // https://github.com/wsky/top-push-client/issues/20
@@ -44,8 +45,10 @@ public class EmbeddedWebSocketClient {
             throw new ChannelException(Text.CONNECT_ERROR, e);
         }
 
-        if (clientChannel.error != null) throw new ChannelException(Text.WS_HANDSHAKE_ERROR,
-                clientChannel.error);
+        if (clientChannel.error != null) {
+            throw new ChannelException(Text.WS_HANDSHAKE_ERROR,
+                    clientChannel.error);
+        }
 
         return clientChannel;
     }

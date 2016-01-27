@@ -18,16 +18,12 @@ import com.taobao.api.response.UppSellerPointrecordGetResponse;
 public class UppSellerPointrecordGetRequest implements
         TaobaoRequest<UppSellerPointrecordGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询的页数
      */
     private Long currentPage;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 每页记录数，最大30条，默认20<br />
@@ -40,6 +36,8 @@ public class UppSellerPointrecordGetRequest implements
      * 记录状态 1成功 0冻结 -1失败
      */
     private Long status;
+
+    private Long timestamp;
 
     /**
      * upp内部业务ID，由预扣或预发积分接口返回，ISV可以直接使用，或映射自己的业务ID。<br />
@@ -63,74 +61,42 @@ public class UppSellerPointrecordGetRequest implements
      */
     private Long type;
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 30L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.upp.seller.pointrecord.get";
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    @Override
+    public Class<UppSellerPointrecordGetResponse> getResponseClass() {
+        return UppSellerPointrecordGetResponse.class;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
-    public Long getTransactionId() {
-        return this.transactionId;
-    }
-
-    public void setTransactionTimeBegin(Date transactionTimeBegin) {
-        this.transactionTimeBegin = transactionTimeBegin;
-    }
-
-    public Date getTransactionTimeBegin() {
-        return this.transactionTimeBegin;
-    }
-
-    public void setTransactionTimeEnd(Date transactionTimeEnd) {
-        this.transactionTimeEnd = transactionTimeEnd;
-    }
-
-    public Date getTransactionTimeEnd() {
-        return this.transactionTimeEnd;
-    }
-
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.upp.seller.pointrecord.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("current_page", this.currentPage);
@@ -146,6 +112,28 @@ public class UppSellerPointrecordGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTransactionId() {
+        return this.transactionId;
+    }
+
+    public Date getTransactionTimeBegin() {
+        return this.transactionTimeBegin;
+    }
+
+    public Date getTransactionTimeEnd() {
+        return this.transactionTimeEnd;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -153,16 +141,36 @@ public class UppSellerPointrecordGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<UppSellerPointrecordGetResponse> getResponseClass() {
-        return UppSellerPointrecordGetResponse.class;
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 30L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setTransactionTimeBegin(Date transactionTimeBegin) {
+        this.transactionTimeBegin = transactionTimeBegin;
+    }
+
+    public void setTransactionTimeEnd(Date transactionTimeEnd) {
+        this.transactionTimeEnd = transactionTimeEnd;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

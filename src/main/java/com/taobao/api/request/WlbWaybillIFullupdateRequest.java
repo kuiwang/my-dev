@@ -18,35 +18,37 @@ public class WlbWaybillIFullupdateRequest implements TaobaoRequest<WlbWaybillIFu
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 更新面单信息请求
      */
     private String waybillApplyFullUpdateRequest;
 
-    public void setWaybillApplyFullUpdateRequest(String waybillApplyFullUpdateRequest) {
-        this.waybillApplyFullUpdateRequest = waybillApplyFullUpdateRequest;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(waybillApplyFullUpdateRequest,
+                "waybillApplyFullUpdateRequest");
     }
 
-    public String getWaybillApplyFullUpdateRequest() {
-        return this.waybillApplyFullUpdateRequest;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wlb.waybill.i.fullupdate";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbWaybillIFullupdateResponse> getResponseClass() {
+        return WlbWaybillIFullupdateResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("waybill_apply_full_update_request", this.waybillApplyFullUpdateRequest);
@@ -56,6 +58,16 @@ public class WlbWaybillIFullupdateRequest implements TaobaoRequest<WlbWaybillIFu
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWaybillApplyFullUpdateRequest() {
+        return this.waybillApplyFullUpdateRequest;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,16 +75,12 @@ public class WlbWaybillIFullupdateRequest implements TaobaoRequest<WlbWaybillIFu
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbWaybillIFullupdateResponse> getResponseClass() {
-        return WlbWaybillIFullupdateResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(waybillApplyFullUpdateRequest,
-                "waybillApplyFullUpdateRequest");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setWaybillApplyFullUpdateRequest(String waybillApplyFullUpdateRequest) {
+        this.waybillApplyFullUpdateRequest = waybillApplyFullUpdateRequest;
     }
 }

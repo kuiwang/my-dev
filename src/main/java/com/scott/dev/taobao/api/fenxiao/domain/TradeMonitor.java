@@ -164,236 +164,236 @@ public class TradeMonitor {
         return this.area;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public Long getBuyAmount() {
         return this.buyAmount;
-    }
-
-    public void setBuyAmount(Long buyAmount) {
-        this.buyAmount = buyAmount;
     }
 
     public String getBuyerFullName() {
         return this.buyerFullName;
     }
 
-    public void setBuyerFullName(String buyerFullName) {
-        this.buyerFullName = buyerFullName;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getDistributorNick() {
         return this.distributorNick;
-    }
-
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public String getItemNumber() {
         return this.itemNumber;
-    }
-
-    public void setItemNumber(String itemNumber) {
-        this.itemNumber = itemNumber;
     }
 
     public Long getItemPrice() {
         return this.itemPrice;
     }
 
-    public void setItemPrice(Long itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public String getItemSkuName() {
         return this.itemSkuName;
-    }
-
-    public void setItemSkuName(String itemSkuName) {
-        this.itemSkuName = itemSkuName;
     }
 
     public String getItemSkuNumber() {
         return this.itemSkuNumber;
     }
 
-    public void setItemSkuNumber(String itemSkuNumber) {
-        this.itemSkuNumber = itemSkuNumber;
-    }
-
     public String getItemTitle() {
         return this.itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
     }
 
     public Long getItemTotalPrice() {
         return this.itemTotalPrice;
     }
 
-    public void setItemTotalPrice(Long itemTotalPrice) {
-        this.itemTotalPrice = itemTotalPrice;
-    }
-
     public Date getPayTime() {
         return this.payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getProductNumber() {
         return this.productNumber;
-    }
-
-    public void setProductNumber(String productNumber) {
-        this.productNumber = productNumber;
     }
 
     public String getProductSkuNumber() {
         return this.productSkuNumber;
     }
 
-    public void setProductSkuNumber(String productSkuNumber) {
-        this.productSkuNumber = productSkuNumber;
-    }
-
     public String getProductTitle() {
         return this.productTitle;
-    }
-
-    public void setProductTitle(String productTitle) {
-        this.productTitle = productTitle;
     }
 
     public String getProvence() {
         return this.provence;
     }
 
-    public void setProvence(String provence) {
-        this.provence = provence;
-    }
-
     public Long getRetailPriceHigh() {
         return this.retailPriceHigh;
-    }
-
-    public void setRetailPriceHigh(Long retailPriceHigh) {
-        this.retailPriceHigh = retailPriceHigh;
     }
 
     public Long getRetailPriceLow() {
         return this.retailPriceLow;
     }
 
-    public void setRetailPriceLow(Long retailPriceLow) {
-        this.retailPriceLow = retailPriceLow;
-    }
-
     public String getShippingAddress() {
         return this.shippingAddress;
-    }
-
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getSubTcOrderId() {
         return this.subTcOrderId;
-    }
-
-    public void setSubTcOrderId(Long subTcOrderId) {
-        this.subTcOrderId = subTcOrderId;
     }
 
     public String getSupplierNick() {
         return this.supplierNick;
     }
 
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
-    }
-
     public Long getTcAdjustFee() {
         return this.tcAdjustFee;
-    }
-
-    public void setTcAdjustFee(Long tcAdjustFee) {
-        this.tcAdjustFee = tcAdjustFee;
     }
 
     public Long getTcDiscountFee() {
         return this.tcDiscountFee;
     }
 
-    public void setTcDiscountFee(Long tcDiscountFee) {
-        this.tcDiscountFee = tcDiscountFee;
-    }
-
     public Long getTcOrderId() {
         return this.tcOrderId;
-    }
-
-    public void setTcOrderId(Long tcOrderId) {
-        this.tcOrderId = tcOrderId;
     }
 
     public String getTcPreferentialType() {
         return this.tcPreferentialType;
     }
 
-    public void setTcPreferentialType(String tcPreferentialType) {
-        this.tcPreferentialType = tcPreferentialType;
-    }
-
     public Long getTradeMonitorId() {
         return this.tradeMonitorId;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setBuyAmount(Long buyAmount) {
+        this.buyAmount = buyAmount;
+    }
+
+    public void setBuyerFullName(String buyerFullName) {
+        this.buyerFullName = buyerFullName;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
+    }
+
+    public void setItemPrice(Long itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setItemSkuName(String itemSkuName) {
+        this.itemSkuName = itemSkuName;
+    }
+
+    public void setItemSkuNumber(String itemSkuNumber) {
+        this.itemSkuNumber = itemSkuNumber;
+    }
+
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
+    }
+
+    public void setItemTotalPrice(Long itemTotalPrice) {
+        this.itemTotalPrice = itemTotalPrice;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
+    }
+
+    public void setProductSkuNumber(String productSkuNumber) {
+        this.productSkuNumber = productSkuNumber;
+    }
+
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
+    }
+
+    public void setProvence(String provence) {
+        this.provence = provence;
+    }
+
+    public void setRetailPriceHigh(Long retailPriceHigh) {
+        this.retailPriceHigh = retailPriceHigh;
+    }
+
+    public void setRetailPriceLow(Long retailPriceLow) {
+        this.retailPriceLow = retailPriceLow;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubTcOrderId(Long subTcOrderId) {
+        this.subTcOrderId = subTcOrderId;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
+    }
+
+    public void setTcAdjustFee(Long tcAdjustFee) {
+        this.tcAdjustFee = tcAdjustFee;
+    }
+
+    public void setTcDiscountFee(Long tcDiscountFee) {
+        this.tcDiscountFee = tcDiscountFee;
+    }
+
+    public void setTcOrderId(Long tcOrderId) {
+        this.tcOrderId = tcOrderId;
+    }
+
+    public void setTcPreferentialType(String tcPreferentialType) {
+        this.tcPreferentialType = tcPreferentialType;
     }
 
     public void setTradeMonitorId(Long tradeMonitorId) {

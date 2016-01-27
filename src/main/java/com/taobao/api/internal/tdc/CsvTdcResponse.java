@@ -13,29 +13,29 @@ public class CsvTdcResponse extends TdcResponse {
     private static final long serialVersionUID = -6669330314804951303L;
 
     /**
-     * 查询的结果的列名
-     */
-    private CsvMetaData metaData;
-
-    /**
      * csv格式返回的结果
      */
     private List<String[]> csvResult;
 
-    public CsvMetaData getMetaData() {
-        return metaData;
-    }
-
-    public void setMetaData(CsvMetaData metaData) {
-        this.metaData = metaData;
-    }
+    /**
+     * 查询的结果的列名
+     */
+    private CsvMetaData metaData;
 
     public List<String[]> getCsvResult() {
         return csvResult;
     }
 
+    public CsvMetaData getMetaData() {
+        return metaData;
+    }
+
     public void setCsvResult(List<String[]> csvResult) {
         this.csvResult = csvResult;
+    }
+
+    public void setMetaData(CsvMetaData metaData) {
+        this.metaData = metaData;
     }
 
 }

@@ -18,10 +18,6 @@ public class WaimaiItemOperateRequest implements TaobaoRequest<WaimaiItemOperate
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 待操作宝贝id，多个以英文逗号分隔
      */
@@ -32,34 +28,40 @@ public class WaimaiItemOperateRequest implements TaobaoRequest<WaimaiItemOperate
      */
     private Long o;
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+        RequestCheckUtils.checkNotEmpty(o, "o");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.waimai.item.operate";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public void setO(Long o) {
-        this.o = o;
-    }
-
     public Long getO() {
         return this.o;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WaimaiItemOperateResponse> getResponseClass() {
+        return WaimaiItemOperateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.waimai.item.operate";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ids", this.ids);
@@ -70,6 +72,12 @@ public class WaimaiItemOperateRequest implements TaobaoRequest<WaimaiItemOperate
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class WaimaiItemOperateRequest implements TaobaoRequest<WaimaiItemOperate
         this.udfParams.put(key, value);
     }
 
-    public Class<WaimaiItemOperateResponse> getResponseClass() {
-        return WaimaiItemOperateResponse.class;
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
-        RequestCheckUtils.checkNotEmpty(o, "o");
+    public void setO(Long o) {
+        this.o = o;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

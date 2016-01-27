@@ -25,20 +25,20 @@ public class JipiaoPoliciesstatusUpdateResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setInvokeId(String invokeId) {
-        this.invokeId = invokeId;
-    }
-
     public String getInvokeId() {
         return this.invokeId;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setInvokeId(String invokeId) {
+        this.invokeId = invokeId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

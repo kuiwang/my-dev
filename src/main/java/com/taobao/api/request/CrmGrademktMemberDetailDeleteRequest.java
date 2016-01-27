@@ -17,50 +17,52 @@ import com.taobao.api.response.CrmGrademktMemberDetailDeleteResponse;
 public class CrmGrademktMemberDetailDeleteRequest implements
         TaobaoRequest<CrmGrademktMemberDetailDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 扩展字段
      */
     private String feather;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 创建营销详情，生成方法见http://open.taobao.com/doc/detail.htm?id=101281
      */
     private String parameter;
 
-    public void setFeather(String feather) {
-        this.feather = feather;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(feather, "feather");
+        RequestCheckUtils.checkNotEmpty(parameter, "parameter");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.grademkt.member.detail.delete";
     }
 
     public String getFeather() {
         return this.feather;
     }
 
-    public void setParameter(String parameter) {
-        this.parameter = parameter;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getParameter() {
         return this.parameter;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmGrademktMemberDetailDeleteResponse> getResponseClass() {
+        return CrmGrademktMemberDetailDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.grademkt.member.detail.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("feather", this.feather);
@@ -71,6 +73,12 @@ public class CrmGrademktMemberDetailDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class CrmGrademktMemberDetailDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGrademktMemberDetailDeleteResponse> getResponseClass() {
-        return CrmGrademktMemberDetailDeleteResponse.class;
+    public void setFeather(String feather) {
+        this.feather = feather;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(feather, "feather");
-        RequestCheckUtils.checkNotEmpty(parameter, "parameter");
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

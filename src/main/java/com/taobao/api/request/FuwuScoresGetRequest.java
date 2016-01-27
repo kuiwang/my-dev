@@ -17,12 +17,6 @@ import com.taobao.api.response.FuwuScoresGetResponse;
  */
 public class FuwuScoresGetRequest implements TaobaoRequest<FuwuScoresGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 当前页
      */
@@ -33,6 +27,8 @@ public class FuwuScoresGetRequest implements TaobaoRequest<FuwuScoresGetResponse
      */
     private Date date;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 每页获取条数。默认值40，最小值1，最大值100。<br />
      * 支持最大值为：100<br />
@@ -40,42 +36,46 @@ public class FuwuScoresGetRequest implements TaobaoRequest<FuwuScoresGetResponse
      */
     private Long pageSize;
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
+        RequestCheckUtils.checkNotEmpty(date, "date");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fuwu.scores.get";
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Date getDate() {
         return this.date;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FuwuScoresGetResponse> getResponseClass() {
+        return FuwuScoresGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fuwu.scores.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("current_page", this.currentPage);
@@ -87,6 +87,12 @@ public class FuwuScoresGetRequest implements TaobaoRequest<FuwuScoresGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,18 +100,20 @@ public class FuwuScoresGetRequest implements TaobaoRequest<FuwuScoresGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<FuwuScoresGetResponse> getResponseClass() {
-        return FuwuScoresGetResponse.class;
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
-        RequestCheckUtils.checkNotEmpty(date, "date");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

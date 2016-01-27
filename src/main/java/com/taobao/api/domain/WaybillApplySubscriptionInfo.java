@@ -45,28 +45,28 @@ public class WaybillApplySubscriptionInfo extends TaobaoObject {
         return this.branchAccountCols;
     }
 
-    public void setBranchAccountCols(List<WaybillBranchAccount> branchAccountCols) {
-        this.branchAccountCols = branchAccountCols;
-    }
-
     public String getCpCode() {
         return this.cpCode;
-    }
-
-    public void setCpCode(String cpCode) {
-        this.cpCode = cpCode;
     }
 
     public Long getCpType() {
         return this.cpType;
     }
 
-    public void setCpType(Long cpType) {
-        this.cpType = cpType;
-    }
-
     public Long getResult() {
         return this.result;
+    }
+
+    public void setBranchAccountCols(List<WaybillBranchAccount> branchAccountCols) {
+        this.branchAccountCols = branchAccountCols;
+    }
+
+    public void setCpCode(String cpCode) {
+        this.cpCode = cpCode;
+    }
+
+    public void setCpType(Long cpType) {
+        this.cpType = cpType;
     }
 
     public void setResult(Long result) {

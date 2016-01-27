@@ -16,28 +16,12 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduledTaskResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 定时任务的描述信息 长度限制在2~200个英文字符，可以支持中文。（中英文长度一样）
      */
     private String description;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 默认600秒
@@ -53,6 +37,12 @@ public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduled
      * 如果指定了RecurrenceType，则此时间点默认为重复的起始时间点RecurrenceStartTime
      */
     private String launchTime;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * Recurrence时间范围的结束值，按照ISO8601标准表示，并需要使用UTC时间。格式为： YYYY-MM-DDThh:mmZ
@@ -70,6 +60,12 @@ public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduled
      * 不同循环类型有不同的取值类型
      */
     private String recurrenceValue;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
 
     /**
      * 伸缩规则的Ari
@@ -92,122 +88,85 @@ public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduled
      */
     private Boolean taskEnabled;
 
-    public void setDescription(String description) {
-        this.description = description;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(launchExpirationTime, 86400L, "launchExpirationTime");
+        RequestCheckUtils.checkMinValue(launchExpirationTime, 0L, "launchExpirationTime");
+        RequestCheckUtils.checkNotEmpty(scheduledTaskId, "scheduledTaskId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.ModifyScheduledTask.2014-08-28";
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setLaunchExpirationTime(Long launchExpirationTime) {
-        this.launchExpirationTime = launchExpirationTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLaunchExpirationTime() {
         return this.launchExpirationTime;
     }
 
-    public void setLaunchTime(String launchTime) {
-        this.launchTime = launchTime;
-    }
-
     public String getLaunchTime() {
         return this.launchTime;
-    }
-
-    public void setRecurrenceEndTime(String recurrenceEndTime) {
-        this.recurrenceEndTime = recurrenceEndTime;
-    }
-
-    public String getRecurrenceEndTime() {
-        return this.recurrenceEndTime;
-    }
-
-    public void setRecurrenceType(String recurrenceType) {
-        this.recurrenceType = recurrenceType;
-    }
-
-    public String getRecurrenceType() {
-        return this.recurrenceType;
-    }
-
-    public void setRecurrenceValue(String recurrenceValue) {
-        this.recurrenceValue = recurrenceValue;
-    }
-
-    public String getRecurrenceValue() {
-        return this.recurrenceValue;
-    }
-
-    public void setScheduledAction(String scheduledAction) {
-        this.scheduledAction = scheduledAction;
-    }
-
-    public String getScheduledAction() {
-        return this.scheduledAction;
-    }
-
-    public void setScheduledTaskId(String scheduledTaskId) {
-        this.scheduledTaskId = scheduledTaskId;
-    }
-
-    public String getScheduledTaskId() {
-        return this.scheduledTaskId;
-    }
-
-    public void setScheduledTaskName(String scheduledTaskName) {
-        this.scheduledTaskName = scheduledTaskName;
-    }
-
-    public String getScheduledTaskName() {
-        return this.scheduledTaskName;
-    }
-
-    public void setTaskEnabled(Boolean taskEnabled) {
-        this.taskEnabled = taskEnabled;
-    }
-
-    public Boolean getTaskEnabled() {
-        return this.taskEnabled;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getRecurrenceEndTime() {
+        return this.recurrenceEndTime;
+    }
+
+    public String getRecurrenceType() {
+        return this.recurrenceType;
+    }
+
+    public String getRecurrenceValue() {
+        return this.recurrenceValue;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<ModifyScheduledTaskResponse> getResponseClass() {
+        return ModifyScheduledTaskResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScheduledAction() {
+        return this.scheduledAction;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScheduledTaskId() {
+        return this.scheduledTaskId;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.ModifyScheduledTask.2014-08-28";
+    public String getScheduledTaskName() {
+        return this.scheduledTaskName;
     }
 
+    public Boolean getTaskEnabled() {
+        return this.taskEnabled;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -229,6 +188,12 @@ public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduled
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -236,17 +201,60 @@ public class ModifyScheduledTaskRequest implements AliyunRequest<ModifyScheduled
         this.udfParams.put(key, value);
     }
 
-    public Class<ModifyScheduledTaskResponse> getResponseClass() {
-        return ModifyScheduledTaskResponse.class;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(launchExpirationTime, 86400L, "launchExpirationTime");
-        RequestCheckUtils.checkMinValue(launchExpirationTime, 0L, "launchExpirationTime");
-        RequestCheckUtils.checkNotEmpty(scheduledTaskId, "scheduledTaskId");
+    public void setLaunchExpirationTime(Long launchExpirationTime) {
+        this.launchExpirationTime = launchExpirationTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setLaunchTime(String launchTime) {
+        this.launchTime = launchTime;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setRecurrenceEndTime(String recurrenceEndTime) {
+        this.recurrenceEndTime = recurrenceEndTime;
+    }
+
+    public void setRecurrenceType(String recurrenceType) {
+        this.recurrenceType = recurrenceType;
+    }
+
+    public void setRecurrenceValue(String recurrenceValue) {
+        this.recurrenceValue = recurrenceValue;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScheduledAction(String scheduledAction) {
+        this.scheduledAction = scheduledAction;
+    }
+
+    public void setScheduledTaskId(String scheduledTaskId) {
+        this.scheduledTaskId = scheduledTaskId;
+    }
+
+    public void setScheduledTaskName(String scheduledTaskName) {
+        this.scheduledTaskName = scheduledTaskName;
+    }
+
+    public void setTaskEnabled(Boolean taskEnabled) {
+        this.taskEnabled = taskEnabled;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

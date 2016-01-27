@@ -53,44 +53,44 @@ public class TbkShop extends TaobaoObject {
         return this.clickUrl;
     }
 
-    public void setClickUrl(String clickUrl) {
-        this.clickUrl = clickUrl;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getShopTitle() {
         return this.shopTitle;
-    }
-
-    public void setShopTitle(String shopTitle) {
-        this.shopTitle = shopTitle;
     }
 
     public String getShopUrl() {
         return this.shopUrl;
     }
 
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setClickUrl(String clickUrl) {
+        this.clickUrl = clickUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setShopTitle(String shopTitle) {
+        this.shopTitle = shopTitle;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
     }
 
     public void setUserId(Long userId) {

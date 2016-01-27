@@ -18,9 +18,7 @@ import com.taobao.api.response.ProductImgUploadResponse;
  */
 public class ProductImgUploadRequest implements TaobaoUploadRequest<ProductImgUploadResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品图片ID.修改图片时需要传入
@@ -49,60 +47,61 @@ public class ProductImgUploadRequest implements TaobaoUploadRequest<ProductImgUp
      */
     private Long productId;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(image, "image");
+        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.product.img.upload";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
-    }
-
     public FileItem getImage() {
         return this.image;
-    }
-
-    public void setIsMajor(Boolean isMajor) {
-        this.isMajor = isMajor;
     }
 
     public Boolean getIsMajor() {
         return this.isMajor;
     }
 
-    public void setPosition(Long position) {
-        this.position = position;
-    }
-
     public Long getPosition() {
         return this.position;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ProductImgUploadResponse> getResponseClass() {
+        return ProductImgUploadResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.product.img.upload";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -115,6 +114,12 @@ public class ProductImgUploadRequest implements TaobaoUploadRequest<ProductImgUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,24 +127,28 @@ public class ProductImgUploadRequest implements TaobaoUploadRequest<ProductImgUp
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Class<ProductImgUploadResponse> getResponseClass() {
-        return ProductImgUploadResponse.class;
+    public void setImage(FileItem image) {
+        this.image = image;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(image, "image");
-        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setIsMajor(Boolean isMajor) {
+        this.isMajor = isMajor;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPosition(Long position) {
+        this.position = position;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

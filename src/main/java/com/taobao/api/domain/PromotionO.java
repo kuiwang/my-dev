@@ -98,100 +98,100 @@ public class PromotionO extends TaobaoObject {
         return this.discountFee;
     }
 
-    public void setDiscountFee(String discountFee) {
-        this.discountFee = discountFee;
-    }
-
     public Long getGiftItemId() {
         return this.giftItemId;
-    }
-
-    public void setGiftItemId(Long giftItemId) {
-        this.giftItemId = giftItemId;
     }
 
     public String getGiftItemName() {
         return this.giftItemName;
     }
 
-    public void setGiftItemName(String giftItemName) {
-        this.giftItemName = giftItemName;
-    }
-
     public Long getGiftItemNum() {
         return this.giftItemNum;
-    }
-
-    public void setGiftItemNum(Long giftItemNum) {
-        this.giftItemNum = giftItemNum;
     }
 
     public Long getGiftItemType() {
         return this.giftItemType;
     }
 
-    public void setGiftItemType(Long giftItemType) {
-        this.giftItemType = giftItemType;
-    }
-
     public Long getGiftSkuId() {
         return this.giftSkuId;
-    }
-
-    public void setGiftSkuId(Long giftSkuId) {
-        this.giftSkuId = giftSkuId;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getOrderId() {
         return this.orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public String getPromotionDesc() {
         return this.promotionDesc;
     }
 
-    public void setPromotionDesc(String promotionDesc) {
-        this.promotionDesc = promotionDesc;
-    }
-
     public String getPromotionId() {
         return this.promotionId;
-    }
-
-    public void setPromotionId(String promotionId) {
-        this.promotionId = promotionId;
     }
 
     public String getPromotionName() {
         return this.promotionName;
     }
 
-    public void setPromotionName(String promotionName) {
-        this.promotionName = promotionName;
-    }
-
     public Long getPromotionType() {
         return this.promotionType;
     }
 
-    public void setPromotionType(Long promotionType) {
-        this.promotionType = promotionType;
-    }
-
     public Long getSkuId() {
         return this.skuId;
+    }
+
+    public void setDiscountFee(String discountFee) {
+        this.discountFee = discountFee;
+    }
+
+    public void setGiftItemId(Long giftItemId) {
+        this.giftItemId = giftItemId;
+    }
+
+    public void setGiftItemName(String giftItemName) {
+        this.giftItemName = giftItemName;
+    }
+
+    public void setGiftItemNum(Long giftItemNum) {
+        this.giftItemNum = giftItemNum;
+    }
+
+    public void setGiftItemType(Long giftItemType) {
+        this.giftItemType = giftItemType;
+    }
+
+    public void setGiftSkuId(Long giftSkuId) {
+        this.giftSkuId = giftSkuId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPromotionDesc(String promotionDesc) {
+        this.promotionDesc = promotionDesc;
+    }
+
+    public void setPromotionId(String promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+    }
+
+    public void setPromotionType(Long promotionType) {
+        this.promotionType = promotionType;
     }
 
     public void setSkuId(Long skuId) {

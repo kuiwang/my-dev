@@ -17,8 +17,6 @@ public class UmpToolsGetRequest implements TaobaoRequest<UmpToolsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
     /**
@@ -26,26 +24,28 @@ public class UmpToolsGetRequest implements TaobaoRequest<UmpToolsGetResponse> {
      */
     private String toolCode;
 
-    public void setToolCode(String toolCode) {
-        this.toolCode = toolCode;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public String getToolCode() {
-        return this.toolCode;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.ump.tools.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<UmpToolsGetResponse> getResponseClass() {
+        return UmpToolsGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("tool_code", this.toolCode);
@@ -55,6 +55,16 @@ public class UmpToolsGetRequest implements TaobaoRequest<UmpToolsGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getToolCode() {
+        return this.toolCode;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class UmpToolsGetRequest implements TaobaoRequest<UmpToolsGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpToolsGetResponse> getResponseClass() {
-        return UmpToolsGetResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setToolCode(String toolCode) {
+        this.toolCode = toolCode;
     }
 }

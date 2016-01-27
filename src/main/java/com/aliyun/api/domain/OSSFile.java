@@ -35,20 +35,20 @@ public class OSSFile extends TaobaoObject {
         return this.bucket;
     }
 
-    public void setBucket(String bucket) {
-        this.bucket = bucket;
-    }
-
     public String getLocation() {
         return this.location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getObject() {
         return this.object;
+    }
+
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setObject(String object) {

@@ -20,12 +20,12 @@ public class ItemcatsAuthorizeGetResponse extends TaobaoResponse {
     @ApiField("seller_authorize")
     private SellerAuthorize sellerAuthorize;
 
-    public void setSellerAuthorize(SellerAuthorize sellerAuthorize) {
-        this.sellerAuthorize = sellerAuthorize;
-    }
-
     public SellerAuthorize getSellerAuthorize() {
         return this.sellerAuthorize;
+    }
+
+    public void setSellerAuthorize(SellerAuthorize sellerAuthorize) {
+        this.sellerAuthorize = sellerAuthorize;
     }
 
 }

@@ -23,12 +23,12 @@ public class SimbaCreativeidsChangedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> changedCreativeIds;
 
-    public void setChangedCreativeIds(List<Long> changedCreativeIds) {
-        this.changedCreativeIds = changedCreativeIds;
-    }
-
     public List<Long> getChangedCreativeIds() {
         return this.changedCreativeIds;
+    }
+
+    public void setChangedCreativeIds(List<Long> changedCreativeIds) {
+        this.changedCreativeIds = changedCreativeIds;
     }
 
 }

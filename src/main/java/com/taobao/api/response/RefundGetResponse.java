@@ -20,12 +20,12 @@ public class RefundGetResponse extends TaobaoResponse {
     @ApiField("refund")
     private Refund refund;
 
-    public void setRefund(Refund refund) {
-        this.refund = refund;
-    }
-
     public Refund getRefund() {
         return this.refund;
+    }
+
+    public void setRefund(Refund refund) {
+        this.refund = refund;
     }
 
 }

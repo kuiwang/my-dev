@@ -29,12 +29,12 @@ public class Evaluation extends TaobaoObject {
         return this.evaluationName;
     }
 
-    public void setEvaluationName(String evaluationName) {
-        this.evaluationName = evaluationName;
-    }
-
     public String getEvaluationNum() {
         return this.evaluationNum;
+    }
+
+    public void setEvaluationName(String evaluationName) {
+        this.evaluationName = evaluationName;
     }
 
     public void setEvaluationNum(String evaluationNum) {

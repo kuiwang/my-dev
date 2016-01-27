@@ -24,12 +24,12 @@ public class ShoprecommendShopsGetResponse extends TaobaoResponse {
     @ApiField("favorite_shop")
     private List<FavoriteShop> favoriteShops;
 
-    public void setFavoriteShops(List<FavoriteShop> favoriteShops) {
-        this.favoriteShops = favoriteShops;
-    }
-
     public List<FavoriteShop> getFavoriteShops() {
         return this.favoriteShops;
+    }
+
+    public void setFavoriteShops(List<FavoriteShop> favoriteShops) {
+        this.favoriteShops = favoriteShops;
     }
 
 }

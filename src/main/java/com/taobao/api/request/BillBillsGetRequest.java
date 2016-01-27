@@ -17,12 +17,6 @@ import com.taobao.api.response.BillBillsGetResponse;
  */
 public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 科目编号
      */
@@ -37,6 +31,8 @@ public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> 
      * 传入需要返回的字段,参见Bill结构体
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 子订单编号
@@ -58,6 +54,8 @@ public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> 
      */
     private Date startTime;
 
+    private Long timestamp;
+
     /**
      * 查询条件中的时间类型:1-交易订单完成时间biz_time 2-支付宝扣款时间pay_time
      * 如果不填默认为2即根据支付时间查询,查询的结果会根据该时间倒排序
@@ -69,90 +67,59 @@ public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> 
      */
     private Long tradeId;
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
     }
 
     public Long getAccountId() {
         return this.accountId;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.bill.bills.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<BillBillsGetResponse> getResponseClass() {
+        return BillBillsGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setTimeType(Long timeType) {
-        this.timeType = timeType;
-    }
-
-    public Long getTimeType() {
-        return this.timeType;
-    }
-
-    public void setTradeId(Long tradeId) {
-        this.tradeId = tradeId;
-    }
-
-    public Long getTradeId() {
-        return this.tradeId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.bill.bills.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("account_id", this.accountId);
@@ -170,6 +137,20 @@ public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTimeType() {
+        return this.timeType;
+    }
+
+    public Long getTradeId() {
+        return this.tradeId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -177,17 +158,44 @@ public class BillBillsGetRequest implements TaobaoRequest<BillBillsGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<BillBillsGetResponse> getResponseClass() {
-        return BillBillsGetResponse.class;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTimeType(Long timeType) {
+        this.timeType = timeType;
+    }
+
+    public void setTradeId(Long tradeId) {
+        this.tradeId = tradeId;
     }
 }

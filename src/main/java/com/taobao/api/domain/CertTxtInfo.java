@@ -29,12 +29,12 @@ public class CertTxtInfo extends TaobaoObject {
         return this.certType;
     }
 
-    public void setCertType(Long certType) {
-        this.certType = certType;
-    }
-
     public String getText() {
         return this.text;
+    }
+
+    public void setCertType(Long certType) {
+        this.certType = certType;
     }
 
     public void setText(String text) {

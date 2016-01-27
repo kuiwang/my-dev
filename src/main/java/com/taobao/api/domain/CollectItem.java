@@ -35,20 +35,20 @@ public class CollectItem extends TaobaoObject {
         return this.itemNumid;
     }
 
-    public void setItemNumid(Long itemNumid) {
-        this.itemNumid = itemNumid;
-    }
-
     public String getItemOwnerNick() {
         return this.itemOwnerNick;
     }
 
-    public void setItemOwnerNick(String itemOwnerNick) {
-        this.itemOwnerNick = itemOwnerNick;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setItemNumid(Long itemNumid) {
+        this.itemNumid = itemNumid;
+    }
+
+    public void setItemOwnerNick(String itemOwnerNick) {
+        this.itemOwnerNick = itemOwnerNick;
     }
 
     public void setTitle(String title) {

@@ -33,27 +33,33 @@ public class CustomWebSocket13FrameDecoder extends WebSocket13FrameDecoder {
     }
 
     @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-        this.cumulation = new ArrayList<WebSocketFrame>();
-        super.messageReceived(ctx, e);
-        // batch FireMessageReceived
-        if (this.cumulation.size() > 0) Channels.fireMessageReceived(ctx, cumulation,
-                e.getRemoteAddress());
-    }
-
-    @Override
     protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer,
             State state) throws Exception {
         Object o = super.decode(ctx, channel, buffer, state);
 
-        if (o == null) return null;
+        if (o == null) {
+            return null;
+        }
 
-        if (!(o instanceof BinaryWebSocketFrame || o instanceof TextWebSocketFrame)) return o;
+        if (!((o instanceof BinaryWebSocketFrame) || (o instanceof TextWebSocketFrame))) {
+            return o;
+        }
 
         // collect binary/text frame only
         this.cumulation.add((WebSocketFrame) o);
         // always return null making calldecode break and do not raise
         // unfoldAndFireMessageReceived
         return null;
+    }
+
+    @Override
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+        this.cumulation = new ArrayList<WebSocketFrame>();
+        super.messageReceived(ctx, e);
+        // batch FireMessageReceived
+        if (this.cumulation.size() > 0) {
+            Channels.fireMessageReceived(ctx, cumulation,
+                    e.getRemoteAddress());
+        }
     }
 }

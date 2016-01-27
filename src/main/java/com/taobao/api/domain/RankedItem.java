@@ -53,44 +53,44 @@ public class RankedItem extends TaobaoObject {
         return this.linkUrl;
     }
 
-    public void setLinkUrl(String linkUrl) {
-        this.linkUrl = linkUrl;
-    }
-
     public String getMaxPrice() {
         return this.maxPrice;
-    }
-
-    public void setMaxPrice(String maxPrice) {
-        this.maxPrice = maxPrice;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getOrder() {
         return this.order;
-    }
-
-    public void setOrder(Long order) {
-        this.order = order;
     }
 
     public Long getRankScore() {
         return this.rankScore;
     }
 
-    public void setRankScore(Long rankScore) {
-        this.rankScore = rankScore;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    public void setMaxPrice(String maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOrder(Long order) {
+        this.order = order;
+    }
+
+    public void setRankScore(Long rankScore) {
+        this.rankScore = rankScore;
     }
 
     public void setTitle(String title) {

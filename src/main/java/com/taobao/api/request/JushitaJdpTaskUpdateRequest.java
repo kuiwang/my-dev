@@ -17,12 +17,6 @@ import com.taobao.api.response.JushitaJdpTaskUpdateResponse;
  */
 public class JushitaJdpTaskUpdateRequest implements TaobaoRequest<JushitaJdpTaskUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 任务执行失败的错误信息，可以方便排查问题。<br />
      * 支持最大长度为：100<br />
@@ -36,6 +30,8 @@ public class JushitaJdpTaskUpdateRequest implements TaobaoRequest<JushitaJdpTask
      * 支持的最大列表长度为：30
      */
     private String executeHost;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 任务的编号
@@ -66,101 +62,80 @@ public class JushitaJdpTaskUpdateRequest implements TaobaoRequest<JushitaJdpTask
      */
     private Long status;
 
+    private Long timestamp;
+
     /**
      * 任务的类型,<br />
      * 支持最小值为：0
      */
     private Long type;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 任务更新时的版本号，此值在选择出的任务中获取到。
      */
     private Long version;
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(errorMessage, 100, "errorMessage");
+        RequestCheckUtils.checkMaxLength(executeHost, 30, "executeHost");
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(nextExecuteTime, "nextExecuteTime");
+        RequestCheckUtils.checkNotEmpty(nowSyncTime, "nowSyncTime");
+        RequestCheckUtils.checkMaxLength(params, 512, "params");
+        RequestCheckUtils.checkNotEmpty(status, "status");
+        RequestCheckUtils.checkMaxValue(status, 2L, "status");
+        RequestCheckUtils.checkMinValue(status, -1L, "status");
+        RequestCheckUtils.checkMinValue(type, 0L, "type");
+        RequestCheckUtils.checkNotEmpty(version, "version");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jushita.jdp.task.update";
     }
 
     public String getErrorMessage() {
         return this.errorMessage;
     }
 
-    public void setExecuteHost(String executeHost) {
-        this.executeHost = executeHost;
-    }
-
     public String getExecuteHost() {
         return this.executeHost;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setNextExecuteTime(Date nextExecuteTime) {
-        this.nextExecuteTime = nextExecuteTime;
-    }
-
     public Date getNextExecuteTime() {
         return this.nextExecuteTime;
-    }
-
-    public void setNowSyncTime(Date nowSyncTime) {
-        this.nowSyncTime = nowSyncTime;
     }
 
     public Date getNowSyncTime() {
         return this.nowSyncTime;
     }
 
-    public void setParams(String params) {
-        this.params = params;
-    }
-
     public String getParams() {
         return this.params;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    @Override
+    public Class<JushitaJdpTaskUpdateResponse> getResponseClass() {
+        return JushitaJdpTaskUpdateResponse.class;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Long getVersion() {
-        return this.version;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jushita.jdp.task.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("error_message", this.errorMessage);
@@ -178,6 +153,20 @@ public class JushitaJdpTaskUpdateRequest implements TaobaoRequest<JushitaJdpTask
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    public Long getVersion() {
+        return this.version;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -185,25 +174,44 @@ public class JushitaJdpTaskUpdateRequest implements TaobaoRequest<JushitaJdpTask
         this.udfParams.put(key, value);
     }
 
-    public Class<JushitaJdpTaskUpdateResponse> getResponseClass() {
-        return JushitaJdpTaskUpdateResponse.class;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(errorMessage, 100, "errorMessage");
-        RequestCheckUtils.checkMaxLength(executeHost, 30, "executeHost");
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(nextExecuteTime, "nextExecuteTime");
-        RequestCheckUtils.checkNotEmpty(nowSyncTime, "nowSyncTime");
-        RequestCheckUtils.checkMaxLength(params, 512, "params");
-        RequestCheckUtils.checkNotEmpty(status, "status");
-        RequestCheckUtils.checkMaxValue(status, 2L, "status");
-        RequestCheckUtils.checkMinValue(status, -1L, "status");
-        RequestCheckUtils.checkMinValue(type, 0L, "type");
-        RequestCheckUtils.checkNotEmpty(version, "version");
+    public void setExecuteHost(String executeHost) {
+        this.executeHost = executeHost;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNextExecuteTime(Date nextExecuteTime) {
+        this.nextExecuteTime = nextExecuteTime;
+    }
+
+    public void setNowSyncTime(Date nowSyncTime) {
+        this.nowSyncTime = nowSyncTime;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

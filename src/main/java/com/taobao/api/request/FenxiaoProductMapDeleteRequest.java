@@ -19,10 +19,6 @@ public class FenxiaoProductMapDeleteRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销产品id。
      */
@@ -33,34 +29,39 @@ public class FenxiaoProductMapDeleteRequest implements
      */
     private String skuIds;
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.map.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setSkuIds(String skuIds) {
-        this.skuIds = skuIds;
+    @Override
+    public Class<FenxiaoProductMapDeleteResponse> getResponseClass() {
+        return FenxiaoProductMapDeleteResponse.class;
     }
 
     public String getSkuIds() {
         return this.skuIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.map.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("product_id", this.productId);
@@ -71,6 +72,12 @@ public class FenxiaoProductMapDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class FenxiaoProductMapDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductMapDeleteResponse> getResponseClass() {
-        return FenxiaoProductMapDeleteResponse.class;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setSkuIds(String skuIds) {
+        this.skuIds = skuIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

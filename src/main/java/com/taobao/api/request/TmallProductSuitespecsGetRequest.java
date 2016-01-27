@@ -16,16 +16,12 @@ import com.taobao.api.response.TmallProductSuitespecsGetResponse;
 public class TmallProductSuitespecsGetRequest implements
         TaobaoRequest<TmallProductSuitespecsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 类目的ID号，该id必须和properties同时传入。 而且只有当product_id不传入的时候才起效果。
      */
     private Long catId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品的ID。这个不能和properties和cat_id同时起效果
@@ -38,42 +34,42 @@ public class TmallProductSuitespecsGetRequest implements
      */
     private String properties;
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.product.suitespecs.get";
     }
 
     public Long getCatId() {
         return this.catId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getProperties() {
         return this.properties;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TmallProductSuitespecsGetResponse> getResponseClass() {
+        return TmallProductSuitespecsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.product.suitespecs.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cat_id", this.catId);
@@ -85,6 +81,12 @@ public class TmallProductSuitespecsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,14 +94,20 @@ public class TmallProductSuitespecsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallProductSuitespecsGetResponse> getResponseClass() {
-        return TmallProductSuitespecsGetResponse.class;
+    public void setCatId(Long catId) {
+        this.catId = catId;
     }
 
-    public void check() throws ApiRuleException {
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -20,12 +20,12 @@ public class AlibabaXiamiApiContractSellerlistGetResponse extends TaobaoResponse
     @ApiField("data")
     private XiamiSellerlist data;
 
-    public void setData(XiamiSellerlist data) {
-        this.data = data;
-    }
-
     public XiamiSellerlist getData() {
         return this.data;
+    }
+
+    public void setData(XiamiSellerlist data) {
+        this.data = data;
     }
 
 }

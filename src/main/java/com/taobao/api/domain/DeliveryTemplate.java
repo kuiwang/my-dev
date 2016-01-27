@@ -94,76 +94,76 @@ public class DeliveryTemplate extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Long getAssumer() {
         return this.assumer;
-    }
-
-    public void setAssumer(Long assumer) {
-        this.assumer = assumer;
     }
 
     public Long getConsignAreaId() {
         return this.consignAreaId;
     }
 
-    public void setConsignAreaId(Long consignAreaId) {
-        this.consignAreaId = consignAreaId;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public List<TopFee> getFeeList() {
         return this.feeList;
     }
 
-    public void setFeeList(List<TopFee> feeList) {
-        this.feeList = feeList;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSupports() {
         return this.supports;
-    }
-
-    public void setSupports(String supports) {
-        this.supports = supports;
     }
 
     public Long getTemplateId() {
         return this.templateId;
     }
 
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
-    }
-
     public Long getValuation() {
         return this.valuation;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAssumer(Long assumer) {
+        this.assumer = assumer;
+    }
+
+    public void setConsignAreaId(Long consignAreaId) {
+        this.consignAreaId = consignAreaId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setFeeList(List<TopFee> feeList) {
+        this.feeList = feeList;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSupports(String supports) {
+        this.supports = supports;
+    }
+
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
     }
 
     public void setValuation(Long valuation) {

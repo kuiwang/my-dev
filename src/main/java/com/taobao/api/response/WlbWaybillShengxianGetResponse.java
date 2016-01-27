@@ -26,20 +26,20 @@ public class WlbWaybillShengxianGetResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setFreshWaybill(FreshWaybill freshWaybill) {
-        this.freshWaybill = freshWaybill;
-    }
-
     public FreshWaybill getFreshWaybill() {
         return this.freshWaybill;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setFreshWaybill(FreshWaybill freshWaybill) {
+        this.freshWaybill = freshWaybill;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

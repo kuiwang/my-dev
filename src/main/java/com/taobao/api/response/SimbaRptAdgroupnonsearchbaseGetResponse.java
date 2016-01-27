@@ -19,12 +19,12 @@ public class SimbaRptAdgroupnonsearchbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_adgroup_nonsearch_base")
     private String rptAdgroupNonsearchBase;
 
-    public void setRptAdgroupNonsearchBase(String rptAdgroupNonsearchBase) {
-        this.rptAdgroupNonsearchBase = rptAdgroupNonsearchBase;
-    }
-
     public String getRptAdgroupNonsearchBase() {
         return this.rptAdgroupNonsearchBase;
+    }
+
+    public void setRptAdgroupNonsearchBase(String rptAdgroupNonsearchBase) {
+        this.rptAdgroupNonsearchBase = rptAdgroupNonsearchBase;
     }
 
 }

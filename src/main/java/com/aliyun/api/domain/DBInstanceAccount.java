@@ -35,56 +35,56 @@ public class DBInstanceAccount extends TaobaoObject {
     private String accountStatus;
 
     /**
-     * 帐号所属实例名称
-     */
-    @ApiField("DBInstanceId")
-    private String dBInstanceId;
-
-    /**
      * 由DatabasePrivilege组成的数组
      */
     @ApiListField("DatabasePrivileges")
     @ApiField("DatabasePrivilege")
     private List<DatabasePrivilege> databasePrivileges;
 
+    /**
+     * 帐号所属实例名称
+     */
+    @ApiField("DBInstanceId")
+    private String dBInstanceId;
+
     public String getAccountDescription() {
         return this.accountDescription;
-    }
-
-    public void setAccountDescription(String accountDescription) {
-        this.accountDescription = accountDescription;
     }
 
     public String getAccountName() {
         return this.accountName;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
     public String getAccountStatus() {
         return this.accountStatus;
-    }
-
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public String getdBInstanceId() {
-        return this.dBInstanceId;
-    }
-
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
     }
 
     public List<DatabasePrivilege> getDatabasePrivileges() {
         return this.databasePrivileges;
     }
 
+    public String getdBInstanceId() {
+        return this.dBInstanceId;
+    }
+
+    public void setAccountDescription(String accountDescription) {
+        this.accountDescription = accountDescription;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
     public void setDatabasePrivileges(List<DatabasePrivilege> databasePrivileges) {
         this.databasePrivileges = databasePrivileges;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
     }
 
 }

@@ -24,12 +24,12 @@ public class PromotionmiscActivityRangeListGetResponse extends TaobaoResponse {
     @ApiField("promotion_range")
     private List<PromotionRange> promotionRangeList;
 
-    public void setPromotionRangeList(List<PromotionRange> promotionRangeList) {
-        this.promotionRangeList = promotionRangeList;
-    }
-
     public List<PromotionRange> getPromotionRangeList() {
         return this.promotionRangeList;
+    }
+
+    public void setPromotionRangeList(List<PromotionRange> promotionRangeList) {
+        this.promotionRangeList = promotionRangeList;
     }
 
 }

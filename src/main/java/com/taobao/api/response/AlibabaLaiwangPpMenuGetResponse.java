@@ -20,12 +20,12 @@ public class AlibabaLaiwangPpMenuGetResponse extends TaobaoResponse {
     @ApiField("menu")
     private LaiwangPPMenu menu;
 
-    public void setMenu(LaiwangPPMenu menu) {
-        this.menu = menu;
-    }
-
     public LaiwangPPMenu getMenu() {
         return this.menu;
+    }
+
+    public void setMenu(LaiwangPPMenu menu) {
+        this.menu = menu;
     }
 
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.InventoryStoreManageResponse;
  */
 public class InventoryStoreManageRequest implements TaobaoRequest<InventoryStoreManageResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 仓库的物理地址，可更新
      */
@@ -41,6 +35,8 @@ public class InventoryStoreManageRequest implements TaobaoRequest<InventoryStore
      * 联系人，可更新
      */
     private String contact;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 参数定义，ADD：新建; UPDATE：更新
@@ -72,98 +68,76 @@ public class InventoryStoreManageRequest implements TaobaoRequest<InventoryStore
      */
     private String storeType;
 
-    public void setAddress(String address) {
-        this.address = address;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(address, "address");
+        RequestCheckUtils.checkNotEmpty(addressAreaName, "addressAreaName");
+        RequestCheckUtils.checkNotEmpty(operateType, "operateType");
+        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
+        RequestCheckUtils.checkNotEmpty(storeName, "storeName");
+        RequestCheckUtils.checkNotEmpty(storeType, "storeType");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setAddressAreaName(String addressAreaName) {
-        this.addressAreaName = addressAreaName;
-    }
-
     public String getAddressAreaName() {
         return this.addressAreaName;
-    }
-
-    public void setAliasName(String aliasName) {
-        this.aliasName = aliasName;
     }
 
     public String getAliasName() {
         return this.aliasName;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.inventory.store.manage";
     }
 
     public String getContact() {
         return this.contact;
     }
 
-    public void setOperateType(String operateType) {
-        this.operateType = operateType;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOperateType() {
         return this.operateType;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPostcode(Long postcode) {
-        this.postcode = postcode;
     }
 
     public Long getPostcode() {
         return this.postcode;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<InventoryStoreManageResponse> getResponseClass() {
+        return InventoryStoreManageResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
     public String getStoreName() {
         return this.storeName;
-    }
-
-    public void setStoreType(String storeType) {
-        this.storeType = storeType;
     }
 
     public String getStoreType() {
         return this.storeType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.inventory.store.manage";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -182,6 +156,12 @@ public class InventoryStoreManageRequest implements TaobaoRequest<InventoryStore
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -189,20 +169,48 @@ public class InventoryStoreManageRequest implements TaobaoRequest<InventoryStore
         this.udfParams.put(key, value);
     }
 
-    public Class<InventoryStoreManageResponse> getResponseClass() {
-        return InventoryStoreManageResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(address, "address");
-        RequestCheckUtils.checkNotEmpty(addressAreaName, "addressAreaName");
-        RequestCheckUtils.checkNotEmpty(operateType, "operateType");
-        RequestCheckUtils.checkNotEmpty(storeCode, "storeCode");
-        RequestCheckUtils.checkNotEmpty(storeName, "storeName");
-        RequestCheckUtils.checkNotEmpty(storeType, "storeType");
+    public void setAddressAreaName(String addressAreaName) {
+        this.addressAreaName = addressAreaName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setAliasName(String aliasName) {
+        this.aliasName = aliasName;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setOperateType(String operateType) {
+        this.operateType = operateType;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPostcode(Long postcode) {
+        this.postcode = postcode;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setStoreType(String storeType) {
+        this.storeType = storeType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

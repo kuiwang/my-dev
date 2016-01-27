@@ -19,12 +19,12 @@ public class EbookFileUploadChunkResponse extends TaobaoResponse {
     @ApiField("file_id")
     private String fileId;
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
-    }
-
     public String getFileId() {
         return this.fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
     }
 
 }

@@ -20,12 +20,12 @@ public class SimbaAdgroupOnlineitemsvonGetResponse extends TaobaoResponse {
     @ApiField("page_item")
     private SubwayItemPartition pageItem;
 
-    public void setPageItem(SubwayItemPartition pageItem) {
-        this.pageItem = pageItem;
-    }
-
     public SubwayItemPartition getPageItem() {
         return this.pageItem;
+    }
+
+    public void setPageItem(SubwayItemPartition pageItem) {
+        this.pageItem = pageItem;
     }
 
 }

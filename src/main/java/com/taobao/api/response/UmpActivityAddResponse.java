@@ -19,12 +19,12 @@ public class UmpActivityAddResponse extends TaobaoResponse {
     @ApiField("act_id")
     private Long actId;
 
-    public void setActId(Long actId) {
-        this.actId = actId;
-    }
-
     public Long getActId() {
         return this.actId;
+    }
+
+    public void setActId(Long actId) {
+        this.actId = actId;
     }
 
 }

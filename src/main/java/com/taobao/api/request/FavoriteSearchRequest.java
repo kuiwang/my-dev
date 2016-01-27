@@ -16,18 +16,14 @@ import com.taobao.api.response.FavoriteSearchResponse;
  */
 public class FavoriteSearchRequest implements TaobaoRequest<FavoriteSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * ITEM表示宝贝，SHOP表示商铺，collect_type只能为这两者之一<br />
      * 支持最大长度为：4<br />
      * 支持的最大列表长度为：4
      */
     private String collectType;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。取值范围:大于零的整数; 默认值:1。一页20条记录。<br />
@@ -37,34 +33,43 @@ public class FavoriteSearchRequest implements TaobaoRequest<FavoriteSearchRespon
      */
     private Long pageNo;
 
-    public void setCollectType(String collectType) {
-        this.collectType = collectType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(collectType, "collectType");
+        RequestCheckUtils.checkMaxLength(collectType, 4, "collectType");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMaxValue(pageNo, 100L, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.favorite.search";
     }
 
     public String getCollectType() {
         return this.collectType;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FavoriteSearchResponse> getResponseClass() {
+        return FavoriteSearchResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.favorite.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("collect_type", this.collectType);
@@ -75,6 +80,12 @@ public class FavoriteSearchRequest implements TaobaoRequest<FavoriteSearchRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -82,19 +93,16 @@ public class FavoriteSearchRequest implements TaobaoRequest<FavoriteSearchRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<FavoriteSearchResponse> getResponseClass() {
-        return FavoriteSearchResponse.class;
+    public void setCollectType(String collectType) {
+        this.collectType = collectType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(collectType, "collectType");
-        RequestCheckUtils.checkMaxLength(collectType, 4, "collectType");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMaxValue(pageNo, 100L, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

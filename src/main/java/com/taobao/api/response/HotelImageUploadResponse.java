@@ -20,12 +20,12 @@ public class HotelImageUploadResponse extends TaobaoResponse {
     @ApiField("hotel_image")
     private HotelImage hotelImage;
 
-    public void setHotelImage(HotelImage hotelImage) {
-        this.hotelImage = hotelImage;
-    }
-
     public HotelImage getHotelImage() {
         return this.hotelImage;
+    }
+
+    public void setHotelImage(HotelImage hotelImage) {
+        this.hotelImage = hotelImage;
     }
 
 }

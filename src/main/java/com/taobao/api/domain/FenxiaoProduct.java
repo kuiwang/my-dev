@@ -300,364 +300,364 @@ public class FenxiaoProduct extends TaobaoObject {
         return this.alarmNumber;
     }
 
-    public void setAlarmNumber(Long alarmNumber) {
-        this.alarmNumber = alarmNumber;
-    }
-
     public String getCategoryId() {
         return this.categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCostPrice() {
         return this.costPrice;
-    }
-
-    public void setCostPrice(String costPrice) {
-        this.costPrice = costPrice;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public String getDealerCostPrice() {
         return this.dealerCostPrice;
-    }
-
-    public void setDealerCostPrice(String dealerCostPrice) {
-        this.dealerCostPrice = dealerCostPrice;
     }
 
     public String getDescPath() {
         return this.descPath;
     }
 
-    public void setDescPath(String descPath) {
-        this.descPath = descPath;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Long getDiscountId() {
         return this.discountId;
     }
 
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
-    }
-
     public Boolean getHaveGuarantee() {
         return this.haveGuarantee;
-    }
-
-    public void setHaveGuarantee(Boolean haveGuarantee) {
-        this.haveGuarantee = haveGuarantee;
     }
 
     public Boolean getHaveInvoice() {
         return this.haveInvoice;
     }
 
-    public void setHaveInvoice(Boolean haveInvoice) {
-        this.haveInvoice = haveInvoice;
-    }
-
     public List<FenxiaoImage> getImages() {
         return this.images;
-    }
-
-    public void setImages(List<FenxiaoImage> images) {
-        this.images = images;
     }
 
     public String getInputProperties() {
         return this.inputProperties;
     }
 
-    public void setInputProperties(String inputProperties) {
-        this.inputProperties = inputProperties;
-    }
-
     public String getIsAuthz() {
         return this.isAuthz;
-    }
-
-    public void setIsAuthz(String isAuthz) {
-        this.isAuthz = isAuthz;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemsCount() {
         return this.itemsCount;
-    }
-
-    public void setItemsCount(Long itemsCount) {
-        this.itemsCount = itemsCount;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getOrdersCount() {
         return this.ordersCount;
     }
 
-    public void setOrdersCount(Long ordersCount) {
-        this.ordersCount = ordersCount;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public List<FenxiaoPdu> getPdus() {
         return this.pdus;
     }
 
-    public void setPdus(List<FenxiaoPdu> pdus) {
-        this.pdus = pdus;
-    }
-
     public String getPictures() {
         return this.pictures;
-    }
-
-    public void setPictures(String pictures) {
-        this.pictures = pictures;
     }
 
     public Long getPid() {
         return this.pid;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     public String getPostageEms() {
         return this.postageEms;
-    }
-
-    public void setPostageEms(String postageEms) {
-        this.postageEms = postageEms;
     }
 
     public String getPostageFast() {
         return this.postageFast;
     }
 
-    public void setPostageFast(String postageFast) {
-        this.postageFast = postageFast;
-    }
-
     public Long getPostageId() {
         return this.postageId;
-    }
-
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
     }
 
     public String getPostageOrdinary() {
         return this.postageOrdinary;
     }
 
-    public void setPostageOrdinary(String postageOrdinary) {
-        this.postageOrdinary = postageOrdinary;
-    }
-
     public String getPostageType() {
         return this.postageType;
-    }
-
-    public void setPostageType(String postageType) {
-        this.postageType = postageType;
     }
 
     public Long getProductcatId() {
         return this.productcatId;
     }
 
-    public void setProductcatId(Long productcatId) {
-        this.productcatId = productcatId;
-    }
-
     public String getProperties() {
         return this.properties;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getPropertyAlias() {
         return this.propertyAlias;
     }
 
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
-    }
-
     public String getProv() {
         return this.prov;
-    }
-
-    public void setProv(String prov) {
-        this.prov = prov;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getQueryItemId() {
         return this.queryItemId;
-    }
-
-    public void setQueryItemId(Long queryItemId) {
-        this.queryItemId = queryItemId;
     }
 
     public Long getQuotaQuantity() {
         return this.quotaQuantity;
     }
 
-    public void setQuotaQuantity(Long quotaQuantity) {
-        this.quotaQuantity = quotaQuantity;
-    }
-
     public Long getReservedQuantity() {
         return this.reservedQuantity;
-    }
-
-    public void setReservedQuantity(Long reservedQuantity) {
-        this.reservedQuantity = reservedQuantity;
     }
 
     public String getRetailPriceHigh() {
         return this.retailPriceHigh;
     }
 
-    public void setRetailPriceHigh(String retailPriceHigh) {
-        this.retailPriceHigh = retailPriceHigh;
-    }
-
     public String getRetailPriceLow() {
         return this.retailPriceLow;
-    }
-
-    public void setRetailPriceLow(String retailPriceLow) {
-        this.retailPriceLow = retailPriceLow;
     }
 
     public Long getScitemId() {
         return this.scitemId;
     }
 
-    public void setScitemId(Long scitemId) {
-        this.scitemId = scitemId;
-    }
-
     public List<FenxiaoSku> getSkus() {
         return this.skus;
-    }
-
-    public void setSkus(List<FenxiaoSku> skus) {
-        this.skus = skus;
     }
 
     public Long getSpuId() {
         return this.spuId;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
     public String getStandardPrice() {
         return this.standardPrice;
-    }
-
-    public void setStandardPrice(String standardPrice) {
-        this.standardPrice = standardPrice;
     }
 
     public String getStandardRetailPrice() {
         return this.standardRetailPrice;
     }
 
-    public void setStandardRetailPrice(String standardRetailPrice) {
-        this.standardRetailPrice = standardRetailPrice;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getTradeType() {
         return this.tradeType;
     }
 
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
     public Date getUpshelfTime() {
         return this.upshelfTime;
+    }
+
+    public void setAlarmNumber(Long alarmNumber) {
+        this.alarmNumber = alarmNumber;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCostPrice(String costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDealerCostPrice(String dealerCostPrice) {
+        this.dealerCostPrice = dealerCostPrice;
+    }
+
+    public void setDescPath(String descPath) {
+        this.descPath = descPath;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDiscountId(Long discountId) {
+        this.discountId = discountId;
+    }
+
+    public void setHaveGuarantee(Boolean haveGuarantee) {
+        this.haveGuarantee = haveGuarantee;
+    }
+
+    public void setHaveInvoice(Boolean haveInvoice) {
+        this.haveInvoice = haveInvoice;
+    }
+
+    public void setImages(List<FenxiaoImage> images) {
+        this.images = images;
+    }
+
+    public void setInputProperties(String inputProperties) {
+        this.inputProperties = inputProperties;
+    }
+
+    public void setIsAuthz(String isAuthz) {
+        this.isAuthz = isAuthz;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemsCount(Long itemsCount) {
+        this.itemsCount = itemsCount;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOrdersCount(Long ordersCount) {
+        this.ordersCount = ordersCount;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPdus(List<FenxiaoPdu> pdus) {
+        this.pdus = pdus;
+    }
+
+    public void setPictures(String pictures) {
+        this.pictures = pictures;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setPostageEms(String postageEms) {
+        this.postageEms = postageEms;
+    }
+
+    public void setPostageFast(String postageFast) {
+        this.postageFast = postageFast;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setPostageOrdinary(String postageOrdinary) {
+        this.postageOrdinary = postageOrdinary;
+    }
+
+    public void setPostageType(String postageType) {
+        this.postageType = postageType;
+    }
+
+    public void setProductcatId(Long productcatId) {
+        this.productcatId = productcatId;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setQueryItemId(Long queryItemId) {
+        this.queryItemId = queryItemId;
+    }
+
+    public void setQuotaQuantity(Long quotaQuantity) {
+        this.quotaQuantity = quotaQuantity;
+    }
+
+    public void setReservedQuantity(Long reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
+    }
+
+    public void setRetailPriceHigh(String retailPriceHigh) {
+        this.retailPriceHigh = retailPriceHigh;
+    }
+
+    public void setRetailPriceLow(String retailPriceLow) {
+        this.retailPriceLow = retailPriceLow;
+    }
+
+    public void setScitemId(Long scitemId) {
+        this.scitemId = scitemId;
+    }
+
+    public void setSkus(List<FenxiaoSku> skus) {
+        this.skus = skus;
+    }
+
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
+    }
+
+    public void setStandardPrice(String standardPrice) {
+        this.standardPrice = standardPrice;
+    }
+
+    public void setStandardRetailPrice(String standardRetailPrice) {
+        this.standardRetailPrice = standardRetailPrice;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 
     public void setUpshelfTime(Date upshelfTime) {

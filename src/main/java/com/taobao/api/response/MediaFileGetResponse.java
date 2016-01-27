@@ -30,20 +30,20 @@ public class MediaFileGetResponse extends TaobaoResponse {
     @ApiField("total")
     private Long total;
 
-    public void setResult(List<File> result) {
-        this.result = result;
-    }
-
     public List<File> getResult() {
         return this.result;
     }
 
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
     public Long getTotal() {
         return this.total;
+    }
+
+    public void setResult(List<File> result) {
+        this.result = result;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
 }

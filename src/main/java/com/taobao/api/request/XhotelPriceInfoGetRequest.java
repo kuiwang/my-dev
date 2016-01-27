@@ -17,16 +17,12 @@ import com.taobao.api.response.XhotelPriceInfoGetResponse;
  */
 public class XhotelPriceInfoGetRequest implements TaobaoRequest<XhotelPriceInfoGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结束日期，默认值为当前时间加4天,结束日期最多是当前时间加28天
      */
     private Date endDate;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * pid
@@ -43,50 +39,47 @@ public class XhotelPriceInfoGetRequest implements TaobaoRequest<XhotelPriceInfoG
      */
     private Date startDate;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(shidCityCode, "shidCityCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.xhotel.price.info.get";
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPid() {
         return this.pid;
     }
 
-    public void setShidCityCode(String shidCityCode) {
-        this.shidCityCode = shidCityCode;
+    @Override
+    public Class<XhotelPriceInfoGetResponse> getResponseClass() {
+        return XhotelPriceInfoGetResponse.class;
     }
 
     public String getShidCityCode() {
         return this.shidCityCode;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.xhotel.price.info.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_date", this.endDate);
@@ -99,6 +92,12 @@ public class XhotelPriceInfoGetRequest implements TaobaoRequest<XhotelPriceInfoG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,15 +105,24 @@ public class XhotelPriceInfoGetRequest implements TaobaoRequest<XhotelPriceInfoG
         this.udfParams.put(key, value);
     }
 
-    public Class<XhotelPriceInfoGetResponse> getResponseClass() {
-        return XhotelPriceInfoGetResponse.class;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(shidCityCode, "shidCityCode");
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setShidCityCode(String shidCityCode) {
+        this.shidCityCode = shidCityCode;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

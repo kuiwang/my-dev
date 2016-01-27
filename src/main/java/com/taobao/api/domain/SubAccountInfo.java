@@ -59,52 +59,52 @@ public class SubAccountInfo extends TaobaoObject {
         return this.subDispatchStatus;
     }
 
-    public void setSubDispatchStatus(Boolean subDispatchStatus) {
-        this.subDispatchStatus = subDispatchStatus;
-    }
-
     public Long getSubId() {
         return this.subId;
-    }
-
-    public void setSubId(Long subId) {
-        this.subId = subId;
     }
 
     public String getSubNick() {
         return this.subNick;
     }
 
-    public void setSubNick(String subNick) {
-        this.subNick = subNick;
-    }
-
     public Boolean getSubOwedStatus() {
         return this.subOwedStatus;
-    }
-
-    public void setSubOwedStatus(Boolean subOwedStatus) {
-        this.subOwedStatus = subOwedStatus;
     }
 
     public Long getSubStatus() {
         return this.subStatus;
     }
 
-    public void setSubStatus(Long subStatus) {
-        this.subStatus = subStatus;
-    }
-
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setSubDispatchStatus(Boolean subDispatchStatus) {
+        this.subDispatchStatus = subDispatchStatus;
+    }
+
+    public void setSubId(Long subId) {
+        this.subId = subId;
+    }
+
+    public void setSubNick(String subNick) {
+        this.subNick = subNick;
+    }
+
+    public void setSubOwedStatus(Boolean subOwedStatus) {
+        this.subOwedStatus = subOwedStatus;
+    }
+
+    public void setSubStatus(Long subStatus) {
+        this.subStatus = subStatus;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setUserNick(String userNick) {

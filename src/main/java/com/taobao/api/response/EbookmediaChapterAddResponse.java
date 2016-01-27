@@ -20,12 +20,12 @@ public class EbookmediaChapterAddResponse extends TaobaoResponse {
     @ApiField("ebook_chapter")
     private EbookMediaChapter ebookChapter;
 
-    public void setEbookChapter(EbookMediaChapter ebookChapter) {
-        this.ebookChapter = ebookChapter;
-    }
-
     public EbookMediaChapter getEbookChapter() {
         return this.ebookChapter;
+    }
+
+    public void setEbookChapter(EbookMediaChapter ebookChapter) {
+        this.ebookChapter = ebookChapter;
     }
 
 }

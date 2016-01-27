@@ -21,55 +21,23 @@ public class SpringServerBean implements InitializingBean, BeanFactoryAware,
 
     private ListableBeanFactory beanFactory;
 
-    private int port;
-
-    private String path;
+    private HandshakerBean handshaker;
 
     private int maxMessageSize;
 
-    private int minThreadCount = 20;
-
     private int maxThreadCount = 200;
 
-    private HandshakerBean handshaker;
+    private int minThreadCount = 20;
 
-    public void setPort(int value) {
-        this.port = value;
-    }
+    private String path;
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public void setMaxMessageSize(int value) {
-        this.maxMessageSize = value;
-    }
-
-    public void setMinBusinessThreadCount(int value) {
-        this.minThreadCount = value;
-    }
-
-    public void setMaxBusinessThreadCount(int value) {
-        this.maxThreadCount = value;
-    }
-
-    public void setHandshaker(HandshakerBean handshaker) {
-        this.handshaker = handshaker;
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = (ListableBeanFactory) beanFactory;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.beanFactory = applicationContext;
-    }
+    private int port;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (this.maxMessageSize > 0) BufferManager.setBufferSize(this.maxMessageSize);
+        if (this.maxMessageSize > 0) {
+            BufferManager.setBufferSize(this.maxMessageSize);
+        }
 
         LoggerFactory loggerFactory = LogUtil.getLoggerFactory(this);
 
@@ -84,5 +52,39 @@ public class SpringServerBean implements InitializingBean, BeanFactoryAware,
                 .businessThreadPool(
                         new ThreadPoolExecutor(this.minThreadCount, this.maxThreadCount, 300,
                                 TimeUnit.SECONDS, new SynchronousQueue<Runnable>()));
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.beanFactory = applicationContext;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = (ListableBeanFactory) beanFactory;
+    }
+
+    public void setHandshaker(HandshakerBean handshaker) {
+        this.handshaker = handshaker;
+    }
+
+    public void setMaxBusinessThreadCount(int value) {
+        this.maxThreadCount = value;
+    }
+
+    public void setMaxMessageSize(int value) {
+        this.maxMessageSize = value;
+    }
+
+    public void setMinBusinessThreadCount(int value) {
+        this.minThreadCount = value;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setPort(int value) {
+        this.port = value;
     }
 }

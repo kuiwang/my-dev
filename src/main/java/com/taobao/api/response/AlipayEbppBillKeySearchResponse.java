@@ -19,12 +19,12 @@ public class AlipayEbppBillKeySearchResponse extends TaobaoResponse {
     @ApiField("task_id")
     private String taskId;
 
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
-
     public String getTaskId() {
         return this.taskId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 
 }

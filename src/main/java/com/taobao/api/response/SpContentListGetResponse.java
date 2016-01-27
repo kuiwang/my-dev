@@ -30,20 +30,20 @@ public class SpContentListGetResponse extends TaobaoResponse {
     @ApiField("total_result")
     private Long totalResult;
 
-    public void setContents(List<SpContentDOForList> contents) {
-        this.contents = contents;
-    }
-
     public List<SpContentDOForList> getContents() {
         return this.contents;
     }
 
-    public void setTotalResult(Long totalResult) {
-        this.totalResult = totalResult;
-    }
-
     public Long getTotalResult() {
         return this.totalResult;
+    }
+
+    public void setContents(List<SpContentDOForList> contents) {
+        this.contents = contents;
+    }
+
+    public void setTotalResult(Long totalResult) {
+        this.totalResult = totalResult;
     }
 
 }

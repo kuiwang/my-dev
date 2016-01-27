@@ -25,21 +25,43 @@ import com.taobao.top.link.logging.LogUtil;
  */
 class MixClient {
 
-    protected Logger logger;
+    public class ServerIdentity implements Identity {
 
-    protected Identity id;
+        @Override
+        public boolean equals(Identity id) {
+            return id instanceof ServerIdentity;
+        }
+
+        @Override
+        public Identity parse(Object data) throws LinkException {
+            return null;
+        }
+
+        @Override
+        public void render(Object to) {
+        }
+
+        @Override
+        public String toString() {
+            return id.toString();
+        }
+    }
 
     private Endpoint endpoint;
 
-    private URI serverUri;
+    protected Identity id;
 
-    private EndpointProxy server;
+    protected Logger logger;
 
-    private ClientChannelSharedSelector selector;
+    private int reconnectInterval = 30000;
 
     private Timer reconnectTimer;
 
-    private int reconnectInterval = 30000;
+    private ClientChannelSharedSelector selector;
+
+    private EndpointProxy server;
+
+    private URI serverUri;
 
     public MixClient(Identity id) {
         // whatever, log first
@@ -60,14 +82,6 @@ class MixClient {
         this.endpoint.setChannelHandler(channelHandler);
     }
 
-    protected Identity getIdentity() {
-        return this.id;
-    }
-
-    protected void setMessageHandler(MessageHandler handler) {
-        this.endpoint.setMessageHandler(handler);
-    }
-
     protected void connect(String uri) throws LinkException {
         try {
             this.connect(new URI(uri));
@@ -84,10 +98,16 @@ class MixClient {
         this.logger.warn("%s connected to tmc server: %s", this.id, this.serverUri);
     }
 
+    protected Map<String, Object> createConnectHeaders() {
+        return null;
+    }
+
     protected void disconnect(String reason) {
         this.stopReconnect();
 
-        if (!this.server.hasValidSender()) return;
+        if (!this.server.hasValidSender()) {
+            return;
+        }
 
         try {
             ClientChannel channel = this.selector.getChannel(this.serverUri);
@@ -99,6 +119,14 @@ class MixClient {
         }
     }
 
+    protected Identity getIdentity() {
+        return this.id;
+    }
+
+    protected boolean isOnline() {
+        return (this.server != null) && this.server.hasValidSender();
+    }
+
     protected final void send(Map<String, Object> message) throws ChannelException {
         this.server.send(message);
     }
@@ -107,12 +135,8 @@ class MixClient {
         this.server.sendAndWait(message, timeout);
     }
 
-    protected Map<String, Object> createConnectHeaders() {
-        return null;
-    }
-
-    protected boolean isOnline() {
-        return this.server != null && this.server.hasValidSender();
+    protected void setMessageHandler(MessageHandler handler) {
+        this.endpoint.setMessageHandler(handler);
     }
 
     private void startReconnect() {
@@ -137,24 +161,6 @@ class MixClient {
         if (this.reconnectTimer != null) {
             this.reconnectTimer.cancel();
             this.reconnectTimer = null;
-        }
-    }
-
-    public class ServerIdentity implements Identity {
-
-        public Identity parse(Object data) throws LinkException {
-            return null;
-        }
-
-        public void render(Object to) {
-        }
-
-        public boolean equals(Identity id) {
-            return id instanceof ServerIdentity;
-        }
-
-        public String toString() {
-            return id.toString();
         }
     }
 }

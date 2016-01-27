@@ -17,12 +17,6 @@ import com.taobao.api.response.AlipayEbppBillKeySearchResponse;
 public class AlipayEbppBillKeySearchRequest implements
         TaobaoRequest<AlipayEbppBillKeySearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 支付宝给每个出账机构指定了一个对应的英文短名称来唯一表示该收费单位。<br />
      * 支持最大长度为：80<br />
@@ -39,6 +33,8 @@ public class AlipayEbppBillKeySearchRequest implements
      * 需要返回的字段列表。bill_key:户号
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否仅包含订阅数据
@@ -64,74 +60,67 @@ public class AlipayEbppBillKeySearchRequest implements
      */
     private String subOrderType;
 
-    public void setChargeInst(String chargeInst) {
-        this.chargeInst = chargeInst;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(chargeInst, "chargeInst");
+        RequestCheckUtils.checkMaxLength(chargeInst, 80, "chargeInst");
+        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
+        RequestCheckUtils.checkMaxLength(orderType, 10, "orderType");
+        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
+        RequestCheckUtils.checkNotEmpty(subOrderType, "subOrderType");
+        RequestCheckUtils.checkMaxLength(subOrderType, 10, "subOrderType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alipay.ebpp.bill.key.search";
     }
 
     public String getChargeInst() {
         return this.chargeInst;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public String getEndTime() {
         return this.endTime;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setOnlySubscribed(Boolean onlySubscribed) {
-        this.onlySubscribed = onlySubscribed;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getOnlySubscribed() {
         return this.onlySubscribed;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderType() {
         return this.orderType;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<AlipayEbppBillKeySearchResponse> getResponseClass() {
+        return AlipayEbppBillKeySearchResponse.class;
     }
 
     public String getStartTime() {
         return this.startTime;
     }
 
-    public void setSubOrderType(String subOrderType) {
-        this.subOrderType = subOrderType;
-    }
-
     public String getSubOrderType() {
         return this.subOrderType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.ebpp.bill.key.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charge_inst", this.chargeInst);
@@ -147,6 +136,12 @@ public class AlipayEbppBillKeySearchRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -154,23 +149,36 @@ public class AlipayEbppBillKeySearchRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayEbppBillKeySearchResponse> getResponseClass() {
-        return AlipayEbppBillKeySearchResponse.class;
+    public void setChargeInst(String chargeInst) {
+        this.chargeInst = chargeInst;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(chargeInst, "chargeInst");
-        RequestCheckUtils.checkMaxLength(chargeInst, 80, "chargeInst");
-        RequestCheckUtils.checkNotEmpty(endTime, "endTime");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
-        RequestCheckUtils.checkMaxLength(orderType, 10, "orderType");
-        RequestCheckUtils.checkNotEmpty(startTime, "startTime");
-        RequestCheckUtils.checkNotEmpty(subOrderType, "subOrderType");
-        RequestCheckUtils.checkMaxLength(subOrderType, 10, "subOrderType");
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setOnlySubscribed(Boolean onlySubscribed) {
+        this.onlySubscribed = onlySubscribed;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setSubOrderType(String subOrderType) {
+        this.subOrderType = subOrderType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

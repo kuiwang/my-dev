@@ -18,12 +18,6 @@ import com.taobao.api.response.TripJipiaoAgentOrderFindResponse;
 public class TripJipiaoAgentOrderFindRequest implements
         TaobaoRequest<TripJipiaoAgentOrderFindResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 创建订单时间范围的开始时间，注意：当前搜索条件开始结束时间范围不能超过三天，默认开始时间为当前时间往前推三天 （具体天数可能调整）
      */
@@ -33,6 +27,8 @@ public class TripJipiaoAgentOrderFindRequest implements
      * 创建订单时间范围的结束时间，注意：当前搜索条件开始结束时间范围不能超过三天，默认为当前时间 （具体天数可能调整）
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码，默认第一页；注意：页大小固定，搜索结果中返回页大小pageSize，和是否包含下一页hasNext
@@ -44,50 +40,47 @@ public class TripJipiaoAgentOrderFindRequest implements
      */
     private Long policyId;
 
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(policyId, "policyId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trip.jipiao.agent.order.find";
     }
 
     public Date getBeginTime() {
         return this.beginTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setPage(Long page) {
-        this.page = page;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPage() {
         return this.page;
     }
 
-    public void setPolicyId(Long policyId) {
-        this.policyId = policyId;
-    }
-
     public Long getPolicyId() {
         return this.policyId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TripJipiaoAgentOrderFindResponse> getResponseClass() {
+        return TripJipiaoAgentOrderFindResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trip.jipiao.agent.order.find";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("begin_time", this.beginTime);
@@ -100,6 +93,12 @@ public class TripJipiaoAgentOrderFindRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,15 +106,24 @@ public class TripJipiaoAgentOrderFindRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TripJipiaoAgentOrderFindResponse> getResponseClass() {
-        return TripJipiaoAgentOrderFindResponse.class;
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(policyId, "policyId");
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public void setPolicyId(Long policyId) {
+        this.policyId = policyId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

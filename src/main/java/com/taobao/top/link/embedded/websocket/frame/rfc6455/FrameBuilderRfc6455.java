@@ -35,20 +35,52 @@ import com.taobao.top.link.embedded.websocket.frame.Frame;
 public class FrameBuilderRfc6455 {
 
     /**
+     * The Enum Fin.
+     *
+     * @author Takahiro Hashimoto
+     */
+    protected enum Fin {
+
+        /**
+         * The FINAL.
+         */
+        FINAL(1),
+        /**
+         * The MORE_FRAME.
+         */
+        MORE_FRAME(0);
+
+        /**
+         * The fin.
+         */
+        private final int fin;
+
+        /**
+         * Instantiates a new fin.
+         *
+         * @param fin the fin
+         */
+        private Fin(int fin) {
+            this.fin = fin;
+        }
+
+        /**
+         * Int value.
+         *
+         * @return the int
+         */
+        public int intValue() {
+            return fin;
+        }
+    }
+
+    /**
      * The Enum Opcode.
      *
      * @author Takahiro Hashimoto
      */
     protected enum Opcode {
 
-        /**
-         * The CONTINUATION.
-         */
-        CONTINUATION(0x0),
-        /**
-         * The TEXT_FRAME.
-         */
-        TEXT_FRAME(0x1),
         /**
          * The BINARY_FRAME.
          */
@@ -59,38 +91,23 @@ public class FrameBuilderRfc6455 {
          */
         CONNECTION_CLOSE(0x8),
         /**
+         * The CONTINUATION.
+         */
+        CONTINUATION(0x0),
+        /**
          * The PING.
          */
         PING(0x9),
         /**
          * The PONG.
          */
-        PONG(0xA);
+        PONG(0xA),
+        /**
+         * The TEXT_FRAME.
+         */
+        TEXT_FRAME(0x1);
 
         // 0xB-F reserved
-
-        /**
-         * The opcode.
-         */
-        private final int opcode;
-
-        /**
-         * Instantiates a new opcode.
-         *
-         * @param opcode the opcode
-         */
-        private Opcode(int opcode) {
-            this.opcode = opcode;
-        }
-
-        /**
-         * Int value.
-         *
-         * @return the int
-         */
-        public int intValue() {
-            return opcode;
-        }
 
         /**
          * Value of.
@@ -116,36 +133,19 @@ public class FrameBuilderRfc6455 {
                     return null;
             }
         }
-    }
-
-    /**
-     * The Enum Fin.
-     *
-     * @author Takahiro Hashimoto
-     */
-    protected enum Fin {
 
         /**
-         * The MORE_FRAME.
+         * The opcode.
          */
-        MORE_FRAME(0),
-        /**
-         * The FINAL.
-         */
-        FINAL(1);
+        private final int opcode;
 
         /**
-         * The fin.
-         */
-        private final int fin;
-
-        /**
-         * Instantiates a new fin.
+         * Instantiates a new opcode.
          *
-         * @param fin the fin
+         * @param opcode the opcode
          */
-        private Fin(int fin) {
-            this.fin = fin;
+        private Opcode(int opcode) {
+            this.opcode = opcode;
         }
 
         /**
@@ -154,8 +154,107 @@ public class FrameBuilderRfc6455 {
          * @return the int
          */
         public int intValue() {
-            return fin;
+            return opcode;
         }
+    }
+
+    /**
+     * The Enum PayloadLengthType.
+     *
+     * @author Takahiro Hashimoto
+     */
+    protected enum PayloadLengthType {
+
+        /**
+         * The LEN_16.
+         */
+        LEN_16((byte) 0x7E, 2), // 0x00 - 0x7D
+        /**
+         * The LEN_63.
+         */
+        LEN_63((byte) 0x7F, 8), // 0x0000 - 0xFFFF
+        /**
+         * The LEN_SHORT.
+         */
+        LEN_SHORT((byte) 0x7D, 0); // 0x0000000000000000 - 0x7FFFFFFFFFFFFFFF
+
+        /**
+         * Value of.
+         *
+         * @param plt the plt
+         * @return the payload length type
+         */
+        public static PayloadLengthType valueOf(byte plt) {
+            switch (plt) {
+                case 0x7E:
+                    return LEN_16;
+                case 0x7F:
+                    return LEN_63;
+            }
+            if ((0 <= plt) && (plt <= 0x7D)) {
+                return LEN_SHORT;
+            }
+            return null;
+        }
+
+        /**
+         * Value of.
+         *
+         * @param payloadLength the payload length
+         * @return the payload length type
+         */
+        public static PayloadLengthType valueOf(long payloadLength) {
+            if (payloadLength <= PayloadLengthType.LEN_SHORT.byteValue()) {
+                return PayloadLengthType.LEN_SHORT;
+            } else if (payloadLength <= MAX_FRAME_LENGTH_16) {
+                return PayloadLengthType.LEN_16;
+            } else if (payloadLength <= MAX_FRAME_LENGTH_63) {
+                return PayloadLengthType.LEN_63;
+            } else {
+                throw new IllegalArgumentException("Overflow payload length. payloadLength: "
+                        + payloadLength);
+            }
+        }
+
+        /**
+         * The offset.
+         */
+        private final int offset;
+
+        /**
+         * The payload length type.
+         */
+        private final byte payloadLengthType;
+
+        /**
+         * Instantiates a new payload length type.
+         *
+         * @param payloadLengthType the payload length type
+         * @param offset the offset
+         */
+        private PayloadLengthType(byte payloadLengthType, int offset) {
+            this.payloadLengthType = payloadLengthType;
+            this.offset = offset;
+        }
+
+        /**
+         * Byte value.
+         *
+         * @return the byte
+         */
+        public byte byteValue() {
+            return payloadLengthType;
+        }
+
+        /**
+         * Offset.
+         *
+         * @return the int
+         */
+        public int offset() {
+            return offset;
+        }
+
     }
 
     /**
@@ -195,103 +294,14 @@ public class FrameBuilderRfc6455 {
     }
 
     /**
-     * The Enum PayloadLengthType.
-     *
-     * @author Takahiro Hashimoto
+     * The Constant FIN_MASK.
      */
-    protected enum PayloadLengthType {
+    protected static final int FIN_MASK = 1 << 7;
 
-        /**
-         * The LEN_SHORT.
-         */
-        LEN_SHORT((byte) 0x7D, 0), // 0x00 - 0x7D
-        /**
-         * The LEN_16.
-         */
-        LEN_16((byte) 0x7E, 2), // 0x0000 - 0xFFFF
-        /**
-         * The LEN_63.
-         */
-        LEN_63((byte) 0x7F, 8); // 0x0000000000000000 - 0x7FFFFFFFFFFFFFFF
-
-        /**
-         * The payload length type.
-         */
-        private final byte payloadLengthType;
-
-        /**
-         * The offset.
-         */
-        private final int offset;
-
-        /**
-         * Instantiates a new payload length type.
-         *
-         * @param payloadLengthType the payload length type
-         * @param offset the offset
-         */
-        private PayloadLengthType(byte payloadLengthType, int offset) {
-            this.payloadLengthType = payloadLengthType;
-            this.offset = offset;
-        }
-
-        /**
-         * Byte value.
-         *
-         * @return the byte
-         */
-        public byte byteValue() {
-            return payloadLengthType;
-        }
-
-        /**
-         * Offset.
-         *
-         * @return the int
-         */
-        public int offset() {
-            return offset;
-        }
-
-        /**
-         * Value of.
-         *
-         * @param plt the plt
-         * @return the payload length type
-         */
-        public static PayloadLengthType valueOf(byte plt) {
-            switch (plt) {
-                case 0x7E:
-                    return LEN_16;
-                case 0x7F:
-                    return LEN_63;
-            }
-            if (0 <= plt && plt <= 0x7D) {
-                return LEN_SHORT;
-            }
-            return null;
-        }
-
-        /**
-         * Value of.
-         *
-         * @param payloadLength the payload length
-         * @return the payload length type
-         */
-        public static PayloadLengthType valueOf(long payloadLength) {
-            if (payloadLength <= PayloadLengthType.LEN_SHORT.byteValue()) {
-                return PayloadLengthType.LEN_SHORT;
-            } else if (payloadLength <= MAX_FRAME_LENGTH_16) {
-                return PayloadLengthType.LEN_16;
-            } else if (payloadLength <= MAX_FRAME_LENGTH_63) {
-                return PayloadLengthType.LEN_63;
-            } else {
-                throw new IllegalArgumentException("Overflow payload length. payloadLength: "
-                        + payloadLength);
-            }
-        }
-
-    }
+    /**
+     * The Constant MASK_MASK.
+     */
+    protected static final int MASK_MASK = 1 << 7;
 
     /**
      * The Constant MAX_FRAME_LENGTH_16.
@@ -304,9 +314,14 @@ public class FrameBuilderRfc6455 {
     protected static final long MAX_FRAME_LENGTH_63 = 0x7FFFFFFFFFFFFFFFL;
 
     /**
-     * The Constant FIN_MASK.
+     * The Constant OPCODE_MASK.
      */
-    protected static final int FIN_MASK = 1 << 7;
+    protected static final byte OPCODE_MASK = 0xF;
+
+    /**
+     * The Constant PAYLOAD_LEN_MASK.
+     */
+    protected static final int PAYLOAD_LEN_MASK = 0x7F;
 
     /**
      * The Constant RSV1_MASK.
@@ -324,19 +339,50 @@ public class FrameBuilderRfc6455 {
     protected static final byte RSV3_MASK = 1 << 4;
 
     /**
-     * The Constant OPCODE_MASK.
+     * Creates the frame.
+     *
+     * @param header the header
+     * @param bodyData the contents data
+     * @return the frame
      */
-    protected static final byte OPCODE_MASK = 0xF;
+    public static Frame createFrame(FrameHeaderRfc6455 header, byte[] bodyData) {
+        Opcode opcode = header.getRealOpcode();
+        if (opcode == null) {
+            opcode = header.getOpcode();
+        }
+        switch (opcode) {
+            case CONNECTION_CLOSE:
+                return new CloseFrame(header, bodyData);
+            case PING:
+                return new PingFrame(header, bodyData);
+            case PONG:
+                return new PongFrame(header, bodyData);
+            case TEXT_FRAME:
+                return new TextFrame(header, bodyData);
+            case BINARY_FRAME:
+                return new BinaryFrame(header, bodyData);
+            default:
+                throw new IllegalStateException("Not found Opcode type!");
+        }
+    }
 
     /**
-     * The Constant MASK_MASK.
+     * Creates the frame header.
+     *
+     * @param body the contents
+     * @param fragmented the fragmented
+     * @param opcode the opcode
+     * @return the frame header draft06
      */
-    protected static final int MASK_MASK = 1 << 7;
-
-    /**
-     * The Constant PAYLOAD_LEN_MASK.
-     */
-    protected static final int PAYLOAD_LEN_MASK = 0x7F;
+    public static FrameHeaderRfc6455 createFrameHeader(byte[] body, boolean fragmented,
+            Opcode opcode) {
+        int payloadLength = 0;
+        if (body != null) {
+            payloadLength = body.length;
+        }
+        PayloadLengthType payloadLengthType = PayloadLengthType.valueOf(payloadLength);
+        return new FrameHeaderRfc6455(fragmented, 2, payloadLengthType, payloadLength, opcode);
+    }
 
     /**
      * create frame header from parameter bytes if a invalid frame data
@@ -390,7 +436,7 @@ public class FrameBuilderRfc6455 {
                     + ".");
         }
 
-        if (length < 2 + payloadLengthType.offset()) {
+        if (length < (2 + payloadLengthType.offset())) {
             return null;
         }
 
@@ -410,58 +456,12 @@ public class FrameBuilderRfc6455 {
             throw new IllegalArgumentException("large data is not support yet");
         }
 
-        if (Opcode.CONTINUATION.equals(opcode) && previousHeader != null) {
+        if (Opcode.CONTINUATION.equals(opcode) && (previousHeader != null)) {
             return new FrameHeaderRfc6455(fragmented, 2, payloadLengthType, (int) payloadLength2,
                     opcode, previousHeader.getOpcode());
         } else {
             return new FrameHeaderRfc6455(fragmented, 2, payloadLengthType, (int) payloadLength2,
                     opcode);
-        }
-    }
-
-    /**
-     * Creates the frame header.
-     *
-     * @param body the contents
-     * @param fragmented the fragmented
-     * @param opcode the opcode
-     * @return the frame header draft06
-     */
-    public static FrameHeaderRfc6455 createFrameHeader(byte[] body, boolean fragmented,
-            Opcode opcode) {
-        int payloadLength = 0;
-        if (body != null) {
-            payloadLength = body.length;
-        }
-        PayloadLengthType payloadLengthType = PayloadLengthType.valueOf(payloadLength);
-        return new FrameHeaderRfc6455(fragmented, 2, payloadLengthType, (int) payloadLength, opcode);
-    }
-
-    /**
-     * Creates the frame.
-     *
-     * @param header the header
-     * @param bodyData the contents data
-     * @return the frame
-     */
-    public static Frame createFrame(FrameHeaderRfc6455 header, byte[] bodyData) {
-        Opcode opcode = header.getRealOpcode();
-        if (opcode == null) {
-            opcode = header.getOpcode();
-        }
-        switch (opcode) {
-            case CONNECTION_CLOSE:
-                return new CloseFrame(header, bodyData);
-            case PING:
-                return new PingFrame(header, bodyData);
-            case PONG:
-                return new PongFrame(header, bodyData);
-            case TEXT_FRAME:
-                return new TextFrame(header, bodyData);
-            case BINARY_FRAME:
-                return new BinaryFrame(header, bodyData);
-            default:
-                throw new IllegalStateException("Not found Opcode type!");
         }
     }
 }

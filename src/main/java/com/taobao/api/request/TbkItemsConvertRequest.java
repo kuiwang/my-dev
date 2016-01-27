@@ -16,16 +16,12 @@ import com.taobao.api.response.TbkItemsConvertResponse;
  */
 public class TbkItemsConvertRequest implements TaobaoRequest<TbkItemsConvertResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表.可选值:click_url
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 推广者的淘宝会员昵称.注：指的是淘宝的会员登录名
@@ -55,79 +51,62 @@ public class TbkItemsConvertRequest implements TaobaoRequest<TbkItemsConvertResp
      */
     private Long referType;
 
+    private Long timestamp;
+
     /**
      * 商品track_iid串（带有追踪效果的商品id),最大输入40个,与num_iids必填其一
      */
     private String trackIids;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(numIids, 50, "numIids");
+        RequestCheckUtils.checkMaxListSize(trackIids, 50, "trackIids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tbk.items.convert";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNumIids(String numIids) {
-        this.numIids = numIids;
-    }
-
     public String getNumIids() {
         return this.numIids;
-    }
-
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
     }
 
     public String getOuterCode() {
         return this.outerCode;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     public Long getPid() {
         return this.pid;
-    }
-
-    public void setReferType(Long referType) {
-        this.referType = referType;
     }
 
     public Long getReferType() {
         return this.referType;
     }
 
-    public void setTrackIids(String trackIids) {
-        this.trackIids = trackIids;
+    @Override
+    public Class<TbkItemsConvertResponse> getResponseClass() {
+        return TbkItemsConvertResponse.class;
     }
 
-    public String getTrackIids() {
-        return this.trackIids;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tbk.items.convert";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -143,6 +122,16 @@ public class TbkItemsConvertRequest implements TaobaoRequest<TbkItemsConvertResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTrackIids() {
+        return this.trackIids;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -150,17 +139,36 @@ public class TbkItemsConvertRequest implements TaobaoRequest<TbkItemsConvertResp
         this.udfParams.put(key, value);
     }
 
-    public Class<TbkItemsConvertResponse> getResponseClass() {
-        return TbkItemsConvertResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(numIids, 50, "numIids");
-        RequestCheckUtils.checkMaxListSize(trackIids, 50, "trackIids");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNumIids(String numIids) {
+        this.numIids = numIids;
+    }
+
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setReferType(Long referType) {
+        this.referType = referType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTrackIids(String trackIids) {
+        this.trackIids = trackIids;
     }
 }

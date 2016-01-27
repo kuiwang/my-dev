@@ -20,12 +20,12 @@ public class AlipayUserContractGetResponse extends TaobaoResponse {
     @ApiField("alipay_contract")
     private AlipayContract alipayContract;
 
-    public void setAlipayContract(AlipayContract alipayContract) {
-        this.alipayContract = alipayContract;
-    }
-
     public AlipayContract getAlipayContract() {
         return this.alipayContract;
+    }
+
+    public void setAlipayContract(AlipayContract alipayContract) {
+        this.alipayContract = alipayContract;
     }
 
 }

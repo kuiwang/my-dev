@@ -19,12 +19,12 @@ public class PictureIsreferencedGetResponse extends TaobaoResponse {
     @ApiField("is_referenced")
     private Boolean isReferenced;
 
-    public void setIsReferenced(Boolean isReferenced) {
-        this.isReferenced = isReferenced;
-    }
-
     public Boolean getIsReferenced() {
         return this.isReferenced;
+    }
+
+    public void setIsReferenced(Boolean isReferenced) {
+        this.isReferenced = isReferenced;
     }
 
 }

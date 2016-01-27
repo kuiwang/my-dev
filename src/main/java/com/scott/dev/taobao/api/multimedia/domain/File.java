@@ -72,92 +72,92 @@ public class File {
         return this.cdnUserId;
     }
 
-    public void setCdnUserId(Long cdnUserId) {
-        this.cdnUserId = cdnUserId;
-    }
-
     public String getDeleted() {
         return this.deleted;
-    }
-
-    public void setDeleted(String deleted) {
-        this.deleted = deleted;
     }
 
     public Long getDirId() {
         return this.dirId;
     }
 
-    public void setDirId(Long dirId) {
-        this.dirId = dirId;
-    }
-
     public Long getFileId() {
         return this.fileId;
-    }
-
-    public void setFileId(Long fileId) {
-        this.fileId = fileId;
     }
 
     public String getFilePath() {
         return this.filePath;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Date getGmtModified() {
         return this.gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPicturePix() {
         return this.picturePix;
-    }
-
-    public void setPicturePix(String picturePix) {
-        this.picturePix = picturePix;
     }
 
     public Long getSize() {
         return this.size;
     }
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setCdnUserId(Long cdnUserId) {
+        this.cdnUserId = cdnUserId;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
+    }
+
+    public void setDirId(Long dirId) {
+        this.dirId = dirId;
+    }
+
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPicturePix(String picturePix) {
+        this.picturePix = picturePix;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     public void setStatus(String status) {

@@ -30,20 +30,20 @@ public class HotelRoomsSearchResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
-
     public List<Room> getRooms() {
         return this.rooms;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

@@ -104,148 +104,148 @@ public class DianDianShop {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getByname() {
         return this.byname;
-    }
-
-    public void setByname(String byname) {
-        this.byname = byname;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getDeliveryAmount() {
         return this.deliveryAmount;
-    }
-
-    public void setDeliveryAmount(String deliveryAmount) {
-        this.deliveryAmount = deliveryAmount;
     }
 
     public String getDeliveryRange() {
         return this.deliveryRange;
     }
 
-    public void setDeliveryRange(String deliveryRange) {
-        this.deliveryRange = deliveryRange;
-    }
-
     public String getDeliveryTime() {
         return this.deliveryTime;
-    }
-
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
     }
 
     public String getDetailItemUrl() {
         return this.detailItemUrl;
     }
 
-    public void setDetailItemUrl(String detailItemUrl) {
-        this.detailItemUrl = detailItemUrl;
-    }
-
     public String getDistrict() {
         return this.district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
     }
 
     public String getJian() {
         return this.jian;
     }
 
-    public void setJian(String jian) {
-        this.jian = jian;
-    }
-
     public String getLat() {
         return this.lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
     }
 
     public String getLogoUrl() {
         return this.logoUrl;
     }
 
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-    }
-
     public String getLon() {
         return this.lon;
-    }
-
-    public void setLon(String lon) {
-        this.lon = lon;
     }
 
     public String getMinimumAmount() {
         return this.minimumAmount;
     }
 
-    public void setMinimumAmount(String minimumAmount) {
-        this.minimumAmount = minimumAmount;
-    }
-
     public String getMultiAreaRange() {
         return this.multiAreaRange;
-    }
-
-    public void setMultiAreaRange(String multiAreaRange) {
-        this.multiAreaRange = multiAreaRange;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
     public String getSubname() {
         return this.subname;
     }
 
-    public void setSubname(String subname) {
-        this.subname = subname;
-    }
-
     public String getTel() {
         return this.tel;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setByname(String byname) {
+        this.byname = byname;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDeliveryAmount(String deliveryAmount) {
+        this.deliveryAmount = deliveryAmount;
+    }
+
+    public void setDeliveryRange(String deliveryRange) {
+        this.deliveryRange = deliveryRange;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public void setDetailItemUrl(String detailItemUrl) {
+        this.detailItemUrl = detailItemUrl;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public void setJian(String jian) {
+        this.jian = jian;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public void setMinimumAmount(String minimumAmount) {
+        this.minimumAmount = minimumAmount;
+    }
+
+    public void setMultiAreaRange(String multiAreaRange) {
+        this.multiAreaRange = multiAreaRange;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setSubname(String subname) {
+        this.subname = subname;
     }
 
     public void setTel(String tel) {

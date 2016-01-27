@@ -17,12 +17,6 @@ import com.taobao.api.response.TripJipiaoAgentOrderFailResponse;
 public class TripJipiaoAgentOrderFailRequest implements
         TaobaoRequest<TripJipiaoAgentOrderFailResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 失败类型为0，说明备注原因<br />
      * 支持最大长度为：200<br />
@@ -36,47 +30,52 @@ public class TripJipiaoAgentOrderFailRequest implements
      */
     private Long failType;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 国内机票订单id
      */
     private Long orderId;
 
-    public void setFailMemo(String failMemo) {
-        this.failMemo = failMemo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(failMemo, 200, "failMemo");
+        RequestCheckUtils.checkNotEmpty(failType, "failType");
+        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trip.jipiao.agent.order.fail";
     }
 
     public String getFailMemo() {
         return this.failMemo;
     }
 
-    public void setFailType(Long failType) {
-        this.failType = failType;
-    }
-
     public Long getFailType() {
         return this.failType;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<TripJipiaoAgentOrderFailResponse> getResponseClass() {
+        return TripJipiaoAgentOrderFailResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trip.jipiao.agent.order.fail";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fail_memo", this.failMemo);
@@ -88,6 +87,12 @@ public class TripJipiaoAgentOrderFailRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -95,17 +100,20 @@ public class TripJipiaoAgentOrderFailRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TripJipiaoAgentOrderFailResponse> getResponseClass() {
-        return TripJipiaoAgentOrderFailResponse.class;
+    public void setFailMemo(String failMemo) {
+        this.failMemo = failMemo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(failMemo, 200, "failMemo");
-        RequestCheckUtils.checkNotEmpty(failType, "failType");
-        RequestCheckUtils.checkNotEmpty(orderId, "orderId");
+    public void setFailType(Long failType) {
+        this.failType = failType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

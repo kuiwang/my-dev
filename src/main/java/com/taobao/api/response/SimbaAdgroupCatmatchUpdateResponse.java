@@ -20,12 +20,12 @@ public class SimbaAdgroupCatmatchUpdateResponse extends TaobaoResponse {
     @ApiField("adgroupcatmatch")
     private ADGroupCatmatch adgroupcatmatch;
 
-    public void setAdgroupcatmatch(ADGroupCatmatch adgroupcatmatch) {
-        this.adgroupcatmatch = adgroupcatmatch;
-    }
-
     public ADGroupCatmatch getAdgroupcatmatch() {
         return this.adgroupcatmatch;
+    }
+
+    public void setAdgroupcatmatch(ADGroupCatmatch adgroupcatmatch) {
+        this.adgroupcatmatch = adgroupcatmatch;
     }
 
 }

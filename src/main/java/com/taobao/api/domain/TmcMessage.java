@@ -61,52 +61,52 @@ public class TmcMessage extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getPubAppKey() {
         return this.pubAppKey;
     }
 
-    public void setPubAppKey(String pubAppKey) {
-        this.pubAppKey = pubAppKey;
-    }
-
     public Date getPubTime() {
         return this.pubTime;
-    }
-
-    public void setPubTime(Date pubTime) {
-        this.pubTime = pubTime;
     }
 
     public String getTopic() {
         return this.topic;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPubAppKey(String pubAppKey) {
+        this.pubAppKey = pubAppKey;
+    }
+
+    public void setPubTime(Date pubTime) {
+        this.pubTime = pubTime;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setUserNick(String userNick) {

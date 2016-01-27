@@ -30,20 +30,20 @@ public class FenxiaoDealerRequisitionorderGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setDealerOrders(List<DealerOrder> dealerOrders) {
-        this.dealerOrders = dealerOrders;
-    }
-
     public List<DealerOrder> getDealerOrders() {
         return this.dealerOrders;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setDealerOrders(List<DealerOrder> dealerOrders) {
+        this.dealerOrders = dealerOrders;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

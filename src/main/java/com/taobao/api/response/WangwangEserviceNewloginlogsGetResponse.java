@@ -24,12 +24,12 @@ public class WangwangEserviceNewloginlogsGetResponse extends TaobaoResponse {
     @ApiField("user_loginlog")
     private List<UserLoginlog> userloginlogs;
 
-    public void setUserloginlogs(List<UserLoginlog> userloginlogs) {
-        this.userloginlogs = userloginlogs;
-    }
-
     public List<UserLoginlog> getUserloginlogs() {
         return this.userloginlogs;
+    }
+
+    public void setUserloginlogs(List<UserLoginlog> userloginlogs) {
+        this.userloginlogs = userloginlogs;
     }
 
 }

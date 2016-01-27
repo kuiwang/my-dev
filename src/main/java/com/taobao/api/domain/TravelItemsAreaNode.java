@@ -33,12 +33,12 @@ public class TravelItemsAreaNode extends TaobaoObject {
         return this.subPropValues;
     }
 
-    public void setSubPropValues(List<TravelItemsPropValue> subPropValues) {
-        this.subPropValues = subPropValues;
-    }
-
     public TravelItemsPropValue getTravelItemsPropValue() {
         return this.travelItemsPropValue;
+    }
+
+    public void setSubPropValues(List<TravelItemsPropValue> subPropValues) {
+        this.subPropValues = subPropValues;
     }
 
     public void setTravelItemsPropValue(TravelItemsPropValue travelItemsPropValue) {

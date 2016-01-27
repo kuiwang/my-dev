@@ -36,28 +36,28 @@ public class WeitaoFeedsGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setFeedList(List<SimpleFeed> feedList) {
-        this.feedList = feedList;
-    }
-
     public List<SimpleFeed> getFeedList() {
         return this.feedList;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
     }
 
     public Boolean getResult() {
         return this.result;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setFeedList(List<SimpleFeed> feedList) {
+        this.feedList = feedList;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

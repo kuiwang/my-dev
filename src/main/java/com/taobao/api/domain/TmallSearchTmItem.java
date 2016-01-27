@@ -102,108 +102,108 @@ public class TmallSearchTmItem extends TaobaoObject {
         return this.brandId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
     public String getBrandName() {
         return this.brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
     }
 
     public String getCommentNum() {
         return this.commentNum;
     }
 
-    public void setCommentNum(String commentNum) {
-        this.commentNum = commentNum;
-    }
-
     public String getCommissionRate() {
         return this.commissionRate;
-    }
-
-    public void setCommissionRate(String commissionRate) {
-        this.commissionRate = commissionRate;
     }
 
     public String getDetailUrl() {
         return this.detailUrl;
     }
 
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPromotionPrice() {
         return this.promotionPrice;
-    }
-
-    public void setPromotionPrice(String promotionPrice) {
-        this.promotionPrice = promotionPrice;
     }
 
     public String getTagHot() {
         return this.tagHot;
     }
 
-    public void setTagHot(String tagHot) {
-        this.tagHot = tagHot;
-    }
-
     public String getTagLq() {
         return this.tagLq;
-    }
-
-    public void setTagLq(String tagLq) {
-        this.tagLq = tagLq;
     }
 
     public String getTagNew() {
         return this.tagNew;
     }
 
-    public void setTagNew(String tagNew) {
-        this.tagNew = tagNew;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getTrackIid() {
         return this.trackIid;
     }
 
-    public void setTrackIid(String trackIid) {
-        this.trackIid = trackIid;
-    }
-
     public Long getVolume() {
         return this.volume;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public void setCommentNum(String commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    public void setCommissionRate(String commissionRate) {
+        this.commissionRate = commissionRate;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPromotionPrice(String promotionPrice) {
+        this.promotionPrice = promotionPrice;
+    }
+
+    public void setTagHot(String tagHot) {
+        this.tagHot = tagHot;
+    }
+
+    public void setTagLq(String tagLq) {
+        this.tagLq = tagLq;
+    }
+
+    public void setTagNew(String tagNew) {
+        this.tagNew = tagNew;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTrackIid(String trackIid) {
+        this.trackIid = trackIid;
     }
 
     public void setVolume(Long volume) {

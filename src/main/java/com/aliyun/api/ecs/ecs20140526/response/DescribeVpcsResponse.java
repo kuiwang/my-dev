@@ -48,44 +48,44 @@ public class DescribeVpcsResponse extends AliyunResponse {
     @ApiField("Vpcs")
     private List<Vpcs> vpcs;
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
     public Long getPageNumber() {
         return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
     }
 
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setVpcs(List<Vpcs> vpcs) {
-        this.vpcs = vpcs;
-    }
-
     public List<Vpcs> getVpcs() {
         return this.vpcs;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public void setVpcs(List<Vpcs> vpcs) {
+        this.vpcs = vpcs;
     }
 
 }

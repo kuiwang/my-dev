@@ -18,22 +18,6 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * P 协议，取值：tcp|udp|icmp|gre|all； All 表示同时支持四种协议
      */
@@ -43,6 +27,12 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
      * 网络类型，取值：internet|intranet； 默认值为internet
      */
     private String nicType;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * 授权策略，参数值可为：accept（接受访问）、 drop（访问时丢弃包）、reject（访问时拒 绝包） 默认值为：accept
@@ -63,6 +53,12 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
     private String regionId;
 
     /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
+    /**
      * 安全组编码
      */
     private String securityGroupId;
@@ -80,106 +76,78 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
      */
     private String sourceGroupId;
 
-    public void setIpProtocol(String ipProtocol) {
-        this.ipProtocol = ipProtocol;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ipProtocol, "ipProtocol");
+        RequestCheckUtils.checkNotEmpty(portRange, "portRange");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.RevokeSecurityGroup.2013-01-10";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIpProtocol() {
         return this.ipProtocol;
     }
 
-    public void setNicType(String nicType) {
-        this.nicType = nicType;
-    }
-
     public String getNicType() {
         return this.nicType;
-    }
-
-    public void setPolicy(String policy) {
-        this.policy = policy;
-    }
-
-    public String getPolicy() {
-        return this.policy;
-    }
-
-    public void setPortRange(String portRange) {
-        this.portRange = portRange;
-    }
-
-    public String getPortRange() {
-        return this.portRange;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
-    public String getSecurityGroupId() {
-        return this.securityGroupId;
-    }
-
-    public void setSourceCidrIp(String sourceCidrIp) {
-        this.sourceCidrIp = sourceCidrIp;
-    }
-
-    public String getSourceCidrIp() {
-        return this.sourceCidrIp;
-    }
-
-    public void setSourceGroupId(String sourceGroupId) {
-        this.sourceGroupId = sourceGroupId;
-    }
-
-    public String getSourceGroupId() {
-        return this.sourceGroupId;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getPolicy() {
+        return this.policy;
+    }
+
+    public String getPortRange() {
+        return this.portRange;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<RevokeSecurityGroupResponse> getResponseClass() {
+        return RevokeSecurityGroupResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSecurityGroupId() {
+        return this.securityGroupId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getSourceCidrIp() {
+        return this.sourceCidrIp;
     }
 
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.RevokeSecurityGroup.2013-01-10";
+    public String getSourceGroupId() {
+        return this.sourceGroupId;
     }
 
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -199,6 +167,12 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -206,18 +180,52 @@ public class RevokeSecurityGroupRequest implements AliyunRequest<RevokeSecurityG
         this.udfParams.put(key, value);
     }
 
-    public Class<RevokeSecurityGroupResponse> getResponseClass() {
-        return RevokeSecurityGroupResponse.class;
+    public void setIpProtocol(String ipProtocol) {
+        this.ipProtocol = ipProtocol;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ipProtocol, "ipProtocol");
-        RequestCheckUtils.checkNotEmpty(portRange, "portRange");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
-        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    public void setNicType(String nicType) {
+        this.nicType = nicType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setPolicy(String policy) {
+        this.policy = policy;
+    }
+
+    public void setPortRange(String portRange) {
+        this.portRange = portRange;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
+    }
+
+    public void setSourceCidrIp(String sourceCidrIp) {
+        this.sourceCidrIp = sourceCidrIp;
+    }
+
+    public void setSourceGroupId(String sourceGroupId) {
+        this.sourceGroupId = sourceGroupId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -18,35 +18,36 @@ public class WlbWaybillIGetRequest implements TaobaoRequest<WlbWaybillIGetRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 面单申请
      */
     private String waybillApplyNewRequest;
 
-    public void setWaybillApplyNewRequest(String waybillApplyNewRequest) {
-        this.waybillApplyNewRequest = waybillApplyNewRequest;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(waybillApplyNewRequest, "waybillApplyNewRequest");
     }
 
-    public String getWaybillApplyNewRequest() {
-        return this.waybillApplyNewRequest;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wlb.waybill.i.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbWaybillIGetResponse> getResponseClass() {
+        return WlbWaybillIGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("waybill_apply_new_request", this.waybillApplyNewRequest);
@@ -56,6 +57,16 @@ public class WlbWaybillIGetRequest implements TaobaoRequest<WlbWaybillIGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWaybillApplyNewRequest() {
+        return this.waybillApplyNewRequest;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class WlbWaybillIGetRequest implements TaobaoRequest<WlbWaybillIGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbWaybillIGetResponse> getResponseClass() {
-        return WlbWaybillIGetResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(waybillApplyNewRequest, "waybillApplyNewRequest");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setWaybillApplyNewRequest(String waybillApplyNewRequest) {
+        this.waybillApplyNewRequest = waybillApplyNewRequest;
     }
 }

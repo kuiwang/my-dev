@@ -30,12 +30,12 @@ public class AitaobaoItemDetail extends TaobaoObject {
         return this.item;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     public Long getSellerCreditScore() {
         return this.sellerCreditScore;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public void setSellerCreditScore(Long sellerCreditScore) {

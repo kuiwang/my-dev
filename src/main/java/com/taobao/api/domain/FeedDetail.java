@@ -93,92 +93,92 @@ public class FeedDetail extends TaobaoObject {
         return this.commentCount;
     }
 
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
-    }
-
     public Long getComponentId() {
         return this.componentId;
-    }
-
-    public void setComponentId(Long componentId) {
-        this.componentId = componentId;
     }
 
     public String getComponentName() {
         return this.componentName;
     }
 
-    public void setComponentName(String componentName) {
-        this.componentName = componentName;
-    }
-
     public FeedTile getCoverTile() {
         return this.coverTile;
-    }
-
-    public void setCoverTile(FeedTile coverTile) {
-        this.coverTile = coverTile;
     }
 
     public Boolean getDeleted() {
         return this.deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
     public String getDetailUrl() {
         return this.detailUrl;
-    }
-
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
     }
 
     public Long getFeedfavourCount() {
         return this.feedfavourCount;
     }
 
-    public void setFeedfavourCount(Long feedfavourCount) {
-        this.feedfavourCount = feedfavourCount;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public List<FeedTile> getTiles() {
         return this.tiles;
-    }
-
-    public void setTiles(List<FeedTile> tiles) {
-        this.tiles = tiles;
     }
 
     public Long getTime() {
         return this.time;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public void setComponentId(Long componentId) {
+        this.componentId = componentId;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
+
+    public void setCoverTile(FeedTile coverTile) {
+        this.coverTile = coverTile;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
+    }
+
+    public void setFeedfavourCount(Long feedfavourCount) {
+        this.feedfavourCount = feedfavourCount;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setTiles(List<FeedTile> tiles) {
+        this.tiles = tiles;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 
     public void setTitle(String title) {

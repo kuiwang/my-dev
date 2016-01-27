@@ -24,12 +24,12 @@ public class WlbTradeorderGetResponse extends TaobaoResponse {
     @ApiField("wlb_order")
     private List<WlbOrder> wlbOrderList;
 
-    public void setWlbOrderList(List<WlbOrder> wlbOrderList) {
-        this.wlbOrderList = wlbOrderList;
-    }
-
     public List<WlbOrder> getWlbOrderList() {
         return this.wlbOrderList;
+    }
+
+    public void setWlbOrderList(List<WlbOrder> wlbOrderList) {
+        this.wlbOrderList = wlbOrderList;
     }
 
 }

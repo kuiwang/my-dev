@@ -18,10 +18,6 @@ public class ItemPropimgDeleteRequest implements TaobaoRequest<ItemPropimgDelete
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品属性图片ID
      */
@@ -33,34 +29,41 @@ public class ItemPropimgDeleteRequest implements TaobaoRequest<ItemPropimgDelete
      */
     private Long numIid;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.propimg.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemPropimgDeleteResponse> getResponseClass() {
+        return ItemPropimgDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.propimg.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -71,6 +74,12 @@ public class ItemPropimgDeleteRequest implements TaobaoRequest<ItemPropimgDelete
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,17 +87,16 @@ public class ItemPropimgDeleteRequest implements TaobaoRequest<ItemPropimgDelete
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemPropimgDeleteResponse> getResponseClass() {
-        return ItemPropimgDeleteResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

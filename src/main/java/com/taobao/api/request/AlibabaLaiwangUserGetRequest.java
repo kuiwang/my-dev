@@ -18,35 +18,40 @@ public class AlibabaLaiwangUserGetRequest implements TaobaoRequest<AlibabaLaiwan
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * openid
      */
     private String openid;
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(openid, "openid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.laiwang.user.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOpenid() {
         return this.openid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlibabaLaiwangUserGetResponse> getResponseClass() {
+        return AlibabaLaiwangUserGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.laiwang.user.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("openid", this.openid);
@@ -56,6 +61,12 @@ public class AlibabaLaiwangUserGetRequest implements TaobaoRequest<AlibabaLaiwan
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class AlibabaLaiwangUserGetRequest implements TaobaoRequest<AlibabaLaiwan
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaLaiwangUserGetResponse> getResponseClass() {
-        return AlibabaLaiwangUserGetResponse.class;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(openid, "openid");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

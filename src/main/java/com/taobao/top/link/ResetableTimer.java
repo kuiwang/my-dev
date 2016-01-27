@@ -7,17 +7,17 @@ import java.util.concurrent.Executors;
 // easy timer task, support delay and reset
 public class ResetableTimer {
 
-    private volatile boolean running;
-
     private Thread boss;
 
-    private ExecutorService threadPool;
-
-    private Runnable task;
+    protected long lastTime;
 
     private int period;
 
-    protected long lastTime;
+    private volatile boolean running;
+
+    private Runnable task;
+
+    private ExecutorService threadPool;
 
     public ResetableTimer(int periodMillisecond) {
         this(periodMillisecond, null);
@@ -30,12 +30,22 @@ public class ResetableTimer {
         this.threadPool = Executors.newSingleThreadExecutor();
     }
 
+    public void delay() {
+        this.delay(0);
+    }
+
+    public void delay(int delayMillisecond) {
+        this.lastTime = System.currentTimeMillis() + delayMillisecond;
+    }
+
     public void setTask(Runnable task) {
         this.task = task;
     }
 
     public void start() {
-        if (this.boss != null) return;
+        if (this.boss != null) {
+            return;
+        }
         this.running = true;
         this.boss = new Thread(new Runnable() {
 
@@ -43,7 +53,7 @@ public class ResetableTimer {
             public void run() {
                 while (running) {
                     long split = System.currentTimeMillis() - lastTime;
-                    if (split >= period && task != null) {
+                    if ((split >= period) && (task != null)) {
                         try {
                             threadPool.execute(task);
                         } catch (Exception e) {
@@ -65,13 +75,5 @@ public class ResetableTimer {
         this.boss.join();
         this.boss = null;
         this.threadPool.shutdown();
-    }
-
-    public void delay() {
-        this.delay(0);
-    }
-
-    public void delay(int delayMillisecond) {
-        this.lastTime = System.currentTimeMillis() + delayMillisecond;
     }
 }

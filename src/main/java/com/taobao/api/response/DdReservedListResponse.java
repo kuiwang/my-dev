@@ -20,12 +20,12 @@ public class DdReservedListResponse extends TaobaoResponse {
     @ApiField("result")
     private DdTopPagination result;
 
-    public void setResult(DdTopPagination result) {
-        this.result = result;
-    }
-
     public DdTopPagination getResult() {
         return this.result;
+    }
+
+    public void setResult(DdTopPagination result) {
+        this.result = result;
     }
 
 }

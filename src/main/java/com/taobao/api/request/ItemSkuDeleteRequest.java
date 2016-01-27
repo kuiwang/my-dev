@@ -18,10 +18,6 @@ public class ItemSkuDeleteRequest implements TaobaoRequest<ItemSkuDeleteResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 忽略警告提示.
      */
@@ -54,66 +50,56 @@ public class ItemSkuDeleteRequest implements TaobaoRequest<ItemSkuDeleteResponse
      */
     private String properties;
 
-    public void setIgnorewarning(String ignorewarning) {
-        this.ignorewarning = ignorewarning;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.sku.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIgnorewarning() {
         return this.ignorewarning;
     }
 
-    public void setItemNum(Long itemNum) {
-        this.itemNum = itemNum;
-    }
-
     public Long getItemNum() {
         return this.itemNum;
-    }
-
-    public void setItemPrice(String itemPrice) {
-        this.itemPrice = itemPrice;
     }
 
     public String getItemPrice() {
         return this.itemPrice;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
     public String getLang() {
         return this.lang;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getProperties() {
         return this.properties;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<ItemSkuDeleteResponse> getResponseClass() {
+        return ItemSkuDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.sku.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ignorewarning", this.ignorewarning);
@@ -128,6 +114,12 @@ public class ItemSkuDeleteRequest implements TaobaoRequest<ItemSkuDeleteResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -135,16 +127,32 @@ public class ItemSkuDeleteRequest implements TaobaoRequest<ItemSkuDeleteResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemSkuDeleteResponse> getResponseClass() {
-        return ItemSkuDeleteResponse.class;
+    public void setIgnorewarning(String ignorewarning) {
+        this.ignorewarning = ignorewarning;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    public void setItemNum(Long itemNum) {
+        this.itemNum = itemNum;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

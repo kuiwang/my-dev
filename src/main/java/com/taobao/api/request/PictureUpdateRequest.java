@@ -18,10 +18,6 @@ public class PictureUpdateRequest implements TaobaoRequest<PictureUpdateResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 新的图片名，最大长度50字符，不能为空<br />
      * 支持最大长度为：50<br />
@@ -34,34 +30,41 @@ public class PictureUpdateRequest implements TaobaoRequest<PictureUpdateResponse
      */
     private Long pictureId;
 
-    public void setNewName(String newName) {
-        this.newName = newName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(newName, "newName");
+        RequestCheckUtils.checkMaxLength(newName, 50, "newName");
+        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNewName() {
         return this.newName;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
-    }
-
     public Long getPictureId() {
         return this.pictureId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PictureUpdateResponse> getResponseClass() {
+        return PictureUpdateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("new_name", this.newName);
@@ -72,6 +75,12 @@ public class PictureUpdateRequest implements TaobaoRequest<PictureUpdateResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,17 +88,16 @@ public class PictureUpdateRequest implements TaobaoRequest<PictureUpdateResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<PictureUpdateResponse> getResponseClass() {
-        return PictureUpdateResponse.class;
+    public void setNewName(String newName) {
+        this.newName = newName;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(newName, "newName");
-        RequestCheckUtils.checkMaxLength(newName, 50, "newName");
-        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

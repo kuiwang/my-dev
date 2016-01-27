@@ -18,35 +18,40 @@ public class DeliveryTemplateDeleteRequest implements TaobaoRequest<DeliveryTemp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 运费模板ID
      */
     private Long templateId;
 
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.delivery.template.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<DeliveryTemplateDeleteResponse> getResponseClass() {
+        return DeliveryTemplateDeleteResponse.class;
     }
 
     public Long getTemplateId() {
         return this.templateId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.delivery.template.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("template_id", this.templateId);
@@ -56,6 +61,12 @@ public class DeliveryTemplateDeleteRequest implements TaobaoRequest<DeliveryTemp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class DeliveryTemplateDeleteRequest implements TaobaoRequest<DeliveryTemp
         this.udfParams.put(key, value);
     }
 
-    public Class<DeliveryTemplateDeleteResponse> getResponseClass() {
-        return DeliveryTemplateDeleteResponse.class;
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

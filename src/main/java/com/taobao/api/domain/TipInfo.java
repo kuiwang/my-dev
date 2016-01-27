@@ -29,12 +29,12 @@ public class TipInfo extends TaobaoObject {
         return this.info;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
     public String getScItemId() {
         return this.scItemId;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public void setScItemId(String scItemId) {

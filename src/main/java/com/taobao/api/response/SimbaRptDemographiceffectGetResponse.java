@@ -19,12 +19,12 @@ public class SimbaRptDemographiceffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_demographic_effect")
     private String rptDemographicEffect;
 
-    public void setRptDemographicEffect(String rptDemographicEffect) {
-        this.rptDemographicEffect = rptDemographicEffect;
-    }
-
     public String getRptDemographicEffect() {
         return this.rptDemographicEffect;
+    }
+
+    public void setRptDemographicEffect(String rptDemographicEffect) {
+        this.rptDemographicEffect = rptDemographicEffect;
     }
 
 }

@@ -20,12 +20,12 @@ public class WaimaiShopBusinessrulesGetResponse extends TaobaoResponse {
     @ApiField("result")
     private TakeoutOption result;
 
-    public void setResult(TakeoutOption result) {
-        this.result = result;
-    }
-
     public TakeoutOption getResult() {
         return this.result;
+    }
+
+    public void setResult(TakeoutOption result) {
+        this.result = result;
     }
 
 }

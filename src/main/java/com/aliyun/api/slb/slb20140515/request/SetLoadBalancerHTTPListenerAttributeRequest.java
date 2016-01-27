@@ -18,24 +18,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class SetLoadBalancerHTTPListenerAttributeRequest implements
         AliyunRequest<SetLoadBalancerHTTPListenerAttributeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 监听的带宽峰值，范围-1-1000Mbps。针对按固定带宽计费方式的公网类型实例，
      * 不同Listener上的Bandwidth分配的带宽峰值总和不能超出在创建SLB实例时设定的Bandwidth值
@@ -64,6 +46,8 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
      * 支持最小值为：1
      */
     private Long cookieTimeout;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 是否开启健康检查。 取值：on为开启健康检查， | off为关闭健康检查
@@ -133,6 +117,18 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
      */
     private String loadBalancerId;
 
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * 调度算法。 取值：wrr或者 | wlc ，默认值：无 用户不指定此参数时，表示此次调用不修改此配置项，保持之前的配置。默认wrr。
      */
@@ -149,6 +145,10 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
      */
     private String stickySessionType;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 判定健康检查结果为fail的阈值。即，健康检查连续失败多少次后，将后端服务器的健康检查状态由success改为fail。
      * 当HealthCheck为on时，此参数为必选；当HealthCheck为off时，此参数设置将被忽略。 取值：1-10<br />
@@ -164,178 +164,122 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
      */
     private String xForwardedFor;
 
-    public void setBandwidth(Long bandwidth) {
-        this.bandwidth = bandwidth;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bandwidth, "bandwidth");
+        RequestCheckUtils.checkMaxValue(bandwidth, 1000L, "bandwidth");
+        RequestCheckUtils.checkMinValue(bandwidth, -1L, "bandwidth");
+        RequestCheckUtils.checkMaxLength(cookie, 200, "cookie");
+        RequestCheckUtils.checkMaxValue(cookieTimeout, 86400L, "cookieTimeout");
+        RequestCheckUtils.checkMinValue(cookieTimeout, 1L, "cookieTimeout");
+        RequestCheckUtils.checkNotEmpty(healthCheck, "healthCheck");
+        RequestCheckUtils.checkMaxValue(healthCheckConnectPort, 65535L, "healthCheckConnectPort");
+        RequestCheckUtils.checkMinValue(healthCheckConnectPort, -520L, "healthCheckConnectPort");
+        RequestCheckUtils.checkMaxLength(healthCheckDomain, 80, "healthCheckDomain");
+        RequestCheckUtils.checkMaxValue(healthCheckInterval, 5L, "healthCheckInterval");
+        RequestCheckUtils.checkMinValue(healthCheckInterval, 1L, "healthCheckInterval");
+        RequestCheckUtils.checkMaxValue(healthCheckTimeout, 50L, "healthCheckTimeout");
+        RequestCheckUtils.checkMinValue(healthCheckTimeout, 1L, "healthCheckTimeout");
+        RequestCheckUtils.checkMaxLength(healthCheckURI, 80, "healthCheckURI");
+        RequestCheckUtils.checkMaxValue(healthyThreshold, 10L, "healthyThreshold");
+        RequestCheckUtils.checkMinValue(healthyThreshold, 1L, "healthyThreshold");
+        RequestCheckUtils.checkNotEmpty(listenerPort, "listenerPort");
+        RequestCheckUtils.checkMaxValue(listenerPort, 65535L, "listenerPort");
+        RequestCheckUtils.checkMinValue(listenerPort, 1L, "listenerPort");
+        RequestCheckUtils.checkNotEmpty(loadBalancerId, "loadBalancerId");
+        RequestCheckUtils.checkNotEmpty(stickySession, "stickySession");
+        RequestCheckUtils.checkMaxValue(unhealthyThreshold, 10L, "unhealthyThreshold");
+        RequestCheckUtils.checkMinValue(unhealthyThreshold, 1L, "unhealthyThreshold");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "slb.aliyuncs.com.SetLoadBalancerHTTPListenerAttribute.2014-05-15";
     }
 
     public Long getBandwidth() {
         return this.bandwidth;
     }
 
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
-    }
-
     public String getCookie() {
         return this.cookie;
-    }
-
-    public void setCookieTimeout(Long cookieTimeout) {
-        this.cookieTimeout = cookieTimeout;
     }
 
     public Long getCookieTimeout() {
         return this.cookieTimeout;
     }
 
-    public void setHealthCheck(String healthCheck) {
-        this.healthCheck = healthCheck;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHealthCheck() {
         return this.healthCheck;
     }
 
-    public void setHealthCheckConnectPort(Long healthCheckConnectPort) {
-        this.healthCheckConnectPort = healthCheckConnectPort;
-    }
-
     public Long getHealthCheckConnectPort() {
         return this.healthCheckConnectPort;
-    }
-
-    public void setHealthCheckDomain(String healthCheckDomain) {
-        this.healthCheckDomain = healthCheckDomain;
     }
 
     public String getHealthCheckDomain() {
         return this.healthCheckDomain;
     }
 
-    public void setHealthCheckInterval(Long healthCheckInterval) {
-        this.healthCheckInterval = healthCheckInterval;
-    }
-
     public Long getHealthCheckInterval() {
         return this.healthCheckInterval;
-    }
-
-    public void setHealthCheckTimeout(Long healthCheckTimeout) {
-        this.healthCheckTimeout = healthCheckTimeout;
     }
 
     public Long getHealthCheckTimeout() {
         return this.healthCheckTimeout;
     }
 
-    public void setHealthCheckURI(String healthCheckURI) {
-        this.healthCheckURI = healthCheckURI;
-    }
-
     public String getHealthCheckURI() {
         return this.healthCheckURI;
-    }
-
-    public void setHealthyThreshold(Long healthyThreshold) {
-        this.healthyThreshold = healthyThreshold;
     }
 
     public Long getHealthyThreshold() {
         return this.healthyThreshold;
     }
 
-    public void setListenerPort(Long listenerPort) {
-        this.listenerPort = listenerPort;
-    }
-
     public Long getListenerPort() {
         return this.listenerPort;
-    }
-
-    public void setLoadBalancerId(String loadBalancerId) {
-        this.loadBalancerId = loadBalancerId;
     }
 
     public String getLoadBalancerId() {
         return this.loadBalancerId;
     }
 
-    public void setScheduler(String scheduler) {
-        this.scheduler = scheduler;
-    }
-
-    public String getScheduler() {
-        return this.scheduler;
-    }
-
-    public void setStickySession(String stickySession) {
-        this.stickySession = stickySession;
-    }
-
-    public String getStickySession() {
-        return this.stickySession;
-    }
-
-    public void setStickySessionType(String stickySessionType) {
-        this.stickySessionType = stickySessionType;
-    }
-
-    public String getStickySessionType() {
-        return this.stickySessionType;
-    }
-
-    public void setUnhealthyThreshold(Long unhealthyThreshold) {
-        this.unhealthyThreshold = unhealthyThreshold;
-    }
-
-    public Long getUnhealthyThreshold() {
-        return this.unhealthyThreshold;
-    }
-
-    public void setxForwardedFor(String xForwardedFor) {
-        this.xForwardedFor = xForwardedFor;
-    }
-
-    public String getxForwardedFor() {
-        return this.xForwardedFor;
+    public String getOwnerAccount() {
+        return ownerAccount;
     }
 
     public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerAccount() {
-        return ownerAccount;
-    }
-
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
-    }
-
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<SetLoadBalancerHTTPListenerAttributeResponse> getResponseClass() {
+        return SetLoadBalancerHTTPListenerAttributeResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScheduler() {
+        return this.scheduler;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getStickySession() {
+        return this.stickySession;
     }
 
-    public String getApiMethodName() {
-        return "slb.aliyuncs.com.SetLoadBalancerHTTPListenerAttribute.2014-05-15";
+    public String getStickySessionType() {
+        return this.stickySessionType;
     }
 
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -364,6 +308,20 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUnhealthyThreshold() {
+        return this.unhealthyThreshold;
+    }
+
+    public String getxForwardedFor() {
+        return this.xForwardedFor;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -371,38 +329,88 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SetLoadBalancerHTTPListenerAttributeResponse> getResponseClass() {
-        return SetLoadBalancerHTTPListenerAttributeResponse.class;
+    public void setBandwidth(Long bandwidth) {
+        this.bandwidth = bandwidth;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bandwidth, "bandwidth");
-        RequestCheckUtils.checkMaxValue(bandwidth, 1000L, "bandwidth");
-        RequestCheckUtils.checkMinValue(bandwidth, -1L, "bandwidth");
-        RequestCheckUtils.checkMaxLength(cookie, 200, "cookie");
-        RequestCheckUtils.checkMaxValue(cookieTimeout, 86400L, "cookieTimeout");
-        RequestCheckUtils.checkMinValue(cookieTimeout, 1L, "cookieTimeout");
-        RequestCheckUtils.checkNotEmpty(healthCheck, "healthCheck");
-        RequestCheckUtils.checkMaxValue(healthCheckConnectPort, 65535L, "healthCheckConnectPort");
-        RequestCheckUtils.checkMinValue(healthCheckConnectPort, -520L, "healthCheckConnectPort");
-        RequestCheckUtils.checkMaxLength(healthCheckDomain, 80, "healthCheckDomain");
-        RequestCheckUtils.checkMaxValue(healthCheckInterval, 5L, "healthCheckInterval");
-        RequestCheckUtils.checkMinValue(healthCheckInterval, 1L, "healthCheckInterval");
-        RequestCheckUtils.checkMaxValue(healthCheckTimeout, 50L, "healthCheckTimeout");
-        RequestCheckUtils.checkMinValue(healthCheckTimeout, 1L, "healthCheckTimeout");
-        RequestCheckUtils.checkMaxLength(healthCheckURI, 80, "healthCheckURI");
-        RequestCheckUtils.checkMaxValue(healthyThreshold, 10L, "healthyThreshold");
-        RequestCheckUtils.checkMinValue(healthyThreshold, 1L, "healthyThreshold");
-        RequestCheckUtils.checkNotEmpty(listenerPort, "listenerPort");
-        RequestCheckUtils.checkMaxValue(listenerPort, 65535L, "listenerPort");
-        RequestCheckUtils.checkMinValue(listenerPort, 1L, "listenerPort");
-        RequestCheckUtils.checkNotEmpty(loadBalancerId, "loadBalancerId");
-        RequestCheckUtils.checkNotEmpty(stickySession, "stickySession");
-        RequestCheckUtils.checkMaxValue(unhealthyThreshold, 10L, "unhealthyThreshold");
-        RequestCheckUtils.checkMinValue(unhealthyThreshold, 1L, "unhealthyThreshold");
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCookieTimeout(Long cookieTimeout) {
+        this.cookieTimeout = cookieTimeout;
+    }
+
+    public void setHealthCheck(String healthCheck) {
+        this.healthCheck = healthCheck;
+    }
+
+    public void setHealthCheckConnectPort(Long healthCheckConnectPort) {
+        this.healthCheckConnectPort = healthCheckConnectPort;
+    }
+
+    public void setHealthCheckDomain(String healthCheckDomain) {
+        this.healthCheckDomain = healthCheckDomain;
+    }
+
+    public void setHealthCheckInterval(Long healthCheckInterval) {
+        this.healthCheckInterval = healthCheckInterval;
+    }
+
+    public void setHealthCheckTimeout(Long healthCheckTimeout) {
+        this.healthCheckTimeout = healthCheckTimeout;
+    }
+
+    public void setHealthCheckURI(String healthCheckURI) {
+        this.healthCheckURI = healthCheckURI;
+    }
+
+    public void setHealthyThreshold(Long healthyThreshold) {
+        this.healthyThreshold = healthyThreshold;
+    }
+
+    public void setListenerPort(Long listenerPort) {
+        this.listenerPort = listenerPort;
+    }
+
+    public void setLoadBalancerId(String loadBalancerId) {
+        this.loadBalancerId = loadBalancerId;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScheduler(String scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    public void setStickySession(String stickySession) {
+        this.stickySession = stickySession;
+    }
+
+    public void setStickySessionType(String stickySessionType) {
+        this.stickySessionType = stickySessionType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUnhealthyThreshold(Long unhealthyThreshold) {
+        this.unhealthyThreshold = unhealthyThreshold;
+    }
+
+    public void setxForwardedFor(String xForwardedFor) {
+        this.xForwardedFor = xForwardedFor;
     }
 }

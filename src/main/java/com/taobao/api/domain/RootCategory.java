@@ -33,12 +33,12 @@ public class RootCategory extends TaobaoObject {
         return this.category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public List<Category> getChildslist() {
         return this.childslist;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setChildslist(List<Category> childslist) {

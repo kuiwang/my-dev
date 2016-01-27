@@ -19,12 +19,12 @@ public class SimbaRptAdgroupkeywordbaseGetResponse extends TaobaoResponse {
     @ApiField("rpt_adgroupkeyword_base_list")
     private String rptAdgroupkeywordBaseList;
 
-    public void setRptAdgroupkeywordBaseList(String rptAdgroupkeywordBaseList) {
-        this.rptAdgroupkeywordBaseList = rptAdgroupkeywordBaseList;
-    }
-
     public String getRptAdgroupkeywordBaseList() {
         return this.rptAdgroupkeywordBaseList;
+    }
+
+    public void setRptAdgroupkeywordBaseList(String rptAdgroupkeywordBaseList) {
+        this.rptAdgroupkeywordBaseList = rptAdgroupkeywordBaseList;
     }
 
 }

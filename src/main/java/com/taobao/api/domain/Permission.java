@@ -41,28 +41,28 @@ public class Permission extends TaobaoObject {
         return this.isAuthorize;
     }
 
-    public void setIsAuthorize(Long isAuthorize) {
-        this.isAuthorize = isAuthorize;
-    }
-
     public String getParentCode() {
         return this.parentCode;
-    }
-
-    public void setParentCode(String parentCode) {
-        this.parentCode = parentCode;
     }
 
     public String getPermissionCode() {
         return this.permissionCode;
     }
 
-    public void setPermissionCode(String permissionCode) {
-        this.permissionCode = permissionCode;
-    }
-
     public String getPermissionName() {
         return this.permissionName;
+    }
+
+    public void setIsAuthorize(Long isAuthorize) {
+        this.isAuthorize = isAuthorize;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    public void setPermissionCode(String permissionCode) {
+        this.permissionCode = permissionCode;
     }
 
     public void setPermissionName(String permissionName) {

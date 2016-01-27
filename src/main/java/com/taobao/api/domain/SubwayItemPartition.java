@@ -57,44 +57,44 @@ public class SubwayItemPartition extends TaobaoObject {
         return this.itemList;
     }
 
-    public void setItemList(List<SubwayItem> itemList) {
-        this.itemList = itemList;
-    }
-
     public Boolean getOrderBy() {
         return this.orderBy;
-    }
-
-    public void setOrderBy(Boolean orderBy) {
-        this.orderBy = orderBy;
     }
 
     public String getOrderField() {
         return this.orderField;
     }
 
-    public void setOrderField(String orderField) {
-        this.orderField = orderField;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getTotalItem() {
         return this.totalItem;
+    }
+
+    public void setItemList(List<SubwayItem> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setOrderBy(Boolean orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public void setOrderField(String orderField) {
+        this.orderField = orderField;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
     public void setTotalItem(Long totalItem) {

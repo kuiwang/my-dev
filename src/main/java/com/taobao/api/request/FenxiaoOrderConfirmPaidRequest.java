@@ -17,50 +17,51 @@ import com.taobao.api.response.FenxiaoOrderConfirmPaidResponse;
 public class FenxiaoOrderConfirmPaidRequest implements
         TaobaoRequest<FenxiaoOrderConfirmPaidResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 确认支付信息（字数小于100）
      */
     private String confirmRemark;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 采购单编号。
      */
     private Long purchaseOrderId;
 
-    public void setConfirmRemark(String confirmRemark) {
-        this.confirmRemark = confirmRemark;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(purchaseOrderId, "purchaseOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.order.confirm.paid";
     }
 
     public String getConfirmRemark() {
         return this.confirmRemark;
     }
 
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPurchaseOrderId() {
         return this.purchaseOrderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoOrderConfirmPaidResponse> getResponseClass() {
+        return FenxiaoOrderConfirmPaidResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.order.confirm.paid";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("confirm_remark", this.confirmRemark);
@@ -71,6 +72,12 @@ public class FenxiaoOrderConfirmPaidRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class FenxiaoOrderConfirmPaidRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoOrderConfirmPaidResponse> getResponseClass() {
-        return FenxiaoOrderConfirmPaidResponse.class;
+    public void setConfirmRemark(String confirmRemark) {
+        this.confirmRemark = confirmRemark;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(purchaseOrderId, "purchaseOrderId");
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

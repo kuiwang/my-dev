@@ -19,12 +19,12 @@ public class SimbaLoginAuthsignGetResponse extends TaobaoResponse {
     @ApiField("subway_token")
     private String subwayToken;
 
-    public void setSubwayToken(String subwayToken) {
-        this.subwayToken = subwayToken;
-    }
-
     public String getSubwayToken() {
         return this.subwayToken;
+    }
+
+    public void setSubwayToken(String subwayToken) {
+        this.subwayToken = subwayToken;
     }
 
 }

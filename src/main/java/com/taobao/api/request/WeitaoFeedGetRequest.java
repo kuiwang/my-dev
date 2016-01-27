@@ -16,38 +16,44 @@ import com.taobao.api.response.WeitaoFeedGetResponse;
  */
 public class WeitaoFeedGetRequest implements TaobaoRequest<WeitaoFeedGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * feed的Id<br />
      * 支持最小值为：1
      */
     private Long feedId;
 
-    public void setFeedId(Long feedId) {
-        this.feedId = feedId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(feedId, "feedId");
+        RequestCheckUtils.checkMinValue(feedId, 1L, "feedId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.feed.get";
     }
 
     public Long getFeedId() {
         return this.feedId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WeitaoFeedGetResponse> getResponseClass() {
+        return WeitaoFeedGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.weitao.feed.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("feed_id", this.feedId);
@@ -57,6 +63,12 @@ public class WeitaoFeedGetRequest implements TaobaoRequest<WeitaoFeedGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,16 +76,12 @@ public class WeitaoFeedGetRequest implements TaobaoRequest<WeitaoFeedGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoFeedGetResponse> getResponseClass() {
-        return WeitaoFeedGetResponse.class;
+    public void setFeedId(Long feedId) {
+        this.feedId = feedId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(feedId, "feedId");
-        RequestCheckUtils.checkMinValue(feedId, 1L, "feedId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

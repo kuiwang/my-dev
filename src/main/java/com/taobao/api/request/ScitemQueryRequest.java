@@ -15,16 +15,12 @@ import com.taobao.api.response.ScitemQueryResponse;
  */
 public class ScitemQueryRequest implements TaobaoRequest<ScitemQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 条形码
      */
     private String barCode;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品名称
@@ -51,79 +47,59 @@ public class ScitemQueryRequest implements TaobaoRequest<ScitemQueryResponse> {
      */
     private Long pageSize;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 仓库编码
      */
     private String wmsCode;
 
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.scitem.query";
     }
 
     public String getBarCode() {
         return this.barCode;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemType(Long itemType) {
-        this.itemType = itemType;
-    }
-
     public Long getItemType() {
         return this.itemType;
-    }
-
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
     }
 
     public String getOuterCode() {
         return this.outerCode;
     }
 
-    public void setPageIndex(Long pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
     public Long getPageIndex() {
         return this.pageIndex;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setWmsCode(String wmsCode) {
-        this.wmsCode = wmsCode;
+    @Override
+    public Class<ScitemQueryResponse> getResponseClass() {
+        return ScitemQueryResponse.class;
     }
 
-    public String getWmsCode() {
-        return this.wmsCode;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.scitem.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bar_code", this.barCode);
@@ -139,6 +115,16 @@ public class ScitemQueryRequest implements TaobaoRequest<ScitemQueryResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWmsCode() {
+        return this.wmsCode;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -146,14 +132,36 @@ public class ScitemQueryRequest implements TaobaoRequest<ScitemQueryResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<ScitemQueryResponse> getResponseClass() {
-        return ScitemQueryResponse.class;
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
 
-    public void check() throws ApiRuleException {
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setItemType(Long itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setPageIndex(Long pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWmsCode(String wmsCode) {
+        this.wmsCode = wmsCode;
     }
 }

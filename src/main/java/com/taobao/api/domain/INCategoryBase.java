@@ -45,28 +45,28 @@ public class INCategoryBase extends TaobaoObject {
         return this.categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getCategoryName() {
         return this.categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
     }
 
     public Long getCategoryPv() {
         return this.categoryPv;
     }
 
-    public void setCategoryPv(Long categoryPv) {
-        this.categoryPv = categoryPv;
-    }
-
     public List<INRecordBase> getInRecordBaseList() {
         return this.inRecordBaseList;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setCategoryPv(Long categoryPv) {
+        this.categoryPv = categoryPv;
     }
 
     public void setInRecordBaseList(List<INRecordBase> inRecordBaseList) {

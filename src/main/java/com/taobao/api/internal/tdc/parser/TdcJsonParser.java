@@ -18,6 +18,7 @@ import com.taobao.api.internal.util.json.JSONValidatingReader;
  */
 public class TdcJsonParser implements TdcParser {
 
+    @Override
     public TdcResponse parse(String rsp) throws ApiException {
         JXTdcResponse jxRsp = new JXTdcResponse();
         JSONReader reader = new JSONValidatingReader(new ExceptionErrorListener());

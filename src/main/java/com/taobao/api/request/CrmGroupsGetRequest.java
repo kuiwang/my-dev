@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmGroupsGetResponse;
  */
 public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 显示第几页的分组，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页码为1<br />
      * 支持最大值为：1000000<br />
@@ -29,6 +23,8 @@ public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> 
      * 支持的最大列表长度为：3
      */
     private Long currentPage;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 每页显示的记录数，其最大值不能超过100条，最小值为1，默认20条<br />
@@ -38,34 +34,43 @@ public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> 
      */
     private Long pageSize;
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
+        RequestCheckUtils.checkMaxValue(currentPage, 1000000L, "currentPage");
+        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.groups.get";
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmGroupsGetResponse> getResponseClass() {
+        return CrmGroupsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.groups.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("current_page", this.currentPage);
@@ -76,6 +81,12 @@ public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -83,19 +94,16 @@ public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmGroupsGetResponse> getResponseClass() {
-        return CrmGroupsGetResponse.class;
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
-        RequestCheckUtils.checkMaxValue(currentPage, 1000000L, "currentPage");
-        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

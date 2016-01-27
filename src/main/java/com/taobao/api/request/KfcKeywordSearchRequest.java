@@ -16,12 +16,6 @@ import com.taobao.api.response.KfcKeywordSearchResponse;
  */
 public class KfcKeywordSearchRequest implements TaobaoRequest<KfcKeywordSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 应用点，分为一级应用点、二级应用点。其中一级应用点通常是指某一个系统或产品，比如淘宝的商品应用（taobao_auction）；
      * 二级应用点，是指一级应用点下的具体的分类，比如商品标题(title)、商品描述(content)。不同的二级应用可以设置不同关键词。
@@ -39,47 +33,50 @@ public class KfcKeywordSearchRequest implements TaobaoRequest<KfcKeywordSearchRe
      */
     private String content;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 发布信息的淘宝会员名，可以不传
      */
     private String nick;
 
-    public void setApply(String apply) {
-        this.apply = apply;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(content, "content");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.kfc.keyword.search";
     }
 
     public String getApply() {
         return this.apply;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getContent() {
         return this.content;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<KfcKeywordSearchResponse> getResponseClass() {
+        return KfcKeywordSearchResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.kfc.keyword.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("apply", this.apply);
@@ -91,6 +88,12 @@ public class KfcKeywordSearchRequest implements TaobaoRequest<KfcKeywordSearchRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -98,15 +101,20 @@ public class KfcKeywordSearchRequest implements TaobaoRequest<KfcKeywordSearchRe
         this.udfParams.put(key, value);
     }
 
-    public Class<KfcKeywordSearchResponse> getResponseClass() {
-        return KfcKeywordSearchResponse.class;
+    public void setApply(String apply) {
+        this.apply = apply;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(content, "content");
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

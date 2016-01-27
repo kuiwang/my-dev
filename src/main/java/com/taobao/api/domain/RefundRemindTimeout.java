@@ -37,20 +37,20 @@ public class RefundRemindTimeout extends TaobaoObject {
         return this.existTimeout;
     }
 
-    public void setExistTimeout(Boolean existTimeout) {
-        this.existTimeout = existTimeout;
-    }
-
     public Long getRemindType() {
         return this.remindType;
     }
 
-    public void setRemindType(Long remindType) {
-        this.remindType = remindType;
-    }
-
     public Date getTimeout() {
         return this.timeout;
+    }
+
+    public void setExistTimeout(Boolean existTimeout) {
+        this.existTimeout = existTimeout;
+    }
+
+    public void setRemindType(Long remindType) {
+        this.remindType = remindType;
     }
 
     public void setTimeout(Date timeout) {

@@ -18,17 +18,6 @@ import com.taobao.api.response.WlbItemAuthorizationAddResponse;
 public class WlbItemAuthorizationAddRequest implements
         TaobaoRequest<WlbItemAuthorizationAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /**
-     * 授权类型：1=全量授权，0=部分授权 当部分授权时，需要指定授权数量quantity
-     */
-    private Long authType;
-
     /**
      * 授权结束时间
      */
@@ -40,9 +29,16 @@ public class WlbItemAuthorizationAddRequest implements
     private Date authorizeStartTime;
 
     /**
+     * 授权类型：1=全量授权，0=部分授权 当部分授权时，需要指定授权数量quantity
+     */
+    private Long authType;
+
+    /**
      * 被授权人用户id
      */
     private String consignUserNick;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品id列表，以英文逗号,分隔，最多可放入50个商品ID。
@@ -66,82 +62,70 @@ public class WlbItemAuthorizationAddRequest implements
      */
     private String ruleCode;
 
-    public void setAuthType(Long authType) {
-        this.authType = authType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(authType, "authType");
+        RequestCheckUtils.checkNotEmpty(authorizeEndTime, "authorizeEndTime");
+        RequestCheckUtils.checkNotEmpty(authorizeStartTime, "authorizeStartTime");
+        RequestCheckUtils.checkNotEmpty(consignUserNick, "consignUserNick");
+        RequestCheckUtils.checkNotEmpty(itemIdList, "itemIdList");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 255, "name");
+        RequestCheckUtils.checkNotEmpty(ruleCode, "ruleCode");
     }
 
-    public Long getAuthType() {
-        return this.authType;
-    }
-
-    public void setAuthorizeEndTime(Date authorizeEndTime) {
-        this.authorizeEndTime = authorizeEndTime;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.authorization.add";
     }
 
     public Date getAuthorizeEndTime() {
         return this.authorizeEndTime;
     }
 
-    public void setAuthorizeStartTime(Date authorizeStartTime) {
-        this.authorizeStartTime = authorizeStartTime;
-    }
-
     public Date getAuthorizeStartTime() {
         return this.authorizeStartTime;
     }
 
-    public void setConsignUserNick(String consignUserNick) {
-        this.consignUserNick = consignUserNick;
+    public Long getAuthType() {
+        return this.authType;
     }
 
     public String getConsignUserNick() {
         return this.consignUserNick;
     }
 
-    public void setItemIdList(String itemIdList) {
-        this.itemIdList = itemIdList;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemIdList() {
         return this.itemIdList;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setRuleCode(String ruleCode) {
-        this.ruleCode = ruleCode;
+    @Override
+    public Class<WlbItemAuthorizationAddResponse> getResponseClass() {
+        return WlbItemAuthorizationAddResponse.class;
     }
 
     public String getRuleCode() {
         return this.ruleCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.authorization.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auth_type", this.authType);
@@ -158,6 +142,12 @@ public class WlbItemAuthorizationAddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -165,22 +155,40 @@ public class WlbItemAuthorizationAddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemAuthorizationAddResponse> getResponseClass() {
-        return WlbItemAuthorizationAddResponse.class;
+    public void setAuthorizeEndTime(Date authorizeEndTime) {
+        this.authorizeEndTime = authorizeEndTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(authType, "authType");
-        RequestCheckUtils.checkNotEmpty(authorizeEndTime, "authorizeEndTime");
-        RequestCheckUtils.checkNotEmpty(authorizeStartTime, "authorizeStartTime");
-        RequestCheckUtils.checkNotEmpty(consignUserNick, "consignUserNick");
-        RequestCheckUtils.checkNotEmpty(itemIdList, "itemIdList");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 255, "name");
-        RequestCheckUtils.checkNotEmpty(ruleCode, "ruleCode");
+    public void setAuthorizeStartTime(Date authorizeStartTime) {
+        this.authorizeStartTime = authorizeStartTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setAuthType(Long authType) {
+        this.authType = authType;
+    }
+
+    public void setConsignUserNick(String consignUserNick) {
+        this.consignUserNick = consignUserNick;
+    }
+
+    public void setItemIdList(String itemIdList) {
+        this.itemIdList = itemIdList;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRuleCode(String ruleCode) {
+        this.ruleCode = ruleCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -30,20 +30,20 @@ public class CrmMembersSearchResponse extends TaobaoResponse {
     @ApiField("total_result")
     private Long totalResult;
 
-    public void setMembers(List<CrmMember> members) {
-        this.members = members;
-    }
-
     public List<CrmMember> getMembers() {
         return this.members;
     }
 
-    public void setTotalResult(Long totalResult) {
-        this.totalResult = totalResult;
-    }
-
     public Long getTotalResult() {
         return this.totalResult;
+    }
+
+    public void setMembers(List<CrmMember> members) {
+        this.members = members;
+    }
+
+    public void setTotalResult(Long totalResult) {
+        this.totalResult = totalResult;
     }
 
 }

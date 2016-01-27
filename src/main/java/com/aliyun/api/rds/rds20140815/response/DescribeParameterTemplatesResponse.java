@@ -49,44 +49,44 @@ public class DescribeParameterTemplatesResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setEngineVersion(String engineVersion) {
-        this.engineVersion = engineVersion;
     }
 
     public String getEngineVersion() {
         return this.engineVersion;
     }
 
-    public void setParameterCount(Long parameterCount) {
-        this.parameterCount = parameterCount;
-    }
-
     public Long getParameterCount() {
         return this.parameterCount;
-    }
-
-    public void setParameters(List<TemplateRecord> parameters) {
-        this.parameters = parameters;
     }
 
     public List<TemplateRecord> getParameters() {
         return this.parameters;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public void setParameterCount(Long parameterCount) {
+        this.parameterCount = parameterCount;
+    }
+
+    public void setParameters(List<TemplateRecord> parameters) {
+        this.parameters = parameters;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

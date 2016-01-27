@@ -20,12 +20,12 @@ public class SimbaKeywordsRecommendGetResponse extends TaobaoResponse {
     @ApiField("recommend_words")
     private RecommendWordPage recommendWords;
 
-    public void setRecommendWords(RecommendWordPage recommendWords) {
-        this.recommendWords = recommendWords;
-    }
-
     public RecommendWordPage getRecommendWords() {
         return this.recommendWords;
+    }
+
+    public void setRecommendWords(RecommendWordPage recommendWords) {
+        this.recommendWords = recommendWords;
     }
 
 }

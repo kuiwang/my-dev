@@ -395,16 +395,16 @@ public class Item extends TaobaoObject {
     private String picUrl;
 
     /**
-     * 平邮费用,格式：5.00；单位：元；精确到：分
-     */
-    @ApiField("post_fee")
-    private String postFee;
-
-    /**
      * 宝贝所属的运费模板ID，如果没有返回则说明没有使用运费模板
      */
     @ApiField("postage_id")
     private Long postageId;
+
+    /**
+     * 平邮费用,格式：5.00；单位：元；精确到：分
+     */
+    @ApiField("post_fee")
+    private String postFee;
 
     /**
      * 商品价格，格式：5.00；单位：元；精确到：分
@@ -426,18 +426,18 @@ public class Item extends TaobaoObject {
     private String promotedService;
 
     /**
+     * 属性值别名,比如颜色的自定义名称
+     */
+    @ApiField("property_alias")
+    private String propertyAlias;
+
+    /**
      * 商品属性图片列表。fields中只设置prop_img可以返回PropImg结构体中所有字段，如果设置为prop_img.id、
      * prop_img.url、prop_img.properties、prop_img.position等形式就只会返回相应的字段
      */
     @ApiListField("prop_imgs")
     @ApiField("prop_img")
     private List<PropImg> propImgs;
-
-    /**
-     * 属性值别名,比如颜色的自定义名称
-     */
-    @ApiField("property_alias")
-    private String propertyAlias;
 
     /**
      * 商品属性 格式：pid:vid;pid:vid
@@ -481,6 +481,12 @@ public class Item extends TaobaoObject {
     private Boolean secondResult;
 
     /**
+     * 商品所属的店铺内卖家自定义类目列表
+     */
+    @ApiField("seller_cids")
+    private String sellerCids;
+
+    /**
      * 商品卖点信息，天猫商家使用字段，最长150个字符。
      */
     @ApiField("sell_point")
@@ -491,12 +497,6 @@ public class Item extends TaobaoObject {
      */
     @ApiField("sell_promise")
     private Boolean sellPromise;
-
-    /**
-     * 商品所属的店铺内卖家自定义类目列表
-     */
-    @ApiField("seller_cids")
-    private String sellerCids;
 
     /**
      * 店铺类型，B：天猫店铺，C：淘宝店铺
@@ -615,748 +615,748 @@ public class Item extends TaobaoObject {
         return this.afterSaleId;
     }
 
-    public void setAfterSaleId(Long afterSaleId) {
-        this.afterSaleId = afterSaleId;
-    }
-
     public String getApproveStatus() {
         return this.approveStatus;
-    }
-
-    public void setApproveStatus(String approveStatus) {
-        this.approveStatus = approveStatus;
     }
 
     public Long getAuctionPoint() {
         return this.auctionPoint;
     }
 
-    public void setAuctionPoint(Long auctionPoint) {
-        this.auctionPoint = auctionPoint;
-    }
-
     public String getAutoFill() {
         return this.autoFill;
-    }
-
-    public void setAutoFill(String autoFill) {
-        this.autoFill = autoFill;
     }
 
     public String getBarcode() {
         return this.barcode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
     public String getChangeProp() {
         return this.changeProp;
-    }
-
-    public void setChangeProp(String changeProp) {
-        this.changeProp = changeProp;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCodPostageId() {
         return this.codPostageId;
-    }
-
-    public void setCodPostageId(Long codPostageId) {
-        this.codPostageId = codPostageId;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public String getCustomMadeTypeId() {
         return this.customMadeTypeId;
-    }
-
-    public void setCustomMadeTypeId(String customMadeTypeId) {
-        this.customMadeTypeId = customMadeTypeId;
     }
 
     public Date getDelistTime() {
         return this.delistTime;
     }
 
-    public void setDelistTime(Date delistTime) {
-        this.delistTime = delistTime;
-    }
-
     public DeliveryTime getDeliveryTime() {
         return this.deliveryTime;
-    }
-
-    public void setDeliveryTime(DeliveryTime deliveryTime) {
-        this.deliveryTime = deliveryTime;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public DescModuleInfo getDescModuleInfo() {
         return this.descModuleInfo;
-    }
-
-    public void setDescModuleInfo(DescModuleInfo descModuleInfo) {
-        this.descModuleInfo = descModuleInfo;
     }
 
     public String getDescModules() {
         return this.descModules;
     }
 
-    public void setDescModules(String descModules) {
-        this.descModules = descModules;
-    }
-
     public String getDetailUrl() {
         return this.detailUrl;
-    }
-
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
     }
 
     public String getEmsFee() {
         return this.emsFee;
     }
 
-    public void setEmsFee(String emsFee) {
-        this.emsFee = emsFee;
-    }
-
     public String getExpressFee() {
         return this.expressFee;
-    }
-
-    public void setExpressFee(String expressFee) {
-        this.expressFee = expressFee;
     }
 
     public String getFeatures() {
         return this.features;
     }
 
-    public void setFeatures(String features) {
-        this.features = features;
-    }
-
     public FoodSecurity getFoodSecurity() {
         return this.foodSecurity;
-    }
-
-    public void setFoodSecurity(FoodSecurity foodSecurity) {
-        this.foodSecurity = foodSecurity;
     }
 
     public String getFreightPayer() {
         return this.freightPayer;
     }
 
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
-    }
-
     public String getGlobalStockCountry() {
         return this.globalStockCountry;
-    }
-
-    public void setGlobalStockCountry(String globalStockCountry) {
-        this.globalStockCountry = globalStockCountry;
     }
 
     public String getGlobalStockType() {
         return this.globalStockType;
     }
 
-    public void setGlobalStockType(String globalStockType) {
-        this.globalStockType = globalStockType;
-    }
-
     public Boolean getHasDiscount() {
         return this.hasDiscount;
-    }
-
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
     }
 
     public Boolean getHasInvoice() {
         return this.hasInvoice;
     }
 
-    public void setHasInvoice(Boolean hasInvoice) {
-        this.hasInvoice = hasInvoice;
-    }
-
     public Boolean getHasShowcase() {
         return this.hasShowcase;
-    }
-
-    public void setHasShowcase(Boolean hasShowcase) {
-        this.hasShowcase = hasShowcase;
     }
 
     public Boolean getHasWarranty() {
         return this.hasWarranty;
     }
 
-    public void setHasWarranty(Boolean hasWarranty) {
-        this.hasWarranty = hasWarranty;
-    }
-
     public String getIncrement() {
         return this.increment;
-    }
-
-    public void setIncrement(String increment) {
-        this.increment = increment;
     }
 
     public Long getInnerShopAuctionTemplateId() {
         return this.innerShopAuctionTemplateId;
     }
 
-    public void setInnerShopAuctionTemplateId(Long innerShopAuctionTemplateId) {
-        this.innerShopAuctionTemplateId = innerShopAuctionTemplateId;
-    }
-
     public String getInputPids() {
         return this.inputPids;
-    }
-
-    public void setInputPids(String inputPids) {
-        this.inputPids = inputPids;
     }
 
     public String getInputStr() {
         return this.inputStr;
     }
 
-    public void setInputStr(String inputStr) {
-        this.inputStr = inputStr;
-    }
-
     public Boolean getIs3D() {
         return this.is3D;
-    }
-
-    public void setIs3D(Boolean is3D) {
-        this.is3D = is3D;
     }
 
     public Boolean getIsCspu() {
         return this.isCspu;
     }
 
-    public void setIsCspu(Boolean isCspu) {
-        this.isCspu = isCspu;
-    }
-
     public Boolean getIsEx() {
         return this.isEx;
-    }
-
-    public void setIsEx(Boolean isEx) {
-        this.isEx = isEx;
     }
 
     public Long getIsFenxiao() {
         return this.isFenxiao;
     }
 
-    public void setIsFenxiao(Long isFenxiao) {
-        this.isFenxiao = isFenxiao;
-    }
-
     public Boolean getIsLightningConsignment() {
         return this.isLightningConsignment;
-    }
-
-    public void setIsLightningConsignment(Boolean isLightningConsignment) {
-        this.isLightningConsignment = isLightningConsignment;
     }
 
     public String getIsOffline() {
         return this.isOffline;
     }
 
-    public void setIsOffline(String isOffline) {
-        this.isOffline = isOffline;
-    }
-
     public Boolean getIsPrepay() {
         return this.isPrepay;
-    }
-
-    public void setIsPrepay(Boolean isPrepay) {
-        this.isPrepay = isPrepay;
     }
 
     public Boolean getIsTaobao() {
         return this.isTaobao;
     }
 
-    public void setIsTaobao(Boolean isTaobao) {
-        this.isTaobao = isTaobao;
-    }
-
     public Boolean getIsTiming() {
         return this.isTiming;
-    }
-
-    public void setIsTiming(Boolean isTiming) {
-        this.isTiming = isTiming;
     }
 
     public Boolean getIsVirtual() {
         return this.isVirtual;
     }
 
-    public void setIsVirtual(Boolean isVirtual) {
-        this.isVirtual = isVirtual;
-    }
-
     public Boolean getIsXinpin() {
         return this.isXinpin;
-    }
-
-    public void setIsXinpin(Boolean isXinpin) {
-        this.isXinpin = isXinpin;
     }
 
     public List<ItemImg> getItemImgs() {
         return this.itemImgs;
     }
 
-    public void setItemImgs(List<ItemImg> itemImgs) {
-        this.itemImgs = itemImgs;
-    }
-
     public String getItemSize() {
         return this.itemSize;
-    }
-
-    public void setItemSize(String itemSize) {
-        this.itemSize = itemSize;
     }
 
     public String getItemWeight() {
         return this.itemWeight;
     }
 
-    public void setItemWeight(String itemWeight) {
-        this.itemWeight = itemWeight;
-    }
-
     public Date getListTime() {
         return this.listTime;
-    }
-
-    public void setListTime(Date listTime) {
-        this.listTime = listTime;
     }
 
     public LocalityLife getLocalityLife() {
         return this.localityLife;
     }
 
-    public void setLocalityLife(LocalityLife localityLife) {
-        this.localityLife = localityLife;
-    }
-
     public Location getLocation() {
         return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public MpicVideo getMpicVideo() {
         return this.mpicVideo;
-    }
-
-    public void setMpicVideo(MpicVideo mpicVideo) {
-        this.mpicVideo = mpicVideo;
     }
 
     public String getNewprepay() {
         return this.newprepay;
     }
 
-    public void setNewprepay(String newprepay) {
-        this.newprepay = newprepay;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Boolean getOneStation() {
         return this.oneStation;
     }
 
-    public void setOneStation(Boolean oneStation) {
-        this.oneStation = oneStation;
-    }
-
     public String getOpenIid() {
         return this.openIid;
-    }
-
-    public void setOpenIid(String openIid) {
-        this.openIid = openIid;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public Long getOuterShopAuctionTemplateId() {
         return this.outerShopAuctionTemplateId;
-    }
-
-    public void setOuterShopAuctionTemplateId(Long outerShopAuctionTemplateId) {
-        this.outerShopAuctionTemplateId = outerShopAuctionTemplateId;
     }
 
     public PaimaiInfo getPaimaiInfo() {
         return this.paimaiInfo;
     }
 
-    public void setPaimaiInfo(PaimaiInfo paimaiInfo) {
-        this.paimaiInfo = paimaiInfo;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public String getPostFee() {
-        return this.postFee;
-    }
-
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
     }
 
     public Long getPostageId() {
         return this.postageId;
     }
 
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
+    public String getPostFee() {
+        return this.postFee;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public String getPromotedService() {
         return this.promotedService;
     }
 
-    public void setPromotedService(String promotedService) {
-        this.promotedService = promotedService;
+    public String getPropertyAlias() {
+        return this.propertyAlias;
     }
 
     public List<PropImg> getPropImgs() {
         return this.propImgs;
     }
 
-    public void setPropImgs(List<PropImg> propImgs) {
-        this.propImgs = propImgs;
-    }
-
-    public String getPropertyAlias() {
-        return this.propertyAlias;
-    }
-
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
-    }
-
     public String getProps() {
         return this.props;
-    }
-
-    public void setProps(String props) {
-        this.props = props;
     }
 
     public String getPropsName() {
         return this.propsName;
     }
 
-    public void setPropsName(String propsName) {
-        this.propsName = propsName;
-    }
-
     public String getQualification() {
         return this.qualification;
-    }
-
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
     }
 
     public Long getScore() {
         return this.score;
     }
 
-    public void setScore(Long score) {
-        this.score = score;
-    }
-
     public String getSecondKill() {
         return this.secondKill;
-    }
-
-    public void setSecondKill(String secondKill) {
-        this.secondKill = secondKill;
     }
 
     public Boolean getSecondResult() {
         return this.secondResult;
     }
 
-    public void setSecondResult(Boolean secondResult) {
-        this.secondResult = secondResult;
+    public String getSellerCids() {
+        return this.sellerCids;
     }
 
     public String getSellPoint() {
         return this.sellPoint;
     }
 
-    public void setSellPoint(String sellPoint) {
-        this.sellPoint = sellPoint;
-    }
-
     public Boolean getSellPromise() {
         return this.sellPromise;
-    }
-
-    public void setSellPromise(Boolean sellPromise) {
-        this.sellPromise = sellPromise;
-    }
-
-    public String getSellerCids() {
-        return this.sellerCids;
-    }
-
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
     }
 
     public String getShopType() {
         return this.shopType;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
-    }
-
     public List<Sku> getSkus() {
         return this.skus;
-    }
-
-    public void setSkus(List<Sku> skus) {
-        this.skus = skus;
     }
 
     public Long getSoldQuantity() {
         return this.soldQuantity;
     }
 
-    public void setSoldQuantity(Long soldQuantity) {
-        this.soldQuantity = soldQuantity;
-    }
-
     public String getStuffStatus() {
         return this.stuffStatus;
-    }
-
-    public void setStuffStatus(String stuffStatus) {
-        this.stuffStatus = stuffStatus;
     }
 
     public Long getSubStock() {
         return this.subStock;
     }
 
-    public void setSubStock(Long subStock) {
-        this.subStock = subStock;
-    }
-
     public String getSubTitle() {
         return this.subTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
     }
 
     public String getTemplateId() {
         return this.templateId;
     }
 
-    public void setTemplateId(String templateId) {
-        this.templateId = templateId;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getType() {
         return this.type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Long getValidThru() {
         return this.validThru;
-    }
-
-    public void setValidThru(Long validThru) {
-        this.validThru = validThru;
     }
 
     public Long getVideoId() {
         return this.videoId;
     }
 
-    public void setVideoId(Long videoId) {
-        this.videoId = videoId;
-    }
-
     public List<Video> getVideos() {
         return this.videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
     }
 
     public Boolean getViolation() {
         return this.violation;
     }
 
-    public void setViolation(Boolean violation) {
-        this.violation = violation;
-    }
-
     public String getWapDesc() {
         return this.wapDesc;
-    }
-
-    public void setWapDesc(String wapDesc) {
-        this.wapDesc = wapDesc;
     }
 
     public String getWapDetailUrl() {
         return this.wapDetailUrl;
     }
 
-    public void setWapDetailUrl(String wapDetailUrl) {
-        this.wapDetailUrl = wapDetailUrl;
-    }
-
     public String getWirelessDesc() {
         return this.wirelessDesc;
-    }
-
-    public void setWirelessDesc(String wirelessDesc) {
-        this.wirelessDesc = wirelessDesc;
     }
 
     public Long getWithHoldQuantity() {
         return this.withHoldQuantity;
     }
 
-    public void setWithHoldQuantity(Long withHoldQuantity) {
-        this.withHoldQuantity = withHoldQuantity;
-    }
-
     public Boolean getWwStatus() {
         return this.wwStatus;
+    }
+
+    public void setAfterSaleId(Long afterSaleId) {
+        this.afterSaleId = afterSaleId;
+    }
+
+    public void setApproveStatus(String approveStatus) {
+        this.approveStatus = approveStatus;
+    }
+
+    public void setAuctionPoint(Long auctionPoint) {
+        this.auctionPoint = auctionPoint;
+    }
+
+    public void setAutoFill(String autoFill) {
+        this.autoFill = autoFill;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setChangeProp(String changeProp) {
+        this.changeProp = changeProp;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCodPostageId(Long codPostageId) {
+        this.codPostageId = codPostageId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setCustomMadeTypeId(String customMadeTypeId) {
+        this.customMadeTypeId = customMadeTypeId;
+    }
+
+    public void setDelistTime(Date delistTime) {
+        this.delistTime = delistTime;
+    }
+
+    public void setDeliveryTime(DeliveryTime deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDescModuleInfo(DescModuleInfo descModuleInfo) {
+        this.descModuleInfo = descModuleInfo;
+    }
+
+    public void setDescModules(String descModules) {
+        this.descModules = descModules;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
+    }
+
+    public void setEmsFee(String emsFee) {
+        this.emsFee = emsFee;
+    }
+
+    public void setExpressFee(String expressFee) {
+        this.expressFee = expressFee;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
+    }
+
+    public void setFoodSecurity(FoodSecurity foodSecurity) {
+        this.foodSecurity = foodSecurity;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setGlobalStockCountry(String globalStockCountry) {
+        this.globalStockCountry = globalStockCountry;
+    }
+
+    public void setGlobalStockType(String globalStockType) {
+        this.globalStockType = globalStockType;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setHasInvoice(Boolean hasInvoice) {
+        this.hasInvoice = hasInvoice;
+    }
+
+    public void setHasShowcase(Boolean hasShowcase) {
+        this.hasShowcase = hasShowcase;
+    }
+
+    public void setHasWarranty(Boolean hasWarranty) {
+        this.hasWarranty = hasWarranty;
+    }
+
+    public void setIncrement(String increment) {
+        this.increment = increment;
+    }
+
+    public void setInnerShopAuctionTemplateId(Long innerShopAuctionTemplateId) {
+        this.innerShopAuctionTemplateId = innerShopAuctionTemplateId;
+    }
+
+    public void setInputPids(String inputPids) {
+        this.inputPids = inputPids;
+    }
+
+    public void setInputStr(String inputStr) {
+        this.inputStr = inputStr;
+    }
+
+    public void setIs3D(Boolean is3D) {
+        this.is3D = is3D;
+    }
+
+    public void setIsCspu(Boolean isCspu) {
+        this.isCspu = isCspu;
+    }
+
+    public void setIsEx(Boolean isEx) {
+        this.isEx = isEx;
+    }
+
+    public void setIsFenxiao(Long isFenxiao) {
+        this.isFenxiao = isFenxiao;
+    }
+
+    public void setIsLightningConsignment(Boolean isLightningConsignment) {
+        this.isLightningConsignment = isLightningConsignment;
+    }
+
+    public void setIsOffline(String isOffline) {
+        this.isOffline = isOffline;
+    }
+
+    public void setIsPrepay(Boolean isPrepay) {
+        this.isPrepay = isPrepay;
+    }
+
+    public void setIsTaobao(Boolean isTaobao) {
+        this.isTaobao = isTaobao;
+    }
+
+    public void setIsTiming(Boolean isTiming) {
+        this.isTiming = isTiming;
+    }
+
+    public void setIsVirtual(Boolean isVirtual) {
+        this.isVirtual = isVirtual;
+    }
+
+    public void setIsXinpin(Boolean isXinpin) {
+        this.isXinpin = isXinpin;
+    }
+
+    public void setItemImgs(List<ItemImg> itemImgs) {
+        this.itemImgs = itemImgs;
+    }
+
+    public void setItemSize(String itemSize) {
+        this.itemSize = itemSize;
+    }
+
+    public void setItemWeight(String itemWeight) {
+        this.itemWeight = itemWeight;
+    }
+
+    public void setListTime(Date listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setLocalityLife(LocalityLife localityLife) {
+        this.localityLife = localityLife;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setMpicVideo(MpicVideo mpicVideo) {
+        this.mpicVideo = mpicVideo;
+    }
+
+    public void setNewprepay(String newprepay) {
+        this.newprepay = newprepay;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOneStation(Boolean oneStation) {
+        this.oneStation = oneStation;
+    }
+
+    public void setOpenIid(String openIid) {
+        this.openIid = openIid;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setOuterShopAuctionTemplateId(Long outerShopAuctionTemplateId) {
+        this.outerShopAuctionTemplateId = outerShopAuctionTemplateId;
+    }
+
+    public void setPaimaiInfo(PaimaiInfo paimaiInfo) {
+        this.paimaiInfo = paimaiInfo;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setPromotedService(String promotedService) {
+        this.promotedService = promotedService;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setPropImgs(List<PropImg> propImgs) {
+        this.propImgs = propImgs;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setPropsName(String propsName) {
+        this.propsName = propsName;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
+    public void setSecondKill(String secondKill) {
+        this.secondKill = secondKill;
+    }
+
+    public void setSecondResult(Boolean secondResult) {
+        this.secondResult = secondResult;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setSellPoint(String sellPoint) {
+        this.sellPoint = sellPoint;
+    }
+
+    public void setSellPromise(Boolean sellPromise) {
+        this.sellPromise = sellPromise;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setSkus(List<Sku> skus) {
+        this.skus = skus;
+    }
+
+    public void setSoldQuantity(Long soldQuantity) {
+        this.soldQuantity = soldQuantity;
+    }
+
+    public void setStuffStatus(String stuffStatus) {
+        this.stuffStatus = stuffStatus;
+    }
+
+    public void setSubStock(Long subStock) {
+        this.subStock = subStock;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setValidThru(Long validThru) {
+        this.validThru = validThru;
+    }
+
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
+
+    public void setViolation(Boolean violation) {
+        this.violation = violation;
+    }
+
+    public void setWapDesc(String wapDesc) {
+        this.wapDesc = wapDesc;
+    }
+
+    public void setWapDetailUrl(String wapDetailUrl) {
+        this.wapDetailUrl = wapDetailUrl;
+    }
+
+    public void setWirelessDesc(String wirelessDesc) {
+        this.wirelessDesc = wirelessDesc;
+    }
+
+    public void setWithHoldQuantity(Long withHoldQuantity) {
+        this.withHoldQuantity = withHoldQuantity;
     }
 
     public void setWwStatus(Boolean wwStatus) {

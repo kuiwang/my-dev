@@ -77,76 +77,76 @@ public class TakeoutShopSummaryInfo extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Long getDigitalWaitConfirm() {
         return this.digitalWaitConfirm;
     }
 
-    public void setDigitalWaitConfirm(Long digitalWaitConfirm) {
-        this.digitalWaitConfirm = digitalWaitConfirm;
-    }
-
     public Long getIsOpen() {
         return this.isOpen;
-    }
-
-    public void setIsOpen(Long isOpen) {
-        this.isOpen = isOpen;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public Long getShopid() {
         return this.shopid;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
-    }
-
     public String getShopoutid() {
         return this.shopoutid;
-    }
-
-    public void setShopoutid(String shopoutid) {
-        this.shopoutid = shopoutid;
     }
 
     public Long getWaitConfirm() {
         return this.waitConfirm;
     }
 
-    public void setWaitConfirm(Long waitConfirm) {
-        this.waitConfirm = waitConfirm;
-    }
-
     public Long getWaitRefund() {
         return this.waitRefund;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDigitalWaitConfirm(Long digitalWaitConfirm) {
+        this.digitalWaitConfirm = digitalWaitConfirm;
+    }
+
+    public void setIsOpen(Long isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setShopid(Long shopid) {
+        this.shopid = shopid;
+    }
+
+    public void setShopoutid(String shopoutid) {
+        this.shopoutid = shopoutid;
+    }
+
+    public void setWaitConfirm(Long waitConfirm) {
+        this.waitConfirm = waitConfirm;
     }
 
     public void setWaitRefund(Long waitRefund) {

@@ -20,12 +20,12 @@ public class FenxiaoRefundGetResponse extends TaobaoResponse {
     @ApiField("refund_detail")
     private RefundDetail refundDetail;
 
-    public void setRefundDetail(RefundDetail refundDetail) {
-        this.refundDetail = refundDetail;
-    }
-
     public RefundDetail getRefundDetail() {
         return this.refundDetail;
+    }
+
+    public void setRefundDetail(RefundDetail refundDetail) {
+        this.refundDetail = refundDetail;
     }
 
 }

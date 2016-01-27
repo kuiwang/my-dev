@@ -20,12 +20,12 @@ public class WlbItemGetResponse extends TaobaoResponse {
     @ApiField("item")
     private WlbItem item;
 
-    public void setItem(WlbItem item) {
-        this.item = item;
-    }
-
     public WlbItem getItem() {
         return this.item;
+    }
+
+    public void setItem(WlbItem item) {
+        this.item = item;
     }
 
 }

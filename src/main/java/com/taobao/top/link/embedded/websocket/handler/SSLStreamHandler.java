@@ -41,14 +41,14 @@ public class SSLStreamHandler implements StreamHandler {
     /** The log. */
     //private static Logger log = Logger.getLogger(SSLStreamHandler.class.getName());
 
-    /** The ssl upstream buffer. */
-    private ByteBuffer sslUpstreamBuffer;
+    /** The handshake. */
+    private SSLHandshake handshake;
 
     /** The ssl downstream buffer. */
     private ByteBuffer sslDownstreamBuffer;
 
-    /** The handshake. */
-    private SSLHandshake handshake;
+    /** The ssl upstream buffer. */
+    private ByteBuffer sslUpstreamBuffer;
 
     /**
      * Instantiates a new sSL stream handler.
@@ -64,17 +64,19 @@ public class SSLStreamHandler implements StreamHandler {
     }
 
     /* (non-Javadoc)
-     * @see jp.a840.websocket.handler.StreamHandler#nextHandshakeUpstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.handler.StreamHandlerChain)
+     * @see jp.a840.websocket.handler.StreamHandler#nextDownstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.frame.Frame, jp.a840.websocket.handler.StreamHandlerChain)
      */
-    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
+    @Override
+    public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
             StreamHandlerChain chain) throws WebSocketException {
-        handshake.wrap(buffer, sslUpstreamBuffer);
-        chain.nextHandshakeUpstreamHandler(ws, sslUpstreamBuffer);
+        handshake.unwrap(buffer, sslDownstreamBuffer);
+        chain.nextDownstreamHandler(ws, sslDownstreamBuffer, frame);
     }
 
     /* (non-Javadoc)
      * @see jp.a840.websocket.handler.StreamHandler#nextHandshakeDownstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.handler.StreamHandlerChain)
      */
+    @Override
     public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer,
             StreamHandlerChain chain) throws WebSocketException {
         handshake.unwrap(buffer, sslDownstreamBuffer);
@@ -82,21 +84,23 @@ public class SSLStreamHandler implements StreamHandler {
     }
 
     /* (non-Javadoc)
+     * @see jp.a840.websocket.handler.StreamHandler#nextHandshakeUpstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.handler.StreamHandlerChain)
+     */
+    @Override
+    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
+            StreamHandlerChain chain) throws WebSocketException {
+        handshake.wrap(buffer, sslUpstreamBuffer);
+        chain.nextHandshakeUpstreamHandler(ws, sslUpstreamBuffer);
+    }
+
+    /* (non-Javadoc)
      * @see jp.a840.websocket.handler.StreamHandler#nextUpstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.frame.Frame, jp.a840.websocket.handler.StreamHandlerChain)
      */
+    @Override
     public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
             StreamHandlerChain chain) throws WebSocketException {
         handshake.wrap(buffer, sslUpstreamBuffer);
         chain.nextUpstreamHandler(ws, sslUpstreamBuffer, frame);
-    }
-
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.handler.StreamHandler#nextDownstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.frame.Frame, jp.a840.websocket.handler.StreamHandlerChain)
-     */
-    public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
-            StreamHandlerChain chain) throws WebSocketException {
-        handshake.unwrap(buffer, sslDownstreamBuffer);
-        chain.nextDownstreamHandler(ws, sslDownstreamBuffer, frame);
     }
 
 }

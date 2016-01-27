@@ -18,10 +18,6 @@ public class TradePostageUpdateRequest implements TaobaoRequest<TradePostageUpda
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 邮费价格(邮费单位是元）
      */
@@ -32,34 +28,36 @@ public class TradePostageUpdateRequest implements TaobaoRequest<TradePostageUpda
      */
     private Long tid;
 
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(postFee, "postFee");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.postage.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getPostFee() {
         return this.postFee;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Class<TradePostageUpdateResponse> getResponseClass() {
+        return TradePostageUpdateResponse.class;
     }
 
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.postage.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("post_fee", this.postFee);
@@ -70,6 +68,16 @@ public class TradePostageUpdateRequest implements TaobaoRequest<TradePostageUpda
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class TradePostageUpdateRequest implements TaobaoRequest<TradePostageUpda
         this.udfParams.put(key, value);
     }
 
-    public Class<TradePostageUpdateResponse> getResponseClass() {
-        return TradePostageUpdateResponse.class;
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(postFee, "postFee");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

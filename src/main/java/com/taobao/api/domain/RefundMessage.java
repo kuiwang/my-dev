@@ -83,76 +83,76 @@ public class RefundMessage extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getMessageType() {
         return this.messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
     }
 
     public Long getOwnerId() {
         return this.ownerId;
     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
-
     public String getOwnerNick() {
         return this.ownerNick;
-    }
-
-    public void setOwnerNick(String ownerNick) {
-        this.ownerNick = ownerNick;
     }
 
     public String getOwnerRole() {
         return this.ownerRole;
     }
 
-    public void setOwnerRole(String ownerRole) {
-        this.ownerRole = ownerRole;
-    }
-
     public List<PicUrl> getPicUrls() {
         return this.picUrls;
-    }
-
-    public void setPicUrls(List<PicUrl> picUrls) {
-        this.picUrls = picUrls;
     }
 
     public Long getRefundId() {
         return this.refundId;
     }
 
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
-    }
-
     public String getRefundPhase() {
         return this.refundPhase;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setOwnerNick(String ownerNick) {
+        this.ownerNick = ownerNick;
+    }
+
+    public void setOwnerRole(String ownerRole) {
+        this.ownerRole = ownerRole;
+    }
+
+    public void setPicUrls(List<PicUrl> picUrls) {
+        this.picUrls = picUrls;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
     }
 
     public void setRefundPhase(String refundPhase) {

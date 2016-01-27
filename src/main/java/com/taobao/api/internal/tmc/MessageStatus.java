@@ -12,16 +12,16 @@ public class MessageStatus {
 
     private String reason; // 处理失败原因
 
-    public boolean isFail() {
-        return this.isFail;
-    }
-
     public void fail() {
         this.isFail = true;
     }
 
     public String getReason() {
         return this.reason;
+    }
+
+    public boolean isFail() {
+        return this.isFail;
     }
 
     public void setReason(String reason) {

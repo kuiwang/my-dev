@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaInsightCatsbaseGetResponse;
 public class SimbaInsightCatsbaseGetRequest implements
         TaobaoRequest<SimbaInsightCatsbaseGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询类目id数组，最大长度200
      */
@@ -34,6 +28,8 @@ public class SimbaInsightCatsbaseGetRequest implements
      */
     private String filter;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主人昵称
      */
@@ -44,50 +40,46 @@ public class SimbaInsightCatsbaseGetRequest implements
      */
     private String time;
 
-    public void setCategoryIds(String categoryIds) {
-        this.categoryIds = categoryIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(categoryIds, "categoryIds");
+        RequestCheckUtils.checkMaxListSize(categoryIds, 200, "categoryIds");
+        RequestCheckUtils.checkNotEmpty(filter, "filter");
+        RequestCheckUtils.checkNotEmpty(time, "time");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.catsbase.get";
     }
 
     public String getCategoryIds() {
         return this.categoryIds;
     }
 
-    public void setFilter(String filter) {
-        this.filter = filter;
-    }
-
     public String getFilter() {
         return this.filter;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    @Override
+    public Class<SimbaInsightCatsbaseGetResponse> getResponseClass() {
+        return SimbaInsightCatsbaseGetResponse.class;
     }
 
-    public String getTime() {
-        return this.time;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.catsbase.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("category_ids", this.categoryIds);
@@ -100,6 +92,16 @@ public class SimbaInsightCatsbaseGetRequest implements
         return txtParams;
     }
 
+    public String getTime() {
+        return this.time;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,18 +109,24 @@ public class SimbaInsightCatsbaseGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightCatsbaseGetResponse> getResponseClass() {
-        return SimbaInsightCatsbaseGetResponse.class;
+    public void setCategoryIds(String categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(categoryIds, "categoryIds");
-        RequestCheckUtils.checkMaxListSize(categoryIds, 200, "categoryIds");
-        RequestCheckUtils.checkNotEmpty(filter, "filter");
-        RequestCheckUtils.checkNotEmpty(time, "time");
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

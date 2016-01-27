@@ -20,8 +20,8 @@ import com.taobao.top.link.Logger;
 import com.taobao.top.link.LoggerFactory;
 import com.taobao.top.link.channel.ChannelContext;
 import com.taobao.top.link.channel.ChannelException;
-import com.taobao.top.link.channel.SimpleChannelHandler;
 import com.taobao.top.link.channel.ChannelSender.SendHandler;
+import com.taobao.top.link.channel.SimpleChannelHandler;
 import com.taobao.top.link.remoting.protocol.RemotingTcpProtocolHandle;
 import com.taobao.top.link.remoting.protocol.RemotingTransportHeader;
 
@@ -29,9 +29,9 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
 
     protected Logger logger;
 
-    private ExecutorService threadPool;
-
     private SerializationFactory serializationFactory = new DefaultSerializationFactory();
+
+    private ExecutorService threadPool;
 
     public RemotingServerChannelHandler() {
         this(DefaultLoggerFactory.getDefault());
@@ -41,20 +41,46 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         this.setLoggerFactory(loggerFactory);
     }
 
-    public void setThreadPool(ExecutorService threadPool) {
-        this.threadPool = threadPool;
+    private MethodCallContext createCallContext(ChannelContext channelContext,
+            Map<String, Object> headers) {
+        MethodCallContext callContext = new MethodCallContext(channelContext.getSender());
+        for (Entry<String, Object> h : headers.entrySet()) {
+            callContext.setCallContext(h.getKey(), h.getValue());
+        }
+        return callContext;
     }
 
-    public void setLoggerFactory(LoggerFactory loggerFactory) {
-        this.logger = loggerFactory.create(this);
-    }
+    private void internalOnMessage(ChannelContext context, MethodCallContext callContext,
+            RemotingTcpProtocolHandle protocol, short operation,
+            HashMap<String, Object> transportHeaders, Serializer serializer)
+            throws ChannelException {
+        // get method return
+        MethodCall methodCall = null;
+        MethodReturn methodReturn = null;
+        try {
+            methodCall = serializer.deserializeMethodCall(protocol.ReadContent());
+            methodReturn = this.onMethodCall(methodCall, callContext);
+        } catch (Throwable e) {
+            this.logger.error(e);
+            methodReturn = new MethodReturn();
+            methodReturn.Exception = e;
+        }
 
-    public void setSerializationFactory(SerializationFactory serializationFactory) {
-        this.serializationFactory = serializationFactory;
-    }
+        // oneway?
+        if (operation == TcpOperations.OneWayRequest) {
+            return;
+        }
 
-    public abstract MethodReturn onMethodCall(MethodCall methodCall, MethodCallContext callContext)
-            throws Throwable;
+        byte[] data = null;
+        try {
+            data = serializer.serializeMethodReturn(methodReturn);
+        } catch (FormatterException e) {
+            this.logger.error(e);
+            transportHeaders.put(TcpTransportHeader.StatusCode, 400);
+            transportHeaders.put(TcpTransportHeader.StatusPhrase, e.getMessage());
+        }
+        this.reply(context, transportHeaders, data);
+    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -62,14 +88,15 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
             NotSupportedException {
         Object msg = context.getMessage();
 
-        if (msg instanceof ByteBuffer || msg instanceof RemotingTcpProtocolHandle) {
+        if ((msg instanceof ByteBuffer) || (msg instanceof RemotingTcpProtocolHandle)) {
             this.onMessage(context, msg);
             return;
         }
 
         if (msg instanceof List<?>) {
-            for (Object buffer : (List<Object>) msg)
+            for (Object buffer : (List<Object>) msg) {
                 this.onMessage(context, buffer);
+            }
             return;
         }
     }
@@ -124,35 +151,8 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         }
     }
 
-    private void internalOnMessage(ChannelContext context, MethodCallContext callContext,
-            RemotingTcpProtocolHandle protocol, short operation,
-            HashMap<String, Object> transportHeaders, Serializer serializer)
-            throws ChannelException {
-        // get method return
-        MethodCall methodCall = null;
-        MethodReturn methodReturn = null;
-        try {
-            methodCall = serializer.deserializeMethodCall(protocol.ReadContent());
-            methodReturn = this.onMethodCall(methodCall, callContext);
-        } catch (Throwable e) {
-            this.logger.error(e);
-            methodReturn = new MethodReturn();
-            methodReturn.Exception = e;
-        }
-
-        // oneway?
-        if (operation == TcpOperations.OneWayRequest) return;
-
-        byte[] data = null;
-        try {
-            data = serializer.serializeMethodReturn(methodReturn);
-        } catch (FormatterException e) {
-            this.logger.error(e);
-            transportHeaders.put(TcpTransportHeader.StatusCode, 400);
-            transportHeaders.put(TcpTransportHeader.StatusPhrase, e.getMessage());
-        }
-        this.reply(context, transportHeaders, data);
-    }
+    public abstract MethodReturn onMethodCall(MethodCall methodCall, MethodCallContext callContext)
+            throws Throwable;
 
     private void reply(ChannelContext context, HashMap<String, Object> transportHeaders, byte[] data)
             throws ChannelException {
@@ -165,7 +165,9 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         handle.WriteContentDelimiter(TcpContentDelimiter.ContentLength);
         handle.WriteContentLength(data != null ? data.length : 0);
         handle.WriteTransportHeaders(transportHeaders);
-        if (data != null) handle.WriteContent(data);
+        if (data != null) {
+            handle.WriteContent(data);
+        }
 
         responseBuffer.flip();
         context.reply(responseBuffer, new SendHandler() {
@@ -177,11 +179,15 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         });
     }
 
-    private MethodCallContext createCallContext(ChannelContext channelContext,
-            Map<String, Object> headers) {
-        MethodCallContext callContext = new MethodCallContext(channelContext.getSender());
-        for (Entry<String, Object> h : headers.entrySet())
-            callContext.setCallContext(h.getKey(), h.getValue());
-        return callContext;
+    public void setLoggerFactory(LoggerFactory loggerFactory) {
+        this.logger = loggerFactory.create(this);
+    }
+
+    public void setSerializationFactory(SerializationFactory serializationFactory) {
+        this.serializationFactory = serializationFactory;
+    }
+
+    public void setThreadPool(ExecutorService threadPool) {
+        this.threadPool = threadPool;
     }
 }

@@ -75,68 +75,68 @@ public class TravelItemsSku extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
     public String getProperties() {
         return this.properties;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getPropertiesName() {
         return this.propertiesName;
     }
 
-    public void setPropertiesName(String propertiesName) {
-        this.propertiesName = propertiesName;
-    }
-
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getSkuId() {
         return this.skuId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setPropertiesName(String propertiesName) {
+        this.propertiesName = propertiesName;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
     public void setSkuId(Long skuId) {

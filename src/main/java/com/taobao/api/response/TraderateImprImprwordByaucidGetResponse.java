@@ -24,12 +24,12 @@ public class TraderateImprImprwordByaucidGetResponse extends TaobaoResponse {
     @ApiField("impr_item_d_o")
     private List<ImprItemDO> imprWordList;
 
-    public void setImprWordList(List<ImprItemDO> imprWordList) {
-        this.imprWordList = imprWordList;
-    }
-
     public List<ImprItemDO> getImprWordList() {
         return this.imprWordList;
+    }
+
+    public void setImprWordList(List<ImprItemDO> imprWordList) {
+        this.imprWordList = imprWordList;
     }
 
 }

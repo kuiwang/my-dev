@@ -23,12 +23,12 @@ public class UmpMbbsListGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> mbbs;
 
-    public void setMbbs(List<String> mbbs) {
-        this.mbbs = mbbs;
-    }
-
     public List<String> getMbbs() {
         return this.mbbs;
+    }
+
+    public void setMbbs(List<String> mbbs) {
+        this.mbbs = mbbs;
     }
 
 }

@@ -24,12 +24,12 @@ public class AreasGetResponse extends TaobaoResponse {
     @ApiField("area")
     private List<Area> areas;
 
-    public void setAreas(List<Area> areas) {
-        this.areas = areas;
-    }
-
     public List<Area> getAreas() {
         return this.areas;
+    }
+
+    public void setAreas(List<Area> areas) {
+        this.areas = areas;
     }
 
 }

@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoProductSkuUpdateResponse;
 public class FenxiaoProductSkuUpdateRequest implements
         TaobaoRequest<FenxiaoProductSkuUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 代销采购价
      */
@@ -32,6 +26,8 @@ public class FenxiaoProductSkuUpdateRequest implements
      * 经销采购价
      */
     private String dealerCostPrice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品ID
@@ -58,74 +54,60 @@ public class FenxiaoProductSkuUpdateRequest implements
      */
     private String standardPrice;
 
-    public void setAgentCostPrice(String agentCostPrice) {
-        this.agentCostPrice = agentCostPrice;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+        RequestCheckUtils.checkNotEmpty(properties, "properties");
     }
 
     public String getAgentCostPrice() {
         return this.agentCostPrice;
     }
 
-    public void setDealerCostPrice(String dealerCostPrice) {
-        this.dealerCostPrice = dealerCostPrice;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.sku.update";
     }
 
     public String getDealerCostPrice() {
         return this.dealerCostPrice;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getProperties() {
         return this.properties;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setSkuNumber(String skuNumber) {
-        this.skuNumber = skuNumber;
+    @Override
+    public Class<FenxiaoProductSkuUpdateResponse> getResponseClass() {
+        return FenxiaoProductSkuUpdateResponse.class;
     }
 
     public String getSkuNumber() {
         return this.skuNumber;
     }
 
-    public void setStandardPrice(String standardPrice) {
-        this.standardPrice = standardPrice;
-    }
-
     public String getStandardPrice() {
         return this.standardPrice;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.sku.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("agent_cost_price", this.agentCostPrice);
@@ -141,6 +123,12 @@ public class FenxiaoProductSkuUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -148,16 +136,36 @@ public class FenxiaoProductSkuUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductSkuUpdateResponse> getResponseClass() {
-        return FenxiaoProductSkuUpdateResponse.class;
+    public void setAgentCostPrice(String agentCostPrice) {
+        this.agentCostPrice = agentCostPrice;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-        RequestCheckUtils.checkNotEmpty(properties, "properties");
+    public void setDealerCostPrice(String dealerCostPrice) {
+        this.dealerCostPrice = dealerCostPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSkuNumber(String skuNumber) {
+        this.skuNumber = skuNumber;
+    }
+
+    public void setStandardPrice(String standardPrice) {
+        this.standardPrice = standardPrice;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

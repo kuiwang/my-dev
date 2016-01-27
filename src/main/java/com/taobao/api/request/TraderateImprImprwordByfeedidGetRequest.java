@@ -17,37 +17,42 @@ import com.taobao.api.response.TraderateImprImprwordByfeedidGetResponse;
 public class TraderateImprImprwordByfeedidGetRequest implements
         TaobaoRequest<TraderateImprImprwordByfeedidGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 交易订单id号（如果包含子订单，请使用子订单id号）
      */
     private Long childTradeId;
 
-    public void setChildTradeId(Long childTradeId) {
-        this.childTradeId = childTradeId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(childTradeId, "childTradeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.impr.imprword.byfeedid.get";
     }
 
     public Long getChildTradeId() {
         return this.childTradeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<TraderateImprImprwordByfeedidGetResponse> getResponseClass() {
+        return TraderateImprImprwordByfeedidGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.traderate.impr.imprword.byfeedid.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("child_trade_id", this.childTradeId);
@@ -57,6 +62,12 @@ public class TraderateImprImprwordByfeedidGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class TraderateImprImprwordByfeedidGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateImprImprwordByfeedidGetResponse> getResponseClass() {
-        return TraderateImprImprwordByfeedidGetResponse.class;
+    public void setChildTradeId(Long childTradeId) {
+        this.childTradeId = childTradeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(childTradeId, "childTradeId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

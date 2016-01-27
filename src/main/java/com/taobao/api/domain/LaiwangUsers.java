@@ -41,28 +41,28 @@ public class LaiwangUsers extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public String getData() {
         return this.data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public String getNextOpenid() {
         return this.nextOpenid;
     }
 
-    public void setNextOpenid(String nextOpenid) {
-        this.nextOpenid = nextOpenid;
-    }
-
     public Long getTotal() {
         return this.total;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setNextOpenid(String nextOpenid) {
+        this.nextOpenid = nextOpenid;
     }
 
     public void setTotal(Long total) {

@@ -72,68 +72,68 @@ public class Eip extends TaobaoObject {
         return this.allocationId;
     }
 
-    public void setAllocationId(String allocationId) {
-        this.allocationId = allocationId;
-    }
-
     public String getAllocationTime() {
         return this.allocationTime;
-    }
-
-    public void setAllocationTime(String allocationTime) {
-        this.allocationTime = allocationTime;
     }
 
     public String getBandwidth() {
         return this.bandwidth;
     }
 
-    public void setBandwidth(String bandwidth) {
-        this.bandwidth = bandwidth;
-    }
-
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
     }
 
     public String getInternetChargeType() {
         return this.internetChargeType;
     }
 
-    public void setInternetChargeType(String internetChargeType) {
-        this.internetChargeType = internetChargeType;
-    }
-
     public String getIpAddress() {
         return this.ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
     }
 
     public String getOperationLocks() {
         return this.operationLocks;
     }
 
-    public void setOperationLocks(String operationLocks) {
-        this.operationLocks = operationLocks;
-    }
-
     public String getRegionId() {
         return this.regionId;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setAllocationId(String allocationId) {
+        this.allocationId = allocationId;
+    }
+
+    public void setAllocationTime(String allocationTime) {
+        this.allocationTime = allocationTime;
+    }
+
+    public void setBandwidth(String bandwidth) {
+        this.bandwidth = bandwidth;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setInternetChargeType(String internetChargeType) {
+        this.internetChargeType = internetChargeType;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public void setOperationLocks(String operationLocks) {
+        this.operationLocks = operationLocks;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
 
     public void setStatus(String status) {

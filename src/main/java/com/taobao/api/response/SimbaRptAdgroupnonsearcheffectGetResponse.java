@@ -19,12 +19,12 @@ public class SimbaRptAdgroupnonsearcheffectGetResponse extends TaobaoResponse {
     @ApiField("rpt_adgroup_nonsearch_effect")
     private String rptAdgroupNonsearchEffect;
 
-    public void setRptAdgroupNonsearchEffect(String rptAdgroupNonsearchEffect) {
-        this.rptAdgroupNonsearchEffect = rptAdgroupNonsearchEffect;
-    }
-
     public String getRptAdgroupNonsearchEffect() {
         return this.rptAdgroupNonsearchEffect;
+    }
+
+    public void setRptAdgroupNonsearchEffect(String rptAdgroupNonsearchEffect) {
+        this.rptAdgroupNonsearchEffect = rptAdgroupNonsearchEffect;
     }
 
 }

@@ -41,44 +41,44 @@ public class RetailStore {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPosx() {
         return this.posx;
     }
 
-    public void setPosx(String posx) {
-        this.posx = posx;
-    }
-
     public String getPosy() {
         return this.posy;
-    }
-
-    public void setPosy(String posy) {
-        this.posy = posy;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
     public List<String> getTelnoList() {
         return this.telnoList;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosx(String posx) {
+        this.posx = posx;
+    }
+
+    public void setPosy(String posy) {
+        this.posy = posy;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
     public void setTelnoList(List<String> telnoList) {

@@ -95,100 +95,100 @@ public class RdsDbInfo extends TaobaoObject {
         return this.charset;
     }
 
-    public void setCharset(String charset) {
-        this.charset = charset;
-    }
-
     public String getComment() {
         return this.comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public String getDbId() {
         return this.dbId;
     }
 
-    public void setDbId(String dbId) {
-        this.dbId = dbId;
-    }
-
     public String getDbName() {
         return this.dbName;
-    }
-
-    public void setDbName(String dbName) {
-        this.dbName = dbName;
     }
 
     public String getDbStatus() {
         return this.dbStatus;
     }
 
-    public void setDbStatus(String dbStatus) {
-        this.dbStatus = dbStatus;
-    }
-
     public String getDbType() {
         return this.dbType;
-    }
-
-    public void setDbType(String dbType) {
-        this.dbType = dbType;
     }
 
     public String getInstanceId() {
         return this.instanceId;
     }
 
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
-    }
-
     public String getInstanceName() {
         return this.instanceName;
-    }
-
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
     }
 
     public String getInstanceType() {
         return this.instanceType;
     }
 
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-
     public String getMaxAccount() {
         return this.maxAccount;
-    }
-
-    public void setMaxAccount(String maxAccount) {
-        this.maxAccount = maxAccount;
     }
 
     public String getPassword() {
         return this.password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUid() {
         return this.uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
     public String getUserName() {
         return this.userName;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setDbId(String dbId) {
+        this.dbId = dbId;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
+    }
+
+    public void setDbStatus(String dbStatus) {
+        this.dbStatus = dbStatus;
+    }
+
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
+    }
+
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    public void setMaxAccount(String maxAccount) {
+        this.maxAccount = maxAccount;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setUserName(String userName) {

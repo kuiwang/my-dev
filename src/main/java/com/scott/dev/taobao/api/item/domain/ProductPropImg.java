@@ -8,9 +8,24 @@ import java.util.Date;
 public class ProductPropImg {
 
     /*
+     * 添加时间.格式:yyyy-mm-dd hh:mm:ss
+     */
+    private Date created;
+
+    /*
      * 产品属性图片ID
      */
     private Number id;
+
+    /*
+     * 修改时间.格式:yyyy-mm-dd hh:mm:ss
+     */
+    private Date modified;
+
+    /*
+     * 图片序号。产品里的图片展示顺序，数据越小越靠前。要求是正整数。
+     */
+    private Number position;
 
     /*
      *  图片所属产品的ID
@@ -26,19 +41,4 @@ public class ProductPropImg {
      * 图片地址.(绝对地址,格式:http://host/image_path)
      */
     private String url;
-
-    /*
-     * 图片序号。产品里的图片展示顺序，数据越小越靠前。要求是正整数。
-     */
-    private Number position;
-
-    /*
-     * 添加时间.格式:yyyy-mm-dd hh:mm:ss
-     */
-    private Date created;
-
-    /*
-     * 修改时间.格式:yyyy-mm-dd hh:mm:ss
-     */
-    private Date modified;
 }

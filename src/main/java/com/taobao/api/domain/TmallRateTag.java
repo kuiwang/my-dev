@@ -29,12 +29,12 @@ public class TmallRateTag extends TaobaoObject {
         return this.posi;
     }
 
-    public void setPosi(Boolean posi) {
-        this.posi = posi;
-    }
-
     public String getTagName() {
         return this.tagName;
+    }
+
+    public void setPosi(Boolean posi) {
+        this.posi = posi;
     }
 
     public void setTagName(String tagName) {

@@ -67,60 +67,60 @@ public class INWordCategory extends TaobaoObject {
         return this.avgPrice;
     }
 
-    public void setAvgPrice(Long avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public Long getCategoryId() {
         return this.categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Long getClick() {
         return this.click;
     }
 
-    public void setClick(Long click) {
-        this.click = click;
-    }
-
     public Long getCompetition() {
         return this.competition;
-    }
-
-    public void setCompetition(Long competition) {
-        this.competition = competition;
     }
 
     public String getCtr() {
         return this.ctr;
     }
 
-    public void setCtr(String ctr) {
-        this.ctr = ctr;
-    }
-
     public Date getDate() {
         return this.date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Long getPv() {
         return this.pv;
     }
 
-    public void setPv(Long pv) {
-        this.pv = pv;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setAvgPrice(Long avgPrice) {
+        this.avgPrice = avgPrice;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setClick(Long click) {
+        this.click = click;
+    }
+
+    public void setCompetition(Long competition) {
+        this.competition = competition;
+    }
+
+    public void setCtr(String ctr) {
+        this.ctr = ctr;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setPv(Long pv) {
+        this.pv = pv;
     }
 
     public void setWord(String word) {

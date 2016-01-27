@@ -30,20 +30,20 @@ public class DescribeInstanceTypesResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setInstanceTypes(List<InstanceType> instanceTypes) {
-        this.instanceTypes = instanceTypes;
-    }
-
     public List<InstanceType> getInstanceTypes() {
         return this.instanceTypes;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setInstanceTypes(List<InstanceType> instanceTypes) {
+        this.instanceTypes = instanceTypes;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

@@ -45,28 +45,28 @@ public class INCategoryChildTop extends TaobaoObject {
         return this.categoryDesc;
     }
 
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
-    }
-
     public Long getCategoryId() {
         return this.categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
         return this.categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public List<INCategoryProperties> getCategoryPropertiesList() {
         return this.categoryPropertiesList;
+    }
+
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setCategoryPropertiesList(List<INCategoryProperties> categoryPropertiesList) {

@@ -17,24 +17,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class CreatePostpaidDBInstanceRequest implements
         AliyunRequest<CreatePostpaidDBInstanceResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 用于保证幂等性
      */
@@ -70,10 +52,24 @@ public class CreatePostpaidDBInstanceRequest implements
      */
     private String engineVersion;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
     /**
      * 数据中心，长度不超过50个字符
      */
     private String regionId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
 
     /**
      * 允许访问该实例下所有数据库的IP名单，以逗号隔开，不可重复，最多100个；支持格式：%，0.0.0.0/0，10.23.12.24（IP
@@ -82,114 +78,86 @@ public class CreatePostpaidDBInstanceRequest implements
      */
     private String securityIPList;
 
-    public void setClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(clientToken, "clientToken");
+        RequestCheckUtils.checkNotEmpty(dBInstanceClass, "dBInstanceClass");
+        RequestCheckUtils.checkNotEmpty(dBInstanceNetType, "dBInstanceNetType");
+        RequestCheckUtils.checkNotEmpty(dBInstanceStorage, "dBInstanceStorage");
+        RequestCheckUtils.checkNotEmpty(engine, "engine");
+        RequestCheckUtils.checkNotEmpty(engineVersion, "engineVersion");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+        RequestCheckUtils.checkNotEmpty(securityIPList, "securityIPList");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "rds.aliyuncs.com.CreatePostpaidDBInstance.2014-08-15";
     }
 
     public String getClientToken() {
         return this.clientToken;
     }
 
-    public void setdBInstanceClass(String dBInstanceClass) {
-        this.dBInstanceClass = dBInstanceClass;
-    }
-
     public String getdBInstanceClass() {
         return this.dBInstanceClass;
-    }
-
-    public void setdBInstanceDescription(String dBInstanceDescription) {
-        this.dBInstanceDescription = dBInstanceDescription;
     }
 
     public String getdBInstanceDescription() {
         return this.dBInstanceDescription;
     }
 
-    public void setdBInstanceNetType(String dBInstanceNetType) {
-        this.dBInstanceNetType = dBInstanceNetType;
-    }
-
     public String getdBInstanceNetType() {
         return this.dBInstanceNetType;
-    }
-
-    public void setdBInstanceStorage(Long dBInstanceStorage) {
-        this.dBInstanceStorage = dBInstanceStorage;
     }
 
     public Long getdBInstanceStorage() {
         return this.dBInstanceStorage;
     }
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setEngineVersion(String engineVersion) {
-        this.engineVersion = engineVersion;
     }
 
     public String getEngineVersion() {
         return this.engineVersion;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setSecurityIPList(String securityIPList) {
-        this.securityIPList = securityIPList;
-    }
-
-    public String getSecurityIPList() {
-        return this.securityIPList;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreatePostpaidDBInstanceResponse> getResponseClass() {
+        return CreatePostpaidDBInstanceResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSecurityIPList() {
+        return this.securityIPList;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "rds.aliyuncs.com.CreatePostpaidDBInstance.2014-08-15";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -210,6 +178,12 @@ public class CreatePostpaidDBInstanceRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -217,22 +191,56 @@ public class CreatePostpaidDBInstanceRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CreatePostpaidDBInstanceResponse> getResponseClass() {
-        return CreatePostpaidDBInstanceResponse.class;
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(clientToken, "clientToken");
-        RequestCheckUtils.checkNotEmpty(dBInstanceClass, "dBInstanceClass");
-        RequestCheckUtils.checkNotEmpty(dBInstanceNetType, "dBInstanceNetType");
-        RequestCheckUtils.checkNotEmpty(dBInstanceStorage, "dBInstanceStorage");
-        RequestCheckUtils.checkNotEmpty(engine, "engine");
-        RequestCheckUtils.checkNotEmpty(engineVersion, "engineVersion");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
-        RequestCheckUtils.checkNotEmpty(securityIPList, "securityIPList");
+    public void setdBInstanceClass(String dBInstanceClass) {
+        this.dBInstanceClass = dBInstanceClass;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setdBInstanceDescription(String dBInstanceDescription) {
+        this.dBInstanceDescription = dBInstanceDescription;
+    }
+
+    public void setdBInstanceNetType(String dBInstanceNetType) {
+        this.dBInstanceNetType = dBInstanceNetType;
+    }
+
+    public void setdBInstanceStorage(Long dBInstanceStorage) {
+        this.dBInstanceStorage = dBInstanceStorage;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSecurityIPList(String securityIPList) {
+        this.securityIPList = securityIPList;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

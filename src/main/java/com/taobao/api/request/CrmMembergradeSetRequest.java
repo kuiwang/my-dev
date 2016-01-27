@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmMembergradeSetResponse;
  */
 public class CrmMembergradeSetRequest implements TaobaoRequest<CrmMembergradeSetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称
      */
@@ -34,34 +28,44 @@ public class CrmMembergradeSetRequest implements TaobaoRequest<CrmMembergradeSet
      */
     private Long grade;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(grade, "grade");
+        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
+        RequestCheckUtils.checkMinValue(grade, 1L, "grade");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.membergrade.set";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setGrade(Long grade) {
-        this.grade = grade;
-    }
-
     public Long getGrade() {
         return this.grade;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<CrmMembergradeSetResponse> getResponseClass() {
+        return CrmMembergradeSetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.crm.membergrade.set";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -72,6 +76,12 @@ public class CrmMembergradeSetRequest implements TaobaoRequest<CrmMembergradeSet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,18 +89,16 @@ public class CrmMembergradeSetRequest implements TaobaoRequest<CrmMembergradeSet
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMembergradeSetResponse> getResponseClass() {
-        return CrmMembergradeSetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(grade, "grade");
-        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
-        RequestCheckUtils.checkMinValue(grade, 1L, "grade");
+    public void setGrade(Long grade) {
+        this.grade = grade;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

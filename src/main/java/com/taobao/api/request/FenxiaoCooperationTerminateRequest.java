@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoCooperationTerminateResponse;
 public class FenxiaoCooperationTerminateRequest implements
         TaobaoRequest<FenxiaoCooperationTerminateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 合作编号
      */
@@ -40,42 +34,48 @@ public class FenxiaoCooperationTerminateRequest implements
      */
     private String endRemark;
 
-    public void setCooperateId(Long cooperateId) {
-        this.cooperateId = cooperateId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(cooperateId, "cooperateId");
+        RequestCheckUtils.checkNotEmpty(endRemainDays, "endRemainDays");
+        RequestCheckUtils.checkNotEmpty(endRemark, "endRemark");
+        RequestCheckUtils.checkMaxLength(endRemark, 2000, "endRemark");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.cooperation.terminate";
     }
 
     public Long getCooperateId() {
         return this.cooperateId;
     }
 
-    public void setEndRemainDays(Long endRemainDays) {
-        this.endRemainDays = endRemainDays;
-    }
-
     public Long getEndRemainDays() {
         return this.endRemainDays;
-    }
-
-    public void setEndRemark(String endRemark) {
-        this.endRemark = endRemark;
     }
 
     public String getEndRemark() {
         return this.endRemark;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoCooperationTerminateResponse> getResponseClass() {
+        return FenxiaoCooperationTerminateResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.cooperation.terminate";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cooperate_id", this.cooperateId);
@@ -87,6 +87,12 @@ public class FenxiaoCooperationTerminateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -94,18 +100,20 @@ public class FenxiaoCooperationTerminateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoCooperationTerminateResponse> getResponseClass() {
-        return FenxiaoCooperationTerminateResponse.class;
+    public void setCooperateId(Long cooperateId) {
+        this.cooperateId = cooperateId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(cooperateId, "cooperateId");
-        RequestCheckUtils.checkNotEmpty(endRemainDays, "endRemainDays");
-        RequestCheckUtils.checkNotEmpty(endRemark, "endRemark");
-        RequestCheckUtils.checkMaxLength(endRemark, 2000, "endRemark");
+    public void setEndRemainDays(Long endRemainDays) {
+        this.endRemainDays = endRemainDays;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndRemark(String endRemark) {
+        this.endRemark = endRemark;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

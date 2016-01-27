@@ -21,12 +21,12 @@ public class StockInfo {
         return this.itemQuantity;
     }
 
-    public void setItemQuantity(String itemQuantity) {
-        this.itemQuantity = itemQuantity;
-    }
-
     public List<SkuQuantity> getSkuQuantityList() {
         return this.skuQuantityList;
+    }
+
+    public void setItemQuantity(String itemQuantity) {
+        this.itemQuantity = itemQuantity;
     }
 
     public void setSkuQuantityList(List<SkuQuantity> skuQuantityList) {

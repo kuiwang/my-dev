@@ -29,12 +29,12 @@ public class DescInfo extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public void setType(String type) {

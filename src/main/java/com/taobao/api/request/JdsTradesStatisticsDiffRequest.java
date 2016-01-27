@@ -17,16 +17,12 @@ import com.taobao.api.response.JdsTradesStatisticsDiffResponse;
 public class JdsTradesStatisticsDiffRequest implements
         TaobaoRequest<JdsTradesStatisticsDiffResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询的日期，格式如YYYYMMDD的日期对应的数字
      */
     private String date;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页数
@@ -43,50 +39,49 @@ public class JdsTradesStatisticsDiffRequest implements
      */
     private String preStatus;
 
-    public void setDate(String date) {
-        this.date = date;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(date, "date");
+        RequestCheckUtils.checkNotEmpty(postStatus, "postStatus");
+        RequestCheckUtils.checkNotEmpty(preStatus, "preStatus");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jds.trades.statistics.diff";
     }
 
     public String getDate() {
         return this.date;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPostStatus(String postStatus) {
-        this.postStatus = postStatus;
-    }
-
     public String getPostStatus() {
         return this.postStatus;
-    }
-
-    public void setPreStatus(String preStatus) {
-        this.preStatus = preStatus;
     }
 
     public String getPreStatus() {
         return this.preStatus;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JdsTradesStatisticsDiffResponse> getResponseClass() {
+        return JdsTradesStatisticsDiffResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jds.trades.statistics.diff";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("date", this.date);
@@ -99,6 +94,12 @@ public class JdsTradesStatisticsDiffRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,17 +107,24 @@ public class JdsTradesStatisticsDiffRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<JdsTradesStatisticsDiffResponse> getResponseClass() {
-        return JdsTradesStatisticsDiffResponse.class;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(date, "date");
-        RequestCheckUtils.checkNotEmpty(postStatus, "postStatus");
-        RequestCheckUtils.checkNotEmpty(preStatus, "preStatus");
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPostStatus(String postStatus) {
+        this.postStatus = postStatus;
+    }
+
+    public void setPreStatus(String preStatus) {
+        this.preStatus = preStatus;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

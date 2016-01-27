@@ -26,20 +26,20 @@ public class TradeConfirmFee {
         return confirmFee;
     }
 
-    public void setConfirmFee(Price confirmFee) {
-        this.confirmFee = confirmFee;
-    }
-
     public Price getConfirmPostFee() {
         return confirmPostFee;
     }
 
-    public void setConfirmPostFee(Price confirmPostFee) {
-        this.confirmPostFee = confirmPostFee;
-    }
-
     public Boolean getIsLastOrder() {
         return isLastOrder;
+    }
+
+    public void setConfirmFee(Price confirmFee) {
+        this.confirmFee = confirmFee;
+    }
+
+    public void setConfirmPostFee(Price confirmPostFee) {
+        this.confirmPostFee = confirmPostFee;
     }
 
     public void setIsLastOrder(Boolean isLastOrder) {

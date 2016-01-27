@@ -17,12 +17,6 @@ import com.taobao.api.response.PromotionCouponsGetResponse;
  */
 public class PromotionCouponsGetRequest implements TaobaoRequest<PromotionCouponsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 优惠券的id，唯一标识这个优惠券
      */
@@ -40,6 +34,8 @@ public class PromotionCouponsGetRequest implements TaobaoRequest<PromotionCoupon
      */
     private Date endTime;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 查询的页号，结果集是分页返回的，每页20条<br />
      * 支持最小值为：1
@@ -52,58 +48,53 @@ public class PromotionCouponsGetRequest implements TaobaoRequest<PromotionCoupon
      */
     private Long pageSize;
 
-    public void setCouponId(Long couponId) {
-        this.couponId = couponId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(denominations, 100L, "denominations");
+        RequestCheckUtils.checkMinValue(denominations, 3L, "denominations");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.coupons.get";
     }
 
     public Long getCouponId() {
         return this.couponId;
     }
 
-    public void setDenominations(Long denominations) {
-        this.denominations = denominations;
-    }
-
     public Long getDenominations() {
         return this.denominations;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PromotionCouponsGetResponse> getResponseClass() {
+        return PromotionCouponsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotion.coupons.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("coupon_id", this.couponId);
@@ -117,6 +108,12 @@ public class PromotionCouponsGetRequest implements TaobaoRequest<PromotionCoupon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -124,17 +121,28 @@ public class PromotionCouponsGetRequest implements TaobaoRequest<PromotionCoupon
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionCouponsGetResponse> getResponseClass() {
-        return PromotionCouponsGetResponse.class;
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(denominations, 100L, "denominations");
-        RequestCheckUtils.checkMinValue(denominations, 3L, "denominations");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+    public void setDenominations(Long denominations) {
+        this.denominations = denominations;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.FenxiaoTrademonitorGetResponse;
  */
 public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrademonitorGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 经销商的淘宝账号
      */
@@ -38,6 +32,8 @@ public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrade
      * (purchase_orders)字段。例如：trade_monitors.item_title表示只返回item_title
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 页码。（大于0的整数。小于1按1计）
@@ -59,74 +55,58 @@ public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrade
      */
     private Date startCreated;
 
-    public void setDistributorNick(String distributorNick) {
-        this.distributorNick = distributorNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.trademonitor.get";
     }
 
     public String getDistributorNick() {
         return this.distributorNick;
     }
 
-    public void setEndCreated(Date endCreated) {
-        this.endCreated = endCreated;
-    }
-
     public Date getEndCreated() {
         return this.endCreated;
-    }
-
-    public void setFields(String fields) {
-        this.fields = fields;
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setStartCreated(Date startCreated) {
-        this.startCreated = startCreated;
+    @Override
+    public Class<FenxiaoTrademonitorGetResponse> getResponseClass() {
+        return FenxiaoTrademonitorGetResponse.class;
     }
 
     public Date getStartCreated() {
         return this.startCreated;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.trademonitor.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("distributor_nick", this.distributorNick);
@@ -142,6 +122,12 @@ public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrade
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -149,14 +135,36 @@ public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrade
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoTrademonitorGetResponse> getResponseClass() {
-        return FenxiaoTrademonitorGetResponse.class;
+    public void setDistributorNick(String distributorNick) {
+        this.distributorNick = distributorNick;
     }
 
-    public void check() throws ApiRuleException {
+    public void setEndCreated(Date endCreated) {
+        this.endCreated = endCreated;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setStartCreated(Date startCreated) {
+        this.startCreated = startCreated;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

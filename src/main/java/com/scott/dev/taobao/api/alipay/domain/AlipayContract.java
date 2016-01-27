@@ -41,44 +41,44 @@ public class AlipayContract {
         return this.alipayUserId;
     }
 
-    public void setAlipayUserId(String alipayUserId) {
-        this.alipayUserId = alipayUserId;
-    }
-
     public String getContractContent() {
         return this.contractContent;
-    }
-
-    public void setContractContent(String contractContent) {
-        this.contractContent = contractContent;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getPageUrl() {
         return this.pageUrl;
-    }
-
-    public void setPageUrl(String pageUrl) {
-        this.pageUrl = pageUrl;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
     public Boolean getSubscribe() {
         return this.subscribe;
+    }
+
+    public void setAlipayUserId(String alipayUserId) {
+        this.alipayUserId = alipayUserId;
+    }
+
+    public void setContractContent(String contractContent) {
+        this.contractContent = contractContent;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public void setSubscribe(Boolean subscribe) {

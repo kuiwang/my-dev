@@ -47,36 +47,36 @@ public class INCategoryAnalysis extends TaobaoObject {
         return this.categoryAreaPer;
     }
 
-    public void setCategoryAreaPer(String categoryAreaPer) {
-        this.categoryAreaPer = categoryAreaPer;
-    }
-
     public String getCategoryHpPrice() {
         return this.categoryHpPrice;
-    }
-
-    public void setCategoryHpPrice(String categoryHpPrice) {
-        this.categoryHpPrice = categoryHpPrice;
     }
 
     public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getCategoryName() {
         return this.categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public String getCategorySourcePer() {
         return this.categorySourcePer;
+    }
+
+    public void setCategoryAreaPer(String categoryAreaPer) {
+        this.categoryAreaPer = categoryAreaPer;
+    }
+
+    public void setCategoryHpPrice(String categoryHpPrice) {
+        this.categoryHpPrice = categoryHpPrice;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setCategorySourcePer(String categorySourcePer) {

@@ -163,188 +163,188 @@ public class SubUserFullInfo extends TaobaoObject {
         return this.departmentId;
     }
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
     public String getDepartmentName() {
         return this.departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
     }
 
     public Long getDutyId() {
         return this.dutyId;
     }
 
-    public void setDutyId(Long dutyId) {
-        this.dutyId = dutyId;
-    }
-
     public Long getDutyLevel() {
         return this.dutyLevel;
-    }
-
-    public void setDutyLevel(Long dutyLevel) {
-        this.dutyLevel = dutyLevel;
     }
 
     public String getDutyName() {
         return this.dutyName;
     }
 
-    public void setDutyName(String dutyName) {
-        this.dutyName = dutyName;
-    }
-
     public Long getEmployeeId() {
         return this.employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getEmployeeName() {
         return this.employeeName;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
     public String getEmployeeNickname() {
         return this.employeeNickname;
-    }
-
-    public void setEmployeeNickname(String employeeNickname) {
-        this.employeeNickname = employeeNickname;
     }
 
     public String getEmployeeNum() {
         return this.employeeNum;
     }
 
-    public void setEmployeeNum(String employeeNum) {
-        this.employeeNum = employeeNum;
-    }
-
     public Date getEntryDate() {
         return this.entryDate;
-    }
-
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
     }
 
     public Long getLeaderId() {
         return this.leaderId;
     }
 
-    public void setLeaderId(Long leaderId) {
-        this.leaderId = leaderId;
-    }
-
     public String getOfficePhone() {
         return this.officePhone;
-    }
-
-    public void setOfficePhone(String officePhone) {
-        this.officePhone = officePhone;
     }
 
     public Long getParentDepartment() {
         return this.parentDepartment;
     }
 
-    public void setParentDepartment(Long parentDepartment) {
-        this.parentDepartment = parentDepartment;
-    }
-
     public Long getSex() {
         return this.sex;
-    }
-
-    public void setSex(Long sex) {
-        this.sex = sex;
     }
 
     public Boolean getSubDispatchStatus() {
         return this.subDispatchStatus;
     }
 
-    public void setSubDispatchStatus(Boolean subDispatchStatus) {
-        this.subDispatchStatus = subDispatchStatus;
-    }
-
     public Long getSubId() {
         return this.subId;
-    }
-
-    public void setSubId(Long subId) {
-        this.subId = subId;
     }
 
     public String getSubNick() {
         return this.subNick;
     }
 
-    public void setSubNick(String subNick) {
-        this.subNick = subNick;
-    }
-
     public Boolean getSubOwedStatus() {
         return this.subOwedStatus;
-    }
-
-    public void setSubOwedStatus(Boolean subOwedStatus) {
-        this.subOwedStatus = subOwedStatus;
     }
 
     public Long getSubStatus() {
         return this.subStatus;
     }
 
-    public void setSubStatus(Long subStatus) {
-        this.subStatus = subStatus;
-    }
-
     public String getSubuserEmail() {
         return this.subuserEmail;
-    }
-
-    public void setSubuserEmail(String subuserEmail) {
-        this.subuserEmail = subuserEmail;
     }
 
     public String getUserEmail() {
         return this.userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     public Long getUserId() {
         return this.userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getUserNick() {
         return this.userNick;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
     public String getWorkLocation() {
         return this.workLocation;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public void setDutyId(Long dutyId) {
+        this.dutyId = dutyId;
+    }
+
+    public void setDutyLevel(Long dutyLevel) {
+        this.dutyLevel = dutyLevel;
+    }
+
+    public void setDutyName(String dutyName) {
+        this.dutyName = dutyName;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public void setEmployeeNickname(String employeeNickname) {
+        this.employeeNickname = employeeNickname;
+    }
+
+    public void setEmployeeNum(String employeeNum) {
+        this.employeeNum = employeeNum;
+    }
+
+    public void setEntryDate(Date entryDate) {
+        this.entryDate = entryDate;
+    }
+
+    public void setLeaderId(Long leaderId) {
+        this.leaderId = leaderId;
+    }
+
+    public void setOfficePhone(String officePhone) {
+        this.officePhone = officePhone;
+    }
+
+    public void setParentDepartment(Long parentDepartment) {
+        this.parentDepartment = parentDepartment;
+    }
+
+    public void setSex(Long sex) {
+        this.sex = sex;
+    }
+
+    public void setSubDispatchStatus(Boolean subDispatchStatus) {
+        this.subDispatchStatus = subDispatchStatus;
+    }
+
+    public void setSubId(Long subId) {
+        this.subId = subId;
+    }
+
+    public void setSubNick(String subNick) {
+        this.subNick = subNick;
+    }
+
+    public void setSubOwedStatus(Boolean subOwedStatus) {
+        this.subOwedStatus = subOwedStatus;
+    }
+
+    public void setSubStatus(Long subStatus) {
+        this.subStatus = subStatus;
+    }
+
+    public void setSubuserEmail(String subuserEmail) {
+        this.subuserEmail = subuserEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 
     public void setWorkLocation(String workLocation) {

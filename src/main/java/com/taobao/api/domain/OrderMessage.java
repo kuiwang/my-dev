@@ -43,28 +43,28 @@ public class OrderMessage extends TaobaoObject {
         return this.messageContent;
     }
 
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
-    }
-
     public Date getMessageTime() {
         return this.messageTime;
-    }
-
-    public void setMessageTime(Date messageTime) {
-        this.messageTime = messageTime;
     }
 
     public String getMessageTitle() {
         return this.messageTitle;
     }
 
-    public void setMessageTitle(String messageTitle) {
-        this.messageTitle = messageTitle;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
+    }
+
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
+    }
+
+    public void setMessageTime(Date messageTime) {
+        this.messageTime = messageTime;
+    }
+
+    public void setMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
     }
 
     public void setPicUrl(String picUrl) {

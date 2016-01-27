@@ -19,12 +19,12 @@ public class AlipayMicropayOrderFreezepayurlGetResponse extends TaobaoResponse {
     @ApiField("pay_freeze_url")
     private String payFreezeUrl;
 
-    public void setPayFreezeUrl(String payFreezeUrl) {
-        this.payFreezeUrl = payFreezeUrl;
-    }
-
     public String getPayFreezeUrl() {
         return this.payFreezeUrl;
+    }
+
+    public void setPayFreezeUrl(String payFreezeUrl) {
+        this.payFreezeUrl = payFreezeUrl;
     }
 
 }

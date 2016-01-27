@@ -63,52 +63,52 @@ public class ServiceItemProperty extends TaobaoObject {
         return this.basicPrice;
     }
 
-    public void setBasicPrice(String basicPrice) {
-        this.basicPrice = basicPrice;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public List<ItemPropertyValues> getItemPropertyValues() {
         return this.itemPropertyValues;
     }
 
-    public void setItemPropertyValues(List<ItemPropertyValues> itemPropertyValues) {
-        this.itemPropertyValues = itemPropertyValues;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getServiceItemCode() {
         return this.serviceItemCode;
     }
 
-    public void setServiceItemCode(String serviceItemCode) {
-        this.serviceItemCode = serviceItemCode;
-    }
-
     public String getServiceItemName() {
         return this.serviceItemName;
     }
 
-    public void setServiceItemName(String serviceItemName) {
-        this.serviceItemName = serviceItemName;
-    }
-
     public String getServiceName() {
         return this.serviceName;
+    }
+
+    public void setBasicPrice(String basicPrice) {
+        this.basicPrice = basicPrice;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setItemPropertyValues(List<ItemPropertyValues> itemPropertyValues) {
+        this.itemPropertyValues = itemPropertyValues;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setServiceItemCode(String serviceItemCode) {
+        this.serviceItemCode = serviceItemCode;
+    }
+
+    public void setServiceItemName(String serviceItemName) {
+        this.serviceItemName = serviceItemName;
     }
 
     public void setServiceName(String serviceName) {

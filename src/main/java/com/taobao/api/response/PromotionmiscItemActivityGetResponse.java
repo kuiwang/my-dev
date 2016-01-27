@@ -20,12 +20,12 @@ public class PromotionmiscItemActivityGetResponse extends TaobaoResponse {
     @ApiField("item_promotion")
     private ItemPromotion itemPromotion;
 
-    public void setItemPromotion(ItemPromotion itemPromotion) {
-        this.itemPromotion = itemPromotion;
-    }
-
     public ItemPromotion getItemPromotion() {
         return this.itemPromotion;
+    }
+
+    public void setItemPromotion(ItemPromotion itemPromotion) {
+        this.itemPromotion = itemPromotion;
     }
 
 }

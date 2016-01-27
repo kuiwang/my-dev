@@ -17,12 +17,6 @@ import com.taobao.api.response.WlbItemMapGetByExtentityResponse;
 public class WlbItemMapGetByExtentityRequest implements
         TaobaoRequest<WlbItemMapGetByExtentityResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 外部实体类型对应的商品id
      */
@@ -33,34 +27,42 @@ public class WlbItemMapGetByExtentityRequest implements
      */
     private String extEntityType;
 
-    public void setExtEntityId(Long extEntityId) {
-        this.extEntityId = extEntityId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
+        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.map.get.by.extentity";
     }
 
     public Long getExtEntityId() {
         return this.extEntityId;
     }
 
-    public void setExtEntityType(String extEntityType) {
-        this.extEntityType = extEntityType;
-    }
-
     public String getExtEntityType() {
         return this.extEntityType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WlbItemMapGetByExtentityResponse> getResponseClass() {
+        return WlbItemMapGetByExtentityResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.wlb.item.map.get.by.extentity";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ext_entity_id", this.extEntityId);
@@ -71,6 +73,12 @@ public class WlbItemMapGetByExtentityRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class WlbItemMapGetByExtentityRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemMapGetByExtentityResponse> getResponseClass() {
-        return WlbItemMapGetByExtentityResponse.class;
+    public void setExtEntityId(Long extEntityId) {
+        this.extEntityId = extEntityId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(extEntityId, "extEntityId");
-        RequestCheckUtils.checkNotEmpty(extEntityType, "extEntityType");
+    public void setExtEntityType(String extEntityType) {
+        this.extEntityType = extEntityType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -18,12 +18,6 @@ import com.taobao.api.response.AlipayMicropayOrderFreezeResponse;
 public class AlipayMicropayOrderFreezeRequest implements
         TaobaoRequest<AlipayMicropayOrderFreezeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要冻结金额，[0.01,2000]，必须是正数，最多只能保留小数点两位,单位是元
      */
@@ -38,6 +32,8 @@ public class AlipayMicropayOrderFreezeRequest implements
      * 冻结资金的到期时间，超过此日期，冻结金会自动解冻,时间要求是:[当前时间+24h,订购时间-8h] .
      */
     private Date expireTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 冻结备注,maxLength=40
@@ -56,66 +52,59 @@ public class AlipayMicropayOrderFreezeRequest implements
      */
     private String payConfirm;
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(amount, "amount");
+        RequestCheckUtils.checkNotEmpty(expireTime, "expireTime");
+        RequestCheckUtils.checkNotEmpty(memo, "memo");
+        RequestCheckUtils.checkNotEmpty(merchantOrderNo, "merchantOrderNo");
+        RequestCheckUtils.checkNotEmpty(payConfirm, "payConfirm");
     }
 
     public String getAmount() {
         return this.amount;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    @Override
+    public String getApiMethodName() {
+        return "alipay.micropay.order.freeze";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public void setExpireTime(Date expireTime) {
-        this.expireTime = expireTime;
-    }
-
     public Date getExpireTime() {
         return this.expireTime;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
-    }
-
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
-    }
-
-    public void setPayConfirm(String payConfirm) {
-        this.payConfirm = payConfirm;
     }
 
     public String getPayConfirm() {
         return this.payConfirm;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlipayMicropayOrderFreezeResponse> getResponseClass() {
+        return AlipayMicropayOrderFreezeResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.micropay.order.freeze";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("amount", this.amount);
@@ -130,6 +119,12 @@ public class AlipayMicropayOrderFreezeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -137,19 +132,32 @@ public class AlipayMicropayOrderFreezeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayMicropayOrderFreezeResponse> getResponseClass() {
-        return AlipayMicropayOrderFreezeResponse.class;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(amount, "amount");
-        RequestCheckUtils.checkNotEmpty(expireTime, "expireTime");
-        RequestCheckUtils.checkNotEmpty(memo, "memo");
-        RequestCheckUtils.checkNotEmpty(merchantOrderNo, "merchantOrderNo");
-        RequestCheckUtils.checkNotEmpty(payConfirm, "payConfirm");
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setPayConfirm(String payConfirm) {
+        this.payConfirm = payConfirm;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

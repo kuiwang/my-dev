@@ -16,12 +16,6 @@ import com.taobao.api.response.AtbItemsCouponGetResponse;
  */
 public class AtbItemsCouponGetRequest implements TaobaoRequest<AtbItemsCouponGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品所在地
      */
@@ -78,6 +72,8 @@ public class AtbItemsCouponGetRequest implements TaobaoRequest<AtbItemsCouponGet
      * ,shop_type;字段之间用","分隔
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品标题中包含的关键字. 注意:查询时keyword,cid至少选择其中一个参数
@@ -142,186 +138,116 @@ public class AtbItemsCouponGetRequest implements TaobaoRequest<AtbItemsCouponGet
      */
     private Long startVolume;
 
-    public void setArea(String area) {
-        this.area = area;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.atb.items.coupon.get";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCouponType(Long couponType) {
-        this.couponType = couponType;
     }
 
     public Long getCouponType() {
         return this.couponType;
     }
 
-    public void setEndCommissionNum(Long endCommissionNum) {
-        this.endCommissionNum = endCommissionNum;
-    }
-
     public Long getEndCommissionNum() {
         return this.endCommissionNum;
-    }
-
-    public void setEndCommissionRate(Long endCommissionRate) {
-        this.endCommissionRate = endCommissionRate;
     }
 
     public Long getEndCommissionRate() {
         return this.endCommissionRate;
     }
 
-    public void setEndCommissionVolume(Long endCommissionVolume) {
-        this.endCommissionVolume = endCommissionVolume;
-    }
-
     public Long getEndCommissionVolume() {
         return this.endCommissionVolume;
-    }
-
-    public void setEndCouponRate(Long endCouponRate) {
-        this.endCouponRate = endCouponRate;
     }
 
     public Long getEndCouponRate() {
         return this.endCouponRate;
     }
 
-    public void setEndCredit(String endCredit) {
-        this.endCredit = endCredit;
-    }
-
     public String getEndCredit() {
         return this.endCredit;
-    }
-
-    public void setEndVolume(Long endVolume) {
-        this.endVolume = endVolume;
     }
 
     public Long getEndVolume() {
         return this.endVolume;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeyword() {
         return this.keyword;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
+    @Override
+    public Class<AtbItemsCouponGetResponse> getResponseClass() {
+        return AtbItemsCouponGetResponse.class;
     }
 
     public String getShopType() {
         return this.shopType;
     }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     public String getSort() {
         return this.sort;
-    }
-
-    public void setStartCommissionNum(Long startCommissionNum) {
-        this.startCommissionNum = startCommissionNum;
     }
 
     public Long getStartCommissionNum() {
         return this.startCommissionNum;
     }
 
-    public void setStartCommissionRate(Long startCommissionRate) {
-        this.startCommissionRate = startCommissionRate;
-    }
-
     public Long getStartCommissionRate() {
         return this.startCommissionRate;
-    }
-
-    public void setStartCommissionVolume(Long startCommissionVolume) {
-        this.startCommissionVolume = startCommissionVolume;
     }
 
     public Long getStartCommissionVolume() {
         return this.startCommissionVolume;
     }
 
-    public void setStartCouponRate(Long startCouponRate) {
-        this.startCouponRate = startCouponRate;
-    }
-
     public Long getStartCouponRate() {
         return this.startCouponRate;
-    }
-
-    public void setStartCredit(String startCredit) {
-        this.startCredit = startCredit;
     }
 
     public String getStartCredit() {
         return this.startCredit;
     }
 
-    public void setStartVolume(Long startVolume) {
-        this.startVolume = startVolume;
-    }
-
     public Long getStartVolume() {
         return this.startVolume;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.atb.items.coupon.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -351,6 +277,12 @@ public class AtbItemsCouponGetRequest implements TaobaoRequest<AtbItemsCouponGet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -358,16 +290,92 @@ public class AtbItemsCouponGetRequest implements TaobaoRequest<AtbItemsCouponGet
         this.udfParams.put(key, value);
     }
 
-    public Class<AtbItemsCouponGetResponse> getResponseClass() {
-        return AtbItemsCouponGetResponse.class;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMaxListSize(fields, 20, "fields");
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCouponType(Long couponType) {
+        this.couponType = couponType;
+    }
+
+    public void setEndCommissionNum(Long endCommissionNum) {
+        this.endCommissionNum = endCommissionNum;
+    }
+
+    public void setEndCommissionRate(Long endCommissionRate) {
+        this.endCommissionRate = endCommissionRate;
+    }
+
+    public void setEndCommissionVolume(Long endCommissionVolume) {
+        this.endCommissionVolume = endCommissionVolume;
+    }
+
+    public void setEndCouponRate(Long endCouponRate) {
+        this.endCouponRate = endCouponRate;
+    }
+
+    public void setEndCredit(String endCredit) {
+        this.endCredit = endCredit;
+    }
+
+    public void setEndVolume(Long endVolume) {
+        this.endVolume = endVolume;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public void setStartCommissionNum(Long startCommissionNum) {
+        this.startCommissionNum = startCommissionNum;
+    }
+
+    public void setStartCommissionRate(Long startCommissionRate) {
+        this.startCommissionRate = startCommissionRate;
+    }
+
+    public void setStartCommissionVolume(Long startCommissionVolume) {
+        this.startCommissionVolume = startCommissionVolume;
+    }
+
+    public void setStartCouponRate(Long startCouponRate) {
+        this.startCouponRate = startCouponRate;
+    }
+
+    public void setStartCredit(String startCredit) {
+        this.startCredit = startCredit;
+    }
+
+    public void setStartVolume(Long startVolume) {
+        this.startVolume = startVolume;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

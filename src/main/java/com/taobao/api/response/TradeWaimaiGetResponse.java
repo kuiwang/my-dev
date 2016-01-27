@@ -20,12 +20,12 @@ public class TradeWaimaiGetResponse extends TaobaoResponse {
     @ApiField("result")
     private ListResult result;
 
-    public void setResult(ListResult result) {
-        this.result = result;
-    }
-
     public ListResult getResult() {
         return this.result;
+    }
+
+    public void setResult(ListResult result) {
+        this.result = result;
     }
 
 }

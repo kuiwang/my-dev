@@ -16,16 +16,12 @@ import com.taobao.api.response.ItemSkuGetResponse;
  */
 public class ItemSkuGetRequest implements TaobaoRequest<ItemSkuGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表。可选值：Sku结构体中的所有字段；字段之间用“,”分隔。
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 卖家nick(num_iid和nick必传一个)，只传卖家nick时候，该api返回的结果不包含cspu（SKu上的产品规格信息）。
@@ -44,50 +40,49 @@ public class ItemSkuGetRequest implements TaobaoRequest<ItemSkuGetResponse> {
      */
     private Long skuId;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
+        RequestCheckUtils.checkNotEmpty(skuId, "skuId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.sku.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
+    @Override
+    public Class<ItemSkuGetResponse> getResponseClass() {
+        return ItemSkuGetResponse.class;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.sku.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -100,6 +95,12 @@ public class ItemSkuGetRequest implements TaobaoRequest<ItemSkuGetResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,17 +108,24 @@ public class ItemSkuGetRequest implements TaobaoRequest<ItemSkuGetResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<ItemSkuGetResponse> getResponseClass() {
-        return ItemSkuGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-        RequestCheckUtils.checkMinValue(numIid, 0L, "numIid");
-        RequestCheckUtils.checkNotEmpty(skuId, "skuId");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

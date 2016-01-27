@@ -8,24 +8,9 @@ import com.scott.dev.taobao.api.Price;
 public class PromotionDetail {
 
     /*
-     * 交易的主订单或子订单号
-     */
-    private Number id;
-
-    /*
-     * 优惠信息的名称
-     */
-    private String promotionName;
-
-    /*
      * 优惠金额（免运费、限时打折时为空）,单位：元
      */
     private Price discount_fee;
-
-    /*
-     * 满就送商品时，所送商品的名称
-     */
-    private String giftItemName;
 
     /*
      * 赠品的宝贝id
@@ -33,9 +18,19 @@ public class PromotionDetail {
     private String giftItemId;
 
     /*
+     * 满就送商品时，所送商品的名称
+     */
+    private String giftItemName;
+
+    /*
      * 满就送礼物的礼物数量
      */
     private String giftItemNum;
+
+    /*
+     * 交易的主订单或子订单号
+     */
+    private Number id;
 
     /*
      * 优惠活动的描述
@@ -48,68 +43,73 @@ public class PromotionDetail {
      */
     private String promotionId;
 
-    public Number getId() {
-        return id;
-    }
-
-    public void setId(Number id) {
-        this.id = id;
-    }
-
-    public String getPromotionName() {
-        return promotionName;
-    }
-
-    public void setPromotionName(String promotionName) {
-        this.promotionName = promotionName;
-    }
+    /*
+     * 优惠信息的名称
+     */
+    private String promotionName;
 
     public Price getDiscount_fee() {
         return discount_fee;
-    }
-
-    public void setDiscount_fee(Price discount_fee) {
-        this.discount_fee = discount_fee;
-    }
-
-    public String getGiftItemName() {
-        return giftItemName;
-    }
-
-    public void setGiftItemName(String giftItemName) {
-        this.giftItemName = giftItemName;
     }
 
     public String getGiftItemId() {
         return giftItemId;
     }
 
-    public void setGiftItemId(String giftItemId) {
-        this.giftItemId = giftItemId;
+    public String getGiftItemName() {
+        return giftItemName;
     }
 
     public String getGiftItemNum() {
         return giftItemNum;
     }
 
-    public void setGiftItemNum(String giftItemNum) {
-        this.giftItemNum = giftItemNum;
+    public Number getId() {
+        return id;
     }
 
     public String getPromotionDesc() {
         return promotionDesc;
     }
 
-    public void setPromotionDesc(String promotionDesc) {
-        this.promotionDesc = promotionDesc;
-    }
-
     public String getPromotionId() {
         return promotionId;
     }
 
+    public String getPromotionName() {
+        return promotionName;
+    }
+
+    public void setDiscount_fee(Price discount_fee) {
+        this.discount_fee = discount_fee;
+    }
+
+    public void setGiftItemId(String giftItemId) {
+        this.giftItemId = giftItemId;
+    }
+
+    public void setGiftItemName(String giftItemName) {
+        this.giftItemName = giftItemName;
+    }
+
+    public void setGiftItemNum(String giftItemNum) {
+        this.giftItemNum = giftItemNum;
+    }
+
+    public void setId(Number id) {
+        this.id = id;
+    }
+
+    public void setPromotionDesc(String promotionDesc) {
+        this.promotionDesc = promotionDesc;
+    }
+
     public void setPromotionId(String promotionId) {
         this.promotionId = promotionId;
+    }
+
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
     }
 
 }

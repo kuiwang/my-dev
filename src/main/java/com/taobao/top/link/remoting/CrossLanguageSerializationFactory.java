@@ -6,7 +6,9 @@ public class CrossLanguageSerializationFactory extends DefaultSerializationFacto
 
     @Override
     public Serializer get(Object format) {
-        if (format != null && "json".equals(format)) return this.jsonSerializer;
+        if ((format != null) && "json".equals(format)) {
+            return this.jsonSerializer;
+        }
         return super.get(format);
     }
 }

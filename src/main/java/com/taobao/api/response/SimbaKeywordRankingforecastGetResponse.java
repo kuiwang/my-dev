@@ -26,12 +26,12 @@ public class SimbaKeywordRankingforecastGetResponse extends TaobaoResponse {
     @ApiField("rankingforecast")
     private List<Rankingforecast> keywordRankingForecast;
 
-    public void setKeywordRankingForecast(List<Rankingforecast> keywordRankingForecast) {
-        this.keywordRankingForecast = keywordRankingForecast;
-    }
-
     public List<Rankingforecast> getKeywordRankingForecast() {
         return this.keywordRankingForecast;
+    }
+
+    public void setKeywordRankingForecast(List<Rankingforecast> keywordRankingForecast) {
+        this.keywordRankingForecast = keywordRankingForecast;
     }
 
 }

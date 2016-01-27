@@ -8,32 +8,20 @@ public class ChannelContext {
 
     private Throwable error;
 
-    private ChannelSender sender;
-
     private Object message;
+
+    private ChannelSender sender;
 
     public Throwable getError() {
         return this.error;
     }
 
-    public void setError(Throwable e) {
-        this.error = e;
+    public Object getMessage() {
+        return this.message;
     }
 
     public ChannelSender getSender() {
         return this.sender;
-    }
-
-    public void setSender(ChannelSender sender) {
-        this.sender = sender;
-    }
-
-    public void setMessage(Object message) {
-        this.message = message;
-    }
-
-    public Object getMessage() {
-        return this.message;
     }
 
     public void reply(byte[] data, int offset, int length) throws ChannelException {
@@ -46,5 +34,17 @@ public class ChannelContext {
 
     public void reply(ByteBuffer dataBuffer, SendHandler sendHandler) throws ChannelException {
         this.sender.send(dataBuffer, sendHandler);
+    }
+
+    public void setError(Throwable e) {
+        this.error = e;
+    }
+
+    public void setMessage(Object message) {
+        this.message = message;
+    }
+
+    public void setSender(ChannelSender sender) {
+        this.sender = sender;
     }
 }

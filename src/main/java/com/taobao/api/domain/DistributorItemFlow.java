@@ -35,20 +35,20 @@ public class DistributorItemFlow extends TaobaoObject {
         return this.itemPv;
     }
 
-    public void setItemPv(String itemPv) {
-        this.itemPv = itemPv;
-    }
-
     public String getItemUv() {
         return this.itemUv;
     }
 
-    public void setItemUv(String itemUv) {
-        this.itemUv = itemUv;
-    }
-
     public Long getProductId() {
         return this.productId;
+    }
+
+    public void setItemPv(String itemPv) {
+        this.itemPv = itemPv;
+    }
+
+    public void setItemUv(String itemUv) {
+        this.itemUv = itemUv;
     }
 
     public void setProductId(Long productId) {

@@ -25,20 +25,20 @@ public class CreateVSwitchResponse extends AliyunResponse {
     @ApiField("VSwitchId")
     private String vSwitchId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setvSwitchId(String vSwitchId) {
-        this.vSwitchId = vSwitchId;
-    }
-
     public String getvSwitchId() {
         return this.vSwitchId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setvSwitchId(String vSwitchId) {
+        this.vSwitchId = vSwitchId;
     }
 
 }

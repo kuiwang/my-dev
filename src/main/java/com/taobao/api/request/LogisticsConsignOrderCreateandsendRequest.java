@@ -17,16 +17,12 @@ import com.taobao.api.response.LogisticsConsignOrderCreateandsendResponse;
 public class LogisticsConsignOrderCreateandsendRequest implements
         TaobaoRequest<LogisticsConsignOrderCreateandsendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流公司ID
      */
     private Long companyId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 物品的json数据。
@@ -119,6 +115,11 @@ public class LogisticsConsignOrderCreateandsendRequest implements
     private String sDistName;
 
     /**
+     * 费用承担方式 1买家承担运费 2卖家承担运费
+     */
+    private String shipping;
+
+    /**
      * 手机号码
      */
     private String sMobilePhone;
@@ -143,249 +144,159 @@ public class LogisticsConsignOrderCreateandsendRequest implements
      */
     private String sZipCode;
 
-    /**
-     * 费用承担方式 1买家承担运费 2卖家承担运费
-     */
-    private String shipping;
+    private Long timestamp;
 
     /**
      * 交易流水号，淘外订单号或者商家内部交易流水号
      */
     private Long tradeId;
 
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 用户ID
      */
     private Long userId;
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(companyId, "companyId");
+        RequestCheckUtils.checkNotEmpty(itemJsonString, "itemJsonString");
+        RequestCheckUtils.checkNotEmpty(logisType, "logisType");
+        RequestCheckUtils.checkNotEmpty(orderSource, "orderSource");
+        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
+        RequestCheckUtils.checkNotEmpty(rAddress, "rAddress");
+        RequestCheckUtils.checkNotEmpty(rAreaId, "rAreaId");
+        RequestCheckUtils.checkNotEmpty(rCityName, "rCityName");
+        RequestCheckUtils.checkNotEmpty(rName, "rName");
+        RequestCheckUtils.checkNotEmpty(rProvName, "rProvName");
+        RequestCheckUtils.checkNotEmpty(rZipCode, "rZipCode");
+        RequestCheckUtils.checkNotEmpty(sAddress, "sAddress");
+        RequestCheckUtils.checkNotEmpty(sAreaId, "sAreaId");
+        RequestCheckUtils.checkNotEmpty(sCityName, "sCityName");
+        RequestCheckUtils.checkNotEmpty(sName, "sName");
+        RequestCheckUtils.checkNotEmpty(sProvName, "sProvName");
+        RequestCheckUtils.checkNotEmpty(sZipCode, "sZipCode");
+        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
+        RequestCheckUtils.checkNotEmpty(userId, "userId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.consign.order.createandsend";
     }
 
     public Long getCompanyId() {
         return this.companyId;
     }
 
-    public void setItemJsonString(String itemJsonString) {
-        this.itemJsonString = itemJsonString;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemJsonString() {
         return this.itemJsonString;
     }
 
-    public void setLogisType(Long logisType) {
-        this.logisType = logisType;
-    }
-
     public Long getLogisType() {
         return this.logisType;
-    }
-
-    public void setMailNo(String mailNo) {
-        this.mailNo = mailNo;
     }
 
     public String getMailNo() {
         return this.mailNo;
     }
 
-    public void setOrderSource(Long orderSource) {
-        this.orderSource = orderSource;
-    }
-
     public Long getOrderSource() {
         return this.orderSource;
-    }
-
-    public void setOrderType(Long orderType) {
-        this.orderType = orderType;
     }
 
     public Long getOrderType() {
         return this.orderType;
     }
 
-    public void setrAddress(String rAddress) {
-        this.rAddress = rAddress;
-    }
-
     public String getrAddress() {
         return this.rAddress;
-    }
-
-    public void setrAreaId(Long rAreaId) {
-        this.rAreaId = rAreaId;
     }
 
     public Long getrAreaId() {
         return this.rAreaId;
     }
 
-    public void setrCityName(String rCityName) {
-        this.rCityName = rCityName;
-    }
-
     public String getrCityName() {
         return this.rCityName;
-    }
-
-    public void setrDistName(String rDistName) {
-        this.rDistName = rDistName;
     }
 
     public String getrDistName() {
         return this.rDistName;
     }
 
-    public void setrMobilePhone(String rMobilePhone) {
-        this.rMobilePhone = rMobilePhone;
+    @Override
+    public Class<LogisticsConsignOrderCreateandsendResponse> getResponseClass() {
+        return LogisticsConsignOrderCreateandsendResponse.class;
     }
 
     public String getrMobilePhone() {
         return this.rMobilePhone;
     }
 
-    public void setrName(String rName) {
-        this.rName = rName;
-    }
-
     public String getrName() {
         return this.rName;
-    }
-
-    public void setrProvName(String rProvName) {
-        this.rProvName = rProvName;
     }
 
     public String getrProvName() {
         return this.rProvName;
     }
 
-    public void setrTelephone(String rTelephone) {
-        this.rTelephone = rTelephone;
-    }
-
     public String getrTelephone() {
         return this.rTelephone;
-    }
-
-    public void setrZipCode(String rZipCode) {
-        this.rZipCode = rZipCode;
     }
 
     public String getrZipCode() {
         return this.rZipCode;
     }
 
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
-    }
-
     public String getsAddress() {
         return this.sAddress;
-    }
-
-    public void setsAreaId(Long sAreaId) {
-        this.sAreaId = sAreaId;
     }
 
     public Long getsAreaId() {
         return this.sAreaId;
     }
 
-    public void setsCityName(String sCityName) {
-        this.sCityName = sCityName;
-    }
-
     public String getsCityName() {
         return this.sCityName;
-    }
-
-    public void setsDistName(String sDistName) {
-        this.sDistName = sDistName;
     }
 
     public String getsDistName() {
         return this.sDistName;
     }
 
-    public void setsMobilePhone(String sMobilePhone) {
-        this.sMobilePhone = sMobilePhone;
+    public String getShipping() {
+        return this.shipping;
     }
 
     public String getsMobilePhone() {
         return this.sMobilePhone;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
-    }
-
     public String getsName() {
         return this.sName;
-    }
-
-    public void setsProvName(String sProvName) {
-        this.sProvName = sProvName;
     }
 
     public String getsProvName() {
         return this.sProvName;
     }
 
-    public void setsTelephone(String sTelephone) {
-        this.sTelephone = sTelephone;
-    }
-
     public String getsTelephone() {
         return this.sTelephone;
-    }
-
-    public void setsZipCode(String sZipCode) {
-        this.sZipCode = sZipCode;
     }
 
     public String getsZipCode() {
         return this.sZipCode;
     }
 
-    public void setShipping(String shipping) {
-        this.shipping = shipping;
-    }
-
-    public String getShipping() {
-        return this.shipping;
-    }
-
-    public void setTradeId(Long tradeId) {
-        this.tradeId = tradeId;
-    }
-
-    public Long getTradeId() {
-        return this.tradeId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.consign.order.createandsend";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("company_id", this.companyId);
@@ -421,6 +332,20 @@ public class LogisticsConsignOrderCreateandsendRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTradeId() {
+        return this.tradeId;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -428,33 +353,116 @@ public class LogisticsConsignOrderCreateandsendRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsConsignOrderCreateandsendResponse> getResponseClass() {
-        return LogisticsConsignOrderCreateandsendResponse.class;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(companyId, "companyId");
-        RequestCheckUtils.checkNotEmpty(itemJsonString, "itemJsonString");
-        RequestCheckUtils.checkNotEmpty(logisType, "logisType");
-        RequestCheckUtils.checkNotEmpty(orderSource, "orderSource");
-        RequestCheckUtils.checkNotEmpty(orderType, "orderType");
-        RequestCheckUtils.checkNotEmpty(rAddress, "rAddress");
-        RequestCheckUtils.checkNotEmpty(rAreaId, "rAreaId");
-        RequestCheckUtils.checkNotEmpty(rCityName, "rCityName");
-        RequestCheckUtils.checkNotEmpty(rName, "rName");
-        RequestCheckUtils.checkNotEmpty(rProvName, "rProvName");
-        RequestCheckUtils.checkNotEmpty(rZipCode, "rZipCode");
-        RequestCheckUtils.checkNotEmpty(sAddress, "sAddress");
-        RequestCheckUtils.checkNotEmpty(sAreaId, "sAreaId");
-        RequestCheckUtils.checkNotEmpty(sCityName, "sCityName");
-        RequestCheckUtils.checkNotEmpty(sName, "sName");
-        RequestCheckUtils.checkNotEmpty(sProvName, "sProvName");
-        RequestCheckUtils.checkNotEmpty(sZipCode, "sZipCode");
-        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
-        RequestCheckUtils.checkNotEmpty(userId, "userId");
+    public void setItemJsonString(String itemJsonString) {
+        this.itemJsonString = itemJsonString;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setLogisType(Long logisType) {
+        this.logisType = logisType;
+    }
+
+    public void setMailNo(String mailNo) {
+        this.mailNo = mailNo;
+    }
+
+    public void setOrderSource(Long orderSource) {
+        this.orderSource = orderSource;
+    }
+
+    public void setOrderType(Long orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setrAddress(String rAddress) {
+        this.rAddress = rAddress;
+    }
+
+    public void setrAreaId(Long rAreaId) {
+        this.rAreaId = rAreaId;
+    }
+
+    public void setrCityName(String rCityName) {
+        this.rCityName = rCityName;
+    }
+
+    public void setrDistName(String rDistName) {
+        this.rDistName = rDistName;
+    }
+
+    public void setrMobilePhone(String rMobilePhone) {
+        this.rMobilePhone = rMobilePhone;
+    }
+
+    public void setrName(String rName) {
+        this.rName = rName;
+    }
+
+    public void setrProvName(String rProvName) {
+        this.rProvName = rProvName;
+    }
+
+    public void setrTelephone(String rTelephone) {
+        this.rTelephone = rTelephone;
+    }
+
+    public void setrZipCode(String rZipCode) {
+        this.rZipCode = rZipCode;
+    }
+
+    public void setsAddress(String sAddress) {
+        this.sAddress = sAddress;
+    }
+
+    public void setsAreaId(Long sAreaId) {
+        this.sAreaId = sAreaId;
+    }
+
+    public void setsCityName(String sCityName) {
+        this.sCityName = sCityName;
+    }
+
+    public void setsDistName(String sDistName) {
+        this.sDistName = sDistName;
+    }
+
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
+    }
+
+    public void setsMobilePhone(String sMobilePhone) {
+        this.sMobilePhone = sMobilePhone;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public void setsProvName(String sProvName) {
+        this.sProvName = sProvName;
+    }
+
+    public void setsTelephone(String sTelephone) {
+        this.sTelephone = sTelephone;
+    }
+
+    public void setsZipCode(String sZipCode) {
+        this.sZipCode = sZipCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeId(Long tradeId) {
+        this.tradeId = tradeId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

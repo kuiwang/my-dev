@@ -53,44 +53,44 @@ public class TravelItemsPriceCalendar extends TaobaoObject {
         return this.childNum;
     }
 
-    public void setChildNum(Long childNum) {
-        this.childNum = childNum;
-    }
-
     public Long getChildPrice() {
         return this.childPrice;
-    }
-
-    public void setChildPrice(Long childPrice) {
-        this.childPrice = childPrice;
     }
 
     public String getDate() {
         return this.date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public Long getDiffPrice() {
         return this.diffPrice;
-    }
-
-    public void setDiffPrice(Long diffPrice) {
-        this.diffPrice = diffPrice;
     }
 
     public Long getManNum() {
         return this.manNum;
     }
 
-    public void setManNum(Long manNum) {
-        this.manNum = manNum;
-    }
-
     public Long getManPrice() {
         return this.manPrice;
+    }
+
+    public void setChildNum(Long childNum) {
+        this.childNum = childNum;
+    }
+
+    public void setChildPrice(Long childPrice) {
+        this.childPrice = childPrice;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDiffPrice(Long diffPrice) {
+        this.diffPrice = diffPrice;
+    }
+
+    public void setManNum(Long manNum) {
+        this.manNum = manNum;
     }
 
     public void setManPrice(Long manPrice) {

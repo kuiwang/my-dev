@@ -76,100 +76,100 @@ public class LatourDrawAward {
         return this.awardId;
     }
 
-    public void setAwardId(Long awardId) {
-        this.awardId = awardId;
-    }
-
     public String getAwardName() {
         return this.awardName;
-    }
-
-    public void setAwardName(String awardName) {
-        this.awardName = awardName;
     }
 
     public String getAwardType() {
         return this.awardType;
     }
 
-    public void setAwardType(String awardType) {
-        this.awardType = awardType;
-    }
-
     public String getExtValue1() {
         return this.extValue1;
-    }
-
-    public void setExtValue1(String extValue1) {
-        this.extValue1 = extValue1;
     }
 
     public String getExtValue2() {
         return this.extValue2;
     }
 
-    public void setExtValue2(String extValue2) {
-        this.extValue2 = extValue2;
-    }
-
     public String getExtValue3() {
         return this.extValue3;
-    }
-
-    public void setExtValue3(String extValue3) {
-        this.extValue3 = extValue3;
     }
 
     public String getExtValue4() {
         return this.extValue4;
     }
 
-    public void setExtValue4(String extValue4) {
-        this.extValue4 = extValue4;
-    }
-
     public String getExtValue5() {
         return this.extValue5;
-    }
-
-    public void setExtValue5(String extValue5) {
-        this.extValue5 = extValue5;
     }
 
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
     public Boolean getIsWin() {
         return this.isWin;
-    }
-
-    public void setIsWin(Boolean isWin) {
-        this.isWin = isWin;
     }
 
     public String getReason() {
         return this.reason;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
     public Long getWinningRecordId() {
         return this.winningRecordId;
     }
 
-    public void setWinningRecordId(Long winningRecordId) {
-        this.winningRecordId = winningRecordId;
-    }
-
     public Date getWinningTime() {
         return this.winningTime;
+    }
+
+    public void setAwardId(Long awardId) {
+        this.awardId = awardId;
+    }
+
+    public void setAwardName(String awardName) {
+        this.awardName = awardName;
+    }
+
+    public void setAwardType(String awardType) {
+        this.awardType = awardType;
+    }
+
+    public void setExtValue1(String extValue1) {
+        this.extValue1 = extValue1;
+    }
+
+    public void setExtValue2(String extValue2) {
+        this.extValue2 = extValue2;
+    }
+
+    public void setExtValue3(String extValue3) {
+        this.extValue3 = extValue3;
+    }
+
+    public void setExtValue4(String extValue4) {
+        this.extValue4 = extValue4;
+    }
+
+    public void setExtValue5(String extValue5) {
+        this.extValue5 = extValue5;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setIsWin(Boolean isWin) {
+        this.isWin = isWin;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public void setWinningRecordId(Long winningRecordId) {
+        this.winningRecordId = winningRecordId;
     }
 
     public void setWinningTime(Date winningTime) {

@@ -19,12 +19,12 @@ public class CrmGrademktMemberDetailQueryResponse extends TaobaoResponse {
     @ApiField("model")
     private String model;
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getModel() {
         return this.model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
 }

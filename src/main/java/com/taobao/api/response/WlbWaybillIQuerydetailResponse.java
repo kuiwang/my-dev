@@ -44,36 +44,36 @@ public class WlbWaybillIQuerydetailResponse extends TaobaoResponse {
     @ApiField("waybill_detail_query_info")
     private List<WaybillDetailQueryInfo> waybillDetails;
 
-    public void setErrorCodes(List<String> errorCodes) {
-        this.errorCodes = errorCodes;
-    }
-
     public List<String> getErrorCodes() {
         return this.errorCodes;
-    }
-
-    public void setInexistentWaybillCodes(List<String> inexistentWaybillCodes) {
-        this.inexistentWaybillCodes = inexistentWaybillCodes;
     }
 
     public List<String> getInexistentWaybillCodes() {
         return this.inexistentWaybillCodes;
     }
 
-    public void setQuerySuccess(Boolean querySuccess) {
-        this.querySuccess = querySuccess;
-    }
-
     public Boolean getQuerySuccess() {
         return this.querySuccess;
     }
 
-    public void setWaybillDetails(List<WaybillDetailQueryInfo> waybillDetails) {
-        this.waybillDetails = waybillDetails;
-    }
-
     public List<WaybillDetailQueryInfo> getWaybillDetails() {
         return this.waybillDetails;
+    }
+
+    public void setErrorCodes(List<String> errorCodes) {
+        this.errorCodes = errorCodes;
+    }
+
+    public void setInexistentWaybillCodes(List<String> inexistentWaybillCodes) {
+        this.inexistentWaybillCodes = inexistentWaybillCodes;
+    }
+
+    public void setQuerySuccess(Boolean querySuccess) {
+        this.querySuccess = querySuccess;
+    }
+
+    public void setWaybillDetails(List<WaybillDetailQueryInfo> waybillDetails) {
+        this.waybillDetails = waybillDetails;
     }
 
 }

@@ -16,16 +16,12 @@ import com.taobao.api.response.TmallLatoGameRechargeResponse;
  */
 public class TmallLatoGameRechargeRequest implements TaobaoRequest<TmallLatoGameRechargeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 交易号
      */
     private String bizNo;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 充值积分数值
@@ -37,55 +33,50 @@ public class TmallLatoGameRechargeRequest implements TaobaoRequest<TmallLatoGame
      */
     private String target;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 用户id
      */
     private Long uid;
 
-    public void setBizNo(String bizNo) {
-        this.bizNo = bizNo;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizNo, "bizNo");
+        RequestCheckUtils.checkNotEmpty(point, "point");
+        RequestCheckUtils.checkNotEmpty(uid, "uid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.lato.game.recharge";
     }
 
     public String getBizNo() {
         return this.bizNo;
     }
 
-    public void setPoint(Long point) {
-        this.point = point;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPoint() {
         return this.point;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    @Override
+    public Class<TmallLatoGameRechargeResponse> getResponseClass() {
+        return TmallLatoGameRechargeResponse.class;
     }
 
     public String getTarget() {
         return this.target;
     }
 
-    public void setUid(Long uid) {
-        this.uid = uid;
-    }
-
-    public Long getUid() {
-        return this.uid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.lato.game.recharge";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_no", this.bizNo);
@@ -98,6 +89,16 @@ public class TmallLatoGameRechargeRequest implements TaobaoRequest<TmallLatoGame
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUid() {
+        return this.uid;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,17 +106,24 @@ public class TmallLatoGameRechargeRequest implements TaobaoRequest<TmallLatoGame
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallLatoGameRechargeResponse> getResponseClass() {
-        return TmallLatoGameRechargeResponse.class;
+    public void setBizNo(String bizNo) {
+        this.bizNo = bizNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizNo, "bizNo");
-        RequestCheckUtils.checkNotEmpty(point, "point");
-        RequestCheckUtils.checkNotEmpty(uid, "uid");
+    public void setPoint(Long point) {
+        this.point = point;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 }

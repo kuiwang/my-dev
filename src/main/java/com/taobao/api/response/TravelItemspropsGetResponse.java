@@ -24,12 +24,12 @@ public class TravelItemspropsGetResponse extends TaobaoResponse {
     @ApiField("travel_items_prop")
     private List<TravelItemsProp> travelItemsProps;
 
-    public void setTravelItemsProps(List<TravelItemsProp> travelItemsProps) {
-        this.travelItemsProps = travelItemsProps;
-    }
-
     public List<TravelItemsProp> getTravelItemsProps() {
         return this.travelItemsProps;
+    }
+
+    public void setTravelItemsProps(List<TravelItemsProp> travelItemsProps) {
+        this.travelItemsProps = travelItemsProps;
     }
 
 }

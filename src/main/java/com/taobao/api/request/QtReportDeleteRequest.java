@@ -18,10 +18,6 @@ public class QtReportDeleteRequest implements TaobaoRequest<QtReportDeleteRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 一个质检服务唯一标识质量检验单的编号<br />
      * 支持最大长度为：64<br />
@@ -29,26 +25,36 @@ public class QtReportDeleteRequest implements TaobaoRequest<QtReportDeleteRespon
      */
     private String qtCode;
 
-    public void setQtCode(String qtCode) {
-        this.qtCode = qtCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(qtCode, "qtCode");
+        RequestCheckUtils.checkMaxLength(qtCode, 64, "qtCode");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.qt.report.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getQtCode() {
         return this.qtCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<QtReportDeleteResponse> getResponseClass() {
+        return QtReportDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.qt.report.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("qt_code", this.qtCode);
@@ -58,6 +64,12 @@ public class QtReportDeleteRequest implements TaobaoRequest<QtReportDeleteRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -65,16 +77,12 @@ public class QtReportDeleteRequest implements TaobaoRequest<QtReportDeleteRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<QtReportDeleteResponse> getResponseClass() {
-        return QtReportDeleteResponse.class;
+    public void setQtCode(String qtCode) {
+        this.qtCode = qtCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(qtCode, "qtCode");
-        RequestCheckUtils.checkMaxLength(qtCode, 64, "qtCode");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

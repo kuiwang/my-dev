@@ -24,12 +24,12 @@ public class SimbaInsightCatsanalysisGetResponse extends TaobaoResponse {
     @ApiField("i_n_category_analysis")
     private List<INCategoryAnalysis> inCategoryAnalyses;
 
-    public void setInCategoryAnalyses(List<INCategoryAnalysis> inCategoryAnalyses) {
-        this.inCategoryAnalyses = inCategoryAnalyses;
-    }
-
     public List<INCategoryAnalysis> getInCategoryAnalyses() {
         return this.inCategoryAnalyses;
+    }
+
+    public void setInCategoryAnalyses(List<INCategoryAnalysis> inCategoryAnalyses) {
+        this.inCategoryAnalyses = inCategoryAnalyses;
     }
 
 }

@@ -121,132 +121,132 @@ public class TradeRecord extends TaobaoObject {
         return this.alipayOrderNo;
     }
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public String getInOutType() {
         return this.inOutType;
     }
 
-    public void setInOutType(String inOutType) {
-        this.inOutType = inOutType;
-    }
-
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
-    }
-
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getOppositeLogonId() {
         return this.oppositeLogonId;
-    }
-
-    public void setOppositeLogonId(String oppositeLogonId) {
-        this.oppositeLogonId = oppositeLogonId;
     }
 
     public String getOppositeName() {
         return this.oppositeName;
     }
 
-    public void setOppositeName(String oppositeName) {
-        this.oppositeName = oppositeName;
-    }
-
     public String getOppositeUserId() {
         return this.oppositeUserId;
-    }
-
-    public void setOppositeUserId(String oppositeUserId) {
-        this.oppositeUserId = oppositeUserId;
     }
 
     public String getOrderFrom() {
         return this.orderFrom;
     }
 
-    public void setOrderFrom(String orderFrom) {
-        this.orderFrom = orderFrom;
-    }
-
     public String getOrderStatus() {
         return this.orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public String getOrderTitle() {
         return this.orderTitle;
     }
 
-    public void setOrderTitle(String orderTitle) {
-        this.orderTitle = orderTitle;
-    }
-
     public String getOrderType() {
         return this.orderType;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
     }
 
     public String getOwnerLogonId() {
         return this.ownerLogonId;
     }
 
-    public void setOwnerLogonId(String ownerLogonId) {
-        this.ownerLogonId = ownerLogonId;
-    }
-
     public String getOwnerName() {
         return this.ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
     }
 
     public String getOwnerUserId() {
         return this.ownerUserId;
     }
 
-    public void setOwnerUserId(String ownerUserId) {
-        this.ownerUserId = ownerUserId;
-    }
-
     public String getServiceCharge() {
         return this.serviceCharge;
     }
 
-    public void setServiceCharge(String serviceCharge) {
-        this.serviceCharge = serviceCharge;
-    }
-
     public String getTotalAmount() {
         return this.totalAmount;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setInOutType(String inOutType) {
+        this.inOutType = inOutType;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setOppositeLogonId(String oppositeLogonId) {
+        this.oppositeLogonId = oppositeLogonId;
+    }
+
+    public void setOppositeName(String oppositeName) {
+        this.oppositeName = oppositeName;
+    }
+
+    public void setOppositeUserId(String oppositeUserId) {
+        this.oppositeUserId = oppositeUserId;
+    }
+
+    public void setOrderFrom(String orderFrom) {
+        this.orderFrom = orderFrom;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderTitle(String orderTitle) {
+        this.orderTitle = orderTitle;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setOwnerLogonId(String ownerLogonId) {
+        this.ownerLogonId = ownerLogonId;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setOwnerUserId(String ownerUserId) {
+        this.ownerUserId = ownerUserId;
+    }
+
+    public void setServiceCharge(String serviceCharge) {
+        this.serviceCharge = serviceCharge;
     }
 
     public void setTotalAmount(String totalAmount) {

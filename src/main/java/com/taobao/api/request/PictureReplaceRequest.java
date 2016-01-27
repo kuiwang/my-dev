@@ -18,9 +18,7 @@ import com.taobao.api.response.PictureReplaceResponse;
  */
 public class PictureReplaceRequest implements TaobaoUploadRequest<PictureReplaceResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 图片二进制文件流,不能为空,允许png、jpg、gif图片格式
@@ -32,36 +30,48 @@ public class PictureReplaceRequest implements TaobaoUploadRequest<PictureReplace
      */
     private Long pictureId;
 
-    public void setImageData(FileItem imageData) {
-        this.imageData = imageData;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(imageData, "imageData");
+        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.picture.replace";
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image_data", this.imageData);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImageData() {
         return this.imageData;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
-    }
-
     public Long getPictureId() {
         return this.pictureId;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<PictureReplaceResponse> getResponseClass() {
+        return PictureReplaceResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.picture.replace";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("picture_id", this.pictureId);
@@ -71,6 +81,12 @@ public class PictureReplaceRequest implements TaobaoUploadRequest<PictureReplace
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,23 +94,16 @@ public class PictureReplaceRequest implements TaobaoUploadRequest<PictureReplace
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image_data", this.imageData);
-        return params;
+    public void setImageData(FileItem imageData) {
+        this.imageData = imageData;
     }
 
-    public Class<PictureReplaceResponse> getResponseClass() {
-        return PictureReplaceResponse.class;
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(imageData, "imageData");
-        RequestCheckUtils.checkNotEmpty(pictureId, "pictureId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

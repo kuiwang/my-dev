@@ -17,37 +17,42 @@ import com.taobao.api.response.WlbItemAuthorizationDeleteResponse;
 public class WlbItemAuthorizationDeleteRequest implements
         TaobaoRequest<WlbItemAuthorizationDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 授权关系ID
      */
     private Long authorizeId;
 
-    public void setAuthorizeId(Long authorizeId) {
-        this.authorizeId = authorizeId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(authorizeId, "authorizeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.authorization.delete";
     }
 
     public Long getAuthorizeId() {
         return this.authorizeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WlbItemAuthorizationDeleteResponse> getResponseClass() {
+        return WlbItemAuthorizationDeleteResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.wlb.item.authorization.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("authorize_id", this.authorizeId);
@@ -57,6 +62,12 @@ public class WlbItemAuthorizationDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class WlbItemAuthorizationDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemAuthorizationDeleteResponse> getResponseClass() {
-        return WlbItemAuthorizationDeleteResponse.class;
+    public void setAuthorizeId(Long authorizeId) {
+        this.authorizeId = authorizeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(authorizeId, "authorizeId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

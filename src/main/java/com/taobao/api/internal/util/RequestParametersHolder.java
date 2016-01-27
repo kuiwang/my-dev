@@ -11,68 +11,68 @@ import java.util.Map;
  */
 public class RequestParametersHolder {
 
-    private String requestUrl;
-
-    private String responseBody;
+    private TaobaoHashMap applicationParams;
 
     private TaobaoHashMap protocalMustParams;
 
     private TaobaoHashMap protocalOptParams;
 
-    private TaobaoHashMap applicationParams;
+    private String requestUrl;
 
-    public String getRequestUrl() {
-        return this.requestUrl;
-    }
+    private String responseBody;
 
-    public void setRequestUrl(String requestUrl) {
-        this.requestUrl = requestUrl;
-    }
-
-    public String getResponseBody() {
-        return this.responseBody;
-    }
-
-    public void setResponseBody(String responseBody) {
-        this.responseBody = responseBody;
-    }
-
-    public TaobaoHashMap getProtocalMustParams() {
-        return this.protocalMustParams;
-    }
-
-    public void setProtocalMustParams(TaobaoHashMap protocalMustParams) {
-        this.protocalMustParams = protocalMustParams;
-    }
-
-    public TaobaoHashMap getProtocalOptParams() {
-        return this.protocalOptParams;
-    }
-
-    public void setProtocalOptParams(TaobaoHashMap protocalOptParams) {
-        this.protocalOptParams = protocalOptParams;
+    public Map<String, String> getAllParams() {
+        Map<String, String> params = new HashMap<String, String>();
+        if ((protocalMustParams != null) && !protocalMustParams.isEmpty()) {
+            params.putAll(protocalMustParams);
+        }
+        if ((protocalOptParams != null) && !protocalOptParams.isEmpty()) {
+            params.putAll(protocalOptParams);
+        }
+        if ((applicationParams != null) && !applicationParams.isEmpty()) {
+            params.putAll(applicationParams);
+        }
+        return params;
     }
 
     public TaobaoHashMap getApplicationParams() {
         return this.applicationParams;
     }
 
+    public TaobaoHashMap getProtocalMustParams() {
+        return this.protocalMustParams;
+    }
+
+    public TaobaoHashMap getProtocalOptParams() {
+        return this.protocalOptParams;
+    }
+
+    public String getRequestUrl() {
+        return this.requestUrl;
+    }
+
+    public String getResponseBody() {
+        return this.responseBody;
+    }
+
     public void setApplicationParams(TaobaoHashMap applicationParams) {
         this.applicationParams = applicationParams;
     }
 
-    public Map<String, String> getAllParams() {
-        Map<String, String> params = new HashMap<String, String>();
-        if (protocalMustParams != null && !protocalMustParams.isEmpty()) {
-            params.putAll(protocalMustParams);
-        }
-        if (protocalOptParams != null && !protocalOptParams.isEmpty()) {
-            params.putAll(protocalOptParams);
-        }
-        if (applicationParams != null && !applicationParams.isEmpty()) {
-            params.putAll(applicationParams);
-        }
-        return params;
+    public void setProtocalMustParams(TaobaoHashMap protocalMustParams) {
+        this.protocalMustParams = protocalMustParams;
+    }
+
+    public void setProtocalOptParams(TaobaoHashMap protocalOptParams) {
+        this.protocalOptParams = protocalOptParams;
+    }
+
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    public void setResponseBody(String responseBody) {
+        this.responseBody = responseBody;
     }
 
 }

@@ -20,12 +20,12 @@ public class WaimaiItemGetResponse extends TaobaoResponse {
     @ApiField("result")
     private TopAuction result;
 
-    public void setResult(TopAuction result) {
-        this.result = result;
-    }
-
     public TopAuction getResult() {
         return this.result;
+    }
+
+    public void setResult(TopAuction result) {
+        this.result = result;
     }
 
 }

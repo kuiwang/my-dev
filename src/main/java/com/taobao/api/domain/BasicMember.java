@@ -97,100 +97,100 @@ public class BasicMember extends TaobaoObject {
         return this.bizOrderId;
     }
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
-    }
-
     public Long getBuyerId() {
         return this.buyerId;
-    }
-
-    public void setBuyerId(Long buyerId) {
-        this.buyerId = buyerId;
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public String getCloseTradeAmount() {
         return this.closeTradeAmount;
-    }
-
-    public void setCloseTradeAmount(String closeTradeAmount) {
-        this.closeTradeAmount = closeTradeAmount;
     }
 
     public Long getCloseTradeCount() {
         return this.closeTradeCount;
     }
 
-    public void setCloseTradeCount(Long closeTradeCount) {
-        this.closeTradeCount = closeTradeCount;
-    }
-
     public Long getGrade() {
         return this.grade;
-    }
-
-    public void setGrade(Long grade) {
-        this.grade = grade;
     }
 
     public String getGroupIds() {
         return this.groupIds;
     }
 
-    public void setGroupIds(String groupIds) {
-        this.groupIds = groupIds;
-    }
-
     public Long getItemNum() {
         return this.itemNum;
-    }
-
-    public void setItemNum(Long itemNum) {
-        this.itemNum = itemNum;
     }
 
     public Date getLastTradeTime() {
         return this.lastTradeTime;
     }
 
-    public void setLastTradeTime(Date lastTradeTime) {
-        this.lastTradeTime = lastTradeTime;
-    }
-
     public Long getRelationSource() {
         return this.relationSource;
-    }
-
-    public void setRelationSource(Long relationSource) {
-        this.relationSource = relationSource;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getTradeAmount() {
         return this.tradeAmount;
     }
 
-    public void setTradeAmount(String tradeAmount) {
-        this.tradeAmount = tradeAmount;
-    }
-
     public Long getTradeCount() {
         return this.tradeCount;
+    }
+
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
+    }
+
+    public void setBuyerId(Long buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setCloseTradeAmount(String closeTradeAmount) {
+        this.closeTradeAmount = closeTradeAmount;
+    }
+
+    public void setCloseTradeCount(Long closeTradeCount) {
+        this.closeTradeCount = closeTradeCount;
+    }
+
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
+    public void setGroupIds(String groupIds) {
+        this.groupIds = groupIds;
+    }
+
+    public void setItemNum(Long itemNum) {
+        this.itemNum = itemNum;
+    }
+
+    public void setLastTradeTime(Date lastTradeTime) {
+        this.lastTradeTime = lastTradeTime;
+    }
+
+    public void setRelationSource(Long relationSource) {
+        this.relationSource = relationSource;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTradeAmount(String tradeAmount) {
+        this.tradeAmount = tradeAmount;
     }
 
     public void setTradeCount(Long tradeCount) {

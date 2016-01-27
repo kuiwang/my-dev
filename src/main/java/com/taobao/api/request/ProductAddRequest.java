@@ -19,10 +19,6 @@ import com.taobao.api.response.ProductAddResponse;
  */
 public class ProductAddRequest implements TaobaoUploadRequest<ProductAddResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 非关键属性结构:pid:vid;pid:vid.<br>
      * 非关键属性<font color=red>不包含</font>关键属性、销售属性、用户自定义属性、商品属性; <br>
@@ -56,6 +52,8 @@ public class ProductAddRequest implements TaobaoUploadRequest<ProductAddResponse
      * 支持的最大列表长度为：25000
      */
     private String extraInfo;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 产品主图片.最大1M,目前仅支持GIF,JPG.<br />
@@ -139,180 +137,123 @@ public class ProductAddRequest implements TaobaoUploadRequest<ProductAddResponse
      */
     private Long templateId;
 
-    public void setBinds(String binds) {
-        this.binds = binds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(binds, 512, "binds");
+        RequestCheckUtils.checkNotEmpty(cid, "cid");
+        RequestCheckUtils.checkMaxLength(extraInfo, 25000, "extraInfo");
+        RequestCheckUtils.checkNotEmpty(image, "image");
+        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.product.add";
     }
 
     public String getBinds() {
         return this.binds;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCustomerProps(String customerProps) {
-        this.customerProps = customerProps;
     }
 
     public String getCustomerProps() {
         return this.customerProps;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setExtraInfo(String extraInfo) {
-        this.extraInfo = extraInfo;
     }
 
     public String getExtraInfo() {
         return this.extraInfo;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public FileItem getImage() {
         return this.image;
     }
 
-    public void setIsPubSuite(Boolean isPubSuite) {
-        this.isPubSuite = isPubSuite;
-    }
-
     public Boolean getIsPubSuite() {
         return this.isPubSuite;
-    }
-
-    public void setMajor(Boolean major) {
-        this.major = major;
     }
 
     public Boolean getMajor() {
         return this.major;
     }
 
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
-    }
-
     public String getMarketId() {
         return this.marketId;
-    }
-
-    public void setMarketTime(Date marketTime) {
-        this.marketTime = marketTime;
     }
 
     public Date getMarketTime() {
         return this.marketTime;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPackingList(String packingList) {
-        this.packingList = packingList;
-    }
-
     public String getPackingList() {
         return this.packingList;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
-    }
-
     public String getPropertyAlias() {
         return this.propertyAlias;
-    }
-
-    public void setProps(String props) {
-        this.props = props;
     }
 
     public String getProps() {
         return this.props;
     }
 
-    public void setSaleProps(String saleProps) {
-        this.saleProps = saleProps;
+    @Override
+    public Class<ProductAddResponse> getResponseClass() {
+        return ProductAddResponse.class;
     }
 
     public String getSaleProps() {
         return this.saleProps;
     }
 
-    public void setSellPt(String sellPt) {
-        this.sellPt = sellPt;
-    }
-
     public String getSellPt() {
         return this.sellPt;
-    }
-
-    public void setSuiteItemsStr(String suiteItemsStr) {
-        this.suiteItemsStr = suiteItemsStr;
     }
 
     public String getSuiteItemsStr() {
         return this.suiteItemsStr;
     }
 
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
-    }
-
     public Long getTemplateId() {
         return this.templateId;
     }
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.product.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("binds", this.binds);
@@ -340,6 +281,12 @@ public class ProductAddRequest implements TaobaoUploadRequest<ProductAddResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -347,26 +294,88 @@ public class ProductAddRequest implements TaobaoUploadRequest<ProductAddResponse
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setBinds(String binds) {
+        this.binds = binds;
     }
 
-    public Class<ProductAddResponse> getResponseClass() {
-        return ProductAddResponse.class;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(binds, 512, "binds");
-        RequestCheckUtils.checkNotEmpty(cid, "cid");
-        RequestCheckUtils.checkMaxLength(extraInfo, 25000, "extraInfo");
-        RequestCheckUtils.checkNotEmpty(image, "image");
-        RequestCheckUtils.checkMaxLength(image, 1048576, "image");
+    public void setCustomerProps(String customerProps) {
+        this.customerProps = customerProps;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setIsPubSuite(Boolean isPubSuite) {
+        this.isPubSuite = isPubSuite;
+    }
+
+    public void setMajor(Boolean major) {
+        this.major = major;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public void setMarketTime(Date marketTime) {
+        this.marketTime = marketTime;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPackingList(String packingList) {
+        this.packingList = packingList;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setSaleProps(String saleProps) {
+        this.saleProps = saleProps;
+    }
+
+    public void setSellPt(String sellPt) {
+        this.sellPt = sellPt;
+    }
+
+    public void setSuiteItemsStr(String suiteItemsStr) {
+        this.suiteItemsStr = suiteItemsStr;
+    }
+
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

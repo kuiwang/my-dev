@@ -19,10 +19,6 @@ public class SimbaKeywordRankingforecastGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 关键词Id列表，最多支持1个
      */
@@ -33,34 +29,40 @@ public class SimbaKeywordRankingforecastGetRequest implements
      */
     private String nick;
 
-    public void setKeywordIds(String keywordIds) {
-        this.keywordIds = keywordIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(keywordIds, "keywordIds");
+        RequestCheckUtils.checkMaxListSize(keywordIds, 1, "keywordIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keyword.rankingforecast.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywordIds() {
         return this.keywordIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordRankingforecastGetResponse> getResponseClass() {
+        return SimbaKeywordRankingforecastGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keyword.rankingforecast.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("keyword_ids", this.keywordIds);
@@ -71,6 +73,12 @@ public class SimbaKeywordRankingforecastGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class SimbaKeywordRankingforecastGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordRankingforecastGetResponse> getResponseClass() {
-        return SimbaKeywordRankingforecastGetResponse.class;
+    public void setKeywordIds(String keywordIds) {
+        this.keywordIds = keywordIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(keywordIds, "keywordIds");
-        RequestCheckUtils.checkMaxListSize(keywordIds, 1, "keywordIds");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

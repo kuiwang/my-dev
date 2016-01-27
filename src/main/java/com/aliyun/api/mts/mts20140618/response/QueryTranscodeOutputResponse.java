@@ -30,20 +30,20 @@ public class QueryTranscodeOutputResponse extends AliyunResponse {
     @ApiField("TranscodeOutput")
     private List<TranscodeOutput> transcodeOutputs;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTranscodeOutputs(List<TranscodeOutput> transcodeOutputs) {
-        this.transcodeOutputs = transcodeOutputs;
-    }
-
     public List<TranscodeOutput> getTranscodeOutputs() {
         return this.transcodeOutputs;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTranscodeOutputs(List<TranscodeOutput> transcodeOutputs) {
+        this.transcodeOutputs = transcodeOutputs;
     }
 
 }

@@ -18,35 +18,41 @@ public class JipiaoAgentOrderDetailRequest implements TaobaoRequest<JipiaoAgentO
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝订单id列表，当前支持列表长度为1，即当前只支持单个订单详情查询
      */
     private String orderIds;
 
-    public void setOrderIds(String orderIds) {
-        this.orderIds = orderIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(orderIds, "orderIds");
+        RequestCheckUtils.checkMaxListSize(orderIds, 1, "orderIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jipiao.agent.order.detail";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOrderIds() {
         return this.orderIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JipiaoAgentOrderDetailResponse> getResponseClass() {
+        return JipiaoAgentOrderDetailResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jipiao.agent.order.detail";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("order_ids", this.orderIds);
@@ -56,6 +62,12 @@ public class JipiaoAgentOrderDetailRequest implements TaobaoRequest<JipiaoAgentO
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,16 +75,12 @@ public class JipiaoAgentOrderDetailRequest implements TaobaoRequest<JipiaoAgentO
         this.udfParams.put(key, value);
     }
 
-    public Class<JipiaoAgentOrderDetailResponse> getResponseClass() {
-        return JipiaoAgentOrderDetailResponse.class;
+    public void setOrderIds(String orderIds) {
+        this.orderIds = orderIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(orderIds, "orderIds");
-        RequestCheckUtils.checkMaxListSize(orderIds, 1, "orderIds");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

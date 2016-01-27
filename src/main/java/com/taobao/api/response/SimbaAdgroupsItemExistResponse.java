@@ -19,12 +19,12 @@ public class SimbaAdgroupsItemExistResponse extends TaobaoResponse {
     @ApiField("exist")
     private Boolean exist;
 
-    public void setExist(Boolean exist) {
-        this.exist = exist;
-    }
-
     public Boolean getExist() {
         return this.exist;
+    }
+
+    public void setExist(Boolean exist) {
+        this.exist = exist;
     }
 
 }

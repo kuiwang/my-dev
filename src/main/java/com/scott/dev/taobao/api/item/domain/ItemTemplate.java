@@ -6,6 +6,11 @@ package com.scott.dev.taobao.api.item.domain;
 public class ItemTemplate {
 
     /*
+     * 用于区分宝贝模板属于内店和外店
+     */
+    private Number shopType;
+
+    /*
      * 宝贝模板的id
      */
     private Number templateId;
@@ -14,9 +19,4 @@ public class ItemTemplate {
      * 宝贝详情模板的名称
      */
     private String templateName;
-
-    /*
-     * 用于区分宝贝模板属于内店和外店
-     */
-    private Number shopType;
 }

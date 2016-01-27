@@ -41,28 +41,28 @@ public class EbookMediaResource extends TaobaoObject {
         return this.fileStatus;
     }
 
-    public void setFileStatus(Long fileStatus) {
-        this.fileStatus = fileStatus;
-    }
-
     public String getFileSuffix() {
         return this.fileSuffix;
-    }
-
-    public void setFileSuffix(String fileSuffix) {
-        this.fileSuffix = fileSuffix;
     }
 
     public Long getFileType() {
         return this.fileType;
     }
 
-    public void setFileType(Long fileType) {
-        this.fileType = fileType;
-    }
-
     public String getReason() {
         return this.reason;
+    }
+
+    public void setFileStatus(Long fileStatus) {
+        this.fileStatus = fileStatus;
+    }
+
+    public void setFileSuffix(String fileSuffix) {
+        this.fileSuffix = fileSuffix;
+    }
+
+    public void setFileType(Long fileType) {
+        this.fileType = fileType;
     }
 
     public void setReason(String reason) {

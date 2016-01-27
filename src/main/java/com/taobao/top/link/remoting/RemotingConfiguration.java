@@ -14,13 +14,15 @@ public class RemotingConfiguration {
     private static RemotingConfiguration configuration;
 
     public synchronized static RemotingConfiguration configure() {
-        if (configuration == null) configuration = new RemotingConfiguration();
+        if (configuration == null) {
+            configuration = new RemotingConfiguration();
+        }
         return configuration;
     }
 
-    private LoggerFactory loggerFactory;
-
     private DefaultRemotingServerChannelHandler defaultHandler;
+
+    private LoggerFactory loggerFactory;
 
     private SerializationFactory serializationFactory;
 
@@ -28,28 +30,8 @@ public class RemotingConfiguration {
         this.loggerFactory(DefaultLoggerFactory.getDefault());
     }
 
-    // should be set first
-    public RemotingConfiguration loggerFactory(LoggerFactory loggerFactory) {
-        this.loggerFactory = loggerFactory;
-        RemotingService.setLoggerFactory(loggerFactory);
-        return this;
-    }
-
-    public RemotingConfiguration clientChannelSelector(ClientChannelSelector selector) {
-        RemotingService.setChannelSelector(selector);
-        return this;
-    }
-
-    public RemotingConfiguration SerializationFactory(SerializationFactory serializationFactory) {
-        this.serializationFactory = serializationFactory;
-        RemotingService.setSerializationFactory(serializationFactory);
-        return this;
-    }
-
-    // shold be set before bind()
-    public RemotingConfiguration defaultServerChannelHandler(
-            DefaultRemotingServerChannelHandler channelHandler) {
-        this.defaultHandler = channelHandler;
+    public RemotingConfiguration addProcessor(String objectUri, MethodCallProcessor processor) {
+        this.defaultHandler.addProcessor(objectUri, processor);
         return this;
     }
 
@@ -60,33 +42,57 @@ public class RemotingConfiguration {
         return this;
     }
 
-    public RemotingConfiguration websocket(int port) {
-        return this.bind(new WebSocketServerChannel(this.loggerFactory, port, true));
+    public RemotingConfiguration businessThreadPool(ExecutorService threadPool) {
+        this.defaultHandler.setThreadPool(threadPool);
+        return this;
     }
 
-    public RemotingConfiguration tcp(int port) {
+    public RemotingConfiguration clientChannelSelector(ClientChannelSelector selector) {
+        RemotingService.setChannelSelector(selector);
         return this;
+    }
+
+    // shold be set before bind()
+    public RemotingConfiguration defaultServerChannelHandler(
+            DefaultRemotingServerChannelHandler channelHandler) {
+        this.defaultHandler = channelHandler;
+        return this;
+    }
+
+    private synchronized DefaultRemotingServerChannelHandler getChannelHandler() {
+        if (this.defaultHandler == null) {
+            this.defaultHandler = new DefaultRemotingServerChannelHandler(
+                    this.loggerFactory);
+        }
+        if (this.serializationFactory != null) {
+            this.defaultHandler
+                    .setSerializationFactory(this.serializationFactory);
+        }
+        return this.defaultHandler;
     }
 
     public RemotingConfiguration http(int port) {
         return this;
     }
 
-    public RemotingConfiguration addProcessor(String objectUri, MethodCallProcessor processor) {
-        this.defaultHandler.addProcessor(objectUri, processor);
+    // should be set first
+    public RemotingConfiguration loggerFactory(LoggerFactory loggerFactory) {
+        this.loggerFactory = loggerFactory;
+        RemotingService.setLoggerFactory(loggerFactory);
         return this;
     }
 
-    public RemotingConfiguration businessThreadPool(ExecutorService threadPool) {
-        this.defaultHandler.setThreadPool(threadPool);
+    public RemotingConfiguration SerializationFactory(SerializationFactory serializationFactory) {
+        this.serializationFactory = serializationFactory;
+        RemotingService.setSerializationFactory(serializationFactory);
         return this;
     }
 
-    private synchronized DefaultRemotingServerChannelHandler getChannelHandler() {
-        if (this.defaultHandler == null) this.defaultHandler = new DefaultRemotingServerChannelHandler(
-                this.loggerFactory);
-        if (this.serializationFactory != null) this.defaultHandler
-                .setSerializationFactory(this.serializationFactory);
-        return this.defaultHandler;
+    public RemotingConfiguration tcp(int port) {
+        return this;
+    }
+
+    public RemotingConfiguration websocket(int port) {
+        return this.bind(new WebSocketServerChannel(this.loggerFactory, port, true));
     }
 }

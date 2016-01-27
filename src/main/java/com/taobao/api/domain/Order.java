@@ -317,364 +317,364 @@ public class Order extends TaobaoObject {
         return this.adjustFee;
     }
 
-    public void setAdjustFee(String adjustFee) {
-        this.adjustFee = adjustFee;
-    }
-
     public Long getBindOid() {
         return this.bindOid;
-    }
-
-    public void setBindOid(Long bindOid) {
-        this.bindOid = bindOid;
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public Boolean getBuyerRate() {
         return this.buyerRate;
-    }
-
-    public void setBuyerRate(Boolean buyerRate) {
-        this.buyerRate = buyerRate;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public String getConsignTime() {
         return this.consignTime;
-    }
-
-    public void setConsignTime(String consignTime) {
-        this.consignTime = consignTime;
     }
 
     public String getDiscountFee() {
         return this.discountFee;
     }
 
-    public void setDiscountFee(String discountFee) {
-        this.discountFee = discountFee;
-    }
-
     public String getDivideOrderFee() {
         return this.divideOrderFee;
-    }
-
-    public void setDivideOrderFee(String divideOrderFee) {
-        this.divideOrderFee = divideOrderFee;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getIid() {
         return this.iid;
-    }
-
-    public void setIid(String iid) {
-        this.iid = iid;
     }
 
     public String getInvoiceNo() {
         return this.invoiceNo;
     }
 
-    public void setInvoiceNo(String invoiceNo) {
-        this.invoiceNo = invoiceNo;
-    }
-
     public Boolean getIsDaixiao() {
         return this.isDaixiao;
-    }
-
-    public void setIsDaixiao(Boolean isDaixiao) {
-        this.isDaixiao = isDaixiao;
     }
 
     public Boolean getIsOversold() {
         return this.isOversold;
     }
 
-    public void setIsOversold(Boolean isOversold) {
-        this.isOversold = isOversold;
-    }
-
     public Boolean getIsServiceOrder() {
         return this.isServiceOrder;
-    }
-
-    public void setIsServiceOrder(Boolean isServiceOrder) {
-        this.isServiceOrder = isServiceOrder;
     }
 
     public Boolean getIsWww() {
         return this.isWww;
     }
 
-    public void setIsWww(Boolean isWww) {
-        this.isWww = isWww;
-    }
-
     public Long getItemMealId() {
         return this.itemMealId;
-    }
-
-    public void setItemMealId(Long itemMealId) {
-        this.itemMealId = itemMealId;
     }
 
     public String getItemMealName() {
         return this.itemMealName;
     }
 
-    public void setItemMealName(String itemMealName) {
-        this.itemMealName = itemMealName;
-    }
-
     public String getLogisticsCompany() {
         return this.logisticsCompany;
-    }
-
-    public void setLogisticsCompany(String logisticsCompany) {
-        this.logisticsCompany = logisticsCompany;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getOid() {
         return this.oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
     }
 
     public String getOrderFrom() {
         return this.orderFrom;
     }
 
-    public void setOrderFrom(String orderFrom) {
-        this.orderFrom = orderFrom;
-    }
-
     public String getOuterIid() {
         return this.outerIid;
-    }
-
-    public void setOuterIid(String outerIid) {
-        this.outerIid = outerIid;
     }
 
     public String getOuterSkuId() {
         return this.outerSkuId;
     }
 
-    public void setOuterSkuId(String outerSkuId) {
-        this.outerSkuId = outerSkuId;
-    }
-
     public String getPartMjzDiscount() {
         return this.partMjzDiscount;
-    }
-
-    public void setPartMjzDiscount(String partMjzDiscount) {
-        this.partMjzDiscount = partMjzDiscount;
     }
 
     public String getPayment() {
         return this.payment;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getRefundId() {
         return this.refundId;
-    }
-
-    public void setRefundId(Long refundId) {
-        this.refundId = refundId;
     }
 
     public String getRefundStatus() {
         return this.refundStatus;
     }
 
-    public void setRefundStatus(String refundStatus) {
-        this.refundStatus = refundStatus;
-    }
-
     public String getSellerNick() {
         return this.sellerNick;
-    }
-
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
     }
 
     public Boolean getSellerRate() {
         return this.sellerRate;
     }
 
-    public void setSellerRate(Boolean sellerRate) {
-        this.sellerRate = sellerRate;
-    }
-
     public String getSellerType() {
         return this.sellerType;
-    }
-
-    public void setSellerType(String sellerType) {
-        this.sellerType = sellerType;
     }
 
     public String getShippingType() {
         return this.shippingType;
     }
 
-    public void setShippingType(String shippingType) {
-        this.shippingType = shippingType;
-    }
-
     public String getSkuId() {
         return this.skuId;
-    }
-
-    public void setSkuId(String skuId) {
-        this.skuId = skuId;
     }
 
     public String getSkuPropertiesName() {
         return this.skuPropertiesName;
     }
 
-    public void setSkuPropertiesName(String skuPropertiesName) {
-        this.skuPropertiesName = skuPropertiesName;
-    }
-
     public String getSnapshot() {
         return this.snapshot;
-    }
-
-    public void setSnapshot(String snapshot) {
-        this.snapshot = snapshot;
     }
 
     public String getSnapshotUrl() {
         return this.snapshotUrl;
     }
 
-    public void setSnapshotUrl(String snapshotUrl) {
-        this.snapshotUrl = snapshotUrl;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
-
     public String getTicketExpdateKey() {
         return this.ticketExpdateKey;
-    }
-
-    public void setTicketExpdateKey(String ticketExpdateKey) {
-        this.ticketExpdateKey = ticketExpdateKey;
     }
 
     public String getTicketOuterId() {
         return this.ticketOuterId;
     }
 
-    public void setTicketOuterId(String ticketOuterId) {
-        this.ticketOuterId = ticketOuterId;
-    }
-
     public Date getTimeoutActionTime() {
         return this.timeoutActionTime;
-    }
-
-    public void setTimeoutActionTime(Date timeoutActionTime) {
-        this.timeoutActionTime = timeoutActionTime;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
+    }
+
+    public void setAdjustFee(String adjustFee) {
+        this.adjustFee = adjustFee;
+    }
+
+    public void setBindOid(Long bindOid) {
+        this.bindOid = bindOid;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setBuyerRate(Boolean buyerRate) {
+        this.buyerRate = buyerRate;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setConsignTime(String consignTime) {
+        this.consignTime = consignTime;
+    }
+
+    public void setDiscountFee(String discountFee) {
+        this.discountFee = discountFee;
+    }
+
+    public void setDivideOrderFee(String divideOrderFee) {
+        this.divideOrderFee = divideOrderFee;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setIid(String iid) {
+        this.iid = iid;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+
+    public void setIsDaixiao(Boolean isDaixiao) {
+        this.isDaixiao = isDaixiao;
+    }
+
+    public void setIsOversold(Boolean isOversold) {
+        this.isOversold = isOversold;
+    }
+
+    public void setIsServiceOrder(Boolean isServiceOrder) {
+        this.isServiceOrder = isServiceOrder;
+    }
+
+    public void setIsWww(Boolean isWww) {
+        this.isWww = isWww;
+    }
+
+    public void setItemMealId(Long itemMealId) {
+        this.itemMealId = itemMealId;
+    }
+
+    public void setItemMealName(String itemMealName) {
+        this.itemMealName = itemMealName;
+    }
+
+    public void setLogisticsCompany(String logisticsCompany) {
+        this.logisticsCompany = logisticsCompany;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public void setOrderFrom(String orderFrom) {
+        this.orderFrom = orderFrom;
+    }
+
+    public void setOuterIid(String outerIid) {
+        this.outerIid = outerIid;
+    }
+
+    public void setOuterSkuId(String outerSkuId) {
+        this.outerSkuId = outerSkuId;
+    }
+
+    public void setPartMjzDiscount(String partMjzDiscount) {
+        this.partMjzDiscount = partMjzDiscount;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setRefundId(Long refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setRefundStatus(String refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setSellerRate(Boolean sellerRate) {
+        this.sellerRate = sellerRate;
+    }
+
+    public void setSellerType(String sellerType) {
+        this.sellerType = sellerType;
+    }
+
+    public void setShippingType(String shippingType) {
+        this.shippingType = shippingType;
+    }
+
+    public void setSkuId(String skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuPropertiesName(String skuPropertiesName) {
+        this.skuPropertiesName = skuPropertiesName;
+    }
+
+    public void setSnapshot(String snapshot) {
+        this.snapshot = snapshot;
+    }
+
+    public void setSnapshotUrl(String snapshotUrl) {
+        this.snapshotUrl = snapshotUrl;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public void setTicketExpdateKey(String ticketExpdateKey) {
+        this.ticketExpdateKey = ticketExpdateKey;
+    }
+
+    public void setTicketOuterId(String ticketOuterId) {
+        this.ticketOuterId = ticketOuterId;
+    }
+
+    public void setTimeoutActionTime(Date timeoutActionTime) {
+        this.timeoutActionTime = timeoutActionTime;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setTotalFee(String totalFee) {

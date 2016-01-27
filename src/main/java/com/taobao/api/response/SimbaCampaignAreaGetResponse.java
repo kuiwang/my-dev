@@ -20,12 +20,12 @@ public class SimbaCampaignAreaGetResponse extends TaobaoResponse {
     @ApiField("campaign_area")
     private CampaignArea campaignArea;
 
-    public void setCampaignArea(CampaignArea campaignArea) {
-        this.campaignArea = campaignArea;
-    }
-
     public CampaignArea getCampaignArea() {
         return this.campaignArea;
+    }
+
+    public void setCampaignArea(CampaignArea campaignArea) {
+        this.campaignArea = campaignArea;
     }
 
 }

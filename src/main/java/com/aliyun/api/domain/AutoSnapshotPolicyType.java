@@ -67,60 +67,60 @@ public class AutoSnapshotPolicyType extends TaobaoObject {
         return this.dataDiskPolicyEnabled;
     }
 
-    public void setDataDiskPolicyEnabled(String dataDiskPolicyEnabled) {
-        this.dataDiskPolicyEnabled = dataDiskPolicyEnabled;
-    }
-
     public Long getDataDiskPolicyRetentionDays() {
         return this.dataDiskPolicyRetentionDays;
-    }
-
-    public void setDataDiskPolicyRetentionDays(Long dataDiskPolicyRetentionDays) {
-        this.dataDiskPolicyRetentionDays = dataDiskPolicyRetentionDays;
     }
 
     public String getDataDiskPolicyRetentionLastWeek() {
         return this.dataDiskPolicyRetentionLastWeek;
     }
 
-    public void setDataDiskPolicyRetentionLastWeek(String dataDiskPolicyRetentionLastWeek) {
-        this.dataDiskPolicyRetentionLastWeek = dataDiskPolicyRetentionLastWeek;
-    }
-
     public Long getDataDiskPolicyTimePeriod() {
         return this.dataDiskPolicyTimePeriod;
-    }
-
-    public void setDataDiskPolicyTimePeriod(Long dataDiskPolicyTimePeriod) {
-        this.dataDiskPolicyTimePeriod = dataDiskPolicyTimePeriod;
     }
 
     public String getSystemDiskPolicyEnabled() {
         return this.systemDiskPolicyEnabled;
     }
 
-    public void setSystemDiskPolicyEnabled(String systemDiskPolicyEnabled) {
-        this.systemDiskPolicyEnabled = systemDiskPolicyEnabled;
-    }
-
     public Long getSystemDiskPolicyRetentionDays() {
         return this.systemDiskPolicyRetentionDays;
-    }
-
-    public void setSystemDiskPolicyRetentionDays(Long systemDiskPolicyRetentionDays) {
-        this.systemDiskPolicyRetentionDays = systemDiskPolicyRetentionDays;
     }
 
     public String getSystemDiskPolicyRetentionLastWeek() {
         return this.systemDiskPolicyRetentionLastWeek;
     }
 
-    public void setSystemDiskPolicyRetentionLastWeek(String systemDiskPolicyRetentionLastWeek) {
-        this.systemDiskPolicyRetentionLastWeek = systemDiskPolicyRetentionLastWeek;
-    }
-
     public Long getSystemDiskPolicyTimePeriod() {
         return this.systemDiskPolicyTimePeriod;
+    }
+
+    public void setDataDiskPolicyEnabled(String dataDiskPolicyEnabled) {
+        this.dataDiskPolicyEnabled = dataDiskPolicyEnabled;
+    }
+
+    public void setDataDiskPolicyRetentionDays(Long dataDiskPolicyRetentionDays) {
+        this.dataDiskPolicyRetentionDays = dataDiskPolicyRetentionDays;
+    }
+
+    public void setDataDiskPolicyRetentionLastWeek(String dataDiskPolicyRetentionLastWeek) {
+        this.dataDiskPolicyRetentionLastWeek = dataDiskPolicyRetentionLastWeek;
+    }
+
+    public void setDataDiskPolicyTimePeriod(Long dataDiskPolicyTimePeriod) {
+        this.dataDiskPolicyTimePeriod = dataDiskPolicyTimePeriod;
+    }
+
+    public void setSystemDiskPolicyEnabled(String systemDiskPolicyEnabled) {
+        this.systemDiskPolicyEnabled = systemDiskPolicyEnabled;
+    }
+
+    public void setSystemDiskPolicyRetentionDays(Long systemDiskPolicyRetentionDays) {
+        this.systemDiskPolicyRetentionDays = systemDiskPolicyRetentionDays;
+    }
+
+    public void setSystemDiskPolicyRetentionLastWeek(String systemDiskPolicyRetentionLastWeek) {
+        this.systemDiskPolicyRetentionLastWeek = systemDiskPolicyRetentionLastWeek;
     }
 
     public void setSystemDiskPolicyTimePeriod(Long systemDiskPolicyTimePeriod) {

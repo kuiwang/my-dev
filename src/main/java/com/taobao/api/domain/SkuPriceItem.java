@@ -35,20 +35,20 @@ public class SkuPriceItem extends TaobaoObject {
         return this.price;
     }
 
-    public void setPrice(PriceUnit price) {
-        this.price = price;
-    }
-
     public PriceUnit getPromotionPrice() {
         return this.promotionPrice;
     }
 
-    public void setPromotionPrice(PriceUnit promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
-
     public String getSkuId() {
         return this.skuId;
+    }
+
+    public void setPrice(PriceUnit price) {
+        this.price = price;
+    }
+
+    public void setPromotionPrice(PriceUnit promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 
     public void setSkuId(String skuId) {

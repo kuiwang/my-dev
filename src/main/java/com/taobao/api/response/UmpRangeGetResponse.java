@@ -24,12 +24,12 @@ public class UmpRangeGetResponse extends TaobaoResponse {
     @ApiField("range")
     private List<Range> ranges;
 
-    public void setRanges(List<Range> ranges) {
-        this.ranges = ranges;
-    }
-
     public List<Range> getRanges() {
         return this.ranges;
+    }
+
+    public void setRanges(List<Range> ranges) {
+        this.ranges = ranges;
     }
 
 }

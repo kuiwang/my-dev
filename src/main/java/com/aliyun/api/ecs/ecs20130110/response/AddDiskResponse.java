@@ -25,20 +25,20 @@ public class AddDiskResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setDiskId(String diskId) {
-        this.diskId = diskId;
-    }
-
     public String getDiskId() {
         return this.diskId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setDiskId(String diskId) {
+        this.diskId = diskId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

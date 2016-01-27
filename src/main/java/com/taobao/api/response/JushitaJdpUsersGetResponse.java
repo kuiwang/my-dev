@@ -30,20 +30,20 @@ public class JushitaJdpUsersGetResponse extends TaobaoResponse {
     @ApiField("jdp_user")
     private List<JdpUser> users;
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
     }
 
-    public void setUsers(List<JdpUser> users) {
-        this.users = users;
-    }
-
     public List<JdpUser> getUsers() {
         return this.users;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public void setUsers(List<JdpUser> users) {
+        this.users = users;
     }
 
 }

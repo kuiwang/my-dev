@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaCreativeAddResponse;
  */
 public class SimbaCreativeAddRequest implements TaobaoRequest<SimbaCreativeAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id
      */
     private Long adgroupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 创意图片地址，必须是推广组对应商品的图片之一
@@ -37,6 +33,8 @@ public class SimbaCreativeAddRequest implements TaobaoRequest<SimbaCreativeAddRe
      */
     private String nick;
 
+    private Long timestamp;
+
     /**
      * 创意标题，最多20个汉字<br />
      * 支持最大长度为：40<br />
@@ -44,50 +42,44 @@ public class SimbaCreativeAddRequest implements TaobaoRequest<SimbaCreativeAddRe
      */
     private String title;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+        RequestCheckUtils.checkNotEmpty(imgUrl, "imgUrl");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 40, "title");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.creative.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getImgUrl() {
         return this.imgUrl;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<SimbaCreativeAddResponse> getResponseClass() {
+        return SimbaCreativeAddResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.creative.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -100,6 +92,16 @@ public class SimbaCreativeAddRequest implements TaobaoRequest<SimbaCreativeAddRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,18 +109,24 @@ public class SimbaCreativeAddRequest implements TaobaoRequest<SimbaCreativeAddRe
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCreativeAddResponse> getResponseClass() {
-        return SimbaCreativeAddResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
-        RequestCheckUtils.checkNotEmpty(imgUrl, "imgUrl");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 40, "title");
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -20,12 +20,12 @@ public class JuCitygroupGetResponse extends TaobaoResponse {
     @ApiField("group")
     private GroupData group;
 
-    public void setGroup(GroupData group) {
-        this.group = group;
-    }
-
     public GroupData getGroup() {
         return this.group;
+    }
+
+    public void setGroup(GroupData group) {
+        this.group = group;
     }
 
 }

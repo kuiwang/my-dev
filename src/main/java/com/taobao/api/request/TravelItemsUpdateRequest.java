@@ -18,10 +18,6 @@ import com.taobao.api.response.TravelItemsUpdateResponse;
  */
 public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItemsUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 套餐价格日历增量更新字段，添加若干新套餐。（说明：如果使用增量更新字段，则全量更新字段combo_price_calendar不用设置，
      * 如果设置了则会优先使用全量更新
@@ -131,6 +127,8 @@ public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItems
      * 橱窗推荐。可选值:true,false;默认值:false(不推荐)，B商家不用设置该字段，均为true。
      */
     private Boolean hasShowcase;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 酒店信息，不超过1500字符
@@ -299,10 +297,14 @@ public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItems
      */
     private String ticketInfo;
 
+    private Long timestamp;
+
     /**
      * 商品标题。注意：在商品更新时，如果不设置该属性，默认不进行更新，下同。
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 否 套餐价格日历增量更新字段，更新若干套餐。（说明：如果使用增量更新字段，则全量更新字段combo_price_calendar不用设置
@@ -332,428 +334,223 @@ public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItems
      */
     private String verification;
 
-    public void setAddComboPriceCalendar(String addComboPriceCalendar) {
-        this.addComboPriceCalendar = addComboPriceCalendar;
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkMaxListSize(sellerCids, 20, "sellerCids");
+        RequestCheckUtils.checkMaxListSize(skuPrices, 20, "skuPrices");
+        RequestCheckUtils.checkMaxListSize(skuProperties, 20, "skuProperties");
+        RequestCheckUtils.checkMaxListSize(skuQuantities, 20, "skuQuantities");
     }
 
     public String getAddComboPriceCalendar() {
         return this.addComboPriceCalendar;
     }
 
-    public void setApproveStatus(String approveStatus) {
-        this.approveStatus = approveStatus;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.travel.items.update";
     }
 
     public String getApproveStatus() {
         return this.approveStatus;
     }
 
-    public void setAuctionPoint(Long auctionPoint) {
-        this.auctionPoint = auctionPoint;
-    }
-
     public Long getAuctionPoint() {
         return this.auctionPoint;
-    }
-
-    public void setChooseLogis(String chooseLogis) {
-        this.chooseLogis = chooseLogis;
     }
 
     public String getChooseLogis() {
         return this.chooseLogis;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setComboPriceCalendar(String comboPriceCalendar) {
-        this.comboPriceCalendar = comboPriceCalendar;
-    }
-
     public String getComboPriceCalendar() {
         return this.comboPriceCalendar;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDuration(Long duration) {
-        this.duration = duration;
-    }
-
     public Long getDuration() {
         return this.duration;
-    }
-
-    public void setEmptyFields(String emptyFields) {
-        this.emptyFields = emptyFields;
     }
 
     public String getEmptyFields() {
         return this.emptyFields;
     }
 
-    public void setExpirydate(String expirydate) {
-        this.expirydate = expirydate;
-    }
-
     public String getExpirydate() {
         return this.expirydate;
-    }
-
-    public void setFeeInclude(String feeInclude) {
-        this.feeInclude = feeInclude;
     }
 
     public String getFeeInclude() {
         return this.feeInclude;
     }
 
-    public void setFeeNotInclude(String feeNotInclude) {
-        this.feeNotInclude = feeNotInclude;
-    }
-
     public String getFeeNotInclude() {
         return this.feeNotInclude;
     }
 
-    public void setFlightInfo(String flightInfo) {
-        this.flightInfo = flightInfo;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
     }
 
     public String getFlightInfo() {
         return this.flightInfo;
     }
 
-    public void setGatheringPlace(String gatheringPlace) {
-        this.gatheringPlace = gatheringPlace;
-    }
-
     public String getGatheringPlace() {
         return this.gatheringPlace;
-    }
-
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
     }
 
     public Boolean getHasDiscount() {
         return this.hasDiscount;
     }
 
-    public void setHasInvoice(Boolean hasInvoice) {
-        this.hasInvoice = hasInvoice;
-    }
-
     public Boolean getHasInvoice() {
         return this.hasInvoice;
-    }
-
-    public void setHasShowcase(Boolean hasShowcase) {
-        this.hasShowcase = hasShowcase;
     }
 
     public Boolean getHasShowcase() {
         return this.hasShowcase;
     }
 
-    public void setHotelInfo(String hotelInfo) {
-        this.hotelInfo = hotelInfo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getHotelInfo() {
         return this.hotelInfo;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
-    }
-
     public FileItem getImage() {
         return this.image;
-    }
-
-    public void setInputPids(String inputPids) {
-        this.inputPids = inputPids;
     }
 
     public String getInputPids() {
         return this.inputPids;
     }
 
-    public void setInputStr(String inputStr) {
-        this.inputStr = inputStr;
-    }
-
     public String getInputStr() {
         return this.inputStr;
-    }
-
-    public void setIsTdcy(Boolean isTdcy) {
-        this.isTdcy = isTdcy;
     }
 
     public Boolean getIsTdcy() {
         return this.isTdcy;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setMerchant(String merchant) {
-        this.merchant = merchant;
     }
 
     public String getMerchant() {
         return this.merchant;
     }
 
-    public void setNetworkId(String networkId) {
-        this.networkId = networkId;
-    }
-
     public String getNetworkId() {
         return this.networkId;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setOnsaleAutoRefundRatio(Long onsaleAutoRefundRatio) {
-        this.onsaleAutoRefundRatio = onsaleAutoRefundRatio;
-    }
-
     public Long getOnsaleAutoRefundRatio() {
         return this.onsaleAutoRefundRatio;
-    }
-
-    public void setOrderInfo(String orderInfo) {
-        this.orderInfo = orderInfo;
     }
 
     public String getOrderInfo() {
         return this.orderInfo;
     }
 
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOwnExpense(String ownExpense) {
-        this.ownExpense = ownExpense;
     }
 
     public String getOwnExpense() {
         return this.ownExpense;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setProps(String props) {
-        this.props = props;
-    }
-
     public String getProps() {
         return this.props;
-    }
-
-    public void setProv(String prov) {
-        this.prov = prov;
     }
 
     public String getProv() {
         return this.prov;
     }
 
-    public void setRefundRatio(Long refundRatio) {
-        this.refundRatio = refundRatio;
-    }
-
     public Long getRefundRatio() {
         return this.refundRatio;
-    }
-
-    public void setRefundRegulation(String refundRegulation) {
-        this.refundRegulation = refundRegulation;
     }
 
     public String getRefundRegulation() {
         return this.refundRegulation;
     }
 
-    public void setRemoveComboPriceCalendar(String removeComboPriceCalendar) {
-        this.removeComboPriceCalendar = removeComboPriceCalendar;
-    }
-
     public String getRemoveComboPriceCalendar() {
         return this.removeComboPriceCalendar;
-    }
-
-    public void setRemoveProps(String removeProps) {
-        this.removeProps = removeProps;
     }
 
     public String getRemoveProps() {
         return this.removeProps;
     }
 
-    public void setSecondKill(String secondKill) {
-        this.secondKill = secondKill;
+    @Override
+    public Class<TravelItemsUpdateResponse> getResponseClass() {
+        return TravelItemsUpdateResponse.class;
     }
 
     public String getSecondKill() {
         return this.secondKill;
     }
 
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
-    }
-
     public String getSellerCids() {
         return this.sellerCids;
-    }
-
-    public void setShopingInfo(String shopingInfo) {
-        this.shopingInfo = shopingInfo;
     }
 
     public String getShopingInfo() {
         return this.shopingInfo;
     }
 
-    public void setSkuPrices(String skuPrices) {
-        this.skuPrices = skuPrices;
-    }
-
     public String getSkuPrices() {
         return this.skuPrices;
-    }
-
-    public void setSkuProperties(String skuProperties) {
-        this.skuProperties = skuProperties;
     }
 
     public String getSkuProperties() {
         return this.skuProperties;
     }
 
-    public void setSkuQuantities(String skuQuantities) {
-        this.skuQuantities = skuQuantities;
-    }
-
     public String getSkuQuantities() {
         return this.skuQuantities;
-    }
-
-    public void setSubStock(Long subStock) {
-        this.subStock = subStock;
     }
 
     public Long getSubStock() {
         return this.subStock;
     }
 
-    public void setTicketInfo(String ticketInfo) {
-        this.ticketInfo = ticketInfo;
-    }
-
-    public String getTicketInfo() {
-        return this.ticketInfo;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setUpdateComboPriceCalendar(String updateComboPriceCalendar) {
-        this.updateComboPriceCalendar = updateComboPriceCalendar;
-    }
-
-    public String getUpdateComboPriceCalendar() {
-        return this.updateComboPriceCalendar;
-    }
-
-    public void setUpdateOrAddProps(String updateOrAddProps) {
-        this.updateOrAddProps = updateOrAddProps;
-    }
-
-    public String getUpdateOrAddProps() {
-        return this.updateOrAddProps;
-    }
-
-    public void setVerification(String verification) {
-        this.verification = verification;
-    }
-
-    public String getVerification() {
-        return this.verification;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.travel.items.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("add_combo_price_calendar", this.addComboPriceCalendar);
@@ -812,6 +609,32 @@ public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItems
         return txtParams;
     }
 
+    public String getTicketInfo() {
+        return this.ticketInfo;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getUpdateComboPriceCalendar() {
+        return this.updateComboPriceCalendar;
+    }
+
+    public String getUpdateOrAddProps() {
+        return this.updateOrAddProps;
+    }
+
+    public String getVerification() {
+        return this.verification;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -819,26 +642,212 @@ public class TravelItemsUpdateRequest implements TaobaoUploadRequest<TravelItems
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setAddComboPriceCalendar(String addComboPriceCalendar) {
+        this.addComboPriceCalendar = addComboPriceCalendar;
     }
 
-    public Class<TravelItemsUpdateResponse> getResponseClass() {
-        return TravelItemsUpdateResponse.class;
+    public void setApproveStatus(String approveStatus) {
+        this.approveStatus = approveStatus;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkMaxListSize(sellerCids, 20, "sellerCids");
-        RequestCheckUtils.checkMaxListSize(skuPrices, 20, "skuPrices");
-        RequestCheckUtils.checkMaxListSize(skuProperties, 20, "skuProperties");
-        RequestCheckUtils.checkMaxListSize(skuQuantities, 20, "skuQuantities");
+    public void setAuctionPoint(Long auctionPoint) {
+        this.auctionPoint = auctionPoint;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setChooseLogis(String chooseLogis) {
+        this.chooseLogis = chooseLogis;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setComboPriceCalendar(String comboPriceCalendar) {
+        this.comboPriceCalendar = comboPriceCalendar;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    public void setEmptyFields(String emptyFields) {
+        this.emptyFields = emptyFields;
+    }
+
+    public void setExpirydate(String expirydate) {
+        this.expirydate = expirydate;
+    }
+
+    public void setFeeInclude(String feeInclude) {
+        this.feeInclude = feeInclude;
+    }
+
+    public void setFeeNotInclude(String feeNotInclude) {
+        this.feeNotInclude = feeNotInclude;
+    }
+
+    public void setFlightInfo(String flightInfo) {
+        this.flightInfo = flightInfo;
+    }
+
+    public void setGatheringPlace(String gatheringPlace) {
+        this.gatheringPlace = gatheringPlace;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setHasInvoice(Boolean hasInvoice) {
+        this.hasInvoice = hasInvoice;
+    }
+
+    public void setHasShowcase(Boolean hasShowcase) {
+        this.hasShowcase = hasShowcase;
+    }
+
+    public void setHotelInfo(String hotelInfo) {
+        this.hotelInfo = hotelInfo;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setInputPids(String inputPids) {
+        this.inputPids = inputPids;
+    }
+
+    public void setInputStr(String inputStr) {
+        this.inputStr = inputStr;
+    }
+
+    public void setIsTdcy(Boolean isTdcy) {
+        this.isTdcy = isTdcy;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant;
+    }
+
+    public void setNetworkId(String networkId) {
+        this.networkId = networkId;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setOnsaleAutoRefundRatio(Long onsaleAutoRefundRatio) {
+        this.onsaleAutoRefundRatio = onsaleAutoRefundRatio;
+    }
+
+    public void setOrderInfo(String orderInfo) {
+        this.orderInfo = orderInfo;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setOwnExpense(String ownExpense) {
+        this.ownExpense = ownExpense;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public void setRefundRatio(Long refundRatio) {
+        this.refundRatio = refundRatio;
+    }
+
+    public void setRefundRegulation(String refundRegulation) {
+        this.refundRegulation = refundRegulation;
+    }
+
+    public void setRemoveComboPriceCalendar(String removeComboPriceCalendar) {
+        this.removeComboPriceCalendar = removeComboPriceCalendar;
+    }
+
+    public void setRemoveProps(String removeProps) {
+        this.removeProps = removeProps;
+    }
+
+    public void setSecondKill(String secondKill) {
+        this.secondKill = secondKill;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setShopingInfo(String shopingInfo) {
+        this.shopingInfo = shopingInfo;
+    }
+
+    public void setSkuPrices(String skuPrices) {
+        this.skuPrices = skuPrices;
+    }
+
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties;
+    }
+
+    public void setSkuQuantities(String skuQuantities) {
+        this.skuQuantities = skuQuantities;
+    }
+
+    public void setSubStock(Long subStock) {
+        this.subStock = subStock;
+    }
+
+    public void setTicketInfo(String ticketInfo) {
+        this.ticketInfo = ticketInfo;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUpdateComboPriceCalendar(String updateComboPriceCalendar) {
+        this.updateComboPriceCalendar = updateComboPriceCalendar;
+    }
+
+    public void setUpdateOrAddProps(String updateOrAddProps) {
+        this.updateOrAddProps = updateOrAddProps;
+    }
+
+    public void setVerification(String verification) {
+        this.verification = verification;
     }
 }

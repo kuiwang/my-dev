@@ -24,12 +24,12 @@ public class WangwangEserviceOnlinetimeGetResponse extends TaobaoResponse {
     @ApiField("online_times_on_day")
     private List<OnlineTimesOnDay> onlineTimesListOnDays;
 
-    public void setOnlineTimesListOnDays(List<OnlineTimesOnDay> onlineTimesListOnDays) {
-        this.onlineTimesListOnDays = onlineTimesListOnDays;
-    }
-
     public List<OnlineTimesOnDay> getOnlineTimesListOnDays() {
         return this.onlineTimesListOnDays;
+    }
+
+    public void setOnlineTimesListOnDays(List<OnlineTimesOnDay> onlineTimesListOnDays) {
+        this.onlineTimesListOnDays = onlineTimesListOnDays;
     }
 
 }

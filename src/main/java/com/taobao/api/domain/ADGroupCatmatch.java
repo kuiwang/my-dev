@@ -79,76 +79,76 @@ public class ADGroupCatmatch extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Long getCatmatchId() {
         return this.catmatchId;
     }
 
-    public void setCatmatchId(Long catmatchId) {
-        this.catmatchId = catmatchId;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Boolean getIsDefaultPrice() {
         return this.isDefaultPrice;
     }
 
-    public void setIsDefaultPrice(Boolean isDefaultPrice) {
-        this.isDefaultPrice = isDefaultPrice;
-    }
-
     public Long getMaxPrice() {
         return this.maxPrice;
-    }
-
-    public void setMaxPrice(Long maxPrice) {
-        this.maxPrice = maxPrice;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
     public String getQscore() {
         return this.qscore;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCatmatchId(Long catmatchId) {
+        this.catmatchId = catmatchId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setIsDefaultPrice(Boolean isDefaultPrice) {
+        this.isDefaultPrice = isDefaultPrice;
+    }
+
+    public void setMaxPrice(Long maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
     }
 
     public void setQscore(String qscore) {

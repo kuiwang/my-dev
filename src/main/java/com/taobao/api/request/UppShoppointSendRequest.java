@@ -17,21 +17,19 @@ import com.taobao.api.response.UppShoppointSendResponse;
  */
 public class UppShoppointSendRequest implements TaobaoRequest<UppShoppointSendResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家nick
      */
     private String buyerNick;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 处理的店铺积分数量
      */
     private Long pointNum;
+
+    private Long timestamp;
 
     /**
      * 用于实际发放的时候关联系统发放记录，由预发放接口返回<br />
@@ -50,58 +48,41 @@ public class UppShoppointSendRequest implements TaobaoRequest<UppShoppointSendRe
      */
     private Date transactionTime;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(pointNum, "pointNum");
+        RequestCheckUtils.checkNotEmpty(transactionId, "transactionId");
+        RequestCheckUtils.checkNotEmpty(transactionStatus, "transactionStatus");
+        RequestCheckUtils.checkNotEmpty(transactionTime, "transactionTime");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.upp.shoppoint.send";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setPointNum(Long pointNum) {
-        this.pointNum = pointNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPointNum() {
         return this.pointNum;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    @Override
+    public Class<UppShoppointSendResponse> getResponseClass() {
+        return UppShoppointSendResponse.class;
     }
 
-    public Long getTransactionId() {
-        return this.transactionId;
-    }
-
-    public void setTransactionStatus(Long transactionStatus) {
-        this.transactionStatus = transactionStatus;
-    }
-
-    public Long getTransactionStatus() {
-        return this.transactionStatus;
-    }
-
-    public void setTransactionTime(Date transactionTime) {
-        this.transactionTime = transactionTime;
-    }
-
-    public Date getTransactionTime() {
-        return this.transactionTime;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.upp.shoppoint.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -115,6 +96,24 @@ public class UppShoppointSendRequest implements TaobaoRequest<UppShoppointSendRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTransactionId() {
+        return this.transactionId;
+    }
+
+    public Long getTransactionStatus() {
+        return this.transactionStatus;
+    }
+
+    public Date getTransactionTime() {
+        return this.transactionTime;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,19 +121,28 @@ public class UppShoppointSendRequest implements TaobaoRequest<UppShoppointSendRe
         this.udfParams.put(key, value);
     }
 
-    public Class<UppShoppointSendResponse> getResponseClass() {
-        return UppShoppointSendResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(pointNum, "pointNum");
-        RequestCheckUtils.checkNotEmpty(transactionId, "transactionId");
-        RequestCheckUtils.checkNotEmpty(transactionStatus, "transactionStatus");
-        RequestCheckUtils.checkNotEmpty(transactionTime, "transactionTime");
+    public void setPointNum(Long pointNum) {
+        this.pointNum = pointNum;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setTransactionStatus(Long transactionStatus) {
+        this.transactionStatus = transactionStatus;
+    }
+
+    public void setTransactionTime(Date transactionTime) {
+        this.transactionTime = transactionTime;
     }
 }

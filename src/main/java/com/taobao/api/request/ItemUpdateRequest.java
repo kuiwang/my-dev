@@ -19,10 +19,6 @@ import com.taobao.api.response.ItemUpdateResponse;
  */
 public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 售后服务说明模板id
      */
@@ -229,6 +225,8 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
      */
     private Boolean hasWarranty;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 忽略警告提示.
      */
@@ -352,15 +350,15 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
     private Long localityLifeOnsaleAutoRefundRatio;
 
     /**
+     * 退款码费承担方。发布电子凭证宝贝的时候会增加“退款码费承担方”配置项，可选填：(1)s（卖家承担） (2)b(买家承担)
+     */
+    private String localityLifeRefundmafee;
+
+    /**
      * 退款比例，百分比%前的数字,1-100的正整数值;
      * 在参数empty_fields里设置locality_life.refund_ratio可删除退款比例
      */
     private Long localityLifeRefundRatio;
-
-    /**
-     * 退款码费承担方。发布电子凭证宝贝的时候会增加“退款码费承担方”配置项，可选填：(1)s（卖家承担） (2)b(买家承担)
-     */
-    private String localityLifeRefundmafee;
 
     /**
      * 核销打款,1代表核销打款 0代表非核销打款;
@@ -461,16 +459,16 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
     private String picPath;
 
     /**
-     * 平邮费用。取值范围:0.01-999.00;精确到2位小数;单位:元。如:5.07，表示:5元7分,
-     * 注:post_fee,express_fee,ems_fee需一起填写
-     */
-    private String postFee;
-
-    /**
      * 宝贝所属的运费模板ID。取值范围：整数且必须是该卖家的运费模板的ID（可通过taobao.delivery.templates.
      * get获得当前会话用户的所有邮费模板）
      */
     private Long postageId;
+
+    /**
+     * 平邮费用。取值范围:0.01-999.00;精确到2位小数;单位:元。如:5.07，表示:5元7分,
+     * 注:post_fee,express_fee,ems_fee需一起填写
+     */
+    private String postFee;
 
     /**
      * 商品价格。取值范围:0-100000000;精确到2位小数;单位:元。如:200.07，表示:200元7分。需要在正确的价格区间内。
@@ -517,6 +515,11 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
     private Long scenicTicketPayWay;
 
     /**
+     * 重新关联商品与店铺类目，结构:",cid1,cid2,...,"，如果店铺类目存在二级类目，必须传入子类目cids。
+     */
+    private String sellerCids;
+
+    /**
      * 商品卖点信息，最长150个字符。天猫和集市都可用<br />
      * 支持最大长度为：150<br />
      * 支持的最大列表长度为：150
@@ -527,11 +530,6 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
      * 是否承诺退换货服务!虚拟商品无须设置此项!
      */
     private Boolean sellPromise;
-
-    /**
-     * 重新关联商品与店铺类目，结构:",cid1,cid2,...,"，如果店铺类目存在二级类目，必须传入子类目cids。
-     */
-    private String sellerCids;
 
     /**
      * sku层面的条形码，多个SKU情况，与SKU价格库存格式类似，用逗号分隔
@@ -600,12 +598,16 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
      */
     private Long subStock;
 
+    private Long timestamp;
+
     /**
      * 宝贝标题. 不能超过30字符,受违禁词控制<br />
      * 支持最大长度为：120<br />
      * 支持的最大列表长度为：120
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 有效期。可选值:7,14;单位:天;
@@ -617,820 +619,442 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
      */
     private Long weight;
 
-    public void setAfterSaleId(Long afterSaleId) {
-        this.afterSaleId = afterSaleId;
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
+        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
+        RequestCheckUtils.checkMaxLength(globalStockCountry, 30, "globalStockCountry");
+        RequestCheckUtils.checkMaxLength(image, 524288, "image");
+        RequestCheckUtils.checkMaxValue(num, 900000000L, "num");
+        RequestCheckUtils.checkMinValue(num, 0L, "num");
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+        RequestCheckUtils.checkMinValue(numIid, 1L, "numIid");
+        RequestCheckUtils.checkMaxValue(paimaiInfoInterval, 60L, "paimaiInfoInterval");
+        RequestCheckUtils.checkMinValue(paimaiInfoInterval, 1L, "paimaiInfoInterval");
+        RequestCheckUtils.checkMaxValue(paimaiInfoMode, 3L, "paimaiInfoMode");
+        RequestCheckUtils.checkMinValue(paimaiInfoMode, 1L, "paimaiInfoMode");
+        RequestCheckUtils.checkMaxValue(paimaiInfoValidHour, 48L, "paimaiInfoValidHour");
+        RequestCheckUtils.checkMinValue(paimaiInfoValidHour, 1L, "paimaiInfoValidHour");
+        RequestCheckUtils.checkMaxValue(paimaiInfoValidMinute, 59L, "paimaiInfoValidMinute");
+        RequestCheckUtils.checkMinValue(paimaiInfoValidMinute, 0L, "paimaiInfoValidMinute");
+        RequestCheckUtils.checkMaxLength(propertyAlias, 800, "propertyAlias");
+        RequestCheckUtils.checkMaxLength(sellPoint, 150, "sellPoint");
+        RequestCheckUtils.checkMaxListSize(sellerCids, 10, "sellerCids");
+        RequestCheckUtils.checkMaxLength(title, 120, "title");
     }
 
     public Long getAfterSaleId() {
         return this.afterSaleId;
     }
 
-    public void setApproveStatus(String approveStatus) {
-        this.approveStatus = approveStatus;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.update";
     }
 
     public String getApproveStatus() {
         return this.approveStatus;
     }
 
-    public void setAuctionPoint(Long auctionPoint) {
-        this.auctionPoint = auctionPoint;
-    }
-
     public Long getAuctionPoint() {
         return this.auctionPoint;
-    }
-
-    public void setAutoFill(String autoFill) {
-        this.autoFill = autoFill;
     }
 
     public String getAutoFill() {
         return this.autoFill;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
     public String getBarcode() {
         return this.barcode;
-    }
-
-    public void setChangeProp(String changeProp) {
-        this.changeProp = changeProp;
     }
 
     public String getChangeProp() {
         return this.changeProp;
     }
 
-    public void setChaoshiExtendsInfo(String chaoshiExtendsInfo) {
-        this.chaoshiExtendsInfo = chaoshiExtendsInfo;
-    }
-
     public String getChaoshiExtendsInfo() {
         return this.chaoshiExtendsInfo;
-    }
-
-    public void setCid(Long cid) {
-        this.cid = cid;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCodPostageId(Long codPostageId) {
-        this.codPostageId = codPostageId;
-    }
-
     public Long getCodPostageId() {
         return this.codPostageId;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDescModules(String descModules) {
-        this.descModules = descModules;
-    }
-
     public String getDescModules() {
         return this.descModules;
-    }
-
-    public void setEmptyFields(String emptyFields) {
-        this.emptyFields = emptyFields;
     }
 
     public String getEmptyFields() {
         return this.emptyFields;
     }
 
-    public void setEmsFee(String emsFee) {
-        this.emsFee = emsFee;
-    }
-
     public String getEmsFee() {
         return this.emsFee;
-    }
-
-    public void setExpressFee(String expressFee) {
-        this.expressFee = expressFee;
     }
 
     public String getExpressFee() {
         return this.expressFee;
     }
 
-    public void setFoodSecurityContact(String foodSecurityContact) {
-        this.foodSecurityContact = foodSecurityContact;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("image", this.image);
+        return params;
     }
 
     public String getFoodSecurityContact() {
         return this.foodSecurityContact;
     }
 
-    public void setFoodSecurityDesignCode(String foodSecurityDesignCode) {
-        this.foodSecurityDesignCode = foodSecurityDesignCode;
-    }
-
     public String getFoodSecurityDesignCode() {
         return this.foodSecurityDesignCode;
-    }
-
-    public void setFoodSecurityFactory(String foodSecurityFactory) {
-        this.foodSecurityFactory = foodSecurityFactory;
     }
 
     public String getFoodSecurityFactory() {
         return this.foodSecurityFactory;
     }
 
-    public void setFoodSecurityFactorySite(String foodSecurityFactorySite) {
-        this.foodSecurityFactorySite = foodSecurityFactorySite;
-    }
-
     public String getFoodSecurityFactorySite() {
         return this.foodSecurityFactorySite;
-    }
-
-    public void setFoodSecurityFoodAdditive(String foodSecurityFoodAdditive) {
-        this.foodSecurityFoodAdditive = foodSecurityFoodAdditive;
     }
 
     public String getFoodSecurityFoodAdditive() {
         return this.foodSecurityFoodAdditive;
     }
 
-    public void setFoodSecurityHealthProductNo(String foodSecurityHealthProductNo) {
-        this.foodSecurityHealthProductNo = foodSecurityHealthProductNo;
-    }
-
     public String getFoodSecurityHealthProductNo() {
         return this.foodSecurityHealthProductNo;
-    }
-
-    public void setFoodSecurityMix(String foodSecurityMix) {
-        this.foodSecurityMix = foodSecurityMix;
     }
 
     public String getFoodSecurityMix() {
         return this.foodSecurityMix;
     }
 
-    public void setFoodSecurityPeriod(String foodSecurityPeriod) {
-        this.foodSecurityPeriod = foodSecurityPeriod;
-    }
-
     public String getFoodSecurityPeriod() {
         return this.foodSecurityPeriod;
-    }
-
-    public void setFoodSecurityPlanStorage(String foodSecurityPlanStorage) {
-        this.foodSecurityPlanStorage = foodSecurityPlanStorage;
     }
 
     public String getFoodSecurityPlanStorage() {
         return this.foodSecurityPlanStorage;
     }
 
-    public void setFoodSecurityPrdLicenseNo(String foodSecurityPrdLicenseNo) {
-        this.foodSecurityPrdLicenseNo = foodSecurityPrdLicenseNo;
-    }
-
     public String getFoodSecurityPrdLicenseNo() {
         return this.foodSecurityPrdLicenseNo;
-    }
-
-    public void setFoodSecurityProductDateEnd(String foodSecurityProductDateEnd) {
-        this.foodSecurityProductDateEnd = foodSecurityProductDateEnd;
     }
 
     public String getFoodSecurityProductDateEnd() {
         return this.foodSecurityProductDateEnd;
     }
 
-    public void setFoodSecurityProductDateStart(String foodSecurityProductDateStart) {
-        this.foodSecurityProductDateStart = foodSecurityProductDateStart;
-    }
-
     public String getFoodSecurityProductDateStart() {
         return this.foodSecurityProductDateStart;
-    }
-
-    public void setFoodSecurityStockDateEnd(String foodSecurityStockDateEnd) {
-        this.foodSecurityStockDateEnd = foodSecurityStockDateEnd;
     }
 
     public String getFoodSecurityStockDateEnd() {
         return this.foodSecurityStockDateEnd;
     }
 
-    public void setFoodSecurityStockDateStart(String foodSecurityStockDateStart) {
-        this.foodSecurityStockDateStart = foodSecurityStockDateStart;
-    }
-
     public String getFoodSecurityStockDateStart() {
         return this.foodSecurityStockDateStart;
-    }
-
-    public void setFoodSecuritySupplier(String foodSecuritySupplier) {
-        this.foodSecuritySupplier = foodSecuritySupplier;
     }
 
     public String getFoodSecuritySupplier() {
         return this.foodSecuritySupplier;
     }
 
-    public void setFreightPayer(String freightPayer) {
-        this.freightPayer = freightPayer;
-    }
-
     public String getFreightPayer() {
         return this.freightPayer;
-    }
-
-    public void setGlobalStockCountry(String globalStockCountry) {
-        this.globalStockCountry = globalStockCountry;
     }
 
     public String getGlobalStockCountry() {
         return this.globalStockCountry;
     }
 
-    public void setGlobalStockType(String globalStockType) {
-        this.globalStockType = globalStockType;
-    }
-
     public String getGlobalStockType() {
         return this.globalStockType;
-    }
-
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
     }
 
     public Boolean getHasDiscount() {
         return this.hasDiscount;
     }
 
-    public void setHasInvoice(Boolean hasInvoice) {
-        this.hasInvoice = hasInvoice;
-    }
-
     public Boolean getHasInvoice() {
         return this.hasInvoice;
-    }
-
-    public void setHasShowcase(Boolean hasShowcase) {
-        this.hasShowcase = hasShowcase;
     }
 
     public Boolean getHasShowcase() {
         return this.hasShowcase;
     }
 
-    public void setHasWarranty(Boolean hasWarranty) {
-        this.hasWarranty = hasWarranty;
-    }
-
     public Boolean getHasWarranty() {
         return this.hasWarranty;
     }
 
-    public void setIgnorewarning(String ignorewarning) {
-        this.ignorewarning = ignorewarning;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIgnorewarning() {
         return this.ignorewarning;
     }
 
-    public void setImage(FileItem image) {
-        this.image = image;
-    }
-
     public FileItem getImage() {
         return this.image;
-    }
-
-    public void setIncrement(String increment) {
-        this.increment = increment;
     }
 
     public String getIncrement() {
         return this.increment;
     }
 
-    public void setInputPids(String inputPids) {
-        this.inputPids = inputPids;
-    }
-
     public String getInputPids() {
         return this.inputPids;
-    }
-
-    public void setInputStr(String inputStr) {
-        this.inputStr = inputStr;
     }
 
     public String getInputStr() {
         return this.inputStr;
     }
 
-    public void setIs3D(Boolean is3D) {
-        this.is3D = is3D;
-    }
-
     public Boolean getIs3D() {
         return this.is3D;
-    }
-
-    public void setIsEx(Boolean isEx) {
-        this.isEx = isEx;
     }
 
     public Boolean getIsEx() {
         return this.isEx;
     }
 
-    public void setIsLightningConsignment(Boolean isLightningConsignment) {
-        this.isLightningConsignment = isLightningConsignment;
-    }
-
     public Boolean getIsLightningConsignment() {
         return this.isLightningConsignment;
-    }
-
-    public void setIsOffline(String isOffline) {
-        this.isOffline = isOffline;
     }
 
     public String getIsOffline() {
         return this.isOffline;
     }
 
-    public void setIsReplaceSku(Boolean isReplaceSku) {
-        this.isReplaceSku = isReplaceSku;
-    }
-
     public Boolean getIsReplaceSku() {
         return this.isReplaceSku;
-    }
-
-    public void setIsTaobao(Boolean isTaobao) {
-        this.isTaobao = isTaobao;
     }
 
     public Boolean getIsTaobao() {
         return this.isTaobao;
     }
 
-    public void setIsXinpin(Boolean isXinpin) {
-        this.isXinpin = isXinpin;
-    }
-
     public Boolean getIsXinpin() {
         return this.isXinpin;
-    }
-
-    public void setItemSize(String itemSize) {
-        this.itemSize = itemSize;
     }
 
     public String getItemSize() {
         return this.itemSize;
     }
 
-    public void setItemWeight(String itemWeight) {
-        this.itemWeight = itemWeight;
-    }
-
     public String getItemWeight() {
         return this.itemWeight;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     public String getLang() {
         return this.lang;
     }
 
-    public void setListTime(Date listTime) {
-        this.listTime = listTime;
-    }
-
     public Date getListTime() {
         return this.listTime;
-    }
-
-    public void setLocalityLifeChooseLogis(String localityLifeChooseLogis) {
-        this.localityLifeChooseLogis = localityLifeChooseLogis;
     }
 
     public String getLocalityLifeChooseLogis() {
         return this.localityLifeChooseLogis;
     }
 
-    public void setLocalityLifeExpirydate(String localityLifeExpirydate) {
-        this.localityLifeExpirydate = localityLifeExpirydate;
-    }
-
     public String getLocalityLifeExpirydate() {
         return this.localityLifeExpirydate;
-    }
-
-    public void setLocalityLifeMerchant(String localityLifeMerchant) {
-        this.localityLifeMerchant = localityLifeMerchant;
     }
 
     public String getLocalityLifeMerchant() {
         return this.localityLifeMerchant;
     }
 
-    public void setLocalityLifeNetworkId(String localityLifeNetworkId) {
-        this.localityLifeNetworkId = localityLifeNetworkId;
-    }
-
     public String getLocalityLifeNetworkId() {
         return this.localityLifeNetworkId;
-    }
-
-    public void setLocalityLifeOnsaleAutoRefundRatio(Long localityLifeOnsaleAutoRefundRatio) {
-        this.localityLifeOnsaleAutoRefundRatio = localityLifeOnsaleAutoRefundRatio;
     }
 
     public Long getLocalityLifeOnsaleAutoRefundRatio() {
         return this.localityLifeOnsaleAutoRefundRatio;
     }
 
-    public void setLocalityLifeRefundRatio(Long localityLifeRefundRatio) {
-        this.localityLifeRefundRatio = localityLifeRefundRatio;
+    public String getLocalityLifeRefundmafee() {
+        return this.localityLifeRefundmafee;
     }
 
     public Long getLocalityLifeRefundRatio() {
         return this.localityLifeRefundRatio;
     }
 
-    public void setLocalityLifeRefundmafee(String localityLifeRefundmafee) {
-        this.localityLifeRefundmafee = localityLifeRefundmafee;
-    }
-
-    public String getLocalityLifeRefundmafee() {
-        return this.localityLifeRefundmafee;
-    }
-
-    public void setLocalityLifeVerification(String localityLifeVerification) {
-        this.localityLifeVerification = localityLifeVerification;
-    }
-
     public String getLocalityLifeVerification() {
         return this.localityLifeVerification;
-    }
-
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
     }
 
     public String getLocationCity() {
         return this.locationCity;
     }
 
-    public void setLocationState(String locationState) {
-        this.locationState = locationState;
-    }
-
     public String getLocationState() {
         return this.locationState;
-    }
-
-    public void setNewprepay(String newprepay) {
-        this.newprepay = newprepay;
     }
 
     public String getNewprepay() {
         return this.newprepay;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setO2oBindService(Boolean o2oBindService) {
-        this.o2oBindService = o2oBindService;
-    }
-
     public Boolean getO2oBindService() {
         return this.o2oBindService;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPaimaiInfoDeposit(Long paimaiInfoDeposit) {
-        this.paimaiInfoDeposit = paimaiInfoDeposit;
-    }
-
     public Long getPaimaiInfoDeposit() {
         return this.paimaiInfoDeposit;
-    }
-
-    public void setPaimaiInfoInterval(Long paimaiInfoInterval) {
-        this.paimaiInfoInterval = paimaiInfoInterval;
     }
 
     public Long getPaimaiInfoInterval() {
         return this.paimaiInfoInterval;
     }
 
-    public void setPaimaiInfoMode(Long paimaiInfoMode) {
-        this.paimaiInfoMode = paimaiInfoMode;
-    }
-
     public Long getPaimaiInfoMode() {
         return this.paimaiInfoMode;
-    }
-
-    public void setPaimaiInfoReserve(String paimaiInfoReserve) {
-        this.paimaiInfoReserve = paimaiInfoReserve;
     }
 
     public String getPaimaiInfoReserve() {
         return this.paimaiInfoReserve;
     }
 
-    public void setPaimaiInfoValidHour(Long paimaiInfoValidHour) {
-        this.paimaiInfoValidHour = paimaiInfoValidHour;
-    }
-
     public Long getPaimaiInfoValidHour() {
         return this.paimaiInfoValidHour;
-    }
-
-    public void setPaimaiInfoValidMinute(Long paimaiInfoValidMinute) {
-        this.paimaiInfoValidMinute = paimaiInfoValidMinute;
     }
 
     public Long getPaimaiInfoValidMinute() {
         return this.paimaiInfoValidMinute;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
-    }
-
-    public String getPostFee() {
-        return this.postFee;
-    }
-
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
     }
 
     public Long getPostageId() {
         return this.postageId;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String getPostFee() {
+        return this.postFee;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
     }
 
     public String getPropertyAlias() {
         return this.propertyAlias;
     }
 
-    public void setProps(String props) {
-        this.props = props;
-    }
-
     public String getProps() {
         return this.props;
-    }
-
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
     }
 
     public String getQualification() {
         return this.qualification;
     }
 
-    public void setScenicTicketBookCost(String scenicTicketBookCost) {
-        this.scenicTicketBookCost = scenicTicketBookCost;
+    @Override
+    public Class<ItemUpdateResponse> getResponseClass() {
+        return ItemUpdateResponse.class;
     }
 
     public String getScenicTicketBookCost() {
         return this.scenicTicketBookCost;
     }
 
-    public void setScenicTicketPayWay(Long scenicTicketPayWay) {
-        this.scenicTicketPayWay = scenicTicketPayWay;
-    }
-
     public Long getScenicTicketPayWay() {
         return this.scenicTicketPayWay;
-    }
-
-    public void setSellPoint(String sellPoint) {
-        this.sellPoint = sellPoint;
-    }
-
-    public String getSellPoint() {
-        return this.sellPoint;
-    }
-
-    public void setSellPromise(Boolean sellPromise) {
-        this.sellPromise = sellPromise;
-    }
-
-    public Boolean getSellPromise() {
-        return this.sellPromise;
-    }
-
-    public void setSellerCids(String sellerCids) {
-        this.sellerCids = sellerCids;
     }
 
     public String getSellerCids() {
         return this.sellerCids;
     }
 
-    public void setSkuBarcode(String skuBarcode) {
-        this.skuBarcode = skuBarcode;
+    public String getSellPoint() {
+        return this.sellPoint;
+    }
+
+    public Boolean getSellPromise() {
+        return this.sellPromise;
     }
 
     public String getSkuBarcode() {
         return this.skuBarcode;
     }
 
-    public void setSkuHdHeight(String skuHdHeight) {
-        this.skuHdHeight = skuHdHeight;
-    }
-
     public String getSkuHdHeight() {
         return this.skuHdHeight;
-    }
-
-    public void setSkuHdLampQuantity(String skuHdLampQuantity) {
-        this.skuHdLampQuantity = skuHdLampQuantity;
     }
 
     public String getSkuHdLampQuantity() {
         return this.skuHdLampQuantity;
     }
 
-    public void setSkuHdLength(String skuHdLength) {
-        this.skuHdLength = skuHdLength;
-    }
-
     public String getSkuHdLength() {
         return this.skuHdLength;
-    }
-
-    public void setSkuOuterIds(String skuOuterIds) {
-        this.skuOuterIds = skuOuterIds;
     }
 
     public String getSkuOuterIds() {
         return this.skuOuterIds;
     }
 
-    public void setSkuPrices(String skuPrices) {
-        this.skuPrices = skuPrices;
-    }
-
     public String getSkuPrices() {
         return this.skuPrices;
-    }
-
-    public void setSkuProperties(String skuProperties) {
-        this.skuProperties = skuProperties;
     }
 
     public String getSkuProperties() {
         return this.skuProperties;
     }
 
-    public void setSkuQuantities(String skuQuantities) {
-        this.skuQuantities = skuQuantities;
-    }
-
     public String getSkuQuantities() {
         return this.skuQuantities;
-    }
-
-    public void setSkuSpecIds(String skuSpecIds) {
-        this.skuSpecIds = skuSpecIds;
     }
 
     public String getSkuSpecIds() {
         return this.skuSpecIds;
     }
 
-    public void setStuffStatus(String stuffStatus) {
-        this.stuffStatus = stuffStatus;
-    }
-
     public String getStuffStatus() {
         return this.stuffStatus;
-    }
-
-    public void setSubStock(Long subStock) {
-        this.subStock = subStock;
     }
 
     public Long getSubStock() {
         return this.subStock;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setValidThru(Long validThru) {
-        this.validThru = validThru;
-    }
-
-    public Long getValidThru() {
-        return this.validThru;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public Long getWeight() {
-        return this.weight;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("after_sale_id", this.afterSaleId);
@@ -1539,6 +1163,24 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Long getValidThru() {
+        return this.validThru;
+    }
+
+    public Long getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -1546,41 +1188,408 @@ public class ItemUpdateRequest implements TaobaoUploadRequest<ItemUpdateResponse
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("image", this.image);
-        return params;
+    public void setAfterSaleId(Long afterSaleId) {
+        this.afterSaleId = afterSaleId;
     }
 
-    public Class<ItemUpdateResponse> getResponseClass() {
-        return ItemUpdateResponse.class;
+    public void setApproveStatus(String approveStatus) {
+        this.approveStatus = approveStatus;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMinValue(cid, 0L, "cid");
-        RequestCheckUtils.checkMaxLength(desc, 200000, "desc");
-        RequestCheckUtils.checkMaxLength(globalStockCountry, 30, "globalStockCountry");
-        RequestCheckUtils.checkMaxLength(image, 524288, "image");
-        RequestCheckUtils.checkMaxValue(num, 900000000L, "num");
-        RequestCheckUtils.checkMinValue(num, 0L, "num");
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
-        RequestCheckUtils.checkMinValue(numIid, 1L, "numIid");
-        RequestCheckUtils.checkMaxValue(paimaiInfoInterval, 60L, "paimaiInfoInterval");
-        RequestCheckUtils.checkMinValue(paimaiInfoInterval, 1L, "paimaiInfoInterval");
-        RequestCheckUtils.checkMaxValue(paimaiInfoMode, 3L, "paimaiInfoMode");
-        RequestCheckUtils.checkMinValue(paimaiInfoMode, 1L, "paimaiInfoMode");
-        RequestCheckUtils.checkMaxValue(paimaiInfoValidHour, 48L, "paimaiInfoValidHour");
-        RequestCheckUtils.checkMinValue(paimaiInfoValidHour, 1L, "paimaiInfoValidHour");
-        RequestCheckUtils.checkMaxValue(paimaiInfoValidMinute, 59L, "paimaiInfoValidMinute");
-        RequestCheckUtils.checkMinValue(paimaiInfoValidMinute, 0L, "paimaiInfoValidMinute");
-        RequestCheckUtils.checkMaxLength(propertyAlias, 800, "propertyAlias");
-        RequestCheckUtils.checkMaxLength(sellPoint, 150, "sellPoint");
-        RequestCheckUtils.checkMaxListSize(sellerCids, 10, "sellerCids");
-        RequestCheckUtils.checkMaxLength(title, 120, "title");
+    public void setAuctionPoint(Long auctionPoint) {
+        this.auctionPoint = auctionPoint;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setAutoFill(String autoFill) {
+        this.autoFill = autoFill;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setChangeProp(String changeProp) {
+        this.changeProp = changeProp;
+    }
+
+    public void setChaoshiExtendsInfo(String chaoshiExtendsInfo) {
+        this.chaoshiExtendsInfo = chaoshiExtendsInfo;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCodPostageId(Long codPostageId) {
+        this.codPostageId = codPostageId;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDescModules(String descModules) {
+        this.descModules = descModules;
+    }
+
+    public void setEmptyFields(String emptyFields) {
+        this.emptyFields = emptyFields;
+    }
+
+    public void setEmsFee(String emsFee) {
+        this.emsFee = emsFee;
+    }
+
+    public void setExpressFee(String expressFee) {
+        this.expressFee = expressFee;
+    }
+
+    public void setFoodSecurityContact(String foodSecurityContact) {
+        this.foodSecurityContact = foodSecurityContact;
+    }
+
+    public void setFoodSecurityDesignCode(String foodSecurityDesignCode) {
+        this.foodSecurityDesignCode = foodSecurityDesignCode;
+    }
+
+    public void setFoodSecurityFactory(String foodSecurityFactory) {
+        this.foodSecurityFactory = foodSecurityFactory;
+    }
+
+    public void setFoodSecurityFactorySite(String foodSecurityFactorySite) {
+        this.foodSecurityFactorySite = foodSecurityFactorySite;
+    }
+
+    public void setFoodSecurityFoodAdditive(String foodSecurityFoodAdditive) {
+        this.foodSecurityFoodAdditive = foodSecurityFoodAdditive;
+    }
+
+    public void setFoodSecurityHealthProductNo(String foodSecurityHealthProductNo) {
+        this.foodSecurityHealthProductNo = foodSecurityHealthProductNo;
+    }
+
+    public void setFoodSecurityMix(String foodSecurityMix) {
+        this.foodSecurityMix = foodSecurityMix;
+    }
+
+    public void setFoodSecurityPeriod(String foodSecurityPeriod) {
+        this.foodSecurityPeriod = foodSecurityPeriod;
+    }
+
+    public void setFoodSecurityPlanStorage(String foodSecurityPlanStorage) {
+        this.foodSecurityPlanStorage = foodSecurityPlanStorage;
+    }
+
+    public void setFoodSecurityPrdLicenseNo(String foodSecurityPrdLicenseNo) {
+        this.foodSecurityPrdLicenseNo = foodSecurityPrdLicenseNo;
+    }
+
+    public void setFoodSecurityProductDateEnd(String foodSecurityProductDateEnd) {
+        this.foodSecurityProductDateEnd = foodSecurityProductDateEnd;
+    }
+
+    public void setFoodSecurityProductDateStart(String foodSecurityProductDateStart) {
+        this.foodSecurityProductDateStart = foodSecurityProductDateStart;
+    }
+
+    public void setFoodSecurityStockDateEnd(String foodSecurityStockDateEnd) {
+        this.foodSecurityStockDateEnd = foodSecurityStockDateEnd;
+    }
+
+    public void setFoodSecurityStockDateStart(String foodSecurityStockDateStart) {
+        this.foodSecurityStockDateStart = foodSecurityStockDateStart;
+    }
+
+    public void setFoodSecuritySupplier(String foodSecuritySupplier) {
+        this.foodSecuritySupplier = foodSecuritySupplier;
+    }
+
+    public void setFreightPayer(String freightPayer) {
+        this.freightPayer = freightPayer;
+    }
+
+    public void setGlobalStockCountry(String globalStockCountry) {
+        this.globalStockCountry = globalStockCountry;
+    }
+
+    public void setGlobalStockType(String globalStockType) {
+        this.globalStockType = globalStockType;
+    }
+
+    public void setHasDiscount(Boolean hasDiscount) {
+        this.hasDiscount = hasDiscount;
+    }
+
+    public void setHasInvoice(Boolean hasInvoice) {
+        this.hasInvoice = hasInvoice;
+    }
+
+    public void setHasShowcase(Boolean hasShowcase) {
+        this.hasShowcase = hasShowcase;
+    }
+
+    public void setHasWarranty(Boolean hasWarranty) {
+        this.hasWarranty = hasWarranty;
+    }
+
+    public void setIgnorewarning(String ignorewarning) {
+        this.ignorewarning = ignorewarning;
+    }
+
+    public void setImage(FileItem image) {
+        this.image = image;
+    }
+
+    public void setIncrement(String increment) {
+        this.increment = increment;
+    }
+
+    public void setInputPids(String inputPids) {
+        this.inputPids = inputPids;
+    }
+
+    public void setInputStr(String inputStr) {
+        this.inputStr = inputStr;
+    }
+
+    public void setIs3D(Boolean is3D) {
+        this.is3D = is3D;
+    }
+
+    public void setIsEx(Boolean isEx) {
+        this.isEx = isEx;
+    }
+
+    public void setIsLightningConsignment(Boolean isLightningConsignment) {
+        this.isLightningConsignment = isLightningConsignment;
+    }
+
+    public void setIsOffline(String isOffline) {
+        this.isOffline = isOffline;
+    }
+
+    public void setIsReplaceSku(Boolean isReplaceSku) {
+        this.isReplaceSku = isReplaceSku;
+    }
+
+    public void setIsTaobao(Boolean isTaobao) {
+        this.isTaobao = isTaobao;
+    }
+
+    public void setIsXinpin(Boolean isXinpin) {
+        this.isXinpin = isXinpin;
+    }
+
+    public void setItemSize(String itemSize) {
+        this.itemSize = itemSize;
+    }
+
+    public void setItemWeight(String itemWeight) {
+        this.itemWeight = itemWeight;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public void setListTime(Date listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setLocalityLifeChooseLogis(String localityLifeChooseLogis) {
+        this.localityLifeChooseLogis = localityLifeChooseLogis;
+    }
+
+    public void setLocalityLifeExpirydate(String localityLifeExpirydate) {
+        this.localityLifeExpirydate = localityLifeExpirydate;
+    }
+
+    public void setLocalityLifeMerchant(String localityLifeMerchant) {
+        this.localityLifeMerchant = localityLifeMerchant;
+    }
+
+    public void setLocalityLifeNetworkId(String localityLifeNetworkId) {
+        this.localityLifeNetworkId = localityLifeNetworkId;
+    }
+
+    public void setLocalityLifeOnsaleAutoRefundRatio(Long localityLifeOnsaleAutoRefundRatio) {
+        this.localityLifeOnsaleAutoRefundRatio = localityLifeOnsaleAutoRefundRatio;
+    }
+
+    public void setLocalityLifeRefundmafee(String localityLifeRefundmafee) {
+        this.localityLifeRefundmafee = localityLifeRefundmafee;
+    }
+
+    public void setLocalityLifeRefundRatio(Long localityLifeRefundRatio) {
+        this.localityLifeRefundRatio = localityLifeRefundRatio;
+    }
+
+    public void setLocalityLifeVerification(String localityLifeVerification) {
+        this.localityLifeVerification = localityLifeVerification;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public void setLocationState(String locationState) {
+        this.locationState = locationState;
+    }
+
+    public void setNewprepay(String newprepay) {
+        this.newprepay = newprepay;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setO2oBindService(Boolean o2oBindService) {
+        this.o2oBindService = o2oBindService;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPaimaiInfoDeposit(Long paimaiInfoDeposit) {
+        this.paimaiInfoDeposit = paimaiInfoDeposit;
+    }
+
+    public void setPaimaiInfoInterval(Long paimaiInfoInterval) {
+        this.paimaiInfoInterval = paimaiInfoInterval;
+    }
+
+    public void setPaimaiInfoMode(Long paimaiInfoMode) {
+        this.paimaiInfoMode = paimaiInfoMode;
+    }
+
+    public void setPaimaiInfoReserve(String paimaiInfoReserve) {
+        this.paimaiInfoReserve = paimaiInfoReserve;
+    }
+
+    public void setPaimaiInfoValidHour(Long paimaiInfoValidHour) {
+        this.paimaiInfoValidHour = paimaiInfoValidHour;
+    }
+
+    public void setPaimaiInfoValidMinute(Long paimaiInfoValidMinute) {
+        this.paimaiInfoValidMinute = paimaiInfoValidMinute;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public void setScenicTicketBookCost(String scenicTicketBookCost) {
+        this.scenicTicketBookCost = scenicTicketBookCost;
+    }
+
+    public void setScenicTicketPayWay(Long scenicTicketPayWay) {
+        this.scenicTicketPayWay = scenicTicketPayWay;
+    }
+
+    public void setSellerCids(String sellerCids) {
+        this.sellerCids = sellerCids;
+    }
+
+    public void setSellPoint(String sellPoint) {
+        this.sellPoint = sellPoint;
+    }
+
+    public void setSellPromise(Boolean sellPromise) {
+        this.sellPromise = sellPromise;
+    }
+
+    public void setSkuBarcode(String skuBarcode) {
+        this.skuBarcode = skuBarcode;
+    }
+
+    public void setSkuHdHeight(String skuHdHeight) {
+        this.skuHdHeight = skuHdHeight;
+    }
+
+    public void setSkuHdLampQuantity(String skuHdLampQuantity) {
+        this.skuHdLampQuantity = skuHdLampQuantity;
+    }
+
+    public void setSkuHdLength(String skuHdLength) {
+        this.skuHdLength = skuHdLength;
+    }
+
+    public void setSkuOuterIds(String skuOuterIds) {
+        this.skuOuterIds = skuOuterIds;
+    }
+
+    public void setSkuPrices(String skuPrices) {
+        this.skuPrices = skuPrices;
+    }
+
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties;
+    }
+
+    public void setSkuQuantities(String skuQuantities) {
+        this.skuQuantities = skuQuantities;
+    }
+
+    public void setSkuSpecIds(String skuSpecIds) {
+        this.skuSpecIds = skuSpecIds;
+    }
+
+    public void setStuffStatus(String stuffStatus) {
+        this.stuffStatus = stuffStatus;
+    }
+
+    public void setSubStock(Long subStock) {
+        this.subStock = subStock;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setValidThru(Long validThru) {
+        this.validThru = validThru;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 }

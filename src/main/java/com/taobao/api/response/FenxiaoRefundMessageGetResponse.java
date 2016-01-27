@@ -30,20 +30,20 @@ public class FenxiaoRefundMessageGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setOrderMessages(List<OrderMessage> orderMessages) {
-        this.orderMessages = orderMessages;
-    }
-
     public List<OrderMessage> getOrderMessages() {
         return this.orderMessages;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setOrderMessages(List<OrderMessage> orderMessages) {
+        this.orderMessages = orderMessages;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

@@ -124,124 +124,124 @@ public class ScalingGroupModel extends TaobaoObject {
         return this.activeCapacity;
     }
 
-    public void setActiveCapacity(Long activeCapacity) {
-        this.activeCapacity = activeCapacity;
-    }
-
     public String getActiveScalingConfigurationId() {
         return this.activeScalingConfigurationId;
-    }
-
-    public void setActiveScalingConfigurationId(String activeScalingConfigurationId) {
-        this.activeScalingConfigurationId = activeScalingConfigurationId;
     }
 
     public String getCreationTime() {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public List<String> getdBInstanceIds() {
         return this.dBInstanceIds;
-    }
-
-    public void setdBInstanceIds(List<String> dBInstanceIds) {
-        this.dBInstanceIds = dBInstanceIds;
     }
 
     public Long getDefaultCooldown() {
         return this.defaultCooldown;
     }
 
-    public void setDefaultCooldown(Long defaultCooldown) {
-        this.defaultCooldown = defaultCooldown;
-    }
-
     public String getLifecycleState() {
         return this.lifecycleState;
-    }
-
-    public void setLifecycleState(String lifecycleState) {
-        this.lifecycleState = lifecycleState;
     }
 
     public String getLoadBalancerId() {
         return this.loadBalancerId;
     }
 
-    public void setLoadBalancerId(String loadBalancerId) {
-        this.loadBalancerId = loadBalancerId;
-    }
-
     public Long getMaxSize() {
         return this.maxSize;
-    }
-
-    public void setMaxSize(Long maxSize) {
-        this.maxSize = maxSize;
     }
 
     public Long getMinSize() {
         return this.minSize;
     }
 
-    public void setMinSize(Long minSize) {
-        this.minSize = minSize;
-    }
-
     public Long getPendingCapacity() {
         return this.pendingCapacity;
-    }
-
-    public void setPendingCapacity(Long pendingCapacity) {
-        this.pendingCapacity = pendingCapacity;
     }
 
     public String getRegionId() {
         return this.regionId;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
     public List<String> getRemovalPolicies() {
         return this.removalPolicies;
-    }
-
-    public void setRemovalPolicies(List<String> removalPolicies) {
-        this.removalPolicies = removalPolicies;
     }
 
     public Long getRemovingCapacity() {
         return this.removingCapacity;
     }
 
-    public void setRemovingCapacity(Long removingCapacity) {
-        this.removingCapacity = removingCapacity;
-    }
-
     public String getScalingGroupId() {
         return this.scalingGroupId;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
     }
 
     public String getScalingGroupName() {
         return this.scalingGroupName;
     }
 
-    public void setScalingGroupName(String scalingGroupName) {
-        this.scalingGroupName = scalingGroupName;
-    }
-
     public Long getTotalCapacity() {
         return this.totalCapacity;
+    }
+
+    public void setActiveCapacity(Long activeCapacity) {
+        this.activeCapacity = activeCapacity;
+    }
+
+    public void setActiveScalingConfigurationId(String activeScalingConfigurationId) {
+        this.activeScalingConfigurationId = activeScalingConfigurationId;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setdBInstanceIds(List<String> dBInstanceIds) {
+        this.dBInstanceIds = dBInstanceIds;
+    }
+
+    public void setDefaultCooldown(Long defaultCooldown) {
+        this.defaultCooldown = defaultCooldown;
+    }
+
+    public void setLifecycleState(String lifecycleState) {
+        this.lifecycleState = lifecycleState;
+    }
+
+    public void setLoadBalancerId(String loadBalancerId) {
+        this.loadBalancerId = loadBalancerId;
+    }
+
+    public void setMaxSize(Long maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public void setMinSize(Long minSize) {
+        this.minSize = minSize;
+    }
+
+    public void setPendingCapacity(Long pendingCapacity) {
+        this.pendingCapacity = pendingCapacity;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setRemovalPolicies(List<String> removalPolicies) {
+        this.removalPolicies = removalPolicies;
+    }
+
+    public void setRemovingCapacity(Long removingCapacity) {
+        this.removingCapacity = removingCapacity;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setScalingGroupName(String scalingGroupName) {
+        this.scalingGroupName = scalingGroupName;
     }
 
     public void setTotalCapacity(Long totalCapacity) {

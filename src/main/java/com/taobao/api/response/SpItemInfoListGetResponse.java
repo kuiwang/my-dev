@@ -24,12 +24,12 @@ public class SpItemInfoListGetResponse extends TaobaoResponse {
     @ApiField("sp_item")
     private List<SpItem> itemList;
 
-    public void setItemList(List<SpItem> itemList) {
-        this.itemList = itemList;
-    }
-
     public List<SpItem> getItemList() {
         return this.itemList;
+    }
+
+    public void setItemList(List<SpItem> itemList) {
+        this.itemList = itemList;
     }
 
 }

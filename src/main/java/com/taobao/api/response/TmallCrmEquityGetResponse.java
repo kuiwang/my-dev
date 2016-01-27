@@ -24,12 +24,12 @@ public class TmallCrmEquityGetResponse extends TaobaoResponse {
     @ApiField("grade_equity")
     private List<GradeEquity> gradeEquitys;
 
-    public void setGradeEquitys(List<GradeEquity> gradeEquitys) {
-        this.gradeEquitys = gradeEquitys;
-    }
-
     public List<GradeEquity> getGradeEquitys() {
         return this.gradeEquitys;
+    }
+
+    public void setGradeEquitys(List<GradeEquity> gradeEquitys) {
+        this.gradeEquitys = gradeEquitys;
     }
 
 }

@@ -25,20 +25,20 @@ public class TmallLatoGameRechargeResponse extends TaobaoResponse {
     @ApiField("succ")
     private Boolean succ;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getCode() {
         return this.code;
     }
 
-    public void setSucc(Boolean succ) {
-        this.succ = succ;
-    }
-
     public Boolean getSucc() {
         return this.succ;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setSucc(Boolean succ) {
+        this.succ = succ;
     }
 
 }

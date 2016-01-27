@@ -14,11 +14,11 @@ public class ClientChannelSharedSelector implements ClientChannelSelector {
 
     private Hashtable<String, ClientChannel> channels;
 
-    private LoggerFactory loggerFactory;
+    private int heartbeatInterval;
 
     private Object lockObject;
 
-    private int heartbeatInterval;
+    private LoggerFactory loggerFactory;
 
     public ClientChannelSharedSelector() {
         this(DefaultLoggerFactory.getDefault());
@@ -30,16 +30,17 @@ public class ClientChannelSharedSelector implements ClientChannelSelector {
         this.lockObject = new Object();
     }
 
-    public void setHeartbeat(int interval) {
-        this.heartbeatInterval = interval;
+    protected ClientChannel connect(LoggerFactory loggerFactory, URI uri, int timeout)
+            throws ChannelException {
+        return WebSocketClient.connect(loggerFactory, uri, timeout);
     }
 
     @Override
     public ClientChannel getChannel(URI uri) throws ChannelException {
         final String url = uri.toString();
-        if (channels.get(url) == null || !channels.get(url).isConnected()) {
+        if ((channels.get(url) == null) || !channels.get(url).isConnected()) {
             synchronized (this.lockObject) {
-                if (channels.get(url) == null || !channels.get(url).isConnected()) {
+                if ((channels.get(url) == null) || !channels.get(url).isConnected()) {
                     channels.put(url, this.wrapChannel(this.connect(this.loggerFactory, uri,
                             CONNECT_TIMEOUT)));
                 }
@@ -53,14 +54,15 @@ public class ClientChannelSharedSelector implements ClientChannelSelector {
         // shared channel
     }
 
-    protected ClientChannel connect(LoggerFactory loggerFactory, URI uri, int timeout)
-            throws ChannelException {
-        return WebSocketClient.connect(loggerFactory, uri, timeout);
+    public void setHeartbeat(int interval) {
+        this.heartbeatInterval = interval;
     }
 
     private ClientChannel wrapChannel(final ClientChannel channel) {
-        if (this.heartbeatInterval > 0) channel.setHeartbeatTimer(new ResetableTimer(
-                this.heartbeatInterval));
+        if (this.heartbeatInterval > 0) {
+            channel.setHeartbeatTimer(new ResetableTimer(
+                    this.heartbeatInterval));
+        }
         return channel;
     }
 }

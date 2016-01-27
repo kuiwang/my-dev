@@ -74,100 +74,100 @@ public class DealerOrderDetail {
         return this.dealerDetailId;
     }
 
-    public void setDealerDetailId(Long dealerDetailId) {
-        this.dealerDetailId = dealerDetailId;
-    }
-
     public Long getDealerOrderId() {
         return this.dealerOrderId;
-    }
-
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
     }
 
     public String getFinalPrice() {
         return this.finalPrice;
     }
 
-    public void setFinalPrice(String finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
     public Boolean getIsDeleted() {
         return this.isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
     }
 
     public String getOriginalPrice() {
         return this.originalPrice;
     }
 
-    public void setOriginalPrice(String originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
     public String getPriceCount() {
         return this.priceCount;
-    }
-
-    public void setPriceCount(String priceCount) {
-        this.priceCount = priceCount;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getProductTitle() {
         return this.productTitle;
-    }
-
-    public void setProductTitle(String productTitle) {
-        this.productTitle = productTitle;
     }
 
     public Long getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public Long getSkuId() {
         return this.skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
     }
 
     public String getSkuNumber() {
         return this.skuNumber;
     }
 
-    public void setSkuNumber(String skuNumber) {
-        this.skuNumber = skuNumber;
-    }
-
     public String getSkuSpec() {
         return this.skuSpec;
     }
 
-    public void setSkuSpec(String skuSpec) {
-        this.skuSpec = skuSpec;
-    }
-
     public String getSnapshotUrl() {
         return this.snapshotUrl;
+    }
+
+    public void setDealerDetailId(Long dealerDetailId) {
+        this.dealerDetailId = dealerDetailId;
+    }
+
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
+    }
+
+    public void setFinalPrice(String finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public void setPriceCount(String priceCount) {
+        this.priceCount = priceCount;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setSkuNumber(String skuNumber) {
+        this.skuNumber = skuNumber;
+    }
+
+    public void setSkuSpec(String skuSpec) {
+        this.skuSpec = skuSpec;
     }
 
     public void setSnapshotUrl(String snapshotUrl) {

@@ -16,12 +16,6 @@ import com.taobao.api.response.TicketItemAddResponse;
  */
 public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 门票商品返点比例（只对B卖家开放，单位为%）
      */
@@ -91,6 +85,8 @@ public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse
      * 门票商品是否有发票（有发票：true，没有发票：false）. 对于B卖家来说只能选择有发票。
      */
     private Boolean haveInvoice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 商品主图-该值来自图片空间接口返回的图片链接（不包含域名和前缀）
@@ -223,12 +219,16 @@ public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse
      */
     private Boolean subStockAtBuy;
 
+    private Long timestamp;
+
     /**
      * 门票商品标题<br />
      * 支持最大长度为：60<br />
      * 支持的最大列表长度为：60
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 门票商品视频-视频标识由多媒体中相关接口获取
@@ -240,242 +240,145 @@ public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse
      */
     private Boolean vipPromoted;
 
-    public void setAuctionPoint(String auctionPoint) {
-        this.auctionPoint = auctionPoint;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionStatus, "auctionStatus");
+        RequestCheckUtils.checkMaxLength(auctionStatus, 10, "auctionStatus");
+        RequestCheckUtils.checkNotEmpty(city, "city");
+        RequestCheckUtils.checkMaxLength(city, 20, "city");
+        RequestCheckUtils.checkNotEmpty(description, "description");
+        RequestCheckUtils.checkMaxLength(description, 25000, "description");
+        RequestCheckUtils.checkMaxValue(etcAutoRefund, 100L, "etcAutoRefund");
+        RequestCheckUtils.checkMinValue(etcAutoRefund, 0L, "etcAutoRefund");
+        RequestCheckUtils.checkMaxValue(etcOverduePay, 100L, "etcOverduePay");
+        RequestCheckUtils.checkMinValue(etcOverduePay, 0L, "etcOverduePay");
+        RequestCheckUtils.checkNotEmpty(image1, "image1");
+        RequestCheckUtils.checkMaxLength(listTime, 20, "listTime");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+        RequestCheckUtils.checkNotEmpty(prov, "prov");
+        RequestCheckUtils.checkMaxLength(prov, 20, "prov");
+        RequestCheckUtils.checkNotEmpty(skus, "skus");
+        RequestCheckUtils.checkNotEmpty(subStockAtBuy, "subStockAtBuy");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 60, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ticket.item.add";
     }
 
     public String getAuctionPoint() {
         return this.auctionPoint;
     }
 
-    public void setAuctionStatus(String auctionStatus) {
-        this.auctionStatus = auctionStatus;
-    }
-
     public String getAuctionStatus() {
         return this.auctionStatus;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setEtcAssociationStatus(Boolean etcAssociationStatus) {
-        this.etcAssociationStatus = etcAssociationStatus;
     }
 
     public Boolean getEtcAssociationStatus() {
         return this.etcAssociationStatus;
     }
 
-    public void setEtcAutoRefund(Long etcAutoRefund) {
-        this.etcAutoRefund = etcAutoRefund;
-    }
-
     public Long getEtcAutoRefund() {
         return this.etcAutoRefund;
-    }
-
-    public void setEtcMerchantId(String etcMerchantId) {
-        this.etcMerchantId = etcMerchantId;
     }
 
     public String getEtcMerchantId() {
         return this.etcMerchantId;
     }
 
-    public void setEtcMerchantNick(String etcMerchantNick) {
-        this.etcMerchantNick = etcMerchantNick;
-    }
-
     public String getEtcMerchantNick() {
         return this.etcMerchantNick;
-    }
-
-    public void setEtcNetworkId(String etcNetworkId) {
-        this.etcNetworkId = etcNetworkId;
     }
 
     public String getEtcNetworkId() {
         return this.etcNetworkId;
     }
 
-    public void setEtcOverduePay(Long etcOverduePay) {
-        this.etcOverduePay = etcOverduePay;
-    }
-
     public Long getEtcOverduePay() {
         return this.etcOverduePay;
-    }
-
-    public void setEtcVerificationPay(Boolean etcVerificationPay) {
-        this.etcVerificationPay = etcVerificationPay;
     }
 
     public Boolean getEtcVerificationPay() {
         return this.etcVerificationPay;
     }
 
-    public void setHaveInvoice(Boolean haveInvoice) {
-        this.haveInvoice = haveInvoice;
-    }
-
     public Boolean getHaveInvoice() {
         return this.haveInvoice;
     }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getImage1() {
         return this.image1;
     }
 
-    public void setImage2(String image2) {
-        this.image2 = image2;
-    }
-
     public String getImage2() {
         return this.image2;
-    }
-
-    public void setImage3(String image3) {
-        this.image3 = image3;
     }
 
     public String getImage3() {
         return this.image3;
     }
 
-    public void setImage4(String image4) {
-        this.image4 = image4;
-    }
-
     public String getImage4() {
         return this.image4;
-    }
-
-    public void setImage5(String image5) {
-        this.image5 = image5;
     }
 
     public String getImage5() {
         return this.image5;
     }
 
-    public void setListTime(String listTime) {
-        this.listTime = listTime;
-    }
-
     public String getListTime() {
         return this.listTime;
-    }
-
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
     }
 
     public Long getPostageId() {
         return this.postageId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setPromotedStatus(Boolean promotedStatus) {
-        this.promotedStatus = promotedStatus;
     }
 
     public Boolean getPromotedStatus() {
         return this.promotedStatus;
     }
 
-    public void setProv(String prov) {
-        this.prov = prov;
-    }
-
     public String getProv() {
         return this.prov;
     }
 
-    public void setShopCats(String shopCats) {
-        this.shopCats = shopCats;
+    @Override
+    public Class<TicketItemAddResponse> getResponseClass() {
+        return TicketItemAddResponse.class;
     }
 
     public String getShopCats() {
         return this.shopCats;
     }
 
-    public void setSkus(String skus) {
-        this.skus = skus;
-    }
-
     public String getSkus() {
         return this.skus;
-    }
-
-    public void setSubStockAtBuy(Boolean subStockAtBuy) {
-        this.subStockAtBuy = subStockAtBuy;
     }
 
     public Boolean getSubStockAtBuy() {
         return this.subStockAtBuy;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setVideoId(Long videoId) {
-        this.videoId = videoId;
-    }
-
-    public Long getVideoId() {
-        return this.videoId;
-    }
-
-    public void setVipPromoted(Boolean vipPromoted) {
-        this.vipPromoted = vipPromoted;
-    }
-
-    public Boolean getVipPromoted() {
-        return this.vipPromoted;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ticket.item.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_point", this.auctionPoint);
@@ -512,6 +415,24 @@ public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Long getVideoId() {
+        return this.videoId;
+    }
+
+    public Boolean getVipPromoted() {
+        return this.vipPromoted;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -519,33 +440,120 @@ public class TicketItemAddRequest implements TaobaoRequest<TicketItemAddResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<TicketItemAddResponse> getResponseClass() {
-        return TicketItemAddResponse.class;
+    public void setAuctionPoint(String auctionPoint) {
+        this.auctionPoint = auctionPoint;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionStatus, "auctionStatus");
-        RequestCheckUtils.checkMaxLength(auctionStatus, 10, "auctionStatus");
-        RequestCheckUtils.checkNotEmpty(city, "city");
-        RequestCheckUtils.checkMaxLength(city, 20, "city");
-        RequestCheckUtils.checkNotEmpty(description, "description");
-        RequestCheckUtils.checkMaxLength(description, 25000, "description");
-        RequestCheckUtils.checkMaxValue(etcAutoRefund, 100L, "etcAutoRefund");
-        RequestCheckUtils.checkMinValue(etcAutoRefund, 0L, "etcAutoRefund");
-        RequestCheckUtils.checkMaxValue(etcOverduePay, 100L, "etcOverduePay");
-        RequestCheckUtils.checkMinValue(etcOverduePay, 0L, "etcOverduePay");
-        RequestCheckUtils.checkNotEmpty(image1, "image1");
-        RequestCheckUtils.checkMaxLength(listTime, 20, "listTime");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-        RequestCheckUtils.checkNotEmpty(prov, "prov");
-        RequestCheckUtils.checkMaxLength(prov, 20, "prov");
-        RequestCheckUtils.checkNotEmpty(skus, "skus");
-        RequestCheckUtils.checkNotEmpty(subStockAtBuy, "subStockAtBuy");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 60, "title");
+    public void setAuctionStatus(String auctionStatus) {
+        this.auctionStatus = auctionStatus;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEtcAssociationStatus(Boolean etcAssociationStatus) {
+        this.etcAssociationStatus = etcAssociationStatus;
+    }
+
+    public void setEtcAutoRefund(Long etcAutoRefund) {
+        this.etcAutoRefund = etcAutoRefund;
+    }
+
+    public void setEtcMerchantId(String etcMerchantId) {
+        this.etcMerchantId = etcMerchantId;
+    }
+
+    public void setEtcMerchantNick(String etcMerchantNick) {
+        this.etcMerchantNick = etcMerchantNick;
+    }
+
+    public void setEtcNetworkId(String etcNetworkId) {
+        this.etcNetworkId = etcNetworkId;
+    }
+
+    public void setEtcOverduePay(Long etcOverduePay) {
+        this.etcOverduePay = etcOverduePay;
+    }
+
+    public void setEtcVerificationPay(Boolean etcVerificationPay) {
+        this.etcVerificationPay = etcVerificationPay;
+    }
+
+    public void setHaveInvoice(Boolean haveInvoice) {
+        this.haveInvoice = haveInvoice;
+    }
+
+    public void setImage1(String image1) {
+        this.image1 = image1;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public void setImage5(String image5) {
+        this.image5 = image5;
+    }
+
+    public void setListTime(String listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setPromotedStatus(Boolean promotedStatus) {
+        this.promotedStatus = promotedStatus;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public void setShopCats(String shopCats) {
+        this.shopCats = shopCats;
+    }
+
+    public void setSkus(String skus) {
+        this.skus = skus;
+    }
+
+    public void setSubStockAtBuy(Boolean subStockAtBuy) {
+        this.subStockAtBuy = subStockAtBuy;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
+    }
+
+    public void setVipPromoted(Boolean vipPromoted) {
+        this.vipPromoted = vipPromoted;
     }
 }

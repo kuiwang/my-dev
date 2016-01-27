@@ -41,28 +41,28 @@ public class SubwayItem extends TaobaoObject {
         return this.extraAttributes;
     }
 
-    public void setExtraAttributes(ExtraAttributes extraAttributes) {
-        this.extraAttributes = extraAttributes;
-    }
-
     public Long getNumId() {
         return this.numId;
-    }
-
-    public void setNumId(Long numId) {
-        this.numId = numId;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getTitle() {
         return this.title;
+    }
+
+    public void setExtraAttributes(ExtraAttributes extraAttributes) {
+        this.extraAttributes = extraAttributes;
+    }
+
+    public void setNumId(Long numId) {
+        this.numId = numId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public void setTitle(String title) {

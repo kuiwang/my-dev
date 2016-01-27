@@ -42,6 +42,12 @@ public class VRouter extends TaobaoObject {
     private List<String> routeTableIds;
 
     /**
+     * VPC ID
+     */
+    @ApiField("VpcId")
+    private String vpcId;
+
+    /**
      * 虚拟路由ID
      */
     @ApiField("VRouterId")
@@ -53,66 +59,60 @@ public class VRouter extends TaobaoObject {
     @ApiField("VRouterName")
     private String vRouterName;
 
-    /**
-     * VPC ID
-     */
-    @ApiField("VpcId")
-    private String vpcId;
-
     public String getCreationTime() {
         return this.creationTime;
-    }
-
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getRegionId() {
         return this.regionId;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
     }
 
     public List<String> getRouteTableIds() {
         return this.routeTableIds;
     }
 
-    public void setRouteTableIds(List<String> routeTableIds) {
-        this.routeTableIds = routeTableIds;
+    public String getVpcId() {
+        return this.vpcId;
     }
 
     public String getvRouterId() {
         return this.vRouterId;
     }
 
-    public void setvRouterId(String vRouterId) {
-        this.vRouterId = vRouterId;
-    }
-
     public String getvRouterName() {
         return this.vRouterName;
     }
 
-    public void setvRouterName(String vRouterName) {
-        this.vRouterName = vRouterName;
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
     }
 
-    public String getVpcId() {
-        return this.vpcId;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setRouteTableIds(List<String> routeTableIds) {
+        this.routeTableIds = routeTableIds;
     }
 
     public void setVpcId(String vpcId) {
         this.vpcId = vpcId;
+    }
+
+    public void setvRouterId(String vRouterId) {
+        this.vRouterId = vRouterId;
+    }
+
+    public void setvRouterName(String vRouterName) {
+        this.vRouterName = vRouterName;
     }
 
 }

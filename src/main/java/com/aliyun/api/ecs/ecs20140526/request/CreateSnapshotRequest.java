@@ -16,24 +16,6 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  */
 public class CreateSnapshotRequest implements AliyunRequest<CreateSnapshotResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
-
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
-
     /**
      * 用于保证请求的幂等性。由客户端生成该参数值，要保证在不同请求间唯一，最大不值过64个ASCII字符。 具体参见附录：如何保证幂等性。
      */
@@ -50,79 +32,78 @@ public class CreateSnapshotRequest implements AliyunRequest<CreateSnapshotRespon
      */
     private String diskId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
+
     /**
      * 快照的显示名称，由字母、数字、"-"组成，长度取值范围为[0,300]
      */
     private String snapshotName;
 
-    public void setClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(diskId, "diskId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.CreateSnapshot.2014-05-26";
     }
 
     public String getClientToken() {
         return this.clientToken;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDiskId(String diskId) {
-        this.diskId = diskId;
     }
 
     public String getDiskId() {
         return this.diskId;
     }
 
-    public void setSnapshotName(String snapshotName) {
-        this.snapshotName = snapshotName;
-    }
-
-    public String getSnapshotName() {
-        return this.snapshotName;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateSnapshotResponse> getResponseClass() {
+        return CreateSnapshotResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSnapshotName() {
+        return this.snapshotName;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.CreateSnapshot.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -138,6 +119,12 @@ public class CreateSnapshotRequest implements AliyunRequest<CreateSnapshotRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -145,15 +132,36 @@ public class CreateSnapshotRequest implements AliyunRequest<CreateSnapshotRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateSnapshotResponse> getResponseClass() {
-        return CreateSnapshotResponse.class;
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(diskId, "diskId");
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDiskId(String diskId) {
+        this.diskId = diskId;
+    }
+
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSnapshotName(String snapshotName) {
+        this.snapshotName = snapshotName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

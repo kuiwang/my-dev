@@ -18,10 +18,6 @@ public class DdAuctionRuleDeleteRequest implements TaobaoRequest<DdAuctionRuleDe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 规则ID
      */
@@ -37,42 +33,45 @@ public class DdAuctionRuleDeleteRequest implements TaobaoRequest<DdAuctionRuleDe
      */
     private String storeId;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
+        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.auction.rule.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setIsTakeout(Boolean isTakeout) {
-        this.isTakeout = isTakeout;
-    }
-
     public Boolean getIsTakeout() {
         return this.isTakeout;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
+    @Override
+    public Class<DdAuctionRuleDeleteResponse> getResponseClass() {
+        return DdAuctionRuleDeleteResponse.class;
     }
 
     public String getStoreId() {
         return this.storeId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.auction.rule.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -84,6 +83,12 @@ public class DdAuctionRuleDeleteRequest implements TaobaoRequest<DdAuctionRuleDe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,17 +96,20 @@ public class DdAuctionRuleDeleteRequest implements TaobaoRequest<DdAuctionRuleDe
         this.udfParams.put(key, value);
     }
 
-    public Class<DdAuctionRuleDeleteResponse> getResponseClass() {
-        return DdAuctionRuleDeleteResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
-        RequestCheckUtils.checkNotEmpty(storeId, "storeId");
+    public void setIsTakeout(Boolean isTakeout) {
+        this.isTakeout = isTakeout;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

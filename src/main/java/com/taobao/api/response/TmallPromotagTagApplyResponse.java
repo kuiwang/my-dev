@@ -25,20 +25,20 @@ public class TmallPromotagTagApplyResponse extends TaobaoResponse {
     @ApiField("tag_id")
     private Long tagId;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
     public Long getTagId() {
         return this.tagId;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
     }
 
 }

@@ -19,12 +19,12 @@ public class FavoriteAddResponse extends TaobaoResponse {
     @ApiField("success")
     private Boolean success;
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
     public Boolean getSuccess() {
         return this.success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 
 }

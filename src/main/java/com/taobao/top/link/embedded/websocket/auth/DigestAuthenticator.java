@@ -23,6 +23,9 @@
  */
 package com.taobao.top.link.embedded.websocket.auth;
 
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3830;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3831;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -31,8 +34,6 @@ import java.util.logging.Logger;
 
 import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
 import com.taobao.top.link.embedded.websocket.util.StringUtil;
-
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
 
 /**
  * The Class ProxyDigestCredentials.
@@ -58,17 +59,18 @@ public class DigestAuthenticator extends AbstractAuthenticator {
     /** The log. */
     private Logger log = Logger.getLogger(DigestAuthenticator.class.getCanonicalName());
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.auth.AbstractAuthenticator#getCredentials(java.util.List)
+    /**
+     * Generate cnonce.
+     *
+     * @return the string
      */
-    @Override
-    public String getCredentials(List<Challenge> challengeList) throws WebSocketException {
-        for (Challenge challenge : challengeList) {
-            if (AuthScheme.Digest.equals(challenge.getScheme())) {
-                return getCredentials(challenge);
-            }
-        }
-        return null;
+    private String generateCnonce() {
+        // cnonce is random string
+        byte[] cnonceBytes = new byte[16];
+        Random random = new Random();
+        random.nextBytes(cnonceBytes);
+        String cnonce = StringUtil.toHexString(cnonceBytes);
+        return cnonce;
     }
 
     /**
@@ -94,8 +96,8 @@ public class DigestAuthenticator extends AbstractAuthenticator {
         if (qop != null) {
             String[] qops = qop.split(",");
             if (qop.length() > 1) {
-                for (int i = 0; i < qops.length; i++) {
-                    if ("auth".equals(qops[i].trim())) {
+                for (String qop2 : qops) {
+                    if ("auth".equals(qop2.trim())) {
                         qop = "auth";
                         break;
                     }
@@ -134,7 +136,7 @@ public class DigestAuthenticator extends AbstractAuthenticator {
         }
 
         String a2 = null;
-        if (qop == null || "auth".equals(qop)) {
+        if ((qop == null) || "auth".equals(qop)) {
             // H(method, uri)  *H is MD5(default)
             a2 = StringUtil.toMD5HexString(StringUtil.join(":", method, uri));
         } else if ("auth-int".equals(qop)) {
@@ -165,17 +167,16 @@ public class DigestAuthenticator extends AbstractAuthenticator {
         return sb.toString();
     }
 
-    /**
-     * Generate cnonce.
-     *
-     * @return the string
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.auth.AbstractAuthenticator#getCredentials(java.util.List)
      */
-    private String generateCnonce() {
-        // cnonce is random string
-        byte[] cnonceBytes = new byte[16];
-        Random random = new Random();
-        random.nextBytes(cnonceBytes);
-        String cnonce = StringUtil.toHexString(cnonceBytes);
-        return cnonce;
+    @Override
+    public String getCredentials(List<Challenge> challengeList) throws WebSocketException {
+        for (Challenge challenge : challengeList) {
+            if (AuthScheme.Digest.equals(challenge.getScheme())) {
+                return getCredentials(challenge);
+            }
+        }
+        return null;
     }
 }

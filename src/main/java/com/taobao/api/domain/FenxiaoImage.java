@@ -47,36 +47,36 @@ public class FenxiaoImage extends TaobaoObject {
         return this.imageId;
     }
 
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
-    }
-
     public Long getImagePosition() {
         return this.imagePosition;
-    }
-
-    public void setImagePosition(Long imagePosition) {
-        this.imagePosition = imagePosition;
     }
 
     public String getImageUrl() {
         return this.imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public String getProperties() {
         return this.properties;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setImagePosition(Long imagePosition) {
+        this.imagePosition = imagePosition;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
     }
 
     public void setType(String type) {

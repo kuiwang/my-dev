@@ -19,10 +19,6 @@ import com.taobao.api.response.ItemEbookAddResponse;
  */
 public class ItemEbookAddRequest implements TaobaoUploadRequest<ItemEbookAddResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 版权到期时间，如2013-08-06
      */
@@ -48,6 +44,8 @@ public class ItemEbookAddRequest implements TaobaoUploadRequest<ItemEbookAddResp
      * 支持的最大列表长度为：200000
      */
     private String desc;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 电子书ISBN号
@@ -76,6 +74,8 @@ public class ItemEbookAddRequest implements TaobaoUploadRequest<ItemEbookAddResp
      */
     private Long probation;
 
+    private Long timestamp;
+
     /**
      * 宝贝标题。不能超过60字符，受违禁词控制<br />
      * 支持最大长度为：120<br />
@@ -83,134 +83,9 @@ public class ItemEbookAddRequest implements TaobaoUploadRequest<ItemEbookAddResp
      */
     private String title;
 
-    public void setCopyrightEnd(Date copyrightEnd) {
-        this.copyrightEnd = copyrightEnd;
-    }
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
-    public Date getCopyrightEnd() {
-        return this.copyrightEnd;
-    }
-
-    public void setCopyrightFiles(FileItem copyrightFiles) {
-        this.copyrightFiles = copyrightFiles;
-    }
-
-    public FileItem getCopyrightFiles() {
-        return this.copyrightFiles;
-    }
-
-    public void setCover(FileItem cover) {
-        this.cover = cover;
-    }
-
-    public FileItem getCover() {
-        return this.cover;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getDesc() {
-        return this.desc;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getIsbn() {
-        return this.isbn;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
-    }
-
-    public String getOuterId() {
-        return this.outerId;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getPrice() {
-        return this.price;
-    }
-
-    public void setProbation(Long probation) {
-        this.probation = probation;
-    }
-
-    public Long getProbation() {
-        return this.probation;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.item.ebook.add";
-    }
-
-    public Map<String, String> getTextParams() {
-        TaobaoHashMap txtParams = new TaobaoHashMap();
-        txtParams.put("copyright_end", this.copyrightEnd);
-        txtParams.put("desc", this.desc);
-        txtParams.put("isbn", this.isbn);
-        txtParams.put("name", this.name);
-        txtParams.put("outer_id", this.outerId);
-        txtParams.put("price", this.price);
-        txtParams.put("probation", this.probation);
-        txtParams.put("title", this.title);
-        if (this.udfParams != null) {
-            txtParams.putAll(this.udfParams);
-        }
-        return txtParams;
-    }
-
-    public void putOtherTextParam(String key, String value) {
-        if (this.udfParams == null) {
-            this.udfParams = new TaobaoHashMap();
-        }
-        this.udfParams.put(key, value);
-    }
-
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("copyright_files", this.copyrightFiles);
-        params.put("cover", this.cover);
-        return params;
-    }
-
-    public Class<ItemEbookAddResponse> getResponseClass() {
-        return ItemEbookAddResponse.class;
-    }
-
+    @Override
     public void check() throws ApiRuleException {
 
         RequestCheckUtils.checkNotEmpty(copyrightEnd, "copyrightEnd");
@@ -228,7 +103,141 @@ public class ItemEbookAddRequest implements TaobaoUploadRequest<ItemEbookAddResp
         RequestCheckUtils.checkMaxLength(title, 120, "title");
     }
 
+    @Override
+    public String getApiMethodName() {
+        return "taobao.item.ebook.add";
+    }
+
+    public Date getCopyrightEnd() {
+        return this.copyrightEnd;
+    }
+
+    public FileItem getCopyrightFiles() {
+        return this.copyrightFiles;
+    }
+
+    public FileItem getCover() {
+        return this.cover;
+    }
+
+    public String getDesc() {
+        return this.desc;
+    }
+
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("copyright_files", this.copyrightFiles);
+        params.put("cover", this.cover);
+        return params;
+    }
+
+    @Override
     public Map<String, String> getHeaderMap() {
         return headerMap;
+    }
+
+    public String getIsbn() {
+        return this.isbn;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getOuterId() {
+        return this.outerId;
+    }
+
+    public String getPrice() {
+        return this.price;
+    }
+
+    public Long getProbation() {
+        return this.probation;
+    }
+
+    @Override
+    public Class<ItemEbookAddResponse> getResponseClass() {
+        return ItemEbookAddResponse.class;
+    }
+
+    @Override
+    public Map<String, String> getTextParams() {
+        TaobaoHashMap txtParams = new TaobaoHashMap();
+        txtParams.put("copyright_end", this.copyrightEnd);
+        txtParams.put("desc", this.desc);
+        txtParams.put("isbn", this.isbn);
+        txtParams.put("name", this.name);
+        txtParams.put("outer_id", this.outerId);
+        txtParams.put("price", this.price);
+        txtParams.put("probation", this.probation);
+        txtParams.put("title", this.title);
+        if (this.udfParams != null) {
+            txtParams.putAll(this.udfParams);
+        }
+        return txtParams;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
+    public void putOtherTextParam(String key, String value) {
+        if (this.udfParams == null) {
+            this.udfParams = new TaobaoHashMap();
+        }
+        this.udfParams.put(key, value);
+    }
+
+    public void setCopyrightEnd(Date copyrightEnd) {
+        this.copyrightEnd = copyrightEnd;
+    }
+
+    public void setCopyrightFiles(FileItem copyrightFiles) {
+        this.copyrightFiles = copyrightFiles;
+    }
+
+    public void setCover(FileItem cover) {
+        this.cover = cover;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProbation(Long probation) {
+        this.probation = probation;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

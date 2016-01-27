@@ -19,11 +19,11 @@ public class AlipayApiException extends ApiException {
         super();
     }
 
-    public AlipayApiException(Throwable cause) {
-        super(cause);
-    }
-
     public AlipayApiException(String message, Throwable cause) {
         super(message, cause);
+    }
+
+    public AlipayApiException(Throwable cause) {
+        super(cause);
     }
 }

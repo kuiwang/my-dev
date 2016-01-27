@@ -23,6 +23,9 @@
  */
 package com.taobao.top.link.embedded.websocket.handshake;
 
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3101;
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3102;
+
 import java.nio.ByteBuffer;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -32,8 +35,6 @@ import com.taobao.top.link.embedded.websocket.BufferManager;
 import com.taobao.top.link.embedded.websocket.HttpHeader;
 import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
 import com.taobao.top.link.embedded.websocket.util.StringUtil;
-
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
 
 /**
  * Processing WebSocket Handshake
@@ -65,12 +66,6 @@ public abstract class Handshake {
     /** The logger. */
     //private static Logger logger = Logger.getLogger(Handshake.class.getName());
 
-    /** The response status. */
-    private int responseStatus;
-
-    /** The response header map. */
-    private HttpResponseHeaderParser httpResponseHeaderParser;
-
     /**
      * The Enum State.
      *
@@ -78,16 +73,16 @@ public abstract class Handshake {
      */
     enum State {
 
-        /** The INIT. */
-        INIT,
-        /** The METHOD. */
-        METHOD,
-        /** The HEADER. */
-        HEADER,
         /** The BODY. */
         BODY,
         /** The DONE. */
-        DONE;
+        DONE,
+        /** The HEADER. */
+        HEADER,
+        /** The INIT. */
+        INIT,
+        /** The METHOD. */
+        METHOD;
 
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
@@ -108,41 +103,60 @@ public abstract class Handshake {
          */
         boolean canTransitionTo(State state) {
             EnumSet<State> set = stateMap.get(this);
-            if (set == null) return false;
+            if (set == null) {
+                return false;
+            }
             return set.contains(state);
         }
     }
 
-    /**
-     * Transition to.
-     *
-     * @param to the to
-     * @return the state
-     */
-    protected State transitionTo(State to) {
-        if (state.canTransitionTo(to)) {
-            State old = state;
-            state = to;
-            return old;
-        } else {
-            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
-        }
-    }
+    /** The buffer manager. */
+    protected BufferManager bufferManager = new BufferManager();
+
+    /** The response header map. */
+    private HttpResponseHeaderParser httpResponseHeaderParser;
+
+    /** The response status. */
+    private int responseStatus;
 
     /** The state. */
     volatile private State state = State.INIT;
 
     /**
-     * State.
+     * Creates the handshake request.
      *
-     * @return the state
+     * @return the byte buffer
+     * @throws WebSocketException the web socket exception
      */
-    protected State state() {
-        return state;
+    abstract public ByteBuffer createHandshakeRequest() throws WebSocketException;
+
+    /**
+     * Done.
+     *
+     * @return true, if successful
+     */
+    protected boolean done() {
+        transitionTo(State.DONE);
+        return true;
     }
 
-    /** The buffer manager. */
-    protected BufferManager bufferManager = new BufferManager();
+    /**
+     * Gets the response header map.
+     *
+     * @return the response header map
+     */
+    public HttpHeader getResponseHeader() {
+        return httpResponseHeaderParser.getResponseHeader();
+    }
+
+    /**
+     * Gets the response status.
+     *
+     * @return the response status
+     */
+    public int getResponseStatus() {
+        return responseStatus;
+    }
 
     /**
      * Handshake response.
@@ -154,7 +168,7 @@ public abstract class Handshake {
     final public boolean handshakeResponse(ByteBuffer downloadBuffer) throws WebSocketException {
         ByteBuffer buffer = null;
         try {
-            if (state == State.INIT || state == State.DONE) {
+            if ((state == State.INIT) || (state == State.DONE)) {
                 transitionTo(State.METHOD);
                 responseStatus = -1;
                 httpResponseHeaderParser = new HttpResponseHeaderParser();
@@ -164,7 +178,7 @@ public abstract class Handshake {
                 buffer = bufferManager.getBuffer(downloadBuffer);
             }
 
-            if (state == State.METHOD || state == State.HEADER) {
+            if ((state == State.METHOD) || (state == State.HEADER)) {
                 int position = buffer.position();
                 if (!parseHandshakeResponseHeader(buffer)) {
                     buffer.position(position);
@@ -185,20 +199,10 @@ public abstract class Handshake {
 
             return done();
         } finally {
-            if (buffer != null && buffer != downloadBuffer) {
+            if ((buffer != null) && (buffer != downloadBuffer)) {
                 downloadBuffer.position(downloadBuffer.limit() - buffer.remaining());
             }
         }
-    }
-
-    /**
-     * Done.
-     *
-     * @return true, if successful
-     */
-    protected boolean done() {
-        transitionTo(State.DONE);
-        return true;
     }
 
     /**
@@ -256,28 +260,27 @@ public abstract class Handshake {
     }
 
     /**
-     * Creates the handshake request.
+     * State.
      *
-     * @return the byte buffer
-     * @throws WebSocketException the web socket exception
+     * @return the state
      */
-    abstract public ByteBuffer createHandshakeRequest() throws WebSocketException;
-
-    /**
-     * Gets the response status.
-     *
-     * @return the response status
-     */
-    public int getResponseStatus() {
-        return responseStatus;
+    protected State state() {
+        return state;
     }
 
     /**
-     * Gets the response header map.
+     * Transition to.
      *
-     * @return the response header map
+     * @param to the to
+     * @return the state
      */
-    public HttpHeader getResponseHeader() {
-        return httpResponseHeaderParser.getResponseHeader();
+    protected State transitionTo(State to) {
+        if (state.canTransitionTo(to)) {
+            State old = state;
+            state = to;
+            return old;
+        } else {
+            throw new IllegalStateException("Couldn't transtion from " + state + " to " + to);
+        }
     }
 }

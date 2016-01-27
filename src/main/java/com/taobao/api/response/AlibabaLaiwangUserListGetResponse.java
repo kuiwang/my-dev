@@ -20,12 +20,12 @@ public class AlibabaLaiwangUserListGetResponse extends TaobaoResponse {
     @ApiField("users")
     private LaiwangUsers users;
 
-    public void setUsers(LaiwangUsers users) {
-        this.users = users;
-    }
-
     public LaiwangUsers getUsers() {
         return this.users;
+    }
+
+    public void setUsers(LaiwangUsers users) {
+        this.users = users;
     }
 
 }

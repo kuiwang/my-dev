@@ -20,12 +20,12 @@ public class TripJipiaoAgentOrderSearchResponse extends TaobaoResponse {
     @ApiField("search_result")
     private SearchOrderResult searchResult;
 
-    public void setSearchResult(SearchOrderResult searchResult) {
-        this.searchResult = searchResult;
-    }
-
     public SearchOrderResult getSearchResult() {
         return this.searchResult;
+    }
+
+    public void setSearchResult(SearchOrderResult searchResult) {
+        this.searchResult = searchResult;
     }
 
 }

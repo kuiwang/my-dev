@@ -19,12 +19,12 @@ public class WlbWaybillICancelResponse extends TaobaoResponse {
     @ApiField("cancel_result")
     private Boolean cancelResult;
 
-    public void setCancelResult(Boolean cancelResult) {
-        this.cancelResult = cancelResult;
-    }
-
     public Boolean getCancelResult() {
         return this.cancelResult;
+    }
+
+    public void setCancelResult(Boolean cancelResult) {
+        this.cancelResult = cancelResult;
     }
 
 }

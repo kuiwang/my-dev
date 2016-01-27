@@ -30,17 +30,17 @@ package com.taobao.top.link.embedded.websocket.auth;
  */
 public class Challenge {
 
-    /** The scheme. */
-    private AuthScheme scheme;
-
     /** The method. */
     private String method;
+
+    /** The param */
+    private String param;
 
     /** The request uri. */
     private String requestUri;
 
-    /** The param */
-    private String param;
+    /** The scheme. */
+    private AuthScheme scheme;
 
     /**
      * param private String param;
@@ -60,12 +60,12 @@ public class Challenge {
     }
 
     /**
-     * Gets the scheme.
+     * Gets the method.
      *
-     * @return the scheme
+     * @return the method
      */
-    public AuthScheme getScheme() {
-        return this.scheme;
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -78,20 +78,20 @@ public class Challenge {
     }
 
     /**
-     * Gets the method.
-     *
-     * @return the method
-     */
-    public String getMethod() {
-        return method;
-    }
-
-    /**
      * Gets the request uri.
      *
      * @return the request uri
      */
     public String getRequestUri() {
         return requestUri;
+    }
+
+    /**
+     * Gets the scheme.
+     *
+     * @return the scheme
+     */
+    public AuthScheme getScheme() {
+        return this.scheme;
     }
 }

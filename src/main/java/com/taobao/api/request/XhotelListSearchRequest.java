@@ -17,12 +17,6 @@ import com.taobao.api.response.XhotelListSearchResponse;
  */
 public class XhotelListSearchRequest implements TaobaoRequest<XhotelListSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 入住时间，默认值为当前时间加3天
      */
@@ -59,6 +53,8 @@ public class XhotelListSearchRequest implements TaobaoRequest<XhotelListSearchRe
      * 注意：如果按距离排序，设置此参数无效。如果按距离排序，则按离搜索中心点从近到远的顺序返回酒店列表，不需要再设置dir参数。
      */
     private String dir;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 指定价格范围搜索时的最高价，单位：元。
@@ -108,146 +104,96 @@ public class XhotelListSearchRequest implements TaobaoRequest<XhotelListSearchRe
      */
     private String radiusLng;
 
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(radius, 50000L, "radius");
+        RequestCheckUtils.checkMinValue(radius, 1L, "radius");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.xhotel.list.search";
     }
 
     public Date getCheckIn() {
         return this.checkIn;
     }
 
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
-    }
-
     public Date getCheckOut() {
         return this.checkOut;
-    }
-
-    public void setCityCode(Long cityCode) {
-        this.cityCode = cityCode;
     }
 
     public Long getCityCode() {
         return this.cityCode;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
     public String getCityName() {
         return this.cityName;
-    }
-
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setDangcis(String dangcis) {
-        this.dangcis = dangcis;
-    }
-
     public String getDangcis() {
         return this.dangcis;
-    }
-
-    public void setDir(String dir) {
-        this.dir = dir;
     }
 
     public String getDir() {
         return this.dir;
     }
 
-    public void setHighPrice(Long highPrice) {
-        this.highPrice = highPrice;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getHighPrice() {
         return this.highPrice;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
-
     public String getKeywords() {
         return this.keywords;
-    }
-
-    public void setLowPrice(Long lowPrice) {
-        this.lowPrice = lowPrice;
     }
 
     public Long getLowPrice() {
         return this.lowPrice;
     }
 
-    public void setOrder(String order) {
-        this.order = order;
-    }
-
     public String getOrder() {
         return this.order;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getPid() {
         return this.pid;
-    }
-
-    public void setRadius(Long radius) {
-        this.radius = radius;
     }
 
     public Long getRadius() {
         return this.radius;
     }
 
-    public void setRadiusLat(String radiusLat) {
-        this.radiusLat = radiusLat;
-    }
-
     public String getRadiusLat() {
         return this.radiusLat;
-    }
-
-    public void setRadiusLng(String radiusLng) {
-        this.radiusLng = radiusLng;
     }
 
     public String getRadiusLng() {
         return this.radiusLng;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<XhotelListSearchResponse> getResponseClass() {
+        return XhotelListSearchResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.xhotel.list.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("check_in", this.checkIn);
@@ -272,6 +218,12 @@ public class XhotelListSearchRequest implements TaobaoRequest<XhotelListSearchRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -279,16 +231,72 @@ public class XhotelListSearchRequest implements TaobaoRequest<XhotelListSearchRe
         this.udfParams.put(key, value);
     }
 
-    public Class<XhotelListSearchResponse> getResponseClass() {
-        return XhotelListSearchResponse.class;
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(radius, 50000L, "radius");
-        RequestCheckUtils.checkMinValue(radius, 1L, "radius");
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCityCode(Long cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public void setDangcis(String dangcis) {
+        this.dangcis = dangcis;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public void setHighPrice(Long highPrice) {
+        this.highPrice = highPrice;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public void setLowPrice(Long lowPrice) {
+        this.lowPrice = lowPrice;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public void setRadius(Long radius) {
+        this.radius = radius;
+    }
+
+    public void setRadiusLat(String radiusLat) {
+        this.radiusLat = radiusLat;
+    }
+
+    public void setRadiusLng(String radiusLng) {
+        this.radiusLng = radiusLng;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

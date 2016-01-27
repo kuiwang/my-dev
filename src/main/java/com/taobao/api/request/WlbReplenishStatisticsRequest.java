@@ -18,10 +18,6 @@ public class WlbReplenishStatisticsRequest implements TaobaoRequest<WlbReplenish
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品编码
      */
@@ -48,58 +44,51 @@ public class WlbReplenishStatisticsRequest implements TaobaoRequest<WlbReplenish
      */
     private String storeCode;
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.replenish.statistics";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemCode() {
         return this.itemCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
+    @Override
+    public Class<WlbReplenishStatisticsResponse> getResponseClass() {
+        return WlbReplenishStatisticsResponse.class;
     }
 
     public String getStoreCode() {
         return this.storeCode;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.replenish.statistics";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_code", this.itemCode);
@@ -113,6 +102,12 @@ public class WlbReplenishStatisticsRequest implements TaobaoRequest<WlbReplenish
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,15 +115,28 @@ public class WlbReplenishStatisticsRequest implements TaobaoRequest<WlbReplenish
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbReplenishStatisticsResponse> getResponseClass() {
-        return WlbReplenishStatisticsResponse.class;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

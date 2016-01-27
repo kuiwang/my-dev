@@ -29,12 +29,12 @@ public class ReplyStatById extends TaobaoObject {
         return this.replyNum;
     }
 
-    public void setReplyNum(Long replyNum) {
-        this.replyNum = replyNum;
-    }
-
     public String getUserId() {
         return this.userId;
+    }
+
+    public void setReplyNum(Long replyNum) {
+        this.replyNum = replyNum;
     }
 
     public void setUserId(String userId) {

@@ -30,20 +30,20 @@ public class DescribeEipMonitorDataResponse extends AliyunResponse {
     @ApiField("RequestId")
     private String requestId;
 
-    public void setEipMonitorDatas(List<EipMonitorData> eipMonitorDatas) {
-        this.eipMonitorDatas = eipMonitorDatas;
-    }
-
     public List<EipMonitorData> getEipMonitorDatas() {
         return this.eipMonitorDatas;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
+    }
+
+    public void setEipMonitorDatas(List<EipMonitorData> eipMonitorDatas) {
+        this.eipMonitorDatas = eipMonitorDatas;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

@@ -41,20 +41,20 @@ public class SellerAuthorize extends TaobaoObject {
         return this.brands;
     }
 
-    public void setBrands(List<Brand> brands) {
-        this.brands = brands;
-    }
-
     public List<ItemCat> getItemCats() {
         return this.itemCats;
     }
 
-    public void setItemCats(List<ItemCat> itemCats) {
-        this.itemCats = itemCats;
-    }
-
     public List<ItemCat> getXinpinItemCats() {
         return this.xinpinItemCats;
+    }
+
+    public void setBrands(List<Brand> brands) {
+        this.brands = brands;
+    }
+
+    public void setItemCats(List<ItemCat> itemCats) {
+        this.itemCats = itemCats;
     }
 
     public void setXinpinItemCats(List<ItemCat> xinpinItemCats) {

@@ -24,12 +24,12 @@ public class JuCityitemsGetResponse extends TaobaoResponse {
     @ApiField("item_data")
     private List<ItemData> itemList;
 
-    public void setItemList(List<ItemData> itemList) {
-        this.itemList = itemList;
-    }
-
     public List<ItemData> getItemList() {
         return this.itemList;
+    }
+
+    public void setItemList(List<ItemData> itemList) {
+        this.itemList = itemList;
     }
 
 }

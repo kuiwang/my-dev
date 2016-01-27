@@ -23,6 +23,8 @@
  */
 package com.taobao.top.link.embedded.websocket.proxy;
 
+import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.E3032;
+
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ProxySelector;
@@ -40,8 +42,6 @@ import com.taobao.top.link.embedded.websocket.auth.DefaultAuthenticator;
 import com.taobao.top.link.embedded.websocket.exception.WebSocketException;
 import com.taobao.top.link.embedded.websocket.handshake.ProxyHandshake;
 
-import static com.taobao.top.link.embedded.websocket.exception.ErrorCode.*;
-
 /**
  * The Class Proxy.
  *
@@ -52,17 +52,17 @@ public class Proxy {
     /** The log. */
     private static Logger log = Logger.getLogger(Proxy.class.getName());
 
-    /** The auto detect. */
-    private boolean autoDetect = false;
-
-    /** The proxy. */
-    private InetSocketAddress proxy;
-
     /** The authenticator. */
     private Authenticator authenticator;
 
+    /** The auto detect. */
+    private boolean autoDetect = false;
+
     /** The credentials. */
     private Credentials credentials;
+
+    /** The proxy. */
+    private InetSocketAddress proxy;
 
     /**
      * Instantiates a new proxy.
@@ -70,28 +70,6 @@ public class Proxy {
     public Proxy() {
         this.autoDetect = true;
         this.authenticator = null;
-    }
-
-    /**
-     * Instantiates a new proxy.
-     *
-     * @param proxyAddress the proxy address
-     */
-    public Proxy(InetSocketAddress proxyAddress) {
-        this.proxy = proxyAddress;
-        this.authenticator = null;
-    }
-
-    /**
-     * Instantiates a new proxy.
-     *
-     * @param username the username
-     * @param password the password
-     */
-    public Proxy(String username, String password) {
-        this.autoDetect = true;
-        this.authenticator = new DefaultAuthenticator();
-        this.credentials = new Credentials(username, password);
     }
 
     /**
@@ -110,13 +88,10 @@ public class Proxy {
      * Instantiates a new proxy.
      *
      * @param proxyAddress the proxy address
-     * @param username the username
-     * @param password the password
      */
-    public Proxy(InetSocketAddress proxyAddress, String username, String password) {
+    public Proxy(InetSocketAddress proxyAddress) {
         this.proxy = proxyAddress;
-        this.authenticator = new DefaultAuthenticator();
-        this.credentials = new Credentials(username, password);
+        this.authenticator = null;
     }
 
     /**
@@ -134,6 +109,31 @@ public class Proxy {
     }
 
     /**
+     * Instantiates a new proxy.
+     *
+     * @param proxyAddress the proxy address
+     * @param username the username
+     * @param password the password
+     */
+    public Proxy(InetSocketAddress proxyAddress, String username, String password) {
+        this.proxy = proxyAddress;
+        this.authenticator = new DefaultAuthenticator();
+        this.credentials = new Credentials(username, password);
+    }
+
+    /**
+     * Instantiates a new proxy.
+     *
+     * @param username the username
+     * @param password the password
+     */
+    public Proxy(String username, String password) {
+        this.autoDetect = true;
+        this.authenticator = new DefaultAuthenticator();
+        this.credentials = new Credentials(username, password);
+    }
+
+    /**
      * Find proxy.
      *
      * @param endpoint the endpoint
@@ -147,7 +147,7 @@ public class Proxy {
             URI proxyUri = new URI("http", null, endpoint.getHostName(), endpoint.getPort(), null,
                     null, null);
             List<java.net.Proxy> proxyList = ProxySelector.getDefault().select(proxyUri);
-            if (proxyList != null && proxyList.size() > 0
+            if ((proxyList != null) && (proxyList.size() > 0)
                     && !proxyList.get(0).type().equals(java.net.Proxy.Type.DIRECT)) {
                 if (log.isLoggable(Level.FINER)) {
                     int i = 1;

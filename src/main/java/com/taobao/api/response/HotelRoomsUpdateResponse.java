@@ -23,12 +23,12 @@ public class HotelRoomsUpdateResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> gids;
 
-    public void setGids(List<String> gids) {
-        this.gids = gids;
-    }
-
     public List<String> getGids() {
         return this.gids;
+    }
+
+    public void setGids(List<String> gids) {
+        this.gids = gids;
     }
 
 }

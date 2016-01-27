@@ -17,12 +17,6 @@ import com.taobao.api.response.CrmMembersIncrementGetResponse;
  */
 public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIncrementGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 显示第几页的会员，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页数为1<br />
      * 支持最小值为：1
@@ -42,6 +36,8 @@ public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIn
      */
     private Long grade;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 每页显示的会员数，page_size的值不能超过100，最小值要大于1<br />
      * 支持最大值为：100<br />
@@ -54,58 +50,56 @@ public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIn
      */
     private Date startModify;
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
+        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
+        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
+        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.members.increment.get";
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setEndModify(Date endModify) {
-        this.endModify = endModify;
-    }
-
     public Date getEndModify() {
         return this.endModify;
-    }
-
-    public void setGrade(Long grade) {
-        this.grade = grade;
     }
 
     public Long getGrade() {
         return this.grade;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartModify(Date startModify) {
-        this.startModify = startModify;
+    @Override
+    public Class<CrmMembersIncrementGetResponse> getResponseClass() {
+        return CrmMembersIncrementGetResponse.class;
     }
 
     public Date getStartModify() {
         return this.startModify;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.members.increment.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("current_page", this.currentPage);
@@ -119,6 +113,12 @@ public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIn
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -126,20 +126,28 @@ public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIn
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMembersIncrementGetResponse> getResponseClass() {
-        return CrmMembersIncrementGetResponse.class;
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
-        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
-        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
-        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setEndModify(Date endModify) {
+        this.endModify = endModify;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartModify(Date startModify) {
+        this.startModify = startModify;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

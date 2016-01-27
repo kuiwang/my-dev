@@ -130,156 +130,156 @@ public class DescribeLoadBalancerHTTPListenerAttributeResponse extends AliyunRes
     @ApiField("XForwardedFor")
     private String xForwardedFor;
 
-    public void setBackendServerPort(Long backendServerPort) {
-        this.backendServerPort = backendServerPort;
-    }
-
     public Long getBackendServerPort() {
         return this.backendServerPort;
-    }
-
-    public void setBandwidth(Long bandwidth) {
-        this.bandwidth = bandwidth;
     }
 
     public Long getBandwidth() {
         return this.bandwidth;
     }
 
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
-    }
-
     public String getCookie() {
         return this.cookie;
-    }
-
-    public void setCookieTimeout(Long cookieTimeout) {
-        this.cookieTimeout = cookieTimeout;
     }
 
     public Long getCookieTimeout() {
         return this.cookieTimeout;
     }
 
-    public void setHealthCheck(String healthCheck) {
-        this.healthCheck = healthCheck;
-    }
-
     public String getHealthCheck() {
         return this.healthCheck;
-    }
-
-    public void setHealthCheckDomain(String healthCheckDomain) {
-        this.healthCheckDomain = healthCheckDomain;
     }
 
     public String getHealthCheckDomain() {
         return this.healthCheckDomain;
     }
 
-    public void setHealthCheckHttpCode(String healthCheckHttpCode) {
-        this.healthCheckHttpCode = healthCheckHttpCode;
-    }
-
     public String getHealthCheckHttpCode() {
         return this.healthCheckHttpCode;
-    }
-
-    public void setHealthCheckInterval(Long healthCheckInterval) {
-        this.healthCheckInterval = healthCheckInterval;
     }
 
     public Long getHealthCheckInterval() {
         return this.healthCheckInterval;
     }
 
-    public void setHealthCheckTimeout(Long healthCheckTimeout) {
-        this.healthCheckTimeout = healthCheckTimeout;
-    }
-
     public Long getHealthCheckTimeout() {
         return this.healthCheckTimeout;
-    }
-
-    public void setHealthCheckURI(String healthCheckURI) {
-        this.healthCheckURI = healthCheckURI;
     }
 
     public String getHealthCheckURI() {
         return this.healthCheckURI;
     }
 
-    public void setHealthyThreshold(Long healthyThreshold) {
-        this.healthyThreshold = healthyThreshold;
-    }
-
     public Long getHealthyThreshold() {
         return this.healthyThreshold;
-    }
-
-    public void setListenerPort(Long listenerPort) {
-        this.listenerPort = listenerPort;
     }
 
     public Long getListenerPort() {
         return this.listenerPort;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setScheduler(String scheduler) {
-        this.scheduler = scheduler;
     }
 
     public String getScheduler() {
         return this.scheduler;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStickySession(String stickySession) {
-        this.stickySession = stickySession;
     }
 
     public String getStickySession() {
         return this.stickySession;
     }
 
-    public void setStickySessionType(String stickySessionType) {
-        this.stickySessionType = stickySessionType;
-    }
-
     public String getStickySessionType() {
         return this.stickySessionType;
-    }
-
-    public void setUnhealthyThreshold(Long unhealthyThreshold) {
-        this.unhealthyThreshold = unhealthyThreshold;
     }
 
     public Long getUnhealthyThreshold() {
         return this.unhealthyThreshold;
     }
 
-    public void setxForwardedFor(String xForwardedFor) {
-        this.xForwardedFor = xForwardedFor;
-    }
-
     public String getxForwardedFor() {
         return this.xForwardedFor;
+    }
+
+    public void setBackendServerPort(Long backendServerPort) {
+        this.backendServerPort = backendServerPort;
+    }
+
+    public void setBandwidth(Long bandwidth) {
+        this.bandwidth = bandwidth;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
+
+    public void setCookieTimeout(Long cookieTimeout) {
+        this.cookieTimeout = cookieTimeout;
+    }
+
+    public void setHealthCheck(String healthCheck) {
+        this.healthCheck = healthCheck;
+    }
+
+    public void setHealthCheckDomain(String healthCheckDomain) {
+        this.healthCheckDomain = healthCheckDomain;
+    }
+
+    public void setHealthCheckHttpCode(String healthCheckHttpCode) {
+        this.healthCheckHttpCode = healthCheckHttpCode;
+    }
+
+    public void setHealthCheckInterval(Long healthCheckInterval) {
+        this.healthCheckInterval = healthCheckInterval;
+    }
+
+    public void setHealthCheckTimeout(Long healthCheckTimeout) {
+        this.healthCheckTimeout = healthCheckTimeout;
+    }
+
+    public void setHealthCheckURI(String healthCheckURI) {
+        this.healthCheckURI = healthCheckURI;
+    }
+
+    public void setHealthyThreshold(Long healthyThreshold) {
+        this.healthyThreshold = healthyThreshold;
+    }
+
+    public void setListenerPort(Long listenerPort) {
+        this.listenerPort = listenerPort;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScheduler(String scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setStickySession(String stickySession) {
+        this.stickySession = stickySession;
+    }
+
+    public void setStickySessionType(String stickySessionType) {
+        this.stickySessionType = stickySessionType;
+    }
+
+    public void setUnhealthyThreshold(Long unhealthyThreshold) {
+        this.unhealthyThreshold = unhealthyThreshold;
+    }
+
+    public void setxForwardedFor(String xForwardedFor) {
+        this.xForwardedFor = xForwardedFor;
     }
 
 }

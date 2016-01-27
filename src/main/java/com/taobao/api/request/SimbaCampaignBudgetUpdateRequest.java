@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaCampaignBudgetUpdateResponse;
 public class SimbaCampaignBudgetUpdateRequest implements
         TaobaoRequest<SimbaCampaignBudgetUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 如果为空则取消限额；否则必须为整数，单位是元，不得小于30；<br />
      * 支持最大值为：99999<br />
@@ -35,60 +29,58 @@ public class SimbaCampaignBudgetUpdateRequest implements
      */
     private Long campaignId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主人昵称
      */
     private String nick;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 是否平滑消耗：false-否，true-是
      */
     private Boolean useSmooth;
 
-    public void setBudget(Long budget) {
-        this.budget = budget;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(budget, 99999L, "budget");
+        RequestCheckUtils.checkMinValue(budget, 30L, "budget");
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(useSmooth, "useSmooth");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.budget.update";
     }
 
     public Long getBudget() {
         return this.budget;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setUseSmooth(Boolean useSmooth) {
-        this.useSmooth = useSmooth;
+    @Override
+    public Class<SimbaCampaignBudgetUpdateResponse> getResponseClass() {
+        return SimbaCampaignBudgetUpdateResponse.class;
     }
 
-    public Boolean getUseSmooth() {
-        return this.useSmooth;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.budget.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("budget", this.budget);
@@ -101,6 +93,16 @@ public class SimbaCampaignBudgetUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Boolean getUseSmooth() {
+        return this.useSmooth;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -108,18 +110,24 @@ public class SimbaCampaignBudgetUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignBudgetUpdateResponse> getResponseClass() {
-        return SimbaCampaignBudgetUpdateResponse.class;
+    public void setBudget(Long budget) {
+        this.budget = budget;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(budget, 99999L, "budget");
-        RequestCheckUtils.checkMinValue(budget, 30L, "budget");
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(useSmooth, "useSmooth");
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUseSmooth(Boolean useSmooth) {
+        this.useSmooth = useSmooth;
     }
 }

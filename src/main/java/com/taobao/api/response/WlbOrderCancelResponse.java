@@ -27,20 +27,20 @@ public class WlbOrderCancelResponse extends TaobaoResponse {
     @ApiField("modify_time")
     private Date modifyTime;
 
-    public void setErrorCodeList(String errorCodeList) {
-        this.errorCodeList = errorCodeList;
-    }
-
     public String getErrorCodeList() {
         return this.errorCodeList;
     }
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public Date getModifyTime() {
         return this.modifyTime;
+    }
+
+    public void setErrorCodeList(String errorCodeList) {
+        this.errorCodeList = errorCodeList;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 
 }

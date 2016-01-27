@@ -29,12 +29,12 @@ public class ErrorMessage extends TaobaoObject {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public String getReason() {
         return this.reason;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
     public void setReason(String reason) {

@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaInsightWordspricedataGetResponse;
 public class SimbaInsightWordspricedataGetRequest implements
         TaobaoRequest<SimbaInsightWordspricedataGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 关键词
      */
@@ -33,47 +27,52 @@ public class SimbaInsightWordspricedataGetRequest implements
      */
     private String endDate;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 开始时间，格式：yyyy-MM-dd
      */
     private String startDate;
 
-    public void setBidword(String bidword) {
-        this.bidword = bidword;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bidword, "bidword");
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.wordspricedata.get";
     }
 
     public String getBidword() {
         return this.bidword;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SimbaInsightWordspricedataGetResponse> getResponseClass() {
+        return SimbaInsightWordspricedataGetResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.wordspricedata.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bidword", this.bidword);
@@ -85,6 +84,12 @@ public class SimbaInsightWordspricedataGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,17 +97,20 @@ public class SimbaInsightWordspricedataGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightWordspricedataGetResponse> getResponseClass() {
-        return SimbaInsightWordspricedataGetResponse.class;
+    public void setBidword(String bidword) {
+        this.bidword = bidword;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bidword, "bidword");
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

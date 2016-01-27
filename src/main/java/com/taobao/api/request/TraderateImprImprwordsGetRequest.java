@@ -17,12 +17,6 @@ import com.taobao.api.response.TraderateImprImprwordsGetResponse;
 public class TraderateImprImprwordsGetRequest implements
         TaobaoRequest<TraderateImprImprwordsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝叶子类目id
      */
@@ -33,34 +27,41 @@ public class TraderateImprImprwordsGetRequest implements
      */
     private Long catRootId;
 
-    public void setCatLeafId(Long catLeafId) {
-        this.catLeafId = catLeafId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(catRootId, "catRootId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.traderate.impr.imprwords.get";
     }
 
     public Long getCatLeafId() {
         return this.catLeafId;
     }
 
-    public void setCatRootId(Long catRootId) {
-        this.catRootId = catRootId;
-    }
-
     public Long getCatRootId() {
         return this.catRootId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<TraderateImprImprwordsGetResponse> getResponseClass() {
+        return TraderateImprImprwordsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.traderate.impr.imprwords.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cat_leaf_id", this.catLeafId);
@@ -71,6 +72,12 @@ public class TraderateImprImprwordsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class TraderateImprImprwordsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TraderateImprImprwordsGetResponse> getResponseClass() {
-        return TraderateImprImprwordsGetResponse.class;
+    public void setCatLeafId(Long catLeafId) {
+        this.catLeafId = catLeafId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(catRootId, "catRootId");
+    public void setCatRootId(Long catRootId) {
+        this.catRootId = catRootId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

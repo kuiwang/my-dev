@@ -35,11 +35,29 @@ import com.taobao.top.link.embedded.websocket.util.StringUtil;
  */
 public class HttpResponseHeaderParser {
 
+    /** The complete. */
+    private boolean complete = false;
+
     /** The response header. */
     private HttpHeader responseHeader = new HttpHeader();
 
-    /** The complete. */
-    private boolean complete = false;
+    /**
+     * Gets the response header.
+     *
+     * @return the response header
+     */
+    public HttpHeader getResponseHeader() {
+        return responseHeader;
+    }
+
+    /**
+     * Checks if is completed.
+     *
+     * @return true, if is completed
+     */
+    public boolean isCompleted() {
+        return complete;
+    }
 
     /**
      * Parses the.
@@ -69,23 +87,5 @@ public class HttpResponseHeaderParser {
                 return;
             }
         } while (true);
-    }
-
-    /**
-     * Checks if is completed.
-     *
-     * @return true, if is completed
-     */
-    public boolean isCompleted() {
-        return complete;
-    }
-
-    /**
-     * Gets the response header.
-     *
-     * @return the response header
-     */
-    public HttpHeader getResponseHeader() {
-        return responseHeader;
     }
 }

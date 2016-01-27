@@ -81,76 +81,76 @@ public class TravelItemsProp extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Boolean getIsEnums() {
         return this.isEnums;
-    }
-
-    public void setIsEnums(Boolean isEnums) {
-        this.isEnums = isEnums;
     }
 
     public Boolean getIsInput() {
         return this.isInput;
     }
 
-    public void setIsInput(Boolean isInput) {
-        this.isInput = isInput;
-    }
-
     public Boolean getIsSaleProp() {
         return this.isSaleProp;
-    }
-
-    public void setIsSaleProp(Boolean isSaleProp) {
-        this.isSaleProp = isSaleProp;
     }
 
     public Boolean getMulti() {
         return this.multi;
     }
 
-    public void setMulti(Boolean multi) {
-        this.multi = multi;
-    }
-
     public Boolean getMust() {
         return this.must;
-    }
-
-    public void setMust(Boolean must) {
-        this.must = must;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPid() {
         return this.pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public Long getSortOrder() {
         return this.sortOrder;
     }
 
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
     public List<TravelItemsPropValue> getTravelItemsPropValues() {
         return this.travelItemsPropValues;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setIsEnums(Boolean isEnums) {
+        this.isEnums = isEnums;
+    }
+
+    public void setIsInput(Boolean isInput) {
+        this.isInput = isInput;
+    }
+
+    public void setIsSaleProp(Boolean isSaleProp) {
+        this.isSaleProp = isSaleProp;
+    }
+
+    public void setMulti(Boolean multi) {
+        this.multi = multi;
+    }
+
+    public void setMust(Boolean must) {
+        this.must = must;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public void setTravelItemsPropValues(List<TravelItemsPropValue> travelItemsPropValues) {

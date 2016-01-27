@@ -20,12 +20,12 @@ public class TmallTraderateFeedsGetResponse extends TaobaoResponse {
     @ApiField("tmall_rate_info")
     private TmallRateInfo tmallRateInfo;
 
-    public void setTmallRateInfo(TmallRateInfo tmallRateInfo) {
-        this.tmallRateInfo = tmallRateInfo;
-    }
-
     public TmallRateInfo getTmallRateInfo() {
         return this.tmallRateInfo;
+    }
+
+    public void setTmallRateInfo(TmallRateInfo tmallRateInfo) {
+        this.tmallRateInfo = tmallRateInfo;
     }
 
 }

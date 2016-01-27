@@ -16,15 +16,16 @@ public abstract class TcpServerChannel extends NettyServerChannel {
         super(factory, port);
     }
 
-    protected void preparePipeline(ChannelPipeline pipeline) {
-        this.prepareCodec(pipeline);
-        pipeline.addLast("handler", this.createHandler());
+    protected TcpServerUpstreamHandler createHandler() {
+        return new TcpServerUpstreamHandler(this.loggerFactory, this.channelHandler,
+                this.allChannels);
     }
 
     protected abstract void prepareCodec(ChannelPipeline pipeline);
 
-    protected TcpServerUpstreamHandler createHandler() {
-        return new TcpServerUpstreamHandler(this.loggerFactory, this.channelHandler,
-                this.allChannels);
+    @Override
+    protected void preparePipeline(ChannelPipeline pipeline) {
+        this.prepareCodec(pipeline);
+        pipeline.addLast("handler", this.createHandler());
     }
 }

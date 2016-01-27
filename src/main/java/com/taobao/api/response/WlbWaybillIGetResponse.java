@@ -24,12 +24,12 @@ public class WlbWaybillIGetResponse extends TaobaoResponse {
     @ApiField("waybill_apply_new_info")
     private List<WaybillApplyNewInfo> waybillApplyNewCols;
 
-    public void setWaybillApplyNewCols(List<WaybillApplyNewInfo> waybillApplyNewCols) {
-        this.waybillApplyNewCols = waybillApplyNewCols;
-    }
-
     public List<WaybillApplyNewInfo> getWaybillApplyNewCols() {
         return this.waybillApplyNewCols;
+    }
+
+    public void setWaybillApplyNewCols(List<WaybillApplyNewInfo> waybillApplyNewCols) {
+        this.waybillApplyNewCols = waybillApplyNewCols;
     }
 
 }

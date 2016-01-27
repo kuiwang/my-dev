@@ -55,44 +55,44 @@ public class Group extends TaobaoObject {
         return this.groupCreate;
     }
 
-    public void setGroupCreate(Date groupCreate) {
-        this.groupCreate = groupCreate;
-    }
-
     public Long getGroupId() {
         return this.groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public Date getGroupModify() {
         return this.groupModify;
     }
 
-    public void setGroupModify(Date groupModify) {
-        this.groupModify = groupModify;
-    }
-
     public String getGroupName() {
         return this.groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
     }
 
     public Long getMemberCount() {
         return this.memberCount;
     }
 
-    public void setMemberCount(Long memberCount) {
-        this.memberCount = memberCount;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setGroupCreate(Date groupCreate) {
+        this.groupCreate = groupCreate;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setGroupModify(Date groupModify) {
+        this.groupModify = groupModify;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setMemberCount(Long memberCount) {
+        this.memberCount = memberCount;
     }
 
     public void setStatus(String status) {

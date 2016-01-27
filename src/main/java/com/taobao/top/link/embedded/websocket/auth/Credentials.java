@@ -30,11 +30,11 @@ package com.taobao.top.link.embedded.websocket.auth;
  */
 public class Credentials {
 
-    /** The username. */
-    private String username;
-
     /** The password. */
     private String password;
+
+    /** The username. */
+    private String username;
 
     /**
      * Instantiates a new credentials.
@@ -48,20 +48,20 @@ public class Credentials {
     }
 
     /**
-     * Gets the username.
-     *
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
      * Gets the password.
      *
      * @return the password
      */
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * Gets the username.
+     *
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
     }
 }

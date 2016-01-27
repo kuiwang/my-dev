@@ -16,12 +16,6 @@ import com.taobao.api.response.HotelNameGetResponse;
  */
 public class HotelNameGetRequest implements TaobaoRequest<HotelNameGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 城市编码。参见：http://kezhan.trip.taobao.com/area.html。
      * domestic为true时，province,city,district不能同时为空或为0<br />
@@ -48,6 +42,8 @@ public class HotelNameGetRequest implements TaobaoRequest<HotelNameGetResponse> 
      */
     private Boolean domestic;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 酒店全部名称/别名。不能超过60字节<br />
      * 支持最大长度为：60<br />
@@ -62,66 +58,57 @@ public class HotelNameGetRequest implements TaobaoRequest<HotelNameGetResponse> 
      */
     private Long province;
 
-    public void setCity(Long city) {
-        this.city = city;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(domestic, "domestic");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 60, "name");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.name.get";
     }
 
     public Long getCity() {
         return this.city;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getCountry() {
         return this.country;
-    }
-
-    public void setDistrict(Long district) {
-        this.district = district;
     }
 
     public Long getDistrict() {
         return this.district;
     }
 
-    public void setDomestic(Boolean domestic) {
-        this.domestic = domestic;
-    }
-
     public Boolean getDomestic() {
         return this.domestic;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setProvince(Long province) {
-        this.province = province;
-    }
-
     public Long getProvince() {
         return this.province;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelNameGetResponse> getResponseClass() {
+        return HotelNameGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.name.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("city", this.city);
@@ -136,6 +123,12 @@ public class HotelNameGetRequest implements TaobaoRequest<HotelNameGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -143,17 +136,32 @@ public class HotelNameGetRequest implements TaobaoRequest<HotelNameGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelNameGetResponse> getResponseClass() {
-        return HotelNameGetResponse.class;
+    public void setCity(Long city) {
+        this.city = city;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(domestic, "domestic");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 60, "name");
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDistrict(Long district) {
+        this.district = district;
+    }
+
+    public void setDomestic(Boolean domestic) {
+        this.domestic = domestic;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProvince(Long province) {
+        this.province = province;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

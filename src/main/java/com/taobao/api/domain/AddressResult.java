@@ -115,124 +115,124 @@ public class AddressResult extends TaobaoObject {
         return this.addr;
     }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
-
     public Long getAreaId() {
         return this.areaId;
-    }
-
-    public void setAreaId(Long areaId) {
-        this.areaId = areaId;
     }
 
     public Boolean getCancelDef() {
         return this.cancelDef;
     }
 
-    public void setCancelDef(Boolean cancelDef) {
-        this.cancelDef = cancelDef;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Long getContactId() {
         return this.contactId;
     }
 
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
-    }
-
     public String getContactName() {
         return this.contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
     }
 
     public String getCountry() {
         return this.country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public Boolean getGetDef() {
         return this.getDef;
-    }
-
-    public void setGetDef(Boolean getDef) {
-        this.getDef = getDef;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
     public String getMobilePhone() {
         return this.mobilePhone;
-    }
-
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
     }
 
     public Date getModifyDate() {
         return this.modifyDate;
     }
 
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
-
     public String getPhone() {
         return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getProvince() {
         return this.province;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getSellerCompany() {
         return this.sellerCompany;
-    }
-
-    public void setSellerCompany(String sellerCompany) {
-        this.sellerCompany = sellerCompany;
     }
 
     public Boolean getSendDef() {
         return this.sendDef;
     }
 
-    public void setSendDef(Boolean sendDef) {
-        this.sendDef = sendDef;
-    }
-
     public String getZipCode() {
         return this.zipCode;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
+    }
+
+    public void setCancelDef(Boolean cancelDef) {
+        this.cancelDef = cancelDef;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setGetDef(Boolean getDef) {
+        this.getDef = getDef;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public void setSellerCompany(String sellerCompany) {
+        this.sellerCompany = sellerCompany;
+    }
+
+    public void setSendDef(Boolean sendDef) {
+        this.sendDef = sendDef;
     }
 
     public void setZipCode(String zipCode) {

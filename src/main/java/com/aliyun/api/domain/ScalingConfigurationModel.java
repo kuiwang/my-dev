@@ -92,92 +92,92 @@ public class ScalingConfigurationModel extends TaobaoObject {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getImageId() {
         return this.imageId;
-    }
-
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
     }
 
     public String getInstanceType() {
         return this.instanceType;
     }
 
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-
     public String getInternetChargeType() {
         return this.internetChargeType;
-    }
-
-    public void setInternetChargeType(String internetChargeType) {
-        this.internetChargeType = internetChargeType;
     }
 
     public Long getInternetMaxBandwidthIn() {
         return this.internetMaxBandwidthIn;
     }
 
-    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
-        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
-    }
-
     public Long getInternetMaxBandwidthOut() {
         return this.internetMaxBandwidthOut;
-    }
-
-    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
-        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
     }
 
     public String getLifecycleState() {
         return this.lifecycleState;
     }
 
-    public void setLifecycleState(String lifecycleState) {
-        this.lifecycleState = lifecycleState;
-    }
-
     public String getScalingConfigurationId() {
         return this.scalingConfigurationId;
-    }
-
-    public void setScalingConfigurationId(String scalingConfigurationId) {
-        this.scalingConfigurationId = scalingConfigurationId;
     }
 
     public String getScalingConfigurationName() {
         return this.scalingConfigurationName;
     }
 
-    public void setScalingConfigurationName(String scalingConfigurationName) {
-        this.scalingConfigurationName = scalingConfigurationName;
-    }
-
     public String getScalingGroupId() {
         return this.scalingGroupId;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
     }
 
     public String getSecurityGroupId() {
         return this.securityGroupId;
     }
 
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
     public String getSystemDiskCategory() {
         return this.systemDiskCategory;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    public void setInternetChargeType(String internetChargeType) {
+        this.internetChargeType = internetChargeType;
+    }
+
+    public void setInternetMaxBandwidthIn(Long internetMaxBandwidthIn) {
+        this.internetMaxBandwidthIn = internetMaxBandwidthIn;
+    }
+
+    public void setInternetMaxBandwidthOut(Long internetMaxBandwidthOut) {
+        this.internetMaxBandwidthOut = internetMaxBandwidthOut;
+    }
+
+    public void setLifecycleState(String lifecycleState) {
+        this.lifecycleState = lifecycleState;
+    }
+
+    public void setScalingConfigurationId(String scalingConfigurationId) {
+        this.scalingConfigurationId = scalingConfigurationId;
+    }
+
+    public void setScalingConfigurationName(String scalingConfigurationName) {
+        this.scalingConfigurationName = scalingConfigurationName;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
     }
 
     public void setSystemDiskCategory(String systemDiskCategory) {

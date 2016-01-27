@@ -19,35 +19,40 @@ public class TmallProductSpecsTicketGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 产品规格ID，多个用逗号分隔
      */
     private String specIds;
 
-    public void setSpecIds(String specIds) {
-        this.specIds = specIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(specIds, "specIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.product.specs.ticket.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TmallProductSpecsTicketGetResponse> getResponseClass() {
+        return TmallProductSpecsTicketGetResponse.class;
     }
 
     public String getSpecIds() {
         return this.specIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.product.specs.ticket.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("spec_ids", this.specIds);
@@ -57,6 +62,12 @@ public class TmallProductSpecsTicketGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class TmallProductSpecsTicketGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallProductSpecsTicketGetResponse> getResponseClass() {
-        return TmallProductSpecsTicketGetResponse.class;
+    public void setSpecIds(String specIds) {
+        this.specIds = specIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(specIds, "specIds");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

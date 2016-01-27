@@ -4,6 +4,7 @@ public class DefaultSerializationFactory implements SerializationFactory {
 
     private Serializer serializer = new DefaultSerializer();
 
+    @Override
     public Serializer get(Object format) {
         return this.serializer;
     }

@@ -20,12 +20,12 @@ public class TmallProductTemplateGetResponse extends TaobaoResponse {
     @ApiField("template")
     private SpuTemplateDO template;
 
-    public void setTemplate(SpuTemplateDO template) {
-        this.template = template;
-    }
-
     public SpuTemplateDO getTemplate() {
         return this.template;
+    }
+
+    public void setTemplate(SpuTemplateDO template) {
+        this.template = template;
     }
 
 }

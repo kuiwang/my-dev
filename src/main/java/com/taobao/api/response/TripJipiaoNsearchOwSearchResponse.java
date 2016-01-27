@@ -20,12 +20,12 @@ public class TripJipiaoNsearchOwSearchResponse extends TaobaoResponse {
     @ApiField("result")
     private AtNSearchResult result;
 
-    public void setResult(AtNSearchResult result) {
-        this.result = result;
-    }
-
     public AtNSearchResult getResult() {
         return this.result;
+    }
+
+    public void setResult(AtNSearchResult result) {
+        this.result = result;
     }
 
 }

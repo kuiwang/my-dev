@@ -46,28 +46,28 @@ public class Zone extends TaobaoObject {
         return this.availableDiskCategories;
     }
 
-    public void setAvailableDiskCategories(List<DiskCategories> availableDiskCategories) {
-        this.availableDiskCategories = availableDiskCategories;
-    }
-
     public List<ResourceTypes> getAvailableResourceCreation() {
         return this.availableResourceCreation;
-    }
-
-    public void setAvailableResourceCreation(List<ResourceTypes> availableResourceCreation) {
-        this.availableResourceCreation = availableResourceCreation;
     }
 
     public String getLocalName() {
         return this.localName;
     }
 
-    public void setLocalName(String localName) {
-        this.localName = localName;
-    }
-
     public String getZoneId() {
         return this.zoneId;
+    }
+
+    public void setAvailableDiskCategories(List<DiskCategories> availableDiskCategories) {
+        this.availableDiskCategories = availableDiskCategories;
+    }
+
+    public void setAvailableResourceCreation(List<ResourceTypes> availableResourceCreation) {
+        this.availableResourceCreation = availableResourceCreation;
+    }
+
+    public void setLocalName(String localName) {
+        this.localName = localName;
     }
 
     public void setZoneId(String zoneId) {

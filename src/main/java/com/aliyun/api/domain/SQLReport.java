@@ -41,28 +41,28 @@ public class SQLReport extends TaobaoObject {
         return this.returnTotalRowCounts;
     }
 
-    public void setReturnTotalRowCounts(String returnTotalRowCounts) {
-        this.returnTotalRowCounts = returnTotalRowCounts;
-    }
-
     public String getsQLText() {
         return this.sQLText;
-    }
-
-    public void setsQLText(String sQLText) {
-        this.sQLText = sQLText;
     }
 
     public String getTotalExecutionCounts() {
         return this.totalExecutionCounts;
     }
 
-    public void setTotalExecutionCounts(String totalExecutionCounts) {
-        this.totalExecutionCounts = totalExecutionCounts;
-    }
-
     public String getTotalExecutionTimes() {
         return this.totalExecutionTimes;
+    }
+
+    public void setReturnTotalRowCounts(String returnTotalRowCounts) {
+        this.returnTotalRowCounts = returnTotalRowCounts;
+    }
+
+    public void setsQLText(String sQLText) {
+        this.sQLText = sQLText;
+    }
+
+    public void setTotalExecutionCounts(String totalExecutionCounts) {
+        this.totalExecutionCounts = totalExecutionCounts;
     }
 
     public void setTotalExecutionTimes(String totalExecutionTimes) {

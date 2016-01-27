@@ -19,10 +19,6 @@ public class SimbaKeywordsbykeywordidsGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 关键词Id数组，最多200个；
      */
@@ -33,34 +29,39 @@ public class SimbaKeywordsbykeywordidsGetRequest implements
      */
     private String nick;
 
-    public void setKeywordIds(String keywordIds) {
-        this.keywordIds = keywordIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(keywordIds, 200, "keywordIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywordsbykeywordids.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywordIds() {
         return this.keywordIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordsbykeywordidsGetResponse> getResponseClass() {
+        return SimbaKeywordsbykeywordidsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywordsbykeywordids.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("keyword_ids", this.keywordIds);
@@ -71,6 +72,12 @@ public class SimbaKeywordsbykeywordidsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class SimbaKeywordsbykeywordidsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordsbykeywordidsGetResponse> getResponseClass() {
-        return SimbaKeywordsbykeywordidsGetResponse.class;
+    public void setKeywordIds(String keywordIds) {
+        this.keywordIds = keywordIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(keywordIds, 200, "keywordIds");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

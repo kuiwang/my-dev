@@ -17,12 +17,6 @@ import com.taobao.api.response.TbkCreativeAuditResponse;
  */
 public class TbkCreativeAuditRequest implements TaobaoRequest<TbkCreativeAuditResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 审核时间
      */
@@ -38,6 +32,8 @@ public class TbkCreativeAuditRequest implements TaobaoRequest<TbkCreativeAuditRe
      */
     private Long creativeId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 结果类型，1：审核成功，2：审核未通过，3.视频未成功下载
      */
@@ -48,58 +44,52 @@ public class TbkCreativeAuditRequest implements TaobaoRequest<TbkCreativeAuditRe
      */
     private String successUrl;
 
-    public void setAuditTime(Date auditTime) {
-        this.auditTime = auditTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(creativeId, "creativeId");
+        RequestCheckUtils.checkNotEmpty(result, "result");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.tbk.creative.audit";
     }
 
     public Date getAuditTime() {
         return this.auditTime;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public String getComment() {
         return this.comment;
-    }
-
-    public void setCreativeId(Long creativeId) {
-        this.creativeId = creativeId;
     }
 
     public Long getCreativeId() {
         return this.creativeId;
     }
 
-    public void setResult(Long result) {
-        this.result = result;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<TbkCreativeAuditResponse> getResponseClass() {
+        return TbkCreativeAuditResponse.class;
     }
 
     public Long getResult() {
         return this.result;
     }
 
-    public void setSuccessUrl(String successUrl) {
-        this.successUrl = successUrl;
-    }
-
     public String getSuccessUrl() {
         return this.successUrl;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.tbk.creative.audit";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("audit_time", this.auditTime);
@@ -113,6 +103,12 @@ public class TbkCreativeAuditRequest implements TaobaoRequest<TbkCreativeAuditRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,16 +116,28 @@ public class TbkCreativeAuditRequest implements TaobaoRequest<TbkCreativeAuditRe
         this.udfParams.put(key, value);
     }
 
-    public Class<TbkCreativeAuditResponse> getResponseClass() {
-        return TbkCreativeAuditResponse.class;
+    public void setAuditTime(Date auditTime) {
+        this.auditTime = auditTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(creativeId, "creativeId");
-        RequestCheckUtils.checkNotEmpty(result, "result");
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCreativeId(Long creativeId) {
+        this.creativeId = creativeId;
+    }
+
+    public void setResult(Long result) {
+        this.result = result;
+    }
+
+    public void setSuccessUrl(String successUrl) {
+        this.successUrl = successUrl;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.DeliveryTemplatesGetResponse;
  */
 public class DeliveryTemplatesGetRequest implements TaobaoRequest<DeliveryTemplatesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需返回的字段列表。 <br/>
      * <B> 可选值:示例中的值;各字段之间用","隔开 </B> <br/>
@@ -48,26 +42,37 @@ public class DeliveryTemplatesGetRequest implements TaobaoRequest<DeliveryTempla
      */
     private String fields;
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.delivery.templates.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<DeliveryTemplatesGetResponse> getResponseClass() {
+        return DeliveryTemplatesGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.delivery.templates.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("fields", this.fields);
@@ -77,6 +82,12 @@ public class DeliveryTemplatesGetRequest implements TaobaoRequest<DeliveryTempla
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -84,15 +95,12 @@ public class DeliveryTemplatesGetRequest implements TaobaoRequest<DeliveryTempla
         this.udfParams.put(key, value);
     }
 
-    public Class<DeliveryTemplatesGetResponse> getResponseClass() {
-        return DeliveryTemplatesGetResponse.class;
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

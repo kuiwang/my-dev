@@ -24,12 +24,12 @@ public class SimbaAdgroupNonsearchpricesUpdateResponse extends TaobaoResponse {
     @ApiField("a_d_group")
     private List<ADGroup> adgroupList;
 
-    public void setAdgroupList(List<ADGroup> adgroupList) {
-        this.adgroupList = adgroupList;
-    }
-
     public List<ADGroup> getAdgroupList() {
         return this.adgroupList;
+    }
+
+    public void setAdgroupList(List<ADGroup> adgroupList) {
+        this.adgroupList = adgroupList;
     }
 
 }

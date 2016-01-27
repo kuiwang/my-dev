@@ -24,12 +24,12 @@ public class SimbaKeywordsQscoreGetResponse extends TaobaoResponse {
     @ApiField("keyword_qscore")
     private List<KeywordQscore> keywordQscoreList;
 
-    public void setKeywordQscoreList(List<KeywordQscore> keywordQscoreList) {
-        this.keywordQscoreList = keywordQscoreList;
-    }
-
     public List<KeywordQscore> getKeywordQscoreList() {
         return this.keywordQscoreList;
+    }
+
+    public void setKeywordQscoreList(List<KeywordQscore> keywordQscoreList) {
+        this.keywordQscoreList = keywordQscoreList;
     }
 
 }

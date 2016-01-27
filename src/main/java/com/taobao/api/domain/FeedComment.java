@@ -61,52 +61,52 @@ public class FeedComment extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getExtSymbol() {
         return this.extSymbol;
-    }
-
-    public void setExtSymbol(String extSymbol) {
-        this.extSymbol = extSymbol;
     }
 
     public Long getFeedId() {
         return this.feedId;
     }
 
-    public void setFeedId(Long feedId) {
-        this.feedId = feedId;
-    }
-
     public Long getFloor() {
         return this.floor;
-    }
-
-    public void setFloor(Long floor) {
-        this.floor = floor;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getTime() {
         return this.time;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setExtSymbol(String extSymbol) {
+        this.extSymbol = extSymbol;
+    }
+
+    public void setFeedId(Long feedId) {
+        this.feedId = feedId;
+    }
+
+    public void setFloor(Long floor) {
+        this.floor = floor;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 
     public void setType(Long type) {

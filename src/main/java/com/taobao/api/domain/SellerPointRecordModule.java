@@ -61,52 +61,52 @@ public class SellerPointRecordModule extends TaobaoObject {
         return this.businessInfo;
     }
 
-    public void setBusinessInfo(String businessInfo) {
-        this.businessInfo = businessInfo;
-    }
-
     public String getBuyerNick() {
         return this.buyerNick;
-    }
-
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
     }
 
     public Long getPointNum() {
         return this.pointNum;
     }
 
-    public void setPointNum(Long pointNum) {
-        this.pointNum = pointNum;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public Long getTransactionId() {
         return this.transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
     public Date getTransactionTime() {
         return this.transactionTime;
     }
 
-    public void setTransactionTime(Date transactionTime) {
-        this.transactionTime = transactionTime;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setBusinessInfo(String businessInfo) {
+        this.businessInfo = businessInfo;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setPointNum(Long pointNum) {
+        this.pointNum = pointNum;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setTransactionTime(Date transactionTime) {
+        this.transactionTime = transactionTime;
     }
 
     public void setType(Long type) {

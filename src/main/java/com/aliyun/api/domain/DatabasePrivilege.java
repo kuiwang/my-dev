@@ -29,12 +29,12 @@ public class DatabasePrivilege extends TaobaoObject {
         return this.accountPrivilege;
     }
 
-    public void setAccountPrivilege(String accountPrivilege) {
-        this.accountPrivilege = accountPrivilege;
-    }
-
     public String getdBName() {
         return this.dBName;
+    }
+
+    public void setAccountPrivilege(String accountPrivilege) {
+        this.accountPrivilege = accountPrivilege;
     }
 
     public void setdBName(String dBName) {

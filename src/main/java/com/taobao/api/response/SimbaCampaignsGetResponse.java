@@ -24,12 +24,12 @@ public class SimbaCampaignsGetResponse extends TaobaoResponse {
     @ApiField("campaign")
     private List<Campaign> campaigns;
 
-    public void setCampaigns(List<Campaign> campaigns) {
-        this.campaigns = campaigns;
-    }
-
     public List<Campaign> getCampaigns() {
         return this.campaigns;
+    }
+
+    public void setCampaigns(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
     }
 
 }

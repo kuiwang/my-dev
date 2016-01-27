@@ -34,6 +34,15 @@ import com.taobao.top.link.embedded.websocket.frame.draft06.FrameBuilderDraft06.
 public class CloseFrame extends FrameDraft06 {
 
     /**
+     * Instantiates a new close frame.
+     */
+    public CloseFrame() {
+        FrameHeader header = FrameBuilderDraft06.createFrameHeader(null, false,
+                Opcode.CONNECTION_CLOSE);
+        setHeader(header);
+    }
+
+    /**
      * Instantiates a new connection close frame.
      *
      * @param header the header
@@ -41,14 +50,5 @@ public class CloseFrame extends FrameDraft06 {
      */
     protected CloseFrame(FrameHeaderDraft06 header, byte[] bodyData) {
         super(header, bodyData);
-    }
-
-    /**
-     * Instantiates a new close frame.
-     */
-    public CloseFrame() {
-        FrameHeader header = FrameBuilderDraft06.createFrameHeader(null, false,
-                Opcode.CONNECTION_CLOSE);
-        setHeader(header);
     }
 }

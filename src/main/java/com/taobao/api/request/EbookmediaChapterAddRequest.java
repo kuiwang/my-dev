@@ -16,12 +16,6 @@ import com.taobao.api.response.EbookmediaChapterAddResponse;
  */
 public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChapterAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 电子书商品ID
      */
@@ -47,6 +41,8 @@ public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChap
      */
     private Long cpCid;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 是否免费.值只能是0或者1 0：收费，1：免费
      */
@@ -67,10 +63,14 @@ public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChap
      */
     private Long status;
 
+    private Long timestamp;
+
     /**
      * 章节标题。不能为空，不超过30个字符
      */
     private String title;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 电子书章节所属的卷ID
@@ -82,114 +82,71 @@ public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChap
      */
     private Long wordCount;
 
-    public void setAuctionId(Long auctionId) {
-        this.auctionId = auctionId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
+        RequestCheckUtils.checkNotEmpty(cpCid, "cpCid");
+        RequestCheckUtils.checkNotEmpty(isFree, "isFree");
+        RequestCheckUtils.checkNotEmpty(preTbid, "preTbid");
+        RequestCheckUtils.checkNotEmpty(priceCount, "priceCount");
+        RequestCheckUtils.checkNotEmpty(status, "status");
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkNotEmpty(volumeId, "volumeId");
+        RequestCheckUtils.checkNotEmpty(wordCount, "wordCount");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ebookmedia.chapter.add";
     }
 
     public Long getAuctionId() {
         return this.auctionId;
     }
 
-    public void setBookPrice(String bookPrice) {
-        this.bookPrice = bookPrice;
-    }
-
     public String getBookPrice() {
         return this.bookPrice;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setContentUrl(String contentUrl) {
-        this.contentUrl = contentUrl;
-    }
-
     public String getContentUrl() {
         return this.contentUrl;
-    }
-
-    public void setCpCid(Long cpCid) {
-        this.cpCid = cpCid;
     }
 
     public Long getCpCid() {
         return this.cpCid;
     }
 
-    public void setIsFree(Long isFree) {
-        this.isFree = isFree;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getIsFree() {
         return this.isFree;
     }
 
-    public void setPreTbid(Long preTbid) {
-        this.preTbid = preTbid;
-    }
-
     public Long getPreTbid() {
         return this.preTbid;
-    }
-
-    public void setPriceCount(Long priceCount) {
-        this.priceCount = priceCount;
     }
 
     public Long getPriceCount() {
         return this.priceCount;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    @Override
+    public Class<EbookmediaChapterAddResponse> getResponseClass() {
+        return EbookmediaChapterAddResponse.class;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setVolumeId(Long volumeId) {
-        this.volumeId = volumeId;
-    }
-
-    public Long getVolumeId() {
-        return this.volumeId;
-    }
-
-    public void setWordCount(Long wordCount) {
-        this.wordCount = wordCount;
-    }
-
-    public Long getWordCount() {
-        return this.wordCount;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ebookmedia.chapter.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("auction_id", this.auctionId);
@@ -210,6 +167,24 @@ public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChap
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Long getVolumeId() {
+        return this.volumeId;
+    }
+
+    public Long getWordCount() {
+        return this.wordCount;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -217,23 +192,56 @@ public class EbookmediaChapterAddRequest implements TaobaoRequest<EbookmediaChap
         this.udfParams.put(key, value);
     }
 
-    public Class<EbookmediaChapterAddResponse> getResponseClass() {
-        return EbookmediaChapterAddResponse.class;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(auctionId, "auctionId");
-        RequestCheckUtils.checkNotEmpty(cpCid, "cpCid");
-        RequestCheckUtils.checkNotEmpty(isFree, "isFree");
-        RequestCheckUtils.checkNotEmpty(preTbid, "preTbid");
-        RequestCheckUtils.checkNotEmpty(priceCount, "priceCount");
-        RequestCheckUtils.checkNotEmpty(status, "status");
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkNotEmpty(volumeId, "volumeId");
-        RequestCheckUtils.checkNotEmpty(wordCount, "wordCount");
+    public void setBookPrice(String bookPrice) {
+        this.bookPrice = bookPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public void setCpCid(Long cpCid) {
+        this.cpCid = cpCid;
+    }
+
+    public void setIsFree(Long isFree) {
+        this.isFree = isFree;
+    }
+
+    public void setPreTbid(Long preTbid) {
+        this.preTbid = preTbid;
+    }
+
+    public void setPriceCount(Long priceCount) {
+        this.priceCount = priceCount;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setVolumeId(Long volumeId) {
+        this.volumeId = volumeId;
+    }
+
+    public void setWordCount(Long wordCount) {
+        this.wordCount = wordCount;
     }
 }

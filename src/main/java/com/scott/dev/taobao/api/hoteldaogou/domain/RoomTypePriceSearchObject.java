@@ -26,20 +26,20 @@ public class RoomTypePriceSearchObject {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<HotelPriceRate> getRates() {
         return this.rates;
     }
 
-    public void setRates(List<HotelPriceRate> rates) {
-        this.rates = rates;
-    }
-
     public Long getSrid() {
         return this.srid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRates(List<HotelPriceRate> rates) {
+        this.rates = rates;
     }
 
     public void setSrid(Long srid) {

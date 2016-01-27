@@ -59,52 +59,52 @@ public class QrcodeDO extends TaobaoObject {
         return this.channelId;
     }
 
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
-    }
-
     public String getChannelName() {
         return this.channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
     }
 
     public String getEpsUrl() {
         return this.epsUrl;
     }
 
-    public void setEpsUrl(String epsUrl) {
-        this.epsUrl = epsUrl;
-    }
-
     public Long getQrcodeId() {
         return this.qrcodeId;
-    }
-
-    public void setQrcodeId(Long qrcodeId) {
-        this.qrcodeId = qrcodeId;
     }
 
     public String getQrcodeUrl() {
         return this.qrcodeUrl;
     }
 
-    public void setQrcodeUrl(String qrcodeUrl) {
-        this.qrcodeUrl = qrcodeUrl;
-    }
-
     public String getShortUrl() {
         return this.shortUrl;
     }
 
-    public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
-    }
-
     public String getUrl() {
         return this.url;
+    }
+
+    public void setChannelId(Long channelId) {
+        this.channelId = channelId;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
+    }
+
+    public void setEpsUrl(String epsUrl) {
+        this.epsUrl = epsUrl;
+    }
+
+    public void setQrcodeId(Long qrcodeId) {
+        this.qrcodeId = qrcodeId;
+    }
+
+    public void setQrcodeUrl(String qrcodeUrl) {
+        this.qrcodeUrl = qrcodeUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
     }
 
     public void setUrl(String url) {

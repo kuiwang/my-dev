@@ -24,12 +24,12 @@ public class WlbOrderstatusGetResponse extends TaobaoResponse {
     @ApiField("wlb_process_status")
     private List<WlbProcessStatus> wlbOrderStatus;
 
-    public void setWlbOrderStatus(List<WlbProcessStatus> wlbOrderStatus) {
-        this.wlbOrderStatus = wlbOrderStatus;
-    }
-
     public List<WlbProcessStatus> getWlbOrderStatus() {
         return this.wlbOrderStatus;
+    }
+
+    public void setWlbOrderStatus(List<WlbProcessStatus> wlbOrderStatus) {
+        this.wlbOrderStatus = wlbOrderStatus;
     }
 
 }

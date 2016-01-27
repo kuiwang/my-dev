@@ -9,21 +9,17 @@ import java.io.ObjectOutputStream;
 public class DefaultSerializer implements Serializer {
 
     @Override
-    public String getName() {
-        return "java";
-    }
-
-    public byte[] serializeMethodCall(MethodCall methodCall) throws FormatterException {
+    public MethodCall deserializeMethodCall(byte[] input) throws FormatterException {
         try {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-            oos.writeObject(methodCall);
-            return bos.toByteArray();
+            ByteArrayInputStream bis = new ByteArrayInputStream(input);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return (MethodCall) ois.readObject();
         } catch (Exception e) {
-            throw new FormatterException("serialize MethodCall error", e);
+            throw new FormatterException("deserialize MethodCall error", e);
         }
     }
 
+    @Override
     public MethodReturn deserializeMethodReturn(byte[] input, Class<?> returnType)
             throws FormatterException {
         try {
@@ -35,6 +31,24 @@ public class DefaultSerializer implements Serializer {
         }
     }
 
+    @Override
+    public String getName() {
+        return "java";
+    }
+
+    @Override
+    public byte[] serializeMethodCall(MethodCall methodCall) throws FormatterException {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(methodCall);
+            return bos.toByteArray();
+        } catch (Exception e) {
+            throw new FormatterException("serialize MethodCall error", e);
+        }
+    }
+
+    @Override
     public byte[] serializeMethodReturn(MethodReturn methodReturn) throws FormatterException {
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -43,16 +57,6 @@ public class DefaultSerializer implements Serializer {
             return bos.toByteArray();
         } catch (Exception e) {
             throw new FormatterException("serialize MethodReturn error", e);
-        }
-    }
-
-    public MethodCall deserializeMethodCall(byte[] input) throws FormatterException {
-        try {
-            ByteArrayInputStream bis = new ByteArrayInputStream(input);
-            ObjectInputStream ois = new ObjectInputStream(bis);
-            return (MethodCall) ois.readObject();
-        } catch (Exception e) {
-            throw new FormatterException("deserialize MethodCall error", e);
         }
     }
 }

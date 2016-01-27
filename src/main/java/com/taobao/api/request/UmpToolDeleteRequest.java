@@ -18,8 +18,6 @@ public class UmpToolDeleteRequest implements TaobaoRequest<UmpToolDeleteResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
     /**
@@ -27,26 +25,29 @@ public class UmpToolDeleteRequest implements TaobaoRequest<UmpToolDeleteResponse
      */
     private Long toolId;
 
-    public void setToolId(Long toolId) {
-        this.toolId = toolId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(toolId, "toolId");
     }
 
-    public Long getToolId() {
-        return this.toolId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.ump.tool.delete";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<UmpToolDeleteResponse> getResponseClass() {
+        return UmpToolDeleteResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("tool_id", this.toolId);
@@ -56,6 +57,16 @@ public class UmpToolDeleteRequest implements TaobaoRequest<UmpToolDeleteResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getToolId() {
+        return this.toolId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class UmpToolDeleteRequest implements TaobaoRequest<UmpToolDeleteResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpToolDeleteResponse> getResponseClass() {
-        return UmpToolDeleteResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(toolId, "toolId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setToolId(Long toolId) {
+        this.toolId = toolId;
     }
 }

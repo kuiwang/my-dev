@@ -12,11 +12,11 @@ import com.taobao.top.link.channel.ChannelHandler;
 
 public class NettyClientUpstreamHandler extends SimpleChannelUpstreamHandler {
 
-    protected Logger logger;
-
     protected NettyClientChannel clientChannel;
 
     protected String closedReason;
+
+    protected Logger logger;
 
     public NettyClientUpstreamHandler(Logger logger, NettyClientChannel clientChannel) {
         this.logger = logger;
@@ -24,29 +24,22 @@ public class NettyClientUpstreamHandler extends SimpleChannelUpstreamHandler {
     }
 
     @Override
+    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
+        if (this.closedReason == null) {
+            this.logger.warn(Text.CHANNEL_CLOSED);
+        }
+        if (this.haveHandler()) {
+            this.getHandler().onClosed(this.closedReason);
+        }
+    }
+
+    @Override
     public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) {
         this.clientChannel.setChannel(ctx.getChannel());
     }
 
-    @Override
-    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-        if (this.closedReason == null) this.logger.warn(Text.CHANNEL_CLOSED);
-        if (this.haveHandler()) this.getHandler().onClosed(this.closedReason);
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
-        if (this.haveHandler()) this.getHandler().onError(this.createContext(e.getCause()));
-        this.clear(ctx);
-        this.logger.error(Text.ERROR_AT_CLIENT, e.getCause());
-    }
-
-    protected boolean haveHandler() {
-        return this.clientChannel != null && this.clientChannel.getChannelHandler() != null;
-    }
-
-    protected ChannelHandler getHandler() {
-        return this.clientChannel.getChannelHandler();
+    protected void clear(ChannelHandlerContext ctx) {
+        ctx.getChannel().close();
     }
 
     protected ChannelContext createContext(Object message) {
@@ -63,7 +56,20 @@ public class NettyClientUpstreamHandler extends SimpleChannelUpstreamHandler {
         return ctx;
     }
 
-    protected void clear(ChannelHandlerContext ctx) {
-        ctx.getChannel().close();
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
+        if (this.haveHandler()) {
+            this.getHandler().onError(this.createContext(e.getCause()));
+        }
+        this.clear(ctx);
+        this.logger.error(Text.ERROR_AT_CLIENT, e.getCause());
+    }
+
+    protected ChannelHandler getHandler() {
+        return this.clientChannel.getChannelHandler();
+    }
+
+    protected boolean haveHandler() {
+        return (this.clientChannel != null) && (this.clientChannel.getChannelHandler() != null);
     }
 }

@@ -23,12 +23,12 @@ public class SimbaAdgroupidsChangedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> changedAdgroupids;
 
-    public void setChangedAdgroupids(List<Long> changedAdgroupids) {
-        this.changedAdgroupids = changedAdgroupids;
-    }
-
     public List<Long> getChangedAdgroupids() {
         return this.changedAdgroupids;
+    }
+
+    public void setChangedAdgroupids(List<Long> changedAdgroupids) {
+        this.changedAdgroupids = changedAdgroupids;
     }
 
 }

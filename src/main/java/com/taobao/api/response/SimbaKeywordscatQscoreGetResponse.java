@@ -20,12 +20,12 @@ public class SimbaKeywordscatQscoreGetResponse extends TaobaoResponse {
     @ApiField("qscore")
     private Qscore qscore;
 
-    public void setQscore(Qscore qscore) {
-        this.qscore = qscore;
-    }
-
     public Qscore getQscore() {
         return this.qscore;
+    }
+
+    public void setQscore(Qscore qscore) {
+        this.qscore = qscore;
     }
 
 }

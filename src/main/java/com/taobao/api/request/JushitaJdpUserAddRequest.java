@@ -17,35 +17,39 @@ public class JushitaJdpUserAddRequest implements TaobaoRequest<JushitaJdpUserAdd
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * RDS实例名称，如果有多个RDS必须设置。
      */
     private String rdsName;
 
-    public void setRdsName(String rdsName) {
-        this.rdsName = rdsName;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jushita.jdp.user.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getRdsName() {
         return this.rdsName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<JushitaJdpUserAddResponse> getResponseClass() {
+        return JushitaJdpUserAddResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jushita.jdp.user.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("rds_name", this.rdsName);
@@ -55,6 +59,12 @@ public class JushitaJdpUserAddRequest implements TaobaoRequest<JushitaJdpUserAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -62,14 +72,12 @@ public class JushitaJdpUserAddRequest implements TaobaoRequest<JushitaJdpUserAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<JushitaJdpUserAddResponse> getResponseClass() {
-        return JushitaJdpUserAddResponse.class;
+    public void setRdsName(String rdsName) {
+        this.rdsName = rdsName;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

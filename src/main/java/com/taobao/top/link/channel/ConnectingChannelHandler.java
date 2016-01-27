@@ -7,14 +7,14 @@ public class ConnectingChannelHandler implements ChannelHandler {
     public Object syncObject = new Object();
 
     @Override
+    public void onClosed(String reason) {
+    }
+
+    @Override
     public void onConnect(ChannelContext context) {
         synchronized (syncObject) {
             syncObject.notify();
         }
-    }
-
-    @Override
-    public void onMessage(ChannelContext context) {
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ConnectingChannelHandler implements ChannelHandler {
     }
 
     @Override
-    public void onClosed(String reason) {
+    public void onMessage(ChannelContext context) {
     }
 }

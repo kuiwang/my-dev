@@ -16,12 +16,6 @@ import com.taobao.api.response.JuCatitemidsGetResponse;
  */
 public class JuCatitemidsGetRequest implements TaobaoRequest<JuCatitemidsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品子类目ID。男装:100001,女装:100002。
      */
@@ -31,6 +25,8 @@ public class JuCatitemidsGetRequest implements TaobaoRequest<JuCatitemidsGetResp
      * 查询本地生活团商品时需要用city进行过滤，如果city是all的话，则查询所有城市的本地生活团商品。如果为空，则查询普通商品
      */
     private String city;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页获取商品信息页序号，代表第几页。page_no=0代表第一页。<br />
@@ -60,74 +56,64 @@ public class JuCatitemidsGetRequest implements TaobaoRequest<JuCatitemidsGetResp
      */
     private String terminalType;
 
-    public void setChildCategoryid(Long childCategoryid) {
-        this.childCategoryid = childCategoryid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(parentCategoryid, "parentCategoryid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ju.catitemids.get";
     }
 
     public Long getChildCategoryid() {
         return this.childCategoryid;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
-    }
-
-    public void setParentCategoryid(Long parentCategoryid) {
-        this.parentCategoryid = parentCategoryid;
     }
 
     public Long getParentCategoryid() {
         return this.parentCategoryid;
     }
 
-    public void setPlatformId(Long platformId) {
-        this.platformId = platformId;
-    }
-
     public Long getPlatformId() {
         return this.platformId;
     }
 
-    public void setTerminalType(String terminalType) {
-        this.terminalType = terminalType;
+    @Override
+    public Class<JuCatitemidsGetResponse> getResponseClass() {
+        return JuCatitemidsGetResponse.class;
     }
 
     public String getTerminalType() {
         return this.terminalType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ju.catitemids.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("child_categoryid", this.childCategoryid);
@@ -143,6 +129,12 @@ public class JuCatitemidsGetRequest implements TaobaoRequest<JuCatitemidsGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -150,20 +142,36 @@ public class JuCatitemidsGetRequest implements TaobaoRequest<JuCatitemidsGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<JuCatitemidsGetResponse> getResponseClass() {
-        return JuCatitemidsGetResponse.class;
+    public void setChildCategoryid(Long childCategoryid) {
+        this.childCategoryid = childCategoryid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 0L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(parentCategoryid, "parentCategoryid");
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setParentCategoryid(Long parentCategoryid) {
+        this.parentCategoryid = parentCategoryid;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
+    }
+
+    public void setTerminalType(String terminalType) {
+        this.terminalType = terminalType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

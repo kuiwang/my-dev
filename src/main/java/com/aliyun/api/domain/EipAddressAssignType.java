@@ -41,28 +41,28 @@ public class EipAddressAssignType extends TaobaoObject {
         return this.allocationId;
     }
 
-    public void setAllocationId(String allocationId) {
-        this.allocationId = allocationId;
-    }
-
     public Long getBandwidth() {
         return this.bandwidth;
-    }
-
-    public void setBandwidth(Long bandwidth) {
-        this.bandwidth = bandwidth;
     }
 
     public String getInternetChargeType() {
         return this.internetChargeType;
     }
 
-    public void setInternetChargeType(String internetChargeType) {
-        this.internetChargeType = internetChargeType;
-    }
-
     public String getIpAddress() {
         return this.ipAddress;
+    }
+
+    public void setAllocationId(String allocationId) {
+        this.allocationId = allocationId;
+    }
+
+    public void setBandwidth(Long bandwidth) {
+        this.bandwidth = bandwidth;
+    }
+
+    public void setInternetChargeType(String internetChargeType) {
+        this.internetChargeType = internetChargeType;
     }
 
     public void setIpAddress(String ipAddress) {

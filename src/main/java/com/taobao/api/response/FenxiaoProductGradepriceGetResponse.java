@@ -30,20 +30,20 @@ public class FenxiaoProductGradepriceGetResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setGradeDiscounts(List<GradeDiscount> gradeDiscounts) {
-        this.gradeDiscounts = gradeDiscounts;
-    }
-
     public List<GradeDiscount> getGradeDiscounts() {
         return this.gradeDiscounts;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setGradeDiscounts(List<GradeDiscount> gradeDiscounts) {
+        this.gradeDiscounts = gradeDiscounts;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

@@ -21,12 +21,12 @@ public class TradePostageUpdateResponse extends TaobaoResponse {
     @ApiField("trade")
     private Trade trade;
 
-    public void setTrade(Trade trade) {
-        this.trade = trade;
-    }
-
     public Trade getTrade() {
         return this.trade;
+    }
+
+    public void setTrade(Trade trade) {
+        this.trade = trade;
     }
 
 }

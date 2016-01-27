@@ -44,6 +44,12 @@ public class VSwitch extends TaobaoObject {
     private String status;
 
     /**
+     * 虚拟交换机所在的虚拟网络
+     */
+    @ApiField("VpcId")
+    private String vpcId;
+
+    /**
      * 虚拟交换机ID
      */
     @ApiField("VSwitchId")
@@ -56,12 +62,6 @@ public class VSwitch extends TaobaoObject {
     private String vSwitchName;
 
     /**
-     * 虚拟交换机所在的虚拟网络
-     */
-    @ApiField("VpcId")
-    private String vpcId;
-
-    /**
      * 虚拟交换机所在的Zone
      */
     @ApiField("ZoneId")
@@ -71,68 +71,68 @@ public class VSwitch extends TaobaoObject {
         return this.availableIpAddressCount;
     }
 
-    public void setAvailableIpAddressCount(Long availableIpAddressCount) {
-        this.availableIpAddressCount = availableIpAddressCount;
-    }
-
     public String getCidrBlock() {
         return this.cidrBlock;
-    }
-
-    public void setCidrBlock(String cidrBlock) {
-        this.cidrBlock = cidrBlock;
     }
 
     public String getCreationTime() {
         return this.creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getVpcId() {
+        return this.vpcId;
     }
 
     public String getvSwitchId() {
         return this.vSwitchId;
     }
 
-    public void setvSwitchId(String vSwitchId) {
-        this.vSwitchId = vSwitchId;
-    }
-
     public String getvSwitchName() {
         return this.vSwitchName;
     }
 
-    public void setvSwitchName(String vSwitchName) {
-        this.vSwitchName = vSwitchName;
+    public String getZoneId() {
+        return this.zoneId;
     }
 
-    public String getVpcId() {
-        return this.vpcId;
+    public void setAvailableIpAddressCount(Long availableIpAddressCount) {
+        this.availableIpAddressCount = availableIpAddressCount;
+    }
+
+    public void setCidrBlock(String cidrBlock) {
+        this.cidrBlock = cidrBlock;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setVpcId(String vpcId) {
         this.vpcId = vpcId;
     }
 
-    public String getZoneId() {
-        return this.zoneId;
+    public void setvSwitchId(String vSwitchId) {
+        this.vSwitchId = vSwitchId;
+    }
+
+    public void setvSwitchName(String vSwitchName) {
+        this.vSwitchName = vSwitchName;
     }
 
     public void setZoneId(String zoneId) {

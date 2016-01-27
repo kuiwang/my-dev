@@ -29,8 +29,10 @@ public class DefaultRemotingServerChannelHandler extends RemotingServerChannelHa
         // dispatch methodCall to service
         String objectUri = new URI(methodCall.Uri).getRawPath().trim();
         MethodCallProcessor processor = this.services.get(objectUri);
-        if (processor == null) throw new NullPointerException(String.format(
-                "processor not found for objectUri: %s", objectUri));
+        if (processor == null) {
+            throw new NullPointerException(String.format(
+                    "processor not found for objectUri: %s", objectUri));
+        }
         return processor.process(methodCall, callContext);
     }
 }

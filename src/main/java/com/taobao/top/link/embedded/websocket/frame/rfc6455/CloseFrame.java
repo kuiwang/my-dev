@@ -37,6 +37,15 @@ import com.taobao.top.link.embedded.websocket.frame.rfc6455.FrameBuilderRfc6455.
 public class CloseFrame extends FrameRfc6455 {
 
     /**
+     * Instantiates a new close frame.
+     */
+    public CloseFrame() {
+        FrameHeader header = FrameBuilderRfc6455.createFrameHeader(null, false,
+                Opcode.CONNECTION_CLOSE);
+        setHeader(header);
+    }
+
+    /**
      * Instantiates a new connection close frame.
      * 
      * @param header the header
@@ -44,15 +53,6 @@ public class CloseFrame extends FrameRfc6455 {
      */
     protected CloseFrame(FrameHeaderRfc6455 header, byte[] bodyData) {
         super(header, bodyData);
-    }
-
-    /**
-     * Instantiates a new close frame.
-     */
-    public CloseFrame() {
-        FrameHeader header = FrameBuilderRfc6455.createFrameHeader(null, false,
-                Opcode.CONNECTION_CLOSE);
-        setHeader(header);
     }
 
     public CloseFrame(int statusCode, String reasonText) {
@@ -65,13 +65,13 @@ public class CloseFrame extends FrameRfc6455 {
         setContents(body);
     }
 
-    public int getStatusCode() {
-        return this.contents.length < 2 ? 0 : ByteBuffer.wrap(this.contents).getShort();
-    }
-
     public String getReasonText() {
         return this.contents.length <= 2 ? null : new String(this.contents, 2,
                 this.contents.length - 2, Charset.forName("UTF-8"));
+    }
+
+    public int getStatusCode() {
+        return this.contents.length < 2 ? 0 : ByteBuffer.wrap(this.contents).getShort();
     }
 
 }

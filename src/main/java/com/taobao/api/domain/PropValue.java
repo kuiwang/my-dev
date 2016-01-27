@@ -94,92 +94,92 @@ public class PropValue extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public List<Feature> getFeatures() {
         return this.features;
-    }
-
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
     }
 
     public Boolean getIsParent() {
         return this.isParent;
     }
 
-    public void setIsParent(Boolean isParent) {
-        this.isParent = isParent;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public String getModifiedType() {
         return this.modifiedType;
     }
 
-    public void setModifiedType(String modifiedType) {
-        this.modifiedType = modifiedType;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getNameAlias() {
         return this.nameAlias;
     }
 
-    public void setNameAlias(String nameAlias) {
-        this.nameAlias = nameAlias;
-    }
-
     public Long getPid() {
         return this.pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public String getPropName() {
         return this.propName;
     }
 
-    public void setPropName(String propName) {
-        this.propName = propName;
-    }
-
     public Long getSortOrder() {
         return this.sortOrder;
-    }
-
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getVid() {
         return this.vid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void setIsParent(Boolean isParent) {
+        this.isParent = isParent;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setModifiedType(String modifiedType) {
+        this.modifiedType = modifiedType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNameAlias(String nameAlias) {
+        this.nameAlias = nameAlias;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setPropName(String propName) {
+        this.propName = propName;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setVid(Long vid) {

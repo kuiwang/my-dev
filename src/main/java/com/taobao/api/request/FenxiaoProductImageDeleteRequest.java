@@ -19,10 +19,6 @@ public class FenxiaoProductImageDeleteRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 图片位置
      */
@@ -39,42 +35,44 @@ public class FenxiaoProductImageDeleteRequest implements
      */
     private String properties;
 
-    public void setPosition(Long position) {
-        this.position = position;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(position, "position");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.image.delete";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPosition() {
         return this.position;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getProperties() {
         return this.properties;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoProductImageDeleteResponse> getResponseClass() {
+        return FenxiaoProductImageDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.image.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("position", this.position);
@@ -86,6 +84,12 @@ public class FenxiaoProductImageDeleteRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,16 +97,20 @@ public class FenxiaoProductImageDeleteRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductImageDeleteResponse> getResponseClass() {
-        return FenxiaoProductImageDeleteResponse.class;
+    public void setPosition(Long position) {
+        this.position = position;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(position, "position");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

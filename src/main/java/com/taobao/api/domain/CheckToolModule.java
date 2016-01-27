@@ -41,28 +41,28 @@ public class CheckToolModule extends TaobaoObject {
         return this.checkUrl;
     }
 
-    public void setCheckUrl(String checkUrl) {
-        this.checkUrl = checkUrl;
-    }
-
     public String getErrorMessage() {
         return this.errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
     public String getIsPass() {
         return this.isPass;
     }
 
-    public void setIsPass(String isPass) {
-        this.isPass = isPass;
-    }
-
     public String getMetaDef() {
         return this.metaDef;
+    }
+
+    public void setCheckUrl(String checkUrl) {
+        this.checkUrl = checkUrl;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsPass(String isPass) {
+        this.isPass = isPass;
     }
 
     public void setMetaDef(String metaDef) {

@@ -14,6 +14,15 @@ public class SpringMethodCallProcessor implements MethodCallProcessor {
         this.readServices(beanFactory);
     }
 
+    private Method getMethod(Object target, MethodCall methodCall) throws SecurityException,
+            NoSuchMethodException {
+        try {
+            return target.getClass().getMethod(methodCall.MethodName, methodCall.MethodSignature);
+        } catch (NoSuchMethodException e) {
+            return target.getClass().getMethod(methodCall.MethodName);
+        }
+    }
+
     @Override
     public MethodReturn process(MethodCall methodCall, MethodCallContext callContext)
             throws Throwable {
@@ -29,10 +38,6 @@ public class SpringMethodCallProcessor implements MethodCallProcessor {
         }
     }
 
-    public void register(String serviceInterface, Object serviceObject) {
-        this.services.put(serviceInterface, serviceObject);
-    }
-
     private void readServices(ListableBeanFactory beanFactory) {
         String[] names = beanFactory.getBeanNamesForType(ServiceBean.class);
         for (String n : names) {
@@ -41,12 +46,7 @@ public class SpringMethodCallProcessor implements MethodCallProcessor {
         }
     }
 
-    private Method getMethod(Object target, MethodCall methodCall) throws SecurityException,
-            NoSuchMethodException {
-        try {
-            return target.getClass().getMethod(methodCall.MethodName, methodCall.MethodSignature);
-        } catch (NoSuchMethodException e) {
-            return target.getClass().getMethod(methodCall.MethodName);
-        }
+    public void register(String serviceInterface, Object serviceObject) {
+        this.services.put(serviceInterface, serviceObject);
     }
 }

@@ -18,33 +18,29 @@ import com.taobao.api.internal.util.TaobaoHashMap;
 public class ModifySecurityGroupAttributeRequest implements
         AliyunRequest<ModifySecurityGroupAttributeResponse> {
 
+    /**
+     * 修改后的安全组描述，不填则为空，默认值为空，[2,256]英文或中文字符，不能以http://和https://开头。
+     */
+    private String description;
+
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
+    private String ownerAccount;
 
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
     private String ownerId;
 
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
-    private String ownerAccount;
+    /**
+     * 安全组所在的地域
+     */
+    private String regionId;
 
     /**
      * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
      * 该参数仅官网用户可用
      */
     private String resourceOwnerAccount;
-
-    /**
-     * 修改后的安全组描述，不填则为空，默认值为空，[2,256]英文或中文字符，不能以http://和https://开头。
-     */
-    private String description;
-
-    /**
-     * 安全组所在的地域
-     */
-    private String regionId;
 
     /**
      * 需要修改的安全组ID
@@ -57,74 +53,60 @@ public class ModifySecurityGroupAttributeRequest implements
      */
     private String securityGroupName;
 
-    public void setDescription(String description) {
-        this.description = description;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "ecs.aliyuncs.com.ModifySecurityGroupAttribute.2014-05-26";
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setSecurityGroupId(String securityGroupId) {
-        this.securityGroupId = securityGroupId;
-    }
-
-    public String getSecurityGroupId() {
-        return this.securityGroupId;
-    }
-
-    public void setSecurityGroupName(String securityGroupName) {
-        this.securityGroupName = securityGroupName;
-    }
-
-    public String getSecurityGroupName() {
-        return this.securityGroupName;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<ModifySecurityGroupAttributeResponse> getResponseClass() {
+        return ModifySecurityGroupAttributeResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getSecurityGroupId() {
+        return this.securityGroupId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getSecurityGroupName() {
+        return this.securityGroupName;
     }
 
-    public String getApiMethodName() {
-        return "ecs.aliyuncs.com.ModifySecurityGroupAttribute.2014-05-26";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -140,6 +122,12 @@ public class ModifySecurityGroupAttributeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -147,16 +135,36 @@ public class ModifySecurityGroupAttributeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<ModifySecurityGroupAttributeResponse> getResponseClass() {
-        return ModifySecurityGroupAttributeResponse.class;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
-        RequestCheckUtils.checkNotEmpty(securityGroupId, "securityGroupId");
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setSecurityGroupId(String securityGroupId) {
+        this.securityGroupId = securityGroupId;
+    }
+
+    public void setSecurityGroupName(String securityGroupName) {
+        this.securityGroupName = securityGroupName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

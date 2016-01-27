@@ -25,20 +25,20 @@ public class CreateScheduledTaskResponse extends AliyunResponse {
     @ApiField("ScheduledTaskId")
     private String scheduledTaskId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setScheduledTaskId(String scheduledTaskId) {
-        this.scheduledTaskId = scheduledTaskId;
-    }
-
     public String getScheduledTaskId() {
         return this.scheduledTaskId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScheduledTaskId(String scheduledTaskId) {
+        this.scheduledTaskId = scheduledTaskId;
     }
 
 }

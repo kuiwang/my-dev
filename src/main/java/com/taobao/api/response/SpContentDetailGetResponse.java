@@ -20,12 +20,12 @@ public class SpContentDetailGetResponse extends TaobaoResponse {
     @ApiField("content")
     private SpContentDOForDetail content;
 
-    public void setContent(SpContentDOForDetail content) {
-        this.content = content;
-    }
-
     public SpContentDOForDetail getContent() {
         return this.content;
+    }
+
+    public void setContent(SpContentDOForDetail content) {
+        this.content = content;
     }
 
 }

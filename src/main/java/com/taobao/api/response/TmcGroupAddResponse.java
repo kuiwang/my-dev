@@ -27,20 +27,20 @@ public class TmcGroupAddResponse extends TaobaoResponse {
     @ApiField("group_name")
     private String groupName;
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getCreated() {
         return this.created;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     public String getGroupName() {
         return this.groupName;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
 }

@@ -38,28 +38,28 @@ public class PromotionCouponSendResponse extends TaobaoResponse {
     @ApiField("is_success")
     private Boolean isSuccess;
 
-    public void setCouponResults(List<CouponResult> couponResults) {
-        this.couponResults = couponResults;
-    }
-
     public List<CouponResult> getCouponResults() {
         return this.couponResults;
-    }
-
-    public void setFailureBuyers(List<ErrorMessage> failureBuyers) {
-        this.failureBuyers = failureBuyers;
     }
 
     public List<ErrorMessage> getFailureBuyers() {
         return this.failureBuyers;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public void setCouponResults(List<CouponResult> couponResults) {
+        this.couponResults = couponResults;
+    }
+
+    public void setFailureBuyers(List<ErrorMessage> failureBuyers) {
+        this.failureBuyers = failureBuyers;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
 }

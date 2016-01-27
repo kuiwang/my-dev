@@ -16,12 +16,6 @@ import com.taobao.api.response.SubuserDutyUpdateResponse;
  */
 public class SubuserDutyUpdateRequest implements TaobaoRequest<SubuserDutyUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 职务ID
      */
@@ -37,55 +31,51 @@ public class SubuserDutyUpdateRequest implements TaobaoRequest<SubuserDutyUpdate
      */
     private String dutyName;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 主账号用户名
      */
     private String userNick;
 
-    public void setDutyId(Long dutyId) {
-        this.dutyId = dutyId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dutyId, "dutyId");
+        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.subuser.duty.update";
     }
 
     public Long getDutyId() {
         return this.dutyId;
     }
 
-    public void setDutyLevel(Long dutyLevel) {
-        this.dutyLevel = dutyLevel;
-    }
-
     public Long getDutyLevel() {
         return this.dutyLevel;
-    }
-
-    public void setDutyName(String dutyName) {
-        this.dutyName = dutyName;
     }
 
     public String getDutyName() {
         return this.dutyName;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getUserNick() {
-        return this.userNick;
+    @Override
+    public Class<SubuserDutyUpdateResponse> getResponseClass() {
+        return SubuserDutyUpdateResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.subuser.duty.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("duty_id", this.dutyId);
@@ -98,6 +88,16 @@ public class SubuserDutyUpdateRequest implements TaobaoRequest<SubuserDutyUpdate
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getUserNick() {
+        return this.userNick;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,16 +105,24 @@ public class SubuserDutyUpdateRequest implements TaobaoRequest<SubuserDutyUpdate
         this.udfParams.put(key, value);
     }
 
-    public Class<SubuserDutyUpdateResponse> getResponseClass() {
-        return SubuserDutyUpdateResponse.class;
+    public void setDutyId(Long dutyId) {
+        this.dutyId = dutyId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dutyId, "dutyId");
-        RequestCheckUtils.checkNotEmpty(userNick, "userNick");
+    public void setDutyLevel(Long dutyLevel) {
+        this.dutyLevel = dutyLevel;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDutyName(String dutyName) {
+        this.dutyName = dutyName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

@@ -53,44 +53,44 @@ public class TemplateRecord extends TaobaoObject {
         return this.checkingCode;
     }
 
-    public void setCheckingCode(String checkingCode) {
-        this.checkingCode = checkingCode;
-    }
-
     public String getForceModify() {
         return this.forceModify;
-    }
-
-    public void setForceModify(String forceModify) {
-        this.forceModify = forceModify;
     }
 
     public String getForceRestart() {
         return this.forceRestart;
     }
 
-    public void setForceRestart(String forceRestart) {
-        this.forceRestart = forceRestart;
-    }
-
     public String getParameterDescription() {
         return this.parameterDescription;
-    }
-
-    public void setParameterDescription(String parameterDescription) {
-        this.parameterDescription = parameterDescription;
     }
 
     public String getParameterName() {
         return this.parameterName;
     }
 
-    public void setParameterName(String parameterName) {
-        this.parameterName = parameterName;
-    }
-
     public String getParameterValue() {
         return this.parameterValue;
+    }
+
+    public void setCheckingCode(String checkingCode) {
+        this.checkingCode = checkingCode;
+    }
+
+    public void setForceModify(String forceModify) {
+        this.forceModify = forceModify;
+    }
+
+    public void setForceRestart(String forceRestart) {
+        this.forceRestart = forceRestart;
+    }
+
+    public void setParameterDescription(String parameterDescription) {
+        this.parameterDescription = parameterDescription;
+    }
+
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
     }
 
     public void setParameterValue(String parameterValue) {

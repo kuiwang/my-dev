@@ -20,12 +20,12 @@ public class WaimaiOrderSingleGetResponse extends TaobaoResponse {
     @ApiField("result")
     private TakeoutThirdOrder result;
 
-    public void setResult(TakeoutThirdOrder result) {
-        this.result = result;
-    }
-
     public TakeoutThirdOrder getResult() {
         return this.result;
+    }
+
+    public void setResult(TakeoutThirdOrder result) {
+        this.result = result;
     }
 
 }

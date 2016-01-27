@@ -17,12 +17,6 @@ import com.taobao.api.response.QtReportAddResponse;
  */
 public class QtReportAddRequest implements TaobaoRequest<QtReportAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 自定义属性字段;分号分隔<br />
      * 支持最大长度为：2000<br />
@@ -44,6 +38,8 @@ public class QtReportAddRequest implements TaobaoRequest<QtReportAddResponse> {
      * 送检日期
      */
     private Date gmtSubmit;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 只有status=3时赋值, true 质检结果合格,false质检结果不合格. 留空表示成分鉴定,不做判定
@@ -141,199 +137,11 @@ public class QtReportAddRequest implements TaobaoRequest<QtReportAddResponse> {
      */
     private Long status;
 
-    public void setExtAttr(String extAttr) {
-        this.extAttr = extAttr;
-    }
+    private Long timestamp;
 
-    public String getExtAttr() {
-        return this.extAttr;
-    }
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
-    public void setGmtExpiry(Date gmtExpiry) {
-        this.gmtExpiry = gmtExpiry;
-    }
-
-    public Date getGmtExpiry() {
-        return this.gmtExpiry;
-    }
-
-    public void setGmtReport(Date gmtReport) {
-        this.gmtReport = gmtReport;
-    }
-
-    public Date getGmtReport() {
-        return this.gmtReport;
-    }
-
-    public void setGmtSubmit(Date gmtSubmit) {
-        this.gmtSubmit = gmtSubmit;
-    }
-
-    public Date getGmtSubmit() {
-        return this.gmtSubmit;
-    }
-
-    public void setIsPassed(Boolean isPassed) {
-        this.isPassed = isPassed;
-    }
-
-    public Boolean getIsPassed() {
-        return this.isPassed;
-    }
-
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc;
-    }
-
-    public String getItemDesc() {
-        return this.itemDesc;
-    }
-
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
-    }
-
-    public String getItemUrl() {
-        return this.itemUrl;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return this.message;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public String getNick() {
-        return this.nick;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
-    public Long getNumIid() {
-        return this.numIid;
-    }
-
-    public void setQtCode(String qtCode) {
-        this.qtCode = qtCode;
-    }
-
-    public String getQtCode() {
-        return this.qtCode;
-    }
-
-    public void setQtName(String qtName) {
-        this.qtName = qtName;
-    }
-
-    public String getQtName() {
-        return this.qtName;
-    }
-
-    public void setQtStandard(String qtStandard) {
-        this.qtStandard = qtStandard;
-    }
-
-    public String getQtStandard() {
-        return this.qtStandard;
-    }
-
-    public void setQtType(Long qtType) {
-        this.qtType = qtType;
-    }
-
-    public Long getQtType() {
-        return this.qtType;
-    }
-
-    public void setReportUrl(String reportUrl) {
-        this.reportUrl = reportUrl;
-    }
-
-    public String getReportUrl() {
-        return this.reportUrl;
-    }
-
-    public void setServcieItemCode(String servcieItemCode) {
-        this.servcieItemCode = servcieItemCode;
-    }
-
-    public String getServcieItemCode() {
-        return this.servcieItemCode;
-    }
-
-    public void setSpName(String spName) {
-        this.spName = spName;
-    }
-
-    public String getSpName() {
-        return this.spName;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
-    public Long getStatus() {
-        return this.status;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.qt.report.add";
-    }
-
-    public Map<String, String> getTextParams() {
-        TaobaoHashMap txtParams = new TaobaoHashMap();
-        txtParams.put("ext_attr", this.extAttr);
-        txtParams.put("gmt_expiry", this.gmtExpiry);
-        txtParams.put("gmt_report", this.gmtReport);
-        txtParams.put("gmt_submit", this.gmtSubmit);
-        txtParams.put("is_passed", this.isPassed);
-        txtParams.put("item_desc", this.itemDesc);
-        txtParams.put("item_url", this.itemUrl);
-        txtParams.put("message", this.message);
-        txtParams.put("nick", this.nick);
-        txtParams.put("num_iid", this.numIid);
-        txtParams.put("qt_code", this.qtCode);
-        txtParams.put("qt_name", this.qtName);
-        txtParams.put("qt_standard", this.qtStandard);
-        txtParams.put("qt_type", this.qtType);
-        txtParams.put("report_url", this.reportUrl);
-        txtParams.put("servcie_item_code", this.servcieItemCode);
-        txtParams.put("sp_name", this.spName);
-        txtParams.put("status", this.status);
-        if (this.udfParams != null) {
-            txtParams.putAll(this.udfParams);
-        }
-        return txtParams;
-    }
-
-    public void putOtherTextParam(String key, String value) {
-        if (this.udfParams == null) {
-            this.udfParams = new TaobaoHashMap();
-        }
-        this.udfParams.put(key, value);
-    }
-
-    public Class<QtReportAddResponse> getResponseClass() {
-        return QtReportAddResponse.class;
-    }
-
+    @Override
     public void check() throws ApiRuleException {
         RequestCheckUtils.checkMaxLength(extAttr, 2000, "extAttr");
         RequestCheckUtils.checkNotEmpty(gmtSubmit, "gmtSubmit");
@@ -362,7 +170,207 @@ public class QtReportAddRequest implements TaobaoRequest<QtReportAddResponse> {
         RequestCheckUtils.checkMinValue(status, 0L, "status");
     }
 
+    @Override
+    public String getApiMethodName() {
+        return "taobao.qt.report.add";
+    }
+
+    public String getExtAttr() {
+        return this.extAttr;
+    }
+
+    public Date getGmtExpiry() {
+        return this.gmtExpiry;
+    }
+
+    public Date getGmtReport() {
+        return this.gmtReport;
+    }
+
+    public Date getGmtSubmit() {
+        return this.gmtSubmit;
+    }
+
+    @Override
     public Map<String, String> getHeaderMap() {
         return headerMap;
+    }
+
+    public Boolean getIsPassed() {
+        return this.isPassed;
+    }
+
+    public String getItemDesc() {
+        return this.itemDesc;
+    }
+
+    public String getItemUrl() {
+        return this.itemUrl;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public String getNick() {
+        return this.nick;
+    }
+
+    public Long getNumIid() {
+        return this.numIid;
+    }
+
+    public String getQtCode() {
+        return this.qtCode;
+    }
+
+    public String getQtName() {
+        return this.qtName;
+    }
+
+    public String getQtStandard() {
+        return this.qtStandard;
+    }
+
+    public Long getQtType() {
+        return this.qtType;
+    }
+
+    public String getReportUrl() {
+        return this.reportUrl;
+    }
+
+    @Override
+    public Class<QtReportAddResponse> getResponseClass() {
+        return QtReportAddResponse.class;
+    }
+
+    public String getServcieItemCode() {
+        return this.servcieItemCode;
+    }
+
+    public String getSpName() {
+        return this.spName;
+    }
+
+    public Long getStatus() {
+        return this.status;
+    }
+
+    @Override
+    public Map<String, String> getTextParams() {
+        TaobaoHashMap txtParams = new TaobaoHashMap();
+        txtParams.put("ext_attr", this.extAttr);
+        txtParams.put("gmt_expiry", this.gmtExpiry);
+        txtParams.put("gmt_report", this.gmtReport);
+        txtParams.put("gmt_submit", this.gmtSubmit);
+        txtParams.put("is_passed", this.isPassed);
+        txtParams.put("item_desc", this.itemDesc);
+        txtParams.put("item_url", this.itemUrl);
+        txtParams.put("message", this.message);
+        txtParams.put("nick", this.nick);
+        txtParams.put("num_iid", this.numIid);
+        txtParams.put("qt_code", this.qtCode);
+        txtParams.put("qt_name", this.qtName);
+        txtParams.put("qt_standard", this.qtStandard);
+        txtParams.put("qt_type", this.qtType);
+        txtParams.put("report_url", this.reportUrl);
+        txtParams.put("servcie_item_code", this.servcieItemCode);
+        txtParams.put("sp_name", this.spName);
+        txtParams.put("status", this.status);
+        if (this.udfParams != null) {
+            txtParams.putAll(this.udfParams);
+        }
+        return txtParams;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
+    public void putOtherTextParam(String key, String value) {
+        if (this.udfParams == null) {
+            this.udfParams = new TaobaoHashMap();
+        }
+        this.udfParams.put(key, value);
+    }
+
+    public void setExtAttr(String extAttr) {
+        this.extAttr = extAttr;
+    }
+
+    public void setGmtExpiry(Date gmtExpiry) {
+        this.gmtExpiry = gmtExpiry;
+    }
+
+    public void setGmtReport(Date gmtReport) {
+        this.gmtReport = gmtReport;
+    }
+
+    public void setGmtSubmit(Date gmtSubmit) {
+        this.gmtSubmit = gmtSubmit;
+    }
+
+    public void setIsPassed(Boolean isPassed) {
+        this.isPassed = isPassed;
+    }
+
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setQtCode(String qtCode) {
+        this.qtCode = qtCode;
+    }
+
+    public void setQtName(String qtName) {
+        this.qtName = qtName;
+    }
+
+    public void setQtStandard(String qtStandard) {
+        this.qtStandard = qtStandard;
+    }
+
+    public void setQtType(Long qtType) {
+        this.qtType = qtType;
+    }
+
+    public void setReportUrl(String reportUrl) {
+        this.reportUrl = reportUrl;
+    }
+
+    public void setServcieItemCode(String servcieItemCode) {
+        this.servcieItemCode = servcieItemCode;
+    }
+
+    public void setSpName(String spName) {
+        this.spName = spName;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

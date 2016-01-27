@@ -2,21 +2,20 @@ package com.scott.dev.taobao.api.user.test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class UserAPITest {
 
     //沙箱环境调用地址
 
-    protected static String testUrl = "http://gw.api.tbsandbox.com/router/rest";
+    protected static String appkey = "test";
 
     //protected static String testUrl = "http://gw.api.taobao.com/router/rest";
 
-    protected static String appkey = "test";
-
     protected static String secret = "test";
+
+    protected static String testUrl = "http://gw.api.tbsandbox.com/router/rest";
 
     public static void main(String[] args) {
         String result = Util.getResult(testUrl, testUserGet());
@@ -56,14 +55,11 @@ public class UserAPITest {
 
         StringBuilder param = new StringBuilder();
 
-        for (Iterator<Map.Entry<String, String>> it = apiparamsMap.entrySet().iterator(); it
-                .hasNext();) {
+        for (Entry<String, String> e : apiparamsMap.entrySet()) {
 
-            Map.Entry<String, String> e = it.next();
+         param.append("&").append(e.getKey()).append("=").append(e.getValue());
 
-            param.append("&").append(e.getKey()).append("=").append(e.getValue());
-
-        }
+      }
         String params = param.toString().substring(1);
         System.out.println("params:" + params);
         return param.toString().substring(1);

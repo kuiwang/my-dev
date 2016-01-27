@@ -16,12 +16,6 @@ import com.taobao.api.response.TradeReceivetimeDelayResponse;
  */
 public class TradeReceivetimeDelayRequest implements TaobaoRequest<TradeReceivetimeDelayResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 延长收货的天数，可选值为：3, 5, 7, 10。<br />
      * 支持最大值为：10<br />
@@ -29,39 +23,45 @@ public class TradeReceivetimeDelayRequest implements TaobaoRequest<TradeReceivet
      */
     private Long days;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主订单号
      */
     private Long tid;
 
-    public void setDays(Long days) {
-        this.days = days;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(days, "days");
+        RequestCheckUtils.checkMaxValue(days, 10L, "days");
+        RequestCheckUtils.checkMinValue(days, 3L, "days");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.receivetime.delay";
     }
 
     public Long getDays() {
         return this.days;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getTid() {
-        return this.tid;
+    @Override
+    public Class<TradeReceivetimeDelayResponse> getResponseClass() {
+        return TradeReceivetimeDelayResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.receivetime.delay";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("days", this.days);
@@ -72,6 +72,16 @@ public class TradeReceivetimeDelayRequest implements TaobaoRequest<TradeReceivet
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,18 +89,16 @@ public class TradeReceivetimeDelayRequest implements TaobaoRequest<TradeReceivet
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeReceivetimeDelayResponse> getResponseClass() {
-        return TradeReceivetimeDelayResponse.class;
+    public void setDays(Long days) {
+        this.days = days;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(days, "days");
-        RequestCheckUtils.checkMaxValue(days, 10L, "days");
-        RequestCheckUtils.checkMinValue(days, 3L, "days");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

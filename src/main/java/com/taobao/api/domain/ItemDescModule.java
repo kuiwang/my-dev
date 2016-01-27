@@ -59,52 +59,52 @@ public class ItemDescModule extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getIntros() {
         return this.intros;
-    }
-
-    public void setIntros(String intros) {
-        this.intros = intros;
     }
 
     public Long getModuleId() {
         return this.moduleId;
     }
 
-    public void setModuleId(Long moduleId) {
-        this.moduleId = moduleId;
-    }
-
     public String getModuleName() {
         return this.moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
     }
 
     public Boolean getRequired() {
         return this.required;
     }
 
-    public void setRequired(Boolean required) {
-        this.required = required;
-    }
-
     public String getTplUrls() {
         return this.tplUrls;
     }
 
-    public void setTplUrls(String tplUrls) {
-        this.tplUrls = tplUrls;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setIntros(String intros) {
+        this.intros = intros;
+    }
+
+    public void setModuleId(Long moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public void setRequired(Boolean required) {
+        this.required = required;
+    }
+
+    public void setTplUrls(String tplUrls) {
+        this.tplUrls = tplUrls;
     }
 
     public void setType(String type) {

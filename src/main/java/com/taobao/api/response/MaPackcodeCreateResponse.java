@@ -19,12 +19,12 @@ public class MaPackcodeCreateResponse extends TaobaoResponse {
     @ApiField("qrcodeurl")
     private String qrcodeurl;
 
-    public void setQrcodeurl(String qrcodeurl) {
-        this.qrcodeurl = qrcodeurl;
-    }
-
     public String getQrcodeurl() {
         return this.qrcodeurl;
+    }
+
+    public void setQrcodeurl(String qrcodeurl) {
+        this.qrcodeurl = qrcodeurl;
     }
 
 }

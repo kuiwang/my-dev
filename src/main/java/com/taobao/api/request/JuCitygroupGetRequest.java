@@ -16,12 +16,6 @@ import com.taobao.api.response.JuCitygroupGetResponse;
  */
 public class JuCitygroupGetRequest implements TaobaoRequest<JuCitygroupGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要获取生活服务商品的城市名称（中文）
      */
@@ -33,34 +27,41 @@ public class JuCitygroupGetRequest implements TaobaoRequest<JuCitygroupGetRespon
      */
     private String fields;
 
-    public void setCity(String city) {
-        this.city = city;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(city, "city");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ju.citygroup.get";
     }
 
     public String getCity() {
         return this.city;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<JuCitygroupGetResponse> getResponseClass() {
+        return JuCitygroupGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.ju.citygroup.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("city", this.city);
@@ -71,6 +72,12 @@ public class JuCitygroupGetRequest implements TaobaoRequest<JuCitygroupGetRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,15 +85,16 @@ public class JuCitygroupGetRequest implements TaobaoRequest<JuCitygroupGetRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<JuCitygroupGetResponse> getResponseClass() {
-        return JuCitygroupGetResponse.class;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(city, "city");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

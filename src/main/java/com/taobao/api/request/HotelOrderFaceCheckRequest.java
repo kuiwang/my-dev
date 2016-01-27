@@ -17,12 +17,6 @@ import com.taobao.api.response.HotelOrderFaceCheckResponse;
  */
 public class HotelOrderFaceCheckRequest implements TaobaoRequest<HotelOrderFaceCheckResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 核实已入住或者未入住，true：已入住，false：未入住
      */
@@ -38,55 +32,55 @@ public class HotelOrderFaceCheckRequest implements TaobaoRequest<HotelOrderFaceC
      */
     private Date checkoutDate;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 酒店订单id
      */
     private Long oid;
 
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(checked, "checked");
+        RequestCheckUtils.checkNotEmpty(oid, "oid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.order.face.check";
     }
 
     public Boolean getChecked() {
         return this.checked;
     }
 
-    public void setCheckinDate(Date checkinDate) {
-        this.checkinDate = checkinDate;
-    }
-
     public Date getCheckinDate() {
         return this.checkinDate;
-    }
-
-    public void setCheckoutDate(Date checkoutDate) {
-        this.checkoutDate = checkoutDate;
     }
 
     public Date getCheckoutDate() {
         return this.checkoutDate;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getOid() {
         return this.oid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<HotelOrderFaceCheckResponse> getResponseClass() {
+        return HotelOrderFaceCheckResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.order.face.check";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("checked", this.checked);
@@ -99,6 +93,12 @@ public class HotelOrderFaceCheckRequest implements TaobaoRequest<HotelOrderFaceC
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -106,16 +106,24 @@ public class HotelOrderFaceCheckRequest implements TaobaoRequest<HotelOrderFaceC
         this.udfParams.put(key, value);
     }
 
-    public Class<HotelOrderFaceCheckResponse> getResponseClass() {
-        return HotelOrderFaceCheckResponse.class;
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(checked, "checked");
-        RequestCheckUtils.checkNotEmpty(oid, "oid");
+    public void setCheckinDate(Date checkinDate) {
+        this.checkinDate = checkinDate;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCheckoutDate(Date checkoutDate) {
+        this.checkoutDate = checkoutDate;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

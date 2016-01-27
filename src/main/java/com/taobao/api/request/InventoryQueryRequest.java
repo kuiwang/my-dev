@@ -18,10 +18,6 @@ public class InventoryQueryRequest implements TaobaoRequest<InventoryQueryRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 后端商品的商家编码列表，控制到50个
      */
@@ -42,50 +38,47 @@ public class InventoryQueryRequest implements TaobaoRequest<InventoryQueryRespon
      */
     private String storeCodes;
 
-    public void setScItemCodes(String scItemCodes) {
-        this.scItemCodes = scItemCodes;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(scItemIds, "scItemIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.inventory.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<InventoryQueryResponse> getResponseClass() {
+        return InventoryQueryResponse.class;
     }
 
     public String getScItemCodes() {
         return this.scItemCodes;
     }
 
-    public void setScItemIds(String scItemIds) {
-        this.scItemIds = scItemIds;
-    }
-
     public String getScItemIds() {
         return this.scItemIds;
-    }
-
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setStoreCodes(String storeCodes) {
-        this.storeCodes = storeCodes;
-    }
-
     public String getStoreCodes() {
         return this.storeCodes;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.inventory.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("sc_item_codes", this.scItemCodes);
@@ -98,6 +91,12 @@ public class InventoryQueryRequest implements TaobaoRequest<InventoryQueryRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,15 +104,24 @@ public class InventoryQueryRequest implements TaobaoRequest<InventoryQueryRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<InventoryQueryResponse> getResponseClass() {
-        return InventoryQueryResponse.class;
+    public void setScItemCodes(String scItemCodes) {
+        this.scItemCodes = scItemCodes;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(scItemIds, "scItemIds");
+    public void setScItemIds(String scItemIds) {
+        this.scItemIds = scItemIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setStoreCodes(String storeCodes) {
+        this.storeCodes = storeCodes;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

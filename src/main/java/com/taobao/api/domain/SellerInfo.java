@@ -35,20 +35,20 @@ public class SellerInfo extends TaobaoObject {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getSellerType() {
         return this.sellerType;
     }
 
-    public void setSellerType(String sellerType) {
-        this.sellerType = sellerType;
-    }
-
     public String getShopName() {
         return this.shopName;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setSellerType(String sellerType) {
+        this.sellerType = sellerType;
     }
 
     public void setShopName(String shopName) {

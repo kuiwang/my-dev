@@ -25,20 +25,20 @@ public class WeitaoCloudtagsGroupDeleteResponse extends TaobaoResponse {
     @ApiField("result")
     private Boolean result;
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
 }

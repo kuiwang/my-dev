@@ -16,12 +16,6 @@ import com.taobao.api.response.DeliveryTemplateAddResponse;
  */
 public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplateAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 可选值：0、1 ，说明如下<br>
      * 0:表示买家承担服务费;<br>
@@ -44,6 +38,8 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
      * (县)的ID，当然有些地方没有区或县可以直接填市级别的ID</font>
      */
     private Long consignAreaId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 运费模板的名称，长度不能超过50个字节<br />
@@ -134,6 +130,10 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
      */
     private String templateTypes;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 可选值：0、1、3，说明如下。<br>
      * 0:表示按宝贝件数计算运费 <br>
@@ -142,98 +142,72 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
      */
     private Long valuation;
 
-    public void setAssumer(Long assumer) {
-        this.assumer = assumer;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(assumer, "assumer");
+        RequestCheckUtils.checkNotEmpty(name, "name");
+        RequestCheckUtils.checkMaxLength(name, 50, "name");
+        RequestCheckUtils.checkNotEmpty(templateAddFees, "templateAddFees");
+        RequestCheckUtils.checkNotEmpty(templateAddStandards, "templateAddStandards");
+        RequestCheckUtils.checkNotEmpty(templateDests, "templateDests");
+        RequestCheckUtils.checkNotEmpty(templateStartFees, "templateStartFees");
+        RequestCheckUtils.checkNotEmpty(templateStartStandards, "templateStartStandards");
+        RequestCheckUtils.checkNotEmpty(templateTypes, "templateTypes");
+        RequestCheckUtils.checkNotEmpty(valuation, "valuation");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.delivery.template.add";
     }
 
     public Long getAssumer() {
         return this.assumer;
     }
 
-    public void setConsignAreaId(Long consignAreaId) {
-        this.consignAreaId = consignAreaId;
-    }
-
     public Long getConsignAreaId() {
         return this.consignAreaId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setTemplateAddFees(String templateAddFees) {
-        this.templateAddFees = templateAddFees;
+    @Override
+    public Class<DeliveryTemplateAddResponse> getResponseClass() {
+        return DeliveryTemplateAddResponse.class;
     }
 
     public String getTemplateAddFees() {
         return this.templateAddFees;
     }
 
-    public void setTemplateAddStandards(String templateAddStandards) {
-        this.templateAddStandards = templateAddStandards;
-    }
-
     public String getTemplateAddStandards() {
         return this.templateAddStandards;
-    }
-
-    public void setTemplateDests(String templateDests) {
-        this.templateDests = templateDests;
     }
 
     public String getTemplateDests() {
         return this.templateDests;
     }
 
-    public void setTemplateStartFees(String templateStartFees) {
-        this.templateStartFees = templateStartFees;
-    }
-
     public String getTemplateStartFees() {
         return this.templateStartFees;
-    }
-
-    public void setTemplateStartStandards(String templateStartStandards) {
-        this.templateStartStandards = templateStartStandards;
     }
 
     public String getTemplateStartStandards() {
         return this.templateStartStandards;
     }
 
-    public void setTemplateTypes(String templateTypes) {
-        this.templateTypes = templateTypes;
-    }
-
     public String getTemplateTypes() {
         return this.templateTypes;
     }
 
-    public void setValuation(Long valuation) {
-        this.valuation = valuation;
-    }
-
-    public Long getValuation() {
-        return this.valuation;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.delivery.template.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("assumer", this.assumer);
@@ -252,6 +226,16 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getValuation() {
+        return this.valuation;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -259,24 +243,48 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
         this.udfParams.put(key, value);
     }
 
-    public Class<DeliveryTemplateAddResponse> getResponseClass() {
-        return DeliveryTemplateAddResponse.class;
+    public void setAssumer(Long assumer) {
+        this.assumer = assumer;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(assumer, "assumer");
-        RequestCheckUtils.checkNotEmpty(name, "name");
-        RequestCheckUtils.checkMaxLength(name, 50, "name");
-        RequestCheckUtils.checkNotEmpty(templateAddFees, "templateAddFees");
-        RequestCheckUtils.checkNotEmpty(templateAddStandards, "templateAddStandards");
-        RequestCheckUtils.checkNotEmpty(templateDests, "templateDests");
-        RequestCheckUtils.checkNotEmpty(templateStartFees, "templateStartFees");
-        RequestCheckUtils.checkNotEmpty(templateStartStandards, "templateStartStandards");
-        RequestCheckUtils.checkNotEmpty(templateTypes, "templateTypes");
-        RequestCheckUtils.checkNotEmpty(valuation, "valuation");
+    public void setConsignAreaId(Long consignAreaId) {
+        this.consignAreaId = consignAreaId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTemplateAddFees(String templateAddFees) {
+        this.templateAddFees = templateAddFees;
+    }
+
+    public void setTemplateAddStandards(String templateAddStandards) {
+        this.templateAddStandards = templateAddStandards;
+    }
+
+    public void setTemplateDests(String templateDests) {
+        this.templateDests = templateDests;
+    }
+
+    public void setTemplateStartFees(String templateStartFees) {
+        this.templateStartFees = templateStartFees;
+    }
+
+    public void setTemplateStartStandards(String templateStartStandards) {
+        this.templateStartStandards = templateStartStandards;
+    }
+
+    public void setTemplateTypes(String templateTypes) {
+        this.templateTypes = templateTypes;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setValuation(Long valuation) {
+        this.valuation = valuation;
     }
 }

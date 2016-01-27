@@ -219,260 +219,260 @@ public class User extends TaobaoObject {
         return this.alipayBind;
     }
 
-    public void setAlipayBind(String alipayBind) {
-        this.alipayBind = alipayBind;
-    }
-
     public String getAutoRepost() {
         return this.autoRepost;
-    }
-
-    public void setAutoRepost(String autoRepost) {
-        this.autoRepost = autoRepost;
     }
 
     public String getAvatar() {
         return this.avatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public Date getBirthday() {
         return this.birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public UserCredit getBuyerCredit() {
         return this.buyerCredit;
     }
 
-    public void setBuyerCredit(UserCredit buyerCredit) {
-        this.buyerCredit = buyerCredit;
-    }
-
     public Boolean getConsumerProtection() {
         return this.consumerProtection;
-    }
-
-    public void setConsumerProtection(Boolean consumerProtection) {
-        this.consumerProtection = consumerProtection;
     }
 
     public Date getCreated() {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public String getEmail() {
         return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Boolean getHasMorePic() {
         return this.hasMorePic;
     }
 
-    public void setHasMorePic(Boolean hasMorePic) {
-        this.hasMorePic = hasMorePic;
-    }
-
     public Boolean getHasShop() {
         return this.hasShop;
-    }
-
-    public void setHasShop(Boolean hasShop) {
-        this.hasShop = hasShop;
     }
 
     public Boolean getHasSubStock() {
         return this.hasSubStock;
     }
 
-    public void setHasSubStock(Boolean hasSubStock) {
-        this.hasSubStock = hasSubStock;
-    }
-
     public Boolean getIsGoldenSeller() {
         return this.isGoldenSeller;
-    }
-
-    public void setIsGoldenSeller(Boolean isGoldenSeller) {
-        this.isGoldenSeller = isGoldenSeller;
     }
 
     public Boolean getIsLightningConsignment() {
         return this.isLightningConsignment;
     }
 
-    public void setIsLightningConsignment(Boolean isLightningConsignment) {
-        this.isLightningConsignment = isLightningConsignment;
-    }
-
     public Long getItemImgNum() {
         return this.itemImgNum;
-    }
-
-    public void setItemImgNum(Long itemImgNum) {
-        this.itemImgNum = itemImgNum;
     }
 
     public Long getItemImgSize() {
         return this.itemImgSize;
     }
 
-    public void setItemImgSize(Long itemImgSize) {
-        this.itemImgSize = itemImgSize;
-    }
-
     public Date getLastVisit() {
         return this.lastVisit;
-    }
-
-    public void setLastVisit(Date lastVisit) {
-        this.lastVisit = lastVisit;
     }
 
     public Boolean getLiangpin() {
         return this.liangpin;
     }
 
-    public void setLiangpin(Boolean liangpin) {
-        this.liangpin = liangpin;
-    }
-
     public Location getLocation() {
         return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public Boolean getMagazineSubscribe() {
         return this.magazineSubscribe;
     }
 
-    public void setMagazineSubscribe(Boolean magazineSubscribe) {
-        this.magazineSubscribe = magazineSubscribe;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public Boolean getOnlineGaming() {
         return this.onlineGaming;
     }
 
-    public void setOnlineGaming(Boolean onlineGaming) {
-        this.onlineGaming = onlineGaming;
-    }
-
     public String getPromotedType() {
         return this.promotedType;
-    }
-
-    public void setPromotedType(String promotedType) {
-        this.promotedType = promotedType;
     }
 
     public Long getPropImgNum() {
         return this.propImgNum;
     }
 
-    public void setPropImgNum(Long propImgNum) {
-        this.propImgNum = propImgNum;
-    }
-
     public Long getPropImgSize() {
         return this.propImgSize;
-    }
-
-    public void setPropImgSize(Long propImgSize) {
-        this.propImgSize = propImgSize;
     }
 
     public UserCredit getSellerCredit() {
         return this.sellerCredit;
     }
 
-    public void setSellerCredit(UserCredit sellerCredit) {
-        this.sellerCredit = sellerCredit;
-    }
-
     public String getSex() {
         return this.sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public Boolean getSignFoodSellerPromise() {
         return this.signFoodSellerPromise;
     }
 
-    public void setSignFoodSellerPromise(Boolean signFoodSellerPromise) {
-        this.signFoodSellerPromise = signFoodSellerPromise;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getType() {
         return this.type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getUid() {
         return this.uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getVerticalMarket() {
         return this.verticalMarket;
     }
 
-    public void setVerticalMarket(String verticalMarket) {
-        this.verticalMarket = verticalMarket;
-    }
-
     public String getVipInfo() {
         return this.vipInfo;
+    }
+
+    public void setAlipayBind(String alipayBind) {
+        this.alipayBind = alipayBind;
+    }
+
+    public void setAutoRepost(String autoRepost) {
+        this.autoRepost = autoRepost;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setBuyerCredit(UserCredit buyerCredit) {
+        this.buyerCredit = buyerCredit;
+    }
+
+    public void setConsumerProtection(Boolean consumerProtection) {
+        this.consumerProtection = consumerProtection;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setHasMorePic(Boolean hasMorePic) {
+        this.hasMorePic = hasMorePic;
+    }
+
+    public void setHasShop(Boolean hasShop) {
+        this.hasShop = hasShop;
+    }
+
+    public void setHasSubStock(Boolean hasSubStock) {
+        this.hasSubStock = hasSubStock;
+    }
+
+    public void setIsGoldenSeller(Boolean isGoldenSeller) {
+        this.isGoldenSeller = isGoldenSeller;
+    }
+
+    public void setIsLightningConsignment(Boolean isLightningConsignment) {
+        this.isLightningConsignment = isLightningConsignment;
+    }
+
+    public void setItemImgNum(Long itemImgNum) {
+        this.itemImgNum = itemImgNum;
+    }
+
+    public void setItemImgSize(Long itemImgSize) {
+        this.itemImgSize = itemImgSize;
+    }
+
+    public void setLastVisit(Date lastVisit) {
+        this.lastVisit = lastVisit;
+    }
+
+    public void setLiangpin(Boolean liangpin) {
+        this.liangpin = liangpin;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setMagazineSubscribe(Boolean magazineSubscribe) {
+        this.magazineSubscribe = magazineSubscribe;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOnlineGaming(Boolean onlineGaming) {
+        this.onlineGaming = onlineGaming;
+    }
+
+    public void setPromotedType(String promotedType) {
+        this.promotedType = promotedType;
+    }
+
+    public void setPropImgNum(Long propImgNum) {
+        this.propImgNum = propImgNum;
+    }
+
+    public void setPropImgSize(Long propImgSize) {
+        this.propImgSize = propImgSize;
+    }
+
+    public void setSellerCredit(UserCredit sellerCredit) {
+        this.sellerCredit = sellerCredit;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setSignFoodSellerPromise(Boolean signFoodSellerPromise) {
+        this.signFoodSellerPromise = signFoodSellerPromise;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setVerticalMarket(String verticalMarket) {
+        this.verticalMarket = verticalMarket;
     }
 
     public void setVipInfo(String vipInfo) {

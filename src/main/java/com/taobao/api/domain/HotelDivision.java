@@ -60,52 +60,52 @@ public class HotelDivision extends TaobaoObject {
         return this.code;
     }
 
-    public void setCode(Long code) {
-        this.code = code;
-    }
-
     public Long getLevel() {
         return this.level;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParentCode() {
         return this.parentCode;
-    }
-
-    public void setParentCode(Long parentCode) {
-        this.parentCode = parentCode;
     }
 
     public Long getRegion() {
         return this.region;
     }
 
-    public void setRegion(Long region) {
-        this.region = region;
-    }
-
     public Boolean getSearchable() {
         return this.searchable;
     }
 
-    public void setSearchable(Boolean searchable) {
-        this.searchable = searchable;
-    }
-
     public Long getType() {
         return this.type;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParentCode(Long parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    public void setRegion(Long region) {
+        this.region = region;
+    }
+
+    public void setSearchable(Boolean searchable) {
+        this.searchable = searchable;
     }
 
     public void setType(Long type) {

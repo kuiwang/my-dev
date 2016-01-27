@@ -16,63 +16,58 @@ import com.taobao.api.response.UmpRangeAddResponse;
  */
 public class UmpRangeAddRequest implements TaobaoRequest<UmpRangeAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动id
      */
     private Long actId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * id列表，当范围类型为商品时，该id为商品id；当范围类型为类目时，该id为类目id.多个id用逗号隔开，一次不超过50个
      */
     private String ids;
 
+    private Long timestamp;
+
     /**
      * 范围的类型，比如是全店，商品，类目 见：MarketingConstants.PARTICIPATE_TYPE_*
      */
     private Long type;
 
-    public void setActId(Long actId) {
-        this.actId = actId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(actId, "actId");
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+        RequestCheckUtils.checkNotEmpty(type, "type");
     }
 
     public Long getActId() {
         return this.actId;
     }
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.range.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    @Override
+    public Class<UmpRangeAddResponse> getResponseClass() {
+        return UmpRangeAddResponse.class;
     }
 
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ump.range.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("act_id", this.actId);
@@ -84,6 +79,16 @@ public class UmpRangeAddRequest implements TaobaoRequest<UmpRangeAddResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,17 +96,20 @@ public class UmpRangeAddRequest implements TaobaoRequest<UmpRangeAddResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpRangeAddResponse> getResponseClass() {
-        return UmpRangeAddResponse.class;
+    public void setActId(Long actId) {
+        this.actId = actId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(actId, "actId");
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
-        RequestCheckUtils.checkNotEmpty(type, "type");
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

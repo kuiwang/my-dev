@@ -60,52 +60,52 @@ public class FavoriteItem extends TaobaoObject {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public String getItemPictrue() {
         return this.itemPictrue;
-    }
-
-    public void setItemPictrue(String itemPictrue) {
-        this.itemPictrue = itemPictrue;
     }
 
     public String getItemPrice() {
         return this.itemPrice;
     }
 
-    public void setItemPrice(String itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public String getItemUrl() {
         return this.itemUrl;
-    }
-
-    public void setItemUrl(String itemUrl) {
-        this.itemUrl = itemUrl;
     }
 
     public String getPromotionPrice() {
         return this.promotionPrice;
     }
 
-    public void setPromotionPrice(String promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
-
     public Long getSellCount() {
         return this.sellCount;
     }
 
-    public void setSellCount(Long sellCount) {
-        this.sellCount = sellCount;
-    }
-
     public String getTrackIid() {
         return this.trackIid;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemPictrue(String itemPictrue) {
+        this.itemPictrue = itemPictrue;
+    }
+
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
+    }
+
+    public void setPromotionPrice(String promotionPrice) {
+        this.promotionPrice = promotionPrice;
+    }
+
+    public void setSellCount(Long sellCount) {
+        this.sellCount = sellCount;
     }
 
     public void setTrackIid(String trackIid) {

@@ -64,52 +64,52 @@ public class TmcUser extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public String getGroupName() {
         return this.groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
     }
 
     public Boolean getIsValid() {
         return this.isValid;
     }
 
-    public void setIsValid(Boolean isValid) {
-        this.isValid = isValid;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public List<String> getTopics() {
         return this.topics;
     }
 
-    public void setTopics(List<String> topics) {
-        this.topics = topics;
-    }
-
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setIsValid(Boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setTopics(List<String> topics) {
+        this.topics = topics;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setUserNick(String userNick) {

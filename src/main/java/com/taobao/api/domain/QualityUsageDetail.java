@@ -73,68 +73,68 @@ public class QualityUsageDetail extends TaobaoObject {
         return this.applicationAmount;
     }
 
-    public void setApplicationAmount(Long applicationAmount) {
-        this.applicationAmount = applicationAmount;
-    }
-
     public String getArticleItemCode() {
         return this.articleItemCode;
-    }
-
-    public void setArticleItemCode(String articleItemCode) {
-        this.articleItemCode = articleItemCode;
     }
 
     public Long getAvailableAmount() {
         return this.availableAmount;
     }
 
-    public void setAvailableAmount(Long availableAmount) {
-        this.availableAmount = availableAmount;
-    }
-
     public Date getEndDate() {
         return this.endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getPurchasAmount() {
         return this.purchasAmount;
-    }
-
-    public void setPurchasAmount(Long purchasAmount) {
-        this.purchasAmount = purchasAmount;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Long getSubId() {
         return this.subId;
     }
 
-    public void setSubId(Long subId) {
-        this.subId = subId;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setApplicationAmount(Long applicationAmount) {
+        this.applicationAmount = applicationAmount;
+    }
+
+    public void setArticleItemCode(String articleItemCode) {
+        this.articleItemCode = articleItemCode;
+    }
+
+    public void setAvailableAmount(Long availableAmount) {
+        this.availableAmount = availableAmount;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPurchasAmount(Long purchasAmount) {
+        this.purchasAmount = purchasAmount;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setSubId(Long subId) {
+        this.subId = subId;
     }
 
     public void setUserId(Long userId) {

@@ -59,52 +59,52 @@ public class WaybillApplyUpdateInfo extends TaobaoObject {
         return this.consigneeBranchCode;
     }
 
-    public void setConsigneeBranchCode(String consigneeBranchCode) {
-        this.consigneeBranchCode = consigneeBranchCode;
-    }
-
     public String getConsigneeBranchName() {
         return this.consigneeBranchName;
-    }
-
-    public void setConsigneeBranchName(String consigneeBranchName) {
-        this.consigneeBranchName = consigneeBranchName;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Long getResult() {
         return this.result;
-    }
-
-    public void setResult(Long result) {
-        this.result = result;
     }
 
     public String getShortAddress() {
         return this.shortAddress;
     }
 
-    public void setShortAddress(String shortAddress) {
-        this.shortAddress = shortAddress;
-    }
-
     public TradeOrderInfo getTradeOrderInfo() {
         return this.tradeOrderInfo;
     }
 
-    public void setTradeOrderInfo(TradeOrderInfo tradeOrderInfo) {
-        this.tradeOrderInfo = tradeOrderInfo;
-    }
-
     public String getWaybillCode() {
         return this.waybillCode;
+    }
+
+    public void setConsigneeBranchCode(String consigneeBranchCode) {
+        this.consigneeBranchCode = consigneeBranchCode;
+    }
+
+    public void setConsigneeBranchName(String consigneeBranchName) {
+        this.consigneeBranchName = consigneeBranchName;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setResult(Long result) {
+        this.result = result;
+    }
+
+    public void setShortAddress(String shortAddress) {
+        this.shortAddress = shortAddress;
+    }
+
+    public void setTradeOrderInfo(TradeOrderInfo tradeOrderInfo) {
+        this.tradeOrderInfo = tradeOrderInfo;
     }
 
     public void setWaybillCode(String waybillCode) {

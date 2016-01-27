@@ -18,10 +18,6 @@ public class AlibabaGeoipGetRequest implements TaobaoRequest<AlibabaGeoipGetResp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要查询的IP地址,与language一起使用，与iplist二选一使用，提供单个IP查询
      */
@@ -32,34 +28,40 @@ public class AlibabaGeoipGetRequest implements TaobaoRequest<AlibabaGeoipGetResp
      */
     private String language;
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ip, "ip");
+        RequestCheckUtils.checkNotEmpty(language, "language");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.geoip.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIp() {
         return this.ip;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
     public String getLanguage() {
         return this.language;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlibabaGeoipGetResponse> getResponseClass() {
+        return AlibabaGeoipGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.geoip.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ip", this.ip);
@@ -70,6 +72,12 @@ public class AlibabaGeoipGetRequest implements TaobaoRequest<AlibabaGeoipGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class AlibabaGeoipGetRequest implements TaobaoRequest<AlibabaGeoipGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaGeoipGetResponse> getResponseClass() {
-        return AlibabaGeoipGetResponse.class;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ip, "ip");
-        RequestCheckUtils.checkNotEmpty(language, "language");
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

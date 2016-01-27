@@ -36,28 +36,28 @@ public class WangwangAbstractGetwordlistResponse extends TaobaoResponse {
     @ApiField("word_list")
     private List<WordList> wordLists;
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
     public String getErrorMsg() {
         return this.errorMsg;
-    }
-
-    public void setRetCode(Long retCode) {
-        this.retCode = retCode;
     }
 
     public Long getRetCode() {
         return this.retCode;
     }
 
-    public void setWordLists(List<WordList> wordLists) {
-        this.wordLists = wordLists;
-    }
-
     public List<WordList> getWordLists() {
         return this.wordLists;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setRetCode(Long retCode) {
+        this.retCode = retCode;
+    }
+
+    public void setWordLists(List<WordList> wordLists) {
+        this.wordLists = wordLists;
     }
 
 }

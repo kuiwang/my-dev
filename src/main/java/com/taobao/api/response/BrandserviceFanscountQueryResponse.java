@@ -19,12 +19,12 @@ public class BrandserviceFanscountQueryResponse extends TaobaoResponse {
     @ApiField("value")
     private Long value;
 
-    public void setValue(Long value) {
-        this.value = value;
-    }
-
     public Long getValue() {
         return this.value;
+    }
+
+    public void setValue(Long value) {
+        this.value = value;
     }
 
 }

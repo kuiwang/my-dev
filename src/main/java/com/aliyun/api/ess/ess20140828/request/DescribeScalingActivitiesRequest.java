@@ -19,21 +19,11 @@ public class DescribeScalingActivitiesRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
     private String ownerAccount;
 
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * PageNumber
@@ -50,6 +40,12 @@ public class DescribeScalingActivitiesRequest implements
      * 伸缩活动所在的region
      */
     private String regionId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
 
     /**
      * 伸缩活动的ID，可以输入多个，最多可以支持20个。返回查询结果时略去失效的ScalingRuleId，并且不报错。
@@ -161,242 +157,144 @@ public class DescribeScalingActivitiesRequest implements
      */
     private String statusCode;
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
     }
 
-    public Long getPageNumber() {
-        return this.pageNumber;
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.DescribeScalingActivities.2014-08-28";
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Long getPageSize() {
-        return this.pageSize;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setScalingActivityId1(String scalingActivityId1) {
-        this.scalingActivityId1 = scalingActivityId1;
-    }
-
-    public String getScalingActivityId1() {
-        return this.scalingActivityId1;
-    }
-
-    public void setScalingActivityId10(String scalingActivityId10) {
-        this.scalingActivityId10 = scalingActivityId10;
-    }
-
-    public String getScalingActivityId10() {
-        return this.scalingActivityId10;
-    }
-
-    public void setScalingActivityId11(String scalingActivityId11) {
-        this.scalingActivityId11 = scalingActivityId11;
-    }
-
-    public String getScalingActivityId11() {
-        return this.scalingActivityId11;
-    }
-
-    public void setScalingActivityId12(String scalingActivityId12) {
-        this.scalingActivityId12 = scalingActivityId12;
-    }
-
-    public String getScalingActivityId12() {
-        return this.scalingActivityId12;
-    }
-
-    public void setScalingActivityId13(String scalingActivityId13) {
-        this.scalingActivityId13 = scalingActivityId13;
-    }
-
-    public String getScalingActivityId13() {
-        return this.scalingActivityId13;
-    }
-
-    public void setScalingActivityId14(String scalingActivityId14) {
-        this.scalingActivityId14 = scalingActivityId14;
-    }
-
-    public String getScalingActivityId14() {
-        return this.scalingActivityId14;
-    }
-
-    public void setScalingActivityId15(String scalingActivityId15) {
-        this.scalingActivityId15 = scalingActivityId15;
-    }
-
-    public String getScalingActivityId15() {
-        return this.scalingActivityId15;
-    }
-
-    public void setScalingActivityId16(String scalingActivityId16) {
-        this.scalingActivityId16 = scalingActivityId16;
-    }
-
-    public String getScalingActivityId16() {
-        return this.scalingActivityId16;
-    }
-
-    public void setScalingActivityId17(String scalingActivityId17) {
-        this.scalingActivityId17 = scalingActivityId17;
-    }
-
-    public String getScalingActivityId17() {
-        return this.scalingActivityId17;
-    }
-
-    public void setScalingActivityId18(String scalingActivityId18) {
-        this.scalingActivityId18 = scalingActivityId18;
-    }
-
-    public String getScalingActivityId18() {
-        return this.scalingActivityId18;
-    }
-
-    public void setScalingActivityId19(String scalingActivityId19) {
-        this.scalingActivityId19 = scalingActivityId19;
-    }
-
-    public String getScalingActivityId19() {
-        return this.scalingActivityId19;
-    }
-
-    public void setScalingActivityId2(String scalingActivityId2) {
-        this.scalingActivityId2 = scalingActivityId2;
-    }
-
-    public String getScalingActivityId2() {
-        return this.scalingActivityId2;
-    }
-
-    public void setScalingActivityId20(String scalingActivityId20) {
-        this.scalingActivityId20 = scalingActivityId20;
-    }
-
-    public String getScalingActivityId20() {
-        return this.scalingActivityId20;
-    }
-
-    public void setScalingActivityId3(String scalingActivityId3) {
-        this.scalingActivityId3 = scalingActivityId3;
-    }
-
-    public String getScalingActivityId3() {
-        return this.scalingActivityId3;
-    }
-
-    public void setScalingActivityId4(String scalingActivityId4) {
-        this.scalingActivityId4 = scalingActivityId4;
-    }
-
-    public String getScalingActivityId4() {
-        return this.scalingActivityId4;
-    }
-
-    public void setScalingActivityId5(String scalingActivityId5) {
-        this.scalingActivityId5 = scalingActivityId5;
-    }
-
-    public String getScalingActivityId5() {
-        return this.scalingActivityId5;
-    }
-
-    public void setScalingActivityId6(String scalingActivityId6) {
-        this.scalingActivityId6 = scalingActivityId6;
-    }
-
-    public String getScalingActivityId6() {
-        return this.scalingActivityId6;
-    }
-
-    public void setScalingActivityId7(String scalingActivityId7) {
-        this.scalingActivityId7 = scalingActivityId7;
-    }
-
-    public String getScalingActivityId7() {
-        return this.scalingActivityId7;
-    }
-
-    public void setScalingActivityId8(String scalingActivityId8) {
-        this.scalingActivityId8 = scalingActivityId8;
-    }
-
-    public String getScalingActivityId8() {
-        return this.scalingActivityId8;
-    }
-
-    public void setScalingActivityId9(String scalingActivityId9) {
-        this.scalingActivityId9 = scalingActivityId9;
-    }
-
-    public String getScalingActivityId9() {
-        return this.scalingActivityId9;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
-    public String getScalingGroupId() {
-        return this.scalingGroupId;
-    }
-
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getStatusCode() {
-        return this.statusCode;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPageNumber() {
+        return this.pageNumber;
+    }
+
+    public Long getPageSize() {
+        return this.pageSize;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeScalingActivitiesResponse> getResponseClass() {
+        return DescribeScalingActivitiesResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingActivityId1() {
+        return this.scalingActivityId1;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingActivityId10() {
+        return this.scalingActivityId10;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.DescribeScalingActivities.2014-08-28";
+    public String getScalingActivityId11() {
+        return this.scalingActivityId11;
     }
 
+    public String getScalingActivityId12() {
+        return this.scalingActivityId12;
+    }
+
+    public String getScalingActivityId13() {
+        return this.scalingActivityId13;
+    }
+
+    public String getScalingActivityId14() {
+        return this.scalingActivityId14;
+    }
+
+    public String getScalingActivityId15() {
+        return this.scalingActivityId15;
+    }
+
+    public String getScalingActivityId16() {
+        return this.scalingActivityId16;
+    }
+
+    public String getScalingActivityId17() {
+        return this.scalingActivityId17;
+    }
+
+    public String getScalingActivityId18() {
+        return this.scalingActivityId18;
+    }
+
+    public String getScalingActivityId19() {
+        return this.scalingActivityId19;
+    }
+
+    public String getScalingActivityId2() {
+        return this.scalingActivityId2;
+    }
+
+    public String getScalingActivityId20() {
+        return this.scalingActivityId20;
+    }
+
+    public String getScalingActivityId3() {
+        return this.scalingActivityId3;
+    }
+
+    public String getScalingActivityId4() {
+        return this.scalingActivityId4;
+    }
+
+    public String getScalingActivityId5() {
+        return this.scalingActivityId5;
+    }
+
+    public String getScalingActivityId6() {
+        return this.scalingActivityId6;
+    }
+
+    public String getScalingActivityId7() {
+        return this.scalingActivityId7;
+    }
+
+    public String getScalingActivityId8() {
+        return this.scalingActivityId8;
+    }
+
+    public String getScalingActivityId9() {
+        return this.scalingActivityId9;
+    }
+
+    public String getScalingGroupId() {
+        return this.scalingGroupId;
+    }
+
+    public String getStatusCode() {
+        return this.statusCode;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -433,6 +331,12 @@ public class DescribeScalingActivitiesRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -440,16 +344,120 @@ public class DescribeScalingActivitiesRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeScalingActivitiesResponse> getResponseClass() {
-        return DescribeScalingActivitiesResponse.class;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingActivityId1(String scalingActivityId1) {
+        this.scalingActivityId1 = scalingActivityId1;
+    }
+
+    public void setScalingActivityId10(String scalingActivityId10) {
+        this.scalingActivityId10 = scalingActivityId10;
+    }
+
+    public void setScalingActivityId11(String scalingActivityId11) {
+        this.scalingActivityId11 = scalingActivityId11;
+    }
+
+    public void setScalingActivityId12(String scalingActivityId12) {
+        this.scalingActivityId12 = scalingActivityId12;
+    }
+
+    public void setScalingActivityId13(String scalingActivityId13) {
+        this.scalingActivityId13 = scalingActivityId13;
+    }
+
+    public void setScalingActivityId14(String scalingActivityId14) {
+        this.scalingActivityId14 = scalingActivityId14;
+    }
+
+    public void setScalingActivityId15(String scalingActivityId15) {
+        this.scalingActivityId15 = scalingActivityId15;
+    }
+
+    public void setScalingActivityId16(String scalingActivityId16) {
+        this.scalingActivityId16 = scalingActivityId16;
+    }
+
+    public void setScalingActivityId17(String scalingActivityId17) {
+        this.scalingActivityId17 = scalingActivityId17;
+    }
+
+    public void setScalingActivityId18(String scalingActivityId18) {
+        this.scalingActivityId18 = scalingActivityId18;
+    }
+
+    public void setScalingActivityId19(String scalingActivityId19) {
+        this.scalingActivityId19 = scalingActivityId19;
+    }
+
+    public void setScalingActivityId2(String scalingActivityId2) {
+        this.scalingActivityId2 = scalingActivityId2;
+    }
+
+    public void setScalingActivityId20(String scalingActivityId20) {
+        this.scalingActivityId20 = scalingActivityId20;
+    }
+
+    public void setScalingActivityId3(String scalingActivityId3) {
+        this.scalingActivityId3 = scalingActivityId3;
+    }
+
+    public void setScalingActivityId4(String scalingActivityId4) {
+        this.scalingActivityId4 = scalingActivityId4;
+    }
+
+    public void setScalingActivityId5(String scalingActivityId5) {
+        this.scalingActivityId5 = scalingActivityId5;
+    }
+
+    public void setScalingActivityId6(String scalingActivityId6) {
+        this.scalingActivityId6 = scalingActivityId6;
+    }
+
+    public void setScalingActivityId7(String scalingActivityId7) {
+        this.scalingActivityId7 = scalingActivityId7;
+    }
+
+    public void setScalingActivityId8(String scalingActivityId8) {
+        this.scalingActivityId8 = scalingActivityId8;
+    }
+
+    public void setScalingActivityId9(String scalingActivityId9) {
+        this.scalingActivityId9 = scalingActivityId9;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

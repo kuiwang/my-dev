@@ -260,300 +260,300 @@ public class Product extends TaobaoObject {
         return this.barcodeStr;
     }
 
-    public void setBarcodeStr(String barcodeStr) {
-        this.barcodeStr = barcodeStr;
-    }
-
     public String getBinds() {
         return this.binds;
-    }
-
-    public void setBinds(String binds) {
-        this.binds = binds;
     }
 
     public String getBindsStr() {
         return this.bindsStr;
     }
 
-    public void setBindsStr(String bindsStr) {
-        this.bindsStr = bindsStr;
-    }
-
     public String getCatName() {
         return this.catName;
-    }
-
-    public void setCatName(String catName) {
-        this.catName = catName;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Long getCollectNum() {
         return this.collectNum;
-    }
-
-    public void setCollectNum(Long collectNum) {
-        this.collectNum = collectNum;
     }
 
     public Long getCommodityId() {
         return this.commodityId;
     }
 
-    public void setCommodityId(Long commodityId) {
-        this.commodityId = commodityId;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getCspuFeature() {
         return this.cspuFeature;
     }
 
-    public void setCspuFeature(String cspuFeature) {
-        this.cspuFeature = cspuFeature;
-    }
-
     public String getCustomerProps() {
         return this.customerProps;
-    }
-
-    public void setCustomerProps(String customerProps) {
-        this.customerProps = customerProps;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Boolean getIsSuiteEffective() {
         return this.isSuiteEffective;
-    }
-
-    public void setIsSuiteEffective(Boolean isSuiteEffective) {
-        this.isSuiteEffective = isSuiteEffective;
     }
 
     public Long getLevel() {
         return this.level;
     }
 
-    public void setLevel(Long level) {
-        this.level = level;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getOuterId() {
         return this.outerId;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getPicPath() {
         return this.picPath;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public List<ProductExtraInfo> getProductExtraInfos() {
         return this.productExtraInfos;
-    }
-
-    public void setProductExtraInfos(List<ProductExtraInfo> productExtraInfos) {
-        this.productExtraInfos = productExtraInfos;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public List<ProductImg> getProductImgs() {
         return this.productImgs;
-    }
-
-    public void setProductImgs(List<ProductImg> productImgs) {
-        this.productImgs = productImgs;
     }
 
     public List<ProductPropImg> getProductPropImgs() {
         return this.productPropImgs;
     }
 
-    public void setProductPropImgs(List<ProductPropImg> productPropImgs) {
-        this.productPropImgs = productPropImgs;
-    }
-
     public String getPropertyAlias() {
         return this.propertyAlias;
-    }
-
-    public void setPropertyAlias(String propertyAlias) {
-        this.propertyAlias = propertyAlias;
     }
 
     public String getProps() {
         return this.props;
     }
 
-    public void setProps(String props) {
-        this.props = props;
-    }
-
     public String getPropsStr() {
         return this.propsStr;
-    }
-
-    public void setPropsStr(String propsStr) {
-        this.propsStr = propsStr;
     }
 
     public Long getRateNum() {
         return this.rateNum;
     }
 
-    public void setRateNum(Long rateNum) {
-        this.rateNum = rateNum;
-    }
-
     public Long getSaleNum() {
         return this.saleNum;
-    }
-
-    public void setSaleNum(Long saleNum) {
-        this.saleNum = saleNum;
     }
 
     public String getSaleProps() {
         return this.saleProps;
     }
 
-    public void setSaleProps(String saleProps) {
-        this.saleProps = saleProps;
-    }
-
     public String getSalePropsStr() {
         return this.salePropsStr;
-    }
-
-    public void setSalePropsStr(String salePropsStr) {
-        this.salePropsStr = salePropsStr;
     }
 
     public String getSellPt() {
         return this.sellPt;
     }
 
-    public void setSellPt(String sellPt) {
-        this.sellPt = sellPt;
-    }
-
     public String getShopPrice() {
         return this.shopPrice;
-    }
-
-    public void setShopPrice(String shopPrice) {
-        this.shopPrice = shopPrice;
     }
 
     public String getStandardPrice() {
         return this.standardPrice;
     }
 
-    public void setStandardPrice(String standardPrice) {
-        this.standardPrice = standardPrice;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public String getSuiteItemsStr() {
         return this.suiteItemsStr;
     }
 
-    public void setSuiteItemsStr(String suiteItemsStr) {
-        this.suiteItemsStr = suiteItemsStr;
-    }
-
     public Long getTemplateId() {
         return this.templateId;
-    }
-
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
     }
 
     public String getTsc() {
         return this.tsc;
     }
 
-    public void setTsc(String tsc) {
-        this.tsc = tsc;
-    }
-
     public Long getVerticalMarket() {
         return this.verticalMarket;
+    }
+
+    public void setBarcodeStr(String barcodeStr) {
+        this.barcodeStr = barcodeStr;
+    }
+
+    public void setBinds(String binds) {
+        this.binds = binds;
+    }
+
+    public void setBindsStr(String bindsStr) {
+        this.bindsStr = bindsStr;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCollectNum(Long collectNum) {
+        this.collectNum = collectNum;
+    }
+
+    public void setCommodityId(Long commodityId) {
+        this.commodityId = commodityId;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setCspuFeature(String cspuFeature) {
+        this.cspuFeature = cspuFeature;
+    }
+
+    public void setCustomerProps(String customerProps) {
+        this.customerProps = customerProps;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setIsSuiteEffective(Boolean isSuiteEffective) {
+        this.isSuiteEffective = isSuiteEffective;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setProductExtraInfos(List<ProductExtraInfo> productExtraInfos) {
+        this.productExtraInfos = productExtraInfos;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductImgs(List<ProductImg> productImgs) {
+        this.productImgs = productImgs;
+    }
+
+    public void setProductPropImgs(List<ProductPropImg> productPropImgs) {
+        this.productPropImgs = productPropImgs;
+    }
+
+    public void setPropertyAlias(String propertyAlias) {
+        this.propertyAlias = propertyAlias;
+    }
+
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    public void setPropsStr(String propsStr) {
+        this.propsStr = propsStr;
+    }
+
+    public void setRateNum(Long rateNum) {
+        this.rateNum = rateNum;
+    }
+
+    public void setSaleNum(Long saleNum) {
+        this.saleNum = saleNum;
+    }
+
+    public void setSaleProps(String saleProps) {
+        this.saleProps = saleProps;
+    }
+
+    public void setSalePropsStr(String salePropsStr) {
+        this.salePropsStr = salePropsStr;
+    }
+
+    public void setSellPt(String sellPt) {
+        this.sellPt = sellPt;
+    }
+
+    public void setShopPrice(String shopPrice) {
+        this.shopPrice = shopPrice;
+    }
+
+    public void setStandardPrice(String standardPrice) {
+        this.standardPrice = standardPrice;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setSuiteItemsStr(String suiteItemsStr) {
+        this.suiteItemsStr = suiteItemsStr;
+    }
+
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
+    }
+
+    public void setTsc(String tsc) {
+        this.tsc = tsc;
     }
 
     public void setVerticalMarket(Long verticalMarket) {

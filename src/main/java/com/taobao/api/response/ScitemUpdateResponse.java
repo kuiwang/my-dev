@@ -19,12 +19,12 @@ public class ScitemUpdateResponse extends TaobaoResponse {
     @ApiField("update_rows")
     private Long updateRows;
 
-    public void setUpdateRows(Long updateRows) {
-        this.updateRows = updateRows;
-    }
-
     public Long getUpdateRows() {
         return this.updateRows;
+    }
+
+    public void setUpdateRows(Long updateRows) {
+        this.updateRows = updateRows;
     }
 
 }

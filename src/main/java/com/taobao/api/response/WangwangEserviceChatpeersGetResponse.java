@@ -42,28 +42,28 @@ public class WangwangEserviceChatpeersGetResponse extends TaobaoResponse {
     @ApiField("ret")
     private Long ret;
 
-    public void setChatpeers(List<Chatpeer> chatpeers) {
-        this.chatpeers = chatpeers;
-    }
-
     public List<Chatpeer> getChatpeers() {
         return this.chatpeers;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
     }
 
     public Long getCount() {
         return this.count;
     }
 
-    public void setRet(Long ret) {
-        this.ret = ret;
-    }
-
     public Long getRet() {
         return this.ret;
+    }
+
+    public void setChatpeers(List<Chatpeer> chatpeers) {
+        this.chatpeers = chatpeers;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setRet(Long ret) {
+        this.ret = ret;
     }
 
 }

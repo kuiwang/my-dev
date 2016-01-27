@@ -30,20 +30,20 @@ public class WlbOrderdetailDateGetResponse extends TaobaoResponse {
     @ApiField("total_count")
     private Long totalCount;
 
-    public void setOrderDetailList(List<WlbOrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
-    }
-
     public List<WlbOrderDetail> getOrderDetailList() {
         return this.orderDetailList;
     }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setOrderDetailList(List<WlbOrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
 }

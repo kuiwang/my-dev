@@ -82,108 +82,108 @@ public class Picture {
         return this.clientType;
     }
 
-    public void setClientType(String clientType) {
-        this.clientType = clientType;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getDeleted() {
         return this.deleted;
     }
 
-    public void setDeleted(String deleted) {
-        this.deleted = deleted;
-    }
-
     public String getMd5() {
         return this.md5;
-    }
-
-    public void setMd5(String md5) {
-        this.md5 = md5;
     }
 
     public Date getModified() {
         return this.modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public Long getPictureCategoryId() {
         return this.pictureCategoryId;
-    }
-
-    public void setPictureCategoryId(Long pictureCategoryId) {
-        this.pictureCategoryId = pictureCategoryId;
     }
 
     public Long getPictureId() {
         return this.pictureId;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
-    }
-
     public String getPicturePath() {
         return this.picturePath;
-    }
-
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
     }
 
     public String getPixel() {
         return this.pixel;
     }
 
-    public void setPixel(String pixel) {
-        this.pixel = pixel;
-    }
-
     public Boolean getReferenced() {
         return this.referenced;
-    }
-
-    public void setReferenced(Boolean referenced) {
-        this.referenced = referenced;
     }
 
     public Long getSizes() {
         return this.sizes;
     }
 
-    public void setSizes(Long sizes) {
-        this.sizes = sizes;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getUid() {
         return this.uid;
+    }
+
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setPictureCategoryId(Long pictureCategoryId) {
+        this.pictureCategoryId = pictureCategoryId;
+    }
+
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public void setPixel(String pixel) {
+        this.pixel = pixel;
+    }
+
+    public void setReferenced(Boolean referenced) {
+        this.referenced = referenced;
+    }
+
+    public void setSizes(Long sizes) {
+        this.sizes = sizes;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setUid(Long uid) {

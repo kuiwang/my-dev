@@ -17,17 +17,13 @@ import com.taobao.api.response.SimbaInsightWordsbaseGetResponse;
 public class SimbaInsightWordsbaseGetRequest implements
         TaobaoRequest<SimbaInsightWordsbaseGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结果过滤。PV：返回展现量；CLICK：返回点击量；AVGCPC：返回平均出价；COMPETITION ：返回竞争宝贝数;CTR
      * 点击率。filter可由,组合
      */
     private String filter;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
@@ -39,55 +35,47 @@ public class SimbaInsightWordsbaseGetRequest implements
      */
     private String time;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 查询词组，最大长度170
      */
     private String words;
 
-    public void setFilter(String filter) {
-        this.filter = filter;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(filter, "filter");
+        RequestCheckUtils.checkNotEmpty(time, "time");
+        RequestCheckUtils.checkNotEmpty(words, "words");
+        RequestCheckUtils.checkMaxListSize(words, 170, "words");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.wordsbase.get";
     }
 
     public String getFilter() {
         return this.filter;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    @Override
+    public Class<SimbaInsightWordsbaseGetResponse> getResponseClass() {
+        return SimbaInsightWordsbaseGetResponse.class;
     }
 
-    public String getTime() {
-        return this.time;
-    }
-
-    public void setWords(String words) {
-        this.words = words;
-    }
-
-    public String getWords() {
-        return this.words;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.wordsbase.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("filter", this.filter);
@@ -100,6 +88,20 @@ public class SimbaInsightWordsbaseGetRequest implements
         return txtParams;
     }
 
+    public String getTime() {
+        return this.time;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWords() {
+        return this.words;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -107,18 +109,24 @@ public class SimbaInsightWordsbaseGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightWordsbaseGetResponse> getResponseClass() {
-        return SimbaInsightWordsbaseGetResponse.class;
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(filter, "filter");
-        RequestCheckUtils.checkNotEmpty(time, "time");
-        RequestCheckUtils.checkNotEmpty(words, "words");
-        RequestCheckUtils.checkMaxListSize(words, 170, "words");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWords(String words) {
+        this.words = words;
     }
 }

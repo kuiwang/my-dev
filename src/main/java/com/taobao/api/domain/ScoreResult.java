@@ -115,124 +115,124 @@ public class ScoreResult extends TaobaoObject {
         return this.attitudeScore;
     }
 
-    public void setAttitudeScore(String attitudeScore) {
-        this.attitudeScore = attitudeScore;
-    }
-
     public String getAvgScore() {
         return this.avgScore;
-    }
-
-    public void setAvgScore(String avgScore) {
-        this.avgScore = avgScore;
     }
 
     public String getEasyuseScore() {
         return this.easyuseScore;
     }
 
-    public void setEasyuseScore(String easyuseScore) {
-        this.easyuseScore = easyuseScore;
-    }
-
     public Date getGmtCreate() {
         return this.gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getIsPay() {
         return this.isPay;
-    }
-
-    public void setIsPay(Long isPay) {
-        this.isPay = isPay;
     }
 
     public Long getIsValid() {
         return this.isValid;
     }
 
-    public void setIsValid(Long isValid) {
-        this.isValid = isValid;
-    }
-
     public String getItemCode() {
         return this.itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public String getMatchedScore() {
         return this.matchedScore;
-    }
-
-    public void setMatchedScore(String matchedScore) {
-        this.matchedScore = matchedScore;
     }
 
     public String getProfScore() {
         return this.profScore;
     }
 
-    public void setProfScore(String profScore) {
-        this.profScore = profScore;
-    }
-
     public String getRapidScore() {
         return this.rapidScore;
-    }
-
-    public void setRapidScore(String rapidScore) {
-        this.rapidScore = rapidScore;
     }
 
     public String getServiceCode() {
         return this.serviceCode;
     }
 
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
-    }
-
     public String getStabilityScore() {
         return this.stabilityScore;
-    }
-
-    public void setStabilityScore(String stabilityScore) {
-        this.stabilityScore = stabilityScore;
     }
 
     public String getSuggestion() {
         return this.suggestion;
     }
 
-    public void setSuggestion(String suggestion) {
-        this.suggestion = suggestion;
-    }
-
     public String getUserNick() {
         return this.userNick;
+    }
+
+    public void setAttitudeScore(String attitudeScore) {
+        this.attitudeScore = attitudeScore;
+    }
+
+    public void setAvgScore(String avgScore) {
+        this.avgScore = avgScore;
+    }
+
+    public void setEasyuseScore(String easyuseScore) {
+        this.easyuseScore = easyuseScore;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsPay(Long isPay) {
+        this.isPay = isPay;
+    }
+
+    public void setIsValid(Long isValid) {
+        this.isValid = isValid;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setMatchedScore(String matchedScore) {
+        this.matchedScore = matchedScore;
+    }
+
+    public void setProfScore(String profScore) {
+        this.profScore = profScore;
+    }
+
+    public void setRapidScore(String rapidScore) {
+        this.rapidScore = rapidScore;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
+    }
+
+    public void setStabilityScore(String stabilityScore) {
+        this.stabilityScore = stabilityScore;
+    }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
     }
 
     public void setUserNick(String userNick) {

@@ -30,20 +30,20 @@ public class WlbItemConsignmentPageGetResponse extends TaobaoResponse {
     @ApiField("wlb_consign_ment")
     private List<WlbConsignMent> wlbConsignMents;
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
     }
 
-    public void setWlbConsignMents(List<WlbConsignMent> wlbConsignMents) {
-        this.wlbConsignMents = wlbConsignMents;
-    }
-
     public List<WlbConsignMent> getWlbConsignMents() {
         return this.wlbConsignMents;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public void setWlbConsignMents(List<WlbConsignMent> wlbConsignMents) {
+        this.wlbConsignMents = wlbConsignMents;
     }
 
 }

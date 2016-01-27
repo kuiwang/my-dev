@@ -17,22 +17,30 @@ public class CrmShopvipCancelRequest implements TaobaoRequest<CrmShopvipCancelRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.crm.shopvip.cancel";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<CrmShopvipCancelResponse> getResponseClass() {
+        return CrmShopvipCancelResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         if (this.udfParams != null) {
@@ -41,6 +49,12 @@ public class CrmShopvipCancelRequest implements TaobaoRequest<CrmShopvipCancelRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -48,14 +62,8 @@ public class CrmShopvipCancelRequest implements TaobaoRequest<CrmShopvipCancelRe
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmShopvipCancelResponse> getResponseClass() {
-        return CrmShopvipCancelResponse.class;
-    }
-
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

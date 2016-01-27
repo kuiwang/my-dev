@@ -168,180 +168,180 @@ public class DealerOrder extends TaobaoObject {
         return this.alipayNo;
     }
 
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
-    }
-
     public Date getAppliedTime() {
         return this.appliedTime;
-    }
-
-    public void setAppliedTime(Date appliedTime) {
-        this.appliedTime = appliedTime;
     }
 
     public String getApplierNick() {
         return this.applierNick;
     }
 
-    public void setApplierNick(String applierNick) {
-        this.applierNick = applierNick;
-    }
-
     public Date getAuditTimeApplier() {
         return this.auditTimeApplier;
-    }
-
-    public void setAuditTimeApplier(Date auditTimeApplier) {
-        this.auditTimeApplier = auditTimeApplier;
     }
 
     public Date getAuditTimeSupplier() {
         return this.auditTimeSupplier;
     }
 
-    public void setAuditTimeSupplier(Date auditTimeSupplier) {
-        this.auditTimeSupplier = auditTimeSupplier;
-    }
-
     public String getCloseReason() {
         return this.closeReason;
-    }
-
-    public void setCloseReason(String closeReason) {
-        this.closeReason = closeReason;
     }
 
     public List<DealerOrderDetail> getDealerOrderDetails() {
         return this.dealerOrderDetails;
     }
 
-    public void setDealerOrderDetails(List<DealerOrderDetail> dealerOrderDetails) {
-        this.dealerOrderDetails = dealerOrderDetails;
-    }
-
     public Long getDealerOrderId() {
         return this.dealerOrderId;
-    }
-
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
     }
 
     public Long getDeliveredQuantityCount() {
         return this.deliveredQuantityCount;
     }
 
-    public void setDeliveredQuantityCount(Long deliveredQuantityCount) {
-        this.deliveredQuantityCount = deliveredQuantityCount;
-    }
-
     public String getLogisticsFee() {
         return this.logisticsFee;
-    }
-
-    public void setLogisticsFee(String logisticsFee) {
-        this.logisticsFee = logisticsFee;
     }
 
     public String getLogisticsType() {
         return this.logisticsType;
     }
 
-    public void setLogisticsType(String logisticsType) {
-        this.logisticsType = logisticsType;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public String getOrderStatus() {
         return this.orderStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public Date getPayTime() {
         return this.payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
     }
 
     public String getPayType() {
         return this.payType;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
-
     public Long getQuantityCount() {
         return this.quantityCount;
-    }
-
-    public void setQuantityCount(Long quantityCount) {
-        this.quantityCount = quantityCount;
     }
 
     public Receiver getReceiver() {
         return this.receiver;
     }
 
-    public void setReceiver(Receiver receiver) {
-        this.receiver = receiver;
-    }
-
     public String getRefuseReasonApplier() {
         return this.refuseReasonApplier;
-    }
-
-    public void setRefuseReasonApplier(String refuseReasonApplier) {
-        this.refuseReasonApplier = refuseReasonApplier;
     }
 
     public String getRefuseReasonSupplier() {
         return this.refuseReasonSupplier;
     }
 
-    public void setRefuseReasonSupplier(String refuseReasonSupplier) {
-        this.refuseReasonSupplier = refuseReasonSupplier;
-    }
-
     public String getSupplierMemo() {
         return this.supplierMemo;
-    }
-
-    public void setSupplierMemo(String supplierMemo) {
-        this.supplierMemo = supplierMemo;
     }
 
     public Long getSupplierMemoFlag() {
         return this.supplierMemoFlag;
     }
 
-    public void setSupplierMemoFlag(Long supplierMemoFlag) {
-        this.supplierMemoFlag = supplierMemoFlag;
-    }
-
     public String getSupplierNick() {
         return this.supplierNick;
     }
 
-    public void setSupplierNick(String supplierNick) {
-        this.supplierNick = supplierNick;
-    }
-
     public String getTotalPrice() {
         return this.totalPrice;
+    }
+
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
+    }
+
+    public void setAppliedTime(Date appliedTime) {
+        this.appliedTime = appliedTime;
+    }
+
+    public void setApplierNick(String applierNick) {
+        this.applierNick = applierNick;
+    }
+
+    public void setAuditTimeApplier(Date auditTimeApplier) {
+        this.auditTimeApplier = auditTimeApplier;
+    }
+
+    public void setAuditTimeSupplier(Date auditTimeSupplier) {
+        this.auditTimeSupplier = auditTimeSupplier;
+    }
+
+    public void setCloseReason(String closeReason) {
+        this.closeReason = closeReason;
+    }
+
+    public void setDealerOrderDetails(List<DealerOrderDetail> dealerOrderDetails) {
+        this.dealerOrderDetails = dealerOrderDetails;
+    }
+
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
+    }
+
+    public void setDeliveredQuantityCount(Long deliveredQuantityCount) {
+        this.deliveredQuantityCount = deliveredQuantityCount;
+    }
+
+    public void setLogisticsFee(String logisticsFee) {
+        this.logisticsFee = logisticsFee;
+    }
+
+    public void setLogisticsType(String logisticsType) {
+        this.logisticsType = logisticsType;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public void setQuantityCount(Long quantityCount) {
+        this.quantityCount = quantityCount;
+    }
+
+    public void setReceiver(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setRefuseReasonApplier(String refuseReasonApplier) {
+        this.refuseReasonApplier = refuseReasonApplier;
+    }
+
+    public void setRefuseReasonSupplier(String refuseReasonSupplier) {
+        this.refuseReasonSupplier = refuseReasonSupplier;
+    }
+
+    public void setSupplierMemo(String supplierMemo) {
+        this.supplierMemo = supplierMemo;
+    }
+
+    public void setSupplierMemoFlag(Long supplierMemoFlag) {
+        this.supplierMemoFlag = supplierMemoFlag;
+    }
+
+    public void setSupplierNick(String supplierNick) {
+        this.supplierNick = supplierNick;
     }
 
     public void setTotalPrice(String totalPrice) {

@@ -18,10 +18,6 @@ public class SkusQuantityUpdateRequest implements TaobaoRequest<SkusQuantityUpda
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品数字ID，必填参数
      */
@@ -40,56 +36,49 @@ public class SkusQuantityUpdateRequest implements TaobaoRequest<SkusQuantityUpda
      */
     private String skuidQuantities;
 
+    private Long timestamp;
+
     /**
      * 库存更新方式，可选。1为全量更新，2为增量更新。如果不填，默认为全量更新。当选择全量更新时，如果库存更新值传入的是负数，
      * 会出错并返回错误码；当选择增量更新时，如果库存更新值为负数且绝对值大于当前库存，则sku库存会设置为0.
      */
     private Long type;
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.skus.quantity.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNumIid() {
         return this.numIid;
     }
 
-    public void setOuteridQuantities(String outeridQuantities) {
-        this.outeridQuantities = outeridQuantities;
-    }
-
     public String getOuteridQuantities() {
         return this.outeridQuantities;
     }
 
-    public void setSkuidQuantities(String skuidQuantities) {
-        this.skuidQuantities = skuidQuantities;
+    @Override
+    public Class<SkusQuantityUpdateResponse> getResponseClass() {
+        return SkusQuantityUpdateResponse.class;
     }
 
     public String getSkuidQuantities() {
         return this.skuidQuantities;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.skus.quantity.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("num_iid", this.numIid);
@@ -102,6 +91,16 @@ public class SkusQuantityUpdateRequest implements TaobaoRequest<SkusQuantityUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -109,15 +108,24 @@ public class SkusQuantityUpdateRequest implements TaobaoRequest<SkusQuantityUpda
         this.udfParams.put(key, value);
     }
 
-    public Class<SkusQuantityUpdateResponse> getResponseClass() {
-        return SkusQuantityUpdateResponse.class;
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(numIid, "numIid");
+    public void setOuteridQuantities(String outeridQuantities) {
+        this.outeridQuantities = outeridQuantities;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setSkuidQuantities(String skuidQuantities) {
+        this.skuidQuantities = skuidQuantities;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

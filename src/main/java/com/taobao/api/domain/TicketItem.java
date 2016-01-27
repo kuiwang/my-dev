@@ -167,196 +167,196 @@ public class TicketItem extends TaobaoObject {
         return this.auctionPoint;
     }
 
-    public void setAuctionPoint(String auctionPoint) {
-        this.auctionPoint = auctionPoint;
-    }
-
     public String getAuctionStatus() {
         return this.auctionStatus;
-    }
-
-    public void setAuctionStatus(String auctionStatus) {
-        this.auctionStatus = auctionStatus;
     }
 
     public Long getCatId() {
         return this.catId;
     }
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getErrMsg() {
         return this.errMsg;
-    }
-
-    public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
     }
 
     public TicketEtc getEtc() {
         return this.etc;
     }
 
-    public void setEtc(TicketEtc etc) {
-        this.etc = etc;
-    }
-
     public Boolean getHaveInvoice() {
         return this.haveInvoice;
-    }
-
-    public void setHaveInvoice(Boolean haveInvoice) {
-        this.haveInvoice = haveInvoice;
     }
 
     public String getImage1() {
         return this.image1;
     }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
-    }
-
     public String getImage2() {
         return this.image2;
-    }
-
-    public void setImage2(String image2) {
-        this.image2 = image2;
     }
 
     public String getImage3() {
         return this.image3;
     }
 
-    public void setImage3(String image3) {
-        this.image3 = image3;
-    }
-
     public String getImage4() {
         return this.image4;
-    }
-
-    public void setImage4(String image4) {
-        this.image4 = image4;
     }
 
     public String getImage5() {
         return this.image5;
     }
 
-    public void setImage5(String image5) {
-        this.image5 = image5;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getListTime() {
         return this.listTime;
     }
 
-    public void setListTime(String listTime) {
-        this.listTime = listTime;
-    }
-
     public Long getPostageId() {
         return this.postageId;
-    }
-
-    public void setPostageId(Long postageId) {
-        this.postageId = postageId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Boolean getPromotedStatus() {
         return this.promotedStatus;
-    }
-
-    public void setPromotedStatus(Boolean promotedStatus) {
-        this.promotedStatus = promotedStatus;
     }
 
     public String getProv() {
         return this.prov;
     }
 
-    public void setProv(String prov) {
-        this.prov = prov;
-    }
-
     public String getShopCats() {
         return this.shopCats;
-    }
-
-    public void setShopCats(String shopCats) {
-        this.shopCats = shopCats;
     }
 
     public String getSkus() {
         return this.skus;
     }
 
-    public void setSkus(String skus) {
-        this.skus = skus;
-    }
-
     public Boolean getSubStockAtBuy() {
         return this.subStockAtBuy;
-    }
-
-    public void setSubStockAtBuy(Boolean subStockAtBuy) {
-        this.subStockAtBuy = subStockAtBuy;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getVideoId() {
         return this.videoId;
     }
 
-    public void setVideoId(Long videoId) {
-        this.videoId = videoId;
-    }
-
     public Boolean getVipPromoted() {
         return this.vipPromoted;
+    }
+
+    public void setAuctionPoint(String auctionPoint) {
+        this.auctionPoint = auctionPoint;
+    }
+
+    public void setAuctionStatus(String auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
+    public void setCatId(Long catId) {
+        this.catId = catId;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
+    public void setEtc(TicketEtc etc) {
+        this.etc = etc;
+    }
+
+    public void setHaveInvoice(Boolean haveInvoice) {
+        this.haveInvoice = haveInvoice;
+    }
+
+    public void setImage1(String image1) {
+        this.image1 = image1;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public void setImage5(String image5) {
+        this.image5 = image5;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setListTime(String listTime) {
+        this.listTime = listTime;
+    }
+
+    public void setPostageId(Long postageId) {
+        this.postageId = postageId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setPromotedStatus(Boolean promotedStatus) {
+        this.promotedStatus = promotedStatus;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public void setShopCats(String shopCats) {
+        this.shopCats = shopCats;
+    }
+
+    public void setSkus(String skus) {
+        this.skus = skus;
+    }
+
+    public void setSubStockAtBuy(Boolean subStockAtBuy) {
+        this.subStockAtBuy = subStockAtBuy;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
     }
 
     public void setVipPromoted(Boolean vipPromoted) {

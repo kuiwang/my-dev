@@ -16,50 +16,52 @@ import com.taobao.api.response.XhotelCityGetResponse;
  */
 public class XhotelCityGetRequest implements TaobaoRequest<XhotelCityGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分页读取的城市个数，最小值为1，最大值为200
      */
     private Long count;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 分页读取的开始下标,从0开始
      */
     private Long start;
 
-    public void setCount(Long count) {
-        this.count = count;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(count, "count");
+        RequestCheckUtils.checkNotEmpty(start, "start");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.xhotel.city.get";
     }
 
     public Long getCount() {
         return this.count;
     }
 
-    public void setStart(Long start) {
-        this.start = start;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<XhotelCityGetResponse> getResponseClass() {
+        return XhotelCityGetResponse.class;
     }
 
     public Long getStart() {
         return this.start;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.xhotel.city.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("count", this.count);
@@ -70,6 +72,12 @@ public class XhotelCityGetRequest implements TaobaoRequest<XhotelCityGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class XhotelCityGetRequest implements TaobaoRequest<XhotelCityGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<XhotelCityGetResponse> getResponseClass() {
-        return XhotelCityGetResponse.class;
+    public void setCount(Long count) {
+        this.count = count;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(count, "count");
-        RequestCheckUtils.checkNotEmpty(start, "start");
+    public void setStart(Long start) {
+        this.start = start;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

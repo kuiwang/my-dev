@@ -25,20 +25,20 @@ public class WeitaoFeedRemainedResponse extends TaobaoResponse {
     @ApiField("send_count")
     private Long sendCount;
 
-    public void setRemainedCount(Long remainedCount) {
-        this.remainedCount = remainedCount;
-    }
-
     public Long getRemainedCount() {
         return this.remainedCount;
     }
 
-    public void setSendCount(Long sendCount) {
-        this.sendCount = sendCount;
-    }
-
     public Long getSendCount() {
         return this.sendCount;
+    }
+
+    public void setRemainedCount(Long remainedCount) {
+        this.remainedCount = remainedCount;
+    }
+
+    public void setSendCount(Long sendCount) {
+        this.sendCount = sendCount;
     }
 
 }

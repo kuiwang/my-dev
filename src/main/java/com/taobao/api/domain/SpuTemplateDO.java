@@ -72,60 +72,60 @@ public class SpuTemplateDO extends TaobaoObject {
         return this.affectProperties;
     }
 
-    public void setAffectProperties(List<Long> affectProperties) {
-        this.affectProperties = affectProperties;
-    }
-
     public Long getCategoryId() {
         return this.categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Long getCommodityId() {
         return this.commodityId;
     }
 
-    public void setCommodityId(Long commodityId) {
-        this.commodityId = commodityId;
-    }
-
     public List<Long> getFilterProperties() {
         return this.filterProperties;
-    }
-
-    public void setFilterProperties(List<Long> filterProperties) {
-        this.filterProperties = filterProperties;
     }
 
     public List<Long> getKeyProperties() {
         return this.keyProperties;
     }
 
-    public void setKeyProperties(List<Long> keyProperties) {
-        this.keyProperties = keyProperties;
-    }
-
     public String getPropFeatures() {
         return this.propFeatures;
-    }
-
-    public void setPropFeatures(String propFeatures) {
-        this.propFeatures = propFeatures;
     }
 
     public String getPropNameStr() {
         return this.propNameStr;
     }
 
-    public void setPropNameStr(String propNameStr) {
-        this.propNameStr = propNameStr;
-    }
-
     public Long getTemplateId() {
         return this.templateId;
+    }
+
+    public void setAffectProperties(List<Long> affectProperties) {
+        this.affectProperties = affectProperties;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCommodityId(Long commodityId) {
+        this.commodityId = commodityId;
+    }
+
+    public void setFilterProperties(List<Long> filterProperties) {
+        this.filterProperties = filterProperties;
+    }
+
+    public void setKeyProperties(List<Long> keyProperties) {
+        this.keyProperties = keyProperties;
+    }
+
+    public void setPropFeatures(String propFeatures) {
+        this.propFeatures = propFeatures;
+    }
+
+    public void setPropNameStr(String propNameStr) {
+        this.propNameStr = propNameStr;
     }
 
     public void setTemplateId(Long templateId) {

@@ -18,35 +18,40 @@ public class UmpMbbGetbyidRequest implements TaobaoRequest<UmpMbbGetbyidResponse
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 积木块的id
      */
     private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(id, "id");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.mbb.getbyid";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<UmpMbbGetbyidResponse> getResponseClass() {
+        return UmpMbbGetbyidResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ump.mbb.getbyid";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("id", this.id);
@@ -56,6 +61,12 @@ public class UmpMbbGetbyidRequest implements TaobaoRequest<UmpMbbGetbyidResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class UmpMbbGetbyidRequest implements TaobaoRequest<UmpMbbGetbyidResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpMbbGetbyidResponse> getResponseClass() {
-        return UmpMbbGetbyidResponse.class;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(id, "id");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

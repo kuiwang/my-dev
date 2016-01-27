@@ -55,47 +55,21 @@ public class StreamHandlerChain {
     }
 
     /**
-     * Next handshake upstream handler.
+     * Adds the.
      *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @throws WebSocketException the web socket exception
+     * @param next the next
      */
-    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer)
-            throws WebSocketException {
-        if (prev != null) {
-            prev.streamHandler.nextHandshakeUpstreamHandler(ws, buffer, prev);
-        }
+    public void add(StreamHandlerChain next) {
+        this.next = next;
+        next.prev = this;
     }
 
     /**
-     * Next handshake downstream handler.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @throws WebSocketException the web socket exception
+     * Clear.
      */
-    public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer)
-            throws WebSocketException {
-        if (next != null) {
-            next.streamHandler.nextHandshakeDownstreamHandler(ws, buffer, next);
-        }
-    }
-
-    /**
-     * Next upstream handler.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @param frame the frame
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
-     */
-    public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame)
-            throws WebSocketException {
-        if (prev != null) {
-            prev.streamHandler.nextUpstreamHandler(ws, buffer, frame, prev);
-        }
+    public void clear() {
+        this.next.clear();
+        this.prev = null;
     }
 
     /**
@@ -115,20 +89,46 @@ public class StreamHandlerChain {
     }
 
     /**
-     * Adds the.
+     * Next handshake downstream handler.
      *
-     * @param next the next
+     * @param ws the ws
+     * @param buffer the buffer
+     * @throws WebSocketException the web socket exception
      */
-    public void add(StreamHandlerChain next) {
-        this.next = next;
-        next.prev = this;
+    public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer)
+            throws WebSocketException {
+        if (next != null) {
+            next.streamHandler.nextHandshakeDownstreamHandler(ws, buffer, next);
+        }
     }
 
     /**
-     * Clear.
+     * Next handshake upstream handler.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @throws WebSocketException the web socket exception
      */
-    public void clear() {
-        this.next.clear();
-        this.prev = null;
+    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer)
+            throws WebSocketException {
+        if (prev != null) {
+            prev.streamHandler.nextHandshakeUpstreamHandler(ws, buffer, prev);
+        }
+    }
+
+    /**
+     * Next upstream handler.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @param frame the frame
+     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
+     *         the web socket exception
+     */
+    public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame)
+            throws WebSocketException {
+        if (prev != null) {
+            prev.streamHandler.nextUpstreamHandler(ws, buffer, frame, prev);
+        }
     }
 }

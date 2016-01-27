@@ -16,16 +16,12 @@ import com.taobao.api.response.FavoriteAddResponse;
  */
 public class FavoriteAddRequest implements TaobaoRequest<FavoriteAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * ITEM表示宝贝，SHOP表示店铺，只能传入这两者之一
      */
     private String collectType;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 如果收藏的是商品，就传num_iid，如果是店铺，就传入sid<br />
@@ -39,42 +35,46 @@ public class FavoriteAddRequest implements TaobaoRequest<FavoriteAddResponse> {
      */
     private Boolean shared;
 
-    public void setCollectType(String collectType) {
-        this.collectType = collectType;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(collectType, "collectType");
+        RequestCheckUtils.checkNotEmpty(itemNumid, "itemNumid");
+        RequestCheckUtils.checkMaxValue(itemNumid, 9223372036854775807L, "itemNumid");
+        RequestCheckUtils.checkMinValue(itemNumid, 1L, "itemNumid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.favorite.add";
     }
 
     public String getCollectType() {
         return this.collectType;
     }
 
-    public void setItemNumid(Long itemNumid) {
-        this.itemNumid = itemNumid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemNumid() {
         return this.itemNumid;
     }
 
-    public void setShared(Boolean shared) {
-        this.shared = shared;
+    @Override
+    public Class<FavoriteAddResponse> getResponseClass() {
+        return FavoriteAddResponse.class;
     }
 
     public Boolean getShared() {
         return this.shared;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.favorite.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("collect_type", this.collectType);
@@ -86,6 +86,12 @@ public class FavoriteAddRequest implements TaobaoRequest<FavoriteAddResponse> {
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,18 +99,20 @@ public class FavoriteAddRequest implements TaobaoRequest<FavoriteAddResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<FavoriteAddResponse> getResponseClass() {
-        return FavoriteAddResponse.class;
+    public void setCollectType(String collectType) {
+        this.collectType = collectType;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(collectType, "collectType");
-        RequestCheckUtils.checkNotEmpty(itemNumid, "itemNumid");
-        RequestCheckUtils.checkMaxValue(itemNumid, 9223372036854775807L, "itemNumid");
-        RequestCheckUtils.checkMinValue(itemNumid, 1L, "itemNumid");
+    public void setItemNumid(Long itemNumid) {
+        this.itemNumid = itemNumid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setShared(Boolean shared) {
+        this.shared = shared;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

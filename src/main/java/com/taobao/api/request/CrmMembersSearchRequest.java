@@ -17,12 +17,6 @@ import com.taobao.api.response.CrmMembersSearchResponse;
  */
 public class CrmMembersSearchRequest implements TaobaoRequest<CrmMembersSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称<br />
      * 支持最大长度为：1000<br />
@@ -56,6 +50,8 @@ public class CrmMembersSearchRequest implements TaobaoRequest<CrmMembersSearchRe
      * 支持的最大列表长度为：19
      */
     private Long groupId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 最大平均客单价，单位为元. 请注意:该字段从2014-4-23之后不再支持作为搜索条件检索.
@@ -154,178 +150,128 @@ public class CrmMembersSearchRequest implements TaobaoRequest<CrmMembersSearchRe
      */
     private Long relationSource;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(buyerNick, 1000, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
+        RequestCheckUtils.checkMaxValue(currentPage, 1000L, "currentPage");
+        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
+        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
+        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
+        RequestCheckUtils.checkMinValue(maxCloseTradeNum, 0L, "maxCloseTradeNum");
+        RequestCheckUtils.checkMinValue(maxItemNum, 0L, "maxItemNum");
+        RequestCheckUtils.checkMinValue(maxTradeCount, 0L, "maxTradeCount");
+        RequestCheckUtils.checkMinValue(minCloseTradeNum, 0L, "minCloseTradeNum");
+        RequestCheckUtils.checkMinValue(minItemNum, 0L, "minItemNum");
+        RequestCheckUtils.checkMinValue(minTradeCount, 0L, "minTradeCount");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkMaxValue(province, 1000000L, "province");
+        RequestCheckUtils.checkMinValue(province, 1L, "province");
+        RequestCheckUtils.checkMaxValue(relationSource, 3L, "relationSource");
+        RequestCheckUtils.checkMinValue(relationSource, 1L, "relationSource");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.members.search";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
     }
 
     public Long getCurrentPage() {
         return this.currentPage;
     }
 
-    public void setGrade(Long grade) {
-        this.grade = grade;
-    }
-
     public Long getGrade() {
         return this.grade;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public Long getGroupId() {
         return this.groupId;
     }
 
-    public void setMaxAvgPrice(String maxAvgPrice) {
-        this.maxAvgPrice = maxAvgPrice;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMaxAvgPrice() {
         return this.maxAvgPrice;
     }
 
-    public void setMaxCloseTradeNum(Long maxCloseTradeNum) {
-        this.maxCloseTradeNum = maxCloseTradeNum;
-    }
-
     public Long getMaxCloseTradeNum() {
         return this.maxCloseTradeNum;
-    }
-
-    public void setMaxItemNum(Long maxItemNum) {
-        this.maxItemNum = maxItemNum;
     }
 
     public Long getMaxItemNum() {
         return this.maxItemNum;
     }
 
-    public void setMaxLastTradeTime(Date maxLastTradeTime) {
-        this.maxLastTradeTime = maxLastTradeTime;
-    }
-
     public Date getMaxLastTradeTime() {
         return this.maxLastTradeTime;
-    }
-
-    public void setMaxTradeAmount(String maxTradeAmount) {
-        this.maxTradeAmount = maxTradeAmount;
     }
 
     public String getMaxTradeAmount() {
         return this.maxTradeAmount;
     }
 
-    public void setMaxTradeCount(Long maxTradeCount) {
-        this.maxTradeCount = maxTradeCount;
-    }
-
     public Long getMaxTradeCount() {
         return this.maxTradeCount;
-    }
-
-    public void setMinAvgPrice(String minAvgPrice) {
-        this.minAvgPrice = minAvgPrice;
     }
 
     public String getMinAvgPrice() {
         return this.minAvgPrice;
     }
 
-    public void setMinCloseTradeNum(Long minCloseTradeNum) {
-        this.minCloseTradeNum = minCloseTradeNum;
-    }
-
     public Long getMinCloseTradeNum() {
         return this.minCloseTradeNum;
-    }
-
-    public void setMinItemNum(Long minItemNum) {
-        this.minItemNum = minItemNum;
     }
 
     public Long getMinItemNum() {
         return this.minItemNum;
     }
 
-    public void setMinLastTradeTime(Date minLastTradeTime) {
-        this.minLastTradeTime = minLastTradeTime;
-    }
-
     public Date getMinLastTradeTime() {
         return this.minLastTradeTime;
-    }
-
-    public void setMinTradeAmount(String minTradeAmount) {
-        this.minTradeAmount = minTradeAmount;
     }
 
     public String getMinTradeAmount() {
         return this.minTradeAmount;
     }
 
-    public void setMinTradeCount(Long minTradeCount) {
-        this.minTradeCount = minTradeCount;
-    }
-
     public Long getMinTradeCount() {
         return this.minTradeCount;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setProvince(Long province) {
-        this.province = province;
-    }
-
     public Long getProvince() {
         return this.province;
-    }
-
-    public void setRelationSource(Long relationSource) {
-        this.relationSource = relationSource;
     }
 
     public Long getRelationSource() {
         return this.relationSource;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmMembersSearchResponse> getResponseClass() {
+        return CrmMembersSearchResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.members.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -354,6 +300,12 @@ public class CrmMembersSearchRequest implements TaobaoRequest<CrmMembersSearchRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -361,32 +313,88 @@ public class CrmMembersSearchRequest implements TaobaoRequest<CrmMembersSearchRe
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMembersSearchResponse> getResponseClass() {
-        return CrmMembersSearchResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(buyerNick, 1000, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
-        RequestCheckUtils.checkMaxValue(currentPage, 1000L, "currentPage");
-        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
-        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
-        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
-        RequestCheckUtils.checkMinValue(maxCloseTradeNum, 0L, "maxCloseTradeNum");
-        RequestCheckUtils.checkMinValue(maxItemNum, 0L, "maxItemNum");
-        RequestCheckUtils.checkMinValue(maxTradeCount, 0L, "maxTradeCount");
-        RequestCheckUtils.checkMinValue(minCloseTradeNum, 0L, "minCloseTradeNum");
-        RequestCheckUtils.checkMinValue(minItemNum, 0L, "minItemNum");
-        RequestCheckUtils.checkMinValue(minTradeCount, 0L, "minTradeCount");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkMaxValue(province, 1000000L, "province");
-        RequestCheckUtils.checkMinValue(province, 1L, "province");
-        RequestCheckUtils.checkMaxValue(relationSource, 3L, "relationSource");
-        RequestCheckUtils.checkMinValue(relationSource, 1L, "relationSource");
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setMaxAvgPrice(String maxAvgPrice) {
+        this.maxAvgPrice = maxAvgPrice;
+    }
+
+    public void setMaxCloseTradeNum(Long maxCloseTradeNum) {
+        this.maxCloseTradeNum = maxCloseTradeNum;
+    }
+
+    public void setMaxItemNum(Long maxItemNum) {
+        this.maxItemNum = maxItemNum;
+    }
+
+    public void setMaxLastTradeTime(Date maxLastTradeTime) {
+        this.maxLastTradeTime = maxLastTradeTime;
+    }
+
+    public void setMaxTradeAmount(String maxTradeAmount) {
+        this.maxTradeAmount = maxTradeAmount;
+    }
+
+    public void setMaxTradeCount(Long maxTradeCount) {
+        this.maxTradeCount = maxTradeCount;
+    }
+
+    public void setMinAvgPrice(String minAvgPrice) {
+        this.minAvgPrice = minAvgPrice;
+    }
+
+    public void setMinCloseTradeNum(Long minCloseTradeNum) {
+        this.minCloseTradeNum = minCloseTradeNum;
+    }
+
+    public void setMinItemNum(Long minItemNum) {
+        this.minItemNum = minItemNum;
+    }
+
+    public void setMinLastTradeTime(Date minLastTradeTime) {
+        this.minLastTradeTime = minLastTradeTime;
+    }
+
+    public void setMinTradeAmount(String minTradeAmount) {
+        this.minTradeAmount = minTradeAmount;
+    }
+
+    public void setMinTradeCount(Long minTradeCount) {
+        this.minTradeCount = minTradeCount;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setProvince(Long province) {
+        this.province = province;
+    }
+
+    public void setRelationSource(Long relationSource) {
+        this.relationSource = relationSource;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -30,20 +30,20 @@ public class FenxiaoGradesGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setFenxiaoGrades(List<FenxiaoGrade> fenxiaoGrades) {
-        this.fenxiaoGrades = fenxiaoGrades;
-    }
-
     public List<FenxiaoGrade> getFenxiaoGrades() {
         return this.fenxiaoGrades;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setFenxiaoGrades(List<FenxiaoGrade> fenxiaoGrades) {
+        this.fenxiaoGrades = fenxiaoGrades;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

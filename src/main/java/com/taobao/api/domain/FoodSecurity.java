@@ -109,116 +109,116 @@ public class FoodSecurity extends TaobaoObject {
         return this.contact;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public String getDesignCode() {
         return this.designCode;
-    }
-
-    public void setDesignCode(String designCode) {
-        this.designCode = designCode;
     }
 
     public String getFactory() {
         return this.factory;
     }
 
-    public void setFactory(String factory) {
-        this.factory = factory;
-    }
-
     public String getFactorySite() {
         return this.factorySite;
-    }
-
-    public void setFactorySite(String factorySite) {
-        this.factorySite = factorySite;
     }
 
     public String getFoodAdditive() {
         return this.foodAdditive;
     }
 
-    public void setFoodAdditive(String foodAdditive) {
-        this.foodAdditive = foodAdditive;
-    }
-
     public String getHealthProductNo() {
         return this.healthProductNo;
-    }
-
-    public void setHealthProductNo(String healthProductNo) {
-        this.healthProductNo = healthProductNo;
     }
 
     public String getMix() {
         return this.mix;
     }
 
-    public void setMix(String mix) {
-        this.mix = mix;
-    }
-
     public String getPeriod() {
         return this.period;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
     }
 
     public String getPlanStorage() {
         return this.planStorage;
     }
 
-    public void setPlanStorage(String planStorage) {
-        this.planStorage = planStorage;
-    }
-
     public String getPrdLicenseNo() {
         return this.prdLicenseNo;
-    }
-
-    public void setPrdLicenseNo(String prdLicenseNo) {
-        this.prdLicenseNo = prdLicenseNo;
     }
 
     public String getProductDateEnd() {
         return this.productDateEnd;
     }
 
-    public void setProductDateEnd(String productDateEnd) {
-        this.productDateEnd = productDateEnd;
-    }
-
     public String getProductDateStart() {
         return this.productDateStart;
-    }
-
-    public void setProductDateStart(String productDateStart) {
-        this.productDateStart = productDateStart;
     }
 
     public String getStockDateEnd() {
         return this.stockDateEnd;
     }
 
-    public void setStockDateEnd(String stockDateEnd) {
-        this.stockDateEnd = stockDateEnd;
-    }
-
     public String getStockDateStart() {
         return this.stockDateStart;
     }
 
-    public void setStockDateStart(String stockDateStart) {
-        this.stockDateStart = stockDateStart;
-    }
-
     public String getSupplier() {
         return this.supplier;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setDesignCode(String designCode) {
+        this.designCode = designCode;
+    }
+
+    public void setFactory(String factory) {
+        this.factory = factory;
+    }
+
+    public void setFactorySite(String factorySite) {
+        this.factorySite = factorySite;
+    }
+
+    public void setFoodAdditive(String foodAdditive) {
+        this.foodAdditive = foodAdditive;
+    }
+
+    public void setHealthProductNo(String healthProductNo) {
+        this.healthProductNo = healthProductNo;
+    }
+
+    public void setMix(String mix) {
+        this.mix = mix;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public void setPlanStorage(String planStorage) {
+        this.planStorage = planStorage;
+    }
+
+    public void setPrdLicenseNo(String prdLicenseNo) {
+        this.prdLicenseNo = prdLicenseNo;
+    }
+
+    public void setProductDateEnd(String productDateEnd) {
+        this.productDateEnd = productDateEnd;
+    }
+
+    public void setProductDateStart(String productDateStart) {
+        this.productDateStart = productDateStart;
+    }
+
+    public void setStockDateEnd(String stockDateEnd) {
+        this.stockDateEnd = stockDateEnd;
+    }
+
+    public void setStockDateStart(String stockDateStart) {
+        this.stockDateStart = stockDateStart;
     }
 
     public void setSupplier(String supplier) {

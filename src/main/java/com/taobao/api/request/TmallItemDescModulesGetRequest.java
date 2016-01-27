@@ -17,12 +17,6 @@ import com.taobao.api.response.TmallItemDescModulesGetResponse;
 public class TmallItemDescModulesGetRequest implements
         TaobaoRequest<TmallItemDescModulesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 淘宝后台发布商品的叶子类目id，可通过taobao.itemcats.get查到。api
      * 访问地址http://api.taobao.com
@@ -30,39 +24,43 @@ public class TmallItemDescModulesGetRequest implements
      */
     private Long catId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 商家主帐号id
      */
     private Long usrId;
 
-    public void setCatId(Long catId) {
-        this.catId = catId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(catId, "catId");
+        RequestCheckUtils.checkNotEmpty(usrId, "usrId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "tmall.item.desc.modules.get";
     }
 
     public Long getCatId() {
         return this.catId;
     }
 
-    public void setUsrId(Long usrId) {
-        this.usrId = usrId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getUsrId() {
-        return this.usrId;
+    @Override
+    public Class<TmallItemDescModulesGetResponse> getResponseClass() {
+        return TmallItemDescModulesGetResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "tmall.item.desc.modules.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cat_id", this.catId);
@@ -73,6 +71,16 @@ public class TmallItemDescModulesGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getUsrId() {
+        return this.usrId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,16 +88,16 @@ public class TmallItemDescModulesGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<TmallItemDescModulesGetResponse> getResponseClass() {
-        return TmallItemDescModulesGetResponse.class;
+    public void setCatId(Long catId) {
+        this.catId = catId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(catId, "catId");
-        RequestCheckUtils.checkNotEmpty(usrId, "usrId");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setUsrId(Long usrId) {
+        this.usrId = usrId;
     }
 }

@@ -18,6 +18,55 @@ import com.taobao.top.link.endpoint.EndpointContext;
  */
 public class DuplicateRemoverTmcHandler extends TmcHandler {
 
+    private class MsgKeySelector implements KeySelector {
+
+        private String getId(Message message, String field) {
+            JSONValidatingReader reader = new JSONValidatingReader();
+            message.setContentMap((Map<?, ?>) reader.read(message.getContent()));
+            Object id = message.getContentMap().get(field);
+            return String.valueOf(id);
+        }
+
+        @Override
+        public String selectKey(Message message) {
+            String topic = message.getTopic();
+            String key = null;
+            if (topic.startsWith("taobao_trade") || topic.equals("taobao_datapush_SynTrade")) {
+                key = "trade_" + this.getId(message, "tid");
+            } else if (topic.startsWith("taobao_item") || topic.equals("taobao_datapush_SynItem")) {
+                key = "item_" + this.getId(message, "num_iid");
+            } else if (topic.startsWith("taobao_refund")) {
+                key = "refund_" + this.getId(message, "refund_id");
+            } else {
+                key = null;
+            }
+            return key;
+        }
+    }
+
+    private class MsgScheduleTask extends TimerTask {
+
+        @Override
+        public void run() {
+            long beginTime = System.currentTimeMillis();
+            long leftNum = curProduceNum.get();
+            while (hasConsumeNum.get() < leftNum) {
+                if ((System.currentTimeMillis() - beginTime) > TIMER_PERIOD) {
+                    break; // 中断提前，避免任务执行超时
+                }
+                String key = null;
+                try {
+                    key = msgKeyQueue.take();
+                    handleMessage(msgMap.remove(key), false);
+                    hasConsumeNum.incrementAndGet();
+                } catch (Exception e) {
+                    log.error("handle message fail: %s" + key, e);
+                }
+            }
+            curProduceNum.set(totalMessageNum.get());
+        }
+    }
+
     private static final Log log = LogFactory.getLog(DuplicateRemoverTmcHandler.class);
 
     private static final Log statlog = LogFactory.getLog(DuplicateRemoverTmcHandler.class
@@ -27,19 +76,19 @@ public class DuplicateRemoverTmcHandler extends TmcHandler {
 
     private static final long TIMER_PERIOD = 500L; // 缓冲间隔
 
-    private AtomicLong totalMessageNum = new AtomicLong(0L);
-
     private AtomicLong curProduceNum = new AtomicLong(0L);
 
     private AtomicLong hasConsumeNum = new AtomicLong(0L);
 
-    private ConcurrentHashMap<String, Message> msgMap;
+    private KeySelector keySelector;
 
     private ArrayBlockingQueue<String> msgKeyQueue;
 
-    private KeySelector keySelector;
+    private ConcurrentHashMap<String, Message> msgMap;
 
     private Timer timer;
+
+    private AtomicLong totalMessageNum = new AtomicLong(0L);
 
     public DuplicateRemoverTmcHandler(TmcClient tmcClient) {
         super(tmcClient);
@@ -54,6 +103,26 @@ public class DuplicateRemoverTmcHandler extends TmcHandler {
         this.timer.schedule(new MsgScheduleTask(), TIMER_DELAY, TIMER_PERIOD);
     }
 
+    @Override
+    public void close() {
+        super.close();
+        if (this.timer != null) {
+            this.timer.cancel();
+            this.timer = null;
+        }
+    }
+
+    private void log(String key, Long msgId) {
+        StringBuilder buf = new StringBuilder();
+        buf.append(System.currentTimeMillis()).append(","); // 时间
+        buf.append(tmcClient.getAppKey()).append(","); // AppKey
+        buf.append(tmcClient.getGroupName()).append(","); // GroupName
+        buf.append(msgId).append(","); // 消息ID
+        buf.append(key); // 业务ID
+        statlog.fatal(buf.toString());
+    }
+
+    @Override
     public void onMessage(EndpointContext context) throws Exception {
         final Map<String, Object> rawMsg = context.getMessage();
         if (log.isDebugEnabled()) {
@@ -72,24 +141,6 @@ public class DuplicateRemoverTmcHandler extends TmcHandler {
         }
     }
 
-    private void log(String key, Long msgId) {
-        StringBuilder buf = new StringBuilder();
-        buf.append(System.currentTimeMillis()).append(","); // 时间
-        buf.append(tmcClient.getAppKey()).append(","); // AppKey
-        buf.append(tmcClient.getGroupName()).append(","); // GroupName
-        buf.append(msgId).append(","); // 消息ID
-        buf.append(key); // 业务ID
-        statlog.fatal(buf.toString());
-    }
-
-    public void close() {
-        super.close();
-        if (this.timer != null) {
-            this.timer.cancel();
-            this.timer = null;
-        }
-    }
-
     private boolean put(String key, Message message) throws InterruptedException {
         Object obj = msgMap.putIfAbsent(key, message);
         if (obj == null) {
@@ -98,53 +149,6 @@ public class DuplicateRemoverTmcHandler extends TmcHandler {
             return true;
         } else {
             return false;
-        }
-    }
-
-    private class MsgKeySelector implements KeySelector {
-
-        public String selectKey(Message message) {
-            String topic = message.getTopic();
-            String key = null;
-            if (topic.startsWith("taobao_trade") || topic.equals("taobao_datapush_SynTrade")) {
-                key = "trade_" + this.getId(message, "tid");
-            } else if (topic.startsWith("taobao_item") || topic.equals("taobao_datapush_SynItem")) {
-                key = "item_" + this.getId(message, "num_iid");
-            } else if (topic.startsWith("taobao_refund")) {
-                key = "refund_" + this.getId(message, "refund_id");
-            } else {
-                key = null;
-            }
-            return key;
-        }
-
-        private String getId(Message message, String field) {
-            JSONValidatingReader reader = new JSONValidatingReader();
-            message.setContentMap((Map<?, ?>) reader.read(message.getContent()));
-            Object id = message.getContentMap().get(field);
-            return String.valueOf(id);
-        }
-    }
-
-    private class MsgScheduleTask extends TimerTask {
-
-        public void run() {
-            long beginTime = System.currentTimeMillis();
-            long leftNum = curProduceNum.get();
-            while (hasConsumeNum.get() < leftNum) {
-                if ((System.currentTimeMillis() - beginTime) > TIMER_PERIOD) {
-                    break; // 中断提前，避免任务执行超时
-                }
-                String key = null;
-                try {
-                    key = msgKeyQueue.take();
-                    handleMessage(msgMap.remove(key), false);
-                    hasConsumeNum.incrementAndGet();
-                } catch (Exception e) {
-                    log.error("handle message fail: %s" + key, e);
-                }
-            }
-            curProduceNum.set(totalMessageNum.get());
         }
     }
 

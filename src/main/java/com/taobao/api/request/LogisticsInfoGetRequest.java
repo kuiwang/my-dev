@@ -16,12 +16,6 @@ import com.taobao.api.response.LogisticsInfoGetResponse;
  */
 public class LogisticsInfoGetRequest implements TaobaoRequest<LogisticsInfoGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 平台异常码
      */
@@ -38,6 +32,8 @@ public class LogisticsInfoGetRequest implements TaobaoRequest<LogisticsInfoGetRe
      */
     private String cpCode;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 是否为电子面单
      */
@@ -53,66 +49,55 @@ public class LogisticsInfoGetRequest implements TaobaoRequest<LogisticsInfoGetRe
      */
     private String tid;
 
-    public void setAbCnCode(Long abCnCode) {
-        this.abCnCode = abCnCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(abCnCode, "abCnCode");
+        RequestCheckUtils.checkNotEmpty(abCpCode, "abCpCode");
+        RequestCheckUtils.checkNotEmpty(cpCode, "cpCode");
+        RequestCheckUtils.checkNotEmpty(isWaybill, "isWaybill");
+        RequestCheckUtils.checkNotEmpty(mailNo, "mailNo");
     }
 
     public Long getAbCnCode() {
         return this.abCnCode;
     }
 
-    public void setAbCpCode(String abCpCode) {
-        this.abCpCode = abCpCode;
-    }
-
     public String getAbCpCode() {
         return this.abCpCode;
     }
 
-    public void setCpCode(String cpCode) {
-        this.cpCode = cpCode;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.info.get";
     }
 
     public String getCpCode() {
         return this.cpCode;
     }
 
-    public void setIsWaybill(Boolean isWaybill) {
-        this.isWaybill = isWaybill;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsWaybill() {
         return this.isWaybill;
     }
 
-    public void setMailNo(String mailNo) {
-        this.mailNo = mailNo;
-    }
-
     public String getMailNo() {
         return this.mailNo;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
+    @Override
+    public Class<LogisticsInfoGetResponse> getResponseClass() {
+        return LogisticsInfoGetResponse.class;
     }
 
-    public String getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.info.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ab_cn_code", this.abCnCode);
@@ -127,6 +112,16 @@ public class LogisticsInfoGetRequest implements TaobaoRequest<LogisticsInfoGetRe
         return txtParams;
     }
 
+    public String getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,19 +129,32 @@ public class LogisticsInfoGetRequest implements TaobaoRequest<LogisticsInfoGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsInfoGetResponse> getResponseClass() {
-        return LogisticsInfoGetResponse.class;
+    public void setAbCnCode(Long abCnCode) {
+        this.abCnCode = abCnCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(abCnCode, "abCnCode");
-        RequestCheckUtils.checkNotEmpty(abCpCode, "abCpCode");
-        RequestCheckUtils.checkNotEmpty(cpCode, "cpCode");
-        RequestCheckUtils.checkNotEmpty(isWaybill, "isWaybill");
-        RequestCheckUtils.checkNotEmpty(mailNo, "mailNo");
+    public void setAbCpCode(String abCpCode) {
+        this.abCpCode = abCpCode;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCpCode(String cpCode) {
+        this.cpCode = cpCode;
+    }
+
+    public void setIsWaybill(Boolean isWaybill) {
+        this.isWaybill = isWaybill;
+    }
+
+    public void setMailNo(String mailNo) {
+        this.mailNo = mailNo;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

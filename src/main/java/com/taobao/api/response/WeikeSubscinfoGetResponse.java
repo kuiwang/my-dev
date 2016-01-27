@@ -20,12 +20,12 @@ public class WeikeSubscinfoGetResponse extends TaobaoResponse {
     @ApiField("result")
     private SubscInfoWrapper result;
 
-    public void setResult(SubscInfoWrapper result) {
-        this.result = result;
-    }
-
     public SubscInfoWrapper getResult() {
         return this.result;
+    }
+
+    public void setResult(SubscInfoWrapper result) {
+        this.result = result;
     }
 
 }

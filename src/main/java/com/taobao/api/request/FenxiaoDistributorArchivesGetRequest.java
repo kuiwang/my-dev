@@ -17,37 +17,42 @@ import com.taobao.api.response.FenxiaoDistributorArchivesGetResponse;
 public class FenxiaoDistributorArchivesGetRequest implements
         TaobaoRequest<FenxiaoDistributorArchivesGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销商淘宝店主nick
      */
     private String distributorUserNick;
 
-    public void setDistributorUserNick(String distributorUserNick) {
-        this.distributorUserNick = distributorUserNick;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(distributorUserNick, "distributorUserNick");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.distributor.archives.get";
     }
 
     public String getDistributorUserNick() {
         return this.distributorUserNick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<FenxiaoDistributorArchivesGetResponse> getResponseClass() {
+        return FenxiaoDistributorArchivesGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.fenxiao.distributor.archives.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("distributor_user_nick", this.distributorUserNick);
@@ -57,6 +62,12 @@ public class FenxiaoDistributorArchivesGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class FenxiaoDistributorArchivesGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDistributorArchivesGetResponse> getResponseClass() {
-        return FenxiaoDistributorArchivesGetResponse.class;
+    public void setDistributorUserNick(String distributorUserNick) {
+        this.distributorUserNick = distributorUserNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(distributorUserNick, "distributorUserNick");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

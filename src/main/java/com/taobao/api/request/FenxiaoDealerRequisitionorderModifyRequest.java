@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderModifyResponse;
 public class FenxiaoDealerRequisitionorderModifyRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderModifyResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 经销采购单编号
      */
@@ -43,63 +37,61 @@ public class FenxiaoDealerRequisitionorderModifyRequest implements
      */
     private String detailIdQuantities;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 新邮费（单位：分，示例值1005表示10.05元）。必须大于等于0。自提方式不可修改邮费。不提交该参数表示不修改邮费。
      */
     private Long newPostFee;
 
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
+        RequestCheckUtils.checkMaxListSize(deleteDetailIds, 50, "deleteDetailIds");
+        RequestCheckUtils.checkMaxListSize(detailIdPrices, 50, "detailIdPrices");
+        RequestCheckUtils.checkMaxListSize(detailIdQuantities, 50, "detailIdQuantities");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.modify";
     }
 
     public Long getDealerOrderId() {
         return this.dealerOrderId;
     }
 
-    public void setDeleteDetailIds(String deleteDetailIds) {
-        this.deleteDetailIds = deleteDetailIds;
-    }
-
     public String getDeleteDetailIds() {
         return this.deleteDetailIds;
-    }
-
-    public void setDetailIdPrices(String detailIdPrices) {
-        this.detailIdPrices = detailIdPrices;
     }
 
     public String getDetailIdPrices() {
         return this.detailIdPrices;
     }
 
-    public void setDetailIdQuantities(String detailIdQuantities) {
-        this.detailIdQuantities = detailIdQuantities;
-    }
-
     public String getDetailIdQuantities() {
         return this.detailIdQuantities;
     }
 
-    public void setNewPostFee(Long newPostFee) {
-        this.newPostFee = newPostFee;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNewPostFee() {
         return this.newPostFee;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderModifyResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderModifyResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.modify";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("dealer_order_id", this.dealerOrderId);
@@ -113,6 +105,12 @@ public class FenxiaoDealerRequisitionorderModifyRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -120,18 +118,28 @@ public class FenxiaoDealerRequisitionorderModifyRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderModifyResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderModifyResponse.class;
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
-        RequestCheckUtils.checkMaxListSize(deleteDetailIds, 50, "deleteDetailIds");
-        RequestCheckUtils.checkMaxListSize(detailIdPrices, 50, "detailIdPrices");
-        RequestCheckUtils.checkMaxListSize(detailIdQuantities, 50, "detailIdQuantities");
+    public void setDeleteDetailIds(String deleteDetailIds) {
+        this.deleteDetailIds = deleteDetailIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDetailIdPrices(String detailIdPrices) {
+        this.detailIdPrices = detailIdPrices;
+    }
+
+    public void setDetailIdQuantities(String detailIdQuantities) {
+        this.detailIdQuantities = detailIdQuantities;
+    }
+
+    public void setNewPostFee(Long newPostFee) {
+        this.newPostFee = newPostFee;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -23,12 +23,12 @@ public class SimbaKeywordidsChangedGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> changedKeywordIds;
 
-    public void setChangedKeywordIds(List<Long> changedKeywordIds) {
-        this.changedKeywordIds = changedKeywordIds;
-    }
-
     public List<Long> getChangedKeywordIds() {
         return this.changedKeywordIds;
+    }
+
+    public void setChangedKeywordIds(List<Long> changedKeywordIds) {
+        this.changedKeywordIds = changedKeywordIds;
     }
 
 }

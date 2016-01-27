@@ -165,180 +165,180 @@ public class ItemProp extends TaobaoObject {
         return this.childTemplate;
     }
 
-    public void setChildTemplate(String childTemplate) {
-        this.childTemplate = childTemplate;
-    }
-
     public Long getCid() {
         return this.cid;
-    }
-
-    public void setCid(Long cid) {
-        this.cid = cid;
     }
 
     public List<Feature> getFeatures() {
         return this.features;
     }
 
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
-    }
-
     public Boolean getIsAllowAlias() {
         return this.isAllowAlias;
-    }
-
-    public void setIsAllowAlias(Boolean isAllowAlias) {
-        this.isAllowAlias = isAllowAlias;
     }
 
     public Boolean getIsColorProp() {
         return this.isColorProp;
     }
 
-    public void setIsColorProp(Boolean isColorProp) {
-        this.isColorProp = isColorProp;
-    }
-
     public Boolean getIsEnumProp() {
         return this.isEnumProp;
-    }
-
-    public void setIsEnumProp(Boolean isEnumProp) {
-        this.isEnumProp = isEnumProp;
     }
 
     public Boolean getIsInputProp() {
         return this.isInputProp;
     }
 
-    public void setIsInputProp(Boolean isInputProp) {
-        this.isInputProp = isInputProp;
-    }
-
     public Boolean getIsItemProp() {
         return this.isItemProp;
-    }
-
-    public void setIsItemProp(Boolean isItemProp) {
-        this.isItemProp = isItemProp;
     }
 
     public Boolean getIsKeyProp() {
         return this.isKeyProp;
     }
 
-    public void setIsKeyProp(Boolean isKeyProp) {
-        this.isKeyProp = isKeyProp;
-    }
-
     public Boolean getIsSaleProp() {
         return this.isSaleProp;
-    }
-
-    public void setIsSaleProp(Boolean isSaleProp) {
-        this.isSaleProp = isSaleProp;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getModifiedType() {
         return this.modifiedType;
-    }
-
-    public void setModifiedType(String modifiedType) {
-        this.modifiedType = modifiedType;
     }
 
     public Boolean getMulti() {
         return this.multi;
     }
 
-    public void setMulti(Boolean multi) {
-        this.multi = multi;
-    }
-
     public Boolean getMust() {
         return this.must;
-    }
-
-    public void setMust(Boolean must) {
-        this.must = must;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParentPid() {
         return this.parentPid;
-    }
-
-    public void setParentPid(Long parentPid) {
-        this.parentPid = parentPid;
     }
 
     public Long getParentVid() {
         return this.parentVid;
     }
 
-    public void setParentVid(Long parentVid) {
-        this.parentVid = parentVid;
-    }
-
     public Long getPid() {
         return this.pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public List<PropValue> getPropValues() {
         return this.propValues;
     }
 
-    public void setPropValues(List<PropValue> propValues) {
-        this.propValues = propValues;
-    }
-
     public Boolean getRequired() {
         return this.required;
-    }
-
-    public void setRequired(Boolean required) {
-        this.required = required;
     }
 
     public Long getSortOrder() {
         return this.sortOrder;
     }
 
-    public void setSortOrder(Long sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setChildTemplate(String childTemplate) {
+        this.childTemplate = childTemplate;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void setIsAllowAlias(Boolean isAllowAlias) {
+        this.isAllowAlias = isAllowAlias;
+    }
+
+    public void setIsColorProp(Boolean isColorProp) {
+        this.isColorProp = isColorProp;
+    }
+
+    public void setIsEnumProp(Boolean isEnumProp) {
+        this.isEnumProp = isEnumProp;
+    }
+
+    public void setIsInputProp(Boolean isInputProp) {
+        this.isInputProp = isInputProp;
+    }
+
+    public void setIsItemProp(Boolean isItemProp) {
+        this.isItemProp = isItemProp;
+    }
+
+    public void setIsKeyProp(Boolean isKeyProp) {
+        this.isKeyProp = isKeyProp;
+    }
+
+    public void setIsSaleProp(Boolean isSaleProp) {
+        this.isSaleProp = isSaleProp;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setModifiedType(String modifiedType) {
+        this.modifiedType = modifiedType;
+    }
+
+    public void setMulti(Boolean multi) {
+        this.multi = multi;
+    }
+
+    public void setMust(Boolean must) {
+        this.must = must;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParentPid(Long parentPid) {
+        this.parentPid = parentPid;
+    }
+
+    public void setParentVid(Long parentVid) {
+        this.parentVid = parentVid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public void setPropValues(List<PropValue> propValues) {
+        this.propValues = propValues;
+    }
+
+    public void setRequired(Boolean required) {
+        this.required = required;
+    }
+
+    public void setSortOrder(Long sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setType(String type) {

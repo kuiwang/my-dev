@@ -16,37 +16,42 @@ import com.taobao.api.response.LogisticsAddressRemoveResponse;
  */
 public class LogisticsAddressRemoveRequest implements TaobaoRequest<LogisticsAddressRemoveResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 地址库ID
      */
     private Long contactId;
 
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(contactId, "contactId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.address.remove";
     }
 
     public Long getContactId() {
         return this.contactId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<LogisticsAddressRemoveResponse> getResponseClass() {
+        return LogisticsAddressRemoveResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.logistics.address.remove";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("contact_id", this.contactId);
@@ -56,6 +61,12 @@ public class LogisticsAddressRemoveRequest implements TaobaoRequest<LogisticsAdd
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class LogisticsAddressRemoveRequest implements TaobaoRequest<LogisticsAdd
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsAddressRemoveResponse> getResponseClass() {
-        return LogisticsAddressRemoveResponse.class;
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(contactId, "contactId");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -17,12 +17,6 @@ import com.taobao.api.response.SimbaInsightCatstopwordnewGetResponse;
 public class SimbaInsightCatstopwordnewGetRequest implements
         TaobaoRequest<SimbaInsightCatstopwordnewGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 类目id
      */
@@ -40,6 +34,8 @@ public class SimbaInsightCatstopwordnewGetRequest implements
      */
     private String endDate;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 返回前多少条数据<br />
      * 支持最大值为：20<br />
@@ -52,58 +48,57 @@ public class SimbaInsightCatstopwordnewGetRequest implements
      */
     private String startDate;
 
-    public void setCatId(String catId) {
-        this.catId = catId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(catId, "catId");
+        RequestCheckUtils.checkNotEmpty(dimension, "dimension");
+        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.catstopwordnew.get";
     }
 
     public String getCatId() {
         return this.catId;
     }
 
-    public void setDimension(String dimension) {
-        this.dimension = dimension;
-    }
-
     public String getDimension() {
         return this.dimension;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public String getEndDate() {
         return this.endDate;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    @Override
+    public Class<SimbaInsightCatstopwordnewGetResponse> getResponseClass() {
+        return SimbaInsightCatstopwordnewGetResponse.class;
     }
 
     public String getStartDate() {
         return this.startDate;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.catstopwordnew.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cat_id", this.catId);
@@ -117,6 +112,12 @@ public class SimbaInsightCatstopwordnewGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -124,21 +125,28 @@ public class SimbaInsightCatstopwordnewGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightCatstopwordnewGetResponse> getResponseClass() {
-        return SimbaInsightCatstopwordnewGetResponse.class;
+    public void setCatId(String catId) {
+        this.catId = catId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(catId, "catId");
-        RequestCheckUtils.checkNotEmpty(dimension, "dimension");
-        RequestCheckUtils.checkNotEmpty(endDate, "endDate");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 20L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(startDate, "startDate");
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoCooperationUpdateResponse;
 public class FenxiaoCooperationUpdateRequest implements
         TaobaoRequest<FenxiaoCooperationUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分销商ID
      */
@@ -33,47 +27,47 @@ public class FenxiaoCooperationUpdateRequest implements
      */
     private Long gradeId;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
     /**
      * 分销方式(新增)： AGENT(代销)、DEALER(经销)(默认为代销)
      */
     private String tradeType;
 
-    public void setDistributorId(Long distributorId) {
-        this.distributorId = distributorId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(distributorId, "distributorId");
+        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.cooperation.update";
     }
 
     public Long getDistributorId() {
         return this.distributorId;
     }
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
-    }
-
     public Long getGradeId() {
         return this.gradeId;
     }
 
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getTradeType() {
-        return this.tradeType;
+    @Override
+    public Class<FenxiaoCooperationUpdateResponse> getResponseClass() {
+        return FenxiaoCooperationUpdateResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.cooperation.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("distributor_id", this.distributorId);
@@ -85,6 +79,16 @@ public class FenxiaoCooperationUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTradeType() {
+        return this.tradeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class FenxiaoCooperationUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoCooperationUpdateResponse> getResponseClass() {
-        return FenxiaoCooperationUpdateResponse.class;
+    public void setDistributorId(Long distributorId) {
+        this.distributorId = distributorId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(distributorId, "distributorId");
-        RequestCheckUtils.checkNotEmpty(gradeId, "gradeId");
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

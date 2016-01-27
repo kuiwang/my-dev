@@ -20,12 +20,12 @@ public class ItemSkuGetResponse extends TaobaoResponse {
     @ApiField("sku")
     private Sku sku;
 
-    public void setSku(Sku sku) {
-        this.sku = sku;
-    }
-
     public Sku getSku() {
         return this.sku;
+    }
+
+    public void setSku(Sku sku) {
+        this.sku = sku;
     }
 
 }

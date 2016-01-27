@@ -45,28 +45,28 @@ public class ListResult extends TaobaoObject {
         return this.resultList;
     }
 
-    public void setResultList(List<TakeoutThirdOrder> resultList) {
-        this.resultList = resultList;
-    }
-
     public Long getResultSize() {
         return this.resultSize;
-    }
-
-    public void setResultSize(Long resultSize) {
-        this.resultSize = resultSize;
     }
 
     public String getRetCode() {
         return this.retCode;
     }
 
-    public void setRetCode(String retCode) {
-        this.retCode = retCode;
-    }
-
     public Long getTotalCount() {
         return this.totalCount;
+    }
+
+    public void setResultList(List<TakeoutThirdOrder> resultList) {
+        this.resultList = resultList;
+    }
+
+    public void setResultSize(Long resultSize) {
+        this.resultSize = resultSize;
+    }
+
+    public void setRetCode(String retCode) {
+        this.retCode = retCode;
     }
 
     public void setTotalCount(Long totalCount) {

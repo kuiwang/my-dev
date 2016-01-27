@@ -396,16 +396,16 @@ public class Trade extends TaobaoObject {
     private List<Order> orders;
 
     /**
-     * 付款时间。格式:yyyy-MM-dd HH:mm:ss。订单的付款时间即为物流订单的创建时间。
-     */
-    @ApiField("pay_time")
-    private Date payTime;
-
-    /**
      * 实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分
      */
     @ApiField("payment")
     private String payment;
+
+    /**
+     * 付款时间。格式:yyyy-MM-dd HH:mm:ss。订单的付款时间即为物流订单的创建时间。
+     */
+    @ApiField("pay_time")
+    private Date payTime;
 
     /**
      * 天猫点券卡实付款金额,单位分
@@ -736,892 +736,892 @@ public class Trade extends TaobaoObject {
         return this.adjustFee;
     }
 
-    public void setAdjustFee(String adjustFee) {
-        this.adjustFee = adjustFee;
-    }
-
     public Long getAlipayId() {
         return this.alipayId;
-    }
-
-    public void setAlipayId(Long alipayId) {
-        this.alipayId = alipayId;
     }
 
     public String getAlipayNo() {
         return this.alipayNo;
     }
 
-    public void setAlipayNo(String alipayNo) {
-        this.alipayNo = alipayNo;
-    }
-
     public Long getAlipayPoint() {
         return this.alipayPoint;
-    }
-
-    public void setAlipayPoint(Long alipayPoint) {
-        this.alipayPoint = alipayPoint;
     }
 
     public String getAlipayUrl() {
         return this.alipayUrl;
     }
 
-    public void setAlipayUrl(String alipayUrl) {
-        this.alipayUrl = alipayUrl;
-    }
-
     public String getAlipayWarnMsg() {
         return this.alipayWarnMsg;
-    }
-
-    public void setAlipayWarnMsg(String alipayWarnMsg) {
-        this.alipayWarnMsg = alipayWarnMsg;
     }
 
     public String getAreaId() {
         return this.areaId;
     }
 
-    public void setAreaId(String areaId) {
-        this.areaId = areaId;
-    }
-
     public String getArriveCutTime() {
         return this.arriveCutTime;
-    }
-
-    public void setArriveCutTime(String arriveCutTime) {
-        this.arriveCutTime = arriveCutTime;
     }
 
     public Long getArriveInterval() {
         return this.arriveInterval;
     }
 
-    public void setArriveInterval(Long arriveInterval) {
-        this.arriveInterval = arriveInterval;
-    }
-
     public Date getAsyncModified() {
         return this.asyncModified;
-    }
-
-    public void setAsyncModified(Date asyncModified) {
-        this.asyncModified = asyncModified;
     }
 
     public String getAvailableConfirmFee() {
         return this.availableConfirmFee;
     }
 
-    public void setAvailableConfirmFee(String availableConfirmFee) {
-        this.availableConfirmFee = availableConfirmFee;
-    }
-
     public String getBuyerAlipayNo() {
         return this.buyerAlipayNo;
-    }
-
-    public void setBuyerAlipayNo(String buyerAlipayNo) {
-        this.buyerAlipayNo = buyerAlipayNo;
     }
 
     public String getBuyerArea() {
         return this.buyerArea;
     }
 
-    public void setBuyerArea(String buyerArea) {
-        this.buyerArea = buyerArea;
-    }
-
     public String getBuyerCodFee() {
         return this.buyerCodFee;
-    }
-
-    public void setBuyerCodFee(String buyerCodFee) {
-        this.buyerCodFee = buyerCodFee;
     }
 
     public String getBuyerEmail() {
         return this.buyerEmail;
     }
 
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
-    }
-
     public Long getBuyerFlag() {
         return this.buyerFlag;
-    }
-
-    public void setBuyerFlag(Long buyerFlag) {
-        this.buyerFlag = buyerFlag;
     }
 
     public String getBuyerMemo() {
         return this.buyerMemo;
     }
 
-    public void setBuyerMemo(String buyerMemo) {
-        this.buyerMemo = buyerMemo;
-    }
-
     public String getBuyerMessage() {
         return this.buyerMessage;
-    }
-
-    public void setBuyerMessage(String buyerMessage) {
-        this.buyerMessage = buyerMessage;
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public Long getBuyerObtainPointFee() {
         return this.buyerObtainPointFee;
-    }
-
-    public void setBuyerObtainPointFee(Long buyerObtainPointFee) {
-        this.buyerObtainPointFee = buyerObtainPointFee;
     }
 
     public Boolean getBuyerRate() {
         return this.buyerRate;
     }
 
-    public void setBuyerRate(Boolean buyerRate) {
-        this.buyerRate = buyerRate;
-    }
-
     public Boolean getCanRate() {
         return this.canRate;
-    }
-
-    public void setCanRate(Boolean canRate) {
-        this.canRate = canRate;
     }
 
     public String getCodFee() {
         return this.codFee;
     }
 
-    public void setCodFee(String codFee) {
-        this.codFee = codFee;
-    }
-
     public String getCodStatus() {
         return this.codStatus;
-    }
-
-    public void setCodStatus(String codStatus) {
-        this.codStatus = codStatus;
     }
 
     public String getCommissionFee() {
         return this.commissionFee;
     }
 
-    public void setCommissionFee(String commissionFee) {
-        this.commissionFee = commissionFee;
-    }
-
     public Long getConsignInterval() {
         return this.consignInterval;
-    }
-
-    public void setConsignInterval(Long consignInterval) {
-        this.consignInterval = consignInterval;
     }
 
     public Date getConsignTime() {
         return this.consignTime;
     }
 
-    public void setConsignTime(Date consignTime) {
-        this.consignTime = consignTime;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getCreditCardFee() {
         return this.creditCardFee;
     }
 
-    public void setCreditCardFee(String creditCardFee) {
-        this.creditCardFee = creditCardFee;
-    }
-
     public String getDiscountFee() {
         return this.discountFee;
-    }
-
-    public void setDiscountFee(String discountFee) {
-        this.discountFee = discountFee;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getEticketExt() {
         return this.eticketExt;
-    }
-
-    public void setEticketExt(String eticketExt) {
-        this.eticketExt = eticketExt;
     }
 
     public String getExpressAgencyFee() {
         return this.expressAgencyFee;
     }
 
-    public void setExpressAgencyFee(String expressAgencyFee) {
-        this.expressAgencyFee = expressAgencyFee;
-    }
-
     public Boolean getHasBuyerMessage() {
         return this.hasBuyerMessage;
-    }
-
-    public void setHasBuyerMessage(Boolean hasBuyerMessage) {
-        this.hasBuyerMessage = hasBuyerMessage;
     }
 
     public Boolean getHasPostFee() {
         return this.hasPostFee;
     }
 
-    public void setHasPostFee(Boolean hasPostFee) {
-        this.hasPostFee = hasPostFee;
-    }
-
     public Boolean getHasYfx() {
         return this.hasYfx;
-    }
-
-    public void setHasYfx(Boolean hasYfx) {
-        this.hasYfx = hasYfx;
     }
 
     public String getIid() {
         return this.iid;
     }
 
-    public void setIid(String iid) {
-        this.iid = iid;
-    }
-
     public String getInvoiceName() {
         return this.invoiceName;
-    }
-
-    public void setInvoiceName(String invoiceName) {
-        this.invoiceName = invoiceName;
     }
 
     public String getInvoiceType() {
         return this.invoiceType;
     }
 
-    public void setInvoiceType(String invoiceType) {
-        this.invoiceType = invoiceType;
-    }
-
     public Boolean getIs3D() {
         return this.is3D;
-    }
-
-    public void setIs3D(Boolean is3D) {
-        this.is3D = is3D;
     }
 
     public Boolean getIsBrandSale() {
         return this.isBrandSale;
     }
 
-    public void setIsBrandSale(Boolean isBrandSale) {
-        this.isBrandSale = isBrandSale;
-    }
-
     public Boolean getIsDaixiao() {
         return this.isDaixiao;
-    }
-
-    public void setIsDaixiao(Boolean isDaixiao) {
-        this.isDaixiao = isDaixiao;
     }
 
     public Boolean getIsForceWlb() {
         return this.isForceWlb;
     }
 
-    public void setIsForceWlb(Boolean isForceWlb) {
-        this.isForceWlb = isForceWlb;
-    }
-
     public Boolean getIsLgtype() {
         return this.isLgtype;
-    }
-
-    public void setIsLgtype(Boolean isLgtype) {
-        this.isLgtype = isLgtype;
     }
 
     public Boolean getIsPartConsign() {
         return this.isPartConsign;
     }
 
-    public void setIsPartConsign(Boolean isPartConsign) {
-        this.isPartConsign = isPartConsign;
-    }
-
     public Boolean getIsWt() {
         return this.isWt;
-    }
-
-    public void setIsWt(Boolean isWt) {
-        this.isWt = isWt;
     }
 
     public String getLgAging() {
         return this.lgAging;
     }
 
-    public void setLgAging(String lgAging) {
-        this.lgAging = lgAging;
-    }
-
     public String getLgAgingType() {
         return this.lgAgingType;
-    }
-
-    public void setLgAgingType(String lgAgingType) {
-        this.lgAgingType = lgAgingType;
     }
 
     public String getMarkDesc() {
         return this.markDesc;
     }
 
-    public void setMarkDesc(String markDesc) {
-        this.markDesc = markDesc;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public Long getNumIid() {
         return this.numIid;
-    }
-
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
     }
 
     public String getNutFeature() {
         return this.nutFeature;
     }
 
-    public void setNutFeature(String nutFeature) {
-        this.nutFeature = nutFeature;
-    }
-
     public String getO2o() {
         return this.o2o;
-    }
-
-    public void setO2o(String o2o) {
-        this.o2o = o2o;
     }
 
     public String getO2oDelivery() {
         return this.o2oDelivery;
     }
 
-    public void setO2oDelivery(String o2oDelivery) {
-        this.o2oDelivery = o2oDelivery;
-    }
-
     public String getO2oGuideId() {
         return this.o2oGuideId;
-    }
-
-    public void setO2oGuideId(String o2oGuideId) {
-        this.o2oGuideId = o2oGuideId;
     }
 
     public String getO2oGuideName() {
         return this.o2oGuideName;
     }
 
-    public void setO2oGuideName(String o2oGuideName) {
-        this.o2oGuideName = o2oGuideName;
-    }
-
     public String getO2oOutTradeId() {
         return this.o2oOutTradeId;
-    }
-
-    public void setO2oOutTradeId(String o2oOutTradeId) {
-        this.o2oOutTradeId = o2oOutTradeId;
     }
 
     public String getO2oShopId() {
         return this.o2oShopId;
     }
 
-    public void setO2oShopId(String o2oShopId) {
-        this.o2oShopId = o2oShopId;
-    }
-
     public String getO2oShopName() {
         return this.o2oShopName;
-    }
-
-    public void setO2oShopName(String o2oShopName) {
-        this.o2oShopName = o2oShopName;
     }
 
     public List<Order> getOrders() {
         return this.orders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public String getPayment() {
+        return this.payment;
     }
 
     public Date getPayTime() {
         return this.payTime;
     }
 
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
-    public String getPayment() {
-        return this.payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
-    }
-
     public Long getPccAf() {
         return this.pccAf;
-    }
-
-    public void setPccAf(Long pccAf) {
-        this.pccAf = pccAf;
     }
 
     public String getPicPath() {
         return this.picPath;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public Long getPointFee() {
         return this.pointFee;
-    }
-
-    public void setPointFee(Long pointFee) {
-        this.pointFee = pointFee;
     }
 
     public String getPostFee() {
         return this.postFee;
     }
 
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getPromotion() {
         return this.promotion;
     }
 
-    public void setPromotion(String promotion) {
-        this.promotion = promotion;
-    }
-
     public List<PromotionDetail> getPromotionDetails() {
         return this.promotionDetails;
-    }
-
-    public void setPromotionDetails(List<PromotionDetail> promotionDetails) {
-        this.promotionDetails = promotionDetails;
     }
 
     public Long getRealPointFee() {
         return this.realPointFee;
     }
 
-    public void setRealPointFee(Long realPointFee) {
-        this.realPointFee = realPointFee;
-    }
-
     public String getReceivedPayment() {
         return this.receivedPayment;
-    }
-
-    public void setReceivedPayment(String receivedPayment) {
-        this.receivedPayment = receivedPayment;
     }
 
     public String getReceiverAddress() {
         return this.receiverAddress;
     }
 
-    public void setReceiverAddress(String receiverAddress) {
-        this.receiverAddress = receiverAddress;
-    }
-
     public String getReceiverCity() {
         return this.receiverCity;
-    }
-
-    public void setReceiverCity(String receiverCity) {
-        this.receiverCity = receiverCity;
     }
 
     public String getReceiverDistrict() {
         return this.receiverDistrict;
     }
 
-    public void setReceiverDistrict(String receiverDistrict) {
-        this.receiverDistrict = receiverDistrict;
-    }
-
     public String getReceiverMobile() {
         return this.receiverMobile;
-    }
-
-    public void setReceiverMobile(String receiverMobile) {
-        this.receiverMobile = receiverMobile;
     }
 
     public String getReceiverName() {
         return this.receiverName;
     }
 
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
-
     public String getReceiverPhone() {
         return this.receiverPhone;
-    }
-
-    public void setReceiverPhone(String receiverPhone) {
-        this.receiverPhone = receiverPhone;
     }
 
     public String getReceiverState() {
         return this.receiverState;
     }
 
-    public void setReceiverState(String receiverState) {
-        this.receiverState = receiverState;
-    }
-
     public String getReceiverZip() {
         return this.receiverZip;
-    }
-
-    public void setReceiverZip(String receiverZip) {
-        this.receiverZip = receiverZip;
     }
 
     public String getSellerAlipayNo() {
         return this.sellerAlipayNo;
     }
 
-    public void setSellerAlipayNo(String sellerAlipayNo) {
-        this.sellerAlipayNo = sellerAlipayNo;
-    }
-
     public Boolean getSellerCanRate() {
         return this.sellerCanRate;
-    }
-
-    public void setSellerCanRate(Boolean sellerCanRate) {
-        this.sellerCanRate = sellerCanRate;
     }
 
     public String getSellerCodFee() {
         return this.sellerCodFee;
     }
 
-    public void setSellerCodFee(String sellerCodFee) {
-        this.sellerCodFee = sellerCodFee;
-    }
-
     public String getSellerEmail() {
         return this.sellerEmail;
-    }
-
-    public void setSellerEmail(String sellerEmail) {
-        this.sellerEmail = sellerEmail;
     }
 
     public Long getSellerFlag() {
         return this.sellerFlag;
     }
 
-    public void setSellerFlag(Long sellerFlag) {
-        this.sellerFlag = sellerFlag;
-    }
-
     public String getSellerMemo() {
         return this.sellerMemo;
-    }
-
-    public void setSellerMemo(String sellerMemo) {
-        this.sellerMemo = sellerMemo;
     }
 
     public String getSellerMobile() {
         return this.sellerMobile;
     }
 
-    public void setSellerMobile(String sellerMobile) {
-        this.sellerMobile = sellerMobile;
-    }
-
     public String getSellerName() {
         return this.sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
     }
 
     public String getSellerNick() {
         return this.sellerNick;
     }
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
-
     public String getSellerPhone() {
         return this.sellerPhone;
-    }
-
-    public void setSellerPhone(String sellerPhone) {
-        this.sellerPhone = sellerPhone;
     }
 
     public Boolean getSellerRate() {
         return this.sellerRate;
     }
 
-    public void setSellerRate(Boolean sellerRate) {
-        this.sellerRate = sellerRate;
-    }
-
     public String getSendTime() {
         return this.sendTime;
-    }
-
-    public void setSendTime(String sendTime) {
-        this.sendTime = sendTime;
     }
 
     public List<ServiceOrder> getServiceOrders() {
         return this.serviceOrders;
     }
 
-    public void setServiceOrders(List<ServiceOrder> serviceOrders) {
-        this.serviceOrders = serviceOrders;
-    }
-
     public List<LogisticsTag> getServiceTags() {
         return this.serviceTags;
-    }
-
-    public void setServiceTags(List<LogisticsTag> serviceTags) {
-        this.serviceTags = serviceTags;
     }
 
     public String getShippingType() {
         return this.shippingType;
     }
 
-    public void setShippingType(String shippingType) {
-        this.shippingType = shippingType;
-    }
-
     public String getSnapshot() {
         return this.snapshot;
-    }
-
-    public void setSnapshot(String snapshot) {
-        this.snapshot = snapshot;
     }
 
     public String getSnapshotUrl() {
         return this.snapshotUrl;
     }
 
-    public void setSnapshotUrl(String snapshotUrl) {
-        this.snapshotUrl = snapshotUrl;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStepPaidFee() {
         return this.stepPaidFee;
     }
 
-    public void setStepPaidFee(String stepPaidFee) {
-        this.stepPaidFee = stepPaidFee;
-    }
-
     public String getStepTradeStatus() {
         return this.stepTradeStatus;
-    }
-
-    public void setStepTradeStatus(String stepTradeStatus) {
-        this.stepTradeStatus = stepTradeStatus;
     }
 
     public Long getTid() {
         return this.tid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
     public Date getTimeoutActionTime() {
         return this.timeoutActionTime;
-    }
-
-    public void setTimeoutActionTime(Date timeoutActionTime) {
-        this.timeoutActionTime = timeoutActionTime;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTotalFee() {
         return this.totalFee;
-    }
-
-    public void setTotalFee(String totalFee) {
-        this.totalFee = totalFee;
     }
 
     public String getTradeFrom() {
         return this.tradeFrom;
     }
 
-    public void setTradeFrom(String tradeFrom) {
-        this.tradeFrom = tradeFrom;
-    }
-
     public String getTradeMemo() {
         return this.tradeMemo;
-    }
-
-    public void setTradeMemo(String tradeMemo) {
-        this.tradeMemo = tradeMemo;
     }
 
     public String getTradeSource() {
         return this.tradeSource;
     }
 
-    public void setTradeSource(String tradeSource) {
-        this.tradeSource = tradeSource;
-    }
-
     public String getType() {
         return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getYfxFee() {
         return this.yfxFee;
     }
 
-    public void setYfxFee(String yfxFee) {
-        this.yfxFee = yfxFee;
-    }
-
     public String getYfxId() {
         return this.yfxId;
-    }
-
-    public void setYfxId(String yfxId) {
-        this.yfxId = yfxId;
     }
 
     public String getYfxType() {
         return this.yfxType;
     }
 
-    public void setYfxType(String yfxType) {
-        this.yfxType = yfxType;
-    }
-
     public Boolean getZeroPurchase() {
         return this.zeroPurchase;
+    }
+
+    public void setAdjustFee(String adjustFee) {
+        this.adjustFee = adjustFee;
+    }
+
+    public void setAlipayId(Long alipayId) {
+        this.alipayId = alipayId;
+    }
+
+    public void setAlipayNo(String alipayNo) {
+        this.alipayNo = alipayNo;
+    }
+
+    public void setAlipayPoint(Long alipayPoint) {
+        this.alipayPoint = alipayPoint;
+    }
+
+    public void setAlipayUrl(String alipayUrl) {
+        this.alipayUrl = alipayUrl;
+    }
+
+    public void setAlipayWarnMsg(String alipayWarnMsg) {
+        this.alipayWarnMsg = alipayWarnMsg;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+
+    public void setArriveCutTime(String arriveCutTime) {
+        this.arriveCutTime = arriveCutTime;
+    }
+
+    public void setArriveInterval(Long arriveInterval) {
+        this.arriveInterval = arriveInterval;
+    }
+
+    public void setAsyncModified(Date asyncModified) {
+        this.asyncModified = asyncModified;
+    }
+
+    public void setAvailableConfirmFee(String availableConfirmFee) {
+        this.availableConfirmFee = availableConfirmFee;
+    }
+
+    public void setBuyerAlipayNo(String buyerAlipayNo) {
+        this.buyerAlipayNo = buyerAlipayNo;
+    }
+
+    public void setBuyerArea(String buyerArea) {
+        this.buyerArea = buyerArea;
+    }
+
+    public void setBuyerCodFee(String buyerCodFee) {
+        this.buyerCodFee = buyerCodFee;
+    }
+
+    public void setBuyerEmail(String buyerEmail) {
+        this.buyerEmail = buyerEmail;
+    }
+
+    public void setBuyerFlag(Long buyerFlag) {
+        this.buyerFlag = buyerFlag;
+    }
+
+    public void setBuyerMemo(String buyerMemo) {
+        this.buyerMemo = buyerMemo;
+    }
+
+    public void setBuyerMessage(String buyerMessage) {
+        this.buyerMessage = buyerMessage;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
+    }
+
+    public void setBuyerObtainPointFee(Long buyerObtainPointFee) {
+        this.buyerObtainPointFee = buyerObtainPointFee;
+    }
+
+    public void setBuyerRate(Boolean buyerRate) {
+        this.buyerRate = buyerRate;
+    }
+
+    public void setCanRate(Boolean canRate) {
+        this.canRate = canRate;
+    }
+
+    public void setCodFee(String codFee) {
+        this.codFee = codFee;
+    }
+
+    public void setCodStatus(String codStatus) {
+        this.codStatus = codStatus;
+    }
+
+    public void setCommissionFee(String commissionFee) {
+        this.commissionFee = commissionFee;
+    }
+
+    public void setConsignInterval(Long consignInterval) {
+        this.consignInterval = consignInterval;
+    }
+
+    public void setConsignTime(Date consignTime) {
+        this.consignTime = consignTime;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setCreditCardFee(String creditCardFee) {
+        this.creditCardFee = creditCardFee;
+    }
+
+    public void setDiscountFee(String discountFee) {
+        this.discountFee = discountFee;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEticketExt(String eticketExt) {
+        this.eticketExt = eticketExt;
+    }
+
+    public void setExpressAgencyFee(String expressAgencyFee) {
+        this.expressAgencyFee = expressAgencyFee;
+    }
+
+    public void setHasBuyerMessage(Boolean hasBuyerMessage) {
+        this.hasBuyerMessage = hasBuyerMessage;
+    }
+
+    public void setHasPostFee(Boolean hasPostFee) {
+        this.hasPostFee = hasPostFee;
+    }
+
+    public void setHasYfx(Boolean hasYfx) {
+        this.hasYfx = hasYfx;
+    }
+
+    public void setIid(String iid) {
+        this.iid = iid;
+    }
+
+    public void setInvoiceName(String invoiceName) {
+        this.invoiceName = invoiceName;
+    }
+
+    public void setInvoiceType(String invoiceType) {
+        this.invoiceType = invoiceType;
+    }
+
+    public void setIs3D(Boolean is3D) {
+        this.is3D = is3D;
+    }
+
+    public void setIsBrandSale(Boolean isBrandSale) {
+        this.isBrandSale = isBrandSale;
+    }
+
+    public void setIsDaixiao(Boolean isDaixiao) {
+        this.isDaixiao = isDaixiao;
+    }
+
+    public void setIsForceWlb(Boolean isForceWlb) {
+        this.isForceWlb = isForceWlb;
+    }
+
+    public void setIsLgtype(Boolean isLgtype) {
+        this.isLgtype = isLgtype;
+    }
+
+    public void setIsPartConsign(Boolean isPartConsign) {
+        this.isPartConsign = isPartConsign;
+    }
+
+    public void setIsWt(Boolean isWt) {
+        this.isWt = isWt;
+    }
+
+    public void setLgAging(String lgAging) {
+        this.lgAging = lgAging;
+    }
+
+    public void setLgAgingType(String lgAgingType) {
+        this.lgAgingType = lgAgingType;
+    }
+
+    public void setMarkDesc(String markDesc) {
+        this.markDesc = markDesc;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setNutFeature(String nutFeature) {
+        this.nutFeature = nutFeature;
+    }
+
+    public void setO2o(String o2o) {
+        this.o2o = o2o;
+    }
+
+    public void setO2oDelivery(String o2oDelivery) {
+        this.o2oDelivery = o2oDelivery;
+    }
+
+    public void setO2oGuideId(String o2oGuideId) {
+        this.o2oGuideId = o2oGuideId;
+    }
+
+    public void setO2oGuideName(String o2oGuideName) {
+        this.o2oGuideName = o2oGuideName;
+    }
+
+    public void setO2oOutTradeId(String o2oOutTradeId) {
+        this.o2oOutTradeId = o2oOutTradeId;
+    }
+
+    public void setO2oShopId(String o2oShopId) {
+        this.o2oShopId = o2oShopId;
+    }
+
+    public void setO2oShopName(String o2oShopName) {
+        this.o2oShopName = o2oShopName;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public void setPccAf(Long pccAf) {
+        this.pccAf = pccAf;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPointFee(Long pointFee) {
+        this.pointFee = pointFee;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
+    }
+
+    public void setPromotionDetails(List<PromotionDetail> promotionDetails) {
+        this.promotionDetails = promotionDetails;
+    }
+
+    public void setRealPointFee(Long realPointFee) {
+        this.realPointFee = realPointFee;
+    }
+
+    public void setReceivedPayment(String receivedPayment) {
+        this.receivedPayment = receivedPayment;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
+    }
+
+    public void setReceiverCity(String receiverCity) {
+        this.receiverCity = receiverCity;
+    }
+
+    public void setReceiverDistrict(String receiverDistrict) {
+        this.receiverDistrict = receiverDistrict;
+    }
+
+    public void setReceiverMobile(String receiverMobile) {
+        this.receiverMobile = receiverMobile;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public void setReceiverState(String receiverState) {
+        this.receiverState = receiverState;
+    }
+
+    public void setReceiverZip(String receiverZip) {
+        this.receiverZip = receiverZip;
+    }
+
+    public void setSellerAlipayNo(String sellerAlipayNo) {
+        this.sellerAlipayNo = sellerAlipayNo;
+    }
+
+    public void setSellerCanRate(Boolean sellerCanRate) {
+        this.sellerCanRate = sellerCanRate;
+    }
+
+    public void setSellerCodFee(String sellerCodFee) {
+        this.sellerCodFee = sellerCodFee;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
+    public void setSellerFlag(Long sellerFlag) {
+        this.sellerFlag = sellerFlag;
+    }
+
+    public void setSellerMemo(String sellerMemo) {
+        this.sellerMemo = sellerMemo;
+    }
+
+    public void setSellerMobile(String sellerMobile) {
+        this.sellerMobile = sellerMobile;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void setSellerNick(String sellerNick) {
+        this.sellerNick = sellerNick;
+    }
+
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
+    }
+
+    public void setSellerRate(Boolean sellerRate) {
+        this.sellerRate = sellerRate;
+    }
+
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public void setServiceOrders(List<ServiceOrder> serviceOrders) {
+        this.serviceOrders = serviceOrders;
+    }
+
+    public void setServiceTags(List<LogisticsTag> serviceTags) {
+        this.serviceTags = serviceTags;
+    }
+
+    public void setShippingType(String shippingType) {
+        this.shippingType = shippingType;
+    }
+
+    public void setSnapshot(String snapshot) {
+        this.snapshot = snapshot;
+    }
+
+    public void setSnapshotUrl(String snapshotUrl) {
+        this.snapshotUrl = snapshotUrl;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setStepPaidFee(String stepPaidFee) {
+        this.stepPaidFee = stepPaidFee;
+    }
+
+    public void setStepTradeStatus(String stepTradeStatus) {
+        this.stepTradeStatus = stepTradeStatus;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    public void setTimeoutActionTime(Date timeoutActionTime) {
+        this.timeoutActionTime = timeoutActionTime;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTotalFee(String totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public void setTradeFrom(String tradeFrom) {
+        this.tradeFrom = tradeFrom;
+    }
+
+    public void setTradeMemo(String tradeMemo) {
+        this.tradeMemo = tradeMemo;
+    }
+
+    public void setTradeSource(String tradeSource) {
+        this.tradeSource = tradeSource;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setYfxFee(String yfxFee) {
+        this.yfxFee = yfxFee;
+    }
+
+    public void setYfxId(String yfxId) {
+        this.yfxId = yfxId;
+    }
+
+    public void setYfxType(String yfxType) {
+        this.yfxType = yfxType;
     }
 
     public void setZeroPurchase(Boolean zeroPurchase) {

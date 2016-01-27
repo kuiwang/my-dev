@@ -23,12 +23,12 @@ public class UmpActivitiesListGetResponse extends TaobaoResponse {
     @ApiField("string")
     private List<String> activities;
 
-    public void setActivities(List<String> activities) {
-        this.activities = activities;
-    }
-
     public List<String> getActivities() {
         return this.activities;
+    }
+
+    public void setActivities(List<String> activities) {
+        this.activities = activities;
     }
 
 }

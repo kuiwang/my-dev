@@ -29,12 +29,12 @@ public class CertPicInfo extends TaobaoObject {
         return this.certType;
     }
 
-    public void setCertType(Long certType) {
-        this.certType = certType;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
+    }
+
+    public void setCertType(Long certType) {
+        this.certType = certType;
     }
 
     public void setPicUrl(String picUrl) {

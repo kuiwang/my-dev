@@ -79,76 +79,76 @@ public class WlbAuthorization extends TaobaoObject {
         return this.authorizeEndTime;
     }
 
-    public void setAuthorizeEndTime(Date authorizeEndTime) {
-        this.authorizeEndTime = authorizeEndTime;
-    }
-
     public Long getAuthorizeId() {
         return this.authorizeId;
-    }
-
-    public void setAuthorizeId(Long authorizeId) {
-        this.authorizeId = authorizeId;
     }
 
     public Date getAuthorizeStartTime() {
         return this.authorizeStartTime;
     }
 
-    public void setAuthorizeStartTime(Date authorizeStartTime) {
-        this.authorizeStartTime = authorizeStartTime;
-    }
-
     public Long getConsignUserId() {
         return this.consignUserId;
-    }
-
-    public void setConsignUserId(Long consignUserId) {
-        this.consignUserId = consignUserId;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getOwnerUserId() {
         return this.ownerUserId;
     }
 
-    public void setOwnerUserId(Long ownerUserId) {
-        this.ownerUserId = ownerUserId;
-    }
-
     public Long getQuantity() {
         return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public String getRuleCode() {
         return this.ruleCode;
     }
 
-    public void setRuleCode(String ruleCode) {
-        this.ruleCode = ruleCode;
-    }
-
     public String getStatus() {
         return this.status;
+    }
+
+    public void setAuthorizeEndTime(Date authorizeEndTime) {
+        this.authorizeEndTime = authorizeEndTime;
+    }
+
+    public void setAuthorizeId(Long authorizeId) {
+        this.authorizeId = authorizeId;
+    }
+
+    public void setAuthorizeStartTime(Date authorizeStartTime) {
+        this.authorizeStartTime = authorizeStartTime;
+    }
+
+    public void setConsignUserId(Long consignUserId) {
+        this.consignUserId = consignUserId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOwnerUserId(Long ownerUserId) {
+        this.ownerUserId = ownerUserId;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRuleCode(String ruleCode) {
+        this.ruleCode = ruleCode;
     }
 
     public void setStatus(String status) {

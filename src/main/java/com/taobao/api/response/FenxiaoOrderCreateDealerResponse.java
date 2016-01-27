@@ -19,12 +19,12 @@ public class FenxiaoOrderCreateDealerResponse extends TaobaoResponse {
     @ApiField("get_module")
     private Long getModule;
 
-    public void setGetModule(Long getModule) {
-        this.getModule = getModule;
-    }
-
     public Long getGetModule() {
         return this.getModule;
+    }
+
+    public void setGetModule(Long getModule) {
+        this.getModule = getModule;
     }
 
 }

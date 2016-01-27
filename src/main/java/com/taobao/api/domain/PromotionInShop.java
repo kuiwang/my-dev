@@ -35,20 +35,20 @@ public class PromotionInShop extends TaobaoObject {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPromotionDetailDesc() {
         return this.promotionDetailDesc;
     }
 
-    public void setPromotionDetailDesc(String promotionDetailDesc) {
-        this.promotionDetailDesc = promotionDetailDesc;
-    }
-
     public String getPromotionId() {
         return this.promotionId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPromotionDetailDesc(String promotionDetailDesc) {
+        this.promotionDetailDesc = promotionDetailDesc;
     }
 
     public void setPromotionId(String promotionId) {

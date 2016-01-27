@@ -37,15 +37,15 @@ import com.taobao.top.link.embedded.websocket.frame.Frame;
 public interface StreamHandler {
 
     /**
-     * Next handshake upstream handler.
+     * Next downstream handler.
      *
      * @param ws the ws
      * @param buffer the buffer
+     * @param frame the frame
      * @param chain the chain
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws WebSocketException the web socket exception
      */
-    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
+    public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
             StreamHandlerChain chain) throws WebSocketException;
 
     /**
@@ -60,6 +60,18 @@ public interface StreamHandler {
             StreamHandlerChain chain) throws WebSocketException;
 
     /**
+     * Next handshake upstream handler.
+     *
+     * @param ws the ws
+     * @param buffer the buffer
+     * @param chain the chain
+     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
+     *         the web socket exception
+     */
+    public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
+            StreamHandlerChain chain) throws WebSocketException;
+
+    /**
      * Next upstream handler.
      *
      * @param ws the ws
@@ -70,17 +82,5 @@ public interface StreamHandler {
      *         the web socket exception
      */
     public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
-            StreamHandlerChain chain) throws WebSocketException;
-
-    /**
-     * Next downstream handler.
-     *
-     * @param ws the ws
-     * @param buffer the buffer
-     * @param frame the frame
-     * @param chain the chain
-     * @throws WebSocketException the web socket exception
-     */
-    public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
             StreamHandlerChain chain) throws WebSocketException;
 }

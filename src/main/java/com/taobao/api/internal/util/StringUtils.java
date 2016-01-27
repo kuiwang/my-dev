@@ -10,7 +10,43 @@ import com.taobao.api.Constants;
  */
 public abstract class StringUtils {
 
-    private StringUtils() {
+    /**
+     * 检查指定的字符串列表是否不为空。
+     */
+    public static boolean areNotEmpty(String... values) {
+        boolean result = true;
+        if ((values == null) || (values.length == 0)) {
+            result = false;
+        } else {
+            for (String value : values) {
+                result &= !isEmpty(value);
+            }
+        }
+        return result;
+    }
+
+    public static byte[] convertBytes(String data) {
+        if (data == null) {
+            return null;
+        } else {
+            try {
+                return data.getBytes(Constants.CHARSET_UTF8);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static String convertString(byte[] data, int offset, int length) {
+        if (data == null) {
+            return null;
+        } else {
+            try {
+                return new String(data, offset, length, Constants.CHARSET_UTF8);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     /**
@@ -27,7 +63,7 @@ public abstract class StringUtils {
      */
     public static boolean isEmpty(String value) {
         int strLen;
-        if (value == null || (strLen = value.length()) == 0) {
+        if ((value == null) || ((strLen = value.length()) == 0)) {
             return true;
         }
         for (int i = 0; i < strLen; i++) {
@@ -47,10 +83,14 @@ public abstract class StringUtils {
         }
         char[] chars = obj.toString().toCharArray();
         int length = chars.length;
-        if (length < 1) return false;
+        if (length < 1) {
+            return false;
+        }
 
         int i = 0;
-        if (length > 1 && chars[0] == '-') i = 1;
+        if ((length > 1) && (chars[0] == '-')) {
+            i = 1;
+        }
 
         for (; i < length; i++) {
             if (!Character.isDigit(chars[i])) {
@@ -58,34 +98,6 @@ public abstract class StringUtils {
             }
         }
         return true;
-    }
-
-    /**
-     * 检查指定的字符串列表是否不为空。
-     */
-    public static boolean areNotEmpty(String... values) {
-        boolean result = true;
-        if (values == null || values.length == 0) {
-            result = false;
-        } else {
-            for (String value : values) {
-                result &= !isEmpty(value);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 把通用字符编码的字符串转化为汉字编码。
-     */
-    public static String unicodeToChinese(String unicode) {
-        StringBuilder out = new StringBuilder();
-        if (!isEmpty(unicode)) {
-            for (int i = 0; i < unicode.length(); i++) {
-                out.append(unicode.charAt(i));
-            }
-        }
-        return out.toString();
     }
 
     public static String toUnderlineStyle(String name) {
@@ -104,28 +116,20 @@ public abstract class StringUtils {
         return newName.toString();
     }
 
-    public static String convertString(byte[] data, int offset, int length) {
-        if (data == null) {
-            return null;
-        } else {
-            try {
-                return new String(data, offset, length, Constants.CHARSET_UTF8);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+    /**
+     * 把通用字符编码的字符串转化为汉字编码。
+     */
+    public static String unicodeToChinese(String unicode) {
+        StringBuilder out = new StringBuilder();
+        if (!isEmpty(unicode)) {
+            for (int i = 0; i < unicode.length(); i++) {
+                out.append(unicode.charAt(i));
             }
         }
+        return out.toString();
     }
 
-    public static byte[] convertBytes(String data) {
-        if (data == null) {
-            return null;
-        } else {
-            try {
-                return data.getBytes(Constants.CHARSET_UTF8);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private StringUtils() {
     }
 
 }

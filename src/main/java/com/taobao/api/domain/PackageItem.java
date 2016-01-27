@@ -29,12 +29,12 @@ public class PackageItem extends TaobaoObject {
         return this.count;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
     public String getItemName() {
         return this.itemName;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public void setItemName(String itemName) {

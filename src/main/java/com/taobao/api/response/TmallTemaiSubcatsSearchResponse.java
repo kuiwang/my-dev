@@ -24,12 +24,12 @@ public class TmallTemaiSubcatsSearchResponse extends TaobaoResponse {
     @ApiField("tmall_tm_cat")
     private List<TmallTmCat> catList;
 
-    public void setCatList(List<TmallTmCat> catList) {
-        this.catList = catList;
-    }
-
     public List<TmallTmCat> getCatList() {
         return this.catList;
+    }
+
+    public void setCatList(List<TmallTmCat> catList) {
+        this.catList = catList;
     }
 
 }

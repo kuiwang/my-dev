@@ -20,12 +20,12 @@ public class SubuserFullinfoGetResponse extends TaobaoResponse {
     @ApiField("sub_fullinfo")
     private SubUserFullInfo subFullinfo;
 
-    public void setSubFullinfo(SubUserFullInfo subFullinfo) {
-        this.subFullinfo = subFullinfo;
-    }
-
     public SubUserFullInfo getSubFullinfo() {
         return this.subFullinfo;
+    }
+
+    public void setSubFullinfo(SubUserFullInfo subFullinfo) {
+        this.subFullinfo = subFullinfo;
     }
 
 }

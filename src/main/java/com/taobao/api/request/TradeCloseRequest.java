@@ -16,51 +16,49 @@ import com.taobao.api.response.TradeCloseResponse;
  */
 public class TradeCloseRequest implements TaobaoRequest<TradeCloseResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 交易关闭原因。可以选择的理由有： 1.未及时付款 2.买家联系不上 3.谢绝还价 4.商品瑕疵 5.协商不一致 6.买家不想买
      * 7.与买家协商一致
      */
     private String closeReason;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 主订单或子订单编号。
      */
     private Long tid;
 
-    public void setCloseReason(String closeReason) {
-        this.closeReason = closeReason;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(closeReason, "closeReason");
+        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.trade.close";
     }
 
     public String getCloseReason() {
         return this.closeReason;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getTid() {
-        return this.tid;
+    @Override
+    public Class<TradeCloseResponse> getResponseClass() {
+        return TradeCloseResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.trade.close";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("close_reason", this.closeReason);
@@ -71,6 +69,16 @@ public class TradeCloseRequest implements TaobaoRequest<TradeCloseResponse> {
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class TradeCloseRequest implements TaobaoRequest<TradeCloseResponse> {
         this.udfParams.put(key, value);
     }
 
-    public Class<TradeCloseResponse> getResponseClass() {
-        return TradeCloseResponse.class;
+    public void setCloseReason(String closeReason) {
+        this.closeReason = closeReason;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(closeReason, "closeReason");
-        RequestCheckUtils.checkNotEmpty(tid, "tid");
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

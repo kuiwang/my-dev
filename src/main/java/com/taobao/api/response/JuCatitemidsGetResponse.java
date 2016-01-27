@@ -23,12 +23,12 @@ public class JuCatitemidsGetResponse extends TaobaoResponse {
     @ApiField("number")
     private List<Long> itemIds;
 
-    public void setItemIds(List<Long> itemIds) {
-        this.itemIds = itemIds;
-    }
-
     public List<Long> getItemIds() {
         return this.itemIds;
+    }
+
+    public void setItemIds(List<Long> itemIds) {
+        this.itemIds = itemIds;
     }
 
 }

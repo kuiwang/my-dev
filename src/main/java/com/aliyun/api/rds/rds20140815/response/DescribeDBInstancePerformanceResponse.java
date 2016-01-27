@@ -49,44 +49,44 @@ public class DescribeDBInstancePerformanceResponse extends AliyunResponse {
     @ApiField("StartTime")
     private String startTime;
 
-    public void setdBInstanceId(String dBInstanceId) {
-        this.dBInstanceId = dBInstanceId;
-    }
-
     public String getdBInstanceId() {
         return this.dBInstanceId;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public String getEndTime() {
         return this.endTime;
     }
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setPerformanceKeys(List<PerformanceKey> performanceKeys) {
-        this.performanceKeys = performanceKeys;
     }
 
     public List<PerformanceKey> getPerformanceKeys() {
         return this.performanceKeys;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
     public String getStartTime() {
         return this.startTime;
+    }
+
+    public void setdBInstanceId(String dBInstanceId) {
+        this.dBInstanceId = dBInstanceId;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setPerformanceKeys(List<PerformanceKey> performanceKeys) {
+        this.performanceKeys = performanceKeys;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
 }

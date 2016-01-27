@@ -29,12 +29,12 @@ public class RemoteResult extends TaobaoObject {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public void setResult(Boolean result) {

@@ -24,12 +24,12 @@ public class WlbWaybillISearchResponse extends TaobaoResponse {
     @ApiField("waybill_apply_subscription_info")
     private List<WaybillApplySubscriptionInfo> subscribtions;
 
-    public void setSubscribtions(List<WaybillApplySubscriptionInfo> subscribtions) {
-        this.subscribtions = subscribtions;
-    }
-
     public List<WaybillApplySubscriptionInfo> getSubscribtions() {
         return this.subscribtions;
+    }
+
+    public void setSubscribtions(List<WaybillApplySubscriptionInfo> subscribtions) {
+        this.subscribtions = subscribtions;
     }
 
 }

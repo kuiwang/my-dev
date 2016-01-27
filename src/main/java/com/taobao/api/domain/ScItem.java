@@ -155,180 +155,180 @@ public class ScItem extends TaobaoObject {
         return this.barCode;
     }
 
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
-    }
-
     public Long getBrandId() {
         return this.brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
     }
 
     public String getBrandName() {
         return this.brandName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
     public Long getHeight() {
         return this.height;
-    }
-
-    public void setHeight(Long height) {
-        this.height = height;
     }
 
     public Long getIsAreaSale() {
         return this.isAreaSale;
     }
 
-    public void setIsAreaSale(Long isAreaSale) {
-        this.isAreaSale = isAreaSale;
-    }
-
     public Boolean getIsCostly() {
         return this.isCostly;
-    }
-
-    public void setIsCostly(Boolean isCostly) {
-        this.isCostly = isCostly;
     }
 
     public Boolean getIsDangerous() {
         return this.isDangerous;
     }
 
-    public void setIsDangerous(Boolean isDangerous) {
-        this.isDangerous = isDangerous;
-    }
-
     public Boolean getIsFriable() {
         return this.isFriable;
-    }
-
-    public void setIsFriable(Boolean isFriable) {
-        this.isFriable = isFriable;
     }
 
     public Boolean getIsWarranty() {
         return this.isWarranty;
     }
 
-    public void setIsWarranty(Boolean isWarranty) {
-        this.isWarranty = isWarranty;
-    }
-
     public Long getItemId() {
         return this.itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public Long getItemType() {
         return this.itemType;
-    }
-
-    public void setItemType(Long itemType) {
-        this.itemType = itemType;
     }
 
     public Long getLength() {
         return this.length;
     }
 
-    public void setLength(Long length) {
-        this.length = length;
-    }
-
     public String getMatterStatus() {
         return this.matterStatus;
-    }
-
-    public void setMatterStatus(String matterStatus) {
-        this.matterStatus = matterStatus;
     }
 
     public Long getOptions() {
         return this.options;
     }
 
-    public void setOptions(Long options) {
-        this.options = options;
-    }
-
     public String getOuterCode() {
         return this.outerCode;
-    }
-
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
     }
 
     public Long getPrice() {
         return this.price;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
     public String getProperties() {
         return this.properties;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     public Long getVolume() {
         return this.volume;
-    }
-
-    public void setVolume(Long volume) {
-        this.volume = volume;
     }
 
     public Long getWeight() {
         return this.weight;
     }
 
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
     public Long getWidth() {
         return this.width;
     }
 
-    public void setWidth(Long width) {
-        this.width = width;
-    }
-
     public String getWmsCode() {
         return this.wmsCode;
+    }
+
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public void setHeight(Long height) {
+        this.height = height;
+    }
+
+    public void setIsAreaSale(Long isAreaSale) {
+        this.isAreaSale = isAreaSale;
+    }
+
+    public void setIsCostly(Boolean isCostly) {
+        this.isCostly = isCostly;
+    }
+
+    public void setIsDangerous(Boolean isDangerous) {
+        this.isDangerous = isDangerous;
+    }
+
+    public void setIsFriable(Boolean isFriable) {
+        this.isFriable = isFriable;
+    }
+
+    public void setIsWarranty(Boolean isWarranty) {
+        this.isWarranty = isWarranty;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemType(Long itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
+    }
+
+    public void setMatterStatus(String matterStatus) {
+        this.matterStatus = matterStatus;
+    }
+
+    public void setOptions(Long options) {
+        this.options = options;
+    }
+
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setVolume(Long volume) {
+        this.volume = volume;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
+    }
+
+    public void setWidth(Long width) {
+        this.width = width;
     }
 
     public void setWmsCode(String wmsCode) {

@@ -17,12 +17,6 @@ import com.taobao.api.response.WeitaoCloudtagsGroupAddResponse;
 public class WeitaoCloudtagsGroupAddRequest implements
         TaobaoRequest<WeitaoCloudtagsGroupAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 分组的sql
      */
@@ -42,42 +36,49 @@ public class WeitaoCloudtagsGroupAddRequest implements
      */
     private String groupName;
 
-    public void setExpression(String expression) {
-        this.expression = expression;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(expression, "expression");
+        RequestCheckUtils.checkNotEmpty(groupDesc, "groupDesc");
+        RequestCheckUtils.checkMaxLength(groupDesc, 100, "groupDesc");
+        RequestCheckUtils.checkNotEmpty(groupName, "groupName");
+        RequestCheckUtils.checkMaxLength(groupName, 32, "groupName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.weitao.cloudtags.group.add";
     }
 
     public String getExpression() {
         return this.expression;
     }
 
-    public void setGroupDesc(String groupDesc) {
-        this.groupDesc = groupDesc;
-    }
-
     public String getGroupDesc() {
         return this.groupDesc;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
     }
 
     public String getGroupName() {
         return this.groupName;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<WeitaoCloudtagsGroupAddResponse> getResponseClass() {
+        return WeitaoCloudtagsGroupAddResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.weitao.cloudtags.group.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("expression", this.expression);
@@ -89,6 +90,12 @@ public class WeitaoCloudtagsGroupAddRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -96,19 +103,20 @@ public class WeitaoCloudtagsGroupAddRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WeitaoCloudtagsGroupAddResponse> getResponseClass() {
-        return WeitaoCloudtagsGroupAddResponse.class;
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(expression, "expression");
-        RequestCheckUtils.checkNotEmpty(groupDesc, "groupDesc");
-        RequestCheckUtils.checkMaxLength(groupDesc, 100, "groupDesc");
-        RequestCheckUtils.checkNotEmpty(groupName, "groupName");
-        RequestCheckUtils.checkMaxLength(groupName, 32, "groupName");
+    public void setGroupDesc(String groupDesc) {
+        this.groupDesc = groupDesc;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

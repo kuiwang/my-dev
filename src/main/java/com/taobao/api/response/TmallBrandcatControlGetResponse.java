@@ -20,12 +20,12 @@ public class TmallBrandcatControlGetResponse extends TaobaoResponse {
     @ApiField("brand_cat_control_info")
     private BrandCatControlInfo brandCatControlInfo;
 
-    public void setBrandCatControlInfo(BrandCatControlInfo brandCatControlInfo) {
-        this.brandCatControlInfo = brandCatControlInfo;
-    }
-
     public BrandCatControlInfo getBrandCatControlInfo() {
         return this.brandCatControlInfo;
+    }
+
+    public void setBrandCatControlInfo(BrandCatControlInfo brandCatControlInfo) {
+        this.brandCatControlInfo = brandCatControlInfo;
     }
 
 }

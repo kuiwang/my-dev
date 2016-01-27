@@ -17,12 +17,6 @@ import com.taobao.api.response.DdAuctionRuleQueryResponse;
  */
 public class DdAuctionRuleQueryRequest implements TaobaoRequest<DdAuctionRuleQueryResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 当前日期时间
      */
@@ -32,6 +26,8 @@ public class DdAuctionRuleQueryRequest implements TaobaoRequest<DdAuctionRuleQue
      * 时间
      */
     private Long dayTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 规则id
@@ -63,95 +59,69 @@ public class DdAuctionRuleQueryRequest implements TaobaoRequest<DdAuctionRuleQue
      */
     private String storeId;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 轮询周期
      */
     private String weekly;
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(isDiandian, "isDiandian");
+        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.dd.auction.rule.query";
     }
 
     public Date getCurrentDate() {
         return this.currentDate;
     }
 
-    public void setDayTime(Long dayTime) {
-        this.dayTime = dayTime;
-    }
-
     public Long getDayTime() {
         return this.dayTime;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setIsDiandian(Boolean isDiandian) {
-        this.isDiandian = isDiandian;
-    }
-
     public Boolean getIsDiandian() {
         return this.isDiandian;
-    }
-
-    public void setIsTakeout(Boolean isTakeout) {
-        this.isTakeout = isTakeout;
     }
 
     public Boolean getIsTakeout() {
         return this.isTakeout;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setStatusArray(String statusArray) {
-        this.statusArray = statusArray;
+    @Override
+    public Class<DdAuctionRuleQueryResponse> getResponseClass() {
+        return DdAuctionRuleQueryResponse.class;
     }
 
     public String getStatusArray() {
         return this.statusArray;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
     public String getStoreId() {
         return this.storeId;
     }
 
-    public void setWeekly(String weekly) {
-        this.weekly = weekly;
-    }
-
-    public String getWeekly() {
-        return this.weekly;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.dd.auction.rule.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("current_date", this.currentDate);
@@ -169,6 +139,16 @@ public class DdAuctionRuleQueryRequest implements TaobaoRequest<DdAuctionRuleQue
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWeekly() {
+        return this.weekly;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -176,16 +156,44 @@ public class DdAuctionRuleQueryRequest implements TaobaoRequest<DdAuctionRuleQue
         this.udfParams.put(key, value);
     }
 
-    public Class<DdAuctionRuleQueryResponse> getResponseClass() {
-        return DdAuctionRuleQueryResponse.class;
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(isDiandian, "isDiandian");
-        RequestCheckUtils.checkNotEmpty(isTakeout, "isTakeout");
+    public void setDayTime(Long dayTime) {
+        this.dayTime = dayTime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsDiandian(Boolean isDiandian) {
+        this.isDiandian = isDiandian;
+    }
+
+    public void setIsTakeout(Boolean isTakeout) {
+        this.isTakeout = isTakeout;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatusArray(String statusArray) {
+        this.statusArray = statusArray;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWeekly(String weekly) {
+        this.weekly = weekly;
     }
 }

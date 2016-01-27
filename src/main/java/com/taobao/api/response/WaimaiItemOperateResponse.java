@@ -20,12 +20,12 @@ public class WaimaiItemOperateResponse extends TaobaoResponse {
     @ApiField("batch_operate_result")
     private BatchOperateResult batchOperateResult;
 
-    public void setBatchOperateResult(BatchOperateResult batchOperateResult) {
-        this.batchOperateResult = batchOperateResult;
-    }
-
     public BatchOperateResult getBatchOperateResult() {
         return this.batchOperateResult;
+    }
+
+    public void setBatchOperateResult(BatchOperateResult batchOperateResult) {
+        this.batchOperateResult = batchOperateResult;
     }
 
 }

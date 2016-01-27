@@ -69,52 +69,52 @@ public class MsgList extends TaobaoObject {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Long getDirection() {
         return this.direction;
-    }
-
-    public void setDirection(Long direction) {
-        this.direction = direction;
     }
 
     public Long getLength() {
         return this.length;
     }
 
-    public void setLength(Long length) {
-        this.length = length;
-    }
-
     public String getTime() {
         return this.time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public Long getType() {
         return this.type;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
     public List<UrlList> getUrlLists() {
         return this.urlLists;
     }
 
-    public void setUrlLists(List<UrlList> urlLists) {
-        this.urlLists = urlLists;
-    }
-
     public List<WordCountList> getWordLists() {
         return this.wordLists;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setDirection(Long direction) {
+        this.direction = direction;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
+    }
+
+    public void setUrlLists(List<UrlList> urlLists) {
+        this.urlLists = urlLists;
     }
 
     public void setWordLists(List<WordCountList> wordLists) {

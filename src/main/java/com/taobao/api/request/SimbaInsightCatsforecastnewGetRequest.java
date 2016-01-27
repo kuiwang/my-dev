@@ -17,37 +17,43 @@ import com.taobao.api.response.SimbaInsightCatsforecastnewGetResponse;
 public class SimbaInsightCatsforecastnewGetRequest implements
         TaobaoRequest<SimbaInsightCatsforecastnewGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要查询的词列表
      */
     private String bidwordList;
 
-    public void setBidwordList(String bidwordList) {
-        this.bidwordList = bidwordList;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
+        RequestCheckUtils.checkMaxListSize(bidwordList, 10, "bidwordList");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.catsforecastnew.get";
     }
 
     public String getBidwordList() {
         return this.bidwordList;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<SimbaInsightCatsforecastnewGetResponse> getResponseClass() {
+        return SimbaInsightCatsforecastnewGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.simba.insight.catsforecastnew.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bidword_list", this.bidwordList);
@@ -57,6 +63,12 @@ public class SimbaInsightCatsforecastnewGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,16 +76,12 @@ public class SimbaInsightCatsforecastnewGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightCatsforecastnewGetResponse> getResponseClass() {
-        return SimbaInsightCatsforecastnewGetResponse.class;
+    public void setBidwordList(String bidwordList) {
+        this.bidwordList = bidwordList;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
-        RequestCheckUtils.checkMaxListSize(bidwordList, 10, "bidwordList");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

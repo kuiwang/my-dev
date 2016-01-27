@@ -17,50 +17,52 @@ import com.taobao.api.response.SimbaAdgroupAdgroupcatmatchsGetResponse;
 public class SimbaAdgroupAdgroupcatmatchsGetRequest implements
         TaobaoRequest<SimbaAdgroupAdgroupcatmatchsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id列表
      */
     private String adgroupIds;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setAdgroupIds(String adgroupIds) {
-        this.adgroupIds = adgroupIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupIds, "adgroupIds");
+        RequestCheckUtils.checkMaxListSize(adgroupIds, 200, "adgroupIds");
     }
 
     public String getAdgroupIds() {
         return this.adgroupIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.adgroupcatmatchs.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaAdgroupAdgroupcatmatchsGetResponse> getResponseClass() {
+        return SimbaAdgroupAdgroupcatmatchsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.adgroupcatmatchs.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_ids", this.adgroupIds);
@@ -71,6 +73,12 @@ public class SimbaAdgroupAdgroupcatmatchsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -78,16 +86,16 @@ public class SimbaAdgroupAdgroupcatmatchsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupAdgroupcatmatchsGetResponse> getResponseClass() {
-        return SimbaAdgroupAdgroupcatmatchsGetResponse.class;
+    public void setAdgroupIds(String adgroupIds) {
+        this.adgroupIds = adgroupIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupIds, "adgroupIds");
-        RequestCheckUtils.checkMaxListSize(adgroupIds, 200, "adgroupIds");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

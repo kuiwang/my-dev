@@ -16,50 +16,48 @@ import com.taobao.api.response.UmpActivityAddResponse;
  */
 public class UmpActivityAddRequest implements TaobaoRequest<UmpActivityAddResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 活动内容，通过ump sdk里面的MarkeitngTool来生成
      */
     private String content;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
 
     /**
      * 工具id
      */
     private Long toolId;
 
-    public void setContent(String content) {
-        this.content = content;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(content, "content");
+        RequestCheckUtils.checkNotEmpty(toolId, "toolId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.ump.activity.add";
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setToolId(Long toolId) {
-        this.toolId = toolId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public Long getToolId() {
-        return this.toolId;
+    @Override
+    public Class<UmpActivityAddResponse> getResponseClass() {
+        return UmpActivityAddResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.ump.activity.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("content", this.content);
@@ -70,6 +68,16 @@ public class UmpActivityAddRequest implements TaobaoRequest<UmpActivityAddRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getToolId() {
+        return this.toolId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class UmpActivityAddRequest implements TaobaoRequest<UmpActivityAddRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<UmpActivityAddResponse> getResponseClass() {
-        return UmpActivityAddResponse.class;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(content, "content");
-        RequestCheckUtils.checkNotEmpty(toolId, "toolId");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setToolId(Long toolId) {
+        this.toolId = toolId;
     }
 }

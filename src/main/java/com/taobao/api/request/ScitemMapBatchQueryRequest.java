@@ -17,10 +17,6 @@ public class ScitemMapBatchQueryRequest implements TaobaoRequest<ScitemMapBatchQ
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 后端商品的商家编码
      */
@@ -41,50 +37,46 @@ public class ScitemMapBatchQueryRequest implements TaobaoRequest<ScitemMapBatchQ
      */
     private Long scItemId;
 
-    public void setOuterCode(String outerCode) {
-        this.outerCode = outerCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.scitem.map.batch.query";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOuterCode() {
         return this.outerCode;
     }
 
-    public void setPageIndex(Long pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
     public Long getPageIndex() {
         return this.pageIndex;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setScItemId(Long scItemId) {
-        this.scItemId = scItemId;
+    @Override
+    public Class<ScitemMapBatchQueryResponse> getResponseClass() {
+        return ScitemMapBatchQueryResponse.class;
     }
 
     public Long getScItemId() {
         return this.scItemId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.scitem.map.batch.query";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("outer_code", this.outerCode);
@@ -97,6 +89,12 @@ public class ScitemMapBatchQueryRequest implements TaobaoRequest<ScitemMapBatchQ
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -104,14 +102,24 @@ public class ScitemMapBatchQueryRequest implements TaobaoRequest<ScitemMapBatchQ
         this.udfParams.put(key, value);
     }
 
-    public Class<ScitemMapBatchQueryResponse> getResponseClass() {
-        return ScitemMapBatchQueryResponse.class;
+    public void setOuterCode(String outerCode) {
+        this.outerCode = outerCode;
     }
 
-    public void check() throws ApiRuleException {
+    public void setPageIndex(Long pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setScItemId(Long scItemId) {
+        this.scItemId = scItemId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -19,10 +19,6 @@ public class WlbItemConsignmentCreateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 商品id
      */
@@ -49,58 +45,55 @@ public class WlbItemConsignmentCreateRequest implements
      */
     private Long ruleId;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
+        RequestCheckUtils.checkNotEmpty(number, "number");
+        RequestCheckUtils.checkNotEmpty(ownerItemId, "ownerItemId");
+        RequestCheckUtils.checkNotEmpty(ownerUserId, "ownerUserId");
+        RequestCheckUtils.checkNotEmpty(ruleId, "ruleId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.item.consignment.create";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
-    }
-
     public Long getNumber() {
         return this.number;
-    }
-
-    public void setOwnerItemId(Long ownerItemId) {
-        this.ownerItemId = ownerItemId;
     }
 
     public Long getOwnerItemId() {
         return this.ownerItemId;
     }
 
-    public void setOwnerUserId(Long ownerUserId) {
-        this.ownerUserId = ownerUserId;
-    }
-
     public Long getOwnerUserId() {
         return this.ownerUserId;
     }
 
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
+    @Override
+    public Class<WlbItemConsignmentCreateResponse> getResponseClass() {
+        return WlbItemConsignmentCreateResponse.class;
     }
 
     public Long getRuleId() {
         return this.ruleId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.item.consignment.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("item_id", this.itemId);
@@ -114,6 +107,12 @@ public class WlbItemConsignmentCreateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -121,19 +120,28 @@ public class WlbItemConsignmentCreateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbItemConsignmentCreateResponse> getResponseClass() {
-        return WlbItemConsignmentCreateResponse.class;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(itemId, "itemId");
-        RequestCheckUtils.checkNotEmpty(number, "number");
-        RequestCheckUtils.checkNotEmpty(ownerItemId, "ownerItemId");
-        RequestCheckUtils.checkNotEmpty(ownerUserId, "ownerUserId");
-        RequestCheckUtils.checkNotEmpty(ruleId, "ruleId");
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerItemId(Long ownerItemId) {
+        this.ownerItemId = ownerItemId;
+    }
+
+    public void setOwnerUserId(Long ownerUserId) {
+        this.ownerUserId = ownerUserId;
+    }
+
+    public void setRuleId(Long ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

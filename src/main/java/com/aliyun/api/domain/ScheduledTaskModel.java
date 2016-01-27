@@ -81,76 +81,76 @@ public class ScheduledTaskModel extends TaobaoObject {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getLaunchExpirationTime() {
         return this.launchExpirationTime;
-    }
-
-    public void setLaunchExpirationTime(Long launchExpirationTime) {
-        this.launchExpirationTime = launchExpirationTime;
     }
 
     public String getLaunchTime() {
         return this.launchTime;
     }
 
-    public void setLaunchTime(String launchTime) {
-        this.launchTime = launchTime;
-    }
-
     public String getRecurrenceEndTime() {
         return this.recurrenceEndTime;
-    }
-
-    public void setRecurrenceEndTime(String recurrenceEndTime) {
-        this.recurrenceEndTime = recurrenceEndTime;
     }
 
     public String getRecurrenceType() {
         return this.recurrenceType;
     }
 
-    public void setRecurrenceType(String recurrenceType) {
-        this.recurrenceType = recurrenceType;
-    }
-
     public String getRecurrenceValue() {
         return this.recurrenceValue;
-    }
-
-    public void setRecurrenceValue(String recurrenceValue) {
-        this.recurrenceValue = recurrenceValue;
     }
 
     public String getScheduledAction() {
         return this.scheduledAction;
     }
 
-    public void setScheduledAction(String scheduledAction) {
-        this.scheduledAction = scheduledAction;
-    }
-
     public String getScheduledTaskId() {
         return this.scheduledTaskId;
-    }
-
-    public void setScheduledTaskId(String scheduledTaskId) {
-        this.scheduledTaskId = scheduledTaskId;
     }
 
     public String getScheduledTaskName() {
         return this.scheduledTaskName;
     }
 
-    public void setScheduledTaskName(String scheduledTaskName) {
-        this.scheduledTaskName = scheduledTaskName;
-    }
-
     public Boolean getTaskEnabled() {
         return this.taskEnabled;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLaunchExpirationTime(Long launchExpirationTime) {
+        this.launchExpirationTime = launchExpirationTime;
+    }
+
+    public void setLaunchTime(String launchTime) {
+        this.launchTime = launchTime;
+    }
+
+    public void setRecurrenceEndTime(String recurrenceEndTime) {
+        this.recurrenceEndTime = recurrenceEndTime;
+    }
+
+    public void setRecurrenceType(String recurrenceType) {
+        this.recurrenceType = recurrenceType;
+    }
+
+    public void setRecurrenceValue(String recurrenceValue) {
+        this.recurrenceValue = recurrenceValue;
+    }
+
+    public void setScheduledAction(String scheduledAction) {
+        this.scheduledAction = scheduledAction;
+    }
+
+    public void setScheduledTaskId(String scheduledTaskId) {
+        this.scheduledTaskId = scheduledTaskId;
+    }
+
+    public void setScheduledTaskName(String scheduledTaskName) {
+        this.scheduledTaskName = scheduledTaskName;
     }
 
     public void setTaskEnabled(Boolean taskEnabled) {

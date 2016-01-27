@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoProductsGetResponse;
  */
 public class FenxiaoProductsGetRequest implements TaobaoRequest<FenxiaoProductsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 结束修改时间
      */
@@ -32,6 +26,8 @@ public class FenxiaoProductsGetRequest implements TaobaoRequest<FenxiaoProductsG
      * 指定查询额外的信息，可选值：skus（sku数据）、images（多图），多个可选值用逗号分割。
      */
     private String fields;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 查询产品列表时，查询入参“是否需要授权” yes:需要授权 no:不需要授权
@@ -84,114 +80,80 @@ public class FenxiaoProductsGetRequest implements TaobaoRequest<FenxiaoProductsG
      */
     private String status;
 
-    public void setEndModified(Date endModified) {
-        this.endModified = endModified;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(itemIds, 20, "itemIds");
+        RequestCheckUtils.checkMaxListSize(pids, 30, "pids");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.products.get";
     }
 
     public Date getEndModified() {
         return this.endModified;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
-    }
-
     public String getFields() {
         return this.fields;
     }
 
-    public void setIsAuthz(String isAuthz) {
-        this.isAuthz = isAuthz;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIsAuthz() {
         return this.isAuthz;
     }
 
-    public void setItemIds(String itemIds) {
-        this.itemIds = itemIds;
-    }
-
     public String getItemIds() {
         return this.itemIds;
-    }
-
-    public void setOuterId(String outerId) {
-        this.outerId = outerId;
     }
 
     public String getOuterId() {
         return this.outerId;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setPids(String pids) {
-        this.pids = pids;
-    }
-
     public String getPids() {
         return this.pids;
-    }
-
-    public void setProductcatId(Long productcatId) {
-        this.productcatId = productcatId;
     }
 
     public Long getProductcatId() {
         return this.productcatId;
     }
 
-    public void setSkuNumber(String skuNumber) {
-        this.skuNumber = skuNumber;
+    @Override
+    public Class<FenxiaoProductsGetResponse> getResponseClass() {
+        return FenxiaoProductsGetResponse.class;
     }
 
     public String getSkuNumber() {
         return this.skuNumber;
     }
 
-    public void setStartModified(Date startModified) {
-        this.startModified = startModified;
-    }
-
     public Date getStartModified() {
         return this.startModified;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.products.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_modified", this.endModified);
@@ -212,6 +174,12 @@ public class FenxiaoProductsGetRequest implements TaobaoRequest<FenxiaoProductsG
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -219,16 +187,56 @@ public class FenxiaoProductsGetRequest implements TaobaoRequest<FenxiaoProductsG
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductsGetResponse> getResponseClass() {
-        return FenxiaoProductsGetResponse.class;
+    public void setEndModified(Date endModified) {
+        this.endModified = endModified;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(itemIds, 20, "itemIds");
-        RequestCheckUtils.checkMaxListSize(pids, 30, "pids");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setIsAuthz(String isAuthz) {
+        this.isAuthz = isAuthz;
+    }
+
+    public void setItemIds(String itemIds) {
+        this.itemIds = itemIds;
+    }
+
+    public void setOuterId(String outerId) {
+        this.outerId = outerId;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPids(String pids) {
+        this.pids = pids;
+    }
+
+    public void setProductcatId(Long productcatId) {
+        this.productcatId = productcatId;
+    }
+
+    public void setSkuNumber(String skuNumber) {
+        this.skuNumber = skuNumber;
+    }
+
+    public void setStartModified(Date startModified) {
+        this.startModified = startModified;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

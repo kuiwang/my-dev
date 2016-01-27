@@ -20,12 +20,12 @@ public class UmpPromotionGetResponse extends TaobaoResponse {
     @ApiField("promotions")
     private PromotionDisplayTop promotions;
 
-    public void setPromotions(PromotionDisplayTop promotions) {
-        this.promotions = promotions;
-    }
-
     public PromotionDisplayTop getPromotions() {
         return this.promotions;
+    }
+
+    public void setPromotions(PromotionDisplayTop promotions) {
+        this.promotions = promotions;
     }
 
 }

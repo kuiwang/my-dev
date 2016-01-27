@@ -18,21 +18,11 @@ public class DescribeScalingRulesRequest implements AliyunRequest<DescribeScalin
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
-
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
     private String ownerAccount;
 
-    /**
-     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
-     * 该参数仅官网用户可用
-     */
-    private String resourceOwnerAccount;
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * PageNumber
@@ -49,6 +39,12 @@ public class DescribeScalingRulesRequest implements AliyunRequest<DescribeScalin
      * 伸缩规则所在的区域
      */
     private String regionId;
+
+    /**
+     * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
+     * 该参数仅官网用户可用
+     */
+    private String resourceOwnerAccount;
 
     /**
      * 伸缩组的ID
@@ -205,314 +201,180 @@ public class DescribeScalingRulesRequest implements AliyunRequest<DescribeScalin
      */
     private String scalingRuleName9;
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public Long getPageNumber() {
-        return this.pageNumber;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Long getPageSize() {
-        return this.pageSize;
-    }
-
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getRegionId() {
-        return this.regionId;
-    }
-
-    public void setScalingGroupId(String scalingGroupId) {
-        this.scalingGroupId = scalingGroupId;
-    }
-
-    public String getScalingGroupId() {
-        return this.scalingGroupId;
-    }
-
-    public void setScalingRuleAri1(String scalingRuleAri1) {
-        this.scalingRuleAri1 = scalingRuleAri1;
-    }
-
-    public String getScalingRuleAri1() {
-        return this.scalingRuleAri1;
-    }
-
-    public void setScalingRuleAri10(String scalingRuleAri10) {
-        this.scalingRuleAri10 = scalingRuleAri10;
-    }
-
-    public String getScalingRuleAri10() {
-        return this.scalingRuleAri10;
-    }
-
-    public void setScalingRuleAri2(String scalingRuleAri2) {
-        this.scalingRuleAri2 = scalingRuleAri2;
-    }
-
-    public String getScalingRuleAri2() {
-        return this.scalingRuleAri2;
-    }
-
-    public void setScalingRuleAri3(String scalingRuleAri3) {
-        this.scalingRuleAri3 = scalingRuleAri3;
-    }
-
-    public String getScalingRuleAri3() {
-        return this.scalingRuleAri3;
-    }
-
-    public void setScalingRuleAri4(String scalingRuleAri4) {
-        this.scalingRuleAri4 = scalingRuleAri4;
-    }
-
-    public String getScalingRuleAri4() {
-        return this.scalingRuleAri4;
-    }
-
-    public void setScalingRuleAri5(String scalingRuleAri5) {
-        this.scalingRuleAri5 = scalingRuleAri5;
-    }
-
-    public String getScalingRuleAri5() {
-        return this.scalingRuleAri5;
-    }
-
-    public void setScalingRuleAri6(String scalingRuleAri6) {
-        this.scalingRuleAri6 = scalingRuleAri6;
-    }
-
-    public String getScalingRuleAri6() {
-        return this.scalingRuleAri6;
-    }
-
-    public void setScalingRuleAri7(String scalingRuleAri7) {
-        this.scalingRuleAri7 = scalingRuleAri7;
-    }
-
-    public String getScalingRuleAri7() {
-        return this.scalingRuleAri7;
-    }
-
-    public void setScalingRuleAri8(String scalingRuleAri8) {
-        this.scalingRuleAri8 = scalingRuleAri8;
-    }
-
-    public String getScalingRuleAri8() {
-        return this.scalingRuleAri8;
-    }
-
-    public void setScalingRuleAri9(String scalingRuleAri9) {
-        this.scalingRuleAri9 = scalingRuleAri9;
-    }
-
-    public String getScalingRuleAri9() {
-        return this.scalingRuleAri9;
-    }
-
-    public void setScalingRuleId1(String scalingRuleId1) {
-        this.scalingRuleId1 = scalingRuleId1;
-    }
-
-    public String getScalingRuleId1() {
-        return this.scalingRuleId1;
-    }
-
-    public void setScalingRuleId10(String scalingRuleId10) {
-        this.scalingRuleId10 = scalingRuleId10;
-    }
-
-    public String getScalingRuleId10() {
-        return this.scalingRuleId10;
-    }
-
-    public void setScalingRuleId2(String scalingRuleId2) {
-        this.scalingRuleId2 = scalingRuleId2;
-    }
-
-    public String getScalingRuleId2() {
-        return this.scalingRuleId2;
-    }
-
-    public void setScalingRuleId3(String scalingRuleId3) {
-        this.scalingRuleId3 = scalingRuleId3;
-    }
-
-    public String getScalingRuleId3() {
-        return this.scalingRuleId3;
-    }
-
-    public void setScalingRuleId4(String scalingRuleId4) {
-        this.scalingRuleId4 = scalingRuleId4;
-    }
-
-    public String getScalingRuleId4() {
-        return this.scalingRuleId4;
-    }
-
-    public void setScalingRuleId5(String scalingRuleId5) {
-        this.scalingRuleId5 = scalingRuleId5;
-    }
-
-    public String getScalingRuleId5() {
-        return this.scalingRuleId5;
-    }
-
-    public void setScalingRuleId6(String scalingRuleId6) {
-        this.scalingRuleId6 = scalingRuleId6;
-    }
-
-    public String getScalingRuleId6() {
-        return this.scalingRuleId6;
-    }
-
-    public void setScalingRuleId7(String scalingRuleId7) {
-        this.scalingRuleId7 = scalingRuleId7;
-    }
-
-    public String getScalingRuleId7() {
-        return this.scalingRuleId7;
-    }
-
-    public void setScalingRuleId8(String scalingRuleId8) {
-        this.scalingRuleId8 = scalingRuleId8;
-    }
-
-    public String getScalingRuleId8() {
-        return this.scalingRuleId8;
-    }
-
-    public void setScalingRuleId9(String scalingRuleId9) {
-        this.scalingRuleId9 = scalingRuleId9;
-    }
-
-    public String getScalingRuleId9() {
-        return this.scalingRuleId9;
-    }
-
-    public void setScalingRuleName1(String scalingRuleName1) {
-        this.scalingRuleName1 = scalingRuleName1;
-    }
-
-    public String getScalingRuleName1() {
-        return this.scalingRuleName1;
-    }
+    private Long timestamp;
 
-    public void setScalingRuleName10(String scalingRuleName10) {
-        this.scalingRuleName10 = scalingRuleName10;
-    }
-
-    public String getScalingRuleName10() {
-        return this.scalingRuleName10;
-    }
-
-    public void setScalingRuleName2(String scalingRuleName2) {
-        this.scalingRuleName2 = scalingRuleName2;
-    }
-
-    public String getScalingRuleName2() {
-        return this.scalingRuleName2;
-    }
-
-    public void setScalingRuleName3(String scalingRuleName3) {
-        this.scalingRuleName3 = scalingRuleName3;
-    }
-
-    public String getScalingRuleName3() {
-        return this.scalingRuleName3;
-    }
-
-    public void setScalingRuleName4(String scalingRuleName4) {
-        this.scalingRuleName4 = scalingRuleName4;
-    }
-
-    public String getScalingRuleName4() {
-        return this.scalingRuleName4;
-    }
-
-    public void setScalingRuleName5(String scalingRuleName5) {
-        this.scalingRuleName5 = scalingRuleName5;
-    }
-
-    public String getScalingRuleName5() {
-        return this.scalingRuleName5;
-    }
-
-    public void setScalingRuleName6(String scalingRuleName6) {
-        this.scalingRuleName6 = scalingRuleName6;
-    }
-
-    public String getScalingRuleName6() {
-        return this.scalingRuleName6;
-    }
-
-    public void setScalingRuleName7(String scalingRuleName7) {
-        this.scalingRuleName7 = scalingRuleName7;
-    }
-
-    public String getScalingRuleName7() {
-        return this.scalingRuleName7;
-    }
-
-    public void setScalingRuleName8(String scalingRuleName8) {
-        this.scalingRuleName8 = scalingRuleName8;
-    }
-
-    public String getScalingRuleName8() {
-        return this.scalingRuleName8;
-    }
-
-    public void setScalingRuleName9(String scalingRuleName9) {
-        this.scalingRuleName9 = scalingRuleName9;
-    }
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
-    public String getScalingRuleName9() {
-        return this.scalingRuleName9;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
+        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
     }
 
-    public String getOwnerId() {
-        return ownerId;
+    @Override
+    public String getApiMethodName() {
+        return "ess.aliyuncs.com.DescribeScalingRules.2014-08-28";
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOwnerAccount() {
         return ownerAccount;
     }
 
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Long getPageNumber() {
+        return this.pageNumber;
+    }
+
+    public Long getPageSize() {
+        return this.pageSize;
+    }
+
+    public String getRegionId() {
+        return this.regionId;
     }
 
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<DescribeScalingRulesResponse> getResponseClass() {
+        return DescribeScalingRulesResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getScalingGroupId() {
+        return this.scalingGroupId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public String getScalingRuleAri1() {
+        return this.scalingRuleAri1;
     }
 
-    public String getApiMethodName() {
-        return "ess.aliyuncs.com.DescribeScalingRules.2014-08-28";
+    public String getScalingRuleAri10() {
+        return this.scalingRuleAri10;
     }
 
+    public String getScalingRuleAri2() {
+        return this.scalingRuleAri2;
+    }
+
+    public String getScalingRuleAri3() {
+        return this.scalingRuleAri3;
+    }
+
+    public String getScalingRuleAri4() {
+        return this.scalingRuleAri4;
+    }
+
+    public String getScalingRuleAri5() {
+        return this.scalingRuleAri5;
+    }
+
+    public String getScalingRuleAri6() {
+        return this.scalingRuleAri6;
+    }
+
+    public String getScalingRuleAri7() {
+        return this.scalingRuleAri7;
+    }
+
+    public String getScalingRuleAri8() {
+        return this.scalingRuleAri8;
+    }
+
+    public String getScalingRuleAri9() {
+        return this.scalingRuleAri9;
+    }
+
+    public String getScalingRuleId1() {
+        return this.scalingRuleId1;
+    }
+
+    public String getScalingRuleId10() {
+        return this.scalingRuleId10;
+    }
+
+    public String getScalingRuleId2() {
+        return this.scalingRuleId2;
+    }
+
+    public String getScalingRuleId3() {
+        return this.scalingRuleId3;
+    }
+
+    public String getScalingRuleId4() {
+        return this.scalingRuleId4;
+    }
+
+    public String getScalingRuleId5() {
+        return this.scalingRuleId5;
+    }
+
+    public String getScalingRuleId6() {
+        return this.scalingRuleId6;
+    }
+
+    public String getScalingRuleId7() {
+        return this.scalingRuleId7;
+    }
+
+    public String getScalingRuleId8() {
+        return this.scalingRuleId8;
+    }
+
+    public String getScalingRuleId9() {
+        return this.scalingRuleId9;
+    }
+
+    public String getScalingRuleName1() {
+        return this.scalingRuleName1;
+    }
+
+    public String getScalingRuleName10() {
+        return this.scalingRuleName10;
+    }
+
+    public String getScalingRuleName2() {
+        return this.scalingRuleName2;
+    }
+
+    public String getScalingRuleName3() {
+        return this.scalingRuleName3;
+    }
+
+    public String getScalingRuleName4() {
+        return this.scalingRuleName4;
+    }
+
+    public String getScalingRuleName5() {
+        return this.scalingRuleName5;
+    }
+
+    public String getScalingRuleName6() {
+        return this.scalingRuleName6;
+    }
+
+    public String getScalingRuleName7() {
+        return this.scalingRuleName7;
+    }
+
+    public String getScalingRuleName8() {
+        return this.scalingRuleName8;
+    }
+
+    public String getScalingRuleName9() {
+        return this.scalingRuleName9;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -558,6 +420,12 @@ public class DescribeScalingRulesRequest implements AliyunRequest<DescribeScalin
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -565,16 +433,156 @@ public class DescribeScalingRulesRequest implements AliyunRequest<DescribeScalin
         this.udfParams.put(key, value);
     }
 
-    public Class<DescribeScalingRulesResponse> getResponseClass() {
-        return DescribeScalingRulesResponse.class;
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxValue(pageSize, 50L, "pageSize");
-        RequestCheckUtils.checkNotEmpty(regionId, "regionId");
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setScalingGroupId(String scalingGroupId) {
+        this.scalingGroupId = scalingGroupId;
+    }
+
+    public void setScalingRuleAri1(String scalingRuleAri1) {
+        this.scalingRuleAri1 = scalingRuleAri1;
+    }
+
+    public void setScalingRuleAri10(String scalingRuleAri10) {
+        this.scalingRuleAri10 = scalingRuleAri10;
+    }
+
+    public void setScalingRuleAri2(String scalingRuleAri2) {
+        this.scalingRuleAri2 = scalingRuleAri2;
+    }
+
+    public void setScalingRuleAri3(String scalingRuleAri3) {
+        this.scalingRuleAri3 = scalingRuleAri3;
+    }
+
+    public void setScalingRuleAri4(String scalingRuleAri4) {
+        this.scalingRuleAri4 = scalingRuleAri4;
+    }
+
+    public void setScalingRuleAri5(String scalingRuleAri5) {
+        this.scalingRuleAri5 = scalingRuleAri5;
+    }
+
+    public void setScalingRuleAri6(String scalingRuleAri6) {
+        this.scalingRuleAri6 = scalingRuleAri6;
+    }
+
+    public void setScalingRuleAri7(String scalingRuleAri7) {
+        this.scalingRuleAri7 = scalingRuleAri7;
+    }
+
+    public void setScalingRuleAri8(String scalingRuleAri8) {
+        this.scalingRuleAri8 = scalingRuleAri8;
+    }
+
+    public void setScalingRuleAri9(String scalingRuleAri9) {
+        this.scalingRuleAri9 = scalingRuleAri9;
+    }
+
+    public void setScalingRuleId1(String scalingRuleId1) {
+        this.scalingRuleId1 = scalingRuleId1;
+    }
+
+    public void setScalingRuleId10(String scalingRuleId10) {
+        this.scalingRuleId10 = scalingRuleId10;
+    }
+
+    public void setScalingRuleId2(String scalingRuleId2) {
+        this.scalingRuleId2 = scalingRuleId2;
+    }
+
+    public void setScalingRuleId3(String scalingRuleId3) {
+        this.scalingRuleId3 = scalingRuleId3;
+    }
+
+    public void setScalingRuleId4(String scalingRuleId4) {
+        this.scalingRuleId4 = scalingRuleId4;
+    }
+
+    public void setScalingRuleId5(String scalingRuleId5) {
+        this.scalingRuleId5 = scalingRuleId5;
+    }
+
+    public void setScalingRuleId6(String scalingRuleId6) {
+        this.scalingRuleId6 = scalingRuleId6;
+    }
+
+    public void setScalingRuleId7(String scalingRuleId7) {
+        this.scalingRuleId7 = scalingRuleId7;
+    }
+
+    public void setScalingRuleId8(String scalingRuleId8) {
+        this.scalingRuleId8 = scalingRuleId8;
+    }
+
+    public void setScalingRuleId9(String scalingRuleId9) {
+        this.scalingRuleId9 = scalingRuleId9;
+    }
+
+    public void setScalingRuleName1(String scalingRuleName1) {
+        this.scalingRuleName1 = scalingRuleName1;
+    }
+
+    public void setScalingRuleName10(String scalingRuleName10) {
+        this.scalingRuleName10 = scalingRuleName10;
+    }
+
+    public void setScalingRuleName2(String scalingRuleName2) {
+        this.scalingRuleName2 = scalingRuleName2;
+    }
+
+    public void setScalingRuleName3(String scalingRuleName3) {
+        this.scalingRuleName3 = scalingRuleName3;
+    }
+
+    public void setScalingRuleName4(String scalingRuleName4) {
+        this.scalingRuleName4 = scalingRuleName4;
+    }
+
+    public void setScalingRuleName5(String scalingRuleName5) {
+        this.scalingRuleName5 = scalingRuleName5;
+    }
+
+    public void setScalingRuleName6(String scalingRuleName6) {
+        this.scalingRuleName6 = scalingRuleName6;
+    }
+
+    public void setScalingRuleName7(String scalingRuleName7) {
+        this.scalingRuleName7 = scalingRuleName7;
+    }
+
+    public void setScalingRuleName8(String scalingRuleName8) {
+        this.scalingRuleName8 = scalingRuleName8;
+    }
+
+    public void setScalingRuleName9(String scalingRuleName9) {
+        this.scalingRuleName9 = scalingRuleName9;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

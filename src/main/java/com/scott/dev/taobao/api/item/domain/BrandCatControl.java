@@ -34,36 +34,36 @@ public class BrandCatControl {
         return brandId;
     }
 
-    public void setBrandId(Number brandId) {
-        this.brandId = brandId;
-    }
-
     public String getBrandName() {
         return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
     }
 
     public Number getCatId() {
         return catId;
     }
 
-    public void setCatId(Number catId) {
-        this.catId = catId;
-    }
-
     public String getCatName() {
         return catName;
     }
 
-    public void setCatName(String catName) {
-        this.catName = catName;
-    }
-
     public String getCertifiedData() {
         return certifiedData;
+    }
+
+    public void setBrandId(Number brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public void setCatId(Number catId) {
+        this.catId = catId;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
     }
 
     public void setCertifiedData(String certifiedData) {

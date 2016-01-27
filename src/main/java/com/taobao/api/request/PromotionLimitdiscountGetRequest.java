@@ -17,16 +17,12 @@ import com.taobao.api.response.PromotionLimitdiscountGetResponse;
 public class PromotionLimitdiscountGetRequest implements
         TaobaoRequest<PromotionLimitdiscountGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 限时打折结束时间。输入的时间会被截取，年月日有效，时分秒忽略。
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 限时打折ID。这个针对查询唯一限时打折情况。若此字段不为空，则说明操作为单条限时打折记录查询，其他字段忽略。若想分页按条件查询，
@@ -50,58 +46,50 @@ public class PromotionLimitdiscountGetRequest implements
      */
     private String status;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.promotion.limitdiscount.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setLimitDiscountId(Long limitDiscountId) {
-        this.limitDiscountId = limitDiscountId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLimitDiscountId() {
         return this.limitDiscountId;
     }
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
     public Long getPageNumber() {
         return this.pageNumber;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    @Override
+    public Class<PromotionLimitdiscountGetResponse> getResponseClass() {
+        return PromotionLimitdiscountGetResponse.class;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return this.status;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.promotion.limitdiscount.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -115,6 +103,12 @@ public class PromotionLimitdiscountGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -122,14 +116,28 @@ public class PromotionLimitdiscountGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<PromotionLimitdiscountGetResponse> getResponseClass() {
-        return PromotionLimitdiscountGetResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
+    public void setLimitDiscountId(Long limitDiscountId) {
+        this.limitDiscountId = limitDiscountId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

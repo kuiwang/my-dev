@@ -36,28 +36,28 @@ public class AlipayUserTradeSearchResponse extends TaobaoResponse {
     @ApiField("trade_record")
     private List<TradeRecord> tradeRecords;
 
-    public void setTotalPages(String totalPages) {
-        this.totalPages = totalPages;
-    }
-
     public String getTotalPages() {
         return this.totalPages;
-    }
-
-    public void setTotalResults(String totalResults) {
-        this.totalResults = totalResults;
     }
 
     public String getTotalResults() {
         return this.totalResults;
     }
 
-    public void setTradeRecords(List<TradeRecord> tradeRecords) {
-        this.tradeRecords = tradeRecords;
-    }
-
     public List<TradeRecord> getTradeRecords() {
         return this.tradeRecords;
+    }
+
+    public void setTotalPages(String totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public void setTotalResults(String totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public void setTradeRecords(List<TradeRecord> tradeRecords) {
+        this.tradeRecords = tradeRecords;
     }
 
 }

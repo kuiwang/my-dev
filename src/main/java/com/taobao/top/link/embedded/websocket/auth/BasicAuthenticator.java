@@ -43,18 +43,6 @@ public class BasicAuthenticator extends AbstractAuthenticator {
     public BasicAuthenticator() {
     }
 
-    /* (non-Javadoc)
-     * @see jp.a840.websocket.proxy.ProxyCredentials#getCredentials()
-     */
-    public String getCredentials(List<Challenge> challengeList) throws WebSocketException {
-        for (Challenge challenge : challengeList) {
-            if (AuthScheme.Basic.equals(challenge.getScheme())) {
-                return getCredentials(challenge);
-            }
-        }
-        return null;
-    }
-
     /**
      * Gets the credentials.
      *
@@ -67,5 +55,18 @@ public class BasicAuthenticator extends AbstractAuthenticator {
                 + this.credentials.getPassword();
         return AuthScheme.Basic.name() + " "
                 + Base64.encodeToString(credentialsStr.getBytes(), false);
+    }
+
+    /* (non-Javadoc)
+     * @see jp.a840.websocket.proxy.ProxyCredentials#getCredentials()
+     */
+    @Override
+    public String getCredentials(List<Challenge> challengeList) throws WebSocketException {
+        for (Challenge challenge : challengeList) {
+            if (AuthScheme.Basic.equals(challenge.getScheme())) {
+                return getCredentials(challenge);
+            }
+        }
+        return null;
     }
 }

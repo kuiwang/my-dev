@@ -18,35 +18,36 @@ public class WlbOrderCancelRequest implements TaobaoRequest<WlbOrderCancelRespon
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 物流宝订单编号
      */
     private String wlbOrderCode;
 
-    public void setWlbOrderCode(String wlbOrderCode) {
-        this.wlbOrderCode = wlbOrderCode;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(wlbOrderCode, "wlbOrderCode");
     }
 
-    public String getWlbOrderCode() {
-        return this.wlbOrderCode;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "taobao.wlb.order.cancel";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbOrderCancelResponse> getResponseClass() {
+        return WlbOrderCancelResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("wlb_order_code", this.wlbOrderCode);
@@ -56,6 +57,16 @@ public class WlbOrderCancelRequest implements TaobaoRequest<WlbOrderCancelRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWlbOrderCode() {
+        return this.wlbOrderCode;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,15 +74,12 @@ public class WlbOrderCancelRequest implements TaobaoRequest<WlbOrderCancelRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbOrderCancelResponse> getResponseClass() {
-        return WlbOrderCancelResponse.class;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(wlbOrderCode, "wlbOrderCode");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setWlbOrderCode(String wlbOrderCode) {
+        this.wlbOrderCode = wlbOrderCode;
     }
 }

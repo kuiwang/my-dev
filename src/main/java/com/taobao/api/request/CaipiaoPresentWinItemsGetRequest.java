@@ -16,16 +16,12 @@ import com.taobao.api.response.CaipiaoPresentWinItemsGetResponse;
 public class CaipiaoPresentWinItemsGetRequest implements
         TaobaoRequest<CaipiaoPresentWinItemsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询日期，格式请严格遵守yyyy-MM-dd
      */
     private String date;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 查询个数，最大值为500.如果为空、0和负数，则取默认值500
@@ -42,50 +38,46 @@ public class CaipiaoPresentWinItemsGetRequest implements
      */
     private Long searchType;
 
-    public void setDate(String date) {
-        this.date = date;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.caipiao.present.win.items.get";
     }
 
     public String getDate() {
         return this.date;
     }
 
-    public void setNum(Long num) {
-        this.num = num;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNum() {
         return this.num;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
     }
 
-    public void setSearchType(Long searchType) {
-        this.searchType = searchType;
+    @Override
+    public Class<CaipiaoPresentWinItemsGetResponse> getResponseClass() {
+        return CaipiaoPresentWinItemsGetResponse.class;
     }
 
     public Long getSearchType() {
         return this.searchType;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.caipiao.present.win.items.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("date", this.date);
@@ -98,6 +90,12 @@ public class CaipiaoPresentWinItemsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -105,14 +103,24 @@ public class CaipiaoPresentWinItemsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<CaipiaoPresentWinItemsGetResponse> getResponseClass() {
-        return CaipiaoPresentWinItemsGetResponse.class;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void check() throws ApiRuleException {
+    public void setNum(Long num) {
+        this.num = num;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setSearchType(Long searchType) {
+        this.searchType = searchType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

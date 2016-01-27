@@ -18,10 +18,6 @@ public class SpContentDeletetagRequest implements TaobaoRequest<SpContentDeletet
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 站长Key<br />
      * 支持最大长度为：32<br />
@@ -36,34 +32,42 @@ public class SpContentDeletetagRequest implements TaobaoRequest<SpContentDeletet
      */
     private String tagname;
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+        RequestCheckUtils.checkNotEmpty(tagname, "tagname");
+        RequestCheckUtils.checkMaxLength(tagname, 6, "tagname");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.deletetag";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<SpContentDeletetagResponse> getResponseClass() {
+        return SpContentDeletetagResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public void setTagname(String tagname) {
-        this.tagname = tagname;
-    }
-
     public String getTagname() {
         return this.tagname;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.deletetag";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("site_key", this.siteKey);
@@ -74,6 +78,12 @@ public class SpContentDeletetagRequest implements TaobaoRequest<SpContentDeletet
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -81,18 +91,16 @@ public class SpContentDeletetagRequest implements TaobaoRequest<SpContentDeletet
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentDeletetagResponse> getResponseClass() {
-        return SpContentDeletetagResponse.class;
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
-        RequestCheckUtils.checkNotEmpty(tagname, "tagname");
-        RequestCheckUtils.checkMaxLength(tagname, 6, "tagname");
+    public void setTagname(String tagname) {
+        this.tagname = tagname;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -151,172 +151,172 @@ public class DistributorArchive extends TaobaoObject {
         return this.complaintsCountPer;
     }
 
-    public void setComplaintsCountPer(String complaintsCountPer) {
-        this.complaintsCountPer = complaintsCountPer;
-    }
-
     public String getDownLoadRatio() {
         return this.downLoadRatio;
-    }
-
-    public void setDownLoadRatio(String downLoadRatio) {
-        this.downLoadRatio = downLoadRatio;
     }
 
     public String getGoodEvaluationRate() {
         return this.goodEvaluationRate;
     }
 
-    public void setGoodEvaluationRate(String goodEvaluationRate) {
-        this.goodEvaluationRate = goodEvaluationRate;
-    }
-
     public String getGoodEvaluationRateD() {
         return this.goodEvaluationRateD;
-    }
-
-    public void setGoodEvaluationRateD(String goodEvaluationRateD) {
-        this.goodEvaluationRateD = goodEvaluationRateD;
     }
 
     public String getGoodsSum() {
         return this.goodsSum;
     }
 
-    public void setGoodsSum(String goodsSum) {
-        this.goodsSum = goodsSum;
-    }
-
     public String getIndusPerScole() {
         return this.indusPerScole;
-    }
-
-    public void setIndusPerScole(String indusPerScole) {
-        this.indusPerScole = indusPerScole;
     }
 
     public String getIndustry() {
         return this.industry;
     }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
-
     public String getOpenashopTime() {
         return this.openashopTime;
-    }
-
-    public void setOpenashopTime(String openashopTime) {
-        this.openashopTime = openashopTime;
     }
 
     public String getOrderMerchandiseScore() {
         return this.orderMerchandiseScore;
     }
 
-    public void setOrderMerchandiseScore(String orderMerchandiseScore) {
-        this.orderMerchandiseScore = orderMerchandiseScore;
-    }
-
     public String getOrderShopRatio() {
         return this.orderShopRatio;
-    }
-
-    public void setOrderShopRatio(String orderShopRatio) {
-        this.orderShopRatio = orderShopRatio;
     }
 
     public String getPunishedCount() {
         return this.punishedCount;
     }
 
-    public void setPunishedCount(String punishedCount) {
-        this.punishedCount = punishedCount;
-    }
-
     public String getSaleConsignmentScore() {
         return this.saleConsignmentScore;
-    }
-
-    public void setSaleConsignmentScore(String saleConsignmentScore) {
-        this.saleConsignmentScore = saleConsignmentScore;
     }
 
     public String getSellerRefundTime() {
         return this.sellerRefundTime;
     }
 
-    public void setSellerRefundTime(String sellerRefundTime) {
-        this.sellerRefundTime = sellerRefundTime;
-    }
-
     public String getSellerRefundTimePer() {
         return this.sellerRefundTimePer;
-    }
-
-    public void setSellerRefundTimePer(String sellerRefundTimePer) {
-        this.sellerRefundTimePer = sellerRefundTimePer;
     }
 
     public String getSellerStarName() {
         return this.sellerStarName;
     }
 
-    public void setSellerStarName(String sellerStarName) {
-        this.sellerStarName = sellerStarName;
-    }
-
     public String getSellerType() {
         return this.sellerType;
-    }
-
-    public void setSellerType(String sellerType) {
-        this.sellerType = sellerType;
     }
 
     public String getServiceQualityScore() {
         return this.serviceQualityScore;
     }
 
-    public void setServiceQualityScore(String serviceQualityScore) {
-        this.serviceQualityScore = serviceQualityScore;
-    }
-
     public String getShopAddress() {
         return this.shopAddress;
-    }
-
-    public void setShopAddress(String shopAddress) {
-        this.shopAddress = shopAddress;
     }
 
     public String getShopName() {
         return this.shopName;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
     public String getUpSelfRatio() {
         return this.upSelfRatio;
-    }
-
-    public void setUpSelfRatio(String upSelfRatio) {
-        this.upSelfRatio = upSelfRatio;
     }
 
     public String getUpShopRatio() {
         return this.upShopRatio;
     }
 
-    public void setUpShopRatio(String upShopRatio) {
-        this.upShopRatio = upShopRatio;
-    }
-
     public String getUvShopRatio() {
         return this.uvShopRatio;
+    }
+
+    public void setComplaintsCountPer(String complaintsCountPer) {
+        this.complaintsCountPer = complaintsCountPer;
+    }
+
+    public void setDownLoadRatio(String downLoadRatio) {
+        this.downLoadRatio = downLoadRatio;
+    }
+
+    public void setGoodEvaluationRate(String goodEvaluationRate) {
+        this.goodEvaluationRate = goodEvaluationRate;
+    }
+
+    public void setGoodEvaluationRateD(String goodEvaluationRateD) {
+        this.goodEvaluationRateD = goodEvaluationRateD;
+    }
+
+    public void setGoodsSum(String goodsSum) {
+        this.goodsSum = goodsSum;
+    }
+
+    public void setIndusPerScole(String indusPerScole) {
+        this.indusPerScole = indusPerScole;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public void setOpenashopTime(String openashopTime) {
+        this.openashopTime = openashopTime;
+    }
+
+    public void setOrderMerchandiseScore(String orderMerchandiseScore) {
+        this.orderMerchandiseScore = orderMerchandiseScore;
+    }
+
+    public void setOrderShopRatio(String orderShopRatio) {
+        this.orderShopRatio = orderShopRatio;
+    }
+
+    public void setPunishedCount(String punishedCount) {
+        this.punishedCount = punishedCount;
+    }
+
+    public void setSaleConsignmentScore(String saleConsignmentScore) {
+        this.saleConsignmentScore = saleConsignmentScore;
+    }
+
+    public void setSellerRefundTime(String sellerRefundTime) {
+        this.sellerRefundTime = sellerRefundTime;
+    }
+
+    public void setSellerRefundTimePer(String sellerRefundTimePer) {
+        this.sellerRefundTimePer = sellerRefundTimePer;
+    }
+
+    public void setSellerStarName(String sellerStarName) {
+        this.sellerStarName = sellerStarName;
+    }
+
+    public void setSellerType(String sellerType) {
+        this.sellerType = sellerType;
+    }
+
+    public void setServiceQualityScore(String serviceQualityScore) {
+        this.serviceQualityScore = serviceQualityScore;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public void setUpSelfRatio(String upSelfRatio) {
+        this.upSelfRatio = upSelfRatio;
+    }
+
+    public void setUpShopRatio(String upShopRatio) {
+        this.upShopRatio = upShopRatio;
     }
 
     public void setUvShopRatio(String uvShopRatio) {

@@ -16,50 +16,51 @@ import com.taobao.api.response.SimbaCreativeDeleteResponse;
  */
 public class SimbaCreativeDeleteRequest implements TaobaoRequest<SimbaCreativeDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 创意Id
      */
     private Long creativeId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
      */
     private String nick;
 
-    public void setCreativeId(Long creativeId) {
-        this.creativeId = creativeId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(creativeId, "creativeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.creative.delete";
     }
 
     public Long getCreativeId() {
         return this.creativeId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaCreativeDeleteResponse> getResponseClass() {
+        return SimbaCreativeDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.creative.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("creative_id", this.creativeId);
@@ -70,6 +71,12 @@ public class SimbaCreativeDeleteRequest implements TaobaoRequest<SimbaCreativeDe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,15 +84,16 @@ public class SimbaCreativeDeleteRequest implements TaobaoRequest<SimbaCreativeDe
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCreativeDeleteResponse> getResponseClass() {
-        return SimbaCreativeDeleteResponse.class;
+    public void setCreativeId(Long creativeId) {
+        this.creativeId = creativeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(creativeId, "creativeId");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

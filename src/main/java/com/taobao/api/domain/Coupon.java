@@ -28,16 +28,16 @@ public class Coupon extends TaobaoObject {
     private Long couponId;
 
     /**
-     * 优惠券创建时间
-     */
-    @ApiField("creat_time")
-    private Date creatTime;
-
-    /**
      * 优惠券的创建渠道，自己创建/他人创建
      */
     @ApiField("create_channel")
     private String createChannel;
+
+    /**
+     * 优惠券创建时间
+     */
+    @ApiField("creat_time")
+    private Date creatTime;
 
     /**
      * 优惠券的面值，返回的是“分”，不是“元”，500代表500分相当于5元
@@ -55,44 +55,44 @@ public class Coupon extends TaobaoObject {
         return this.condition;
     }
 
-    public void setCondition(Long condition) {
-        this.condition = condition;
-    }
-
     public Long getCouponId() {
         return this.couponId;
-    }
-
-    public void setCouponId(Long couponId) {
-        this.couponId = couponId;
-    }
-
-    public Date getCreatTime() {
-        return this.creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
     }
 
     public String getCreateChannel() {
         return this.createChannel;
     }
 
-    public void setCreateChannel(String createChannel) {
-        this.createChannel = createChannel;
+    public Date getCreatTime() {
+        return this.creatTime;
     }
 
     public Long getDenominations() {
         return this.denominations;
     }
 
-    public void setDenominations(Long denominations) {
-        this.denominations = denominations;
-    }
-
     public Date getEndTime() {
         return this.endTime;
+    }
+
+    public void setCondition(Long condition) {
+        this.condition = condition;
+    }
+
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
+    }
+
+    public void setCreateChannel(String createChannel) {
+        this.createChannel = createChannel;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+    }
+
+    public void setDenominations(Long denominations) {
+        this.denominations = denominations;
     }
 
     public void setEndTime(Date endTime) {

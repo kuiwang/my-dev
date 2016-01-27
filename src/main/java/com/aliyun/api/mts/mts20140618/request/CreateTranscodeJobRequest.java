@@ -18,15 +18,16 @@ public class CreateTranscodeJobRequest implements AliyunRequest<CreateTranscodeJ
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
-    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
-    private String ownerId;
+    /**
+     * 媒资ID
+     */
+    private String mediaId;
 
     /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的账号 */
     private String ownerAccount;
+
+    /** 仅用于渠道商发起API调用时，指定访问的资源拥有者的ID */
+    private String ownerId;
 
     /**
      * API调用者试图通过API调用来访问别人拥有但已经授权给他的资源时，通过使用该参数来声明此次操作涉及到的资源是谁名下的,
@@ -35,14 +36,13 @@ public class CreateTranscodeJobRequest implements AliyunRequest<CreateTranscodeJ
     private String resourceOwnerAccount;
 
     /**
-     * 媒资ID
-     */
-    private String mediaId;
-
-    /**
      * 转码模板ID
      */
     private String templateId;
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 转码时进行打水印功能,至多四个水印，中间以逗号分隔。 1、imageUrl 为水印的url,
@@ -52,66 +52,48 @@ public class CreateTranscodeJobRequest implements AliyunRequest<CreateTranscodeJ
      */
     private String watermarks;
 
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(mediaId, "mediaId");
+        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "mts.aliyuncs.com.CreateTranscodeJob.2014-06-18";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMediaId() {
         return this.mediaId;
     }
 
-    public void setTemplateId(String templateId) {
-        this.templateId = templateId;
-    }
-
-    public String getTemplateId() {
-        return this.templateId;
-    }
-
-    public void setWatermarks(String watermarks) {
-        this.watermarks = watermarks;
-    }
-
-    public String getWatermarks() {
-        return this.watermarks;
+    public String getOwnerAccount() {
+        return ownerAccount;
     }
 
     public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerAccount() {
-        return ownerAccount;
-    }
-
-    public void setOwnerAccount(String ownerAccount) {
-        this.ownerAccount = ownerAccount;
-    }
-
     public String getResourceOwnerAccount() {
         return resourceOwnerAccount;
     }
 
-    public void setResourceOwnerAccount(String resourceOwnerAccount) {
-        this.resourceOwnerAccount = resourceOwnerAccount;
+    @Override
+    public Class<CreateTranscodeJobResponse> getResponseClass() {
+        return CreateTranscodeJobResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public String getTemplateId() {
+        return this.templateId;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "mts.aliyuncs.com.CreateTranscodeJob.2014-06-18";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("OwnerId", this.ownerId);
@@ -126,6 +108,16 @@ public class CreateTranscodeJobRequest implements AliyunRequest<CreateTranscodeJ
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWatermarks() {
+        return this.watermarks;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -133,16 +125,32 @@ public class CreateTranscodeJobRequest implements AliyunRequest<CreateTranscodeJ
         this.udfParams.put(key, value);
     }
 
-    public Class<CreateTranscodeJobResponse> getResponseClass() {
-        return CreateTranscodeJobResponse.class;
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(mediaId, "mediaId");
-        RequestCheckUtils.checkNotEmpty(templateId, "templateId");
+    public void setOwnerAccount(String ownerAccount) {
+        this.ownerAccount = ownerAccount;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public void setResourceOwnerAccount(String resourceOwnerAccount) {
+        this.resourceOwnerAccount = resourceOwnerAccount;
+    }
+
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setWatermarks(String watermarks) {
+        this.watermarks = watermarks;
     }
 }

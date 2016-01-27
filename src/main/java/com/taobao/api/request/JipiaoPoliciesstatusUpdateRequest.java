@@ -17,12 +17,6 @@ import com.taobao.api.response.JipiaoPoliciesstatusUpdateResponse;
 public class JipiaoPoliciesstatusUpdateRequest implements
         TaobaoRequest<JipiaoPoliciesstatusUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 航空公司二字码<br />
      * 支持最大长度为：5<br />
@@ -43,6 +37,8 @@ public class JipiaoPoliciesstatusUpdateRequest implements
      * 支持的最大列表长度为：3
      */
     private String depAirport;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 外部产品id集,最多支持1000个,后续调大,其中的out_product_id含有空格将不会处理
@@ -69,87 +65,68 @@ public class JipiaoPoliciesstatusUpdateRequest implements
      */
     private String source;
 
+    private Long timestamp;
+
     /**
      * 0：按policy_ids更新；1：按out_product_ids更新；2:按其它条件更新
      */
     private Long type;
 
-    public void setAirline(String airline) {
-        this.airline = airline;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(airline, 5, "airline");
+        RequestCheckUtils.checkMaxLength(arrAirport, 3, "arrAirport");
+        RequestCheckUtils.checkMaxLength(depAirport, 3, "depAirport");
+        RequestCheckUtils.checkMaxLength(source, 20, "source");
+        RequestCheckUtils.checkNotEmpty(type, "type");
     }
 
     public String getAirline() {
         return this.airline;
     }
 
-    public void setArrAirport(String arrAirport) {
-        this.arrAirport = arrAirport;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.jipiao.policiesstatus.update";
     }
 
     public String getArrAirport() {
         return this.arrAirport;
     }
 
-    public void setDepAirport(String depAirport) {
-        this.depAirport = depAirport;
-    }
-
     public String getDepAirport() {
         return this.depAirport;
     }
 
-    public void setOutProductIds(String outProductIds) {
-        this.outProductIds = outProductIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOutProductIds() {
         return this.outProductIds;
     }
 
-    public void setPolicyIds(String policyIds) {
-        this.policyIds = policyIds;
-    }
-
     public String getPolicyIds() {
         return this.policyIds;
-    }
-
-    public void setPublishDate(String publishDate) {
-        this.publishDate = publishDate;
     }
 
     public String getPublishDate() {
         return this.publishDate;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    @Override
+    public Class<JipiaoPoliciesstatusUpdateResponse> getResponseClass() {
+        return JipiaoPoliciesstatusUpdateResponse.class;
     }
 
     public String getSource() {
         return this.source;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.jipiao.policiesstatus.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("airline", this.airline);
@@ -166,6 +143,16 @@ public class JipiaoPoliciesstatusUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -173,19 +160,40 @@ public class JipiaoPoliciesstatusUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<JipiaoPoliciesstatusUpdateResponse> getResponseClass() {
-        return JipiaoPoliciesstatusUpdateResponse.class;
+    public void setAirline(String airline) {
+        this.airline = airline;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(airline, 5, "airline");
-        RequestCheckUtils.checkMaxLength(arrAirport, 3, "arrAirport");
-        RequestCheckUtils.checkMaxLength(depAirport, 3, "depAirport");
-        RequestCheckUtils.checkMaxLength(source, 20, "source");
-        RequestCheckUtils.checkNotEmpty(type, "type");
+    public void setArrAirport(String arrAirport) {
+        this.arrAirport = arrAirport;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setDepAirport(String depAirport) {
+        this.depAirport = depAirport;
+    }
+
+    public void setOutProductIds(String outProductIds) {
+        this.outProductIds = outProductIds;
+    }
+
+    public void setPolicyIds(String policyIds) {
+        this.policyIds = policyIds;
+    }
+
+    public void setPublishDate(String publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

@@ -119,124 +119,124 @@ public class SearchHotelObject extends TaobaoObject {
         return this.address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Long getDistance() {
         return this.distance;
-    }
-
-    public void setDistance(Long distance) {
-        this.distance = distance;
     }
 
     public String getH5DetailUrl() {
         return this.h5DetailUrl;
     }
 
-    public void setH5DetailUrl(String h5DetailUrl) {
-        this.h5DetailUrl = h5DetailUrl;
-    }
-
     public String getHotelDetailUrl() {
         return this.hotelDetailUrl;
-    }
-
-    public void setHotelDetailUrl(String hotelDetailUrl) {
-        this.hotelDetailUrl = hotelDetailUrl;
     }
 
     public String getLat() {
         return this.lat;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
     public NameValuePair getLevel() {
         return this.level;
-    }
-
-    public void setLevel(NameValuePair level) {
-        this.level = level;
     }
 
     public String getLng() {
         return this.lng;
     }
 
-    public void setLng(String lng) {
-        this.lng = lng;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPicUrls() {
         return this.picUrls;
     }
 
-    public void setPicUrls(String picUrls) {
-        this.picUrls = picUrls;
-    }
-
     public Long getPrice() {
         return this.price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
     }
 
     public Long getRateNumber() {
         return this.rateNumber;
     }
 
-    public void setRateNumber(Long rateNumber) {
-        this.rateNumber = rateNumber;
-    }
-
     public String getRateScore() {
         return this.rateScore;
-    }
-
-    public void setRateScore(String rateScore) {
-        this.rateScore = rateScore;
     }
 
     public Long getSell() {
         return this.sell;
     }
 
-    public void setSell(Long sell) {
-        this.sell = sell;
-    }
-
     public List<NameValuePair> getServices() {
         return this.services;
-    }
-
-    public void setServices(List<NameValuePair> services) {
-        this.services = services;
     }
 
     public Long getShid() {
         return this.shid;
     }
 
-    public void setShid(Long shid) {
-        this.shid = shid;
-    }
-
     public String getTel() {
         return this.tel;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDistance(Long distance) {
+        this.distance = distance;
+    }
+
+    public void setH5DetailUrl(String h5DetailUrl) {
+        this.h5DetailUrl = h5DetailUrl;
+    }
+
+    public void setHotelDetailUrl(String hotelDetailUrl) {
+        this.hotelDetailUrl = hotelDetailUrl;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLevel(NameValuePair level) {
+        this.level = level;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPicUrls(String picUrls) {
+        this.picUrls = picUrls;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public void setRateNumber(Long rateNumber) {
+        this.rateNumber = rateNumber;
+    }
+
+    public void setRateScore(String rateScore) {
+        this.rateScore = rateScore;
+    }
+
+    public void setSell(Long sell) {
+        this.sell = sell;
+    }
+
+    public void setServices(List<NameValuePair> services) {
+        this.services = services;
+    }
+
+    public void setShid(Long shid) {
+        this.shid = shid;
     }
 
     public void setTel(String tel) {

@@ -6,20 +6,23 @@ public class JSONValidatingReader extends JSONReader {
 
     private JSONValidator validator;
 
-    public JSONValidatingReader(JSONValidator validator) {
-        this.validator = validator;
+    public JSONValidatingReader() {
+        this(new StdoutStreamErrorListener());
     }
 
     public JSONValidatingReader(JSONErrorListener listener) {
         this(new JSONValidator(listener));
     }
 
-    public JSONValidatingReader() {
-        this(new StdoutStreamErrorListener());
+    public JSONValidatingReader(JSONValidator validator) {
+        this.validator = validator;
     }
 
+    @Override
     public Object read(String string) {
-        if (!validator.validate(string)) return INVALID;
+        if (!validator.validate(string)) {
+            return INVALID;
+        }
         return super.read(string);
     }
 }

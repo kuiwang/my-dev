@@ -6,15 +6,15 @@ import com.taobao.top.link.ResetableTimer;
 
 public interface ClientChannel extends ChannelSender {
 
-    public boolean isConnected();
-
     public ChannelHandler getChannelHandler();
-
-    public void setChannelHandler(ChannelHandler handler);
-
-    public void setUri(URI uri);
 
     public URI getUri();
 
+    public boolean isConnected();
+
+    public void setChannelHandler(ChannelHandler handler);
+
     public void setHeartbeatTimer(ResetableTimer timer);
+
+    public void setUri(URI uri);
 }

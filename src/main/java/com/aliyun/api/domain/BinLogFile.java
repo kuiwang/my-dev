@@ -47,36 +47,36 @@ public class BinLogFile extends TaobaoObject {
         return this.downloadLink;
     }
 
-    public void setDownloadLink(String downloadLink) {
-        this.downloadLink = downloadLink;
-    }
-
     public Long getFileSize() {
         return this.fileSize;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
     }
 
     public String getLinkExpiredTime() {
         return this.linkExpiredTime;
     }
 
-    public void setLinkExpiredTime(String linkExpiredTime) {
-        this.linkExpiredTime = linkExpiredTime;
-    }
-
     public String getLogBeginTime() {
         return this.logBeginTime;
     }
 
-    public void setLogBeginTime(String logBeginTime) {
-        this.logBeginTime = logBeginTime;
-    }
-
     public String getLogEndTime() {
         return this.logEndTime;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setLinkExpiredTime(String linkExpiredTime) {
+        this.linkExpiredTime = linkExpiredTime;
+    }
+
+    public void setLogBeginTime(String logBeginTime) {
+        this.logBeginTime = logBeginTime;
     }
 
     public void setLogEndTime(String logEndTime) {

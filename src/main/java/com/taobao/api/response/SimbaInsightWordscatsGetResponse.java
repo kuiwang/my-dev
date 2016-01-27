@@ -24,12 +24,12 @@ public class SimbaInsightWordscatsGetResponse extends TaobaoResponse {
     @ApiField("i_n_word_category")
     private List<INWordCategory> inWordCategories;
 
-    public void setInWordCategories(List<INWordCategory> inWordCategories) {
-        this.inWordCategories = inWordCategories;
-    }
-
     public List<INWordCategory> getInWordCategories() {
         return this.inWordCategories;
+    }
+
+    public void setInWordCategories(List<INWordCategory> inWordCategories) {
+        this.inWordCategories = inWordCategories;
     }
 
 }

@@ -20,12 +20,12 @@ public class SimbaCreativeDeleteResponse extends TaobaoResponse {
     @ApiField("creative")
     private Creative creative;
 
-    public void setCreative(Creative creative) {
-        this.creative = creative;
-    }
-
     public Creative getCreative() {
         return this.creative;
+    }
+
+    public void setCreative(Creative creative) {
+        this.creative = creative;
     }
 
 }

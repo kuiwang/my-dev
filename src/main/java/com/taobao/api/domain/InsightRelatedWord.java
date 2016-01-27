@@ -29,12 +29,12 @@ public class InsightRelatedWord extends TaobaoObject {
         return this.relatedWord;
     }
 
-    public void setRelatedWord(String relatedWord) {
-        this.relatedWord = relatedWord;
-    }
-
     public String getWeight() {
         return this.weight;
+    }
+
+    public void setRelatedWord(String relatedWord) {
+        this.relatedWord = relatedWord;
     }
 
     public void setWeight(String weight) {

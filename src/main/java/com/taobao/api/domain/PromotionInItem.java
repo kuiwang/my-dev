@@ -83,76 +83,76 @@ public class PromotionInItem extends TaobaoObject {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Date getEndTime() {
         return this.endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public String getItemPromoPrice() {
         return this.itemPromoPrice;
     }
 
-    public void setItemPromoPrice(String itemPromoPrice) {
-        this.itemPromoPrice = itemPromoPrice;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getOtherNeed() {
         return this.otherNeed;
     }
 
-    public void setOtherNeed(String otherNeed) {
-        this.otherNeed = otherNeed;
-    }
-
     public String getOtherSend() {
         return this.otherSend;
-    }
-
-    public void setOtherSend(String otherSend) {
-        this.otherSend = otherSend;
     }
 
     public String getPromotionId() {
         return this.promotionId;
     }
 
-    public void setPromotionId(String promotionId) {
-        this.promotionId = promotionId;
-    }
-
     public List<String> getSkuIdList() {
         return this.skuIdList;
-    }
-
-    public void setSkuIdList(List<String> skuIdList) {
-        this.skuIdList = skuIdList;
     }
 
     public List<String> getSkuPriceList() {
         return this.skuPriceList;
     }
 
-    public void setSkuPriceList(List<String> skuPriceList) {
-        this.skuPriceList = skuPriceList;
-    }
-
     public Date getStartTime() {
         return this.startTime;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setItemPromoPrice(String itemPromoPrice) {
+        this.itemPromoPrice = itemPromoPrice;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOtherNeed(String otherNeed) {
+        this.otherNeed = otherNeed;
+    }
+
+    public void setOtherSend(String otherSend) {
+        this.otherSend = otherSend;
+    }
+
+    public void setPromotionId(String promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public void setSkuIdList(List<String> skuIdList) {
+        this.skuIdList = skuIdList;
+    }
+
+    public void setSkuPriceList(List<String> skuPriceList) {
+        this.skuPriceList = skuPriceList;
     }
 
     public void setStartTime(Date startTime) {

@@ -19,12 +19,12 @@ public class PromotionCouponAddResponse extends TaobaoResponse {
     @ApiField("coupon_id")
     private Long couponId;
 
-    public void setCouponId(Long couponId) {
-        this.couponId = couponId;
-    }
-
     public Long getCouponId() {
         return this.couponId;
+    }
+
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
     }
 
 }

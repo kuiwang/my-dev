@@ -17,16 +17,12 @@ import com.taobao.api.response.SimbaInsightRelatedwordsGetResponse;
 public class SimbaInsightRelatedwordsGetRequest implements
         TaobaoRequest<SimbaInsightRelatedwordsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 要查询的词列表
      */
     private String bidwordList;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 表示返回数据的条数<br />
@@ -35,34 +31,43 @@ public class SimbaInsightRelatedwordsGetRequest implements
      */
     private Long number;
 
-    public void setBidwordList(String bidwordList) {
-        this.bidwordList = bidwordList;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
+        RequestCheckUtils.checkMaxListSize(bidwordList, 10, "bidwordList");
+        RequestCheckUtils.checkNotEmpty(number, "number");
+        RequestCheckUtils.checkMaxValue(number, 10L, "number");
+        RequestCheckUtils.checkMinValue(number, 1L, "number");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.insight.relatedwords.get";
     }
 
     public String getBidwordList() {
         return this.bidwordList;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getNumber() {
         return this.number;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaInsightRelatedwordsGetResponse> getResponseClass() {
+        return SimbaInsightRelatedwordsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.insight.relatedwords.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("bidword_list", this.bidwordList);
@@ -73,6 +78,12 @@ public class SimbaInsightRelatedwordsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,19 +91,16 @@ public class SimbaInsightRelatedwordsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaInsightRelatedwordsGetResponse> getResponseClass() {
-        return SimbaInsightRelatedwordsGetResponse.class;
+    public void setBidwordList(String bidwordList) {
+        this.bidwordList = bidwordList;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bidwordList, "bidwordList");
-        RequestCheckUtils.checkMaxListSize(bidwordList, 10, "bidwordList");
-        RequestCheckUtils.checkNotEmpty(number, "number");
-        RequestCheckUtils.checkMaxValue(number, 10L, "number");
-        RequestCheckUtils.checkMinValue(number, 1L, "number");
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

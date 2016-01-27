@@ -163,188 +163,188 @@ public class SpContentDOForList extends TaobaoObject {
         return this.articleabstract;
     }
 
-    public void setArticleabstract(String articleabstract) {
-        this.articleabstract = articleabstract;
-    }
-
     public String getClassname() {
         return this.classname;
-    }
-
-    public void setClassname(String classname) {
-        this.classname = classname;
     }
 
     public Long getCommentnum() {
         return this.commentnum;
     }
 
-    public void setCommentnum(Long commentnum) {
-        this.commentnum = commentnum;
-    }
-
     public String getComments() {
         return this.comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public String getDetailurl() {
         return this.detailurl;
     }
 
-    public void setDetailurl(String detailurl) {
-        this.detailurl = detailurl;
-    }
-
     public Date getGmtcreate() {
         return this.gmtcreate;
-    }
-
-    public void setGmtcreate(Date gmtcreate) {
-        this.gmtcreate = gmtcreate;
     }
 
     public Date getGmtmodified() {
         return this.gmtmodified;
     }
 
-    public void setGmtmodified(Date gmtmodified) {
-        this.gmtmodified = gmtmodified;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getLikenum() {
         return this.likenum;
     }
 
-    public void setLikenum(Long likenum) {
-        this.likenum = likenum;
-    }
-
     public String getMainpic() {
         return this.mainpic;
-    }
-
-    public void setMainpic(String mainpic) {
-        this.mainpic = mainpic;
     }
 
     public String getPicurl() {
         return this.picurl;
     }
 
-    public void setPicurl(String picurl) {
-        this.picurl = picurl;
-    }
-
     public String getPrice() {
         return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public Long getReferid() {
         return this.referid;
     }
 
-    public void setReferid(Long referid) {
-        this.referid = referid;
-    }
-
     public String getReferitems() {
         return this.referitems;
-    }
-
-    public void setReferitems(String referitems) {
-        this.referitems = referitems;
     }
 
     public String getSchemaname() {
         return this.schemaname;
     }
 
-    public void setSchemaname(String schemaname) {
-        this.schemaname = schemaname;
-    }
-
     public Long getSharenum() {
         return this.sharenum;
-    }
-
-    public void setSharenum(Long sharenum) {
-        this.sharenum = sharenum;
     }
 
     public Long getSitecategoryid() {
         return this.sitecategoryid;
     }
 
-    public void setSitecategoryid(Long sitecategoryid) {
-        this.sitecategoryid = sitecategoryid;
-    }
-
     public Long getTaesiteid() {
         return this.taesiteid;
-    }
-
-    public void setTaesiteid(Long taesiteid) {
-        this.taesiteid = taesiteid;
     }
 
     public String getTags() {
         return this.tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public Long getTargetid() {
         return this.targetid;
-    }
-
-    public void setTargetid(Long targetid) {
-        this.targetid = targetid;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getTopenable() {
         return this.topenable;
-    }
-
-    public void setTopenable(Long topenable) {
-        this.topenable = topenable;
     }
 
     public Long getUserid() {
         return this.userid;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
-    }
-
     public Long getViewnum() {
         return this.viewnum;
+    }
+
+    public void setArticleabstract(String articleabstract) {
+        this.articleabstract = articleabstract;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public void setCommentnum(Long commentnum) {
+        this.commentnum = commentnum;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void setDetailurl(String detailurl) {
+        this.detailurl = detailurl;
+    }
+
+    public void setGmtcreate(Date gmtcreate) {
+        this.gmtcreate = gmtcreate;
+    }
+
+    public void setGmtmodified(Date gmtmodified) {
+        this.gmtmodified = gmtmodified;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLikenum(Long likenum) {
+        this.likenum = likenum;
+    }
+
+    public void setMainpic(String mainpic) {
+        this.mainpic = mainpic;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setReferid(Long referid) {
+        this.referid = referid;
+    }
+
+    public void setReferitems(String referitems) {
+        this.referitems = referitems;
+    }
+
+    public void setSchemaname(String schemaname) {
+        this.schemaname = schemaname;
+    }
+
+    public void setSharenum(Long sharenum) {
+        this.sharenum = sharenum;
+    }
+
+    public void setSitecategoryid(Long sitecategoryid) {
+        this.sitecategoryid = sitecategoryid;
+    }
+
+    public void setTaesiteid(Long taesiteid) {
+        this.taesiteid = taesiteid;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public void setTargetid(Long targetid) {
+        this.targetid = targetid;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTopenable(Long topenable) {
+        this.topenable = topenable;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public void setViewnum(Long viewnum) {

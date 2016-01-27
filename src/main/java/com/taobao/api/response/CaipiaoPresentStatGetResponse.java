@@ -30,20 +30,20 @@ public class CaipiaoPresentStatGetResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setResults(List<LotteryWangcaiPresentStat> results) {
-        this.results = results;
-    }
-
     public List<LotteryWangcaiPresentStat> getResults() {
         return this.results;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setResults(List<LotteryWangcaiPresentStat> results) {
+        this.results = results;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

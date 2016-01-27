@@ -18,10 +18,6 @@ public class FenxiaoRefundUpdateRequest implements TaobaoRequest<FenxiaoRefundUp
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 是否退货，只有子采购单发货后，才能申请退货
      */
@@ -49,58 +45,55 @@ public class FenxiaoRefundUpdateRequest implements TaobaoRequest<FenxiaoRefundUp
      */
     private Long subOrderId;
 
-    public void setIsReturnGoods(Boolean isReturnGoods) {
-        this.isReturnGoods = isReturnGoods;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(isReturnGoods, "isReturnGoods");
+        RequestCheckUtils.checkNotEmpty(refundDesc, "refundDesc");
+        RequestCheckUtils.checkNotEmpty(refundReasonId, "refundReasonId");
+        RequestCheckUtils.checkNotEmpty(returnFee, "returnFee");
+        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.refund.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Boolean getIsReturnGoods() {
         return this.isReturnGoods;
     }
 
-    public void setRefundDesc(String refundDesc) {
-        this.refundDesc = refundDesc;
-    }
-
     public String getRefundDesc() {
         return this.refundDesc;
-    }
-
-    public void setRefundReasonId(Long refundReasonId) {
-        this.refundReasonId = refundReasonId;
     }
 
     public Long getRefundReasonId() {
         return this.refundReasonId;
     }
 
-    public void setReturnFee(Long returnFee) {
-        this.returnFee = returnFee;
+    @Override
+    public Class<FenxiaoRefundUpdateResponse> getResponseClass() {
+        return FenxiaoRefundUpdateResponse.class;
     }
 
     public Long getReturnFee() {
         return this.returnFee;
     }
 
-    public void setSubOrderId(Long subOrderId) {
-        this.subOrderId = subOrderId;
-    }
-
     public Long getSubOrderId() {
         return this.subOrderId;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.refund.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("is_return_goods", this.isReturnGoods);
@@ -114,6 +107,12 @@ public class FenxiaoRefundUpdateRequest implements TaobaoRequest<FenxiaoRefundUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -121,19 +120,28 @@ public class FenxiaoRefundUpdateRequest implements TaobaoRequest<FenxiaoRefundUp
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoRefundUpdateResponse> getResponseClass() {
-        return FenxiaoRefundUpdateResponse.class;
+    public void setIsReturnGoods(Boolean isReturnGoods) {
+        this.isReturnGoods = isReturnGoods;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(isReturnGoods, "isReturnGoods");
-        RequestCheckUtils.checkNotEmpty(refundDesc, "refundDesc");
-        RequestCheckUtils.checkNotEmpty(refundReasonId, "refundReasonId");
-        RequestCheckUtils.checkNotEmpty(returnFee, "returnFee");
-        RequestCheckUtils.checkNotEmpty(subOrderId, "subOrderId");
+    public void setRefundDesc(String refundDesc) {
+        this.refundDesc = refundDesc;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setRefundReasonId(Long refundReasonId) {
+        this.refundReasonId = refundReasonId;
+    }
+
+    public void setReturnFee(Long returnFee) {
+        this.returnFee = returnFee;
+    }
+
+    public void setSubOrderId(Long subOrderId) {
+        this.subOrderId = subOrderId;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

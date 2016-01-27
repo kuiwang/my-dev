@@ -17,12 +17,6 @@ import com.taobao.api.response.LogisticsOrderShengxianConfirmResponse;
 public class LogisticsOrderShengxianConfirmRequest implements
         TaobaoRequest<LogisticsOrderShengxianConfirmResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。<br>
      * <font color='red'>如果为空，取的卖家的默认退货地址</font><br>
@@ -33,6 +27,8 @@ public class LogisticsOrderShengxianConfirmRequest implements
      * 1：冷链。0：常温
      */
     private Long deliveryType;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 物流订单ID 。同淘宝交易订单互斥，淘宝交易号存在，，以淘宝交易号为准<br />
@@ -73,82 +69,61 @@ public class LogisticsOrderShengxianConfirmRequest implements
      */
     private Long tid;
 
-    public void setCancelId(Long cancelId) {
-        this.cancelId = cancelId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMinValue(logisId, 1000L, "logisId");
+        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
+        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.logistics.order.shengxian.confirm";
     }
 
     public Long getCancelId() {
         return this.cancelId;
     }
 
-    public void setDeliveryType(Long deliveryType) {
-        this.deliveryType = deliveryType;
-    }
-
     public Long getDeliveryType() {
         return this.deliveryType;
     }
 
-    public void setLogisId(Long logisId) {
-        this.logisId = logisId;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getLogisId() {
         return this.logisId;
     }
 
-    public void setOutSid(String outSid) {
-        this.outSid = outSid;
-    }
-
     public String getOutSid() {
         return this.outSid;
     }
 
-    public void setSellerIp(String sellerIp) {
-        this.sellerIp = sellerIp;
+    @Override
+    public Class<LogisticsOrderShengxianConfirmResponse> getResponseClass() {
+        return LogisticsOrderShengxianConfirmResponse.class;
     }
 
     public String getSellerIp() {
         return this.sellerIp;
     }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
-    }
-
     public Long getSenderId() {
         return this.senderId;
-    }
-
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
     }
 
     public String getServiceCode() {
         return this.serviceCode;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
-    }
-
-    public Long getTid() {
-        return this.tid;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.logistics.order.shengxian.confirm";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("cancel_id", this.cancelId);
@@ -165,6 +140,16 @@ public class LogisticsOrderShengxianConfirmRequest implements
         return txtParams;
     }
 
+    public Long getTid() {
+        return this.tid;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -172,17 +157,40 @@ public class LogisticsOrderShengxianConfirmRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<LogisticsOrderShengxianConfirmResponse> getResponseClass() {
-        return LogisticsOrderShengxianConfirmResponse.class;
+    public void setCancelId(Long cancelId) {
+        this.cancelId = cancelId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMinValue(logisId, 1000L, "logisId");
-        RequestCheckUtils.checkNotEmpty(outSid, "outSid");
-        RequestCheckUtils.checkMinValue(tid, 1000L, "tid");
+    public void setDeliveryType(Long deliveryType) {
+        this.deliveryType = deliveryType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setLogisId(Long logisId) {
+        this.logisId = logisId;
+    }
+
+    public void setOutSid(String outSid) {
+        this.outSid = outSid;
+    }
+
+    public void setSellerIp(String sellerIp) {
+        this.sellerIp = sellerIp;
+    }
+
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

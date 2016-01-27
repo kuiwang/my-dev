@@ -16,12 +16,6 @@ import com.taobao.api.response.BillAccountsGetResponse;
  */
 public class BillAccountsGetRequest implements TaobaoRequest<BillAccountsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 需要获取的科目ID
      */
@@ -32,34 +26,42 @@ public class BillAccountsGetRequest implements TaobaoRequest<BillAccountsGetResp
      */
     private String fields;
 
-    public void setAids(String aids) {
-        this.aids = aids;
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(aids, 200, "aids");
+        RequestCheckUtils.checkNotEmpty(fields, "fields");
     }
 
     public String getAids() {
         return this.aids;
     }
 
-    public void setFields(String fields) {
-        this.fields = fields;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.bill.accounts.get";
     }
 
     public String getFields() {
         return this.fields;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public Class<BillAccountsGetResponse> getResponseClass() {
+        return BillAccountsGetResponse.class;
     }
 
-    public String getApiMethodName() {
-        return "taobao.bill.accounts.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("aids", this.aids);
@@ -70,6 +72,12 @@ public class BillAccountsGetRequest implements TaobaoRequest<BillAccountsGetResp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -77,16 +85,16 @@ public class BillAccountsGetRequest implements TaobaoRequest<BillAccountsGetResp
         this.udfParams.put(key, value);
     }
 
-    public Class<BillAccountsGetResponse> getResponseClass() {
-        return BillAccountsGetResponse.class;
+    public void setAids(String aids) {
+        this.aids = aids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(aids, 200, "aids");
-        RequestCheckUtils.checkNotEmpty(fields, "fields");
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

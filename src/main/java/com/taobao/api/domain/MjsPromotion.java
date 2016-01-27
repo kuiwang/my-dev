@@ -187,212 +187,212 @@ public class MjsPromotion extends TaobaoObject {
         return this.activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
-    }
-
     public Long getDecreaseAmount() {
         return this.decreaseAmount;
-    }
-
-    public void setDecreaseAmount(Long decreaseAmount) {
-        this.decreaseAmount = decreaseAmount;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getDiscountRate() {
         return this.discountRate;
-    }
-
-    public void setDiscountRate(Long discountRate) {
-        this.discountRate = discountRate;
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getExcludeArea() {
         return this.excludeArea;
-    }
-
-    public void setExcludeArea(String excludeArea) {
-        this.excludeArea = excludeArea;
     }
 
     public Long getGiftId() {
         return this.giftId;
     }
 
-    public void setGiftId(Long giftId) {
-        this.giftId = giftId;
-    }
-
     public String getGiftName() {
         return this.giftName;
-    }
-
-    public void setGiftName(String giftName) {
-        this.giftName = giftName;
     }
 
     public String getGiftUrl() {
         return this.giftUrl;
     }
 
-    public void setGiftUrl(String giftUrl) {
-        this.giftUrl = giftUrl;
-    }
-
     public Boolean getIsAmountMultiple() {
         return this.isAmountMultiple;
-    }
-
-    public void setIsAmountMultiple(Boolean isAmountMultiple) {
-        this.isAmountMultiple = isAmountMultiple;
     }
 
     public Boolean getIsAmountOver() {
         return this.isAmountOver;
     }
 
-    public void setIsAmountOver(Boolean isAmountOver) {
-        this.isAmountOver = isAmountOver;
-    }
-
     public Boolean getIsDecreaseMoney() {
         return this.isDecreaseMoney;
-    }
-
-    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
-        this.isDecreaseMoney = isDecreaseMoney;
     }
 
     public Boolean getIsDiscount() {
         return this.isDiscount;
     }
 
-    public void setIsDiscount(Boolean isDiscount) {
-        this.isDiscount = isDiscount;
-    }
-
     public Boolean getIsFreePost() {
         return this.isFreePost;
-    }
-
-    public void setIsFreePost(Boolean isFreePost) {
-        this.isFreePost = isFreePost;
     }
 
     public Boolean getIsItemCountOver() {
         return this.isItemCountOver;
     }
 
-    public void setIsItemCountOver(Boolean isItemCountOver) {
-        this.isItemCountOver = isItemCountOver;
-    }
-
     public Boolean getIsItemMultiple() {
         return this.isItemMultiple;
-    }
-
-    public void setIsItemMultiple(Boolean isItemMultiple) {
-        this.isItemMultiple = isItemMultiple;
     }
 
     public Boolean getIsSendGift() {
         return this.isSendGift;
     }
 
-    public void setIsSendGift(Boolean isSendGift) {
-        this.isSendGift = isSendGift;
-    }
-
     public Boolean getIsShopMember() {
         return this.isShopMember;
-    }
-
-    public void setIsShopMember(Boolean isShopMember) {
-        this.isShopMember = isShopMember;
     }
 
     public Boolean getIsUserTag() {
         return this.isUserTag;
     }
 
-    public void setIsUserTag(Boolean isUserTag) {
-        this.isUserTag = isUserTag;
-    }
-
     public Long getItemCount() {
         return this.itemCount;
-    }
-
-    public void setItemCount(Long itemCount) {
-        this.itemCount = itemCount;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getParticipateRange() {
         return this.participateRange;
-    }
-
-    public void setParticipateRange(Long participateRange) {
-        this.participateRange = participateRange;
     }
 
     public Long getShopMemberLevel() {
         return this.shopMemberLevel;
     }
 
-    public void setShopMemberLevel(Long shopMemberLevel) {
-        this.shopMemberLevel = shopMemberLevel;
-    }
-
     public Date getStartTime() {
         return this.startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
     }
 
     public Long getTotalPrice() {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public Long getType() {
         return this.type;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
     public String getUserTag() {
         return this.userTag;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
+
+    public void setDecreaseAmount(Long decreaseAmount) {
+        this.decreaseAmount = decreaseAmount;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDiscountRate(Long discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setExcludeArea(String excludeArea) {
+        this.excludeArea = excludeArea;
+    }
+
+    public void setGiftId(Long giftId) {
+        this.giftId = giftId;
+    }
+
+    public void setGiftName(String giftName) {
+        this.giftName = giftName;
+    }
+
+    public void setGiftUrl(String giftUrl) {
+        this.giftUrl = giftUrl;
+    }
+
+    public void setIsAmountMultiple(Boolean isAmountMultiple) {
+        this.isAmountMultiple = isAmountMultiple;
+    }
+
+    public void setIsAmountOver(Boolean isAmountOver) {
+        this.isAmountOver = isAmountOver;
+    }
+
+    public void setIsDecreaseMoney(Boolean isDecreaseMoney) {
+        this.isDecreaseMoney = isDecreaseMoney;
+    }
+
+    public void setIsDiscount(Boolean isDiscount) {
+        this.isDiscount = isDiscount;
+    }
+
+    public void setIsFreePost(Boolean isFreePost) {
+        this.isFreePost = isFreePost;
+    }
+
+    public void setIsItemCountOver(Boolean isItemCountOver) {
+        this.isItemCountOver = isItemCountOver;
+    }
+
+    public void setIsItemMultiple(Boolean isItemMultiple) {
+        this.isItemMultiple = isItemMultiple;
+    }
+
+    public void setIsSendGift(Boolean isSendGift) {
+        this.isSendGift = isSendGift;
+    }
+
+    public void setIsShopMember(Boolean isShopMember) {
+        this.isShopMember = isShopMember;
+    }
+
+    public void setIsUserTag(Boolean isUserTag) {
+        this.isUserTag = isUserTag;
+    }
+
+    public void setItemCount(Long itemCount) {
+        this.itemCount = itemCount;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParticipateRange(Long participateRange) {
+        this.participateRange = participateRange;
+    }
+
+    public void setShopMemberLevel(Long shopMemberLevel) {
+        this.shopMemberLevel = shopMemberLevel;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     public void setUserTag(String userTag) {

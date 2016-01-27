@@ -28,21 +28,21 @@ public class DescribeAutoSnapshotPolicyResponse extends AliyunResponse {
     @ApiField("AutoSnapshotPolicy")
     private AutoSnapshotPolicyType autoSnapshotPolicy;
 
+    public AutoSnapshotExecutionStatusType getAutoSnapshotExcutionStatus() {
+        return this.autoSnapshotExcutionStatus;
+    }
+
+    public AutoSnapshotPolicyType getAutoSnapshotPolicy() {
+        return this.autoSnapshotPolicy;
+    }
+
     public void setAutoSnapshotExcutionStatus(
             AutoSnapshotExecutionStatusType autoSnapshotExcutionStatus) {
         this.autoSnapshotExcutionStatus = autoSnapshotExcutionStatus;
     }
 
-    public AutoSnapshotExecutionStatusType getAutoSnapshotExcutionStatus() {
-        return this.autoSnapshotExcutionStatus;
-    }
-
     public void setAutoSnapshotPolicy(AutoSnapshotPolicyType autoSnapshotPolicy) {
         this.autoSnapshotPolicy = autoSnapshotPolicy;
-    }
-
-    public AutoSnapshotPolicyType getAutoSnapshotPolicy() {
-        return this.autoSnapshotPolicy;
     }
 
 }

@@ -65,60 +65,60 @@ public class CarriageDetail extends TaobaoObject {
         return this.addFee;
     }
 
-    public void setAddFee(Long addFee) {
-        this.addFee = addFee;
-    }
-
     public Long getAddWeight() {
         return this.addWeight;
-    }
-
-    public void setAddWeight(Long addWeight) {
-        this.addWeight = addWeight;
     }
 
     public String getDamagePayment() {
         return this.damagePayment;
     }
 
-    public void setDamagePayment(String damagePayment) {
-        this.damagePayment = damagePayment;
-    }
-
     public String getGotTime() {
         return this.gotTime;
-    }
-
-    public void setGotTime(String gotTime) {
-        this.gotTime = gotTime;
     }
 
     public Long getInitialFee() {
         return this.initialFee;
     }
 
-    public void setInitialFee(Long initialFee) {
-        this.initialFee = initialFee;
-    }
-
     public Long getInitialWeight() {
         return this.initialWeight;
-    }
-
-    public void setInitialWeight(Long initialWeight) {
-        this.initialWeight = initialWeight;
     }
 
     public String getLostPayment() {
         return this.lostPayment;
     }
 
-    public void setLostPayment(String lostPayment) {
-        this.lostPayment = lostPayment;
-    }
-
     public String getWayDay() {
         return this.wayDay;
+    }
+
+    public void setAddFee(Long addFee) {
+        this.addFee = addFee;
+    }
+
+    public void setAddWeight(Long addWeight) {
+        this.addWeight = addWeight;
+    }
+
+    public void setDamagePayment(String damagePayment) {
+        this.damagePayment = damagePayment;
+    }
+
+    public void setGotTime(String gotTime) {
+        this.gotTime = gotTime;
+    }
+
+    public void setInitialFee(Long initialFee) {
+        this.initialFee = initialFee;
+    }
+
+    public void setInitialWeight(Long initialWeight) {
+        this.initialWeight = initialWeight;
+    }
+
+    public void setLostPayment(String lostPayment) {
+        this.lostPayment = lostPayment;
     }
 
     public void setWayDay(String wayDay) {

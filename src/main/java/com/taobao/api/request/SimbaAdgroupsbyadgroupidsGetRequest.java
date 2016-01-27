@@ -17,16 +17,12 @@ import com.taobao.api.response.SimbaAdgroupsbyadgroupidsGetResponse;
 public class SimbaAdgroupsbyadgroupidsGetRequest implements
         TaobaoRequest<SimbaAdgroupsbyadgroupidsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id列表
      */
     private String adgroupIds;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
@@ -47,50 +43,52 @@ public class SimbaAdgroupsbyadgroupidsGetRequest implements
      */
     private Long pageSize;
 
-    public void setAdgroupIds(String adgroupIds) {
-        this.adgroupIds = adgroupIds;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxListSize(adgroupIds, 200, "adgroupIds");
+        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
+        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
+        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
     }
 
     public String getAdgroupIds() {
         return this.adgroupIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroupsbyadgroupids.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaAdgroupsbyadgroupidsGetResponse> getResponseClass() {
+        return SimbaAdgroupsbyadgroupidsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroupsbyadgroupids.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_ids", this.adgroupIds);
@@ -103,6 +101,12 @@ public class SimbaAdgroupsbyadgroupidsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -110,20 +114,24 @@ public class SimbaAdgroupsbyadgroupidsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupsbyadgroupidsGetResponse> getResponseClass() {
-        return SimbaAdgroupsbyadgroupidsGetResponse.class;
+    public void setAdgroupIds(String adgroupIds) {
+        this.adgroupIds = adgroupIds;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxListSize(adgroupIds, 200, "adgroupIds");
-        RequestCheckUtils.checkNotEmpty(pageNo, "pageNo");
-        RequestCheckUtils.checkMinValue(pageNo, 1L, "pageNo");
-        RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

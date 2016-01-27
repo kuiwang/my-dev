@@ -33,15 +33,15 @@ import com.taobao.api.internal.util.StringUtils;
  */
 public class Converters {
 
+    private static final Set<String> baseFields = new HashSet<String>();
+
+    private static final Map<String, Field> fieldCache = new ConcurrentHashMap<String, Field>();
+
     /**
      * 是否对JSON返回的数据类型进行校验，默认不校验。给内部测试JSON返回时用的开关。
      * 规则：返回的"基本"类型只有String,Long,Boolean,Date,采取严格校验方式，如果类型不匹配，报错
      */
     public static boolean isCheckJsonType = false;
-
-    private static final Set<String> baseFields = new HashSet<String>();
-
-    private static final Map<String, Field> fieldCache = new ConcurrentHashMap<String, Field>();
 
     static {
         baseFields.add("errorCode");
@@ -49,9 +49,6 @@ public class Converters {
         baseFields.add("body");
         baseFields.add("params");
         baseFields.add("success");
-    }
-
-    private Converters() {
     }
 
     /**
@@ -97,7 +94,7 @@ public class Converters {
                 }
 
                 if (!reader.hasReturnField(itemName)) {
-                    if (listName == null || !reader.hasReturnField(listName)) {
+                    if ((listName == null) || !reader.hasReturnField(listName)) {
                         continue; // ignore non-return field
                     }
                 }
@@ -109,7 +106,7 @@ public class Converters {
                     if (value instanceof String) {
                         method.invoke(rsp, value.toString());
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a String");
                         }
                         if (value != null) {
@@ -123,7 +120,7 @@ public class Converters {
                     if (value instanceof Long) {
                         method.invoke(rsp, (Long) value);
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a Number(Long)");
                         }
                         if (StringUtils.isNumeric(value)) {
@@ -135,7 +132,7 @@ public class Converters {
                     if (value instanceof Integer) {
                         method.invoke(rsp, (Integer) value);
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a Number(Integer)");
                         }
                         if (StringUtils.isNumeric(value)) {
@@ -147,7 +144,7 @@ public class Converters {
                     if (value instanceof Boolean) {
                         method.invoke(rsp, (Boolean) value);
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a Boolean");
                         }
                         if (value != null) {
@@ -159,7 +156,7 @@ public class Converters {
                     if (value instanceof Double) {
                         method.invoke(rsp, (Double) value);
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a Double");
                         }
                     }
@@ -168,7 +165,7 @@ public class Converters {
                     if (value instanceof Number) {
                         method.invoke(rsp, (Number) value);
                     } else {
-                        if (isCheckJsonType && value != null) {
+                        if (isCheckJsonType && (value != null)) {
                             throw new ApiException(itemName + " is not a Number");
                         }
                     }
@@ -184,7 +181,7 @@ public class Converters {
                     if (fieldType instanceof ParameterizedType) {
                         ParameterizedType paramType = (ParameterizedType) fieldType;
                         Type[] genericTypes = paramType.getActualTypeArguments();
-                        if (genericTypes != null && genericTypes.length > 0) {
+                        if ((genericTypes != null) && (genericTypes.length > 0)) {
                             if (genericTypes[0] instanceof Class<?>) {
                                 Class<?> subType = (Class<?>) genericTypes[0];
                                 List<?> listObjs = reader.getListObjects(listName, itemName,
@@ -217,5 +214,8 @@ public class Converters {
             fieldCache.put(key, field);
         }
         return field;
+    }
+
+    private Converters() {
     }
 }

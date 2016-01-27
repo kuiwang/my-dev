@@ -19,12 +19,12 @@ public class UmpMbbGetbyidResponse extends TaobaoResponse {
     @ApiField("mbb")
     private String mbb;
 
-    public void setMbb(String mbb) {
-        this.mbb = mbb;
-    }
-
     public String getMbb() {
         return this.mbb;
+    }
+
+    public void setMbb(String mbb) {
+        this.mbb = mbb;
     }
 
 }

@@ -16,16 +16,12 @@ import com.taobao.api.response.SimbaKeywordsDeleteResponse;
  */
 public class SimbaKeywordsDeleteRequest implements TaobaoRequest<SimbaKeywordsDeleteResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广计划Id
      */
     private Long campaignId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 关键词Id数组，最多100个
@@ -37,42 +33,45 @@ public class SimbaKeywordsDeleteRequest implements TaobaoRequest<SimbaKeywordsDe
      */
     private String nick;
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
+        RequestCheckUtils.checkNotEmpty(keywordIds, "keywordIds");
+        RequestCheckUtils.checkMaxListSize(keywordIds, 100, "keywordIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.keywords.delete";
     }
 
     public Long getCampaignId() {
         return this.campaignId;
     }
 
-    public void setKeywordIds(String keywordIds) {
-        this.keywordIds = keywordIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getKeywordIds() {
         return this.keywordIds;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<SimbaKeywordsDeleteResponse> getResponseClass() {
+        return SimbaKeywordsDeleteResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.keywords.delete";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("campaign_id", this.campaignId);
@@ -84,6 +83,12 @@ public class SimbaKeywordsDeleteRequest implements TaobaoRequest<SimbaKeywordsDe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,17 +96,20 @@ public class SimbaKeywordsDeleteRequest implements TaobaoRequest<SimbaKeywordsDe
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaKeywordsDeleteResponse> getResponseClass() {
-        return SimbaKeywordsDeleteResponse.class;
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(campaignId, "campaignId");
-        RequestCheckUtils.checkNotEmpty(keywordIds, "keywordIds");
-        RequestCheckUtils.checkMaxListSize(keywordIds, 100, "keywordIds");
+    public void setKeywordIds(String keywordIds) {
+        this.keywordIds = keywordIds;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -26,20 +26,20 @@ public class WeitaoFeedGetResponse extends TaobaoResponse {
     @ApiField("result")
     private Boolean result;
 
-    public void setFeedDetail(FeedDetail feedDetail) {
-        this.feedDetail = feedDetail;
-    }
-
     public FeedDetail getFeedDetail() {
         return this.feedDetail;
     }
 
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
-
     public Boolean getResult() {
         return this.result;
+    }
+
+    public void setFeedDetail(FeedDetail feedDetail) {
+        this.feedDetail = feedDetail;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
 }

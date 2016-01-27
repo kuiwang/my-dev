@@ -13,31 +13,6 @@ import com.taobao.top.link.endpoint.MessageType.ValueFormat;
 
 public class MessageDecoder02 implements MessageDecoder {
 
-    @Override
-    public Message readMessage(ByteBuffer buffer) {
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-
-        Message msg = new Message();
-        msg.protocolVersion = 2;
-        msg.messageType = buffer.get();
-        // read kv
-        HashMap<String, Object> dict = new HashMap<String, Object>();
-        short headerType = buffer.getShort();
-        while (headerType != HeaderType.EndOfHeaders) {
-            if (headerType == HeaderType.Custom) dict.put(readCountedString(buffer),
-                    readCustomValue(buffer));
-            else if (headerType == HeaderType.StatusCode) msg.statusCode = buffer.getInt();
-            else if (headerType == HeaderType.StatusPhrase) msg.statusPhase = readCountedString(buffer);
-            else if (headerType == HeaderType.Flag) msg.flag = buffer.getInt();
-            else if (headerType == HeaderType.Token) msg.token = readCountedString(buffer);
-            headerType = buffer.getShort();
-        }
-        msg.content = dict;
-
-        buffer.order(ByteOrder.BIG_ENDIAN);
-        return msg;
-    }
-
     // UTF-8 only
     private static String readCountedString(ByteBuffer buffer) {
         int size = buffer.getInt();
@@ -75,5 +50,36 @@ public class MessageDecoder02 implements MessageDecoder {
             default:
                 return readCountedString(buffer);
         }
+    }
+
+    @Override
+    public Message readMessage(ByteBuffer buffer) {
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        Message msg = new Message();
+        msg.protocolVersion = 2;
+        msg.messageType = buffer.get();
+        // read kv
+        HashMap<String, Object> dict = new HashMap<String, Object>();
+        short headerType = buffer.getShort();
+        while (headerType != HeaderType.EndOfHeaders) {
+            if (headerType == HeaderType.Custom) {
+                dict.put(readCountedString(buffer),
+                        readCustomValue(buffer));
+            } else if (headerType == HeaderType.StatusCode) {
+                msg.statusCode = buffer.getInt();
+            } else if (headerType == HeaderType.StatusPhrase) {
+                msg.statusPhase = readCountedString(buffer);
+            } else if (headerType == HeaderType.Flag) {
+                msg.flag = buffer.getInt();
+            } else if (headerType == HeaderType.Token) {
+                msg.token = readCountedString(buffer);
+            }
+            headerType = buffer.getShort();
+        }
+        msg.content = dict;
+
+        buffer.order(ByteOrder.BIG_ENDIAN);
+        return msg;
     }
 }

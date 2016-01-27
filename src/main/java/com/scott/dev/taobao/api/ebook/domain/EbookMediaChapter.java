@@ -31,12 +31,12 @@ public class EbookMediaChapter extends TaobaoObject {
         return this.created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Long getTbid() {
         return this.tbid;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public void setTbid(Long tbid) {

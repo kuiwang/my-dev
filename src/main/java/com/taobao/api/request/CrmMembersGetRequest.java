@@ -17,12 +17,6 @@ import com.taobao.api.response.CrmMembersGetResponse;
  */
 public class CrmMembersGetRequest implements TaobaoRequest<CrmMembersGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家的昵称<br />
      * 支持最大长度为：1000<br />
@@ -45,6 +39,8 @@ public class CrmMembersGetRequest implements TaobaoRequest<CrmMembersGetResponse
      * 支持的最大列表长度为：32
      */
     private Long grade;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 最迟上次交易时间
@@ -85,98 +81,80 @@ public class CrmMembersGetRequest implements TaobaoRequest<CrmMembersGetResponse
      */
     private Long pageSize;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkMaxLength(buyerNick, 1000, "buyerNick");
+        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
+        RequestCheckUtils.checkMaxValue(currentPage, 1000L, "currentPage");
+        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
+        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
+        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
+        RequestCheckUtils.checkMinValue(maxTradeCount, 0L, "maxTradeCount");
+        RequestCheckUtils.checkMinValue(minTradeCount, 0L, "minTradeCount");
+        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
+        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.members.get";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
-    }
-
     public Long getCurrentPage() {
         return this.currentPage;
-    }
-
-    public void setGrade(Long grade) {
-        this.grade = grade;
     }
 
     public Long getGrade() {
         return this.grade;
     }
 
-    public void setMaxLastTradeTime(Date maxLastTradeTime) {
-        this.maxLastTradeTime = maxLastTradeTime;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Date getMaxLastTradeTime() {
         return this.maxLastTradeTime;
     }
 
-    public void setMaxTradeAmount(String maxTradeAmount) {
-        this.maxTradeAmount = maxTradeAmount;
-    }
-
     public String getMaxTradeAmount() {
         return this.maxTradeAmount;
-    }
-
-    public void setMaxTradeCount(Long maxTradeCount) {
-        this.maxTradeCount = maxTradeCount;
     }
 
     public Long getMaxTradeCount() {
         return this.maxTradeCount;
     }
 
-    public void setMinLastTradeTime(Date minLastTradeTime) {
-        this.minLastTradeTime = minLastTradeTime;
-    }
-
     public Date getMinLastTradeTime() {
         return this.minLastTradeTime;
-    }
-
-    public void setMinTradeAmount(String minTradeAmount) {
-        this.minTradeAmount = minTradeAmount;
     }
 
     public String getMinTradeAmount() {
         return this.minTradeAmount;
     }
 
-    public void setMinTradeCount(Long minTradeCount) {
-        this.minTradeCount = minTradeCount;
-    }
-
     public Long getMinTradeCount() {
         return this.minTradeCount;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<CrmMembersGetResponse> getResponseClass() {
+        return CrmMembersGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.members.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -195,6 +173,12 @@ public class CrmMembersGetRequest implements TaobaoRequest<CrmMembersGetResponse
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -202,24 +186,48 @@ public class CrmMembersGetRequest implements TaobaoRequest<CrmMembersGetResponse
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMembersGetResponse> getResponseClass() {
-        return CrmMembersGetResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkMaxLength(buyerNick, 1000, "buyerNick");
-        RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
-        RequestCheckUtils.checkMaxValue(currentPage, 1000L, "currentPage");
-        RequestCheckUtils.checkMinValue(currentPage, 1L, "currentPage");
-        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
-        RequestCheckUtils.checkMinValue(grade, -1L, "grade");
-        RequestCheckUtils.checkMinValue(maxTradeCount, 0L, "maxTradeCount");
-        RequestCheckUtils.checkMinValue(minTradeCount, 0L, "minTradeCount");
-        RequestCheckUtils.checkMaxValue(pageSize, 100L, "pageSize");
-        RequestCheckUtils.checkMinValue(pageSize, 1L, "pageSize");
+    public void setCurrentPage(Long currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
+    public void setMaxLastTradeTime(Date maxLastTradeTime) {
+        this.maxLastTradeTime = maxLastTradeTime;
+    }
+
+    public void setMaxTradeAmount(String maxTradeAmount) {
+        this.maxTradeAmount = maxTradeAmount;
+    }
+
+    public void setMaxTradeCount(Long maxTradeCount) {
+        this.maxTradeCount = maxTradeCount;
+    }
+
+    public void setMinLastTradeTime(Date minLastTradeTime) {
+        this.minLastTradeTime = minLastTradeTime;
+    }
+
+    public void setMinTradeAmount(String minTradeAmount) {
+        this.minTradeAmount = minTradeAmount;
+    }
+
+    public void setMinTradeCount(Long minTradeCount) {
+        this.minTradeCount = minTradeCount;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

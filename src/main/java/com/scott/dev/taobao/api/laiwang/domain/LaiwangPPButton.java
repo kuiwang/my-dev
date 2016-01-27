@@ -18,14 +18,14 @@ public class LaiwangPPButton {
     private String name;
 
     /**
+     * 二级按钮列表
+     */
+    private List<LaiwangPPSubButton> subButton;
+
+    /**
      * 按钮点击后跳转的目的地址.
      */
     private String target;
-
-    /**
-     * 按钮跳转的url
-     */
-    private String url;
 
     /**
      * 按钮的类型
@@ -33,56 +33,56 @@ public class LaiwangPPButton {
     private String type;
 
     /**
-     * 二级按钮列表
+     * 按钮跳转的url
      */
-    private List<LaiwangPPSubButton> subButton;
+    private String url;
 
     public String getKey() {
         return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<LaiwangPPSubButton> getSubButton() {
+        return subButton;
     }
 
     public String getTarget() {
         return target;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    public String getType() {
+        return type;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getType() {
-        return type;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSubButton(List<LaiwangPPSubButton> subButton) {
+        this.subButton = subButton;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public List<LaiwangPPSubButton> getSubButton() {
-        return subButton;
-    }
-
-    public void setSubButton(List<LaiwangPPSubButton> subButton) {
-        this.subButton = subButton;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

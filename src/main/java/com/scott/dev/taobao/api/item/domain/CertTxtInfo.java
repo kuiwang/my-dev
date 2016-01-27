@@ -19,12 +19,12 @@ public class CertTxtInfo {
         return certType;
     }
 
-    public void setCertType(Number certType) {
-        this.certType = certType;
-    }
-
     public String getText() {
         return text;
+    }
+
+    public void setCertType(Number certType) {
+        this.certType = certType;
     }
 
     public void setText(String text) {

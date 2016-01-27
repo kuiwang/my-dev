@@ -54,52 +54,52 @@ public class DescribeSlowLogRecordsResponse extends AliyunResponse {
     @ApiField("TotalRecordCount")
     private Long totalRecordCount;
 
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String getEngine() {
         return this.engine;
-    }
-
-    public void setItems(List<SQLSlowRecord> items) {
-        this.items = items;
     }
 
     public List<SQLSlowRecord> getItems() {
         return this.items;
     }
 
-    public void setPageNumber(Long pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
     public Long getPageNumber() {
         return this.pageNumber;
-    }
-
-    public void setPageRecordCount(Long pageRecordCount) {
-        this.pageRecordCount = pageRecordCount;
     }
 
     public Long getPageRecordCount() {
         return this.pageRecordCount;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setTotalRecordCount(Long totalRecordCount) {
-        this.totalRecordCount = totalRecordCount;
-    }
-
     public Long getTotalRecordCount() {
         return this.totalRecordCount;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public void setItems(List<SQLSlowRecord> items) {
+        this.items = items;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setPageRecordCount(Long pageRecordCount) {
+        this.pageRecordCount = pageRecordCount;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setTotalRecordCount(Long totalRecordCount) {
+        this.totalRecordCount = totalRecordCount;
     }
 
 }

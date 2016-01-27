@@ -129,140 +129,140 @@ public class TopAuction extends TaobaoObject {
         return this.auctionDesc;
     }
 
-    public void setAuctionDesc(String auctionDesc) {
-        this.auctionDesc = auctionDesc;
-    }
-
     public List<AuctionSkuDO> getAuctionSkudos() {
         return this.auctionSkudos;
-    }
-
-    public void setAuctionSkudos(List<AuctionSkuDO> auctionSkudos) {
-        this.auctionSkudos = auctionSkudos;
     }
 
     public Long getAuctionStatus() {
         return this.auctionStatus;
     }
 
-    public void setAuctionStatus(Long auctionStatus) {
-        this.auctionStatus = auctionStatus;
-    }
-
     public Long getCategoryId() {
         return this.categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
     public String getGoodsNo() {
         return this.goodsNo;
-    }
-
-    public void setGoodsNo(String goodsNo) {
-        this.goodsNo = goodsNo;
     }
 
     public Long getItemId() {
         return this.itemId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
     public Long getLimitBuy() {
         return this.limitBuy;
-    }
-
-    public void setLimitBuy(Long limitBuy) {
-        this.limitBuy = limitBuy;
     }
 
     public String getModifyTime() {
         return this.modifyTime;
     }
 
-    public void setModifyTime(String modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public Long getOldQuantity() {
         return this.oldQuantity;
-    }
-
-    public void setOldQuantity(Long oldQuantity) {
-        this.oldQuantity = oldQuantity;
     }
 
     public String getOriPrice() {
         return this.oriPrice;
     }
 
-    public void setOriPrice(String oriPrice) {
-        this.oriPrice = oriPrice;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public Long getQuantity() {
         return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public Long getRecommend() {
         return this.recommend;
     }
 
-    public void setRecommend(Long recommend) {
-        this.recommend = recommend;
-    }
-
     public Long getRuleId() {
         return this.ruleId;
-    }
-
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getViceImage() {
         return this.viceImage;
+    }
+
+    public void setAuctionDesc(String auctionDesc) {
+        this.auctionDesc = auctionDesc;
+    }
+
+    public void setAuctionSkudos(List<AuctionSkuDO> auctionSkudos) {
+        this.auctionSkudos = auctionSkudos;
+    }
+
+    public void setAuctionStatus(Long auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setGoodsNo(String goodsNo) {
+        this.goodsNo = goodsNo;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setLimitBuy(Long limitBuy) {
+        this.limitBuy = limitBuy;
+    }
+
+    public void setModifyTime(String modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setOldQuantity(Long oldQuantity) {
+        this.oldQuantity = oldQuantity;
+    }
+
+    public void setOriPrice(String oriPrice) {
+        this.oriPrice = oriPrice;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setRecommend(Long recommend) {
+        this.recommend = recommend;
+    }
+
+    public void setRuleId(Long ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setViceImage(String viceImage) {

@@ -98,100 +98,100 @@ public class Shop extends TaobaoObject {
         return this.allCount;
     }
 
-    public void setAllCount(Long allCount) {
-        this.allCount = allCount;
-    }
-
     public String getBulletin() {
         return this.bulletin;
-    }
-
-    public void setBulletin(String bulletin) {
-        this.bulletin = bulletin;
     }
 
     public Long getCid() {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Date getCreated() {
         return this.created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Date getModified() {
         return this.modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
     }
 
     public Long getRemainCount() {
         return this.remainCount;
     }
 
-    public void setRemainCount(Long remainCount) {
-        this.remainCount = remainCount;
-    }
-
     public ShopScore getShopScore() {
         return this.shopScore;
-    }
-
-    public void setShopScore(ShopScore shopScore) {
-        this.shopScore = shopScore;
     }
 
     public Long getSid() {
         return this.sid;
     }
 
-    public void setSid(Long sid) {
-        this.sid = sid;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getUsedCount() {
         return this.usedCount;
+    }
+
+    public void setAllCount(Long allCount) {
+        this.allCount = allCount;
+    }
+
+    public void setBulletin(String bulletin) {
+        this.bulletin = bulletin;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setRemainCount(Long remainCount) {
+        this.remainCount = remainCount;
+    }
+
+    public void setShopScore(ShopScore shopScore) {
+        this.shopScore = shopScore;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setUsedCount(Long usedCount) {

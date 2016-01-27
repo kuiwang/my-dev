@@ -73,68 +73,68 @@ public class ArticleSub extends TaobaoObject {
         return this.articleCode;
     }
 
-    public void setArticleCode(String articleCode) {
-        this.articleCode = articleCode;
-    }
-
     public String getArticleName() {
         return this.articleName;
-    }
-
-    public void setArticleName(String articleName) {
-        this.articleName = articleName;
     }
 
     public Boolean getAutosub() {
         return this.autosub;
     }
 
-    public void setAutosub(Boolean autosub) {
-        this.autosub = autosub;
-    }
-
     public Date getDeadline() {
         return this.deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
     }
 
     public Boolean getExpireNotice() {
         return this.expireNotice;
     }
 
-    public void setExpireNotice(Boolean expireNotice) {
-        this.expireNotice = expireNotice;
-    }
-
     public String getItemCode() {
         return this.itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
     }
 
     public String getItemName() {
         return this.itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setArticleCode(String articleCode) {
+        this.articleCode = articleCode;
+    }
+
+    public void setArticleName(String articleName) {
+        this.articleName = articleName;
+    }
+
+    public void setAutosub(Boolean autosub) {
+        this.autosub = autosub;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setExpireNotice(Boolean expireNotice) {
+        this.expireNotice = expireNotice;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
     public void setStatus(Long status) {

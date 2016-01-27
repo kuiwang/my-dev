@@ -18,14 +18,12 @@ public class WlbTradeorderGetRequest implements TaobaoRequest<WlbTradeorderGetRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 子交易号
      */
     private String subTradeId;
+
+    private Long timestamp;
 
     /**
      * 指定交易类型的交易号
@@ -37,42 +35,34 @@ public class WlbTradeorderGetRequest implements TaobaoRequest<WlbTradeorderGetRe
      */
     private String tradeType;
 
-    public void setSubTradeId(String subTradeId) {
-        this.subTradeId = subTradeId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
+        RequestCheckUtils.checkNotEmpty(tradeType, "tradeType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.tradeorder.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<WlbTradeorderGetResponse> getResponseClass() {
+        return WlbTradeorderGetResponse.class;
     }
 
     public String getSubTradeId() {
         return this.subTradeId;
     }
 
-    public void setTradeId(String tradeId) {
-        this.tradeId = tradeId;
-    }
-
-    public String getTradeId() {
-        return this.tradeId;
-    }
-
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getTradeType() {
-        return this.tradeType;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.tradeorder.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("sub_trade_id", this.subTradeId);
@@ -84,6 +74,20 @@ public class WlbTradeorderGetRequest implements TaobaoRequest<WlbTradeorderGetRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTradeId() {
+        return this.tradeId;
+    }
+
+    public String getTradeType() {
+        return this.tradeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -91,16 +95,20 @@ public class WlbTradeorderGetRequest implements TaobaoRequest<WlbTradeorderGetRe
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbTradeorderGetResponse> getResponseClass() {
-        return WlbTradeorderGetResponse.class;
+    public void setSubTradeId(String subTradeId) {
+        this.subTradeId = subTradeId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
-        RequestCheckUtils.checkNotEmpty(tradeType, "tradeType");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTradeId(String tradeId) {
+        this.tradeId = tradeId;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

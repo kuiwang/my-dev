@@ -37,36 +37,36 @@ public class JipiaoAgentOrderTicketResponse extends TaobaoResponse {
     @ApiField("is_ticket_success")
     private Boolean isTicketSuccess;
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public String getErrorMessage() {
         return this.errorMessage;
-    }
-
-    public void setIsOrderSuccess(Boolean isOrderSuccess) {
-        this.isOrderSuccess = isOrderSuccess;
     }
 
     public Boolean getIsOrderSuccess() {
         return this.isOrderSuccess;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
-
     public Boolean getIsSuccess() {
         return this.isSuccess;
     }
 
-    public void setIsTicketSuccess(Boolean isTicketSuccess) {
-        this.isTicketSuccess = isTicketSuccess;
-    }
-
     public Boolean getIsTicketSuccess() {
         return this.isTicketSuccess;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public void setIsOrderSuccess(Boolean isOrderSuccess) {
+        this.isOrderSuccess = isOrderSuccess;
+    }
+
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public void setIsTicketSuccess(Boolean isTicketSuccess) {
+        this.isTicketSuccess = isTicketSuccess;
     }
 
 }

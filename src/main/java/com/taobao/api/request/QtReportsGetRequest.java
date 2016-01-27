@@ -17,16 +17,12 @@ import com.taobao.api.response.QtReportsGetResponse;
  */
 public class QtReportsGetRequest implements TaobaoRequest<QtReportsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询时间段的结束时间
      */
     private Date endTime;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 送检者昵称
@@ -55,66 +51,59 @@ public class QtReportsGetRequest implements TaobaoRequest<QtReportsGetResponse> 
      */
     private Date startTime;
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(nick, "nick");
+        RequestCheckUtils.checkNotEmpty(qtType, "qtType");
+        RequestCheckUtils.checkNotEmpty(servcieItemCode, "servcieItemCode");
+        RequestCheckUtils.checkNotEmpty(spName, "spName");
+        RequestCheckUtils.checkMaxLength(spName, 50, "spName");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.qt.reports.get";
     }
 
     public Date getEndTime() {
         return this.endTime;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setQtType(Long qtType) {
-        this.qtType = qtType;
-    }
-
     public Long getQtType() {
         return this.qtType;
     }
 
-    public void setServcieItemCode(String servcieItemCode) {
-        this.servcieItemCode = servcieItemCode;
+    @Override
+    public Class<QtReportsGetResponse> getResponseClass() {
+        return QtReportsGetResponse.class;
     }
 
     public String getServcieItemCode() {
         return this.servcieItemCode;
     }
 
-    public void setSpName(String spName) {
-        this.spName = spName;
-    }
-
     public String getSpName() {
         return this.spName;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
     }
 
     public Date getStartTime() {
         return this.startTime;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.qt.reports.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("end_time", this.endTime);
@@ -129,6 +118,12 @@ public class QtReportsGetRequest implements TaobaoRequest<QtReportsGetResponse> 
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -136,19 +131,32 @@ public class QtReportsGetRequest implements TaobaoRequest<QtReportsGetResponse> 
         this.udfParams.put(key, value);
     }
 
-    public Class<QtReportsGetResponse> getResponseClass() {
-        return QtReportsGetResponse.class;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(nick, "nick");
-        RequestCheckUtils.checkNotEmpty(qtType, "qtType");
-        RequestCheckUtils.checkNotEmpty(servcieItemCode, "servcieItemCode");
-        RequestCheckUtils.checkNotEmpty(spName, "spName");
-        RequestCheckUtils.checkMaxLength(spName, 50, "spName");
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setQtType(Long qtType) {
+        this.qtType = qtType;
+    }
+
+    public void setServcieItemCode(String servcieItemCode) {
+        this.servcieItemCode = servcieItemCode;
+    }
+
+    public void setSpName(String spName) {
+        this.spName = spName;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

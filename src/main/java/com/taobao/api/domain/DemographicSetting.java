@@ -55,44 +55,44 @@ public class DemographicSetting extends TaobaoObject {
         return this.campaignId;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Long getDemographicId() {
         return this.demographicId;
     }
 
-    public void setDemographicId(Long demographicId) {
-        this.demographicId = demographicId;
-    }
-
     public Long getIncrementalPrice() {
         return this.incrementalPrice;
-    }
-
-    public void setIncrementalPrice(Long incrementalPrice) {
-        this.incrementalPrice = incrementalPrice;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDemographicId(Long demographicId) {
+        this.demographicId = demographicId;
+    }
+
+    public void setIncrementalPrice(Long incrementalPrice) {
+        this.incrementalPrice = incrementalPrice;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
     public void setNick(String nick) {

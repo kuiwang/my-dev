@@ -18,10 +18,6 @@ import com.taobao.api.response.HotelRoomUpdateResponse;
  */
 public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpdateResponse> {
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 面积。可选值：A,B,C,D。分别代表： A：15平米以下，B：16－30平米，C：31－50平米，D：50平米以上<br />
      * 支持最大长度为：1<br />
@@ -88,6 +84,8 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
      * 酒店商品是否提供发票
      */
     private Boolean hasReceipt;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 为到店支付卖家特殊使用，代表多种支付类型的房态。room_quotas可选，如果有值，也会处理。
@@ -192,6 +190,8 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
      */
     private String storey;
 
+    private Long timestamp;
+
     /**
      * 酒店商品名称。不能超过60字节<br />
      * 支持最大长度为：90<br />
@@ -199,228 +199,153 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
      */
     private String title;
 
-    public void setArea(String area) {
-        this.area = area;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+
+        RequestCheckUtils.checkMaxLength(area, 1, "area");
+        RequestCheckUtils.checkMaxLength(bbn, 1, "bbn");
+        RequestCheckUtils.checkMaxLength(bedType, 1, "bedType");
+        RequestCheckUtils.checkMaxLength(breakfast, 1, "breakfast");
+        RequestCheckUtils.checkMaxValue(deposit, 99999900L, "deposit");
+        RequestCheckUtils.checkMinValue(deposit, 0L, "deposit");
+        RequestCheckUtils.checkMaxLength(desc, 50000, "desc");
+        RequestCheckUtils.checkMaxValue(fee, 99999900L, "fee");
+        RequestCheckUtils.checkMinValue(fee, 0L, "fee");
+        RequestCheckUtils.checkNotEmpty(gid, "gid");
+        RequestCheckUtils.checkMaxLength(guide, 300, "guide");
+        RequestCheckUtils.checkMaxLength(paymentType, 1, "paymentType");
+        RequestCheckUtils.checkMaxLength(pic, 512000, "pic");
+        RequestCheckUtils.checkMaxLength(priceType, 1, "priceType");
+        RequestCheckUtils.checkMaxLength(size, 1, "size");
+        RequestCheckUtils.checkMaxLength(storey, 8, "storey");
+        RequestCheckUtils.checkMaxLength(title, 90, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.hotel.room.update";
     }
 
     public String getArea() {
         return this.area;
     }
 
-    public void setBbn(String bbn) {
-        this.bbn = bbn;
-    }
-
     public String getBbn() {
         return this.bbn;
-    }
-
-    public void setBedType(String bedType) {
-        this.bedType = bedType;
     }
 
     public String getBedType() {
         return this.bedType;
     }
 
-    public void setBreakfast(String breakfast) {
-        this.breakfast = breakfast;
-    }
-
     public String getBreakfast() {
         return this.breakfast;
-    }
-
-    public void setDeposit(Long deposit) {
-        this.deposit = deposit;
     }
 
     public Long getDeposit() {
         return this.deposit;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDesc() {
         return this.desc;
-    }
-
-    public void setFee(Long fee) {
-        this.fee = fee;
     }
 
     public Long getFee() {
         return this.fee;
     }
 
-    public void setGid(Long gid) {
-        this.gid = gid;
+    @Override
+    public Map<String, FileItem> getFileParams() {
+        Map<String, FileItem> params = new HashMap<String, FileItem>();
+        params.put("pic", this.pic);
+        return params;
     }
 
     public Long getGid() {
         return this.gid;
     }
 
-    public void setGuide(String guide) {
-        this.guide = guide;
-    }
-
     public String getGuide() {
         return this.guide;
-    }
-
-    public void setHasReceipt(Boolean hasReceipt) {
-        this.hasReceipt = hasReceipt;
     }
 
     public Boolean getHasReceipt() {
         return this.hasReceipt;
     }
 
-    public void setMultiRoomQuotas(String multiRoomQuotas) {
-        this.multiRoomQuotas = multiRoomQuotas;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMultiRoomQuotas() {
         return this.multiRoomQuotas;
     }
 
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
-    }
-
     public String getPaymentType() {
         return this.paymentType;
-    }
-
-    public void setPic(FileItem pic) {
-        this.pic = pic;
     }
 
     public FileItem getPic() {
         return this.pic;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
-    }
-
     public String getPicPath() {
         return this.picPath;
-    }
-
-    public void setPriceType(String priceType) {
-        this.priceType = priceType;
     }
 
     public String getPriceType() {
         return this.priceType;
     }
 
-    public void setReceiptInfo(String receiptInfo) {
-        this.receiptInfo = receiptInfo;
-    }
-
     public String getReceiptInfo() {
         return this.receiptInfo;
-    }
-
-    public void setReceiptOtherTypeDesc(String receiptOtherTypeDesc) {
-        this.receiptOtherTypeDesc = receiptOtherTypeDesc;
     }
 
     public String getReceiptOtherTypeDesc() {
         return this.receiptOtherTypeDesc;
     }
 
-    public void setReceiptType(String receiptType) {
-        this.receiptType = receiptType;
-    }
-
     public String getReceiptType() {
         return this.receiptType;
-    }
-
-    public void setRefundPolicyInfo(String refundPolicyInfo) {
-        this.refundPolicyInfo = refundPolicyInfo;
     }
 
     public String getRefundPolicyInfo() {
         return this.refundPolicyInfo;
     }
 
-    public void setRoomQuotas(String roomQuotas) {
-        this.roomQuotas = roomQuotas;
+    @Override
+    public Class<HotelRoomUpdateResponse> getResponseClass() {
+        return HotelRoomUpdateResponse.class;
     }
 
     public String getRoomQuotas() {
         return this.roomQuotas;
     }
 
-    public void setService(String service) {
-        this.service = service;
-    }
-
     public String getService() {
         return this.service;
-    }
-
-    public void setSiteParam(String siteParam) {
-        this.siteParam = siteParam;
     }
 
     public String getSiteParam() {
         return this.siteParam;
     }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public String getSize() {
         return this.size;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public Long getStatus() {
         return this.status;
     }
 
-    public void setStorey(String storey) {
-        this.storey = storey;
-    }
-
     public String getStorey() {
         return this.storey;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.hotel.room.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("area", this.area);
@@ -454,6 +379,16 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -461,38 +396,112 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
         this.udfParams.put(key, value);
     }
 
-    public Map<String, FileItem> getFileParams() {
-        Map<String, FileItem> params = new HashMap<String, FileItem>();
-        params.put("pic", this.pic);
-        return params;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public Class<HotelRoomUpdateResponse> getResponseClass() {
-        return HotelRoomUpdateResponse.class;
+    public void setBbn(String bbn) {
+        this.bbn = bbn;
     }
 
-    public void check() throws ApiRuleException {
-
-        RequestCheckUtils.checkMaxLength(area, 1, "area");
-        RequestCheckUtils.checkMaxLength(bbn, 1, "bbn");
-        RequestCheckUtils.checkMaxLength(bedType, 1, "bedType");
-        RequestCheckUtils.checkMaxLength(breakfast, 1, "breakfast");
-        RequestCheckUtils.checkMaxValue(deposit, 99999900L, "deposit");
-        RequestCheckUtils.checkMinValue(deposit, 0L, "deposit");
-        RequestCheckUtils.checkMaxLength(desc, 50000, "desc");
-        RequestCheckUtils.checkMaxValue(fee, 99999900L, "fee");
-        RequestCheckUtils.checkMinValue(fee, 0L, "fee");
-        RequestCheckUtils.checkNotEmpty(gid, "gid");
-        RequestCheckUtils.checkMaxLength(guide, 300, "guide");
-        RequestCheckUtils.checkMaxLength(paymentType, 1, "paymentType");
-        RequestCheckUtils.checkMaxLength(pic, 512000, "pic");
-        RequestCheckUtils.checkMaxLength(priceType, 1, "priceType");
-        RequestCheckUtils.checkMaxLength(size, 1, "size");
-        RequestCheckUtils.checkMaxLength(storey, 8, "storey");
-        RequestCheckUtils.checkMaxLength(title, 90, "title");
+    public void setBedType(String bedType) {
+        this.bedType = bedType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBreakfast(String breakfast) {
+        this.breakfast = breakfast;
+    }
+
+    public void setDeposit(Long deposit) {
+        this.deposit = deposit;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setFee(Long fee) {
+        this.fee = fee;
+    }
+
+    public void setGid(Long gid) {
+        this.gid = gid;
+    }
+
+    public void setGuide(String guide) {
+        this.guide = guide;
+    }
+
+    public void setHasReceipt(Boolean hasReceipt) {
+        this.hasReceipt = hasReceipt;
+    }
+
+    public void setMultiRoomQuotas(String multiRoomQuotas) {
+        this.multiRoomQuotas = multiRoomQuotas;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public void setPic(FileItem pic) {
+        this.pic = pic;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
+
+    public void setReceiptInfo(String receiptInfo) {
+        this.receiptInfo = receiptInfo;
+    }
+
+    public void setReceiptOtherTypeDesc(String receiptOtherTypeDesc) {
+        this.receiptOtherTypeDesc = receiptOtherTypeDesc;
+    }
+
+    public void setReceiptType(String receiptType) {
+        this.receiptType = receiptType;
+    }
+
+    public void setRefundPolicyInfo(String refundPolicyInfo) {
+        this.refundPolicyInfo = refundPolicyInfo;
+    }
+
+    public void setRoomQuotas(String roomQuotas) {
+        this.roomQuotas = roomQuotas;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public void setSiteParam(String siteParam) {
+        this.siteParam = siteParam;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setStorey(String storey) {
+        this.storey = storey;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

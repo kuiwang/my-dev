@@ -20,12 +20,12 @@ public class WlbWlborderGetResponse extends TaobaoResponse {
     @ApiField("wlb_order")
     private WlbOrder wlbOrder;
 
-    public void setWlbOrder(WlbOrder wlbOrder) {
-        this.wlbOrder = wlbOrder;
-    }
-
     public WlbOrder getWlbOrder() {
         return this.wlbOrder;
+    }
+
+    public void setWlbOrder(WlbOrder wlbOrder) {
+        this.wlbOrder = wlbOrder;
     }
 
 }

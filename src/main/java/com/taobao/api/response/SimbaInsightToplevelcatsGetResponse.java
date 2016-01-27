@@ -24,12 +24,12 @@ public class SimbaInsightToplevelcatsGetResponse extends TaobaoResponse {
     @ApiField("i_n_category_top")
     private List<INCategoryTop> inCategoryTops;
 
-    public void setInCategoryTops(List<INCategoryTop> inCategoryTops) {
-        this.inCategoryTops = inCategoryTops;
-    }
-
     public List<INCategoryTop> getInCategoryTops() {
         return this.inCategoryTops;
+    }
+
+    public void setInCategoryTops(List<INCategoryTop> inCategoryTops) {
+        this.inCategoryTops = inCategoryTops;
     }
 
 }

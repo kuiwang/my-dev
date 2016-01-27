@@ -10,26 +10,41 @@ import com.taobao.top.link.channel.ServerChannelSender;
 
 public class ChannelSenderWrapper implements ChannelSender {
 
-    private ChannelSender sender;
-
     private int protocolVersion;
+
+    private ChannelSender sender;
 
     public ChannelSenderWrapper(ChannelSender sender, int protocolVersion) {
         this.sender = sender;
         this.protocolVersion = protocolVersion;
     }
 
-    public int getProtocolVersion() {
-        return this.protocolVersion;
+    @Override
+    public void close(String reason) {
+        this.sender.close(reason);
     }
 
     public ChannelSender getChannelSender() {
         return this.sender;
     }
 
+    @Override
+    public SocketAddress getLocalAddress() {
+        return this.sender.getLocalAddress();
+    }
+
+    public int getProtocolVersion() {
+        return this.protocolVersion;
+    }
+
+    @Override
+    public SocketAddress getRemoteAddress() {
+        return this.sender.getRemoteAddress();
+    }
+
     public boolean isValid() {
-        return (this.sender instanceof ClientChannel && ((ClientChannel) this.sender).isConnected())
-                || (this.sender instanceof ServerChannelSender && ((ServerChannelSender) this.sender)
+        return ((this.sender instanceof ClientChannel) && ((ClientChannel) this.sender).isConnected())
+                || ((this.sender instanceof ServerChannelSender) && ((ServerChannelSender) this.sender)
                         .isOpen());
     }
 
@@ -47,20 +62,5 @@ public class ChannelSenderWrapper implements ChannelSender {
     public boolean sendSync(ByteBuffer dataBuffer, SendHandler sendHandler, int timeoutMilliseconds)
             throws ChannelException {
         return this.sender.sendSync(dataBuffer, sendHandler, timeoutMilliseconds);
-    }
-
-    @Override
-    public void close(String reason) {
-        this.sender.close(reason);
-    }
-
-    @Override
-    public SocketAddress getLocalAddress() {
-        return this.sender.getLocalAddress();
-    }
-
-    @Override
-    public SocketAddress getRemoteAddress() {
-        return this.sender.getRemoteAddress();
     }
 }

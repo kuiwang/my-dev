@@ -47,36 +47,36 @@ public class MpicVideo extends TaobaoObject {
         return this.numIid;
     }
 
-    public void setNumIid(Long numIid) {
-        this.numIid = numIid;
-    }
-
     public Long getVideoDuaration() {
         return this.videoDuaration;
-    }
-
-    public void setVideoDuaration(Long videoDuaration) {
-        this.videoDuaration = videoDuaration;
     }
 
     public Long getVideoId() {
         return this.videoId;
     }
 
-    public void setVideoId(Long videoId) {
-        this.videoId = videoId;
-    }
-
     public String getVideoPic() {
         return this.videoPic;
     }
 
-    public void setVideoPic(String videoPic) {
-        this.videoPic = videoPic;
-    }
-
     public Long getVideoStatus() {
         return this.videoStatus;
+    }
+
+    public void setNumIid(Long numIid) {
+        this.numIid = numIid;
+    }
+
+    public void setVideoDuaration(Long videoDuaration) {
+        this.videoDuaration = videoDuaration;
+    }
+
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
+    }
+
+    public void setVideoPic(String videoPic) {
+        this.videoPic = videoPic;
     }
 
     public void setVideoStatus(Long videoStatus) {

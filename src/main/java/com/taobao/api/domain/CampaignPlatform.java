@@ -71,60 +71,60 @@ public class CampaignPlatform extends TaobaoObject {
         return this.campaignId;
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Date getCreateTime() {
         return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Long getMobileDiscount() {
         return this.mobileDiscount;
     }
 
-    public void setMobileDiscount(Long mobileDiscount) {
-        this.mobileDiscount = mobileDiscount;
-    }
-
     public Date getModifiedTime() {
         return this.modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public List<Long> getNonsearchChannels() {
         return this.nonsearchChannels;
-    }
-
-    public void setNonsearchChannels(List<Long> nonsearchChannels) {
-        this.nonsearchChannels = nonsearchChannels;
     }
 
     public Long getOutsideDiscount() {
         return this.outsideDiscount;
     }
 
-    public void setOutsideDiscount(Long outsideDiscount) {
-        this.outsideDiscount = outsideDiscount;
-    }
-
     public List<Long> getSearchChannels() {
         return this.searchChannels;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setMobileDiscount(Long mobileDiscount) {
+        this.mobileDiscount = mobileDiscount;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNonsearchChannels(List<Long> nonsearchChannels) {
+        this.nonsearchChannels = nonsearchChannels;
+    }
+
+    public void setOutsideDiscount(Long outsideDiscount) {
+        this.outsideDiscount = outsideDiscount;
     }
 
     public void setSearchChannels(List<Long> searchChannels) {

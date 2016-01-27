@@ -104,108 +104,108 @@ public class Keyword extends TaobaoObject {
         return this.adgroupId;
     }
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
-    }
-
     public String getAuditDesc() {
         return this.auditDesc;
-    }
-
-    public void setAuditDesc(String auditDesc) {
-        this.auditDesc = auditDesc;
     }
 
     public String getAuditStatus() {
         return this.auditStatus;
     }
 
-    public void setAuditStatus(String auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
     public Long getCampaignId() {
         return this.campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Boolean getIsDefaultPrice() {
         return this.isDefaultPrice;
-    }
-
-    public void setIsDefaultPrice(Boolean isDefaultPrice) {
-        this.isDefaultPrice = isDefaultPrice;
     }
 
     public Boolean getIsGarbage() {
         return this.isGarbage;
     }
 
-    public void setIsGarbage(Boolean isGarbage) {
-        this.isGarbage = isGarbage;
-    }
-
     public Long getKeywordId() {
         return this.keywordId;
-    }
-
-    public void setKeywordId(Long keywordId) {
-        this.keywordId = keywordId;
     }
 
     public String getMatchScope() {
         return this.matchScope;
     }
 
-    public void setMatchScope(String matchScope) {
-        this.matchScope = matchScope;
-    }
-
     public Long getMaxPrice() {
         return this.maxPrice;
-    }
-
-    public void setMaxPrice(Long maxPrice) {
-        this.maxPrice = maxPrice;
     }
 
     public Date getModifiedTime() {
         return this.modifiedTime;
     }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getQscore() {
         return this.qscore;
     }
 
-    public void setQscore(String qscore) {
-        this.qscore = qscore;
-    }
-
     public String getWord() {
         return this.word;
+    }
+
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
+    }
+
+    public void setAuditDesc(String auditDesc) {
+        this.auditDesc = auditDesc;
+    }
+
+    public void setAuditStatus(String auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setIsDefaultPrice(Boolean isDefaultPrice) {
+        this.isDefaultPrice = isDefaultPrice;
+    }
+
+    public void setIsGarbage(Boolean isGarbage) {
+        this.isGarbage = isGarbage;
+    }
+
+    public void setKeywordId(Long keywordId) {
+        this.keywordId = keywordId;
+    }
+
+    public void setMatchScope(String matchScope) {
+        this.matchScope = matchScope;
+    }
+
+    public void setMaxPrice(Long maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setQscore(String qscore) {
+        this.qscore = qscore;
     }
 
     public void setWord(String word) {

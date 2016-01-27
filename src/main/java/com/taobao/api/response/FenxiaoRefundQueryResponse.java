@@ -30,20 +30,20 @@ public class FenxiaoRefundQueryResponse extends TaobaoResponse {
     @ApiField("total_results")
     private Long totalResults;
 
-    public void setRefundList(List<RefundDetail> refundList) {
-        this.refundList = refundList;
-    }
-
     public List<RefundDetail> getRefundList() {
         return this.refundList;
     }
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
+    }
+
+    public void setRefundList(List<RefundDetail> refundList) {
+        this.refundList = refundList;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

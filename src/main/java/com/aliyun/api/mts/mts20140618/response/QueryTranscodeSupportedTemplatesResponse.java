@@ -38,28 +38,28 @@ public class QueryTranscodeSupportedTemplatesResponse extends AliyunResponse {
     @ApiField("TranscodeTemplate")
     private List<TranscodeTemplate> transcodeTemplates;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setTranscodeTemplates(List<TranscodeTemplate> transcodeTemplates) {
-        this.transcodeTemplates = transcodeTemplates;
-    }
-
     public List<TranscodeTemplate> getTranscodeTemplates() {
         return this.transcodeTemplates;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTranscodeTemplates(List<TranscodeTemplate> transcodeTemplates) {
+        this.transcodeTemplates = transcodeTemplates;
     }
 
 }

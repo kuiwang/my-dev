@@ -11,13 +11,49 @@ import com.taobao.top.link.channel.websocket.WebSocketClient;
 
 public class ClientChannelPooledSelector implements ClientChannelSelector {
 
+    public class ChannelPool extends Pool<ClientChannel> {
+
+        protected LoggerFactory loggerFactory;
+
+        protected int timeout;
+
+        protected URI uri;
+
+        public ChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
+            super(50, 10);
+            this.loggerFactory = loggerFactory;
+            this.uri = uri;
+            this.timeout = timeout;
+        }
+
+        @Override
+        public ClientChannel chekOut() throws Throwable {
+            ClientChannel channel = super.chekOut();
+            if (channel == null) {
+                throw new ChannelException(Text.RPC_POOL_BUSY);
+            }
+            return channel;
+        }
+
+        @Override
+        public ClientChannel create() throws ChannelException {
+            return WebSocketClient.connect(this.loggerFactory, this.uri, this.timeout);
+        }
+
+        @Override
+        public boolean validate(ClientChannel t) {
+            return t.isConnected();
+        }
+
+    }
+
     private final static int CONNECT_TIMEOUT = 5000;
 
     private Hashtable<String, Pool<ClientChannel>> channels;
 
-    private LoggerFactory loggerFactory;
-
     private Object lockObject;
+
+    private LoggerFactory loggerFactory;
 
     public ClientChannelPooledSelector() {
         this(DefaultLoggerFactory.getDefault());
@@ -27,6 +63,10 @@ public class ClientChannelPooledSelector implements ClientChannelSelector {
         this.loggerFactory = loggerFactory;
         this.channels = new Hashtable<String, Pool<ClientChannel>>();
         this.lockObject = new Object();
+    }
+
+    protected ChannelPool createChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
+        return new ChannelPool(loggerFactory, uri, timeout);
     }
 
     @Override
@@ -53,43 +93,5 @@ public class ClientChannelPooledSelector implements ClientChannelSelector {
     @Override
     public void returnChannel(ClientChannel channel) {
         this.channels.get(channel.getUri().toString()).checkIn(channel);
-    }
-
-    protected ChannelPool createChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
-        return new ChannelPool(loggerFactory, uri, timeout);
-    }
-
-    public class ChannelPool extends Pool<ClientChannel> {
-
-        protected LoggerFactory loggerFactory;
-
-        protected URI uri;
-
-        protected int timeout;
-
-        public ChannelPool(LoggerFactory loggerFactory, URI uri, int timeout) {
-            super(50, 10);
-            this.loggerFactory = loggerFactory;
-            this.uri = uri;
-            this.timeout = timeout;
-        }
-
-        @Override
-        public ClientChannel chekOut() throws Throwable {
-            ClientChannel channel = super.chekOut();
-            if (channel == null) throw new ChannelException(Text.RPC_POOL_BUSY);
-            return channel;
-        }
-
-        @Override
-        public ClientChannel create() throws ChannelException {
-            return WebSocketClient.connect(this.loggerFactory, this.uri, this.timeout);
-        }
-
-        @Override
-        public boolean validate(ClientChannel t) {
-            return t.isConnected();
-        }
-
     }
 }

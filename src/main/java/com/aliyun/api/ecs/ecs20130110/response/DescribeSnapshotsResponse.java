@@ -30,20 +30,20 @@ public class DescribeSnapshotsResponse extends AliyunResponse {
     @ApiField("Snapshot")
     private List<Snapshot> snapshots;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setSnapshots(List<Snapshot> snapshots) {
-        this.snapshots = snapshots;
-    }
-
     public List<Snapshot> getSnapshots() {
         return this.snapshots;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setSnapshots(List<Snapshot> snapshots) {
+        this.snapshots = snapshots;
     }
 
 }

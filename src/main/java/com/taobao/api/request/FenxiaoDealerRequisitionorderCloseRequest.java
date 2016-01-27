@@ -17,16 +17,12 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderCloseResponse;
 public class FenxiaoDealerRequisitionorderCloseRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderCloseResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 经销采购单编号
      */
     private Long dealerOrderId;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 关闭原因： 1：长时间无法联系到分销商，取消交易。 2：分销商错误提交申请，取消交易。 3：缺货，近段时间都无法发货。
@@ -39,42 +35,45 @@ public class FenxiaoDealerRequisitionorderCloseRequest implements
      */
     private String reasonDetail;
 
-    public void setDealerOrderId(Long dealerOrderId) {
-        this.dealerOrderId = dealerOrderId;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
+        RequestCheckUtils.checkNotEmpty(reason, "reason");
+        RequestCheckUtils.checkNotEmpty(reasonDetail, "reasonDetail");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.close";
     }
 
     public Long getDealerOrderId() {
         return this.dealerOrderId;
     }
 
-    public void setReason(Long reason) {
-        this.reason = reason;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getReason() {
         return this.reason;
     }
 
-    public void setReasonDetail(String reasonDetail) {
-        this.reasonDetail = reasonDetail;
-    }
-
     public String getReasonDetail() {
         return this.reasonDetail;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderCloseResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderCloseResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.close";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("dealer_order_id", this.dealerOrderId);
@@ -86,6 +85,12 @@ public class FenxiaoDealerRequisitionorderCloseRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,17 +98,20 @@ public class FenxiaoDealerRequisitionorderCloseRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderCloseResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderCloseResponse.class;
+    public void setDealerOrderId(Long dealerOrderId) {
+        this.dealerOrderId = dealerOrderId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(dealerOrderId, "dealerOrderId");
-        RequestCheckUtils.checkNotEmpty(reason, "reason");
-        RequestCheckUtils.checkNotEmpty(reasonDetail, "reasonDetail");
+    public void setReason(Long reason) {
+        this.reason = reason;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setReasonDetail(String reasonDetail) {
+        this.reasonDetail = reasonDetail;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

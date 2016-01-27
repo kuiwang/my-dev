@@ -13,36 +13,36 @@ public class TicketItemProcessResult {
     private Boolean broken;
 
     /*
-     * 成功操作的商品标识
-     */
-    private Number itemId;
-
-    /*
      * 操作商品遇到的错误原因
      */
     private String[] brokenReasons;
 
+    /*
+     * 成功操作的商品标识
+     */
+    private Number itemId;
+
     public Boolean getBroken() {
         return broken;
-    }
-
-    public void setBroken(Boolean broken) {
-        this.broken = broken;
-    }
-
-    public Number getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Number itemId) {
-        this.itemId = itemId;
     }
 
     public String[] getBrokenReasons() {
         return brokenReasons;
     }
 
+    public Number getItemId() {
+        return itemId;
+    }
+
+    public void setBroken(Boolean broken) {
+        this.broken = broken;
+    }
+
     public void setBrokenReasons(String[] brokenReasons) {
         this.brokenReasons = brokenReasons;
+    }
+
+    public void setItemId(Number itemId) {
+        this.itemId = itemId;
     }
 }

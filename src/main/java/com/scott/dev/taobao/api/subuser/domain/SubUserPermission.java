@@ -21,12 +21,12 @@ public class SubUserPermission {
         return this.permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
     public List<Role> getRoles() {
         return this.roles;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     public void setRoles(List<Role> roles) {

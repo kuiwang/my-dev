@@ -16,12 +16,6 @@ import com.taobao.api.response.SimbaAdgroupUpdateResponse;
  */
 public class SimbaAdgroupUpdateRequest implements TaobaoRequest<SimbaAdgroupUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 推广组Id
      */
@@ -32,6 +26,8 @@ public class SimbaAdgroupUpdateRequest implements TaobaoRequest<SimbaAdgroupUpda
      * 支持最小值为：5
      */
     private Long defaultPrice;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 主人昵称
@@ -50,71 +46,58 @@ public class SimbaAdgroupUpdateRequest implements TaobaoRequest<SimbaAdgroupUpda
      */
     private String onlineStatus;
 
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
     /**
      * 非搜索是否使用默认出价，false-不用；true-使用；默认为true;
      */
     private Boolean useNonsearchDefaultPrice;
 
-    public void setAdgroupId(Long adgroupId) {
-        this.adgroupId = adgroupId;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
+        RequestCheckUtils.checkMinValue(defaultPrice, 5L, "defaultPrice");
+        RequestCheckUtils.checkMinValue(nonsearchMaxPrice, 5L, "nonsearchMaxPrice");
     }
 
     public Long getAdgroupId() {
         return this.adgroupId;
     }
 
-    public void setDefaultPrice(Long defaultPrice) {
-        this.defaultPrice = defaultPrice;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.adgroup.update";
     }
 
     public Long getDefaultPrice() {
         return this.defaultPrice;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNonsearchMaxPrice(Long nonsearchMaxPrice) {
-        this.nonsearchMaxPrice = nonsearchMaxPrice;
-    }
-
     public Long getNonsearchMaxPrice() {
         return this.nonsearchMaxPrice;
-    }
-
-    public void setOnlineStatus(String onlineStatus) {
-        this.onlineStatus = onlineStatus;
     }
 
     public String getOnlineStatus() {
         return this.onlineStatus;
     }
 
-    public void setUseNonsearchDefaultPrice(Boolean useNonsearchDefaultPrice) {
-        this.useNonsearchDefaultPrice = useNonsearchDefaultPrice;
+    @Override
+    public Class<SimbaAdgroupUpdateResponse> getResponseClass() {
+        return SimbaAdgroupUpdateResponse.class;
     }
 
-    public Boolean getUseNonsearchDefaultPrice() {
-        return this.useNonsearchDefaultPrice;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.adgroup.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("adgroup_id", this.adgroupId);
@@ -129,6 +112,16 @@ public class SimbaAdgroupUpdateRequest implements TaobaoRequest<SimbaAdgroupUpda
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Boolean getUseNonsearchDefaultPrice() {
+        return this.useNonsearchDefaultPrice;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -136,17 +129,32 @@ public class SimbaAdgroupUpdateRequest implements TaobaoRequest<SimbaAdgroupUpda
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaAdgroupUpdateResponse> getResponseClass() {
-        return SimbaAdgroupUpdateResponse.class;
+    public void setAdgroupId(Long adgroupId) {
+        this.adgroupId = adgroupId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(adgroupId, "adgroupId");
-        RequestCheckUtils.checkMinValue(defaultPrice, 5L, "defaultPrice");
-        RequestCheckUtils.checkMinValue(nonsearchMaxPrice, 5L, "nonsearchMaxPrice");
+    public void setDefaultPrice(Long defaultPrice) {
+        this.defaultPrice = defaultPrice;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNonsearchMaxPrice(Long nonsearchMaxPrice) {
+        this.nonsearchMaxPrice = nonsearchMaxPrice;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setUseNonsearchDefaultPrice(Boolean useNonsearchDefaultPrice) {
+        this.useNonsearchDefaultPrice = useNonsearchDefaultPrice;
     }
 }

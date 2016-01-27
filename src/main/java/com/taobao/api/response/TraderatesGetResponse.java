@@ -37,28 +37,28 @@ public class TraderatesGetResponse extends TaobaoResponse {
     @ApiField("trade_rate")
     private List<TradeRate> tradeRates;
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
     public Boolean getHasNext() {
         return this.hasNext;
-    }
-
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
     }
 
     public Long getTotalResults() {
         return this.totalResults;
     }
 
-    public void setTradeRates(List<TradeRate> tradeRates) {
-        this.tradeRates = tradeRates;
-    }
-
     public List<TradeRate> getTradeRates() {
         return this.tradeRates;
+    }
+
+    public void setHasNext(Boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public void setTradeRates(List<TradeRate> tradeRates) {
+        this.tradeRates = tradeRates;
     }
 
 }

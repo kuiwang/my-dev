@@ -30,20 +30,20 @@ public class WangwangEserviceAccountstatusGetResponse extends TaobaoResponse {
     @ApiField("ret_code")
     private Long retCode;
 
-    public void setAccountInfos(List<AccountInfo> accountInfos) {
-        this.accountInfos = accountInfos;
-    }
-
     public List<AccountInfo> getAccountInfos() {
         return this.accountInfos;
     }
 
-    public void setRetCode(Long retCode) {
-        this.retCode = retCode;
-    }
-
     public Long getRetCode() {
         return this.retCode;
+    }
+
+    public void setAccountInfos(List<AccountInfo> accountInfos) {
+        this.accountInfos = accountInfos;
+    }
+
+    public void setRetCode(Long retCode) {
+        this.retCode = retCode;
     }
 
 }

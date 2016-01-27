@@ -45,28 +45,28 @@ public class ModularDescInfo extends TaobaoObject {
         return this.deadLine;
     }
 
-    public void setDeadLine(String deadLine) {
-        this.deadLine = deadLine;
-    }
-
     public List<ItemDescModule> getItmDscModules() {
         return this.itmDscModules;
-    }
-
-    public void setItmDscModules(List<ItemDescModule> itmDscModules) {
-        this.itmDscModules = itmDscModules;
     }
 
     public Boolean getUserOrder() {
         return this.userOrder;
     }
 
-    public void setUserOrder(Boolean userOrder) {
-        this.userOrder = userOrder;
-    }
-
     public Long getUsrDefMaxNum() {
         return this.usrDefMaxNum;
+    }
+
+    public void setDeadLine(String deadLine) {
+        this.deadLine = deadLine;
+    }
+
+    public void setItmDscModules(List<ItemDescModule> itmDscModules) {
+        this.itmDscModules = itmDscModules;
+    }
+
+    public void setUserOrder(Boolean userOrder) {
+        this.userOrder = userOrder;
     }
 
     public void setUsrDefMaxNum(Long usrDefMaxNum) {

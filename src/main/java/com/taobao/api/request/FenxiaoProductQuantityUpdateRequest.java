@@ -19,10 +19,6 @@ public class FenxiaoProductQuantityUpdateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 产品ID
      */
@@ -41,56 +37,50 @@ public class FenxiaoProductQuantityUpdateRequest implements
      */
     private String quantity;
 
+    private Long timestamp;
+
     /**
      * 库存更新方式，可选。1为全量更新，2为增量更新。如果不填，默认为全量更新。当选择全量更新时，如果库存更新值传入的是负数，
      * 会出错并返回错误码；当选择增量更新时，如果库存更新值为负数且绝对值大于当前库存，则sku库存会设置为0
      */
     private Long type;
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+        RequestCheckUtils.checkNotEmpty(quantity, "quantity");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.quantity.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
     public String getProperties() {
         return this.properties;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
     }
 
     public String getQuantity() {
         return this.quantity;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    @Override
+    public Class<FenxiaoProductQuantityUpdateResponse> getResponseClass() {
+        return FenxiaoProductQuantityUpdateResponse.class;
     }
 
-    public Long getType() {
-        return this.type;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.quantity.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("product_id", this.productId);
@@ -103,6 +93,16 @@ public class FenxiaoProductQuantityUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getType() {
+        return this.type;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -110,16 +110,24 @@ public class FenxiaoProductQuantityUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductQuantityUpdateResponse> getResponseClass() {
-        return FenxiaoProductQuantityUpdateResponse.class;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-        RequestCheckUtils.checkNotEmpty(quantity, "quantity");
+    public void setProperties(String properties) {
+        this.properties = properties;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }

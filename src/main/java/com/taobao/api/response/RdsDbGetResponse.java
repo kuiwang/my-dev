@@ -24,12 +24,12 @@ public class RdsDbGetResponse extends TaobaoResponse {
     @ApiField("rds_db_info")
     private List<RdsDbInfo> rdsDbInfos;
 
-    public void setRdsDbInfos(List<RdsDbInfo> rdsDbInfos) {
-        this.rdsDbInfos = rdsDbInfos;
-    }
-
     public List<RdsDbInfo> getRdsDbInfos() {
         return this.rdsDbInfos;
+    }
+
+    public void setRdsDbInfos(List<RdsDbInfo> rdsDbInfos) {
+        this.rdsDbInfos = rdsDbInfos;
     }
 
 }

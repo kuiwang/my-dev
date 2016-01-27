@@ -18,35 +18,39 @@ public class AlibabaLaiwangUserListGetRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 第一个拉取的OPENID，不填默认从头开始拉取
      */
     private String nextOpenid;
 
-    public void setNextOpenid(String nextOpenid) {
-        this.nextOpenid = nextOpenid;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.laiwang.user.list.get";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNextOpenid() {
         return this.nextOpenid;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlibabaLaiwangUserListGetResponse> getResponseClass() {
+        return AlibabaLaiwangUserListGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.laiwang.user.list.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("next_openid", this.nextOpenid);
@@ -56,6 +60,12 @@ public class AlibabaLaiwangUserListGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -63,14 +73,12 @@ public class AlibabaLaiwangUserListGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaLaiwangUserListGetResponse> getResponseClass() {
-        return AlibabaLaiwangUserListGetResponse.class;
+    public void setNextOpenid(String nextOpenid) {
+        this.nextOpenid = nextOpenid;
     }
 
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

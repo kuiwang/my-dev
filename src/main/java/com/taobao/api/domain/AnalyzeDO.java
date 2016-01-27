@@ -41,20 +41,20 @@ public class AnalyzeDO extends TaobaoObject {
         return this.dataList;
     }
 
-    public void setDataList(List<AnalyzeData> dataList) {
-        this.dataList = dataList;
-    }
-
     public List<String> getFieldNamesList() {
         return this.fieldNamesList;
     }
 
-    public void setFieldNamesList(List<String> fieldNamesList) {
-        this.fieldNamesList = fieldNamesList;
-    }
-
     public List<String> getFieldTypesList() {
         return this.fieldTypesList;
+    }
+
+    public void setDataList(List<AnalyzeData> dataList) {
+        this.dataList = dataList;
+    }
+
+    public void setFieldNamesList(List<String> fieldNamesList) {
+        this.fieldNamesList = fieldNamesList;
     }
 
     public void setFieldTypesList(List<String> fieldTypesList) {

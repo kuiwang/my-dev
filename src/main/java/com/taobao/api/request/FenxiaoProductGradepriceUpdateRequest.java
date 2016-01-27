@@ -19,10 +19,6 @@ public class FenxiaoProductGradepriceUpdateRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 会员等级的id或者分销商id，例如：”1001,2001,1002”
      */
@@ -48,71 +44,61 @@ public class FenxiaoProductGradepriceUpdateRequest implements
      */
     private String targetType;
 
+    private Long timestamp;
+
     /**
      * 交易类型： AGENT(代销)、DEALER(经销)，ALL(代销和经销)
      */
     private String tradeType;
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(ids, "ids");
+        RequestCheckUtils.checkMaxListSize(ids, 200, "ids");
+        RequestCheckUtils.checkNotEmpty(prices, "prices");
+        RequestCheckUtils.checkMaxListSize(prices, 200, "prices");
+        RequestCheckUtils.checkNotEmpty(productId, "productId");
+        RequestCheckUtils.checkNotEmpty(targetType, "targetType");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.product.gradeprice.update";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIds() {
         return this.ids;
     }
 
-    public void setPrices(String prices) {
-        this.prices = prices;
-    }
-
     public String getPrices() {
         return this.prices;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getProductId() {
         return this.productId;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
+    @Override
+    public Class<FenxiaoProductGradepriceUpdateResponse> getResponseClass() {
+        return FenxiaoProductGradepriceUpdateResponse.class;
     }
 
     public Long getSkuId() {
         return this.skuId;
     }
 
-    public void setTargetType(String targetType) {
-        this.targetType = targetType;
-    }
-
     public String getTargetType() {
         return this.targetType;
     }
 
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getTradeType() {
-        return this.tradeType;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.product.gradeprice.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("ids", this.ids);
@@ -127,6 +113,16 @@ public class FenxiaoProductGradepriceUpdateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTradeType() {
+        return this.tradeType;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -134,20 +130,32 @@ public class FenxiaoProductGradepriceUpdateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoProductGradepriceUpdateResponse> getResponseClass() {
-        return FenxiaoProductGradepriceUpdateResponse.class;
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(ids, "ids");
-        RequestCheckUtils.checkMaxListSize(ids, 200, "ids");
-        RequestCheckUtils.checkNotEmpty(prices, "prices");
-        RequestCheckUtils.checkMaxListSize(prices, 200, "prices");
-        RequestCheckUtils.checkNotEmpty(productId, "productId");
-        RequestCheckUtils.checkNotEmpty(targetType, "targetType");
+    public void setPrices(String prices) {
+        this.prices = prices;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
+    public void setTargetType(String targetType) {
+        this.targetType = targetType;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

@@ -20,12 +20,12 @@ public class TaeItemDetailGetResponse extends TaobaoResponse {
     @ApiField("data")
     private ItemDetailData data;
 
-    public void setData(ItemDetailData data) {
-        this.data = data;
-    }
-
     public ItemDetailData getData() {
         return this.data;
+    }
+
+    public void setData(ItemDetailData data) {
+        this.data = data;
     }
 
 }

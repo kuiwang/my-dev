@@ -17,12 +17,6 @@ import com.taobao.api.response.VasOrderSearchResponse;
  */
 public class VasOrderSearchRequest implements TaobaoRequest<VasOrderSearchResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 应用收费代码，从合作伙伴后台（my.open.taobao.com）-收费管理-收费项目列表 能够获得该应用的收费代码
      */
@@ -42,6 +36,8 @@ public class VasOrderSearchRequest implements TaobaoRequest<VasOrderSearchRespon
      * 订单创建时间（订购时间）结束值
      */
     private Date endCreated;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 收费项目代码，从合作伙伴后台（my.open.taobao.com）-收费管理-收费项目列表 能够获得收费项目代码
@@ -74,98 +70,72 @@ public class VasOrderSearchRequest implements TaobaoRequest<VasOrderSearchRespon
      */
     private Date startCreated;
 
-    public void setArticleCode(String articleCode) {
-        this.articleCode = articleCode;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
+        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.vas.order.search";
     }
 
     public String getArticleCode() {
         return this.articleCode;
     }
 
-    public void setBizOrderId(Long bizOrderId) {
-        this.bizOrderId = bizOrderId;
-    }
-
     public Long getBizOrderId() {
         return this.bizOrderId;
-    }
-
-    public void setBizType(Long bizType) {
-        this.bizType = bizType;
     }
 
     public Long getBizType() {
         return this.bizType;
     }
 
-    public void setEndCreated(Date endCreated) {
-        this.endCreated = endCreated;
-    }
-
     public Date getEndCreated() {
         return this.endCreated;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getItemCode() {
         return this.itemCode;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public String getNick() {
         return this.nick;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public Long getOrderId() {
         return this.orderId;
     }
 
-    public void setPageNo(Long pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Long getPageNo() {
         return this.pageNo;
-    }
-
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
     }
 
     public Long getPageSize() {
         return this.pageSize;
     }
 
-    public void setStartCreated(Date startCreated) {
-        this.startCreated = startCreated;
+    @Override
+    public Class<VasOrderSearchResponse> getResponseClass() {
+        return VasOrderSearchResponse.class;
     }
 
     public Date getStartCreated() {
         return this.startCreated;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.vas.order.search";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("article_code", this.articleCode);
@@ -184,6 +154,12 @@ public class VasOrderSearchRequest implements TaobaoRequest<VasOrderSearchRespon
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -191,16 +167,48 @@ public class VasOrderSearchRequest implements TaobaoRequest<VasOrderSearchRespon
         this.udfParams.put(key, value);
     }
 
-    public Class<VasOrderSearchResponse> getResponseClass() {
-        return VasOrderSearchResponse.class;
+    public void setArticleCode(String articleCode) {
+        this.articleCode = articleCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(articleCode, "articleCode");
-        RequestCheckUtils.checkMaxValue(pageSize, 200L, "pageSize");
+    public void setBizOrderId(Long bizOrderId) {
+        this.bizOrderId = bizOrderId;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setBizType(Long bizType) {
+        this.bizType = bizType;
+    }
+
+    public void setEndCreated(Date endCreated) {
+        this.endCreated = endCreated;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setPageNo(Long pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setStartCreated(Date startCreated) {
+        this.startCreated = startCreated;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

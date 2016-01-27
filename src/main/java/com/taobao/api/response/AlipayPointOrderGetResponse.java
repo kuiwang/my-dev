@@ -64,68 +64,68 @@ public class AlipayPointOrderGetResponse extends TaobaoResponse {
     @ApiField("receive_user_id")
     private String receiveUserId;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
-    }
-
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setDispatchUserId(String dispatchUserId) {
-        this.dispatchUserId = dispatchUserId;
-    }
-
     public String getDispatchUserId() {
         return this.dispatchUserId;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
-    }
-
     public String getMerchantOrderNo() {
         return this.merchantOrderNo;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public String getOrderStatus() {
         return this.orderStatus;
     }
 
-    public void setPointCount(Long pointCount) {
-        this.pointCount = pointCount;
-    }
-
     public Long getPointCount() {
         return this.pointCount;
     }
 
-    public void setReceiveUserId(String receiveUserId) {
-        this.receiveUserId = receiveUserId;
-    }
-
     public String getReceiveUserId() {
         return this.receiveUserId;
+    }
+
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setDispatchUserId(String dispatchUserId) {
+        this.dispatchUserId = dispatchUserId;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setMerchantOrderNo(String merchantOrderNo) {
+        this.merchantOrderNo = merchantOrderNo;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPointCount(Long pointCount) {
+        this.pointCount = pointCount;
+    }
+
+    public void setReceiveUserId(String receiveUserId) {
+        this.receiveUserId = receiveUserId;
     }
 
 }

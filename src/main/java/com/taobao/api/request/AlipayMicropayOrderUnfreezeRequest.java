@@ -17,12 +17,6 @@ import com.taobao.api.response.AlipayMicropayOrderUnfreezeResponse;
 public class AlipayMicropayOrderUnfreezeRequest implements
         TaobaoRequest<AlipayMicropayOrderUnfreezeResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 冻结资金流水号,在创建资金订单时支付宝返回的流水号
      */
@@ -33,47 +27,51 @@ public class AlipayMicropayOrderUnfreezeRequest implements
      */
     private String authToken;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 冻结备注
      */
     private String memo;
 
-    public void setAlipayOrderNo(String alipayOrderNo) {
-        this.alipayOrderNo = alipayOrderNo;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(alipayOrderNo, "alipayOrderNo");
+        RequestCheckUtils.checkNotEmpty(memo, "memo");
     }
 
     public String getAlipayOrderNo() {
         return this.alipayOrderNo;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    @Override
+    public String getApiMethodName() {
+        return "alipay.micropay.order.unfreeze";
     }
 
     public String getAuthToken() {
         return this.authToken;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMemo() {
         return this.memo;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlipayMicropayOrderUnfreezeResponse> getResponseClass() {
+        return AlipayMicropayOrderUnfreezeResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alipay.micropay.order.unfreeze";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("alipay_order_no", this.alipayOrderNo);
@@ -85,6 +83,12 @@ public class AlipayMicropayOrderUnfreezeRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -92,16 +96,20 @@ public class AlipayMicropayOrderUnfreezeRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayMicropayOrderUnfreezeResponse> getResponseClass() {
-        return AlipayMicropayOrderUnfreezeResponse.class;
+    public void setAlipayOrderNo(String alipayOrderNo) {
+        this.alipayOrderNo = alipayOrderNo;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(alipayOrderNo, "alipayOrderNo");
-        RequestCheckUtils.checkNotEmpty(memo, "memo");
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

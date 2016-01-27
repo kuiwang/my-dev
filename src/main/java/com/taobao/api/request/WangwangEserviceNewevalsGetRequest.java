@@ -17,12 +17,6 @@ import com.taobao.api.response.WangwangEserviceNewevalsGetResponse;
 public class WangwangEserviceNewevalsGetRequest implements
         TaobaoRequest<WangwangEserviceNewevalsGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 查询登录日志的开始日期，必须按示例的格式，否则会返回错误； 开始时间不能在当前时间30天前，开始时间和结束时间的间隔不能超过7天；
      * 开始时间不能超过当前系统时间
@@ -34,47 +28,53 @@ public class WangwangEserviceNewevalsGetRequest implements
      */
     private String etime;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 需要查询登录日志的账号列表，多个id之间用逗号隔开，每次查询的id数不能超过30个
      */
     private String queryIds;
 
-    public void setBtime(String btime) {
-        this.btime = btime;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(btime, "btime");
+        RequestCheckUtils.checkNotEmpty(etime, "etime");
+        RequestCheckUtils.checkNotEmpty(queryIds, "queryIds");
+        RequestCheckUtils.checkMaxListSize(queryIds, 30, "queryIds");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.eservice.newevals.get";
     }
 
     public String getBtime() {
         return this.btime;
     }
 
-    public void setEtime(String etime) {
-        this.etime = etime;
-    }
-
     public String getEtime() {
         return this.etime;
     }
 
-    public void setQueryIds(String queryIds) {
-        this.queryIds = queryIds;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getQueryIds() {
         return this.queryIds;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<WangwangEserviceNewevalsGetResponse> getResponseClass() {
+        return WangwangEserviceNewevalsGetResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.eservice.newevals.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("btime", this.btime);
@@ -86,6 +86,12 @@ public class WangwangEserviceNewevalsGetRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -93,18 +99,20 @@ public class WangwangEserviceNewevalsGetRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangEserviceNewevalsGetResponse> getResponseClass() {
-        return WangwangEserviceNewevalsGetResponse.class;
+    public void setBtime(String btime) {
+        this.btime = btime;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(btime, "btime");
-        RequestCheckUtils.checkNotEmpty(etime, "etime");
-        RequestCheckUtils.checkNotEmpty(queryIds, "queryIds");
-        RequestCheckUtils.checkMaxListSize(queryIds, 30, "queryIds");
+    public void setEtime(String etime) {
+        this.etime = etime;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setQueryIds(String queryIds) {
+        this.queryIds = queryIds;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

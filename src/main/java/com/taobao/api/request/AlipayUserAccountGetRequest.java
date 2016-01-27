@@ -17,22 +17,30 @@ public class AlipayUserAccountGetRequest implements TaobaoRequest<AlipayUserAcco
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
     private Long timestamp;
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    @Override
     public String getApiMethodName() {
         return "alipay.user.account.get";
     }
 
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
+    }
+
+    @Override
+    public Class<AlipayUserAccountGetResponse> getResponseClass() {
+        return AlipayUserAccountGetResponse.class;
+    }
+
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         if (this.udfParams != null) {
@@ -41,6 +49,12 @@ public class AlipayUserAccountGetRequest implements TaobaoRequest<AlipayUserAcco
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -48,14 +62,8 @@ public class AlipayUserAccountGetRequest implements TaobaoRequest<AlipayUserAcco
         this.udfParams.put(key, value);
     }
 
-    public Class<AlipayUserAccountGetResponse> getResponseClass() {
-        return AlipayUserAccountGetResponse.class;
-    }
-
-    public void check() throws ApiRuleException {
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

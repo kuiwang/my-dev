@@ -131,148 +131,148 @@ public class XiamiSellerlistInfo extends TaobaoObject {
         return this.comefrom;
     }
 
-    public void setComefrom(String comefrom) {
-        this.comefrom = comefrom;
-    }
-
     public Long getGiftOrderId() {
         return this.giftOrderId;
-    }
-
-    public void setGiftOrderId(Long giftOrderId) {
-        this.giftOrderId = giftOrderId;
     }
 
     public Long getGmtCreate() {
         return this.gmtCreate;
     }
 
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Long getGmtGet() {
         return this.gmtGet;
-    }
-
-    public void setGmtGet(Long gmtGet) {
-        this.gmtGet = gmtGet;
     }
 
     public Long getGmtPay() {
         return this.gmtPay;
     }
 
-    public void setGmtPay(Long gmtPay) {
-        this.gmtPay = gmtPay;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getIsGet() {
         return this.isGet;
     }
 
-    public void setIsGet(Long isGet) {
-        this.isGet = isGet;
-    }
-
     public Long getIsPay() {
         return this.isPay;
-    }
-
-    public void setIsPay(Long isPay) {
-        this.isPay = isPay;
     }
 
     public Long getOriginalOrderId() {
         return this.originalOrderId;
     }
 
-    public void setOriginalOrderId(Long originalOrderId) {
-        this.originalOrderId = originalOrderId;
-    }
-
     public String getPackname() {
         return this.packname;
-    }
-
-    public void setPackname(String packname) {
-        this.packname = packname;
     }
 
     public Long getPay() {
         return this.pay;
     }
 
-    public void setPay(Long pay) {
-        this.pay = pay;
-    }
-
     public Long getRelationId() {
         return this.relationId;
-    }
-
-    public void setRelationId(Long relationId) {
-        this.relationId = relationId;
     }
 
     public Long getSellerId() {
         return this.sellerId;
     }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public Long getShopId() {
         return this.shopId;
-    }
-
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
     }
 
     public String getShopName() {
         return this.shopName;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
     public String getShopUrl() {
         return this.shopUrl;
-    }
-
-    public void setShopUrl(String shopUrl) {
-        this.shopUrl = shopUrl;
     }
 
     public Long getTaobaoUid() {
         return this.taobaoUid;
     }
 
-    public void setTaobaoUid(Long taobaoUid) {
-        this.taobaoUid = taobaoUid;
-    }
-
     public Long getType() {
         return this.type;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-
     public Long getUserId() {
         return this.userId;
+    }
+
+    public void setComefrom(String comefrom) {
+        this.comefrom = comefrom;
+    }
+
+    public void setGiftOrderId(Long giftOrderId) {
+        this.giftOrderId = giftOrderId;
+    }
+
+    public void setGmtCreate(Long gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtGet(Long gmtGet) {
+        this.gmtGet = gmtGet;
+    }
+
+    public void setGmtPay(Long gmtPay) {
+        this.gmtPay = gmtPay;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIsGet(Long isGet) {
+        this.isGet = isGet;
+    }
+
+    public void setIsPay(Long isPay) {
+        this.isPay = isPay;
+    }
+
+    public void setOriginalOrderId(Long originalOrderId) {
+        this.originalOrderId = originalOrderId;
+    }
+
+    public void setPackname(String packname) {
+        this.packname = packname;
+    }
+
+    public void setPay(Long pay) {
+        this.pay = pay;
+    }
+
+    public void setRelationId(Long relationId) {
+        this.relationId = relationId;
+    }
+
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public void setShopUrl(String shopUrl) {
+        this.shopUrl = shopUrl;
+    }
+
+    public void setTaobaoUid(Long taobaoUid) {
+        this.taobaoUid = taobaoUid;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     public void setUserId(Long userId) {

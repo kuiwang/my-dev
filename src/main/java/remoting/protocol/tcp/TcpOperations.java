@@ -17,9 +17,9 @@ package remoting.protocol.tcp;
 
 public class TcpOperations {
 
-    public static final short Request = 0;
-
     public static final short OneWayRequest = 1;
 
     public static final short Reply = 2;
+
+    public static final short Request = 0;
 }

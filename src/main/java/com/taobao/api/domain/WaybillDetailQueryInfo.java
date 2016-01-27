@@ -180,204 +180,204 @@ public class WaybillDetailQueryInfo extends TaobaoObject {
         return this.consigneeAddress;
     }
 
-    public void setConsigneeAddress(WaybillAddress consigneeAddress) {
-        this.consigneeAddress = consigneeAddress;
-    }
-
     public String getConsigneeBranchCode() {
         return this.consigneeBranchCode;
-    }
-
-    public void setConsigneeBranchCode(String consigneeBranchCode) {
-        this.consigneeBranchCode = consigneeBranchCode;
     }
 
     public String getConsigneeBranchName() {
         return this.consigneeBranchName;
     }
 
-    public void setConsigneeBranchName(String consigneeBranchName) {
-        this.consigneeBranchName = consigneeBranchName;
-    }
-
     public String getConsigneeName() {
         return this.consigneeName;
-    }
-
-    public void setConsigneeName(String consigneeName) {
-        this.consigneeName = consigneeName;
     }
 
     public String getConsigneePhone() {
         return this.consigneePhone;
     }
 
-    public void setConsigneePhone(String consigneePhone) {
-        this.consigneePhone = consigneePhone;
-    }
-
     public String getCpCode() {
         return this.cpCode;
-    }
-
-    public void setCpCode(String cpCode) {
-        this.cpCode = cpCode;
     }
 
     public Date getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public Date getLastPrintTime() {
         return this.lastPrintTime;
-    }
-
-    public void setLastPrintTime(Date lastPrintTime) {
-        this.lastPrintTime = lastPrintTime;
     }
 
     public List<LogisticsService> getLogisticsServiceList() {
         return this.logisticsServiceList;
     }
 
-    public void setLogisticsServiceList(List<LogisticsService> logisticsServiceList) {
-        this.logisticsServiceList = logisticsServiceList;
-    }
-
     public List<PackageItem> getPackageItems() {
         return this.packageItems;
-    }
-
-    public void setPackageItems(List<PackageItem> packageItems) {
-        this.packageItems = packageItems;
     }
 
     public Date getPickupTime() {
         return this.pickupTime;
     }
 
-    public void setPickupTime(Date pickupTime) {
-        this.pickupTime = pickupTime;
-    }
-
     public Long getPrintCount() {
         return this.printCount;
-    }
-
-    public void setPrintCount(Long printCount) {
-        this.printCount = printCount;
     }
 
     public String getProductType() {
         return this.productType;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
     public Long getRealUserId() {
         return this.realUserId;
-    }
-
-    public void setRealUserId(Long realUserId) {
-        this.realUserId = realUserId;
     }
 
     public String getSendName() {
         return this.sendName;
     }
 
-    public void setSendName(String sendName) {
-        this.sendName = sendName;
-    }
-
     public String getSendPhone() {
         return this.sendPhone;
-    }
-
-    public void setSendPhone(String sendPhone) {
-        this.sendPhone = sendPhone;
     }
 
     public WaybillAddress getShippingAddress() {
         return this.shippingAddress;
     }
 
-    public void setShippingAddress(WaybillAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
     public String getShippingBranchCode() {
         return this.shippingBranchCode;
-    }
-
-    public void setShippingBranchCode(String shippingBranchCode) {
-        this.shippingBranchCode = shippingBranchCode;
     }
 
     public String getShippingBranchName() {
         return this.shippingBranchName;
     }
 
-    public void setShippingBranchName(String shippingBranchName) {
-        this.shippingBranchName = shippingBranchName;
-    }
-
     public String getShortAddress() {
         return this.shortAddress;
-    }
-
-    public void setShortAddress(String shortAddress) {
-        this.shortAddress = shortAddress;
     }
 
     public Date getSignTime() {
         return this.signTime;
     }
 
-    public void setSignTime(Date signTime) {
-        this.signTime = signTime;
-    }
-
     public Long getStatus() {
         return this.status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
     }
 
     public List<String> getTradeOrderList() {
         return this.tradeOrderList;
     }
 
-    public void setTradeOrderList(List<String> tradeOrderList) {
-        this.tradeOrderList = tradeOrderList;
-    }
-
     public Long getVolume() {
         return this.volume;
-    }
-
-    public void setVolume(Long volume) {
-        this.volume = volume;
     }
 
     public String getWaybillCode() {
         return this.waybillCode;
     }
 
-    public void setWaybillCode(String waybillCode) {
-        this.waybillCode = waybillCode;
-    }
-
     public Long getWeight() {
         return this.weight;
+    }
+
+    public void setConsigneeAddress(WaybillAddress consigneeAddress) {
+        this.consigneeAddress = consigneeAddress;
+    }
+
+    public void setConsigneeBranchCode(String consigneeBranchCode) {
+        this.consigneeBranchCode = consigneeBranchCode;
+    }
+
+    public void setConsigneeBranchName(String consigneeBranchName) {
+        this.consigneeBranchName = consigneeBranchName;
+    }
+
+    public void setConsigneeName(String consigneeName) {
+        this.consigneeName = consigneeName;
+    }
+
+    public void setConsigneePhone(String consigneePhone) {
+        this.consigneePhone = consigneePhone;
+    }
+
+    public void setCpCode(String cpCode) {
+        this.cpCode = cpCode;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setLastPrintTime(Date lastPrintTime) {
+        this.lastPrintTime = lastPrintTime;
+    }
+
+    public void setLogisticsServiceList(List<LogisticsService> logisticsServiceList) {
+        this.logisticsServiceList = logisticsServiceList;
+    }
+
+    public void setPackageItems(List<PackageItem> packageItems) {
+        this.packageItems = packageItems;
+    }
+
+    public void setPickupTime(Date pickupTime) {
+        this.pickupTime = pickupTime;
+    }
+
+    public void setPrintCount(Long printCount) {
+        this.printCount = printCount;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public void setRealUserId(Long realUserId) {
+        this.realUserId = realUserId;
+    }
+
+    public void setSendName(String sendName) {
+        this.sendName = sendName;
+    }
+
+    public void setSendPhone(String sendPhone) {
+        this.sendPhone = sendPhone;
+    }
+
+    public void setShippingAddress(WaybillAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setShippingBranchCode(String shippingBranchCode) {
+        this.shippingBranchCode = shippingBranchCode;
+    }
+
+    public void setShippingBranchName(String shippingBranchName) {
+        this.shippingBranchName = shippingBranchName;
+    }
+
+    public void setShortAddress(String shortAddress) {
+        this.shortAddress = shortAddress;
+    }
+
+    public void setSignTime(Date signTime) {
+        this.signTime = signTime;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public void setTradeOrderList(List<String> tradeOrderList) {
+        this.tradeOrderList = tradeOrderList;
+    }
+
+    public void setVolume(Long volume) {
+        this.volume = volume;
+    }
+
+    public void setWaybillCode(String waybillCode) {
+        this.waybillCode = waybillCode;
     }
 
     public void setWeight(Long weight) {

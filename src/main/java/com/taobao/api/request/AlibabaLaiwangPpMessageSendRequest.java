@@ -19,35 +19,40 @@ public class AlibabaLaiwangPpMessageSendRequest implements
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 发送的消息体，使用json格式来进行发送.
      */
     private String message;
 
-    public void setMessage(String message) {
-        this.message = message;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(message, "message");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "alibaba.laiwang.pp.message.send";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getMessage() {
         return this.message;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<AlibabaLaiwangPpMessageSendResponse> getResponseClass() {
+        return AlibabaLaiwangPpMessageSendResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "alibaba.laiwang.pp.message.send";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("message", this.message);
@@ -57,6 +62,12 @@ public class AlibabaLaiwangPpMessageSendRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -64,15 +75,12 @@ public class AlibabaLaiwangPpMessageSendRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<AlibabaLaiwangPpMessageSendResponse> getResponseClass() {
-        return AlibabaLaiwangPpMessageSendResponse.class;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(message, "message");
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

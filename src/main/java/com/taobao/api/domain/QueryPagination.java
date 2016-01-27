@@ -29,12 +29,12 @@ public class QueryPagination extends TaobaoObject {
         return this.pageIndex;
     }
 
-    public void setPageIndex(Long pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
     public Long getPageSize() {
         return this.pageSize;
+    }
+
+    public void setPageIndex(Long pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
     public void setPageSize(Long pageSize) {

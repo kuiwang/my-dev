@@ -23,10 +23,38 @@ import com.taobao.top.link.channel.X509AlwaysTrustManager;
 
 public abstract class NettyClient {
 
-    private static TrustManager[] trustAllCerts = new TrustManager[] { new X509AlwaysTrustManager() };
-
     private static NioClientSocketChannelFactory nioClientSocketChannelFactory = new NioClientSocketChannelFactory(
             Executors.newCachedThreadPool(), Executors.newCachedThreadPool());
+
+    private static TrustManager[] trustAllCerts = new TrustManager[] { new X509AlwaysTrustManager() };
+
+    private static SslHandler createSslHandler(URI uri) {
+        try {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustAllCerts, null);
+            SSLEngine sslEngine = sslContext.createSSLEngine();
+            sslEngine.setUseClientMode(true);
+            return new SslHandler(sslEngine);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static Channel doConnect(URI uri, ClientBootstrap bootstrap, SslHandler sslHandler)
+            throws ChannelException {
+        try {
+            Channel channel = bootstrap.connect(parse(uri)).syncUninterruptibly().getChannel();
+            if (sslHandler != null) {
+                sslHandler.handshake().syncUninterruptibly();
+            }
+            return channel;
+        } catch (Exception e) {
+            // only release when application unload
+            // https://github.com/wsky/top-link/issues/79
+            // bootstrap.releaseExternalResources();
+            throw new ChannelException(Text.CONNECT_ERROR, e);
+        }
+    }
 
     public static InetSocketAddress parse(URI uri) {
         return new InetSocketAddress(uri.getHost(), uri.getPort() > 0 ? uri.getPort() : 80);
@@ -40,20 +68,6 @@ public abstract class NettyClient {
         return doConnect(uri, bootstrap, sslHandler);
     }
 
-    private static Channel doConnect(URI uri, ClientBootstrap bootstrap, SslHandler sslHandler)
-            throws ChannelException {
-        try {
-            Channel channel = bootstrap.connect(parse(uri)).syncUninterruptibly().getChannel();
-            if (sslHandler != null) sslHandler.handshake().syncUninterruptibly();
-            return channel;
-        } catch (Exception e) {
-            // only release when application unload
-            // https://github.com/wsky/top-link/issues/79
-            // bootstrap.releaseExternalResources();
-            throw new ChannelException(Text.CONNECT_ERROR, e);
-        }
-    }
-
     private static ClientBootstrap prepareBootstrap(Logger logger, final ChannelPipeline pipeline,
             ChannelHandler handler, SslHandler sslHandler, int connectTimeoutMillis) {
         ClientBootstrap bootstrap = new ClientBootstrap(nioClientSocketChannelFactory);
@@ -62,8 +76,12 @@ public abstract class NettyClient {
         bootstrap.setOption("connectTimeoutMillis", connectTimeoutMillis);
         bootstrap.setOption("writeBufferHighWaterMark", 10 * 1024 * 1024);
 
-        if (sslHandler != null) pipeline.addFirst("ssl", sslHandler);
-        if (handler != null) pipeline.addLast("handler", handler);
+        if (sslHandler != null) {
+            pipeline.addFirst("ssl", sslHandler);
+        }
+        if (handler != null) {
+            pipeline.addLast("handler", handler);
+        }
 
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 
@@ -73,17 +91,5 @@ public abstract class NettyClient {
             }
         });
         return bootstrap;
-    }
-
-    private static SslHandler createSslHandler(URI uri) {
-        try {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustAllCerts, null);
-            SSLEngine sslEngine = sslContext.createSSLEngine();
-            sslEngine.setUseClientMode(true);
-            return new SslHandler(sslEngine);
-        } catch (Exception e) {
-            return null;
-        }
     }
 }

@@ -19,12 +19,12 @@ public class LoginLog {
         return this.time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getType() {
         return this.type;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setType(String type) {

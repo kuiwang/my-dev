@@ -33,19 +33,19 @@ import com.taobao.api.internal.util.WebUtils;
  */
 public class DefaultAlipayClient implements AlipayClient {
 
-    private String serverUrl;
-
     private String appId;
-
-    private String privateKey;
-
-    private String format = Constants.FORMAT_JSON;
-
-    private String sign_type = AlipayConstants.SIGN_TYPE_RSA;
 
     private int connectTimeout = 3000;
 
+    private String format = Constants.FORMAT_JSON;
+
+    private String privateKey;
+
     private int readTimeout = 15000;
+
+    private String serverUrl;
+
+    private String sign_type = AlipayConstants.SIGN_TYPE_RSA;
 
     public DefaultAlipayClient(String serverUrl, String appId, String privateKey) {
         this.serverUrl = serverUrl;
@@ -56,27 +56,6 @@ public class DefaultAlipayClient implements AlipayClient {
     public DefaultAlipayClient(String serverUrl, String appId, String privateKey, String format) {
         this(serverUrl, appId, privateKey);
         this.format = format;
-    }
-
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws AlipayApiException {
-        return execute(request, null);
-    }
-
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String accessToken)
-            throws AlipayApiException {
-        return execute(request, accessToken, "1.0");
-    }
-
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String authToken,
-            String version) throws AlipayApiException {
-        TaobaoParser<T> parser = null;
-        if (Constants.FORMAT_XML.equals(this.format)) {
-            parser = new ObjectXmlParser<T>(request.getResponseClass());
-        } else {
-            parser = new ObjectJsonParser<T>(request.getResponseClass());
-        }
-
-        return _execute(request, parser, authToken, version);
     }
 
     private <T extends TaobaoResponse> T _execute(TaobaoRequest<T> request, TaobaoParser<T> parser,
@@ -147,7 +126,7 @@ public class DefaultAlipayClient implements AlipayClient {
                 requestUrl.append("?");
             }
             requestUrl.append(sysMustQuery);
-            if (sysOptQuery != null & sysOptQuery.length() > 0) {
+            if ((sysOptQuery != null) & (sysOptQuery.length() > 0)) {
                 requestUrl.append("&").append(sysOptQuery);
             }
             requestHolder.setRequestUrl(requestUrl.toString());
@@ -171,6 +150,30 @@ public class DefaultAlipayClient implements AlipayClient {
             throw new AlipayApiException(e);
         }
         return requestHolder;
+    }
+
+    @Override
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws AlipayApiException {
+        return execute(request, null);
+    }
+
+    @Override
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String accessToken)
+            throws AlipayApiException {
+        return execute(request, accessToken, "1.0");
+    }
+
+    @Override
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String authToken,
+            String version) throws AlipayApiException {
+        TaobaoParser<T> parser = null;
+        if (Constants.FORMAT_XML.equals(this.format)) {
+            parser = new ObjectXmlParser<T>(request.getResponseClass());
+        } else {
+            parser = new ObjectJsonParser<T>(request.getResponseClass());
+        }
+
+        return _execute(request, parser, authToken, version);
     }
 
 }

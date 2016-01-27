@@ -30,20 +30,20 @@ public class FenxiaoTrademonitorGetResponse extends TaobaoResponse {
     @ApiField("trade_monitor")
     private List<TradeMonitor> tradeMonitors;
 
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
-    }
-
     public Long getTotalResults() {
         return this.totalResults;
     }
 
-    public void setTradeMonitors(List<TradeMonitor> tradeMonitors) {
-        this.tradeMonitors = tradeMonitors;
-    }
-
     public List<TradeMonitor> getTradeMonitors() {
         return this.tradeMonitors;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public void setTradeMonitors(List<TradeMonitor> tradeMonitors) {
+        this.tradeMonitors = tradeMonitors;
     }
 
 }

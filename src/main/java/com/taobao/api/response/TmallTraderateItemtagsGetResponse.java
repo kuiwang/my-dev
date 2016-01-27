@@ -24,12 +24,12 @@ public class TmallTraderateItemtagsGetResponse extends TaobaoResponse {
     @ApiField("tmall_rate_tag_detail")
     private List<TmallRateTagDetail> tags;
 
-    public void setTags(List<TmallRateTagDetail> tags) {
-        this.tags = tags;
-    }
-
     public List<TmallRateTagDetail> getTags() {
         return this.tags;
+    }
+
+    public void setTags(List<TmallRateTagDetail> tags) {
+        this.tags = tags;
     }
 
 }

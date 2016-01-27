@@ -18,10 +18,6 @@ public class SpContentGetcountRequest implements TaobaoRequest<SpContentGetcount
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * JSON格式的查询条件： type(Integer，选填) ：内容类型，包括三种： 1 -- 宝贝，2 -- 图片，3 --
      * 心得；0或者不填则获取所有类型的内容； className(String，选填)：内容的自定义分类名称；
@@ -38,34 +34,41 @@ public class SpContentGetcountRequest implements TaobaoRequest<SpContentGetcount
      */
     private String siteKey;
 
-    public void setQuery(String query) {
-        this.query = query;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(query, "query");
+        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
+        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.sp.content.getcount";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getQuery() {
         return this.query;
     }
 
-    public void setSiteKey(String siteKey) {
-        this.siteKey = siteKey;
+    @Override
+    public Class<SpContentGetcountResponse> getResponseClass() {
+        return SpContentGetcountResponse.class;
     }
 
     public String getSiteKey() {
         return this.siteKey;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.sp.content.getcount";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("query", this.query);
@@ -76,6 +79,12 @@ public class SpContentGetcountRequest implements TaobaoRequest<SpContentGetcount
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -83,17 +92,16 @@ public class SpContentGetcountRequest implements TaobaoRequest<SpContentGetcount
         this.udfParams.put(key, value);
     }
 
-    public Class<SpContentGetcountResponse> getResponseClass() {
-        return SpContentGetcountResponse.class;
+    public void setQuery(String query) {
+        this.query = query;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(query, "query");
-        RequestCheckUtils.checkNotEmpty(siteKey, "siteKey");
-        RequestCheckUtils.checkMaxLength(siteKey, 32, "siteKey");
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

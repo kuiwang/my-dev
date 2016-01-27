@@ -16,12 +16,6 @@ import com.taobao.api.response.WlbWaybillShengxianGetResponse;
  */
 public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillShengxianGetResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 物流服务方代码，生鲜配送：YXSR<br />
      * 支持最大长度为：64<br />
@@ -42,6 +36,8 @@ public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillSh
      * 支持的最大列表长度为：512
      */
     private String feature;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 订单渠道： 淘宝平台订单："TB"; 天猫平台订单："TM"; 京东："JD"; 拍拍："PP"; 易迅平台订单："YX";
@@ -67,6 +63,8 @@ public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillSh
      */
     private String serviceCode;
 
+    private Long timestamp;
+
     /**
      * 交易号，传入交易号不能存在拆单场景。<br />
      * 支持最大长度为：128<br />
@@ -74,74 +72,63 @@ public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillSh
      */
     private String tradeId;
 
-    public void setBizCode(String bizCode) {
-        this.bizCode = bizCode;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
+        RequestCheckUtils.checkMaxLength(bizCode, 64, "bizCode");
+        RequestCheckUtils.checkNotEmpty(deliveryType, "deliveryType");
+        RequestCheckUtils.checkMaxLength(deliveryType, 64, "deliveryType");
+        RequestCheckUtils.checkMaxLength(feature, 512, "feature");
+        RequestCheckUtils.checkNotEmpty(orderChannelsType, "orderChannelsType");
+        RequestCheckUtils.checkMaxLength(orderChannelsType, 64, "orderChannelsType");
+        RequestCheckUtils.checkMaxLength(senderAddressId, 64, "senderAddressId");
+        RequestCheckUtils.checkMaxLength(serviceCode, 128, "serviceCode");
+        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
+        RequestCheckUtils.checkMaxLength(tradeId, 128, "tradeId");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wlb.waybill.shengxian.get";
     }
 
     public String getBizCode() {
         return this.bizCode;
     }
 
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
-
     public String getDeliveryType() {
         return this.deliveryType;
-    }
-
-    public void setFeature(String feature) {
-        this.feature = feature;
     }
 
     public String getFeature() {
         return this.feature;
     }
 
-    public void setOrderChannelsType(String orderChannelsType) {
-        this.orderChannelsType = orderChannelsType;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getOrderChannelsType() {
         return this.orderChannelsType;
     }
 
-    public void setSenderAddressId(String senderAddressId) {
-        this.senderAddressId = senderAddressId;
+    @Override
+    public Class<WlbWaybillShengxianGetResponse> getResponseClass() {
+        return WlbWaybillShengxianGetResponse.class;
     }
 
     public String getSenderAddressId() {
         return this.senderAddressId;
     }
 
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
-    }
-
     public String getServiceCode() {
         return this.serviceCode;
     }
 
-    public void setTradeId(String tradeId) {
-        this.tradeId = tradeId;
-    }
-
-    public String getTradeId() {
-        return this.tradeId;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wlb.waybill.shengxian.get";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("biz_code", this.bizCode);
@@ -157,6 +144,16 @@ public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillSh
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTradeId() {
+        return this.tradeId;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -164,25 +161,36 @@ public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillSh
         this.udfParams.put(key, value);
     }
 
-    public Class<WlbWaybillShengxianGetResponse> getResponseClass() {
-        return WlbWaybillShengxianGetResponse.class;
+    public void setBizCode(String bizCode) {
+        this.bizCode = bizCode;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(bizCode, "bizCode");
-        RequestCheckUtils.checkMaxLength(bizCode, 64, "bizCode");
-        RequestCheckUtils.checkNotEmpty(deliveryType, "deliveryType");
-        RequestCheckUtils.checkMaxLength(deliveryType, 64, "deliveryType");
-        RequestCheckUtils.checkMaxLength(feature, 512, "feature");
-        RequestCheckUtils.checkNotEmpty(orderChannelsType, "orderChannelsType");
-        RequestCheckUtils.checkMaxLength(orderChannelsType, 64, "orderChannelsType");
-        RequestCheckUtils.checkMaxLength(senderAddressId, 64, "senderAddressId");
-        RequestCheckUtils.checkMaxLength(serviceCode, 128, "serviceCode");
-        RequestCheckUtils.checkNotEmpty(tradeId, "tradeId");
-        RequestCheckUtils.checkMaxLength(tradeId, 128, "tradeId");
+    public void setDeliveryType(String deliveryType) {
+        this.deliveryType = deliveryType;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    public void setOrderChannelsType(String orderChannelsType) {
+        this.orderChannelsType = orderChannelsType;
+    }
+
+    public void setSenderAddressId(String senderAddressId) {
+        this.senderAddressId = senderAddressId;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeId(String tradeId) {
+        this.tradeId = tradeId;
     }
 }

@@ -20,12 +20,12 @@ public class SpmeffectGetResponse extends TaobaoResponse {
     @ApiField("spm_result")
     private SpmResult spmResult;
 
-    public void setSpmResult(SpmResult spmResult) {
-        this.spmResult = spmResult;
-    }
-
     public SpmResult getSpmResult() {
         return this.spmResult;
+    }
+
+    public void setSpmResult(SpmResult spmResult) {
+        this.spmResult = spmResult;
     }
 
 }

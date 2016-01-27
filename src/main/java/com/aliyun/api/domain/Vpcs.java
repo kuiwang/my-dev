@@ -41,28 +41,28 @@ public class Vpcs extends TaobaoObject {
         return this.regionId;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
-
     public String getStatus() {
         return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getVpcId() {
         return this.vpcId;
     }
 
-    public void setVpcId(String vpcId) {
-        this.vpcId = vpcId;
-    }
-
     public String getVpcName() {
         return this.vpcName;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setVpcId(String vpcId) {
+        this.vpcId = vpcId;
     }
 
     public void setVpcName(String vpcName) {

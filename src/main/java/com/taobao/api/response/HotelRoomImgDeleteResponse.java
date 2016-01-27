@@ -20,12 +20,12 @@ public class HotelRoomImgDeleteResponse extends TaobaoResponse {
     @ApiField("room_image")
     private RoomImage roomImage;
 
-    public void setRoomImage(RoomImage roomImage) {
-        this.roomImage = roomImage;
-    }
-
     public RoomImage getRoomImage() {
         return this.roomImage;
+    }
+
+    public void setRoomImage(RoomImage roomImage) {
+        this.roomImage = roomImage;
     }
 
 }

@@ -122,124 +122,124 @@ public class ProductSpec extends TaobaoObject {
         return this.barcode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
     public Long getBrandId() {
         return this.brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
     }
 
     public List<CertPicInfo> getCertifiedPics() {
         return this.certifiedPics;
     }
 
-    public void setCertifiedPics(List<CertPicInfo> certifiedPics) {
-        this.certifiedPics = certifiedPics;
-    }
-
     public List<CertTxtInfo> getCertifiedTxts() {
         return this.certifiedTxts;
-    }
-
-    public void setCertifiedTxts(List<CertTxtInfo> certifiedTxts) {
-        this.certifiedTxts = certifiedTxts;
     }
 
     public String getChangeProp() {
         return this.changeProp;
     }
 
-    public void setChangeProp(String changeProp) {
-        this.changeProp = changeProp;
-    }
-
     public String getCustomePropsName() {
         return this.customePropsName;
-    }
-
-    public void setCustomePropsName(String customePropsName) {
-        this.customePropsName = customePropsName;
     }
 
     public Long getLabelPrice() {
         return this.labelPrice;
     }
 
-    public void setLabelPrice(Long labelPrice) {
-        this.labelPrice = labelPrice;
-    }
-
     public Date getMarketTime() {
         return this.marketTime;
-    }
-
-    public void setMarketTime(Date marketTime) {
-        this.marketTime = marketTime;
     }
 
     public Long getNumber() {
         return this.number;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
-    }
-
     public String getPicUrl() {
         return this.picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
     }
 
     public String getProductCode() {
         return this.productCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public Long getProductId() {
         return this.productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Long getSpecId() {
         return this.specId;
     }
 
-    public void setSpecId(Long specId) {
-        this.specId = specId;
-    }
-
     public String getSpecProps() {
         return this.specProps;
-    }
-
-    public void setSpecProps(String specProps) {
-        this.specProps = specProps;
     }
 
     public String getSpecPropsAlias() {
         return this.specPropsAlias;
     }
 
-    public void setSpecPropsAlias(String specPropsAlias) {
-        this.specPropsAlias = specPropsAlias;
-    }
-
     public Long getStatus() {
         return this.status;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setCertifiedPics(List<CertPicInfo> certifiedPics) {
+        this.certifiedPics = certifiedPics;
+    }
+
+    public void setCertifiedTxts(List<CertTxtInfo> certifiedTxts) {
+        this.certifiedTxts = certifiedTxts;
+    }
+
+    public void setChangeProp(String changeProp) {
+        this.changeProp = changeProp;
+    }
+
+    public void setCustomePropsName(String customePropsName) {
+        this.customePropsName = customePropsName;
+    }
+
+    public void setLabelPrice(Long labelPrice) {
+        this.labelPrice = labelPrice;
+    }
+
+    public void setMarketTime(Date marketTime) {
+        this.marketTime = marketTime;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setSpecId(Long specId) {
+        this.specId = specId;
+    }
+
+    public void setSpecProps(String specProps) {
+        this.specProps = specProps;
+    }
+
+    public void setSpecPropsAlias(String specPropsAlias) {
+        this.specPropsAlias = specPropsAlias;
     }
 
     public void setStatus(Long status) {

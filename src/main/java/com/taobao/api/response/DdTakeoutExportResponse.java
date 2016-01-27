@@ -20,12 +20,12 @@ public class DdTakeoutExportResponse extends TaobaoResponse {
     @ApiField("result")
     private DianDianShopPage result;
 
-    public void setResult(DianDianShopPage result) {
-        this.result = result;
-    }
-
     public DianDianShopPage getResult() {
         return this.result;
+    }
+
+    public void setResult(DianDianShopPage result) {
+        this.result = result;
     }
 
 }

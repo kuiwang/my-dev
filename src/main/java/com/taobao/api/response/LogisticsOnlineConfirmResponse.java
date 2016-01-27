@@ -20,12 +20,12 @@ public class LogisticsOnlineConfirmResponse extends TaobaoResponse {
     @ApiField("shipping")
     private Shipping shipping;
 
-    public void setShipping(Shipping shipping) {
-        this.shipping = shipping;
-    }
-
     public Shipping getShipping() {
         return this.shipping;
+    }
+
+    public void setShipping(Shipping shipping) {
+        this.shipping = shipping;
     }
 
 }

@@ -24,12 +24,12 @@ public class ScitemMapQueryResponse extends TaobaoResponse {
     @ApiField("sc_item_map")
     private List<ScItemMap> scItemMaps;
 
-    public void setScItemMaps(List<ScItemMap> scItemMaps) {
-        this.scItemMaps = scItemMaps;
-    }
-
     public List<ScItemMap> getScItemMaps() {
         return this.scItemMaps;
+    }
+
+    public void setScItemMaps(List<ScItemMap> scItemMaps) {
+        this.scItemMaps = scItemMaps;
     }
 
 }

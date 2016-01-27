@@ -18,14 +18,12 @@ public class SimbaCampaignAddRequest implements TaobaoRequest<SimbaCampaignAddRe
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 主人昵称
      */
     private String nick;
+
+    private Long timestamp;
 
     /**
      * 推广计划名称，不能多余20个汉字，不能和客户其他推广计划同名。<br />
@@ -34,34 +32,34 @@ public class SimbaCampaignAddRequest implements TaobaoRequest<SimbaCampaignAddRe
      */
     private String title;
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(title, "title");
+        RequestCheckUtils.checkMaxLength(title, 20, "title");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.simba.campaign.add";
+    }
+
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public Class<SimbaCampaignAddResponse> getResponseClass() {
+        return SimbaCampaignAddResponse.class;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.simba.campaign.add";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("nick", this.nick);
@@ -72,6 +70,16 @@ public class SimbaCampaignAddRequest implements TaobaoRequest<SimbaCampaignAddRe
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -79,16 +87,16 @@ public class SimbaCampaignAddRequest implements TaobaoRequest<SimbaCampaignAddRe
         this.udfParams.put(key, value);
     }
 
-    public Class<SimbaCampaignAddResponse> getResponseClass() {
-        return SimbaCampaignAddResponse.class;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(title, "title");
-        RequestCheckUtils.checkMaxLength(title, 20, "title");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -16,12 +16,6 @@ import com.taobao.api.response.CrmMemberinfoUpdateResponse;
  */
 public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUpdateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 买家昵称<br />
      * 支持最大长度为：32<br />
@@ -62,6 +56,8 @@ public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUp
      */
     private String groupIds;
 
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
     /**
      * 宝贝件数
      */
@@ -88,6 +84,8 @@ public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUp
      */
     private String status;
 
+    private Long timestamp;
+
     /**
      * 交易金额，单位：分
      */
@@ -98,106 +96,70 @@ public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUp
      */
     private Long tradeCount;
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
+        RequestCheckUtils.checkMaxLength(buyerNick, 32, "buyerNick");
+        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
+        RequestCheckUtils.checkMinValue(grade, 1L, "grade");
+        RequestCheckUtils.checkNotEmpty(status, "status");
+        RequestCheckUtils.checkMaxLength(status, 32, "status");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.crm.memberinfo.update";
     }
 
     public String getBuyerNick() {
         return this.buyerNick;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setCloseTradeAmount(Long closeTradeAmount) {
-        this.closeTradeAmount = closeTradeAmount;
     }
 
     public Long getCloseTradeAmount() {
         return this.closeTradeAmount;
     }
 
-    public void setCloseTradeCount(Long closeTradeCount) {
-        this.closeTradeCount = closeTradeCount;
-    }
-
     public Long getCloseTradeCount() {
         return this.closeTradeCount;
-    }
-
-    public void setGrade(Long grade) {
-        this.grade = grade;
     }
 
     public Long getGrade() {
         return this.grade;
     }
 
-    public void setGroupIds(String groupIds) {
-        this.groupIds = groupIds;
-    }
-
     public String getGroupIds() {
         return this.groupIds;
     }
 
-    public void setItemNum(Long itemNum) {
-        this.itemNum = itemNum;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public Long getItemNum() {
         return this.itemNum;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getProvince() {
         return this.province;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Class<CrmMemberinfoUpdateResponse> getResponseClass() {
+        return CrmMemberinfoUpdateResponse.class;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setTradeAmount(Long tradeAmount) {
-        this.tradeAmount = tradeAmount;
-    }
-
-    public Long getTradeAmount() {
-        return this.tradeAmount;
-    }
-
-    public void setTradeCount(Long tradeCount) {
-        this.tradeCount = tradeCount;
-    }
-
-    public Long getTradeCount() {
-        return this.tradeCount;
-    }
-
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.crm.memberinfo.update";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("buyer_nick", this.buyerNick);
@@ -217,6 +179,20 @@ public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUp
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Long getTradeAmount() {
+        return this.tradeAmount;
+    }
+
+    public Long getTradeCount() {
+        return this.tradeCount;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -224,20 +200,52 @@ public class CrmMemberinfoUpdateRequest implements TaobaoRequest<CrmMemberinfoUp
         this.udfParams.put(key, value);
     }
 
-    public Class<CrmMemberinfoUpdateResponse> getResponseClass() {
-        return CrmMemberinfoUpdateResponse.class;
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(buyerNick, "buyerNick");
-        RequestCheckUtils.checkMaxLength(buyerNick, 32, "buyerNick");
-        RequestCheckUtils.checkMaxValue(grade, 4L, "grade");
-        RequestCheckUtils.checkMinValue(grade, 1L, "grade");
-        RequestCheckUtils.checkNotEmpty(status, "status");
-        RequestCheckUtils.checkMaxLength(status, 32, "status");
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCloseTradeAmount(Long closeTradeAmount) {
+        this.closeTradeAmount = closeTradeAmount;
+    }
+
+    public void setCloseTradeCount(Long closeTradeCount) {
+        this.closeTradeCount = closeTradeCount;
+    }
+
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
+    public void setGroupIds(String groupIds) {
+        this.groupIds = groupIds;
+    }
+
+    public void setItemNum(Long itemNum) {
+        this.itemNum = itemNum;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setTradeAmount(Long tradeAmount) {
+        this.tradeAmount = tradeAmount;
+    }
+
+    public void setTradeCount(Long tradeCount) {
+        this.tradeCount = tradeCount;
     }
 }

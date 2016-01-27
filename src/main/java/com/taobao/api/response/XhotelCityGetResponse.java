@@ -40,28 +40,28 @@ public class XhotelCityGetResponse extends TaobaoResponse {
     @ApiField("version")
     private Long version;
 
-    public void setDivisions(List<HotelDivision> divisions) {
-        this.divisions = divisions;
-    }
-
     public List<HotelDivision> getDivisions() {
         return this.divisions;
-    }
-
-    public void setTotalResults(Long totalResults) {
-        this.totalResults = totalResults;
     }
 
     public Long getTotalResults() {
         return this.totalResults;
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     public Long getVersion() {
         return this.version;
+    }
+
+    public void setDivisions(List<HotelDivision> divisions) {
+        this.divisions = divisions;
+    }
+
+    public void setTotalResults(Long totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

@@ -17,16 +17,16 @@ import com.taobao.api.response.WangwangAbstractAddwordResponse;
 public class WangwangAbstractAddwordRequest implements
         TaobaoRequest<WangwangAbstractAddwordResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 传入参数的字符集
      */
     private String charset;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
+
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
      * 关键词，长度大于0<br />
@@ -35,34 +35,32 @@ public class WangwangAbstractAddwordRequest implements
      */
     private String word;
 
-    public void setCharset(String charset) {
-        this.charset = charset;
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(word, "word");
+        RequestCheckUtils.checkMaxLength(word, 12, "word");
+    }
+
+    @Override
+    public String getApiMethodName() {
+        return "taobao.wangwang.abstract.addword";
     }
 
     public String getCharset() {
         return this.charset;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
-    public String getWord() {
-        return this.word;
+    @Override
+    public Class<WangwangAbstractAddwordResponse> getResponseClass() {
+        return WangwangAbstractAddwordResponse.class;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.wangwang.abstract.addword";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("charset", this.charset);
@@ -73,6 +71,16 @@ public class WangwangAbstractAddwordRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public String getWord() {
+        return this.word;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -80,16 +88,16 @@ public class WangwangAbstractAddwordRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<WangwangAbstractAddwordResponse> getResponseClass() {
-        return WangwangAbstractAddwordResponse.class;
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(word, "word");
-        RequestCheckUtils.checkMaxLength(word, 12, "word");
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setWord(String word) {
+        this.word = word;
     }
 }

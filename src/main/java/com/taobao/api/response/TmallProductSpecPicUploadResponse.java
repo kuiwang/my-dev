@@ -19,12 +19,12 @@ public class TmallProductSpecPicUploadResponse extends TaobaoResponse {
     @ApiField("spec_pic_url")
     private String specPicUrl;
 
-    public void setSpecPicUrl(String specPicUrl) {
-        this.specPicUrl = specPicUrl;
-    }
-
     public String getSpecPicUrl() {
         return this.specPicUrl;
+    }
+
+    public void setSpecPicUrl(String specPicUrl) {
+        this.specPicUrl = specPicUrl;
     }
 
 }

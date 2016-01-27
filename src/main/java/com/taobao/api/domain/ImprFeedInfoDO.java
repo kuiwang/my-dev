@@ -52,36 +52,36 @@ public class ImprFeedInfoDO extends TaobaoObject {
         return this.bizType;
     }
 
-    public void setBizType(Long bizType) {
-        this.bizType = bizType;
-    }
-
     public String getFeedback() {
         return this.feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
     }
 
     public Date getGmtCreate() {
         return this.gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Date getGmtModified() {
         return this.gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public List<String> getImprWords() {
         return this.imprWords;
+    }
+
+    public void setBizType(Long bizType) {
+        this.bizType = bizType;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
     public void setImprWords(List<String> imprWords) {

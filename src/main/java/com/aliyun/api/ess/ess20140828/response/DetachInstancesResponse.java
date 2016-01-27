@@ -25,20 +25,20 @@ public class DetachInstancesResponse extends AliyunResponse {
     @ApiField("ScalingActivityId")
     private String scalingActivityId;
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getRequestId() {
         return this.requestId;
     }
 
-    public void setScalingActivityId(String scalingActivityId) {
-        this.scalingActivityId = scalingActivityId;
-    }
-
     public String getScalingActivityId() {
         return this.scalingActivityId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setScalingActivityId(String scalingActivityId) {
+        this.scalingActivityId = scalingActivityId;
     }
 
 }

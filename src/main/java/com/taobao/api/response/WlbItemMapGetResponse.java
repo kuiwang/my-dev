@@ -24,12 +24,12 @@ public class WlbItemMapGetResponse extends TaobaoResponse {
     @ApiField("out_entity_item")
     private List<OutEntityItem> outEntityItemList;
 
-    public void setOutEntityItemList(List<OutEntityItem> outEntityItemList) {
-        this.outEntityItemList = outEntityItemList;
-    }
-
     public List<OutEntityItem> getOutEntityItemList() {
         return this.outEntityItemList;
+    }
+
+    public void setOutEntityItemList(List<OutEntityItem> outEntityItemList) {
+        this.outEntityItemList = outEntityItemList;
     }
 
 }

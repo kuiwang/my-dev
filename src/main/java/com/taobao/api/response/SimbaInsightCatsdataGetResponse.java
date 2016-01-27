@@ -24,12 +24,12 @@ public class SimbaInsightCatsdataGetResponse extends TaobaoResponse {
     @ApiField("insight_category_data_d_t_o")
     private List<InsightCategoryDataDTO> catDataList;
 
-    public void setCatDataList(List<InsightCategoryDataDTO> catDataList) {
-        this.catDataList = catDataList;
-    }
-
     public List<InsightCategoryDataDTO> getCatDataList() {
         return this.catDataList;
+    }
+
+    public void setCatDataList(List<InsightCategoryDataDTO> catDataList) {
+        this.catDataList = catDataList;
     }
 
 }

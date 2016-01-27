@@ -24,12 +24,12 @@ public class ItemrecommendItemsGetResponse extends TaobaoResponse {
     @ApiField("favorite_item")
     private List<FavoriteItem> values;
 
-    public void setValues(List<FavoriteItem> values) {
-        this.values = values;
-    }
-
     public List<FavoriteItem> getValues() {
         return this.values;
+    }
+
+    public void setValues(List<FavoriteItem> values) {
+        this.values = values;
     }
 
 }

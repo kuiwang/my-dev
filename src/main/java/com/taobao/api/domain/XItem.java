@@ -140,156 +140,156 @@ public class XItem extends TaobaoObject {
         return this.cid;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
     public Boolean getIstk() {
         return this.istk;
-    }
-
-    public void setIstk(Boolean istk) {
-        this.istk = istk;
     }
 
     public XLocation getLocation() {
         return this.location;
     }
 
-    public void setLocation(XLocation location) {
-        this.location = location;
-    }
-
     public Boolean getMall() {
         return this.mall;
-    }
-
-    public void setMall(Boolean mall) {
-        this.mall = mall;
     }
 
     public String getNick() {
         return this.nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Long getNum() {
         return this.num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
     }
 
     public String getOpenAuctionIid() {
         return this.openAuctionIid;
     }
 
-    public void setOpenAuctionIid(String openAuctionIid) {
-        this.openAuctionIid = openAuctionIid;
-    }
-
     public Long getOpenId() {
         return this.openId;
-    }
-
-    public void setOpenId(Long openId) {
-        this.openId = openId;
     }
 
     public String getPicUrl() {
         return this.picUrl;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
     public String getPostFee() {
         return this.postFee;
-    }
-
-    public void setPostFee(String postFee) {
-        this.postFee = postFee;
     }
 
     public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPriceEndTime() {
         return this.priceEndTime;
-    }
-
-    public void setPriceEndTime(String priceEndTime) {
-        this.priceEndTime = priceEndTime;
     }
 
     public String getPriceStartTime() {
         return this.priceStartTime;
     }
 
-    public void setPriceStartTime(String priceStartTime) {
-        this.priceStartTime = priceStartTime;
-    }
-
     public String getPriceWap() {
         return this.priceWap;
-    }
-
-    public void setPriceWap(String priceWap) {
-        this.priceWap = priceWap;
     }
 
     public String getPriceWapEndTime() {
         return this.priceWapEndTime;
     }
 
-    public void setPriceWapEndTime(String priceWapEndTime) {
-        this.priceWapEndTime = priceWapEndTime;
-    }
-
     public String getPriceWapStartTime() {
         return this.priceWapStartTime;
-    }
-
-    public void setPriceWapStartTime(String priceWapStartTime) {
-        this.priceWapStartTime = priceWapStartTime;
     }
 
     public String getPromotedService() {
         return this.promotedService;
     }
 
-    public void setPromotedService(String promotedService) {
-        this.promotedService = promotedService;
-    }
-
     public String getReservePrice() {
         return this.reservePrice;
-    }
-
-    public void setReservePrice(String reservePrice) {
-        this.reservePrice = reservePrice;
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTkRate() {
         return this.tkRate;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public void setIstk(Boolean istk) {
+        this.istk = istk;
+    }
+
+    public void setLocation(XLocation location) {
+        this.location = location;
+    }
+
+    public void setMall(Boolean mall) {
+        this.mall = mall;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
+    }
+
+    public void setOpenAuctionIid(String openAuctionIid) {
+        this.openAuctionIid = openAuctionIid;
+    }
+
+    public void setOpenId(Long openId) {
+        this.openId = openId;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setPostFee(String postFee) {
+        this.postFee = postFee;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPriceEndTime(String priceEndTime) {
+        this.priceEndTime = priceEndTime;
+    }
+
+    public void setPriceStartTime(String priceStartTime) {
+        this.priceStartTime = priceStartTime;
+    }
+
+    public void setPriceWap(String priceWap) {
+        this.priceWap = priceWap;
+    }
+
+    public void setPriceWapEndTime(String priceWapEndTime) {
+        this.priceWapEndTime = priceWapEndTime;
+    }
+
+    public void setPriceWapStartTime(String priceWapStartTime) {
+        this.priceWapStartTime = priceWapStartTime;
+    }
+
+    public void setPromotedService(String promotedService) {
+        this.promotedService = promotedService;
+    }
+
+    public void setReservePrice(String reservePrice) {
+        this.reservePrice = reservePrice;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setTkRate(String tkRate) {

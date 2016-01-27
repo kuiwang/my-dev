@@ -30,20 +30,20 @@ public class VasSubscSearchResponse extends TaobaoResponse {
     @ApiField("total_item")
     private Long totalItem;
 
-    public void setArticleSubs(List<ArticleSub> articleSubs) {
-        this.articleSubs = articleSubs;
-    }
-
     public List<ArticleSub> getArticleSubs() {
         return this.articleSubs;
     }
 
-    public void setTotalItem(Long totalItem) {
-        this.totalItem = totalItem;
-    }
-
     public Long getTotalItem() {
         return this.totalItem;
+    }
+
+    public void setArticleSubs(List<ArticleSub> articleSubs) {
+        this.articleSubs = articleSubs;
+    }
+
+    public void setTotalItem(Long totalItem) {
+        this.totalItem = totalItem;
     }
 
 }

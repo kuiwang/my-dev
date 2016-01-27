@@ -53,44 +53,44 @@ public class CloudsTag extends TaobaoObject {
         return this.dataType;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
     public String getId() {
         return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getInputType() {
         return this.inputType;
     }
 
-    public void setInputType(String inputType) {
-        this.inputType = inputType;
-    }
-
     public String getNameCh() {
         return this.nameCh;
-    }
-
-    public void setNameCh(String nameCh) {
-        this.nameCh = nameCh;
     }
 
     public String getValidator() {
         return this.validator;
     }
 
-    public void setValidator(String validator) {
-        this.validator = validator;
-    }
-
     public String getValues() {
         return this.values;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
+    }
+
+    public void setNameCh(String nameCh) {
+        this.nameCh = nameCh;
+    }
+
+    public void setValidator(String validator) {
+        this.validator = validator;
     }
 
     public void setValues(String values) {

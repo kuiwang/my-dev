@@ -17,12 +17,6 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderCreateResponse;
 public class FenxiaoDealerRequisitionorderCreateRequest implements
         TaobaoRequest<FenxiaoDealerRequisitionorderCreateResponse> {
 
-    private Map<String, String> headerMap = new TaobaoHashMap();
-
-    private TaobaoHashMap udfParams; // add user-defined text parameters
-
-    private Long timestamp;
-
     /**
      * 收货人所在街道地址
      */
@@ -42,6 +36,8 @@ public class FenxiaoDealerRequisitionorderCreateRequest implements
      * 收货人所在区
      */
     private String district;
+
+    private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
      * 身份证号（自提方式必填，填写提货人身份证号码，提货时用于确认提货人身份）
@@ -81,106 +77,80 @@ public class FenxiaoDealerRequisitionorderCreateRequest implements
      */
     private String province;
 
-    public void setAddress(String address) {
-        this.address = address;
+    private Long timestamp;
+
+    private TaobaoHashMap udfParams; // add user-defined text parameters
+
+    @Override
+    public void check() throws ApiRuleException {
+        RequestCheckUtils.checkNotEmpty(address, "address");
+        RequestCheckUtils.checkNotEmpty(buyerName, "buyerName");
+        RequestCheckUtils.checkNotEmpty(logisticsType, "logisticsType");
+        RequestCheckUtils.checkNotEmpty(orderDetail, "orderDetail");
+        RequestCheckUtils.checkMaxListSize(orderDetail, 50, "orderDetail");
+        RequestCheckUtils.checkNotEmpty(province, "province");
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    @Override
+    public String getApiMethodName() {
+        return "taobao.fenxiao.dealer.requisitionorder.create";
     }
 
     public String getBuyerName() {
         return this.buyerName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCity() {
         return this.city;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
     }
 
     public String getDistrict() {
         return this.district;
     }
 
-    public void setIdCardNumber(String idCardNumber) {
-        this.idCardNumber = idCardNumber;
+    @Override
+    public Map<String, String> getHeaderMap() {
+        return headerMap;
     }
 
     public String getIdCardNumber() {
         return this.idCardNumber;
     }
 
-    public void setLogisticsType(String logisticsType) {
-        this.logisticsType = logisticsType;
-    }
-
     public String getLogisticsType() {
         return this.logisticsType;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 
     public String getMobile() {
         return this.mobile;
     }
 
-    public void setOrderDetail(String orderDetail) {
-        this.orderDetail = orderDetail;
-    }
-
     public String getOrderDetail() {
         return this.orderDetail;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
-
     public String getPostCode() {
         return this.postCode;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
     }
 
     public String getProvince() {
         return this.province;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    @Override
+    public Class<FenxiaoDealerRequisitionorderCreateResponse> getResponseClass() {
+        return FenxiaoDealerRequisitionorderCreateResponse.class;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getApiMethodName() {
-        return "taobao.fenxiao.dealer.requisitionorder.create";
-    }
-
+    @Override
     public Map<String, String> getTextParams() {
         TaobaoHashMap txtParams = new TaobaoHashMap();
         txtParams.put("address", this.address);
@@ -200,6 +170,12 @@ public class FenxiaoDealerRequisitionorderCreateRequest implements
         return txtParams;
     }
 
+    @Override
+    public Long getTimestamp() {
+        return this.timestamp;
+    }
+
+    @Override
     public void putOtherTextParam(String key, String value) {
         if (this.udfParams == null) {
             this.udfParams = new TaobaoHashMap();
@@ -207,20 +183,52 @@ public class FenxiaoDealerRequisitionorderCreateRequest implements
         this.udfParams.put(key, value);
     }
 
-    public Class<FenxiaoDealerRequisitionorderCreateResponse> getResponseClass() {
-        return FenxiaoDealerRequisitionorderCreateResponse.class;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void check() throws ApiRuleException {
-        RequestCheckUtils.checkNotEmpty(address, "address");
-        RequestCheckUtils.checkNotEmpty(buyerName, "buyerName");
-        RequestCheckUtils.checkNotEmpty(logisticsType, "logisticsType");
-        RequestCheckUtils.checkNotEmpty(orderDetail, "orderDetail");
-        RequestCheckUtils.checkMaxListSize(orderDetail, 50, "orderDetail");
-        RequestCheckUtils.checkNotEmpty(province, "province");
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public void setLogisticsType(String logisticsType) {
+        this.logisticsType = logisticsType;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setOrderDetail(String orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    @Override
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

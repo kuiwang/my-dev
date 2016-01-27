@@ -73,68 +73,68 @@ public class DataPushTask extends TaobaoObject {
         return this.appKey;
     }
 
-    public void setAppKey(String appKey) {
-        this.appKey = appKey;
-    }
-
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Date getNextExecuteTime() {
         return this.nextExecuteTime;
     }
 
-    public void setNextExecuteTime(Date nextExecuteTime) {
-        this.nextExecuteTime = nextExecuteTime;
-    }
-
     public Date getNowSyncTime() {
         return this.nowSyncTime;
-    }
-
-    public void setNowSyncTime(Date nowSyncTime) {
-        this.nowSyncTime = nowSyncTime;
     }
 
     public String getParams() {
         return this.params;
     }
 
-    public void setParams(String params) {
-        this.params = params;
-    }
-
     public Long getType() {
         return this.type;
-    }
-
-    public void setType(Long type) {
-        this.type = type;
     }
 
     public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserNick() {
         return this.userNick;
     }
 
-    public void setUserNick(String userNick) {
-        this.userNick = userNick;
-    }
-
     public Long getVersion() {
         return this.version;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNextExecuteTime(Date nextExecuteTime) {
+        this.nextExecuteTime = nextExecuteTime;
+    }
+
+    public void setNowSyncTime(Date nowSyncTime) {
+        this.nowSyncTime = nowSyncTime;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 
     public void setVersion(Long version) {

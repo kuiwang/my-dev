@@ -29,12 +29,12 @@ public class CouponResult extends TaobaoObject {
         return this.buyerNick;
     }
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
-
     public Long getCouponNumber() {
         return this.couponNumber;
+    }
+
+    public void setBuyerNick(String buyerNick) {
+        this.buyerNick = buyerNick;
     }
 
     public void setCouponNumber(Long couponNumber) {

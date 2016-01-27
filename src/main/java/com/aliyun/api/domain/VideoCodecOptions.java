@@ -60,52 +60,52 @@ public class VideoCodecOptions extends TaobaoObject {
         return this.bitRate;
     }
 
-    public void setBitRate(String bitRate) {
-        this.bitRate = bitRate;
-    }
-
     public String getcRF() {
         return this.cRF;
-    }
-
-    public void setcRF(String cRF) {
-        this.cRF = cRF;
     }
 
     public String getFps() {
         return this.fps;
     }
 
-    public void setFps(String fps) {
-        this.fps = fps;
-    }
-
     public String getHeight() {
         return this.height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
     }
 
     public String getKeyInt() {
         return this.keyInt;
     }
 
-    public void setKeyInt(String keyInt) {
-        this.keyInt = keyInt;
-    }
-
     public String getProfile() {
         return this.profile;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
     public String getWidth() {
         return this.width;
+    }
+
+    public void setBitRate(String bitRate) {
+        this.bitRate = bitRate;
+    }
+
+    public void setcRF(String cRF) {
+        this.cRF = cRF;
+    }
+
+    public void setFps(String fps) {
+        this.fps = fps;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public void setKeyInt(String keyInt) {
+        this.keyInt = keyInt;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public void setWidth(String width) {
