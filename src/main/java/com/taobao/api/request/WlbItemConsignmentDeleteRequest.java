@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemConsignmentDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemConsignmentDeleteRequest implements
-        TaobaoRequest<WlbItemConsignmentDeleteResponse> {
+public class WlbItemConsignmentDeleteRequest
+        implements TaobaoRequest<WlbItemConsignmentDeleteResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

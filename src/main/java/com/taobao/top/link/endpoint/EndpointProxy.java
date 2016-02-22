@@ -75,7 +75,8 @@ public class EndpointProxy {
     public boolean hasValidSender() {
         for (ChannelSender sender : this.senders) {
             if (((sender instanceof ServerChannelSender) && ((ServerChannelSender) sender).isOpen())
-                    || ((sender instanceof ClientChannel) && ((ClientChannel) sender).isConnected())) {
+                    || ((sender instanceof ClientChannel)
+                            && ((ClientChannel) sender).isConnected())) {
                 return true;
             }
         }
@@ -107,8 +108,8 @@ public class EndpointProxy {
         this.send(null, message);
     }
 
-    public Map<String, Object> sendAndWait(ChannelSenderWrapper sender,
-            Map<String, Object> message, int timeout) throws LinkException {
+    public Map<String, Object> sendAndWait(ChannelSenderWrapper sender, Map<String, Object> message,
+            int timeout) throws LinkException {
         ChannelSenderWrapper senderWrapper = this.getSenders(sender);
         return this.endpoint.sendAndWait(this, senderWrapper,
                 this.createMessage(message, senderWrapper), timeout);

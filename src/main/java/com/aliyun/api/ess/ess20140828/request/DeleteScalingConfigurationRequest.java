@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:40
  */
-public class DeleteScalingConfigurationRequest implements
-        AliyunRequest<DeleteScalingConfigurationResponse> {
+public class DeleteScalingConfigurationRequest
+        implements AliyunRequest<DeleteScalingConfigurationResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoProductImageDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductImageDeleteRequest implements
-        TaobaoRequest<FenxiaoProductImageDeleteResponse> {
+public class FenxiaoProductImageDeleteRequest
+        implements TaobaoRequest<FenxiaoProductImageDeleteResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -43,9 +43,10 @@ public class ChannelSenderWrapper implements ChannelSender {
     }
 
     public boolean isValid() {
-        return ((this.sender instanceof ClientChannel) && ((ClientChannel) this.sender).isConnected())
-                || ((this.sender instanceof ServerChannelSender) && ((ServerChannelSender) this.sender)
-                        .isOpen());
+        return ((this.sender instanceof ClientChannel)
+                && ((ClientChannel) this.sender).isConnected())
+                || ((this.sender instanceof ServerChannelSender)
+                        && ((ServerChannelSender) this.sender).isOpen());
     }
 
     @Override

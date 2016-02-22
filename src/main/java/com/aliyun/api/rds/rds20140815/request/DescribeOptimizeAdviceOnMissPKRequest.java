@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:45
  */
-public class DescribeOptimizeAdviceOnMissPKRequest implements
-        AliyunRequest<DescribeOptimizeAdviceOnMissPKResponse> {
+public class DescribeOptimizeAdviceOnMissPKRequest
+        implements AliyunRequest<DescribeOptimizeAdviceOnMissPKResponse> {
 
     /**
      * 实例名

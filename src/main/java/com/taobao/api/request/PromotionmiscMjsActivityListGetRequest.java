@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionmiscMjsActivityListGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:24
  */
-public class PromotionmiscMjsActivityListGetRequest implements
-        TaobaoRequest<PromotionmiscMjsActivityListGetResponse> {
+public class PromotionmiscMjsActivityListGetRequest
+        implements TaobaoRequest<PromotionmiscMjsActivityListGetResponse> {
 
     /**
      * 活动类型： 1表示商品级别的活动；2表示店铺级别的活动。<br />

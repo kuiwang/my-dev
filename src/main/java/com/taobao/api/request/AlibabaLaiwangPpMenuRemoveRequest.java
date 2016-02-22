@@ -13,8 +13,8 @@ import com.taobao.api.response.AlibabaLaiwangPpMenuRemoveResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaLaiwangPpMenuRemoveRequest implements
-        TaobaoRequest<AlibabaLaiwangPpMenuRemoveResponse> {
+public class AlibabaLaiwangPpMenuRemoveRequest
+        implements TaobaoRequest<AlibabaLaiwangPpMenuRemoveResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

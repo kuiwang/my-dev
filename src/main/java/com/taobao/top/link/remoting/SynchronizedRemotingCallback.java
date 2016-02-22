@@ -53,8 +53,7 @@ public class SynchronizedRemotingCallback extends RemotingCallback {
         try {
             if (timeout > 0) {
                 if (!this.latch.await(timeout, TimeUnit.MILLISECONDS)) {
-                    throw new RemotingException(
-                            Text.RPC_EXECUTE_TIMEOUT);
+                    throw new RemotingException(Text.RPC_EXECUTE_TIMEOUT);
                 }
             } else {
                 this.latch.await();

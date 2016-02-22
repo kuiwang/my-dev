@@ -14,7 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:39
  */
-public class ModifyVRouterAttributeRequest implements AliyunRequest<ModifyVRouterAttributeResponse> {
+public class ModifyVRouterAttributeRequest
+        implements AliyunRequest<ModifyVRouterAttributeResponse> {
 
     /**
      * 修改后的虚拟路由器描述

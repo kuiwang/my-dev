@@ -13,8 +13,8 @@ import com.taobao.api.response.CaipiaoPresentWinItemsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class CaipiaoPresentWinItemsGetRequest implements
-        TaobaoRequest<CaipiaoPresentWinItemsGetResponse> {
+public class CaipiaoPresentWinItemsGetRequest
+        implements TaobaoRequest<CaipiaoPresentWinItemsGetResponse> {
 
     /**
      * 查询日期，格式请严格遵守yyyy-MM-dd

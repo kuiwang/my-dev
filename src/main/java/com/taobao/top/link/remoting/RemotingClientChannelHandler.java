@@ -59,8 +59,8 @@ public class RemotingClientChannelHandler extends SimpleChannelHandler {
     @Override
     public void onMessage(ChannelContext context) {
         Object msg = context.getMessage();
-        RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer ? new RemotingTcpProtocolHandle(
-                (ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
+        RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer
+                ? new RemotingTcpProtocolHandle((ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
         protocol.ReadPreamble();
         protocol.ReadMajorVersion();
         protocol.ReadMinorVersion();
@@ -97,8 +97,8 @@ public class RemotingClientChannelHandler extends SimpleChannelHandler {
         Object statusCode = transportHeaders.get(TcpTransportHeader.StatusCode);
         Object statusPhrase = transportHeaders.get(TcpTransportHeader.StatusPhrase);
         if ((statusCode != null) && (Integer.parseInt(statusCode.toString()) > 0)) {
-            callback.onException(new Exception(String.format(Text.RPC_RETURN_ERROR, statusCode,
-                    statusPhrase)));
+            callback.onException(
+                    new Exception(String.format(Text.RPC_RETURN_ERROR, statusCode, statusPhrase)));
             return;
         }
 
@@ -147,7 +147,7 @@ public class RemotingClientChannelHandler extends SimpleChannelHandler {
 
     public ByteBuffer pending(RemotingCallback handler, short operation,
             HashMap<String, Object> transportHeaders, MethodCall methodCall)
-            throws FormatterException {
+                    throws FormatterException {
         byte[] data = this.serializationFactory.get(handler.serializationFormat)
                 .serializeMethodCall(methodCall);
         return this.pending(handler, operation, transportHeaders, data, 0, data.length);

@@ -15,8 +15,8 @@ import com.taobao.api.response.WlbItemAuthorizationAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemAuthorizationAddRequest implements
-        TaobaoRequest<WlbItemAuthorizationAddResponse> {
+public class WlbItemAuthorizationAddRequest
+        implements TaobaoRequest<WlbItemAuthorizationAddResponse> {
 
     /**
      * 授权结束时间

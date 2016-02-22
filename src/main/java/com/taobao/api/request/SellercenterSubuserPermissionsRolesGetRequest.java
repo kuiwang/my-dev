@@ -14,8 +14,8 @@ import com.taobao.api.response.SellercenterSubuserPermissionsRolesGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class SellercenterSubuserPermissionsRolesGetRequest implements
-        TaobaoRequest<SellercenterSubuserPermissionsRolesGetResponse> {
+public class SellercenterSubuserPermissionsRolesGetRequest
+        implements TaobaoRequest<SellercenterSubuserPermissionsRolesGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

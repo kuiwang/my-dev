@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDistributorItemsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDistributorItemsGetRequest implements
-        TaobaoRequest<FenxiaoDistributorItemsGetResponse> {
+public class FenxiaoDistributorItemsGetRequest
+        implements TaobaoRequest<FenxiaoDistributorItemsGetResponse> {
 
     /**
      * 分销商ID 。

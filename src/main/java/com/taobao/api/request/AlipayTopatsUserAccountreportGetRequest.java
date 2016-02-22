@@ -15,8 +15,8 @@ import com.taobao.api.response.AlipayTopatsUserAccountreportGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class AlipayTopatsUserAccountreportGetRequest implements
-        TaobaoRequest<AlipayTopatsUserAccountreportGetResponse> {
+public class AlipayTopatsUserAccountreportGetRequest
+        implements TaobaoRequest<AlipayTopatsUserAccountreportGetResponse> {
 
     /**
      * 返回下载结果文件的数据格式，只支持utf-8和gbk编码，默认是utf-8

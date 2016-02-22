@@ -13,8 +13,8 @@ import com.taobao.api.response.SimbaCustomersAuthorizedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaCustomersAuthorizedGetRequest implements
-        TaobaoRequest<SimbaCustomersAuthorizedGetResponse> {
+public class SimbaCustomersAuthorizedGetRequest
+        implements TaobaoRequest<SimbaCustomersAuthorizedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

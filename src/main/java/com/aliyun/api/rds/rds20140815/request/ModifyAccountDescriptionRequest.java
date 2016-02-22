@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:46
  */
-public class ModifyAccountDescriptionRequest implements
-        AliyunRequest<ModifyAccountDescriptionResponse> {
+public class ModifyAccountDescriptionRequest
+        implements AliyunRequest<ModifyAccountDescriptionResponse> {
 
     /**
      * 修改帐号备注

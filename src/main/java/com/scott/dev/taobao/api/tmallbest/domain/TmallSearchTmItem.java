@@ -66,8 +66,8 @@ public class TmallSearchTmItem {
     private String title;
 
     /**
-     * 商品id（具有跟踪效果）代替原来的num_iid <a
-     * href="http://dev.open.taobao.com/bbs/read.php?tid=24323">详细说明</a>
+     * 商品id（具有跟踪效果）代替原来的num_iid
+     * <a href="http://dev.open.taobao.com/bbs/read.php?tid=24323">详细说明</a>
      */
     private String trackIid;
 

@@ -14,8 +14,8 @@ import com.taobao.api.response.AlipayMicropayOrderUnfreezeResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayMicropayOrderUnfreezeRequest implements
-        TaobaoRequest<AlipayMicropayOrderUnfreezeResponse> {
+public class AlipayMicropayOrderUnfreezeRequest
+        implements TaobaoRequest<AlipayMicropayOrderUnfreezeResponse> {
 
     /**
      * 冻结资金流水号,在创建资金订单时支付宝返回的流水号

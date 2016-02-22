@@ -15,8 +15,8 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDealerRequisitionorderGetRequest implements
-        TaobaoRequest<FenxiaoDealerRequisitionorderGetResponse> {
+public class FenxiaoDealerRequisitionorderGetRequest
+        implements TaobaoRequest<FenxiaoDealerRequisitionorderGetResponse> {
 
     /**
      * 采购申请/经销采购单最迟修改时间。与start_date字段的最大时间间隔不能超过30天

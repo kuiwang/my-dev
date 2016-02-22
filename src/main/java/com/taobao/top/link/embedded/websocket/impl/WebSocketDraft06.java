@@ -59,8 +59,9 @@ import com.taobao.top.link.embedded.websocket.util.Base64;
  * 
  * this class is implement the WebSocket Draft06 specification.
  * 
- * @see <a
- *      href="http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-06">draft-ietf-hybi-thewebsocketprotocol-06</a>
+ * @see <a href=
+ *      "http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-06">
+ *      draft-ietf-hybi-thewebsocketprotocol-06</a>
  * @author t-hashimoto
  *
  */
@@ -322,24 +323,25 @@ public class WebSocketDraft06 extends WebSocketBase {
                 if (!super.parseHandshakeResponseHeader(buffer)) {
                     return false;
                 }
-                if (!"websocket".equalsIgnoreCase(this.getResponseHeader()
-                        .getHeaderValue("upgrade"))) {
+                if (!"websocket"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("upgrade"))) {
                     throw new WebSocketException(E3600, responseHeader.getHeaderValue("upgrade"));
                 }
-                if (!"upgrade".equalsIgnoreCase(this.getResponseHeader().getHeaderValue(
-                        "connection"))) {
-                    throw new WebSocketException(E3601, responseHeader.getHeaderValue("connection"));
+                if (!"upgrade"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("connection"))) {
+                    throw new WebSocketException(E3601,
+                            responseHeader.getHeaderValue("connection"));
                 }
                 if (!this.getResponseHeader().containsHeader("sec-websocket-accept")) {
                     throw new WebSocketException(E3602);
                 }
-                String protocolStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-protocol");
+                String protocolStr = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-protocol");
                 if (protocolStr != null) {
                     serverProtocols = protocolStr.split(",");
                 }
-                String extensionsStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-extensions");
+                String extensionsStr = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-extensions");
                 if (extensionsStr != null) {
                     serverExtentions = extensionsStr.split(",");
                 }

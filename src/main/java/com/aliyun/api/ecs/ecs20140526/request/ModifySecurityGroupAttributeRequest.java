@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:39
  */
-public class ModifySecurityGroupAttributeRequest implements
-        AliyunRequest<ModifySecurityGroupAttributeResponse> {
+public class ModifySecurityGroupAttributeRequest
+        implements AliyunRequest<ModifySecurityGroupAttributeResponse> {
 
     /**
      * 修改后的安全组描述，不填则为空，默认值为空，[2,256]英文或中文字符，不能以http://和https://开头。

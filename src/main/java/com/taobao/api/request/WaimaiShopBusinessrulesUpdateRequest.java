@@ -14,8 +14,8 @@ import com.taobao.api.response.WaimaiShopBusinessrulesUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class WaimaiShopBusinessrulesUpdateRequest implements
-        TaobaoRequest<WaimaiShopBusinessrulesUpdateResponse> {
+public class WaimaiShopBusinessrulesUpdateRequest
+        implements TaobaoRequest<WaimaiShopBusinessrulesUpdateResponse> {
 
     /**
      * 配送范围地图标注

@@ -58,8 +58,7 @@ public class SendCallback {
         try {
             if (timeout > 0) {
                 if (!this.latch.await(timeout, TimeUnit.MILLISECONDS)) {
-                    throw new LinkException(
-                            Text.E_EXECUTE_TIMEOUT);
+                    throw new LinkException(Text.E_EXECUTE_TIMEOUT);
                 }
             } else {
                 this.latch.await();

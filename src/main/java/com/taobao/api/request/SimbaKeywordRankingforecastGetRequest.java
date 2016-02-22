@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaKeywordRankingforecastGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:19
  */
-public class SimbaKeywordRankingforecastGetRequest implements
-        TaobaoRequest<SimbaKeywordRankingforecastGetResponse> {
+public class SimbaKeywordRankingforecastGetRequest
+        implements TaobaoRequest<SimbaKeywordRankingforecastGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

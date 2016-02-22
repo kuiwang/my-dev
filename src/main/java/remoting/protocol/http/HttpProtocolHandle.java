@@ -107,8 +107,7 @@ public class HttpProtocolHandle extends ProtocolStreamHandle {
         if (headers != null) {
             for (Entry<String, Object> h : headers.entrySet()) {
                 if (h.getKey().equalsIgnoreCase(HttpHeader.ContentLength)) {
-                    this._contentLength = Integer
-                            .parseInt(h.getValue().toString());
+                    this._contentLength = Integer.parseInt(h.getValue().toString());
                 }
                 this.WriteHeader(h.getKey(), h.getValue().toString());
             }

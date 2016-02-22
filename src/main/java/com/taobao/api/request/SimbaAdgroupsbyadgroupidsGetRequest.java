@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaAdgroupsbyadgroupidsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaAdgroupsbyadgroupidsGetRequest implements
-        TaobaoRequest<SimbaAdgroupsbyadgroupidsGetResponse> {
+public class SimbaAdgroupsbyadgroupidsGetRequest
+        implements TaobaoRequest<SimbaAdgroupsbyadgroupidsGetResponse> {
 
     /**
      * 推广组Id列表
@@ -37,7 +37,8 @@ public class SimbaAdgroupsbyadgroupidsGetRequest implements
 
     /**
      * 页尺寸，最大200，如果入参adgroup_ids有传入值，则page_size和page_no值不起作用。
-     * 如果adgrpup_ids为空而campaign_id有值，此时page_size和page_no值才是返回的页数据大小和页码<br />
+     * 如果adgrpup_ids为空而campaign_id有值，此时page_size和page_no值才是返回的页数据大小和页码
+     * <br />
      * 支持最大值为：200<br />
      * 支持最小值为：1
      */

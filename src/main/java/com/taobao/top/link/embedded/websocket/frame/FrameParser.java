@@ -54,6 +54,7 @@ public abstract class FrameParser {
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
                 State.class);
+
         static {
             stateMap.put(HEADER, EnumSet.of(State.FRAME));
             stateMap.put(FRAME, EnumSet.of(State.DONE));
@@ -106,8 +107,8 @@ public abstract class FrameParser {
      *
      * @param downloadBuffer the download buffer
      * @return the frame
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     public Frame parse(ByteBuffer downloadBuffer) throws WebSocketException {
         ByteBuffer buffer = null;

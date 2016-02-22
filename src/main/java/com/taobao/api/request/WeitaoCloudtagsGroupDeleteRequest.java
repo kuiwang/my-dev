@@ -14,8 +14,8 @@ import com.taobao.api.response.WeitaoCloudtagsGroupDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class WeitaoCloudtagsGroupDeleteRequest implements
-        TaobaoRequest<WeitaoCloudtagsGroupDeleteResponse> {
+public class WeitaoCloudtagsGroupDeleteRequest
+        implements TaobaoRequest<WeitaoCloudtagsGroupDeleteResponse> {
 
     /**
      * 需要删除的用户分组ID，必须为当前操作用户的粉丝分组ID<br />

@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaRptDemographiceffectGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class SimbaRptDemographiceffectGetRequest implements
-        TaobaoRequest<SimbaRptDemographiceffectGetResponse> {
+public class SimbaRptDemographiceffectGetRequest
+        implements TaobaoRequest<SimbaRptDemographiceffectGetResponse> {
 
     /**
      * 推广计划id

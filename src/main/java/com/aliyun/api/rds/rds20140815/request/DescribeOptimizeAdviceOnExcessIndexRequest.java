@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:45
  */
-public class DescribeOptimizeAdviceOnExcessIndexRequest implements
-        AliyunRequest<DescribeOptimizeAdviceOnExcessIndexResponse> {
+public class DescribeOptimizeAdviceOnExcessIndexRequest
+        implements AliyunRequest<DescribeOptimizeAdviceOnExcessIndexResponse> {
 
     /**
      * 实例名

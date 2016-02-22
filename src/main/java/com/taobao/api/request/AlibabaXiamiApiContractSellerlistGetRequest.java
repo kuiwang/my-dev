@@ -14,8 +14,8 @@ import com.taobao.api.response.AlibabaXiamiApiContractSellerlistGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:51
  */
-public class AlibabaXiamiApiContractSellerlistGetRequest implements
-        TaobaoRequest<AlibabaXiamiApiContractSellerlistGetResponse> {
+public class AlibabaXiamiApiContractSellerlistGetRequest
+        implements TaobaoRequest<AlibabaXiamiApiContractSellerlistGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

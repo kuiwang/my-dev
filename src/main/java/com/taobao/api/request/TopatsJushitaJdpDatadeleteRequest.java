@@ -15,8 +15,8 @@ import com.taobao.api.response.TopatsJushitaJdpDatadeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:32
  */
-public class TopatsJushitaJdpDatadeleteRequest implements
-        TaobaoRequest<TopatsJushitaJdpDatadeleteResponse> {
+public class TopatsJushitaJdpDatadeleteRequest
+        implements TaobaoRequest<TopatsJushitaJdpDatadeleteResponse> {
 
     /**
      * 删除数据时间段的结束修改时间，格式为：yyyy-MM-dd

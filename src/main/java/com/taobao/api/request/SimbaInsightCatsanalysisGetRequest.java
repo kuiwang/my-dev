@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightCatsanalysisGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaInsightCatsanalysisGetRequest implements
-        TaobaoRequest<SimbaInsightCatsanalysisGetResponse> {
+public class SimbaInsightCatsanalysisGetRequest
+        implements TaobaoRequest<SimbaInsightCatsanalysisGetResponse> {
 
     /**
      * 查询类目id数组，最大长度200

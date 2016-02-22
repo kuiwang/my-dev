@@ -14,8 +14,8 @@ import com.taobao.api.response.JdsTradesStatisticsDiffResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:32
  */
-public class JdsTradesStatisticsDiffRequest implements
-        TaobaoRequest<JdsTradesStatisticsDiffResponse> {
+public class JdsTradesStatisticsDiffRequest
+        implements TaobaoRequest<JdsTradesStatisticsDiffResponse> {
 
     /**
      * 查询的日期，格式如YYYYMMDD的日期对应的数字

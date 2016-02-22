@@ -14,8 +14,8 @@ import com.taobao.api.response.JipiaoAgentOrderProductSnapshotResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class JipiaoAgentOrderProductSnapshotRequest implements
-        TaobaoRequest<JipiaoAgentOrderProductSnapshotResponse> {
+public class JipiaoAgentOrderProductSnapshotRequest
+        implements TaobaoRequest<JipiaoAgentOrderProductSnapshotResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

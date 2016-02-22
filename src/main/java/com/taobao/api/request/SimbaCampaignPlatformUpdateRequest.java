@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaCampaignPlatformUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaCampaignPlatformUpdateRequest implements
-        TaobaoRequest<SimbaCampaignPlatformUpdateResponse> {
+public class SimbaCampaignPlatformUpdateRequest
+        implements TaobaoRequest<SimbaCampaignPlatformUpdateResponse> {
 
     /**
      * 推广计划Id

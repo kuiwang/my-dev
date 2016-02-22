@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemCombinationDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemCombinationDeleteRequest implements
-        TaobaoRequest<WlbItemCombinationDeleteResponse> {
+public class WlbItemCombinationDeleteRequest
+        implements TaobaoRequest<WlbItemCombinationDeleteResponse> {
 
     /**
      * 组合商品的id列表

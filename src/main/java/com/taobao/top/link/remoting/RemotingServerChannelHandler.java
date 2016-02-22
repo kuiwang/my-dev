@@ -53,7 +53,7 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
     private void internalOnMessage(ChannelContext context, MethodCallContext callContext,
             RemotingTcpProtocolHandle protocol, short operation,
             HashMap<String, Object> transportHeaders, Serializer serializer)
-            throws ChannelException {
+                    throws ChannelException {
         // get method return
         MethodCall methodCall = null;
         MethodReturn methodReturn = null;
@@ -84,8 +84,8 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
 
     @SuppressWarnings("unchecked")
     @Override
-    public final void onMessage(final ChannelContext context) throws ChannelException,
-            NotSupportedException {
+    public final void onMessage(final ChannelContext context)
+            throws ChannelException, NotSupportedException {
         Object msg = context.getMessage();
 
         if ((msg instanceof ByteBuffer) || (msg instanceof RemotingTcpProtocolHandle)) {
@@ -101,10 +101,10 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         }
     }
 
-    private void onMessage(final ChannelContext context, Object msg) throws ChannelException,
-            NotSupportedException {
-        final RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer ? new RemotingTcpProtocolHandle(
-                (ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
+    private void onMessage(final ChannelContext context, Object msg)
+            throws ChannelException, NotSupportedException {
+        final RemotingTcpProtocolHandle protocol = msg instanceof ByteBuffer
+                ? new RemotingTcpProtocolHandle((ByteBuffer) msg) : (RemotingTcpProtocolHandle) msg;
         protocol.ReadPreamble();
         protocol.ReadMajorVersion();
         protocol.ReadMinorVersion();
@@ -113,8 +113,8 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
         protocol.ReadContentLength();
         final HashMap<String, Object> transportHeaders = protocol.ReadTransportHeaders();
         final MethodCallContext callContext = this.createCallContext(context, transportHeaders);
-        final Serializer serializer = this.serializationFactory.get(transportHeaders
-                .get(RemotingTransportHeader.Format));
+        final Serializer serializer = this.serializationFactory
+                .get(transportHeaders.get(RemotingTransportHeader.Format));
         Object flag = transportHeaders.get(RemotingTransportHeader.Flag);
         transportHeaders.clear();
         transportHeaders.put(RemotingTransportHeader.Flag, flag);
@@ -141,8 +141,7 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
                 }
             });
         } catch (RejectedExecutionException exception) {
-            String statusPhrase = String.format(
-                    "server threadpool full, threadpool maxsize is: %s",
+            String statusPhrase = String.format("server threadpool full, threadpool maxsize is: %s",
                     ((ThreadPoolExecutor) this.threadPool).getMaximumPoolSize());
             this.logger.fatal(statusPhrase);
             transportHeaders.put(TcpTransportHeader.StatusCode, 500);
@@ -154,8 +153,8 @@ public abstract class RemotingServerChannelHandler extends SimpleChannelHandler 
     public abstract MethodReturn onMethodCall(MethodCall methodCall, MethodCallContext callContext)
             throws Throwable;
 
-    private void reply(ChannelContext context, HashMap<String, Object> transportHeaders, byte[] data)
-            throws ChannelException {
+    private void reply(ChannelContext context, HashMap<String, Object> transportHeaders,
+            byte[] data) throws ChannelException {
         final ByteBuffer responseBuffer = BufferManager.getBuffer();
         RemotingTcpProtocolHandle handle = new RemotingTcpProtocolHandle(responseBuffer);
         handle.WritePreamble();

@@ -14,7 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:34
  */
-public class AuthorizeSecurityGroupRequest implements AliyunRequest<AuthorizeSecurityGroupResponse> {
+public class AuthorizeSecurityGroupRequest
+        implements AliyunRequest<AuthorizeSecurityGroupResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

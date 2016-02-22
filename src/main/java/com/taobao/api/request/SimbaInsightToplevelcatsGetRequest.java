@@ -13,8 +13,8 @@ import com.taobao.api.response.SimbaInsightToplevelcatsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:19
  */
-public class SimbaInsightToplevelcatsGetRequest implements
-        TaobaoRequest<SimbaInsightToplevelcatsGetResponse> {
+public class SimbaInsightToplevelcatsGetRequest
+        implements TaobaoRequest<SimbaInsightToplevelcatsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -13,8 +13,8 @@ public class BufferManager {
     private static int maxBufferSize = 1024 * 4;
 
     private static ByteBuffer allocate() {
-        return enableDirect ? ByteBuffer.allocateDirect(maxBufferSize) : ByteBuffer
-                .allocate(maxBufferSize);
+        return enableDirect ? ByteBuffer.allocateDirect(maxBufferSize)
+                : ByteBuffer.allocate(maxBufferSize);
     }
 
     public static void enableDirectBuffer(boolean enable) {

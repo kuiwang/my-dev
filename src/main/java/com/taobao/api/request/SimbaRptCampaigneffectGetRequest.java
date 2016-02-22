@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaRptCampaigneffectGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class SimbaRptCampaigneffectGetRequest implements
-        TaobaoRequest<SimbaRptCampaigneffectGetResponse> {
+public class SimbaRptCampaigneffectGetRequest
+        implements TaobaoRequest<SimbaRptCampaigneffectGetResponse> {
 
     /**
      * 推广计划id

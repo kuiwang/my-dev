@@ -42,7 +42,8 @@ public class EmbeddedWebSocketClientChannel implements ClientChannel {
     public void close(String reason) {
         this.stopHeartbeat();
         try {
-            CloseFrame frame = new CloseFrame(1000, reason != null ? reason : Text.WS_UNKNOWN_ERROR);
+            CloseFrame frame = new CloseFrame(1000,
+                    reason != null ? reason : Text.WS_UNKNOWN_ERROR);
             frame.mask();
             this.socket.send(frame);
         } catch (WebSocketException e) {

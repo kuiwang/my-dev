@@ -16,8 +16,8 @@ import com.taobao.top.link.BufferManager;
 import com.taobao.top.link.LoggerFactory;
 import com.taobao.top.link.logging.LogUtil;
 
-public class SpringServerBean implements InitializingBean, BeanFactoryAware,
-        ApplicationContextAware {
+public class SpringServerBean
+        implements InitializingBean, BeanFactoryAware, ApplicationContextAware {
 
     private ListableBeanFactory beanFactory;
 
@@ -41,17 +41,14 @@ public class SpringServerBean implements InitializingBean, BeanFactoryAware,
 
         LoggerFactory loggerFactory = LogUtil.getLoggerFactory(this);
 
-        RemotingConfiguration
-                .configure()
-                .loggerFactory(loggerFactory)
+        RemotingConfiguration.configure().loggerFactory(loggerFactory)
                 .SerializationFactory(SerializerUtil.getSerializationFactory(this))
                 .defaultServerChannelHandler(
                         new SpringRemotingServerChannelHandler(loggerFactory, this.handshaker))
                 .websocket(this.port)
                 .addProcessor(this.path, new SpringMethodCallProcessor(this.beanFactory))
-                .businessThreadPool(
-                        new ThreadPoolExecutor(this.minThreadCount, this.maxThreadCount, 300,
-                                TimeUnit.SECONDS, new SynchronousQueue<Runnable>()));
+                .businessThreadPool(new ThreadPoolExecutor(this.minThreadCount, this.maxThreadCount,
+                        300, TimeUnit.SECONDS, new SynchronousQueue<Runnable>()));
     }
 
     @Override

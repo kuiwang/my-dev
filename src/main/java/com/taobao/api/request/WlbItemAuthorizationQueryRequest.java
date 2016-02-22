@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemAuthorizationQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemAuthorizationQueryRequest implements
-        TaobaoRequest<WlbItemAuthorizationQueryResponse> {
+public class WlbItemAuthorizationQueryRequest
+        implements TaobaoRequest<WlbItemAuthorizationQueryResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

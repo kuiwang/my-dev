@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallPromotagTagRemovetagResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:25
  */
-public class TmallPromotagTagRemovetagRequest implements
-        TaobaoRequest<TmallPromotagTagRemovetagResponse> {
+public class TmallPromotagTagRemovetagRequest
+        implements TaobaoRequest<TmallPromotagTagRemovetagResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

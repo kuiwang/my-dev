@@ -14,8 +14,8 @@ import com.taobao.api.response.TraderateImprImprwordsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TraderateImprImprwordsGetRequest implements
-        TaobaoRequest<TraderateImprImprwordsGetResponse> {
+public class TraderateImprImprwordsGetRequest
+        implements TaobaoRequest<TraderateImprImprwordsGetResponse> {
 
     /**
      * 淘宝叶子类目id

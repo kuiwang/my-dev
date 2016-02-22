@@ -14,7 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:36
  */
-public class DescribeEipMonitorDataRequest implements AliyunRequest<DescribeEipMonitorDataResponse> {
+public class DescribeEipMonitorDataRequest
+        implements AliyunRequest<DescribeEipMonitorDataResponse> {
 
     /**
      * Eip 的申请Id

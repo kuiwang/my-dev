@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:46
  */
-public class ModifyDBInstanceMaintainTimeRequest implements
-        AliyunRequest<ModifyDBInstanceMaintainTimeResponse> {
+public class ModifyDBInstanceMaintainTimeRequest
+        implements AliyunRequest<ModifyDBInstanceMaintainTimeResponse> {
 
     /**
      * 实例名

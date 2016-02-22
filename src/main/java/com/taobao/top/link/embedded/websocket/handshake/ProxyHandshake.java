@@ -90,6 +90,7 @@ public class ProxyHandshake {
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
                 State.class);
+
         static {
             stateMap.put(INIT, EnumSet.of(State.METHOD));
             stateMap.put(METHOD, EnumSet.of(State.HEADER));

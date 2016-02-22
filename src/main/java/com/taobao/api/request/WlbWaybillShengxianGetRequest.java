@@ -14,7 +14,8 @@ import com.taobao.api.response.WlbWaybillShengxianGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbWaybillShengxianGetRequest implements TaobaoRequest<WlbWaybillShengxianGetResponse> {
+public class WlbWaybillShengxianGetRequest
+        implements TaobaoRequest<WlbWaybillShengxianGetResponse> {
 
     /**
      * 物流服务方代码，生鲜配送：YXSR<br />

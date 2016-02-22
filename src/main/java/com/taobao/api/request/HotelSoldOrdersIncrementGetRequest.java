@@ -15,8 +15,8 @@ import com.taobao.api.response.HotelSoldOrdersIncrementGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:25
  */
-public class HotelSoldOrdersIncrementGetRequest implements
-        TaobaoRequest<HotelSoldOrdersIncrementGetResponse> {
+public class HotelSoldOrdersIncrementGetRequest
+        implements TaobaoRequest<HotelSoldOrdersIncrementGetResponse> {
 
     /**
      * 查询修改结束时间，必须大于修改开始时间（修改时间跨度不能大于1天）。格式：yyyy-MM-dd HH:mm:ss。

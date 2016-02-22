@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightCatsforecastGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaInsightCatsforecastGetRequest implements
-        TaobaoRequest<SimbaInsightCatsforecastGetResponse> {
+public class SimbaInsightCatsforecastGetRequest
+        implements TaobaoRequest<SimbaInsightCatsforecastGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

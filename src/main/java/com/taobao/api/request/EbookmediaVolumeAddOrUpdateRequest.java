@@ -14,8 +14,8 @@ import com.taobao.api.response.EbookmediaVolumeAddOrUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class EbookmediaVolumeAddOrUpdateRequest implements
-        TaobaoRequest<EbookmediaVolumeAddOrUpdateResponse> {
+public class EbookmediaVolumeAddOrUpdateRequest
+        implements TaobaoRequest<EbookmediaVolumeAddOrUpdateResponse> {
 
     /**
      * 商品数字ID

@@ -14,8 +14,8 @@ import com.taobao.api.response.TripJipiaoAgentItinerarySendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class TripJipiaoAgentItinerarySendRequest implements
-        TaobaoRequest<TripJipiaoAgentItinerarySendResponse> {
+public class TripJipiaoAgentItinerarySendRequest
+        implements TaobaoRequest<TripJipiaoAgentItinerarySendResponse> {
 
     /**
      * 物流公司代码CODE，如不清楚，请找运营提供<br />

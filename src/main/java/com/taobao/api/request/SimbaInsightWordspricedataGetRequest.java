@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightWordspricedataGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:19
  */
-public class SimbaInsightWordspricedataGetRequest implements
-        TaobaoRequest<SimbaInsightWordspricedataGetResponse> {
+public class SimbaInsightWordspricedataGetRequest
+        implements TaobaoRequest<SimbaInsightWordspricedataGetResponse> {
 
     /**
      * 关键词

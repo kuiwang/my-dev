@@ -26,8 +26,8 @@ public class InventoryOccupyAdjustRequest implements TaobaoRequest<InventoryOccu
 
     /**
      * 商品初始库存信息： [{ "TBOrderCode":"淘宝交易号","TBSubOrderCode ":"淘宝子交易单号",
-     * "originalStoreCode"
-     * :"交易下单的仓库编码","storeCode":"要切换占用到的商家仓库编码"," scItemId "
+     * "originalStoreCode" :"交易下单的仓库编码","storeCode":"要切换占用到的商家仓库编码",
+     * " scItemId "
      * :"商品后端ID","scItemCode":"商品商家编码","inventoryType":"仓储类型","quantity":
      * "新仓库的占用数量，如果不传，则取用原先的占用数"}]
      */

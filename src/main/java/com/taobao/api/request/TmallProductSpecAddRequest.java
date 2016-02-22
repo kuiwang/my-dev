@@ -17,7 +17,8 @@ import com.taobao.api.response.TmallProductSpecAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallProductSpecAddRequest implements TaobaoUploadRequest<TmallProductSpecAddResponse> {
+public class TmallProductSpecAddRequest
+        implements TaobaoUploadRequest<TmallProductSpecAddResponse> {
 
     /**
      * 产品二维码

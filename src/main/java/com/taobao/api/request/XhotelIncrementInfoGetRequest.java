@@ -15,7 +15,8 @@ import com.taobao.api.response.XhotelIncrementInfoGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:25
  */
-public class XhotelIncrementInfoGetRequest implements TaobaoRequest<XhotelIncrementInfoGetResponse> {
+public class XhotelIncrementInfoGetRequest
+        implements TaobaoRequest<XhotelIncrementInfoGetResponse> {
 
     /**
      * 变化类别，1为酒店价格，0为酒店

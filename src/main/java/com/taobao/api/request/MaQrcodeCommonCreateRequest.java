@@ -17,7 +17,8 @@ import com.taobao.api.response.MaQrcodeCommonCreateResponse;
 public class MaQrcodeCommonCreateRequest implements TaobaoRequest<MaQrcodeCommonCreateResponse> {
 
     /**
-     * 二维码需要布点的位置，方便用户在码平台上可以区分看到不同布点的扫码数据情况；列表值，用半角','号分割，单个渠道名不能超过16字符。<br />
+     * 二维码需要布点的位置，方便用户在码平台上可以区分看到不同布点的扫码数据情况；列表值，用半角','号分割，单个渠道名不能超过16字符。
+     * <br />
      * 支持最大长度为：160<br />
      * 支持的最大列表长度为：160
      */

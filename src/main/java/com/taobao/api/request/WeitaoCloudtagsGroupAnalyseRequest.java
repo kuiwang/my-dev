@@ -14,8 +14,8 @@ import com.taobao.api.response.WeitaoCloudtagsGroupAnalyseResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class WeitaoCloudtagsGroupAnalyseRequest implements
-        TaobaoRequest<WeitaoCloudtagsGroupAnalyseResponse> {
+public class WeitaoCloudtagsGroupAnalyseRequest
+        implements TaobaoRequest<WeitaoCloudtagsGroupAnalyseResponse> {
 
     /**
      * 透视的sql

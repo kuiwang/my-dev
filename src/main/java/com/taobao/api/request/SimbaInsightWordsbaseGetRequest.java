@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightWordsbaseGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:19
  */
-public class SimbaInsightWordsbaseGetRequest implements
-        TaobaoRequest<SimbaInsightWordsbaseGetResponse> {
+public class SimbaInsightWordsbaseGetRequest
+        implements TaobaoRequest<SimbaInsightWordsbaseGetResponse> {
 
     /**
      * 结果过滤。PV：返回展现量；CLICK：返回点击量；AVGCPC：返回平均出价；COMPETITION ：返回竞争宝贝数;CTR

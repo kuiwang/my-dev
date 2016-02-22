@@ -74,10 +74,10 @@ public abstract class NettyServerChannel extends ServerChannel {
             public ChannelPipeline getPipeline() throws Exception {
                 ChannelPipeline pipeline = Channels.pipeline();
                 if (maxIdleTimeSeconds > 0) {
-                    pipeline.addLast("idleStateHandler", new IdleStateHandler(timer, 0, 0,
-                            maxIdleTimeSeconds));
-                    pipeline.addLast("maxIdleHandler", new MaxIdleTimeHandler(loggerFactory,
-                            maxIdleTimeSeconds));
+                    pipeline.addLast("idleStateHandler",
+                            new IdleStateHandler(timer, 0, 0, maxIdleTimeSeconds));
+                    pipeline.addLast("maxIdleHandler",
+                            new MaxIdleTimeHandler(loggerFactory, maxIdleTimeSeconds));
                 }
                 if (sslContext != null) {
                     SSLEngine sslEngine = sslContext.createSSLEngine();

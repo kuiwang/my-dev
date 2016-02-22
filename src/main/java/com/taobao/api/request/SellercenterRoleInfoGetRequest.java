@@ -14,8 +14,8 @@ import com.taobao.api.response.SellercenterRoleInfoGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class SellercenterRoleInfoGetRequest implements
-        TaobaoRequest<SellercenterRoleInfoGetResponse> {
+public class SellercenterRoleInfoGetRequest
+        implements TaobaoRequest<SellercenterRoleInfoGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

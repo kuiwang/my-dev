@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:41
  */
-public class DescribeScalingInstancesRequest implements
-        AliyunRequest<DescribeScalingInstancesResponse> {
+public class DescribeScalingInstancesRequest
+        implements AliyunRequest<DescribeScalingInstancesResponse> {
 
     /**
      * 实例由哪个系统创建，取值：AutoCreated, Attached

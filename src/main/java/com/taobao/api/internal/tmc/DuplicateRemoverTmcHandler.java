@@ -69,8 +69,8 @@ public class DuplicateRemoverTmcHandler extends TmcHandler {
 
     private static final Log log = LogFactory.getLog(DuplicateRemoverTmcHandler.class);
 
-    private static final Log statlog = LogFactory.getLog(DuplicateRemoverTmcHandler.class
-            .getSimpleName());
+    private static final Log statlog = LogFactory
+            .getLog(DuplicateRemoverTmcHandler.class.getSimpleName());
 
     private static final long TIMER_DELAY = 10L; // 启动延时
 

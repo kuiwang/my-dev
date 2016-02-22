@@ -14,7 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:39
  */
-public class ModifyVSwitchAttributeRequest implements AliyunRequest<ModifyVSwitchAttributeResponse> {
+public class ModifyVSwitchAttributeRequest
+        implements AliyunRequest<ModifyVSwitchAttributeResponse> {
 
     /**
      * 修改后的虚拟交换机描述

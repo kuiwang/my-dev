@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoCooperationProductcatAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoCooperationProductcatAddRequest implements
-        TaobaoRequest<FenxiaoCooperationProductcatAddResponse> {
+public class FenxiaoCooperationProductcatAddRequest
+        implements TaobaoRequest<FenxiaoCooperationProductcatAddResponse> {
 
     /**
      * 合作关系id

@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaAdgroupOnlineitemsvonGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:15
  */
-public class SimbaAdgroupOnlineitemsvonGetRequest implements
-        TaobaoRequest<SimbaAdgroupOnlineitemsvonGetResponse> {
+public class SimbaAdgroupOnlineitemsvonGetRequest
+        implements TaobaoRequest<SimbaAdgroupOnlineitemsvonGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

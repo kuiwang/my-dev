@@ -106,7 +106,8 @@ public class HotelAddRequest implements TaobaoUploadRequest<HotelAddResponse> {
     private FileItem pic;
 
     /**
-     * 省份编码。参见：http://kezhan.trip.taobao.com/area.html，domestic为false时默认为0<br />
+     * 省份编码。参见：http://kezhan.trip.taobao.com/area.html，domestic为false时默认为0
+     * <br />
      * 支持最大值为：999999<br />
      * 支持最小值为：0<br />
      * 支持的最大列表长度为：6

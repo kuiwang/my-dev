@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionmiscActivityRangeAllRemoveResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionmiscActivityRangeAllRemoveRequest implements
-        TaobaoRequest<PromotionmiscActivityRangeAllRemoveResponse> {
+public class PromotionmiscActivityRangeAllRemoveRequest
+        implements TaobaoRequest<PromotionmiscActivityRangeAllRemoveResponse> {
 
     /**
      * 活动id。

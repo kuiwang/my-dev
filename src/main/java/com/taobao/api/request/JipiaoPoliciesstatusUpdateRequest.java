@@ -14,8 +14,8 @@ import com.taobao.api.response.JipiaoPoliciesstatusUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class JipiaoPoliciesstatusUpdateRequest implements
-        TaobaoRequest<JipiaoPoliciesstatusUpdateResponse> {
+public class JipiaoPoliciesstatusUpdateRequest
+        implements TaobaoRequest<JipiaoPoliciesstatusUpdateResponse> {
 
     /**
      * 航空公司二字码<br />

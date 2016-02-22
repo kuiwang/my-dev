@@ -189,7 +189,8 @@ public class AliyunLogger {
     /**
      * 发生特别错误时记录完整错误现场
      */
-    public static void logErrorScene(Map<String, Object> rt, AliyunResponse tRsp, String appSecret) {
+    public static void logErrorScene(Map<String, Object> rt, AliyunResponse tRsp,
+            String appSecret) {
         if (!needEnableLogger) {
             return;
         }

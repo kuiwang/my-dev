@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaNonsearchAdgroupplacesUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaNonsearchAdgroupplacesUpdateRequest implements
-        TaobaoRequest<SimbaNonsearchAdgroupplacesUpdateResponse> {
+public class SimbaNonsearchAdgroupplacesUpdateRequest
+        implements TaobaoRequest<SimbaNonsearchAdgroupplacesUpdateResponse> {
 
     /**
      * 推广组id，投放位置id，出价，是否默认出价 json数组字符串，数组个数最多200个。是否默认出价不能为空,

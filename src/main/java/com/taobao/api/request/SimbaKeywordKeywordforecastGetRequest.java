@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaKeywordKeywordforecastGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:19
  */
-public class SimbaKeywordKeywordforecastGetRequest implements
-        TaobaoRequest<SimbaKeywordKeywordforecastGetResponse> {
+public class SimbaKeywordKeywordforecastGetRequest
+        implements TaobaoRequest<SimbaKeywordKeywordforecastGetResponse> {
 
     /**
      * 词的出价,范围在5-9999之间,单位分

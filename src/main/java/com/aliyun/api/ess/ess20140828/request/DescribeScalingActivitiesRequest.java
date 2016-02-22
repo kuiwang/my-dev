@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:40
  */
-public class DescribeScalingActivitiesRequest implements
-        AliyunRequest<DescribeScalingActivitiesResponse> {
+public class DescribeScalingActivitiesRequest
+        implements AliyunRequest<DescribeScalingActivitiesResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

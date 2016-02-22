@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:44
  */
-public class DescribeDBInstanceAttributeRequest implements
-        AliyunRequest<DescribeDBInstanceAttributeResponse> {
+public class DescribeDBInstanceAttributeRequest
+        implements AliyunRequest<DescribeDBInstanceAttributeResponse> {
 
     /**
      * 实例名，可以一次输入多个，以英文半角“,”分隔

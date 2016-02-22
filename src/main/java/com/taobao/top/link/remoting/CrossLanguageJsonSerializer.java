@@ -16,8 +16,8 @@ public class CrossLanguageJsonSerializer implements Serializer {
     private static final SerializerFeature[] features = {
             // SerializerFeature.WriteMapNullValue,
             SerializerFeature.WriteNullNumberAsZero, SerializerFeature.WriteNullBooleanAsFalse,
-    // wrapper.Args = methodCall.Args; maybe raise it
-    // SerializerFeature.DisableCircularReferenceDetect
+            // wrapper.Args = methodCall.Args; maybe raise it
+            // SerializerFeature.DisableCircularReferenceDetect
     };
 
     @Override
@@ -49,9 +49,8 @@ public class CrossLanguageJsonSerializer implements Serializer {
                 // so HashMap.class did not work for json deserialize,
                 // and HashMap<Object, Object>.class was wrong
                 if (methodCall.MethodSignature[i].equals(HashMap.class)) {
-                    methodCall.Args[i] = JSON
-                            .parseObject(args.getJSONObject(i).toJSONString(),
-                                    new TypeReference<HashMap<Object, Object>>() {});
+                    methodCall.Args[i] = JSON.parseObject(args.getJSONObject(i).toJSONString(),
+                            new TypeReference<HashMap<Object, Object>>() {});
                 } else {
                     methodCall.Args[i] = args.getObject(i, methodCall.MethodSignature[i]);
                 }
@@ -65,8 +64,8 @@ public class CrossLanguageJsonSerializer implements Serializer {
             throws FormatterException {
         JSONObject obj = (JSONObject) JSON.parse(input);
         MethodReturn methodReturn = new MethodReturn();
-        methodReturn.ReturnValue = obj.get("ReturnValue") != null ? obj.getObject("ReturnValue",
-                returnType) : null;
+        methodReturn.ReturnValue = obj.get("ReturnValue") != null
+                ? obj.getObject("ReturnValue", returnType) : null;
         // TODO:add error stack support
         String exception = obj.getString("Exception");
         if ((exception != null) && !exception.equals("")) {
@@ -133,8 +132,8 @@ public class CrossLanguageJsonSerializer implements Serializer {
         }
         if (typeName.charAt(0) == '[') {
             // java array: [Ljava.lang.String
-            typeName = String.format("[L%s;", this.parseType(this.getComponentTypeName(typeName))
-                    .getName());
+            typeName = String.format("[L%s;",
+                    this.parseType(this.getComponentTypeName(typeName)).getName());
         }
         return Class.forName(typeName, false, this.getClass().getClassLoader());
     }
@@ -186,8 +185,7 @@ public class CrossLanguageJsonSerializer implements Serializer {
             return "m";
         }
         if (type.isArray()) {
-            return String
-                    .format("[%s", this.parseTypeName(type.getComponentType()));
+            return String.format("[%s", this.parseTypeName(type.getComponentType()));
         }
         return type.getName();
     }
@@ -196,8 +194,8 @@ public class CrossLanguageJsonSerializer implements Serializer {
     public byte[] serializeMethodCall(MethodCall methodCall) throws FormatterException {
         MethodCallWrapper wrapper = new MethodCallWrapper(methodCall);
         wrapper.Args = methodCall.Args;
-        wrapper.MethodSignature = new String[methodCall.MethodSignature != null ? methodCall.MethodSignature.length
-                : 0];
+        wrapper.MethodSignature = new String[methodCall.MethodSignature != null
+                ? methodCall.MethodSignature.length : 0];
         for (int i = 0; i < methodCall.MethodSignature.length; i++) {
             wrapper.MethodSignature[i] = this.parseTypeName(methodCall.MethodSignature[i]);
         }

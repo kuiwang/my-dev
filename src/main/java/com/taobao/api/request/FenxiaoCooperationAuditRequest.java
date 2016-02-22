@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoCooperationAuditResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoCooperationAuditRequest implements
-        TaobaoRequest<FenxiaoCooperationAuditResponse> {
+public class FenxiaoCooperationAuditRequest
+        implements TaobaoRequest<FenxiaoCooperationAuditResponse> {
 
     /**
      * 1:审批通过，审批通过后要加入授权产品线列表； 2:审批拒绝

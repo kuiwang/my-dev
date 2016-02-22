@@ -41,8 +41,8 @@ public class ClientChannelSharedSelector implements ClientChannelSelector {
         if ((channels.get(url) == null) || !channels.get(url).isConnected()) {
             synchronized (this.lockObject) {
                 if ((channels.get(url) == null) || !channels.get(url).isConnected()) {
-                    channels.put(url, this.wrapChannel(this.connect(this.loggerFactory, uri,
-                            CONNECT_TIMEOUT)));
+                    channels.put(url, this
+                            .wrapChannel(this.connect(this.loggerFactory, uri, CONNECT_TIMEOUT)));
                 }
             }
         }
@@ -60,8 +60,7 @@ public class ClientChannelSharedSelector implements ClientChannelSelector {
 
     private ClientChannel wrapChannel(final ClientChannel channel) {
         if (this.heartbeatInterval > 0) {
-            channel.setHeartbeatTimer(new ResetableTimer(
-                    this.heartbeatInterval));
+            channel.setHeartbeatTimer(new ResetableTimer(this.heartbeatInterval));
         }
         return channel;
     }

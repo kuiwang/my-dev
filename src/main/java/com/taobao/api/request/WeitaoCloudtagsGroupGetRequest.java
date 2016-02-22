@@ -13,8 +13,8 @@ import com.taobao.api.response.WeitaoCloudtagsGroupGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class WeitaoCloudtagsGroupGetRequest implements
-        TaobaoRequest<WeitaoCloudtagsGroupGetResponse> {
+public class WeitaoCloudtagsGroupGetRequest
+        implements TaobaoRequest<WeitaoCloudtagsGroupGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

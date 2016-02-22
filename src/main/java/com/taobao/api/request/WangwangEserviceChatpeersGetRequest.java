@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangEserviceChatpeersGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceChatpeersGetRequest implements
-        TaobaoRequest<WangwangEserviceChatpeersGetResponse> {
+public class WangwangEserviceChatpeersGetRequest
+        implements TaobaoRequest<WangwangEserviceChatpeersGetResponse> {
 
     /**
      * 字符集

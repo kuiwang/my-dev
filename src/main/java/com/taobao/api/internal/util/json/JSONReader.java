@@ -31,6 +31,7 @@ public abstract class JSONReader {
     public static final int NEXT = 2;
 
     private static final Object OBJECT_END = new Object();
+
     static {
         escapes.put(Character.valueOf('"'), Character.valueOf('"'));
         escapes.put(Character.valueOf('\\'), Character.valueOf('\\'));

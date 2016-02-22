@@ -13,8 +13,8 @@ import com.taobao.api.response.WlbItemConsignmentPageGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemConsignmentPageGetRequest implements
-        TaobaoRequest<WlbItemConsignmentPageGetResponse> {
+public class WlbItemConsignmentPageGetRequest
+        implements TaobaoRequest<WlbItemConsignmentPageGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

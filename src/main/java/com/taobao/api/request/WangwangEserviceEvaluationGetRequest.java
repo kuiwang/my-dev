@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceEvaluationGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceEvaluationGetRequest implements
-        TaobaoRequest<WangwangEserviceEvaluationGetResponse> {
+public class WangwangEserviceEvaluationGetRequest
+        implements TaobaoRequest<WangwangEserviceEvaluationGetResponse> {
 
     /**
      * 查询结束日期

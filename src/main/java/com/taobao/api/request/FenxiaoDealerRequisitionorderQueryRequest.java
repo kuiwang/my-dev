@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDealerRequisitionorderQueryRequest implements
-        TaobaoRequest<FenxiaoDealerRequisitionorderQueryResponse> {
+public class FenxiaoDealerRequisitionorderQueryRequest
+        implements TaobaoRequest<FenxiaoDealerRequisitionorderQueryResponse> {
 
     /**
      * 经销采购单编号。 多个编号用英文符号的逗号隔开。最多支持50个经销采购单编号的查询。

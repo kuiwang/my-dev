@@ -7,8 +7,8 @@ import org.jboss.netty.channel.Channel;
 
 import com.taobao.top.link.channel.ServerChannelSender;
 
-public class WebSocketServerChannelSender extends WebSocketChannelSender implements
-        ServerChannelSender {
+public class WebSocketServerChannelSender extends WebSocketChannelSender
+        implements ServerChannelSender {
 
     private Map<Object, Object> context;
 

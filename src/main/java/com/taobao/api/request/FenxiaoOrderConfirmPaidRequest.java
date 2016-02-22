@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoOrderConfirmPaidResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoOrderConfirmPaidRequest implements
-        TaobaoRequest<FenxiaoOrderConfirmPaidResponse> {
+public class FenxiaoOrderConfirmPaidRequest
+        implements TaobaoRequest<FenxiaoOrderConfirmPaidResponse> {
 
     /**
      * 确认支付信息（字数小于100）

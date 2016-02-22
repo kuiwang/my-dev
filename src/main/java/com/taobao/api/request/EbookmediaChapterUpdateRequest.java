@@ -14,8 +14,8 @@ import com.taobao.api.response.EbookmediaChapterUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class EbookmediaChapterUpdateRequest implements
-        TaobaoRequest<EbookmediaChapterUpdateResponse> {
+public class EbookmediaChapterUpdateRequest
+        implements TaobaoRequest<EbookmediaChapterUpdateResponse> {
 
     /**
      * 电子书商品ID

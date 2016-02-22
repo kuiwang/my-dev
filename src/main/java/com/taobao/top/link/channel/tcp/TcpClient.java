@@ -25,8 +25,8 @@ public class TcpClient extends NettyClient {
 
         TcpClientUpstreamHandler tcpHandler = new TcpClientUpstreamHandler(logger, clientChannel);
         // connect
-        prepareAndConnect(logger, uri, pipeline, tcpHandler, uri.getScheme()
-                .equalsIgnoreCase("ssl"), connectTimeoutMillis);
+        prepareAndConnect(logger, uri, pipeline, tcpHandler,
+                uri.getScheme().equalsIgnoreCase("ssl"), connectTimeoutMillis);
         return clientChannel;
     }
 }

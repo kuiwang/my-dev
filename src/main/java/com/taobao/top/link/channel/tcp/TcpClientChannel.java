@@ -12,7 +12,8 @@ import com.taobao.top.link.channel.ChannelHandler;
 import com.taobao.top.link.channel.ClientChannel;
 import com.taobao.top.link.channel.netty.NettyClientChannel;
 
-public class TcpClientChannel extends TcpChannelSender implements ClientChannel, NettyClientChannel {
+public class TcpClientChannel extends TcpChannelSender
+        implements ClientChannel, NettyClientChannel {
 
     private ChannelHandler channelHandler;
 

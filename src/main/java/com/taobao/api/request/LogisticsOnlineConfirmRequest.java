@@ -14,7 +14,8 @@ import com.taobao.api.response.LogisticsOnlineConfirmResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsOnlineConfirmRequest implements TaobaoRequest<LogisticsOnlineConfirmResponse> {
+public class LogisticsOnlineConfirmRequest
+        implements TaobaoRequest<LogisticsOnlineConfirmResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

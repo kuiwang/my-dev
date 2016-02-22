@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionmiscActivityRangeAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionmiscActivityRangeAddRequest implements
-        TaobaoRequest<PromotionmiscActivityRangeAddResponse> {
+public class PromotionmiscActivityRangeAddRequest
+        implements TaobaoRequest<PromotionmiscActivityRangeAddResponse> {
 
     /**
      * 活动id。<br />

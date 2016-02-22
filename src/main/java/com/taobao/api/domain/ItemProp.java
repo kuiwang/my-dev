@@ -56,9 +56,8 @@ public class ItemProp extends TaobaoObject {
 
     /**
      * 在is_enum_prop是true的前提下，是否是卖家可以自行输入的属性（注：如果is_enum_prop返回false，
-     * 该参数统一返回false
-     * ）。可选值:true(是),false(否)。<b>对于品牌和型号属性（包括子属性）：如果用户是C卖家，则可自定义属性
-     * ；如果是B卖家，则不可自定义属性，而必须要授权的属性。</b>
+     * 该参数统一返回false ）。可选值:true(是),false(否)。
+     * <b>对于品牌和型号属性（包括子属性）：如果用户是C卖家，则可自定义属性 ；如果是B卖家，则不可自定义属性，而必须要授权的属性。</b>
      */
     @ApiField("is_input_prop")
     private Boolean isInputProp;

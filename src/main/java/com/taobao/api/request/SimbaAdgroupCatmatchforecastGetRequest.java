@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaAdgroupCatmatchforecastGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:15
  */
-public class SimbaAdgroupCatmatchforecastGetRequest implements
-        TaobaoRequest<SimbaAdgroupCatmatchforecastGetResponse> {
+public class SimbaAdgroupCatmatchforecastGetRequest
+        implements TaobaoRequest<SimbaAdgroupCatmatchforecastGetResponse> {
 
     /**
      * 推广组ID

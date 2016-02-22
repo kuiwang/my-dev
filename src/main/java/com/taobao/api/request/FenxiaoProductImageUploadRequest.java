@@ -16,8 +16,8 @@ import com.taobao.api.response.FenxiaoProductImageUploadResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductImageUploadRequest implements
-        TaobaoUploadRequest<FenxiaoProductImageUploadResponse> {
+public class FenxiaoProductImageUploadRequest
+        implements TaobaoUploadRequest<FenxiaoProductImageUploadResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

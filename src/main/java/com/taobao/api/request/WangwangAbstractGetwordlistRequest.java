@@ -13,8 +13,8 @@ import com.taobao.api.response.WangwangAbstractGetwordlistResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class WangwangAbstractGetwordlistRequest implements
-        TaobaoRequest<WangwangAbstractGetwordlistResponse> {
+public class WangwangAbstractGetwordlistRequest
+        implements TaobaoRequest<WangwangAbstractGetwordlistResponse> {
 
     /**
      * 传入参数的字符集

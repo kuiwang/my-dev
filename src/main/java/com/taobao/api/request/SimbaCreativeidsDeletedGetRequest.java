@@ -15,8 +15,8 @@ import com.taobao.api.response.SimbaCreativeidsDeletedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:17
  */
-public class SimbaCreativeidsDeletedGetRequest implements
-        TaobaoRequest<SimbaCreativeidsDeletedGetResponse> {
+public class SimbaCreativeidsDeletedGetRequest
+        implements TaobaoRequest<SimbaCreativeidsDeletedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

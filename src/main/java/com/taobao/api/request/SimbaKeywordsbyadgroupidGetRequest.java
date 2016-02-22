@@ -13,8 +13,8 @@ import com.taobao.api.response.SimbaKeywordsbyadgroupidGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordsbyadgroupidGetRequest implements
-        TaobaoRequest<SimbaKeywordsbyadgroupidGetResponse> {
+public class SimbaKeywordsbyadgroupidGetRequest
+        implements TaobaoRequest<SimbaKeywordsbyadgroupidGetResponse> {
 
     /**
      * 推广组Id

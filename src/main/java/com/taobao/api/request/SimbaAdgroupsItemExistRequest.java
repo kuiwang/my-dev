@@ -14,7 +14,8 @@ import com.taobao.api.response.SimbaAdgroupsItemExistResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaAdgroupsItemExistRequest implements TaobaoRequest<SimbaAdgroupsItemExistResponse> {
+public class SimbaAdgroupsItemExistRequest
+        implements TaobaoRequest<SimbaAdgroupsItemExistResponse> {
 
     /**
      * 推广计划Id

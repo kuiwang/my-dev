@@ -14,7 +14,8 @@ import com.taobao.api.response.SimbaCampaignBudgetGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaCampaignBudgetGetRequest implements TaobaoRequest<SimbaCampaignBudgetGetResponse> {
+public class SimbaCampaignBudgetGetRequest
+        implements TaobaoRequest<SimbaCampaignBudgetGetResponse> {
 
     /**
      * 推广计划Id

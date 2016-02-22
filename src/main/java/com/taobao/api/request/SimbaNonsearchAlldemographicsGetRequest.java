@@ -13,8 +13,8 @@ import com.taobao.api.response.SimbaNonsearchAlldemographicsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:21
  */
-public class SimbaNonsearchAlldemographicsGetRequest implements
-        TaobaoRequest<SimbaNonsearchAlldemographicsGetResponse> {
+public class SimbaNonsearchAlldemographicsGetRequest
+        implements TaobaoRequest<SimbaNonsearchAlldemographicsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -13,7 +13,8 @@ import com.taobao.api.response.LogisticsAddressSearchResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsAddressSearchRequest implements TaobaoRequest<LogisticsAddressSearchResponse> {
+public class LogisticsAddressSearchRequest
+        implements TaobaoRequest<LogisticsAddressSearchResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

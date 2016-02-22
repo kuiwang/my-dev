@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class UpgradeDBInstanceEngineVersionRequest implements
-        AliyunRequest<UpgradeDBInstanceEngineVersionResponse> {
+public class UpgradeDBInstanceEngineVersionRequest
+        implements AliyunRequest<UpgradeDBInstanceEngineVersionResponse> {
 
     /**
      * 待升降级的实例

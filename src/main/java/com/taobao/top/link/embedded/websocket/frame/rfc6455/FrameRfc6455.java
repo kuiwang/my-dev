@@ -114,8 +114,8 @@ abstract public class FrameRfc6455 extends Frame implements Maskable {
             bodyLength = contents.length;
         }
         // mask-key+header+contents
-        ByteBuffer buf = ByteBuffer.allocate(headerBuffer.limit() + bodyLength
-                + (this.mask ? 4 : 0));
+        ByteBuffer buf = ByteBuffer
+                .allocate(headerBuffer.limit() + bodyLength + (this.mask ? 4 : 0));
         buf.put(headerBuffer);
         if (this.mask) {
             byte[] maskkey = new byte[4];

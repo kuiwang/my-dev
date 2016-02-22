@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDistributorProcuctStaticGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDistributorProcuctStaticGetRequest implements
-        TaobaoRequest<FenxiaoDistributorProcuctStaticGetResponse> {
+public class FenxiaoDistributorProcuctStaticGetRequest
+        implements TaobaoRequest<FenxiaoDistributorProcuctStaticGetResponse> {
 
     /**
      * 分销商淘宝店主nick

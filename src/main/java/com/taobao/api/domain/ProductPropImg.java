@@ -46,7 +46,7 @@ public class ProductPropImg extends TaobaoObject {
     private Long productId;
 
     /**
-     * 属性串(pid:vid),目前只有颜色属性.如:颜色:红色表示为　1627207:28326
+     * 属性串(pid:vid),目前只有颜色属性.如:颜色:红色表示为 1627207:28326
      */
     @ApiField("props")
     private String props;

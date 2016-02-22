@@ -85,8 +85,8 @@ public class WebSocketImpl extends WebSocketBase {
      * @param proxy the proxy
      * @param handler the handler
      * @param protocols the protocols
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     public WebSocketImpl(String url, Proxy proxy, WebSocketHandler handler, String... protocols)
             throws WebSocketException {
@@ -101,8 +101,8 @@ public class WebSocketImpl extends WebSocketBase {
      * @param proxy the proxy
      * @param handler the handler
      * @param protocols the protocols
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     public WebSocketImpl(String url, String origin, Proxy proxy, WebSocketHandler handler,
             String... protocols) throws WebSocketException {
@@ -116,8 +116,8 @@ public class WebSocketImpl extends WebSocketBase {
      * @param origin the origin
      * @param handler the handler
      * @param protocols the protocols
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     public WebSocketImpl(String url, String origin, WebSocketHandler handler, String... protocols)
             throws WebSocketException {
@@ -130,8 +130,8 @@ public class WebSocketImpl extends WebSocketBase {
      * @param url the url
      * @param handler the handler
      * @param protocols the protocols
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     public WebSocketImpl(String url, WebSocketHandler handler, String... protocols)
             throws WebSocketException {
@@ -332,24 +332,25 @@ public class WebSocketImpl extends WebSocketBase {
                 if (!super.parseHandshakeResponseHeader(buffer)) {
                     return false;
                 }
-                if (!"websocket".equalsIgnoreCase(this.getResponseHeader()
-                        .getHeaderValue("upgrade"))) {
+                if (!"websocket"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("upgrade"))) {
                     throw new WebSocketException(E3600, responseHeader.getHeaderValue("upgrade"));
                 }
-                if (!"upgrade".equalsIgnoreCase(this.getResponseHeader().getHeaderValue(
-                        "connection"))) {
-                    throw new WebSocketException(E3601, responseHeader.getHeaderValue("connection"));
+                if (!"upgrade"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("connection"))) {
+                    throw new WebSocketException(E3601,
+                            responseHeader.getHeaderValue("connection"));
                 }
                 if (!this.getResponseHeader().containsHeader("sec-websocket-accept")) {
                     throw new WebSocketException(E3602);
                 }
-                String protocolStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-protocol");
+                String protocolStr = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-protocol");
                 if (protocolStr != null) {
                     serverProtocols = protocolStr.split(",");
                 }
-                String extensionsStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-extensions");
+                String extensionsStr = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-extensions");
                 if (extensionsStr != null) {
                     serverExtentions = extensionsStr.split(",");
                 }

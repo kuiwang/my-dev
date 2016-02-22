@@ -16,8 +16,8 @@ import com.taobao.api.response.ItemEbookSerialUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class ItemEbookSerialUpdateRequest implements
-        TaobaoUploadRequest<ItemEbookSerialUpdateResponse> {
+public class ItemEbookSerialUpdateRequest
+        implements TaobaoUploadRequest<ItemEbookSerialUpdateResponse> {
 
     /**
      * 作者。长度不能超过60个字符<br />

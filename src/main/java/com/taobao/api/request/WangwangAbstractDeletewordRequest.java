@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangAbstractDeletewordResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class WangwangAbstractDeletewordRequest implements
-        TaobaoRequest<WangwangAbstractDeletewordResponse> {
+public class WangwangAbstractDeletewordRequest
+        implements TaobaoRequest<WangwangAbstractDeletewordResponse> {
 
     /**
      * 传入参数的字符集

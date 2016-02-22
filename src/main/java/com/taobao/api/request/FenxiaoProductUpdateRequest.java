@@ -16,8 +16,8 @@ import com.taobao.api.response.FenxiaoProductUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductUpdateRequest implements
-        TaobaoUploadRequest<FenxiaoProductUpdateResponse> {
+public class FenxiaoProductUpdateRequest
+        implements TaobaoUploadRequest<FenxiaoProductUpdateResponse> {
 
     /**
      * 警戒库存必须是0到29999。

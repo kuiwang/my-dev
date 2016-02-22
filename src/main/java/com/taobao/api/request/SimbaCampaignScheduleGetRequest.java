@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaCampaignScheduleGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:17
  */
-public class SimbaCampaignScheduleGetRequest implements
-        TaobaoRequest<SimbaCampaignScheduleGetResponse> {
+public class SimbaCampaignScheduleGetRequest
+        implements TaobaoRequest<SimbaCampaignScheduleGetResponse> {
 
     /**
      * 推广计划Id

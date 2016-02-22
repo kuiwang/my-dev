@@ -16,8 +16,8 @@ import com.taobao.api.response.AlibabaLaiwangMediaUploadResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaLaiwangMediaUploadRequest implements
-        TaobaoUploadRequest<AlibabaLaiwangMediaUploadResponse> {
+public class AlibabaLaiwangMediaUploadRequest
+        implements TaobaoUploadRequest<AlibabaLaiwangMediaUploadResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

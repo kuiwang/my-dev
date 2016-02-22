@@ -113,8 +113,7 @@ public class Scheduler<T> {
         } while (flag);
 
         if (this.logger.isDebugEnabled() && (c > 0)) {
-            this.logger.debug(Text.SCHEDULE_TASK_DISPATCHED,
-                    c);
+            this.logger.debug(Text.SCHEDULE_TASK_DISPATCHED, c);
         }
     }
 
@@ -181,15 +180,13 @@ public class Scheduler<T> {
         if (queue == null) {
             synchronized (this.lock) {
                 if ((queue = this.tasks.get(t)) == null) {
-                    this.tasks.put(t,
-                            queue = this.createTaskQueue(t));
+                    this.tasks.put(t, queue = this.createTaskQueue(t));
                 }
             }
         }
 
         if (this.haveReachMaxPendingCount(t, queue, task)) {
-            throw new LinkException(String.format(
-                    Text.SCHEDULE_GOT_MAX, this.max));
+            throw new LinkException(String.format(Text.SCHEDULE_GOT_MAX, this.max));
         }
 
         try {

@@ -14,8 +14,8 @@ import com.taobao.api.response.AlibabaXiamiApiContractGiftSendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaXiamiApiContractGiftSendRequest implements
-        TaobaoRequest<AlibabaXiamiApiContractGiftSendResponse> {
+public class AlibabaXiamiApiContractGiftSendRequest
+        implements TaobaoRequest<AlibabaXiamiApiContractGiftSendResponse> {
 
     /**
      * 买家昵称

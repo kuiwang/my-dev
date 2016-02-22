@@ -14,7 +14,8 @@ import com.taobao.api.response.PromotionmiscToolCheckResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:24
  */
-public class PromotionmiscToolCheckRequest implements TaobaoRequest<PromotionmiscToolCheckResponse> {
+public class PromotionmiscToolCheckRequest
+        implements TaobaoRequest<PromotionmiscToolCheckResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

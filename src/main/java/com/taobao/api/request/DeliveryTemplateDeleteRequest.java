@@ -14,7 +14,8 @@ import com.taobao.api.response.DeliveryTemplateDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class DeliveryTemplateDeleteRequest implements TaobaoRequest<DeliveryTemplateDeleteResponse> {
+public class DeliveryTemplateDeleteRequest
+        implements TaobaoRequest<DeliveryTemplateDeleteResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

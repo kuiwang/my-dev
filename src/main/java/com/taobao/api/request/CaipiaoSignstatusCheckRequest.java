@@ -13,7 +13,8 @@ import com.taobao.api.response.CaipiaoSignstatusCheckResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class CaipiaoSignstatusCheckRequest implements TaobaoRequest<CaipiaoSignstatusCheckResponse> {
+public class CaipiaoSignstatusCheckRequest
+        implements TaobaoRequest<CaipiaoSignstatusCheckResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

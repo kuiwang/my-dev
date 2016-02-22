@@ -62,7 +62,8 @@ public class HotelRoomUpdateRequest implements TaobaoUploadRequest<HotelRoomUpda
     private String desc;
 
     /**
-     * 手续费。0～99999900的正整数。在payment_type为手续费或手续费/间夜时必须输入，存储的单位是分。不能带角分。<br />
+     * 手续费。0～99999900的正整数。在payment_type为手续费或手续费/间夜时必须输入，存储的单位是分。不能带角分。
+     * <br />
      * 支持最大值为：99999900<br />
      * 支持最小值为：0
      */

@@ -14,7 +14,8 @@ import com.taobao.api.response.LogisticsAddressModifyResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsAddressModifyRequest implements TaobaoRequest<LogisticsAddressModifyResponse> {
+public class LogisticsAddressModifyRequest
+        implements TaobaoRequest<LogisticsAddressModifyResponse> {
 
     /**
      * 详细街道地址，不需要重复填写省/市/区

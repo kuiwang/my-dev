@@ -142,8 +142,8 @@ public class DefaultAlipayClient implements AlipayClient {
                 rsp = WebUtils.doPost(requestUrl.toString(), appParams, fileParams, connectTimeout,
                         readTimeout);
             } else {
-                rsp = WebUtils
-                        .doPost(requestUrl.toString(), appParams, connectTimeout, readTimeout);
+                rsp = WebUtils.doPost(requestUrl.toString(), appParams, connectTimeout,
+                        readTimeout);
             }
             requestHolder.setResponseBody(rsp);
         } catch (IOException e) {
@@ -153,7 +153,8 @@ public class DefaultAlipayClient implements AlipayClient {
     }
 
     @Override
-    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws AlipayApiException {
+    public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request)
+            throws AlipayApiException {
         return execute(request, null);
     }
 

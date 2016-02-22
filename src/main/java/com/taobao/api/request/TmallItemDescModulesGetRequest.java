@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallItemDescModulesGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallItemDescModulesGetRequest implements
-        TaobaoRequest<TmallItemDescModulesGetResponse> {
+public class TmallItemDescModulesGetRequest
+        implements TaobaoRequest<TmallItemDescModulesGetResponse> {
 
     /**
      * 淘宝后台发布商品的叶子类目id，可通过taobao.itemcats.get查到。api

@@ -14,7 +14,8 @@ import com.taobao.api.response.TmallTraderateFeedsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallTraderateFeedsGetRequest implements TaobaoRequest<TmallTraderateFeedsGetResponse> {
+public class TmallTraderateFeedsGetRequest
+        implements TaobaoRequest<TmallTraderateFeedsGetResponse> {
 
     /**
      * 交易子订单ID

@@ -15,8 +15,8 @@ import com.taobao.api.response.AlipayUserAccountreportGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class AlipayUserAccountreportGetRequest implements
-        TaobaoRequest<AlipayUserAccountreportGetResponse> {
+public class AlipayUserAccountreportGetRequest
+        implements TaobaoRequest<AlipayUserAccountreportGetResponse> {
 
     /**
      * 对账单结束时间，其中end_time - start_time <=

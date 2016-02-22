@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallProductTemplateGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallProductTemplateGetRequest implements
-        TaobaoRequest<TmallProductTemplateGetResponse> {
+public class TmallProductTemplateGetRequest
+        implements TaobaoRequest<TmallProductTemplateGetResponse> {
 
     /**
      * 类目ID

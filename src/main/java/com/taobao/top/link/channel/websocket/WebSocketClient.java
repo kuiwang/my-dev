@@ -39,8 +39,8 @@ public class WebSocketClient extends NettyClient {
         pipeline.addLast("decoder", new HttpResponseDecoder());
         pipeline.addLast("encoder", new HttpRequestEncoder());
         // connect
-        Channel channel = prepareAndConnect(logger, uri, pipeline, wsHandler, uri.getScheme()
-                .equalsIgnoreCase("wss"), connectTimeoutMillis);
+        Channel channel = prepareAndConnect(logger, uri, pipeline, wsHandler,
+                uri.getScheme().equalsIgnoreCase("wss"), connectTimeoutMillis);
         // handshake
         try {
             WebSocketClientHandshaker handshaker = wsFactory.newHandshaker(uri,
@@ -61,8 +61,8 @@ public class WebSocketClient extends NettyClient {
             return clientChannel;
         }
         if (handler.error != null) {
-            throw new ChannelException(Text.CONNECT_FAIL + ": "
-                    + handler.error.getMessage(), handler.error);
+            throw new ChannelException(Text.CONNECT_FAIL + ": " + handler.error.getMessage(),
+                    handler.error);
         }
 
         throw new ChannelException(Text.CONNECT_TIMEOUT);

@@ -14,8 +14,8 @@ import com.taobao.api.response.CrmMembersGroupBatchaddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class CrmMembersGroupBatchaddRequest implements
-        TaobaoRequest<CrmMembersGroupBatchaddResponse> {
+public class CrmMembersGroupBatchaddRequest
+        implements TaobaoRequest<CrmMembersGroupBatchaddResponse> {
 
     /**
      * 会员的id（一次最多传入10个）<br />

@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoProductSkuDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductSkuDeleteRequest implements
-        TaobaoRequest<FenxiaoProductSkuDeleteResponse> {
+public class FenxiaoProductSkuDeleteRequest
+        implements TaobaoRequest<FenxiaoProductSkuDeleteResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

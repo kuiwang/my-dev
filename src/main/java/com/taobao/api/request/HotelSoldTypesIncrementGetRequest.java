@@ -15,8 +15,8 @@ import com.taobao.api.response.HotelSoldTypesIncrementGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:25
  */
-public class HotelSoldTypesIncrementGetRequest implements
-        TaobaoRequest<HotelSoldTypesIncrementGetResponse> {
+public class HotelSoldTypesIncrementGetRequest
+        implements TaobaoRequest<HotelSoldTypesIncrementGetResponse> {
 
     /**
      * 【不推荐使用，现在总是返回从修改开始时间到目前为止的所有记录，与修改结束时间不再相关】查询修改结束时间，必须大于修改开始时间（

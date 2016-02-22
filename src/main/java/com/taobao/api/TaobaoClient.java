@@ -3,8 +3,8 @@ package com.taobao.api;
 /**
  * TAOBAO客户端。
  * 
- * @author carver.gu <a
- *         href="mailto:opensupport@taobao.com">opensupport</a>
+ * @author carver.gu
+ *         <a href="mailto:opensupport@taobao.com">opensupport</a>
  * @since 1.0, Sep 12, 2009
  */
 public interface TaobaoClient {

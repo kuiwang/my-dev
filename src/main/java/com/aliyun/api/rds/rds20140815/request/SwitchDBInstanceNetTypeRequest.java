@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class SwitchDBInstanceNetTypeRequest implements
-        AliyunRequest<SwitchDBInstanceNetTypeResponse> {
+public class SwitchDBInstanceNetTypeRequest
+        implements AliyunRequest<SwitchDBInstanceNetTypeResponse> {
 
     /**
      * 新的用户连接，用户连接DB的地（前辍），需惟一性检查，由小写字母数字，中划线组成，字母开头，长度不超过30个字符

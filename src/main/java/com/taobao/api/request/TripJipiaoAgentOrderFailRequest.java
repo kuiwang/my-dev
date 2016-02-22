@@ -14,8 +14,8 @@ import com.taobao.api.response.TripJipiaoAgentOrderFailResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class TripJipiaoAgentOrderFailRequest implements
-        TaobaoRequest<TripJipiaoAgentOrderFailResponse> {
+public class TripJipiaoAgentOrderFailRequest
+        implements TaobaoRequest<TripJipiaoAgentOrderFailResponse> {
 
     /**
      * 失败类型为0，说明备注原因<br />

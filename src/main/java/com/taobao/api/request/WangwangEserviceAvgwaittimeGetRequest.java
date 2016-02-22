@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceAvgwaittimeGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceAvgwaittimeGetRequest implements
-        TaobaoRequest<WangwangEserviceAvgwaittimeGetResponse> {
+public class WangwangEserviceAvgwaittimeGetRequest
+        implements TaobaoRequest<WangwangEserviceAvgwaittimeGetResponse> {
 
     /**
      * 结束时间

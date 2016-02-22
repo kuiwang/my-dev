@@ -14,7 +14,8 @@ import com.taobao.api.response.WlbReplenishStatisticsResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbReplenishStatisticsRequest implements TaobaoRequest<WlbReplenishStatisticsResponse> {
+public class WlbReplenishStatisticsRequest
+        implements TaobaoRequest<WlbReplenishStatisticsResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -14,8 +14,8 @@ import com.taobao.api.response.AlipayMicropayOrderFreezepayurlGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayMicropayOrderFreezepayurlGetRequest implements
-        TaobaoRequest<AlipayMicropayOrderFreezepayurlGetResponse> {
+public class AlipayMicropayOrderFreezepayurlGetRequest
+        implements TaobaoRequest<AlipayMicropayOrderFreezepayurlGetResponse> {
 
     /**
      * 冻结订单号,创建冻结订单时支付宝返回的

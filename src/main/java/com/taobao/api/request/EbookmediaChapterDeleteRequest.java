@@ -14,8 +14,8 @@ import com.taobao.api.response.EbookmediaChapterDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class EbookmediaChapterDeleteRequest implements
-        TaobaoRequest<EbookmediaChapterDeleteResponse> {
+public class EbookmediaChapterDeleteRequest
+        implements TaobaoRequest<EbookmediaChapterDeleteResponse> {
 
     /**
      * 电子书商品数字ID

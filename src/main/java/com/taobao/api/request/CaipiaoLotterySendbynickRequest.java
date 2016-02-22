@@ -14,8 +14,8 @@ import com.taobao.api.response.CaipiaoLotterySendbynickResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class CaipiaoLotterySendbynickRequest implements
-        TaobaoRequest<CaipiaoLotterySendbynickResponse> {
+public class CaipiaoLotterySendbynickRequest
+        implements TaobaoRequest<CaipiaoLotterySendbynickResponse> {
 
     /**
      * 彩票接收方nick， 不可为空、""。

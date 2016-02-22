@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaNonsearchDemographicsUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:21
  */
-public class SimbaNonsearchDemographicsUpdateRequest implements
-        TaobaoRequest<SimbaNonsearchDemographicsUpdateResponse> {
+public class SimbaNonsearchDemographicsUpdateRequest
+        implements TaobaoRequest<SimbaNonsearchDemographicsUpdateResponse> {
 
     /**
      * 推广计划ID

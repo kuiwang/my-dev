@@ -14,8 +14,8 @@ import com.taobao.api.response.SpItemInfoListAdvancedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class SpItemInfoListAdvancedGetRequest implements
-        TaobaoRequest<SpItemInfoListAdvancedGetResponse> {
+public class SpItemInfoListAdvancedGetRequest
+        implements TaobaoRequest<SpItemInfoListAdvancedGetResponse> {
 
     /**
      * 商品所在地:省名

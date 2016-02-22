@@ -15,8 +15,8 @@ import com.taobao.api.response.UppSellerPointrecordGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:24
  */
-public class UppSellerPointrecordGetRequest implements
-        TaobaoRequest<UppSellerPointrecordGetResponse> {
+public class UppSellerPointrecordGetRequest
+        implements TaobaoRequest<UppSellerPointrecordGetResponse> {
 
     /**
      * 查询的页数

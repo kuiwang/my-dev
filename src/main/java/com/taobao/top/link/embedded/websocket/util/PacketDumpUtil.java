@@ -37,9 +37,6 @@ import com.taobao.top.link.embedded.websocket.impl.WebSocketBase;
  */
 public class PacketDumpUtil {
 
-    /** The Constant ALL. */
-    public static final int ALL = FR_DOWN | HS_DOWN | FR_UP | HS_UP;
-
     /** The Constant FR_DOWN. */
     public static final int FR_DOWN = 1 << 0;
 
@@ -51,6 +48,9 @@ public class PacketDumpUtil {
 
     /** The Constant HS_UP. */
     public static final int HS_UP = 1 << 3;
+
+    /** The Constant ALL. */
+    public static final int ALL = FR_DOWN | HS_DOWN | FR_UP | HS_UP;
 
     /** The log. */
     private static Logger log = Logger.getLogger(PacketDumpUtil.class.getName());
@@ -66,7 +66,8 @@ public class PacketDumpUtil {
         CharBuffer buf = CharBuffer.allocate(length);
 
         for (int i = 0; i < length; i++) {
-            if (((0x00 <= bytes[i]) && (bytes[i] <= 0x1F)) || (bytes[i] == 0x7F) || ((bytes[i] & 0x80) > 0)) {
+            if (((0x00 <= bytes[i]) && (bytes[i] <= 0x1F)) || (bytes[i] == 0x7F)
+                    || ((bytes[i] & 0x80) > 0)) {
                 buf.put(i, (char) 0x2E);
             } else {
                 buf.put(i, (char) bytes[i]);
@@ -140,7 +141,8 @@ public class PacketDumpUtil {
                 dumpLine.append(StringUtil.lpad(StringUtil.toHexString(line[i]), 2, "0"));
             }
             dumpLine.append(" ");
-            dump.append(StringUtil.rpad(dumpLine, header.length() + 3, " ") + dumpStr(line, length));
+            dump.append(
+                    StringUtil.rpad(dumpLine, header.length() + 3, " ") + dumpStr(line, length));
             dump.append("\n");
         }
         log.info(dump.toString());

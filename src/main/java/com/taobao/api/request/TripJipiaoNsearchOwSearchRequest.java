@@ -14,8 +14,8 @@ import com.taobao.api.response.TripJipiaoNsearchOwSearchResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class TripJipiaoNsearchOwSearchRequest implements
-        TaobaoRequest<TripJipiaoNsearchOwSearchResponse> {
+public class TripJipiaoNsearchOwSearchRequest
+        implements TaobaoRequest<TripJipiaoNsearchOwSearchResponse> {
 
     /**
      * 到达城市三字码<br />

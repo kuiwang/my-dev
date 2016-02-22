@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangEserviceGroupmemberGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceGroupmemberGetRequest implements
-        TaobaoRequest<WangwangEserviceGroupmemberGetResponse> {
+public class WangwangEserviceGroupmemberGetRequest
+        implements TaobaoRequest<WangwangEserviceGroupmemberGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -15,8 +15,8 @@ import com.taobao.api.response.SimbaKeywordsChangedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordsChangedGetRequest implements
-        TaobaoRequest<SimbaKeywordsChangedGetResponse> {
+public class SimbaKeywordsChangedGetRequest
+        implements TaobaoRequest<SimbaKeywordsChangedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

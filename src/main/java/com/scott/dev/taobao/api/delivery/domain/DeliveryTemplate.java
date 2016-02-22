@@ -62,9 +62,9 @@ public class DeliveryTemplate {
 
     /*
      * 可选值：0 说明： 0:表示按宝贝件数计算运费 
-
+    
     1:表示按宝贝重量计算运费 
-
+    
     3:表示按宝贝体积计算运费
      */
     private Number valuation;

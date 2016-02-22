@@ -41,14 +41,15 @@ public class WebSocketClientUpstreamHandler extends NettyClientUpstreamHandler {
         if (!this.logger.isDebugEnabled()) {
             return;
         }
-        this.logger.debug("%s|%s", response.getStatus().getCode(), response.getStatus()
-                .getReasonPhrase());
+        this.logger.debug("%s|%s", response.getStatus().getCode(),
+                response.getStatus().getReasonPhrase());
         for (Entry<String, String> h : response.getHeaders()) {
             this.logger.debug("%s=%s", h.getKey(), h.getValue());
         }
     }
 
-    private void handleHandshake(ChannelHandlerContext ctx, HttpResponse response) throws Exception {
+    private void handleHandshake(ChannelHandlerContext ctx, HttpResponse response)
+            throws Exception {
         this.dump(response);
         boolean validStatus = response.getStatus().equals(SUCCESS);
         boolean validUpgrade = (response.getHeader(Names.UPGRADE) != null)
@@ -57,9 +58,9 @@ public class WebSocketClientUpstreamHandler extends NettyClientUpstreamHandler {
                 && response.getHeader(Names.CONNECTION).equalsIgnoreCase(Values.UPGRADE);
 
         if (!validStatus || !validUpgrade || !validConnection) {
-            throw new LinkException(response.getStatus().getCode(), String.format(
-                    Text.WS_HANDSHAKE_INVALID, response.getContent().readable() ? response
-                            .getContent().toString(Charset.forName("UTF-8")) : ""));
+            throw new LinkException(response.getStatus().getCode(),
+                    String.format(Text.WS_HANDSHAKE_INVALID, response.getContent().readable()
+                            ? response.getContent().toString(Charset.forName("UTF-8")) : ""));
         }
 
         this.handshaker.finishHandshake(ctx.getChannel(), response);
@@ -93,12 +94,10 @@ public class WebSocketClientUpstreamHandler extends NettyClientUpstreamHandler {
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
         if (!this.handshaker.isHandshakeComplete()) {
-            this.handleHandshake(ctx,
-                    (HttpResponse) e.getMessage());
+            this.handleHandshake(ctx, (HttpResponse) e.getMessage());
         }
         if (e.getMessage() instanceof WebSocketFrame) {
-            this.handleWebSocketFrame(ctx,
-                    (WebSocketFrame) e.getMessage());
+            this.handleWebSocketFrame(ctx, (WebSocketFrame) e.getMessage());
         }
     }
 }

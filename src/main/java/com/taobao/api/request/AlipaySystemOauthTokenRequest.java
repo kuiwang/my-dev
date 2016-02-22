@@ -14,7 +14,8 @@ import com.taobao.api.response.AlipaySystemOauthTokenResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class AlipaySystemOauthTokenRequest implements TaobaoRequest<AlipaySystemOauthTokenResponse> {
+public class AlipaySystemOauthTokenRequest
+        implements TaobaoRequest<AlipaySystemOauthTokenResponse> {
 
     /**
      * 授权码，用户对应用授权后得到。<br />

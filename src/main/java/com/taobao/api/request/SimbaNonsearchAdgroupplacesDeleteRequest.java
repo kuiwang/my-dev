@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaNonsearchAdgroupplacesDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaNonsearchAdgroupplacesDeleteRequest implements
-        TaobaoRequest<SimbaNonsearchAdgroupplacesDeleteResponse> {
+public class SimbaNonsearchAdgroupplacesDeleteRequest
+        implements TaobaoRequest<SimbaNonsearchAdgroupplacesDeleteResponse> {
 
     /**
      * 推广组id，投放位置id

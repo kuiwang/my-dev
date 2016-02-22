@@ -13,8 +13,8 @@ import com.taobao.api.response.TmallProductSuitespecsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallProductSuitespecsGetRequest implements
-        TaobaoRequest<TmallProductSuitespecsGetResponse> {
+public class TmallProductSuitespecsGetRequest
+        implements TaobaoRequest<TmallProductSuitespecsGetResponse> {
 
     /**
      * 类目的ID号，该id必须和properties同时传入。 而且只有当product_id不传入的时候才起效果。

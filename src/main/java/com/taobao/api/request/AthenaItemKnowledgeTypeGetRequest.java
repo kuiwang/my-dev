@@ -13,8 +13,8 @@ import com.taobao.api.response.AthenaItemKnowledgeTypeGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:51
  */
-public class AthenaItemKnowledgeTypeGetRequest implements
-        TaobaoRequest<AthenaItemKnowledgeTypeGetResponse> {
+public class AthenaItemKnowledgeTypeGetRequest
+        implements TaobaoRequest<AthenaItemKnowledgeTypeGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

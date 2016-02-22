@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightCatsforecastnewGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaInsightCatsforecastnewGetRequest implements
-        TaobaoRequest<SimbaInsightCatsforecastnewGetResponse> {
+public class SimbaInsightCatsforecastnewGetRequest
+        implements TaobaoRequest<SimbaInsightCatsforecastnewGetResponse> {
 
     /**
      * 需要查询的词列表

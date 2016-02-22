@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbOutInventoryChangeNotifyResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbOutInventoryChangeNotifyRequest implements
-        TaobaoRequest<WlbOutInventoryChangeNotifyResponse> {
+public class WlbOutInventoryChangeNotifyRequest
+        implements TaobaoRequest<WlbOutInventoryChangeNotifyResponse> {
 
     /**
      * 库存变化数量

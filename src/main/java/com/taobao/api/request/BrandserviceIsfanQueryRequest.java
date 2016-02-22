@@ -14,7 +14,8 @@ import com.taobao.api.response.BrandserviceIsfanQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class BrandserviceIsfanQueryRequest implements TaobaoRequest<BrandserviceIsfanQueryResponse> {
+public class BrandserviceIsfanQueryRequest
+        implements TaobaoRequest<BrandserviceIsfanQueryResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

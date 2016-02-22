@@ -68,8 +68,8 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
         this.dump(req);
 
         if (req.getMethod() != HttpMethod.GET) {
-            this.sendHttpResponse(ctx, req, new DefaultHttpResponse(HttpVersion.HTTP_1_1,
-                    HttpResponseStatus.FORBIDDEN));
+            this.sendHttpResponse(ctx, req,
+                    new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.FORBIDDEN));
             return;
         }
 
@@ -97,16 +97,14 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
         }
 
         // FIXME: maybe not finish for later work
-        this.handshaker.handshake(ctx.getChannel(), req).addListener(
-                WebSocketServerHandshaker.HANDSHAKE_LISTENER);
+        this.handshaker.handshake(ctx.getChannel(), req)
+                .addListener(WebSocketServerHandshaker.HANDSHAKE_LISTENER);
 
         if (this.cumulative) {
             // use custom decoder for cumulative
-            ctx.getPipeline().replace(
-                    WebSocket13FrameDecoder.class,
-                    "wsdecoder-custom",
-                    new CustomWebSocket13FrameDecoder(true, allowExtensions, this.handshaker
-                            .getMaxFramePayloadLength()));
+            ctx.getPipeline().replace(WebSocket13FrameDecoder.class, "wsdecoder-custom",
+                    new CustomWebSocket13FrameDecoder(true, allowExtensions,
+                            this.handshaker.getMaxFramePayloadLength()));
         }
     }
 
@@ -167,8 +165,8 @@ public class WebSocketServerUpstreamHandler extends NettyServerUpstreamHandler {
 
     private void sendHttpResponse(ChannelHandlerContext ctx, HttpRequest req, HttpResponse res) {
         if (res.getStatus().getCode() != 200) {
-            res.setContent(ChannelBuffers.copiedBuffer(res.getStatus().toString(),
-                    CharsetUtil.UTF_8));
+            res.setContent(
+                    ChannelBuffers.copiedBuffer(res.getStatus().toString(), CharsetUtil.UTF_8));
             HttpHeaders.setContentLength(res, res.getContent().readableBytes());
         }
 

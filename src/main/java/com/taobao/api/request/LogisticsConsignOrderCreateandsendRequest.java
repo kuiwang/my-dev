@@ -14,8 +14,8 @@ import com.taobao.api.response.LogisticsConsignOrderCreateandsendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsConsignOrderCreateandsendRequest implements
-        TaobaoRequest<LogisticsConsignOrderCreateandsendResponse> {
+public class LogisticsConsignOrderCreateandsendRequest
+        implements TaobaoRequest<LogisticsConsignOrderCreateandsendResponse> {
 
     /**
      * 物流公司ID

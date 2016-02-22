@@ -14,8 +14,8 @@ import com.taobao.api.response.AlipayDataBillDownloadurlGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayDataBillDownloadurlGetRequest implements
-        TaobaoRequest<AlipayDataBillDownloadurlGetResponse> {
+public class AlipayDataBillDownloadurlGetRequest
+        implements TaobaoRequest<AlipayDataBillDownloadurlGetResponse> {
 
     /**
      * 支付宝给用户的授权。如果没有top的授权，这个字段是必填项

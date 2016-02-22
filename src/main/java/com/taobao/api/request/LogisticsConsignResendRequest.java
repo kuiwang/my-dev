@@ -14,7 +14,8 @@ import com.taobao.api.response.LogisticsConsignResendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsConsignResendResponse> {
+public class LogisticsConsignResendRequest
+        implements TaobaoRequest<LogisticsConsignResendResponse> {
 
     /**
      * 物流公司代码.如"POST"代表中国邮政,"ZJS"代表宅急送。调用 taobao.logistics.companies.get
@@ -26,7 +27,8 @@ public class LogisticsConsignResendRequest implements TaobaoRequest<LogisticsCon
     /**
      * feature参数格式<br>
      * 范例:
-     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B<br>
+     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B
+     * <br>
      * identCode为识别码的KEY,machineCode为3C的KEY,多个key之间用”;”分隔<br>
      * “tid1:识别码1,识别码2|tid2:识别码3”为identCode对应的value。 "|"不同商品间的分隔符。<br>
      * 例1商品和2商品，之间就用"|"分开。<br>

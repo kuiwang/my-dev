@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemCombinationCreateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemCombinationCreateRequest implements
-        TaobaoRequest<WlbItemCombinationCreateResponse> {
+public class WlbItemCombinationCreateRequest
+        implements TaobaoRequest<WlbItemCombinationCreateResponse> {
 
     /**
      * 组合商品的id列表

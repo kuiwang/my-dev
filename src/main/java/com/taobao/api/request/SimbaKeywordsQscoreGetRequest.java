@@ -14,7 +14,8 @@ import com.taobao.api.response.SimbaKeywordsQscoreGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordsQscoreGetRequest implements TaobaoRequest<SimbaKeywordsQscoreGetResponse> {
+public class SimbaKeywordsQscoreGetRequest
+        implements TaobaoRequest<SimbaKeywordsQscoreGetResponse> {
 
     /**
      * 推广组Id

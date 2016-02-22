@@ -64,8 +64,7 @@ public class MessageDecoder02 implements MessageDecoder {
         short headerType = buffer.getShort();
         while (headerType != HeaderType.EndOfHeaders) {
             if (headerType == HeaderType.Custom) {
-                dict.put(readCountedString(buffer),
-                        readCustomValue(buffer));
+                dict.put(readCountedString(buffer), readCustomValue(buffer));
             } else if (headerType == HeaderType.StatusCode) {
                 msg.statusCode = buffer.getInt();
             } else if (headerType == HeaderType.StatusPhrase) {

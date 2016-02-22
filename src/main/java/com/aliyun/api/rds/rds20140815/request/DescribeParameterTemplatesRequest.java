@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:45
  */
-public class DescribeParameterTemplatesRequest implements
-        AliyunRequest<DescribeParameterTemplatesResponse> {
+public class DescribeParameterTemplatesRequest
+        implements AliyunRequest<DescribeParameterTemplatesResponse> {
 
     /**
      * 数据库类型，取值为MySQL和SQLServer

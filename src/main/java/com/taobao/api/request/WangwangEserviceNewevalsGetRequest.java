@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangEserviceNewevalsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceNewevalsGetRequest implements
-        TaobaoRequest<WangwangEserviceNewevalsGetResponse> {
+public class WangwangEserviceNewevalsGetRequest
+        implements TaobaoRequest<WangwangEserviceNewevalsGetResponse> {
 
     /**
      * 查询登录日志的开始日期，必须按示例的格式，否则会返回错误； 开始时间不能在当前时间30天前，开始时间和结束时间的间隔不能超过7天；

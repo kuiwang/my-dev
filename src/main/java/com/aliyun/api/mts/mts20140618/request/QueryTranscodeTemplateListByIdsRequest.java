@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:42
  */
-public class QueryTranscodeTemplateListByIdsRequest implements
-        AliyunRequest<QueryTranscodeTemplateListByIdsResponse> {
+public class QueryTranscodeTemplateListByIdsRequest
+        implements AliyunRequest<QueryTranscodeTemplateListByIdsResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

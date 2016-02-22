@@ -14,8 +14,8 @@ import com.taobao.api.response.CrmGrademktMemberDetailDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:26
  */
-public class CrmGrademktMemberDetailDeleteRequest implements
-        TaobaoRequest<CrmGrademktMemberDetailDeleteResponse> {
+public class CrmGrademktMemberDetailDeleteRequest
+        implements TaobaoRequest<CrmGrademktMemberDetailDeleteResponse> {
 
     /**
      * 扩展字段
