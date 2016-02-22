@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaNonsearchAdgroupplacesGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaNonsearchAdgroupplacesGetRequest implements
-        TaobaoRequest<SimbaNonsearchAdgroupplacesGetResponse> {
+public class SimbaNonsearchAdgroupplacesGetRequest
+        implements TaobaoRequest<SimbaNonsearchAdgroupplacesGetResponse> {
 
     /**
      * 推广组ID数组

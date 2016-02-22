@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemAuthorizationDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemAuthorizationDeleteRequest implements
-        TaobaoRequest<WlbItemAuthorizationDeleteResponse> {
+public class WlbItemAuthorizationDeleteRequest
+        implements TaobaoRequest<WlbItemAuthorizationDeleteResponse> {
 
     /**
      * 授权关系ID

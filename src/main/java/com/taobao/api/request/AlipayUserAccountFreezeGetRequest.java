@@ -13,8 +13,8 @@ import com.taobao.api.response.AlipayUserAccountFreezeGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class AlipayUserAccountFreezeGetRequest implements
-        TaobaoRequest<AlipayUserAccountFreezeGetResponse> {
+public class AlipayUserAccountFreezeGetRequest
+        implements TaobaoRequest<AlipayUserAccountFreezeGetResponse> {
 
     /**
      * 冻结类型，多个用,分隔。不传返回所有类型的冻结金额。 DEPOSIT_FREEZE,充值冻结 WITHDRAW_FREEZE,提现冻结

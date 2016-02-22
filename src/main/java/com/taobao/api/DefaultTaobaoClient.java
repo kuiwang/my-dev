@@ -198,9 +198,9 @@ public class DefaultTaobaoClient implements TaobaoClient {
             if (request instanceof TaobaoUploadRequest) {
                 TaobaoUploadRequest<T> uRequest = (TaobaoUploadRequest<T>) request;
                 Map<String, FileItem> fileParams = TaobaoUtils.cleanupMap(uRequest.getFileParams());
-                rsp = WebUtils
-                        .doPost(reqUrl.toString(), appParams, fileParams, Constants.CHARSET_UTF8,
-                                connectTimeout, readTimeout, request.getHeaderMap());
+                rsp = WebUtils.doPost(reqUrl.toString(), appParams, fileParams,
+                        Constants.CHARSET_UTF8, connectTimeout, readTimeout,
+                        request.getHeaderMap());
             } else {
                 rsp = WebUtils.doPost(reqUrl.toString(), appParams, Constants.CHARSET_UTF8,
                         connectTimeout, readTimeout, request.getHeaderMap());

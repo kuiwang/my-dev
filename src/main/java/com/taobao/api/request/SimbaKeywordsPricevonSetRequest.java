@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaKeywordsPricevonSetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordsPricevonSetRequest implements
-        TaobaoRequest<SimbaKeywordsPricevonSetResponse> {
+public class SimbaKeywordsPricevonSetRequest
+        implements TaobaoRequest<SimbaKeywordsPricevonSetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

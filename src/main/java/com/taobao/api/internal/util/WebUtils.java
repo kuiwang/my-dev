@@ -371,7 +371,7 @@ public abstract class WebUtils {
      */
     public static String doPost(String url, Map<String, String> params,
             Map<String, FileItem> fileParams, int connectTimeout, int readTimeout)
-            throws IOException {
+                    throws IOException {
         if ((fileParams == null) || fileParams.isEmpty()) {
             return doPost(url, params, DEFAULT_CHARSET, connectTimeout, readTimeout);
         } else {
@@ -381,7 +381,7 @@ public abstract class WebUtils {
 
     public static String doPost(String url, Map<String, String> params,
             Map<String, FileItem> fileParams, String charset, int connectTimeout, int readTimeout)
-            throws IOException {
+                    throws IOException {
         return doPost(url, params, fileParams, charset, connectTimeout, readTimeout, null);
     }
 

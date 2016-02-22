@@ -14,7 +14,8 @@ import com.taobao.api.response.FenxiaoDistributorsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDistributorsGetRequest implements TaobaoRequest<FenxiaoDistributorsGetResponse> {
+public class FenxiaoDistributorsGetRequest
+        implements TaobaoRequest<FenxiaoDistributorsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

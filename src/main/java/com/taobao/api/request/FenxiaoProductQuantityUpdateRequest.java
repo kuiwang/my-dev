@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoProductQuantityUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductQuantityUpdateRequest implements
-        TaobaoRequest<FenxiaoProductQuantityUpdateResponse> {
+public class FenxiaoProductQuantityUpdateRequest
+        implements TaobaoRequest<FenxiaoProductQuantityUpdateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

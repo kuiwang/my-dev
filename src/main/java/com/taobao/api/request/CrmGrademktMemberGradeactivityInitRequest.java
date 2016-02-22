@@ -14,8 +14,8 @@ import com.taobao.api.response.CrmGrademktMemberGradeactivityInitResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class CrmGrademktMemberGradeactivityInitRequest implements
-        TaobaoRequest<CrmGrademktMemberGradeactivityInitResponse> {
+public class CrmGrademktMemberGradeactivityInitRequest
+        implements TaobaoRequest<CrmGrademktMemberGradeactivityInitResponse> {
 
     /**
      * 扩展字段

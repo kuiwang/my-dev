@@ -211,8 +211,8 @@ public class FrameBuilderRfc6455 {
             } else if (payloadLength <= MAX_FRAME_LENGTH_63) {
                 return PayloadLengthType.LEN_63;
             } else {
-                throw new IllegalArgumentException("Overflow payload length. payloadLength: "
-                        + payloadLength);
+                throw new IllegalArgumentException(
+                        "Overflow payload length. payloadLength: " + payloadLength);
             }
         }
 
@@ -432,8 +432,8 @@ public class FrameBuilderRfc6455 {
         byte payloadLength1 = (byte) (hb2 & PAYLOAD_LEN_MASK);
         PayloadLengthType payloadLengthType = PayloadLengthType.valueOf(payloadLength1);
         if (payloadLengthType == null) {
-            throw new IllegalArgumentException("Found illegal payload length " + payloadLength1
-                    + ".");
+            throw new IllegalArgumentException(
+                    "Found illegal payload length " + payloadLength1 + ".");
         }
 
         if (length < (2 + payloadLengthType.offset())) {

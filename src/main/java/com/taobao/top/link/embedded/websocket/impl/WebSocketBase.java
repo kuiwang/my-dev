@@ -119,6 +119,7 @@ abstract public class WebSocketBase implements WebSocket {
         /** The state map. */
         private static EnumMap<State, EnumSet<State>> stateMap = new EnumMap<State, EnumSet<State>>(
                 State.class);
+
         static {
             stateMap.put(CONNECTED, EnumSet.of(State.HANDSHAKE, State.CLOSED));
             stateMap.put(HANDSHAKE, EnumSet.of(State.WAIT, State.CLOSED));

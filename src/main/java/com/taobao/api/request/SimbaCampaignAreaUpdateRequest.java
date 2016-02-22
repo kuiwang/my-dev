@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaCampaignAreaUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaCampaignAreaUpdateRequest implements
-        TaobaoRequest<SimbaCampaignAreaUpdateResponse> {
+public class SimbaCampaignAreaUpdateRequest
+        implements TaobaoRequest<SimbaCampaignAreaUpdateResponse> {
 
     /**
      * 值为：“all”；或者用“,”分割的数字，数字必须是直通车全国省市列表的AreaID；

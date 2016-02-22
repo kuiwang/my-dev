@@ -14,8 +14,8 @@ import com.taobao.api.response.WeitaoCloudtagsGroupGetbyidResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class WeitaoCloudtagsGroupGetbyidRequest implements
-        TaobaoRequest<WeitaoCloudtagsGroupGetbyidResponse> {
+public class WeitaoCloudtagsGroupGetbyidRequest
+        implements TaobaoRequest<WeitaoCloudtagsGroupGetbyidResponse> {
 
     /**
      * 分组id

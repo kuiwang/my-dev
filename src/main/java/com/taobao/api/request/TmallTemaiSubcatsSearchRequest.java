@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallTemaiSubcatsSearchResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class TmallTemaiSubcatsSearchRequest implements
-        TaobaoRequest<TmallTemaiSubcatsSearchResponse> {
+public class TmallTemaiSubcatsSearchRequest
+        implements TaobaoRequest<TmallTemaiSubcatsSearchResponse> {
 
     /**
      * 父类目ID，固定是特卖前台一级类目id：50100982

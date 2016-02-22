@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallProductSpecsTicketGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallProductSpecsTicketGetRequest implements
-        TaobaoRequest<TmallProductSpecsTicketGetResponse> {
+public class TmallProductSpecsTicketGetRequest
+        implements TaobaoRequest<TmallProductSpecsTicketGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

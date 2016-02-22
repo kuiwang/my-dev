@@ -14,8 +14,8 @@ import com.taobao.api.response.BrandserviceFanscountQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class BrandserviceFanscountQueryRequest implements
-        TaobaoRequest<BrandserviceFanscountQueryResponse> {
+public class BrandserviceFanscountQueryRequest
+        implements TaobaoRequest<BrandserviceFanscountQueryResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

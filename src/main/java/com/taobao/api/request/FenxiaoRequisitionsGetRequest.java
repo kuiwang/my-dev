@@ -14,7 +14,8 @@ import com.taobao.api.response.FenxiaoRequisitionsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoRequisitionsGetRequest implements TaobaoRequest<FenxiaoRequisitionsGetResponse> {
+public class FenxiaoRequisitionsGetRequest
+        implements TaobaoRequest<FenxiaoRequisitionsGetResponse> {
 
     /**
      * 申请结束时间yyyy-MM-dd

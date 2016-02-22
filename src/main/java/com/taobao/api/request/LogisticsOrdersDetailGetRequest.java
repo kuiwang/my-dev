@@ -15,8 +15,8 @@ import com.taobao.api.response.LogisticsOrdersDetailGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsOrdersDetailGetRequest implements
-        TaobaoRequest<LogisticsOrdersDetailGetResponse> {
+public class LogisticsOrdersDetailGetRequest
+        implements TaobaoRequest<LogisticsOrdersDetailGetResponse> {
 
     /**
      * 买家昵称

@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangAbstractAddwordResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class WangwangAbstractAddwordRequest implements
-        TaobaoRequest<WangwangAbstractAddwordResponse> {
+public class WangwangAbstractAddwordRequest
+        implements TaobaoRequest<WangwangAbstractAddwordResponse> {
 
     /**
      * 传入参数的字符集

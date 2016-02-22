@@ -122,8 +122,7 @@ class TmcHandler implements com.taobao.top.link.endpoint.MessageHandler {
         if (content instanceof String) {
             msg.setContent((String) content);
         } else if (content instanceof byte[]) {
-            msg.setContent(new String(GZIPHelper
-                    .unzip((byte[]) content), Constants.CHARSET_UTF8));
+            msg.setContent(new String(GZIPHelper.unzip((byte[]) content), Constants.CHARSET_UTF8));
         }
         return msg;
     }

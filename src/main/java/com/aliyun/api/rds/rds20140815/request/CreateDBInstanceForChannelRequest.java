@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:43
  */
-public class CreateDBInstanceForChannelRequest implements
-        AliyunRequest<CreateDBInstanceForChannelResponse> {
+public class CreateDBInstanceForChannelRequest
+        implements AliyunRequest<CreateDBInstanceForChannelResponse> {
 
     /**
      * 数据库帐户名操作帐号，需惟一性检查，由小写字母，数字、下划线组成，字母开头，长度不超过16个字符。

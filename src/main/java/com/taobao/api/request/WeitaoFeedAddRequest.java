@@ -29,7 +29,8 @@ public class WeitaoFeedAddRequest implements TaobaoRequest<WeitaoFeedAddResponse
      * feed的区域内容，有两种类型type=text或者type=pic。当type=text时，为文本内容，
      * 请输入description对应的文本值
      * ；当type=pic时，为图片内容，请输入pic对应的图片URL，图片的URL必须为当前操作用户(
-     * 卖家)的图片空间图片地址,并且图片宽度要大于480，高宽比大于1/3小于2/3。支持type=text和type=pic的混排json<br />
+     * 卖家)的图片空间图片地址,并且图片宽度要大于480，高宽比大于1/3小于2/3。支持type=text和type=pic的混排json
+     * <br />
      * 支持最大长度为：3000<br />
      * 支持的最大列表长度为：3000
      */

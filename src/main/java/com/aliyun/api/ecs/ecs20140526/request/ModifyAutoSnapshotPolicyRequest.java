@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:38
  */
-public class ModifyAutoSnapshotPolicyRequest implements
-        AliyunRequest<ModifyAutoSnapshotPolicyResponse> {
+public class ModifyAutoSnapshotPolicyRequest
+        implements AliyunRequest<ModifyAutoSnapshotPolicyResponse> {
 
     /**
      * 数据盘自动快照策略开关： True：该磁盘属性的磁盘打自动快照， False：不打自动快照， 默认值：无，表示保留当前值

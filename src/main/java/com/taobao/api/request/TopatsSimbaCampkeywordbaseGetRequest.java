@@ -14,8 +14,8 @@ import com.taobao.api.response.TopatsSimbaCampkeywordbaseGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class TopatsSimbaCampkeywordbaseGetRequest implements
-        TaobaoRequest<TopatsSimbaCampkeywordbaseGetResponse> {
+public class TopatsSimbaCampkeywordbaseGetRequest
+        implements TaobaoRequest<TopatsSimbaCampkeywordbaseGetResponse> {
 
     /**
      * 查询推广计划ID

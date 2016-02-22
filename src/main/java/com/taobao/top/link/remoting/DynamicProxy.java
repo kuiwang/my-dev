@@ -75,9 +75,10 @@ public class DynamicProxy implements InvocationHandler {
 
         ClientChannel channel = this.getChannel();
         try {
-            return this.send(channel, this.channelHandler.pending(syncCallback,
-                    TcpOperations.Request, transportHeaders, methodCall), syncCallback,
-                    executionTimeoutMillisecond);
+            return this.send(channel,
+                    this.channelHandler.pending(syncCallback, TcpOperations.Request,
+                            transportHeaders, methodCall),
+                    syncCallback, executionTimeoutMillisecond);
         } finally {
             this.selector.returnChannel(channel);
         }
@@ -112,7 +113,7 @@ public class DynamicProxy implements InvocationHandler {
 
     private MethodReturn send(ClientChannel clientChannel, final ByteBuffer buffer,
             SynchronizedRemotingCallback syncCallback, int executionTimeoutMillisecond)
-            throws RemotingException {
+                    throws RemotingException {
         // reset buffer limit and position for send
         buffer.flip();
 
@@ -135,8 +136,7 @@ public class DynamicProxy implements InvocationHandler {
         }
 
         if (syncCallback.getFailure() != null) {
-            throw unexcepException(syncCallback,
-                    Text.RPC_CALL_ERROR, syncCallback.getFailure());
+            throw unexcepException(syncCallback, Text.RPC_CALL_ERROR, syncCallback.getFailure());
         }
 
         return syncCallback.getMethodReturn();

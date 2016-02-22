@@ -447,8 +447,9 @@ public class Item extends TaobaoObject {
 
     /**
      * 商品属性名称。标识着props内容里面的pid和vid所对应的名称。格式为：pid1:vid1:pid_name1:vid_name1;
-     * pid2:vid2:pid_name2:vid_name2……(<strong>注：</strong><font
-     * color="red">属性名称中的冒号":"被转换为："#cln#"; 分号";"被转换为："#scln#" </font>)
+     * pid2:vid2:pid_name2:vid_name2……(<strong>注：</strong>
+     * <font color="red">属性名称中的冒号":"被转换为："#cln#";
+     * 分号";"被转换为："#scln#" </font>)
      */
     @ApiField("props_name")
     private String propsName;

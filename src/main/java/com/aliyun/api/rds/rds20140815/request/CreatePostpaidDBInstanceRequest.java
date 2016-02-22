@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:43
  */
-public class CreatePostpaidDBInstanceRequest implements
-        AliyunRequest<CreatePostpaidDBInstanceResponse> {
+public class CreatePostpaidDBInstanceRequest
+        implements AliyunRequest<CreatePostpaidDBInstanceResponse> {
 
     /**
      * 用于保证幂等性

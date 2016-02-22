@@ -15,8 +15,8 @@ import com.taobao.api.response.InventoryAdjustExternalResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class InventoryAdjustExternalRequest implements
-        TaobaoRequest<InventoryAdjustExternalResponse> {
+public class InventoryAdjustExternalRequest
+        implements TaobaoRequest<InventoryAdjustExternalResponse> {
 
     /**
      * 外部订单类型：ALLOCATE:调拨、
@@ -34,8 +34,8 @@ public class InventoryAdjustExternalRequest implements
     /**
      * 商品初始库存信息：
      * [{"scItemId":"商品后端ID，如果有传scItemCode,参数可以为0","scItemCode":"商品商家编码"
-     * ,"inventoryType"
-     * :"库存类型  1：正常,”direction”: 1: 盘盈 -1: 盘亏,参数可选,"quantity":"数量(正数)"}]
+     * ,"inventoryType" :"库存类型  1：正常,”direction”: 1: 盘盈 -1: 盘亏,参数可选,"
+     * quantity":"数量(正数)"}]
      */
     private String items;
 

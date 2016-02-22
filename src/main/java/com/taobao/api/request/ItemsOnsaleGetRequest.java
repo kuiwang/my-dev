@@ -93,8 +93,8 @@ public class ItemsOnsaleGetRequest implements TaobaoRequest<ItemsOnsaleGetRespon
     private String q;
 
     /**
-     * 卖家店铺内自定义类目ID。多个之间用“,”分隔。可以根据taobao.sellercats.list.get获得.(<font
-     * color="red">注：目前最多支持32个ID号传入</font>)
+     * 卖家店铺内自定义类目ID。多个之间用“,”分隔。可以根据taobao.sellercats.list.get获得.(
+     * <font color="red">注：目前最多支持32个ID号传入</font>)
      */
     private String sellerCids;
 

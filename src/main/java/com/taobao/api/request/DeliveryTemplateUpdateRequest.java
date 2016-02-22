@@ -14,7 +14,8 @@ import com.taobao.api.response.DeliveryTemplateUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemplateUpdateResponse> {
+public class DeliveryTemplateUpdateRequest
+        implements TaobaoRequest<DeliveryTemplateUpdateResponse> {
 
     /**
      * 可选值：0,1 <br>
@@ -55,11 +56,10 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
      * ;ems;exmpress;cod则表示为平邮(post)指定默认地区(全国)和北京地区的运费;其他的类似以分号区分一一对应 <br/>
      * 可以用taobao.areas.get接口获取.或者参考：http://www.stats.gov.cn/tjbz/xzqhdm/
      * t20080215_402462675.htm <br/>
-     * <font
-     * color=red>每个运费方式设置的设涉及地区中必须包含全国地区（areaId=1）表示默认运费,可以只设置默认运费</font> <br>
-     * <font
-     * color=blue>注意:为多个地区指定指定不同（首费标准、首费、增费标准、增费一项不一样就算不同）的运费以逗号","区分，
-     * template_start_standards(首费标准)、template_start_fees(首费)、
+     * <font color=red>每个运费方式设置的设涉及地区中必须包含全国地区（areaId=1）表示默认运费,可以只设置默认运费
+     * </font> <br>
+     * <font color=blue>注意:为多个地区指定指定不同（首费标准、首费、增费标准、增费一项不一样就算不同）
+     * 的运费以逗号","区分， template_start_standards(首费标准)、template_start_fees(首费)、
      * template_add_standards(增费标准)、
      * template_add_fees(增费)必须与template_types分号数量相同
      * 。如果为需要为多个地区指定相同运费则地区之间用“|”隔开即可。</font>
@@ -81,7 +81,8 @@ public class DeliveryTemplateUpdateRequest implements TaobaoRequest<DeliveryTemp
 
     /**
      * 首费标准：当valuation(记价方式)为0时输入1-9999范围内的整数<br>
-     * <font color=blue>首费标准目前只能为1</br> <br>
+     * <font color=blue>首费标准目前只能为1</br>
+     * <br>
      * <font color=red>输入的格式分号个数和template_types数量一致，
      * 逗号个数必须与template_dests以分号隔开之后一一对应的数量一致</font>
      */

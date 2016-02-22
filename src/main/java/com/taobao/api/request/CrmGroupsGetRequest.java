@@ -17,7 +17,8 @@ import com.taobao.api.response.CrmGroupsGetResponse;
 public class CrmGroupsGetRequest implements TaobaoRequest<CrmGroupsGetResponse> {
 
     /**
-     * 显示第几页的分组，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页码为1<br />
+     * 显示第几页的分组，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页码为1
+     * <br />
      * 支持最大值为：1000000<br />
      * 支持最小值为：1<br />
      * 支持的最大列表长度为：3

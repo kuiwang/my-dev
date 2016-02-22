@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallTraderateItemtagsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallTraderateItemtagsGetRequest implements
-        TaobaoRequest<TmallTraderateItemtagsGetResponse> {
+public class TmallTraderateItemtagsGetRequest
+        implements TaobaoRequest<TmallTraderateItemtagsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

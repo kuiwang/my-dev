@@ -91,6 +91,7 @@ public class Base64 {
             .toCharArray();
 
     private static final int[] IA = new int[256];
+
     static {
         Arrays.fill(IA, -1);
         for (int i = 0, iS = CA.length; i < iS; i++) {
@@ -317,7 +318,8 @@ public class Base64 {
      * + The array must have a line length of 76 chars OR no line
      * separators at all (one line).<br>
      * + Line separator must be "\r\n", as specified in RFC 2045 + The
-     * array must not contain illegal characters within the encoded string<br>
+     * array must not contain illegal characters within the encoded string
+     * <br>
      * + The array CAN have illegal characters at the beginning and end,
      * those will be dealt with appropriately.<br>
      * 
@@ -393,7 +395,8 @@ public class Base64 {
      * + The array must have a line length of 76 chars OR no line
      * separators at all (one line).<br>
      * + Line separator must be "\r\n", as specified in RFC 2045 + The
-     * array must not contain illegal characters within the encoded string<br>
+     * array must not contain illegal characters within the encoded string
+     * <br>
      * + The array CAN have illegal characters at the beginning and end,
      * those will be dealt with appropriately.<br>
      * 
@@ -469,7 +472,8 @@ public class Base64 {
      * + The array must have a line length of 76 chars OR no line
      * separators at all (one line).<br>
      * + Line separator must be "\r\n", as specified in RFC 2045 + The
-     * array must not contain illegal characters within the encoded string<br>
+     * array must not contain illegal characters within the encoded string
+     * <br>
      * + The array CAN have illegal characters at the beginning and end,
      * those will be dealt with appropriately.<br>
      * 

@@ -14,7 +14,8 @@ import com.taobao.api.response.LogisticsAddressRemoveResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsAddressRemoveRequest implements TaobaoRequest<LogisticsAddressRemoveResponse> {
+public class LogisticsAddressRemoveRequest
+        implements TaobaoRequest<LogisticsAddressRemoveResponse> {
 
     /**
      * 地址库ID

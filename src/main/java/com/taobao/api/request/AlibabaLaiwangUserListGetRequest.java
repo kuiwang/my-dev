@@ -13,8 +13,8 @@ import com.taobao.api.response.AlibabaLaiwangUserListGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaLaiwangUserListGetRequest implements
-        TaobaoRequest<AlibabaLaiwangUserListGetResponse> {
+public class AlibabaLaiwangUserListGetRequest
+        implements TaobaoRequest<AlibabaLaiwangUserListGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

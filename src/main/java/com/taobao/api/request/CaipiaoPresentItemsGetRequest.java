@@ -14,7 +14,8 @@ import com.taobao.api.response.CaipiaoPresentItemsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class CaipiaoPresentItemsGetRequest implements TaobaoRequest<CaipiaoPresentItemsGetResponse> {
+public class CaipiaoPresentItemsGetRequest
+        implements TaobaoRequest<CaipiaoPresentItemsGetResponse> {
 
     /**
      * 赠送订单的截止时间，格式为yyyyMMdd,

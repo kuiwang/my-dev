@@ -19,7 +19,8 @@ public class HotelsSearchResponse extends TaobaoResponse {
 
     /**
      * 多个酒店结构<br>
-     * </br><font color = red>不返回房型信息，需要查看房型信息，请调用taobao.hotel.get</font>
+     * </br>
+     * <font color = red>不返回房型信息，需要查看房型信息，请调用taobao.hotel.get</font>
      */
     @ApiListField("hotels")
     @ApiField("hotel")

@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionmiscItemActivityGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionmiscItemActivityGetRequest implements
-        TaobaoRequest<PromotionmiscItemActivityGetResponse> {
+public class PromotionmiscItemActivityGetRequest
+        implements TaobaoRequest<PromotionmiscItemActivityGetResponse> {
 
     /**
      * 活动id。<br />

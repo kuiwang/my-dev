@@ -14,8 +14,8 @@ import com.taobao.api.response.WangwangAbstractLogqueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangAbstractLogqueryRequest implements
-        TaobaoRequest<WangwangAbstractLogqueryResponse> {
+public class WangwangAbstractLogqueryRequest
+        implements TaobaoRequest<WangwangAbstractLogqueryResponse> {
 
     /**
      * 传入参数的字符集

@@ -14,8 +14,8 @@ import com.taobao.api.response.ItemQualificationSchemaGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class ItemQualificationSchemaGetRequest implements
-        TaobaoRequest<ItemQualificationSchemaGetResponse> {
+public class ItemQualificationSchemaGetRequest
+        implements TaobaoRequest<ItemQualificationSchemaGetResponse> {
 
     /**
      * 传入商品发布时，叶子类目的ID

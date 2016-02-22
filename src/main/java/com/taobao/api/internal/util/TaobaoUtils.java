@@ -145,7 +145,8 @@ public abstract class TaobaoUtils {
             return "GIF";
         } else if ((bytes[1] == 'P') && (bytes[2] == 'N') && (bytes[3] == 'G')) {
             return "PNG";
-        } else if ((bytes[6] == 'J') && (bytes[7] == 'F') && (bytes[8] == 'I') && (bytes[9] == 'F')) {
+        } else if ((bytes[6] == 'J') && (bytes[7] == 'F') && (bytes[8] == 'I')
+                && (bytes[9] == 'F')) {
             return "JPG";
         } else if ((bytes[0] == 'B') && (bytes[1] == 'M')) {
             return "BMP";
@@ -343,8 +344,8 @@ public abstract class TaobaoUtils {
         return byte2hex(bytes);
     }
 
-    public static String signTopRequestNew(Map<String, String> params, String secret, boolean isHmac)
-            throws IOException {
+    public static String signTopRequestNew(Map<String, String> params, String secret,
+            boolean isHmac) throws IOException {
         // 第一步：检查参数是否已经排序
         String[] keys = params.keySet().toArray(new String[0]);
         Arrays.sort(keys);

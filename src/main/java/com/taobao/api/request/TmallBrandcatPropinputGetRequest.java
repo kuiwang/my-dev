@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallBrandcatPropinputGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallBrandcatPropinputGetRequest implements
-        TaobaoRequest<TmallBrandcatPropinputGetResponse> {
+public class TmallBrandcatPropinputGetRequest
+        implements TaobaoRequest<TmallBrandcatPropinputGetResponse> {
 
     /**
      * 品牌ID，如果类目没有品牌，指定null

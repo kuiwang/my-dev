@@ -14,8 +14,8 @@ import com.taobao.api.response.LogisticsAddressReachableResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class LogisticsAddressReachableRequest implements
-        TaobaoRequest<LogisticsAddressReachableResponse> {
+public class LogisticsAddressReachableRequest
+        implements TaobaoRequest<LogisticsAddressReachableResponse> {
 
     /**
      * 详细地址

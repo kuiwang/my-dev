@@ -15,8 +15,8 @@ import com.taobao.api.response.SimbaAdgroupidsDeletedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:15
  */
-public class SimbaAdgroupidsDeletedGetRequest implements
-        TaobaoRequest<SimbaAdgroupidsDeletedGetResponse> {
+public class SimbaAdgroupidsDeletedGetRequest
+        implements TaobaoRequest<SimbaAdgroupidsDeletedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

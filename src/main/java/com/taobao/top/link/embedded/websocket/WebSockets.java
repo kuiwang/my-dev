@@ -63,8 +63,8 @@ public class WebSockets {
      * @return the web socket
      * @throws WebSocketException the web socket exception
      */
-    public static WebSocket create(String url, String origin, Proxy proxy,
-            WebSocketHandler handler, String... protocols) throws WebSocketException {
+    public static WebSocket create(String url, String origin, Proxy proxy, WebSocketHandler handler,
+            String... protocols) throws WebSocketException {
         return new WebSocketImpl(url, origin, proxy, handler, protocols);
     }
 

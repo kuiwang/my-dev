@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDistributorArchivesGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDistributorArchivesGetRequest implements
-        TaobaoRequest<FenxiaoDistributorArchivesGetResponse> {
+public class FenxiaoDistributorArchivesGetRequest
+        implements TaobaoRequest<FenxiaoDistributorArchivesGetResponse> {
 
     /**
      * 分销商淘宝店主nick

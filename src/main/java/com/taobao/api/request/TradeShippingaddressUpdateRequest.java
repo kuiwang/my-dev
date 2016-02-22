@@ -14,8 +14,8 @@ import com.taobao.api.response.TradeShippingaddressUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TradeShippingaddressUpdateRequest implements
-        TaobaoRequest<TradeShippingaddressUpdateResponse> {
+public class TradeShippingaddressUpdateRequest
+        implements TaobaoRequest<TradeShippingaddressUpdateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

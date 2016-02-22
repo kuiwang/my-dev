@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoProductcatUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductcatUpdateRequest implements
-        TaobaoRequest<FenxiaoProductcatUpdateResponse> {
+public class FenxiaoProductcatUpdateRequest
+        implements TaobaoRequest<FenxiaoProductcatUpdateResponse> {
 
     /**
      * 代销默认采购价比例，注意：100.00%，则输入为10000<br />

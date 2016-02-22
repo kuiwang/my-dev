@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbNotifyMessagePageGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbNotifyMessagePageGetRequest implements
-        TaobaoRequest<WlbNotifyMessagePageGetResponse> {
+public class WlbNotifyMessagePageGetRequest
+        implements TaobaoRequest<WlbNotifyMessagePageGetResponse> {
 
     /**
      * 查询条件：记录截至时间

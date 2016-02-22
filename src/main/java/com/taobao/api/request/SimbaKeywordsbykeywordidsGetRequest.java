@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaKeywordsbykeywordidsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordsbykeywordidsGetRequest implements
-        TaobaoRequest<SimbaKeywordsbykeywordidsGetResponse> {
+public class SimbaKeywordsbykeywordidsGetRequest
+        implements TaobaoRequest<SimbaKeywordsbykeywordidsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -15,8 +15,8 @@ import com.taobao.api.response.WlbItemConsignmentQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemConsignmentQueryRequest implements
-        TaobaoRequest<WlbItemConsignmentQueryResponse> {
+public class WlbItemConsignmentQueryRequest
+        implements TaobaoRequest<WlbItemConsignmentQueryResponse> {
 
     /**
      * 授权结束时间

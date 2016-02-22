@@ -14,8 +14,8 @@ public class SpringMethodCallProcessor implements MethodCallProcessor {
         this.readServices(beanFactory);
     }
 
-    private Method getMethod(Object target, MethodCall methodCall) throws SecurityException,
-            NoSuchMethodException {
+    private Method getMethod(Object target, MethodCall methodCall)
+            throws SecurityException, NoSuchMethodException {
         try {
             return target.getClass().getMethod(methodCall.MethodName, methodCall.MethodSignature);
         } catch (NoSuchMethodException e) {

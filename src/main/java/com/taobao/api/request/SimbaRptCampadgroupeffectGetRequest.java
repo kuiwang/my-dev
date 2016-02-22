@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaRptCampadgroupeffectGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class SimbaRptCampadgroupeffectGetRequest implements
-        TaobaoRequest<SimbaRptCampadgroupeffectGetResponse> {
+public class SimbaRptCampadgroupeffectGetRequest
+        implements TaobaoRequest<SimbaRptCampadgroupeffectGetResponse> {
 
     /**
      * 查询推广计划id

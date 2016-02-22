@@ -147,8 +147,8 @@ public class DigestAuthenticator extends AbstractAuthenticator {
 
         String response = null;
         if (qop != null) {
-            response = StringUtil.toMD5HexString(StringUtil.join(":", a1, nonce, nc, cnonce, qop,
-                    a2));
+            response = StringUtil
+                    .toMD5HexString(StringUtil.join(":", a1, nonce, nc, cnonce, qop, a2));
         } else {
             response = StringUtil.toMD5HexString(StringUtil.join(":", a1, nonce, a2));
         }

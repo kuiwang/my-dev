@@ -15,8 +15,8 @@ import com.taobao.api.response.FenxiaoDistributorProductsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDistributorProductsGetRequest implements
-        TaobaoRequest<FenxiaoDistributorProductsGetResponse> {
+public class FenxiaoDistributorProductsGetRequest
+        implements TaobaoRequest<FenxiaoDistributorProductsGetResponse> {
 
     /**
      * 下载状态，默认未下载。UNDOWNLOAD：未下载，DOWNLOADED：已下载。

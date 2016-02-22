@@ -17,9 +17,9 @@ public class EmbeddedClientChannelPooledSelector extends ClientChannelPooledSele
 
         @Override
         public ClientChannel create() throws ChannelException {
-            return uri.getScheme().equalsIgnoreCase("ws")
-                    || uri.getScheme().equalsIgnoreCase("wss") ? EmbeddedWebSocketClient.connect(
-                    this.loggerFactory, this.uri, this.timeout) : super.create();
+            return uri.getScheme().equalsIgnoreCase("ws") || uri.getScheme().equalsIgnoreCase("wss")
+                    ? EmbeddedWebSocketClient.connect(this.loggerFactory, this.uri, this.timeout)
+                    : super.create();
         }
     }
 

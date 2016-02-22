@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemConsignmentCreateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemConsignmentCreateRequest implements
-        TaobaoRequest<WlbItemConsignmentCreateResponse> {
+public class WlbItemConsignmentCreateRequest
+        implements TaobaoRequest<WlbItemConsignmentCreateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

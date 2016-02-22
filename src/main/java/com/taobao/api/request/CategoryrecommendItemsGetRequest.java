@@ -14,8 +14,8 @@ import com.taobao.api.response.CategoryrecommendItemsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:29
  */
-public class CategoryrecommendItemsGetRequest implements
-        TaobaoRequest<CategoryrecommendItemsGetResponse> {
+public class CategoryrecommendItemsGetRequest
+        implements TaobaoRequest<CategoryrecommendItemsGetResponse> {
 
     /**
      * 传入叶子类目ID

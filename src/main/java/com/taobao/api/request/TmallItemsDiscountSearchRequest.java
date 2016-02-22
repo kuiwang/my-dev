@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallItemsDiscountSearchResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:31
  */
-public class TmallItemsDiscountSearchRequest implements
-        TaobaoRequest<TmallItemsDiscountSearchResponse> {
+public class TmallItemsDiscountSearchRequest
+        implements TaobaoRequest<TmallItemsDiscountSearchResponse> {
 
     /**
      * 商品标签。品牌特卖商品库：3458；天猫原创商品库：4801,不再支持 天猫精品库：8578；

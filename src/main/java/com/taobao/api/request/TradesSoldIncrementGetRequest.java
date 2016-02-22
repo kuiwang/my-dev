@@ -15,12 +15,13 @@ import com.taobao.api.response.TradesSoldIncrementGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TradesSoldIncrementGetRequest implements TaobaoRequest<TradesSoldIncrementGetResponse> {
+public class TradesSoldIncrementGetRequest
+        implements TaobaoRequest<TradesSoldIncrementGetResponse> {
 
     /**
-     * 查询修改结束时间，必须大于修改开始时间(修改时间跨度不能大于一天)，格式:yyyy-MM-dd HH:mm:ss。<span
-     * style=
-     * "color:red;font-weight: bold;">建议使用30分钟以内的时间跨度，能大大提高响应速度和成功率</span>。
+     * 查询修改结束时间，必须大于修改开始时间(修改时间跨度不能大于一天)，格式:yyyy-MM-dd HH:mm:ss。
+     * <span style= "color:red;font-weight: bold;"
+     * >建议使用30分钟以内的时间跨度，能大大提高响应速度和成功率</span>。
      */
     private Date endModified;
 
@@ -63,16 +64,14 @@ public class TradesSoldIncrementGetRequest implements TaobaoRequest<TradesSoldIn
     private Map<String, String> headerMap = new TaobaoHashMap();
 
     /**
-     * 页码。取值范围:大于零的整数;默认值:1。<span
-     * style="color:red;font-weight: bold;">注：必须采用倒序的分页方式
-     * （从最后一页往回取）才能避免漏单问题。</span>
+     * 页码。取值范围:大于零的整数;默认值:1。<span style="color:red;font-weight: bold;"
+     * >注：必须采用倒序的分页方式 （从最后一页往回取）才能避免漏单问题。</span>
      */
     private Long pageNo;
 
     /**
-     * 每页条数。取值范围：1~100，默认值：40。<span
-     * style="color:red;font-weight: bold;">建议使用40
-     * ~50，可以提高成功率，减少超时数量</span>。
+     * 每页条数。取值范围：1~100，默认值：40。<span style="color:red;font-weight: bold;"
+     * >建议使用40 ~50，可以提高成功率，减少超时数量</span>。
      */
     private Long pageSize;
 
@@ -102,9 +101,8 @@ public class TradesSoldIncrementGetRequest implements TaobaoRequest<TradesSoldIn
     private Long timestamp;
 
     /**
-     * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span
-     * style="color:red;font-weight: bold;">默认同时查询guarantee_trade,
-     * auto_delivery, ec,
+     * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span style="color:red;font-weight: bold;"
+     * >默认同时查询guarantee_trade, auto_delivery, ec,
      * cod,step的5种交易类型的数据；查询所有交易类型的数据，需要设置下面全部可选值。</span> 可选值： fixed(一口价)
      * auction(拍卖) step（分阶段付款，万人团，阶梯团订单） guarantee_trade(一口价、拍卖)
      * independent_simple_trade(旺店入门版交易) independent_shop_trade(旺店标准版交易)
@@ -123,10 +121,9 @@ public class TradesSoldIncrementGetRequest implements TaobaoRequest<TradesSoldIn
     private TaobaoHashMap udfParams; // add user-defined text parameters
 
     /**
-     * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，<span
-     * style
-     * ="color:red;font-weight: bold;">通过此种方式获取增量交易，效率在原有的基础上有80%的提升</span
-     * >。
+     * 是否启用has_next的分页方式，如果指定true,则返回的结果中不包含总记录数，但是会新增一个是否存在下一页的的字段，
+     * <span style ="color:red;font-weight: bold;"
+     * >通过此种方式获取增量交易，效率在原有的基础上有80%的提升</span >。
      */
     private Boolean useHasNext;
 

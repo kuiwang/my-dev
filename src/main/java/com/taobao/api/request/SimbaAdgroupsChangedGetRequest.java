@@ -15,8 +15,8 @@ import com.taobao.api.response.SimbaAdgroupsChangedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaAdgroupsChangedGetRequest implements
-        TaobaoRequest<SimbaAdgroupsChangedGetResponse> {
+public class SimbaAdgroupsChangedGetRequest
+        implements TaobaoRequest<SimbaAdgroupsChangedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

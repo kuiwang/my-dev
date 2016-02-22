@@ -14,8 +14,8 @@ import com.taobao.api.response.TripJipiaoAgentOrderSuccessResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class TripJipiaoAgentOrderSuccessRequest implements
-        TaobaoRequest<TripJipiaoAgentOrderSuccessResponse> {
+public class TripJipiaoAgentOrderSuccessRequest
+        implements TaobaoRequest<TripJipiaoAgentOrderSuccessResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

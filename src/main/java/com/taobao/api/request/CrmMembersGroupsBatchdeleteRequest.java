@@ -14,8 +14,8 @@ import com.taobao.api.response.CrmMembersGroupsBatchdeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class CrmMembersGroupsBatchdeleteRequest implements
-        TaobaoRequest<CrmMembersGroupsBatchdeleteResponse> {
+public class CrmMembersGroupsBatchdeleteRequest
+        implements TaobaoRequest<CrmMembersGroupsBatchdeleteResponse> {
 
     /**
      * 买家的Id集合<br />

@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class CreateLoadBalancerHTTPListenerRequest implements
-        AliyunRequest<CreateLoadBalancerHTTPListenerResponse> {
+public class CreateLoadBalancerHTTPListenerRequest
+        implements AliyunRequest<CreateLoadBalancerHTTPListenerResponse> {
 
     /**
      * SLB实例后端使用的端口，范围为1-65535。<br />

@@ -16,8 +16,8 @@ import com.taobao.api.response.EbookFileUploadChunkResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class EbookFileUploadChunkRequest implements
-        TaobaoUploadRequest<EbookFileUploadChunkResponse> {
+public class EbookFileUploadChunkRequest
+        implements TaobaoUploadRequest<EbookFileUploadChunkResponse> {
 
     /**
      * 文件块总数

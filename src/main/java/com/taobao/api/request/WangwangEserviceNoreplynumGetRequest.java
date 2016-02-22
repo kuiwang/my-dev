@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceNoreplynumGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceNoreplynumGetRequest implements
-        TaobaoRequest<WangwangEserviceNoreplynumGetResponse> {
+public class WangwangEserviceNoreplynumGetRequest
+        implements TaobaoRequest<WangwangEserviceNoreplynumGetResponse> {
 
     /**
      * 结束日期

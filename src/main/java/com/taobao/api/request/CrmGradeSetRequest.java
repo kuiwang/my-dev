@@ -35,7 +35,8 @@ public class CrmGradeSetRequest implements TaobaoRequest<CrmGradeSetResponse> {
     private String count;
 
     /**
-     * 会员级别折扣率。会员等级越高，折扣必须越低。 950即9.5折，888折即8.88折。出于安全原因，折扣现最低只能设置到700即7折。<br />
+     * 会员级别折扣率。会员等级越高，折扣必须越低。 950即9.5折，888折即8.88折。出于安全原因，折扣现最低只能设置到700即7折。
+     * <br />
      * 支持最大值为：1000<br />
      * 支持最小值为：700
      */

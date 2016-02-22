@@ -114,7 +114,7 @@ public class Endpoint {
         e.remove(uri);
         // always reget channel, make sure it's valid
         ClientChannelWrapper channel = new ClientChannelWrapper(
-        // set default version on this channel
+                // set default version on this channel
                 this.channelSelector.getChannel(uri), msg.protocolVersion);
         channel.setChannelHandler(this.channelHandler);
         // send connect

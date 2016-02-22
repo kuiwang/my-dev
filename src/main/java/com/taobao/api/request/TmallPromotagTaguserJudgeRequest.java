@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallPromotagTaguserJudgeResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:25
  */
-public class TmallPromotagTaguserJudgeRequest implements
-        TaobaoRequest<TmallPromotagTaguserJudgeResponse> {
+public class TmallPromotagTaguserJudgeRequest
+        implements TaobaoRequest<TmallPromotagTaguserJudgeResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

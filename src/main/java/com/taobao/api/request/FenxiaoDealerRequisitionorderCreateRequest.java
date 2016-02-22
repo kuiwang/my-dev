@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderCreateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDealerRequisitionorderCreateRequest implements
-        TaobaoRequest<FenxiaoDealerRequisitionorderCreateResponse> {
+public class FenxiaoDealerRequisitionorderCreateRequest
+        implements TaobaoRequest<FenxiaoDealerRequisitionorderCreateResponse> {
 
     /**
      * 收货人所在街道地址

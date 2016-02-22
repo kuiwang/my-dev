@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaCreativesRecordGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaCreativesRecordGetRequest implements
-        TaobaoRequest<SimbaCreativesRecordGetResponse> {
+public class SimbaCreativesRecordGetRequest
+        implements TaobaoRequest<SimbaCreativesRecordGetResponse> {
 
     /**
      * 创意Id数组，最多200个

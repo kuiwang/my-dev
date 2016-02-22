@@ -15,8 +15,8 @@ import com.taobao.api.response.PromotionmiscMjsActivityAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:24
  */
-public class PromotionmiscMjsActivityAddRequest implements
-        TaobaoRequest<PromotionmiscMjsActivityAddResponse> {
+public class PromotionmiscMjsActivityAddRequest
+        implements TaobaoRequest<PromotionmiscMjsActivityAddResponse> {
 
     /**
      * 减多少钱。当is_decrease_money为true时，该值才有意义。注意：该值单位为分，即100表示1元。<br />

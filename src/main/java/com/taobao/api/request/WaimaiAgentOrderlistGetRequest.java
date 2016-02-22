@@ -14,8 +14,8 @@ import com.taobao.api.response.WaimaiAgentOrderlistGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class WaimaiAgentOrderlistGetRequest implements
-        TaobaoRequest<WaimaiAgentOrderlistGetResponse> {
+public class WaimaiAgentOrderlistGetRequest
+        implements TaobaoRequest<WaimaiAgentOrderlistGetResponse> {
 
     /**
      * 结束时间，格式: yyyy-mm-dd hh:mm:ss

@@ -15,8 +15,8 @@ import com.taobao.api.response.LogisticsOrdertracePushResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsOrdertracePushRequest implements
-        TaobaoRequest<LogisticsOrdertracePushResponse> {
+public class LogisticsOrdertracePushRequest
+        implements TaobaoRequest<LogisticsOrdertracePushResponse> {
 
     /**
      * 物流公司名称<br />

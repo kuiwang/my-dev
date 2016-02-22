@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class SetResourceBusinessStatusRequest implements
-        AliyunRequest<SetResourceBusinessStatusResponse> {
+public class SetResourceBusinessStatusRequest
+        implements AliyunRequest<SetResourceBusinessStatusResponse> {
 
     /**
      * 操作类型 expired:过期状态 normal:正常状态

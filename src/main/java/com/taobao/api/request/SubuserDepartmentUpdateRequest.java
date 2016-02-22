@@ -14,8 +14,8 @@ import com.taobao.api.response.SubuserDepartmentUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class SubuserDepartmentUpdateRequest implements
-        TaobaoRequest<SubuserDepartmentUpdateResponse> {
+public class SubuserDepartmentUpdateRequest
+        implements TaobaoRequest<SubuserDepartmentUpdateResponse> {
 
     /**
      * 部门ID

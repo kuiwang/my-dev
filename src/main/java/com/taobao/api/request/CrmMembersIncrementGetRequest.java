@@ -15,10 +15,12 @@ import com.taobao.api.response.CrmMembersIncrementGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class CrmMembersIncrementGetRequest implements TaobaoRequest<CrmMembersIncrementGetResponse> {
+public class CrmMembersIncrementGetRequest
+        implements TaobaoRequest<CrmMembersIncrementGetResponse> {
 
     /**
-     * 显示第几页的会员，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页数为1<br />
+     * 显示第几页的会员，如果输入的页码大于总共的页码数，例如总共10页，但是current_page的值为11，则返回空白页，最小页数为1
+     * <br />
      * 支持最小值为：1
      */
     private Long currentPage;

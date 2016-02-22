@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaRptAdgroupkeywordbaseGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:21
  */
-public class SimbaRptAdgroupkeywordbaseGetRequest implements
-        TaobaoRequest<SimbaRptAdgroupkeywordbaseGetResponse> {
+public class SimbaRptAdgroupkeywordbaseGetRequest
+        implements TaobaoRequest<SimbaRptAdgroupkeywordbaseGetResponse> {
 
     /**
      * 推广组ID

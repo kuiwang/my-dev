@@ -14,8 +14,8 @@ import com.taobao.api.response.InventoryIpcInventorydetailGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class InventoryIpcInventorydetailGetRequest implements
-        TaobaoRequest<InventoryIpcInventorydetailGetResponse> {
+public class InventoryIpcInventorydetailGetRequest
+        implements TaobaoRequest<InventoryIpcInventorydetailGetResponse> {
 
     /**
      * 主订单号，可选<br />

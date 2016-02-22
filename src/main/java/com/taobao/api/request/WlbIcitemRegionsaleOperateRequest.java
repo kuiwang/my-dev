@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbIcitemRegionsaleOperateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WlbIcitemRegionsaleOperateRequest implements
-        TaobaoRequest<WlbIcitemRegionsaleOperateResponse> {
+public class WlbIcitemRegionsaleOperateRequest
+        implements TaobaoRequest<WlbIcitemRegionsaleOperateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

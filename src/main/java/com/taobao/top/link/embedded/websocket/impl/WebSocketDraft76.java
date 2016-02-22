@@ -54,8 +54,9 @@ import com.taobao.top.link.embedded.websocket.proxy.Proxy;
  * A simple websocket client this class is implement the WebSocket Draft76
  * specification.
  * 
- * @see <a
- *      href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">draft-hixie-thewebsocketprotocol-76</a>
+ * @see <a href=
+ *      "http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">
+ *      draft-hixie-thewebsocketprotocol-76</a>
  * @author t-hashimoto
  * 
  */
@@ -328,21 +329,22 @@ public class WebSocketDraft76 extends WebSocketBase {
                 if (!super.parseHandshakeResponseHeader(buffer)) {
                     return false;
                 }
-                if (!"websocket".equalsIgnoreCase(this.getResponseHeader()
-                        .getHeaderValue("upgrade"))) {
+                if (!"websocket"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("upgrade"))) {
                     throw new WebSocketException(E3500, responseHeader.getHeaderValue("upgrade"));
                 }
-                if (!"upgrade".equalsIgnoreCase(this.getResponseHeader().getHeaderValue(
-                        "connection"))) {
-                    throw new WebSocketException(E3501, responseHeader.getHeaderValue("connection"));
+                if (!"upgrade"
+                        .equalsIgnoreCase(this.getResponseHeader().getHeaderValue("connection"))) {
+                    throw new WebSocketException(E3501,
+                            responseHeader.getHeaderValue("connection"));
                 }
-                String serverOrigin = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-origin");
+                String serverOrigin = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-origin");
                 if ((origin != null) && (serverOrigin != null) && !serverOrigin.equals(origin)) {
                     throw new WebSocketException(E3502, origin, serverOrigin);
                 }
-                String serverLocation = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-location");
+                String serverLocation = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-location");
                 try {
                     // reformat location URI.
                     // drop custom port
@@ -354,8 +356,8 @@ public class WebSocketDraft76 extends WebSocketBase {
                 } catch (URISyntaxException e) {
                     ;
                 }
-                String protocolStr = this.getResponseHeader().getHeaderValue(
-                        "sec-websocket-protocol");
+                String protocolStr = this.getResponseHeader()
+                        .getHeaderValue("sec-websocket-protocol");
                 if (protocolStr != null) {
                     serverProtocols = protocolStr.split(",");
                 }

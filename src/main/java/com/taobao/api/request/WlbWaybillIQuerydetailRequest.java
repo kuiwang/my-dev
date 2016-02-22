@@ -14,7 +14,8 @@ import com.taobao.api.response.WlbWaybillIQuerydetailResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbWaybillIQuerydetailRequest implements TaobaoRequest<WlbWaybillIQuerydetailResponse> {
+public class WlbWaybillIQuerydetailRequest
+        implements TaobaoRequest<WlbWaybillIQuerydetailResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

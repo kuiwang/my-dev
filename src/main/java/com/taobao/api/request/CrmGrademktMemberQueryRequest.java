@@ -14,7 +14,8 @@ import com.taobao.api.response.CrmGrademktMemberQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:27
  */
-public class CrmGrademktMemberQueryRequest implements TaobaoRequest<CrmGrademktMemberQueryResponse> {
+public class CrmGrademktMemberQueryRequest
+        implements TaobaoRequest<CrmGrademktMemberQueryResponse> {
 
     /**
      * 会员nick

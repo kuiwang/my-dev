@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceReceivenumGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceReceivenumGetRequest implements
-        TaobaoRequest<WangwangEserviceReceivenumGetResponse> {
+public class WangwangEserviceReceivenumGetRequest
+        implements TaobaoRequest<WangwangEserviceReceivenumGetResponse> {
 
     /**
      * 查询接待人数的结束日期 时间精确到日 时分秒可以直接传00:00:00

@@ -26,7 +26,8 @@ public abstract class NettyClient {
     private static NioClientSocketChannelFactory nioClientSocketChannelFactory = new NioClientSocketChannelFactory(
             Executors.newCachedThreadPool(), Executors.newCachedThreadPool());
 
-    private static TrustManager[] trustAllCerts = new TrustManager[] { new X509AlwaysTrustManager() };
+    private static TrustManager[] trustAllCerts = new TrustManager[] {
+            new X509AlwaysTrustManager() };
 
     private static SslHandler createSslHandler(URI uri) {
         try {

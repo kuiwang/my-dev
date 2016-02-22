@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionLimitdiscountDetailGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionLimitdiscountDetailGetRequest implements
-        TaobaoRequest<PromotionLimitdiscountDetailGetResponse> {
+public class PromotionLimitdiscountDetailGetRequest
+        implements TaobaoRequest<PromotionLimitdiscountDetailGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

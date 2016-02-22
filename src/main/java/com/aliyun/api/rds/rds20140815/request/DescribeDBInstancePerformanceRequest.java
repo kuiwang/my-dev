@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:44
  */
-public class DescribeDBInstancePerformanceRequest implements
-        AliyunRequest<DescribeDBInstancePerformanceResponse> {
+public class DescribeDBInstancePerformanceRequest
+        implements AliyunRequest<DescribeDBInstancePerformanceResponse> {
 
     /**
      * 实例名

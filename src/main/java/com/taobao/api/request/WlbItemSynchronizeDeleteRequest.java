@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemSynchronizeDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemSynchronizeDeleteRequest implements
-        TaobaoRequest<WlbItemSynchronizeDeleteResponse> {
+public class WlbItemSynchronizeDeleteRequest
+        implements TaobaoRequest<WlbItemSynchronizeDeleteResponse> {
 
     /**
      * 外部实体ID<br />

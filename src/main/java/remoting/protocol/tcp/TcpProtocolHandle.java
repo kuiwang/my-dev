@@ -260,14 +260,11 @@ public class TcpProtocolHandle extends ProtocolStreamHandle {
         if (headers != null) {
             for (Entry<String, Object> i : headers.entrySet()) {
                 if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusCode)) {
-                    this
-                            .WriteStatusCodeHeader(Short.parseShort(i.getValue().toString()));
+                    this.WriteStatusCodeHeader(Short.parseShort(i.getValue().toString()));
                 } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.StatusPhrase)) {
-                    this
-                            .WriteStatusPhraseHeader(i.getValue().toString());
+                    this.WriteStatusPhraseHeader(i.getValue().toString());
                 } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.ContentType)) {
-                    this
-                            .WriteContentTypeHeader(i.getValue().toString());
+                    this.WriteContentTypeHeader(i.getValue().toString());
                 } else if (i.getKey().equalsIgnoreCase(TcpTransportHeader.RequestUri)) {
                     // Request-Uri must be transport while request call
                     this.WriteRequestUriHeader(i.getValue().toString());

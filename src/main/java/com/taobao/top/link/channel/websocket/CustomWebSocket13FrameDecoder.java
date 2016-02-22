@@ -58,8 +58,7 @@ public class CustomWebSocket13FrameDecoder extends WebSocket13FrameDecoder {
         super.messageReceived(ctx, e);
         // batch FireMessageReceived
         if (this.cumulation.size() > 0) {
-            Channels.fireMessageReceived(ctx, cumulation,
-                    e.getRemoteAddress());
+            Channels.fireMessageReceived(ctx, cumulation, e.getRemoteAddress());
         }
     }
 }

@@ -61,12 +61,10 @@ public class RemotingConfiguration {
 
     private synchronized DefaultRemotingServerChannelHandler getChannelHandler() {
         if (this.defaultHandler == null) {
-            this.defaultHandler = new DefaultRemotingServerChannelHandler(
-                    this.loggerFactory);
+            this.defaultHandler = new DefaultRemotingServerChannelHandler(this.loggerFactory);
         }
         if (this.serializationFactory != null) {
-            this.defaultHandler
-                    .setSerializationFactory(this.serializationFactory);
+            this.defaultHandler.setSerializationFactory(this.serializationFactory);
         }
         return this.defaultHandler;
     }

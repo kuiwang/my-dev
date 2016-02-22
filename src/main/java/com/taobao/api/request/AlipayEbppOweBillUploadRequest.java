@@ -16,8 +16,8 @@ import com.taobao.api.response.AlipayEbppOweBillUploadResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayEbppOweBillUploadRequest implements
-        TaobaoUploadRequest<AlipayEbppOweBillUploadResponse> {
+public class AlipayEbppOweBillUploadRequest
+        implements TaobaoUploadRequest<AlipayEbppOweBillUploadResponse> {
 
     /**
      * 支付宝给每个出账机构指定了一个对应的英文短名称来唯一表示该收费单位。<br />
@@ -55,7 +55,8 @@ public class AlipayEbppOweBillUploadRequest implements
     private FileItem oweBill;
 
     /**
-     * 子业务类型是业务类型的下一级概念，例如：WATER表示JF下面的水费，ELECTRIC表示JF下面的电费，GAS表示JF下面的燃气费。<br />
+     * 子业务类型是业务类型的下一级概念，例如：WATER表示JF下面的水费，ELECTRIC表示JF下面的电费，GAS表示JF下面的燃气费。
+     * <br />
      * 支持最大长度为：10<br />
      * 支持的最大列表长度为：10
      */

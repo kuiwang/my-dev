@@ -14,8 +14,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:36
  */
-public class DescribeInstanceMonitorDataRequest implements
-        AliyunRequest<DescribeInstanceMonitorDataResponse> {
+public class DescribeInstanceMonitorDataRequest
+        implements AliyunRequest<DescribeInstanceMonitorDataResponse> {
 
     /**
      * 获取数据的结束时间点：ISO8601 表示法，并使用UTC时间。格式为：

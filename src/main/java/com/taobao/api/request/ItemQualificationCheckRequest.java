@@ -14,7 +14,8 @@ import com.taobao.api.response.ItemQualificationCheckResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class ItemQualificationCheckRequest implements TaobaoRequest<ItemQualificationCheckResponse> {
+public class ItemQualificationCheckRequest
+        implements TaobaoRequest<ItemQualificationCheckResponse> {
 
     /**
      * 类目ID

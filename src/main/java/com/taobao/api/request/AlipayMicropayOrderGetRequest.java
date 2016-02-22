@@ -14,7 +14,8 @@ import com.taobao.api.response.AlipayMicropayOrderGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayMicropayOrderGetRequest implements TaobaoRequest<AlipayMicropayOrderGetResponse> {
+public class AlipayMicropayOrderGetRequest
+        implements TaobaoRequest<AlipayMicropayOrderGetResponse> {
 
     /**
      * 支付宝订单号，冻结流水号(创建冻结订单返回)

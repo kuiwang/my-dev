@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceOnlinetimeGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceOnlinetimeGetRequest implements
-        TaobaoRequest<WangwangEserviceOnlinetimeGetResponse> {
+public class WangwangEserviceOnlinetimeGetRequest
+        implements TaobaoRequest<WangwangEserviceOnlinetimeGetResponse> {
 
     /**
      * 结束日期

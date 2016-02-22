@@ -14,8 +14,8 @@ import com.taobao.api.response.LogisticsAddressReachablebatchGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class LogisticsAddressReachablebatchGetRequest implements
-        TaobaoRequest<LogisticsAddressReachablebatchGetResponse> {
+public class LogisticsAddressReachablebatchGetRequest
+        implements TaobaoRequest<LogisticsAddressReachablebatchGetResponse> {
 
     /**
      * 筛单用户输入地址结构

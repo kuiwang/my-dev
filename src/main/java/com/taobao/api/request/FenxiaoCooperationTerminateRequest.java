@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoCooperationTerminateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoCooperationTerminateRequest implements
-        TaobaoRequest<FenxiaoCooperationTerminateResponse> {
+public class FenxiaoCooperationTerminateRequest
+        implements TaobaoRequest<FenxiaoCooperationTerminateResponse> {
 
     /**
      * 合作编号

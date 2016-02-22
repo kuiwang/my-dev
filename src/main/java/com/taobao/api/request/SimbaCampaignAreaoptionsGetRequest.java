@@ -13,8 +13,8 @@ import com.taobao.api.response.SimbaCampaignAreaoptionsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaCampaignAreaoptionsGetRequest implements
-        TaobaoRequest<SimbaCampaignAreaoptionsGetResponse> {
+public class SimbaCampaignAreaoptionsGetRequest
+        implements TaobaoRequest<SimbaCampaignAreaoptionsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

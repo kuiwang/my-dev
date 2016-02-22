@@ -14,7 +14,8 @@ import com.taobao.api.response.PictureIsreferencedGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class PictureIsreferencedGetRequest implements TaobaoRequest<PictureIsreferencedGetResponse> {
+public class PictureIsreferencedGetRequest
+        implements TaobaoRequest<PictureIsreferencedGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -16,8 +16,8 @@ import com.taobao.api.response.FenxiaoRefundMessageAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoRefundMessageAddRequest implements
-        TaobaoUploadRequest<FenxiaoRefundMessageAddResponse> {
+public class FenxiaoRefundMessageAddRequest
+        implements TaobaoUploadRequest<FenxiaoRefundMessageAddResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

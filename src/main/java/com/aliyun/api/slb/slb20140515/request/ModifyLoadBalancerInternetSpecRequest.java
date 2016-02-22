@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class ModifyLoadBalancerInternetSpecRequest implements
-        AliyunRequest<ModifyLoadBalancerInternetSpecResponse> {
+public class ModifyLoadBalancerInternetSpecRequest
+        implements AliyunRequest<ModifyLoadBalancerInternetSpecResponse> {
 
     /**
      * 公网类型实例按固定带宽计费方式时设定的带宽峰值 取值：，范围1-1000（单位为Mbps） ，默认值：为1。

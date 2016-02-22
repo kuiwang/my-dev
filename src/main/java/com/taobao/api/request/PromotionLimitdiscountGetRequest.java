@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionLimitdiscountGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionLimitdiscountGetRequest implements
-        TaobaoRequest<PromotionLimitdiscountGetResponse> {
+public class PromotionLimitdiscountGetRequest
+        implements TaobaoRequest<PromotionLimitdiscountGetResponse> {
 
     /**
      * 限时打折结束时间。输入的时间会被截取，年月日有效，时分秒忽略。

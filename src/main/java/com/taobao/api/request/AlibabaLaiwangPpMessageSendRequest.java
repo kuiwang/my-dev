@@ -14,8 +14,8 @@ import com.taobao.api.response.AlibabaLaiwangPpMessageSendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaLaiwangPpMessageSendRequest implements
-        TaobaoRequest<AlibabaLaiwangPpMessageSendResponse> {
+public class AlibabaLaiwangPpMessageSendRequest
+        implements TaobaoRequest<AlibabaLaiwangPpMessageSendResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

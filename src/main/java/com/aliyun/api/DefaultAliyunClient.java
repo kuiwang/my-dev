@@ -193,9 +193,8 @@ public class DefaultAliyunClient implements AliyunClient {
         String url = null;
         try {
             // 计算签名，并将签名结果加入请求参数中
-            protocalMustParams
-                    .put(AliyunConstants.SIGNATURE, AliyunSignature.computeSignature(
-                            requestHolder.getAllParams(), accessKeySecret));
+            protocalMustParams.put(AliyunConstants.SIGNATURE, AliyunSignature
+                    .computeSignature(requestHolder.getAllParams(), accessKeySecret));
 
             String query = paramsToQueryString(requestHolder.getAllParams());
             url = (serverUrl.endsWith("/") ? serverUrl : (serverUrl + "/")) + "?" + query;

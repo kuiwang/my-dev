@@ -30,8 +30,9 @@ public class Product extends TaobaoObject {
     private String binds;
 
     /**
-     * 产品的非关键属性字符串列表.格式同props_str(<strong>注：</strong><font
-     * color="red">属性名称中的冒号":"被转换为："#cln#"; 分号";"被转换为："#scln#" </font>)
+     * 产品的非关键属性字符串列表.格式同props_str(<strong>注：</strong>
+     * <font color="red">属性名称中的冒号":"被转换为："#cln#";
+     * 分号";"被转换为："#scln#" </font>)
      */
     @ApiField("binds_str")
     private String bindsStr;
@@ -177,8 +178,9 @@ public class Product extends TaobaoObject {
     private String props;
 
     /**
-     * 产品的关键属性字符串列表.比如:品牌:诺基亚;型号:N73(<strong>注：</strong><font
-     * color="red">属性名称中的冒号":"被转换为："#cln#"; 分号";"被转换为："#scln#" </font>)
+     * 产品的关键属性字符串列表.比如:品牌:诺基亚;型号:N73(<strong>注：</strong>
+     * <font color="red">属性名称中的冒号":"被转换为："#cln#";
+     * 分号";"被转换为："#scln#" </font>)
      */
     @ApiField("props_str")
     private String propsStr;
@@ -202,8 +204,9 @@ public class Product extends TaobaoObject {
     private String saleProps;
 
     /**
-     * 产品的销售属性字符串列表.格式同props_str(<strong>注：</strong><font
-     * color="red">属性名称中的冒号":"被转换为："#cln#"; 分号";"被转换为："#scln#" </font>)
+     * 产品的销售属性字符串列表.格式同props_str(<strong>注：</strong>
+     * <font color="red">属性名称中的冒号":"被转换为："#cln#";
+     * 分号";"被转换为："#scln#" </font>)
      */
     @ApiField("sale_props_str")
     private String salePropsStr;

@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:47
  */
-public class SetLoadBalancerHTTPListenerAttributeRequest implements
-        AliyunRequest<SetLoadBalancerHTTPListenerAttributeResponse> {
+public class SetLoadBalancerHTTPListenerAttributeRequest
+        implements AliyunRequest<SetLoadBalancerHTTPListenerAttributeResponse> {
 
     /**
      * 监听的带宽峰值，范围-1-1000Mbps。针对按固定带宽计费方式的公网类型实例，
@@ -56,7 +56,8 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
 
     /**
      * 进行健康检查时使用的端口。 当HealthCheck为on时，此参数为必选；当HealthCheck为off时，此参数设置将被忽略。
-     * 取值：1-65535，或者’-520’ 。 用户设置此参数为’-520’时，表示使用后端服务端口（BackendServerPort）。<br />
+     * 取值：1-65535，或者’-520’ 。 用户设置此参数为’-520’时，表示使用后端服务端口（BackendServerPort）。
+     * <br />
      * 支持最大值为：65535<br />
      * 支持最小值为：-520
      */
@@ -91,7 +92,8 @@ public class SetLoadBalancerHTTPListenerAttributeRequest implements
 
     /**
      * 用于健康检查的URI。 当HealthCheck为on时，此参数为必选；当HealthCheck为off时，此参数设置将被忽略。
-     * 取值：长度限制为1-80，必须以’/’开头。只能使用字母、数字、‘-’、‘/’、‘.’、‘%’、‘?’、‘#’、‘&’这些字符。<br />
+     * 取值：长度限制为1-80，必须以’/’开头。只能使用字母、数字、‘-’、‘/’、‘.’、‘%’、‘?’、‘#’、‘&’这些字符。
+     * <br />
      * 支持最大长度为：80<br />
      * 支持的最大列表长度为：80
      */

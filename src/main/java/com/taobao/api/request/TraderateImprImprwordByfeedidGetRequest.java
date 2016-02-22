@@ -14,8 +14,8 @@ import com.taobao.api.response.TraderateImprImprwordByfeedidGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TraderateImprImprwordByfeedidGetRequest implements
-        TaobaoRequest<TraderateImprImprwordByfeedidGetResponse> {
+public class TraderateImprImprwordByfeedidGetRequest
+        implements TaobaoRequest<TraderateImprImprwordByfeedidGetResponse> {
 
     /**
      * 交易订单id号（如果包含子订单，请使用子订单id号）

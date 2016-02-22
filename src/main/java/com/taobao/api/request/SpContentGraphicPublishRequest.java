@@ -14,8 +14,8 @@ import com.taobao.api.response.SpContentGraphicPublishResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:49
  */
-public class SpContentGraphicPublishRequest implements
-        TaobaoRequest<SpContentGraphicPublishResponse> {
+public class SpContentGraphicPublishRequest
+        implements TaobaoRequest<SpContentGraphicPublishResponse> {
 
     /**
      * 内容的自定义分类，数值为文本内容，主要用于区分内容的分类（譬如连衣裙、T恤、阿迪达斯等），分类名称的长度限制为(0,5]

@@ -16,8 +16,8 @@ import com.taobao.api.response.ProductPropimgUploadResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class ProductPropimgUploadRequest implements
-        TaobaoUploadRequest<ProductPropimgUploadResponse> {
+public class ProductPropimgUploadRequest
+        implements TaobaoUploadRequest<ProductPropimgUploadResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

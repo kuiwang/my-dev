@@ -27,9 +27,8 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
      * sold_out(全部卖完)<br>
      * violation_off_shelf(违规下架的)<br>
      * 默认查询for_shelved(等待所有上架)这个状态的商品<br>
-     * <font color=
-     * 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+never_on_shelf(从未上架)+off_shelf(我下架的)<
-     * / f o n t >
+     * <font color= 'red'>注：for_shelved(等待所有上架)=regular_shelved(定时上架)+
+     * never_on_shelf(从未上架)+off_shelf(我下架的)< / f o n t >
      */
     private String banner;
 
@@ -102,8 +101,8 @@ public class ItemsInventoryGetRequest implements TaobaoRequest<ItemsInventoryGet
     private String q;
 
     /**
-     * 卖家店铺内自定义类目ID。多个之间用“,”分隔。可以根据taobao.sellercats.list.get获得.(<font
-     * color="red">注：目前最多支持32个ID号传入</font>)
+     * 卖家店铺内自定义类目ID。多个之间用“,”分隔。可以根据taobao.sellercats.list.get获得.(
+     * <font color="red">注：目前最多支持32个ID号传入</font>)
      */
     private String sellerCids;
 

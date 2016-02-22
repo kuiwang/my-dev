@@ -16,7 +16,8 @@ import com.taobao.api.response.RpReturngoodsRefuseResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:29
  */
-public class RpReturngoodsRefuseRequest implements TaobaoUploadRequest<RpReturngoodsRefuseResponse> {
+public class RpReturngoodsRefuseRequest
+        implements TaobaoUploadRequest<RpReturngoodsRefuseResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

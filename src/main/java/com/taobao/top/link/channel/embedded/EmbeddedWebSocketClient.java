@@ -25,8 +25,8 @@ public class EmbeddedWebSocketClient {
         EmbeddedWebSocketClientChannel clientChannel = new EmbeddedWebSocketClientChannel();
         clientChannel.setUri(uri);
         try {
-            WebSocket socket = WebSockets.create(uri.toASCIIString(), new EmbeddedWebSocketHandler(
-                    logger, clientChannel), subprotocol);
+            WebSocket socket = WebSockets.create(uri.toASCIIString(),
+                    new EmbeddedWebSocketHandler(logger, clientChannel), subprotocol);
             ((WebSocketBase) socket).setPacketDumpMode(0);
             socket.setBlockingMode(false);
             // socket's timeunit is second
@@ -46,8 +46,7 @@ public class EmbeddedWebSocketClient {
         }
 
         if (clientChannel.error != null) {
-            throw new ChannelException(Text.WS_HANDSHAKE_ERROR,
-                    clientChannel.error);
+            throw new ChannelException(Text.WS_HANDSHAKE_ERROR, clientChannel.error);
         }
 
         return clientChannel;

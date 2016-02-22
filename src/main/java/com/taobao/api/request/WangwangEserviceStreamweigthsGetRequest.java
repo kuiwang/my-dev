@@ -13,8 +13,8 @@ import com.taobao.api.response.WangwangEserviceStreamweigthsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceStreamweigthsGetRequest implements
-        TaobaoRequest<WangwangEserviceStreamweigthsGetResponse> {
+public class WangwangEserviceStreamweigthsGetRequest
+        implements TaobaoRequest<WangwangEserviceStreamweigthsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

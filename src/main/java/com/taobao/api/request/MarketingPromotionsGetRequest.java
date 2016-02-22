@@ -14,7 +14,8 @@ import com.taobao.api.response.MarketingPromotionsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class MarketingPromotionsGetRequest implements TaobaoRequest<MarketingPromotionsGetResponse> {
+public class MarketingPromotionsGetRequest
+        implements TaobaoRequest<MarketingPromotionsGetResponse> {
 
     /**
      * 需返回的优惠策略结构字段列表。可选值为Promotion中所有字段，如：promotion_id, promotion_title,

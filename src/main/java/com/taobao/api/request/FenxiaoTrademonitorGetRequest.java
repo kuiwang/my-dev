@@ -14,7 +14,8 @@ import com.taobao.api.response.FenxiaoTrademonitorGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoTrademonitorGetRequest implements TaobaoRequest<FenxiaoTrademonitorGetResponse> {
+public class FenxiaoTrademonitorGetRequest
+        implements TaobaoRequest<FenxiaoTrademonitorGetResponse> {
 
     /**
      * 经销商的淘宝账号

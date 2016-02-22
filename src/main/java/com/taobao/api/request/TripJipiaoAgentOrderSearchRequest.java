@@ -14,8 +14,8 @@ import com.taobao.api.response.TripJipiaoAgentOrderSearchResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:22
  */
-public class TripJipiaoAgentOrderSearchRequest implements
-        TaobaoRequest<TripJipiaoAgentOrderSearchResponse> {
+public class TripJipiaoAgentOrderSearchRequest
+        implements TaobaoRequest<TripJipiaoAgentOrderSearchResponse> {
 
     /**
      * 创建订单时间范围的开始时间，注意：当前搜索条件开始结束时间范围不能超过三天，默认开始时间为当前时间往前推三天 （具体天数可能调整）

@@ -36,10 +36,10 @@ public class ShoprecommendItemsGetRequest implements TaobaoRequest<Shoprecommend
     /**
      * <p>
      * 传入卖家ID。这里的seller_id得通过<a href=
-     * "http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:10449"
-     * >taobao.taobaoke.shops.get</a> 跟<a href=
-     * "http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:21419"
-     * >taobao.taobaoke.widget.shops.convert</a>这两个接口去获取user_id字段。
+     * "http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:10449" >
+     * taobao.taobaoke.shops.get</a> 跟<a href=
+     * "http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:21419" >
+     * taobao.taobaoke.widget.shops.convert</a>这两个接口去获取user_id字段。
      * </p>
      * <p>
      * 如果是非淘客卖家，则无法获取，暂无替代方案。

@@ -138,8 +138,8 @@ public class Proxy {
      *
      * @param endpoint the endpoint
      * @return the inet socket address
-     * @throws com.taobao.top.link.embedded.websocket.exception.WebSocketException
-     *         the web socket exception
+     * @throws com.taobao.top.link.embedded.websocket.exception.
+     *         WebSocketException the web socket exception
      */
     protected InetSocketAddress findProxy(InetSocketAddress endpoint) throws WebSocketException {
         try {

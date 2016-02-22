@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbNotifyMessageConfirmResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class WlbNotifyMessageConfirmRequest implements
-        TaobaoRequest<WlbNotifyMessageConfirmResponse> {
+public class WlbNotifyMessageConfirmRequest
+        implements TaobaoRequest<WlbNotifyMessageConfirmResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -77,12 +77,12 @@ public class WlbOrderCreateRequest implements TaobaoRequest<WlbOrderCreateRespon
 
     /**
      * 订单商品列表：
-     * {"order_item_list":[{"trade_code":"可选,淘宝交易订单，并且不是赠品，必须要传订单来源编号"
-     * ," sub_trade_code "
+     * {"order_item_list":[{"trade_code":"可选,淘宝交易订单，并且不是赠品，必须要传订单来源编号" ,
+     * " sub_trade_code "
      * :"可选,淘宝子交易号","item_id":"必须,商品Id","item_code":"必须,商家编码"
      * ,"item_name":"可选,物流宝商品名称"
-     * ,"item_quantity":"必选,计划数量","item_price":"必选,物品价格,单位为分"
-     * ,"owner_user_nick ":"可选,货主nick 代销模式下会存在","flag":"判断是否为赠品0
+     * ,"item_quantity":"必选,计划数量","item_price":"必选,物品价格,单位为分" ,
+     * "owner_user_nick ":"可选,货主nick 代销模式下会存在","flag":"判断是否为赠品0
      * 不是1是","remarks
      * ":"可选,备注","batch_remark":"可选，批次描述信息会把这个信息带给WMS，但不会跟物流宝库存相关联
      * "，"inventory_type":"库存类型1 可销售库存 101 类型用来定义残次品 201 冻结类型库存 301

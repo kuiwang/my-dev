@@ -14,7 +14,8 @@ import com.taobao.api.response.SpContentGetdetailbyidResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:49
  */
-public class SpContentGetdetailbyidRequest implements TaobaoRequest<SpContentGetdetailbyidResponse> {
+public class SpContentGetdetailbyidRequest
+        implements TaobaoRequest<SpContentGetdetailbyidResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

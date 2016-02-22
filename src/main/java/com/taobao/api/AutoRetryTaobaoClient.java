@@ -78,9 +78,11 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
 
         for (int i = 0; i <= maxRetryCount; i++) {
             if (i > 0) {
-                if (((rsp != null) && (((rsp.getSubCode() != null) && rsp.getSubCode().startsWith(
-                        "isp.")) || ((retryErrorCodes != null) && retryErrorCodes.contains(rsp
-                        .getSubCode())))) || (exp != null)) {
+                if (((rsp != null)
+                        && (((rsp.getSubCode() != null) && rsp.getSubCode().startsWith("isp."))
+                                || ((retryErrorCodes != null)
+                                        && retryErrorCodes.contains(rsp.getSubCode()))))
+                        || (exp != null)) {
                     sleepWithoutInterrupt(retryWaitTime);
                     log.warn(buildRetryLog(request.getApiMethodName(), request.getTextParams(), i));
                 } else {

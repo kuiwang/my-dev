@@ -13,8 +13,8 @@ import com.taobao.api.response.TmallBrandcatSuiteconfGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallBrandcatSuiteconfGetRequest implements
-        TaobaoRequest<TmallBrandcatSuiteconfGetResponse> {
+public class TmallBrandcatSuiteconfGetRequest
+        implements TaobaoRequest<TmallBrandcatSuiteconfGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

@@ -32,7 +32,8 @@ public class LogisticsOrdersGetRequest implements TaobaoRequest<LogisticsOrdersG
      * tid,order_code,seller_nick,buyer_nick,delivery_start,
      * delivery_end,out_sid,item_title,receiver_name,
      * created,modified,status
-     * ,type,freight_payer,seller_confirm,company_name,sub_tids,is_spilt；<br>
+     * ,type,freight_payer,seller_confirm,company_name,sub_tids,is_spilt；
+     * <br>
      * 多个字段之间用","分隔。如tid,seller_nick,buyer_nick,delivery_start。
      */
     private String fields;

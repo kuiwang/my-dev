@@ -131,7 +131,8 @@ class MixClient {
         this.server.send(message);
     }
 
-    protected final void sendAndWait(Map<String, Object> message, int timeout) throws LinkException {
+    protected final void sendAndWait(Map<String, Object> message, int timeout)
+            throws LinkException {
         this.server.sendAndWait(message, timeout);
     }
 

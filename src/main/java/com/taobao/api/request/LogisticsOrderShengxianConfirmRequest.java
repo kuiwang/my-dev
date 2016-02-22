@@ -14,8 +14,8 @@ import com.taobao.api.response.LogisticsOrderShengxianConfirmResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class LogisticsOrderShengxianConfirmRequest implements
-        TaobaoRequest<LogisticsOrderShengxianConfirmResponse> {
+public class LogisticsOrderShengxianConfirmRequest
+        implements TaobaoRequest<LogisticsOrderShengxianConfirmResponse> {
 
     /**
      * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。<br>
@@ -47,8 +47,8 @@ public class LogisticsOrderShengxianConfirmRequest implements
     private String sellerIp;
 
     /**
-     * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。<font
-     * color='red'>如果为空，取的卖家的默认取货地址</font>
+     * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。
+     * <font color='red'>如果为空，取的卖家的默认取货地址</font>
      * 
      * 如果service_code不为空，默认使用service_code
      * 如果service_code为空，sender_id不为空，使用sender_id对应的地址发货

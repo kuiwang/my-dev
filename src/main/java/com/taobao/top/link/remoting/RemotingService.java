@@ -26,7 +26,8 @@ public class RemotingService {
         return connect(remoteUri, interfaceClass, null);
     }
 
-    public static Object connect(URI remoteUri, Class<?> interfaceClass, String serializationFormat) {
+    public static Object connect(URI remoteUri, Class<?> interfaceClass,
+            String serializationFormat) {
         DynamicProxy proxy = connect(remoteUri);
         proxy.setSerializationFormat(serializationFormat);
         return proxy.create(interfaceClass, remoteUri);
@@ -34,20 +35,17 @@ public class RemotingService {
 
     private synchronized static RemotingClientChannelHandler getChannelHandler() {
         if (channelHandler == null) {
-            channelHandler = new RemotingClientChannelHandler(
-                    loggerFactory, new AtomicInteger(0));
+            channelHandler = new RemotingClientChannelHandler(loggerFactory, new AtomicInteger(0));
         }
         if (serializationFactory != null) {
-            channelHandler
-                    .setSerializationFactory(serializationFactory);
+            channelHandler.setSerializationFactory(serializationFactory);
         }
         return channelHandler;
     }
 
     private synchronized static ClientChannelSelector getChannelSelector() {
         if (channelSelector == null) {
-            channelSelector = new ClientChannelPooledSelector(
-                    loggerFactory);
+            channelSelector = new ClientChannelPooledSelector(loggerFactory);
         }
         return channelSelector;
     }

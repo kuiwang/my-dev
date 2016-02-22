@@ -31,7 +31,8 @@ public class SpringRemotingServerChannelHandler extends DefaultRemotingServerCha
 
     private HandshakerBean handshaker;
 
-    public SpringRemotingServerChannelHandler(LoggerFactory loggerFactory, HandshakerBean handshaker) {
+    public SpringRemotingServerChannelHandler(LoggerFactory loggerFactory,
+            HandshakerBean handshaker) {
         super(loggerFactory);
         this.handshaker = handshaker;
     }

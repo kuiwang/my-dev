@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaInsightCatstopwordnewGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:18
  */
-public class SimbaInsightCatstopwordnewGetRequest implements
-        TaobaoRequest<SimbaInsightCatstopwordnewGetResponse> {
+public class SimbaInsightCatstopwordnewGetRequest
+        implements TaobaoRequest<SimbaInsightCatstopwordnewGetResponse> {
 
     /**
      * 类目id

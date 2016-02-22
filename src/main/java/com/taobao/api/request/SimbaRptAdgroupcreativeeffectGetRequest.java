@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaRptAdgroupcreativeeffectGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:21
  */
-public class SimbaRptAdgroupcreativeeffectGetRequest implements
-        TaobaoRequest<SimbaRptAdgroupcreativeeffectGetResponse> {
+public class SimbaRptAdgroupcreativeeffectGetRequest
+        implements TaobaoRequest<SimbaRptAdgroupcreativeeffectGetResponse> {
 
     /**
      * 推广组id

@@ -14,8 +14,8 @@ import com.taobao.api.response.CrmGrademktMemberDetailQueryResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:26
  */
-public class CrmGrademktMemberDetailQueryRequest implements
-        TaobaoRequest<CrmGrademktMemberDetailQueryResponse> {
+public class CrmGrademktMemberDetailQueryRequest
+        implements TaobaoRequest<CrmGrademktMemberDetailQueryResponse> {
 
     /**
      * 扩展字段

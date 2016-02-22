@@ -14,8 +14,8 @@ import com.taobao.api.response.TmallLatourPepsiAwardsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:51
  */
-public class TmallLatourPepsiAwardsGetRequest implements
-        TaobaoRequest<TmallLatourPepsiAwardsGetResponse> {
+public class TmallLatourPepsiAwardsGetRequest
+        implements TaobaoRequest<TmallLatourPepsiAwardsGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

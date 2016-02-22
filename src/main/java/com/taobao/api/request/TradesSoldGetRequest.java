@@ -112,9 +112,8 @@ public class TradesSoldGetRequest implements TaobaoRequest<TradesSoldGetResponse
     private Long timestamp;
 
     /**
-     * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span
-     * style="color:red;font-weight: bold;">默认同时查询guarantee_trade,
-     * auto_delivery, ec,
+     * 交易类型列表，同时查询多种交易类型可用逗号分隔。<span style="color:red;font-weight: bold;"
+     * >默认同时查询guarantee_trade, auto_delivery, ec,
      * cod,step的5种交易类型的数据；查询所有交易类型的数据，需要设置下面全部可选值。</span> 可选值： fixed(一口价)
      * auction(拍卖) guarantee_trade(一口价、拍卖) step(分阶段付款，万人团，阶梯团订单）
      * independent_simple_trade(旺店入门版交易) independent_shop_trade(旺店标准版交易)

@@ -16,8 +16,8 @@ import com.taobao.api.response.WeitaoCloudtagsGroupCustomAddResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:48
  */
-public class WeitaoCloudtagsGroupCustomAddRequest implements
-        TaobaoUploadRequest<WeitaoCloudtagsGroupCustomAddResponse> {
+public class WeitaoCloudtagsGroupCustomAddRequest
+        implements TaobaoUploadRequest<WeitaoCloudtagsGroupCustomAddResponse> {
 
     /**
      * 所要创建自定义分组的描述<br />

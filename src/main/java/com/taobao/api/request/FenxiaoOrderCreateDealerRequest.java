@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoOrderCreateDealerResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoOrderCreateDealerRequest implements
-        TaobaoRequest<FenxiaoOrderCreateDealerResponse> {
+public class FenxiaoOrderCreateDealerRequest
+        implements TaobaoRequest<FenxiaoOrderCreateDealerResponse> {
 
     /**
      * 街道

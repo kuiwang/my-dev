@@ -14,8 +14,8 @@ import com.taobao.api.response.WlbItemMapGetByExtentityResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:13
  */
-public class WlbItemMapGetByExtentityRequest implements
-        TaobaoRequest<WlbItemMapGetByExtentityResponse> {
+public class WlbItemMapGetByExtentityRequest
+        implements TaobaoRequest<WlbItemMapGetByExtentityResponse> {
 
     /**
      * 外部实体类型对应的商品id

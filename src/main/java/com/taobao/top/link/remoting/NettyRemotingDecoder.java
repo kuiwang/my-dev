@@ -79,8 +79,8 @@ public class NettyRemotingDecoder extends ReplayingDecoder<NettyRemotingDecoder.
                 } else if (willHaveReadByteCount > this.payloadLength) {
                     // We have more than what we need so read up to the end of frame
                     // Leave the remainder in the buffer for next frame
-                    payloadBuffer = buffer.readBytes(toFrameLength(this.payloadLength
-                            - this.payloadBytesRead));
+                    payloadBuffer = buffer
+                            .readBytes(toFrameLength(this.payloadLength - this.payloadBytesRead));
                 }
 
                 checkpoint(State.HEADER);

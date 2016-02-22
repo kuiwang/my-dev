@@ -76,8 +76,8 @@ public class DefaultTdcClient implements TdcClient {
         this.signMethod = signMethod;
     }
 
-    private TdcResponse _execute(TdcRequest request, String session, TdcParser parser, String format)
-            throws ApiException {
+    private TdcResponse _execute(TdcRequest request, String session, TdcParser parser,
+            String format) throws ApiException {
         TdcResponse tdcRsp = null;
         String rsp = doPost(request, session, format);
         if (needEnableParser) {

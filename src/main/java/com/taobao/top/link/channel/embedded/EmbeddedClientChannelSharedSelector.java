@@ -20,7 +20,8 @@ public class EmbeddedClientChannelSharedSelector extends ClientChannelSharedSele
     @Override
     protected ClientChannel connect(LoggerFactory loggerFactory, URI uri, int timeout)
             throws ChannelException {
-        return uri.getScheme().equalsIgnoreCase("ws") || uri.getScheme().equalsIgnoreCase("wss") ? EmbeddedWebSocketClient
-                .connect(loggerFactory, uri, timeout) : super.connect(loggerFactory, uri, timeout);
+        return uri.getScheme().equalsIgnoreCase("ws") || uri.getScheme().equalsIgnoreCase("wss")
+                ? EmbeddedWebSocketClient.connect(loggerFactory, uri, timeout)
+                : super.connect(loggerFactory, uri, timeout);
     }
 }

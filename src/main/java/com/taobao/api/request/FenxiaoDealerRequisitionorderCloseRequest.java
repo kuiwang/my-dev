@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderCloseResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDealerRequisitionorderCloseRequest implements
-        TaobaoRequest<FenxiaoDealerRequisitionorderCloseResponse> {
+public class FenxiaoDealerRequisitionorderCloseRequest
+        implements TaobaoRequest<FenxiaoDealerRequisitionorderCloseResponse> {
 
     /**
      * 经销采购单编号

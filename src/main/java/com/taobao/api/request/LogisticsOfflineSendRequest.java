@@ -31,7 +31,8 @@ public class LogisticsOfflineSendRequest implements TaobaoRequest<LogisticsOffli
     /**
      * feature参数格式<br>
      * 范例:
-     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B<br>
+     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B
+     * <br>
      * identCode为识别码的KEY,machineCode为3C的KEY,多个key之间用”;”分隔<br>
      * “tid1:识别码1,识别码2|tid2:识别码3”为identCode对应的value。 "|"不同商品间的分隔符。<br>
      * 例1商品和2商品，之间就用"|"分开。<br>
@@ -66,8 +67,8 @@ public class LogisticsOfflineSendRequest implements TaobaoRequest<LogisticsOffli
     private String sellerIp;
 
     /**
-     * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。<font
-     * color='red'>如果为空，取的卖家的默认取货地址</font>
+     * 卖家联系人地址库ID，可以通过taobao.logistics.address.search接口查询到地址库ID。
+     * <font color='red'>如果为空，取的卖家的默认取货地址</font>
      */
     private Long senderId;
 

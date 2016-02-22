@@ -26,16 +26,15 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
     /**
      * 卖家发货地址区域ID <br/>
      * <br/>
-     * <font
-     * color=blue>可以不填，如果没有填写取卖家默认发货地址的区域ID，如果需要输入必须用taobao.areas.get接口获取
+     * <font color=blue>可以不填，如果没有填写取卖家默认发货地址的区域ID，如果需要输入必须用taobao.areas.
+     * get接口获取
      * .或者参考：http://www.stats.gov.cn/tjbz/xzqhdm/t20080215_402462675.htm
      * </font>
      * 
      * <br/>
      * <br/>
-     * <font
-     * color=red>注意：填入该值时必须取您的发货地址最小区域级别ID，比如您的发货地址是：某省XX市xx区（县）时需要填入区
-     * (县)的ID，当然有些地方没有区或县可以直接填市级别的ID</font>
+     * <font color=red>注意：填入该值时必须取您的发货地址最小区域级别ID，比如您的发货地址是：某省XX市xx区（县）
+     * 时需要填入区 (县)的ID，当然有些地方没有区或县可以直接填市级别的ID</font>
      */
     private Long consignAreaId;
 
@@ -65,7 +64,8 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
 
     /**
      * 增费标准：当valuation(记价方式)为0时输入1-9999范围内的整数<br/>
-     * <font color=red>当valuation(记价方式)为1时输入0.1-9999.9范围内的小数只能包含以为小数（单位为千克）<br/>
+     * <font color=red>当valuation(记价方式)为1时输入0.1-9999.9范围内的小数只能包含以为小数（单位为千克）
+     * <br/>
      * <font color=blue>当valuation(记价方式)为3时输入0.1-999.9范围内的数值，数值只能包含一位小数（单位为
      * 立方米） <br/>
      * <br>
@@ -83,15 +83,14 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
      * 可以用taobao.areas.get接口获取.或者参考：http://www.stats.gov.cn/tjbz/xzqhdm/
      * t20080215_402462675.htm<br/>
      * <br/>
-     * <font
-     * color=red>每个运费方式设置涉及的地区中必须包含全国地区（areaId=1）表示默认运费,可以只设置默认运费</font> <br>
-     * <font
-     * color=blue>注意:为多个地区指定指定不同（首费标准、首费、增费标准、增费一项不一样就算不同）的运费以逗号","区分，
-     * template_start_standards(首费标准)、template_start_fees(首费)、
+     * <font color=red>每个运费方式设置涉及的地区中必须包含全国地区（areaId=1）表示默认运费,可以只设置默认运费
+     * </font> <br>
+     * <font color=blue>注意:为多个地区指定指定不同（首费标准、首费、增费标准、增费一项不一样就算不同）
+     * 的运费以逗号","区分， template_start_standards(首费标准)、template_start_fees(首费)、
      * template_add_standards(增费标准)、
      * template_add_fees(增费)必须与template_types分号数量相同
-     * 。如果为需要为多个地区指定相同运费则地区之间用“|”隔开即可。</font> <font
-     * color=red>如果卖家没有传入发货地址则默认地址库的发货地址</font>
+     * 。如果为需要为多个地区指定相同运费则地区之间用“|”隔开即可。</font>
+     * <font color=red>如果卖家没有传入发货地址则默认地址库的发货地址</font>
      */
     private String templateDests;
 
@@ -104,7 +103,8 @@ public class DeliveryTemplateAddRequest implements TaobaoRequest<DeliveryTemplat
 
     /**
      * 首费标准：当valuation(记价方式)为0时输入1-9999范围内的整数<br/>
-     * <font color=red>当valuation(记价方式)为1时输入0.1-9999.9范围内的小数只能包含以为小数（单位为千克）<br/>
+     * <font color=red>当valuation(记价方式)为1时输入0.1-9999.9范围内的小数只能包含以为小数（单位为千克）
+     * <br/>
      * <font color=blue>当valuation(记价方式)为3时输入0.1-999.9范围内的数值，数值只能包含一位小数（单位为
      * 立方米） <br/>
      * <font color=red>输入的格式分号个数和template_types数量一致，

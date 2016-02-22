@@ -14,8 +14,8 @@ import com.taobao.api.response.AthenaItemSolutionUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:51
  */
-public class AthenaItemSolutionUpdateRequest implements
-        TaobaoRequest<AthenaItemSolutionUpdateResponse> {
+public class AthenaItemSolutionUpdateRequest
+        implements TaobaoRequest<AthenaItemSolutionUpdateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

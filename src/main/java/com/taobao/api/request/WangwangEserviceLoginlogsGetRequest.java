@@ -15,8 +15,8 @@ import com.taobao.api.response.WangwangEserviceLoginlogsGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:12
  */
-public class WangwangEserviceLoginlogsGetRequest implements
-        TaobaoRequest<WangwangEserviceLoginlogsGetResponse> {
+public class WangwangEserviceLoginlogsGetRequest
+        implements TaobaoRequest<WangwangEserviceLoginlogsGetResponse> {
 
     /**
      * 查询登录日志的结束时间，必须按示例的格式，否则会返回错误

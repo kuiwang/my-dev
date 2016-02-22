@@ -25,8 +25,7 @@ public class TcpServerUpstreamHandler extends NettyServerUpstreamHandler {
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
         if (this.channelHandler != null) {
-            this.channelHandler.onMessage(this.createContext(e
-                    .getMessage()));
+            this.channelHandler.onMessage(this.createContext(e.getMessage()));
         }
     }
 }

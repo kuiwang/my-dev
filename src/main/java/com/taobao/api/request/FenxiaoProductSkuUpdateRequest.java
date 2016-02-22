@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoProductSkuUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoProductSkuUpdateRequest implements
-        TaobaoRequest<FenxiaoProductSkuUpdateResponse> {
+public class FenxiaoProductSkuUpdateRequest
+        implements TaobaoRequest<FenxiaoProductSkuUpdateResponse> {
 
     /**
      * 代销采购价

@@ -13,8 +13,8 @@ import com.taobao.api.response.AlibabaInteractSensorAuthorizeResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:51
  */
-public class AlibabaInteractSensorAuthorizeRequest implements
-        TaobaoRequest<AlibabaInteractSensorAuthorizeResponse> {
+public class AlibabaInteractSensorAuthorizeRequest
+        implements TaobaoRequest<AlibabaInteractSensorAuthorizeResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

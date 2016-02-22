@@ -15,8 +15,8 @@ import com.taobao.api.internal.util.TaobaoHashMap;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:46
  */
-public class ImportDatabaseBetweenInstancesRequest implements
-        AliyunRequest<ImportDatabaseBetweenInstancesResponse> {
+public class ImportDatabaseBetweenInstancesRequest
+        implements AliyunRequest<ImportDatabaseBetweenInstancesResponse> {
 
     /**
      * 待迁移实例的DB信息，JSON串格式，见DBInfo参数，示例：{"DBNames":["mydb","mydb2"]}

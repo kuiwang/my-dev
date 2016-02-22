@@ -116,8 +116,8 @@ public class StreamUtil {
 
     public static String readText(InputStream in, String encoding, int bufferSize)
             throws IOException {
-        Reader reader = (encoding == null) ? new InputStreamReader(in) : new InputStreamReader(in,
-                encoding);
+        Reader reader = (encoding == null) ? new InputStreamReader(in)
+                : new InputStreamReader(in, encoding);
 
         return readText(reader, bufferSize);
     }

@@ -16,8 +16,8 @@ import com.taobao.api.response.TmallProductSpecPicUploadResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:10
  */
-public class TmallProductSpecPicUploadRequest implements
-        TaobaoUploadRequest<TmallProductSpecPicUploadResponse> {
+public class TmallProductSpecPicUploadRequest
+        implements TaobaoUploadRequest<TmallProductSpecPicUploadResponse> {
 
     /**
      * 上传的认证图片文件

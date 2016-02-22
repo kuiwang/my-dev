@@ -14,8 +14,8 @@ import com.taobao.api.response.PromotionmiscMjsActivityDeleteResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:24
  */
-public class PromotionmiscMjsActivityDeleteRequest implements
-        TaobaoRequest<PromotionmiscMjsActivityDeleteResponse> {
+public class PromotionmiscMjsActivityDeleteRequest
+        implements TaobaoRequest<PromotionmiscMjsActivityDeleteResponse> {
 
     /**
      * 活动id。<br />

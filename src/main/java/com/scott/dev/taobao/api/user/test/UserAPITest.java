@@ -57,9 +57,9 @@ public class UserAPITest {
 
         for (Entry<String, String> e : apiparamsMap.entrySet()) {
 
-         param.append("&").append(e.getKey()).append("=").append(e.getValue());
+            param.append("&").append(e.getKey()).append("=").append(e.getValue());
 
-      }
+        }
         String params = param.toString().substring(1);
         System.out.println("params:" + params);
         return param.toString().substring(1);

@@ -13,7 +13,8 @@ import com.taobao.api.response.CaipiaoLotterytypesGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:33
  */
-public class CaipiaoLotterytypesGetRequest implements TaobaoRequest<CaipiaoLotterytypesGetResponse> {
+public class CaipiaoLotterytypesGetRequest
+        implements TaobaoRequest<CaipiaoLotterytypesGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

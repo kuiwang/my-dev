@@ -13,8 +13,8 @@ import com.taobao.api.response.AlibabaXiamiApiContractIssignResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:50
  */
-public class AlibabaXiamiApiContractIssignRequest implements
-        TaobaoRequest<AlibabaXiamiApiContractIssignResponse> {
+public class AlibabaXiamiApiContractIssignRequest
+        implements TaobaoRequest<AlibabaXiamiApiContractIssignResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

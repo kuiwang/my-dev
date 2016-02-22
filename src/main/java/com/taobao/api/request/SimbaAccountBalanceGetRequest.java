@@ -13,7 +13,8 @@ import com.taobao.api.response.SimbaAccountBalanceGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:14
  */
-public class SimbaAccountBalanceGetRequest implements TaobaoRequest<SimbaAccountBalanceGetResponse> {
+public class SimbaAccountBalanceGetRequest
+        implements TaobaoRequest<SimbaAccountBalanceGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

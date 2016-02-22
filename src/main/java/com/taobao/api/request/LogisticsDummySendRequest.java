@@ -19,7 +19,8 @@ public class LogisticsDummySendRequest implements TaobaoRequest<LogisticsDummySe
     /**
      * feature参数格式<br>
      * 范例:
-     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B<br>
+     * identCode=tid1:识别码1,识别码2|tid2:识别码3;machineCode=tid3:3C机器号A,3C机器号B
+     * <br>
      * identCode为识别码的KEY,machineCode为3C的KEY,多个key之间用”;”分隔<br>
      * “tid1:识别码1,识别码2|tid2:识别码3”为identCode对应的value。 "|"不同商品间的分隔符。<br>
      * 例1商品和2商品，之间就用"|"分开。<br>

@@ -14,8 +14,8 @@ import com.taobao.api.response.FenxiaoDealerRequisitionorderAgreeResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:11
  */
-public class FenxiaoDealerRequisitionorderAgreeRequest implements
-        TaobaoRequest<FenxiaoDealerRequisitionorderAgreeResponse> {
+public class FenxiaoDealerRequisitionorderAgreeRequest
+        implements TaobaoRequest<FenxiaoDealerRequisitionorderAgreeResponse> {
 
     /**
      * 采购申请/经销采购单编号

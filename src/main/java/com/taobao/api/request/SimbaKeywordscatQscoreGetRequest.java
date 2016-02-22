@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaKeywordscatQscoreGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:20
  */
-public class SimbaKeywordscatQscoreGetRequest implements
-        TaobaoRequest<SimbaKeywordscatQscoreGetResponse> {
+public class SimbaKeywordscatQscoreGetRequest
+        implements TaobaoRequest<SimbaKeywordscatQscoreGetResponse> {
 
     /**
      * 推广组Id

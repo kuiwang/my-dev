@@ -62,7 +62,7 @@ public class ProductsSearchRequest implements TaobaoRequest<ProductsSearchRespon
     private String props;
 
     /**
-     * 搜索的关键词是用来搜索产品的title.　注:q,cid和props至少传入一个
+     * 搜索的关键词是用来搜索产品的title. 注:q,cid和props至少传入一个
      */
     private String q;
 

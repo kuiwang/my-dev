@@ -14,7 +14,8 @@ import com.taobao.api.response.PromotionCouponSnsSendResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:23
  */
-public class PromotionCouponSnsSendRequest implements TaobaoRequest<PromotionCouponSnsSendResponse> {
+public class PromotionCouponSnsSendRequest
+        implements TaobaoRequest<PromotionCouponSnsSendResponse> {
 
     /**
      * 买家昵称用半角','号分割

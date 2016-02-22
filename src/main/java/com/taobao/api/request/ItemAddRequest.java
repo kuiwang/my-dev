@@ -446,7 +446,8 @@ public class ItemAddRequest implements TaobaoUploadRequest<ItemAddResponse> {
     private Long productId;
 
     /**
-     * 属性值别名。如pid:vid:别名;pid1:vid1:别名1 ，其中：pid是属性id vid是属性值id。总长度不超过800字节<br />
+     * 属性值别名。如pid:vid:别名;pid1:vid1:别名1 ，其中：pid是属性id vid是属性值id。总长度不超过800字节
+     * <br />
      * 支持最大长度为：800<br />
      * 支持的最大列表长度为：800
      */

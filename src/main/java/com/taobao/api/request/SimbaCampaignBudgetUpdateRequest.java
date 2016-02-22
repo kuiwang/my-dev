@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaCampaignBudgetUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:16
  */
-public class SimbaCampaignBudgetUpdateRequest implements
-        TaobaoRequest<SimbaCampaignBudgetUpdateResponse> {
+public class SimbaCampaignBudgetUpdateRequest
+        implements TaobaoRequest<SimbaCampaignBudgetUpdateResponse> {
 
     /**
      * 如果为空则取消限额；否则必须为整数，单位是元，不得小于30；<br />

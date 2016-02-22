@@ -101,13 +101,12 @@ public class EndpointChannelHandler extends SimpleChannelHandler {
 
     private void handleCallback(SendCallback callback, Message msg, Identity msgFrom) {
         if (!callback.getTarget().getIdentity().equals(msgFrom)) {
-            this.logger.warn(Text.E_IDENTITY_NOT_MATCH_WITH_CALLBACK, msgFrom, callback.getTarget()
-                    .getIdentity());
+            this.logger.warn(Text.E_IDENTITY_NOT_MATCH_WITH_CALLBACK, msgFrom,
+                    callback.getTarget().getIdentity());
             return;
         }
         if (this.isError(msg)) {
-            callback
-                    .setError(new LinkException(msg.statusCode, msg.statusPhase));
+            callback.setError(new LinkException(msg.statusCode, msg.statusPhase));
         } else {
             callback.setReturn(msg.content);
         }
@@ -158,8 +157,7 @@ public class EndpointChannelHandler extends SimpleChannelHandler {
             throw new LinkException(Text.E_NO_CALLBACK);
         }
         if (this.isError(msg)) {
-            callback
-                    .setError(new LinkException(msg.statusCode, msg.statusPhase));
+            callback.setError(new LinkException(msg.statusCode, msg.statusPhase));
         } else if (msg.token == null) {
             callback.setError(new LinkException(Text.E_NULL_TOKEN));
         } else {
@@ -188,8 +186,8 @@ public class EndpointChannelHandler extends SimpleChannelHandler {
             this.logger.error(e);
             // onMessage error should be reply to client
             if (e instanceof LinkException) {
-                endpointContext.error(
-                        ((LinkException) e).getErrorCode(), this.parseStatusPhase(((LinkException) e)));
+                endpointContext.error(((LinkException) e).getErrorCode(),
+                        this.parseStatusPhase(((LinkException) e)));
             } else {
                 endpointContext.error(0, this.parseStatusPhase(e));
             }
@@ -281,8 +279,8 @@ public class EndpointChannelHandler extends SimpleChannelHandler {
     }
 
     private String parseStatusPhase(LinkException e) {
-        return (e.getMessage() == null) && (e.getErrorCode() <= 0) ? Text.E_UNKNOWN_ERROR : e
-                .getMessage();
+        return (e.getMessage() == null) && (e.getErrorCode() <= 0) ? Text.E_UNKNOWN_ERROR
+                : e.getMessage();
     }
 
     protected final void pending(Message msg, ChannelSender sender) throws ChannelException {

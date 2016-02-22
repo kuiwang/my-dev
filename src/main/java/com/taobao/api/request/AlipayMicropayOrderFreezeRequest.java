@@ -15,8 +15,8 @@ import com.taobao.api.response.AlipayMicropayOrderFreezeResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:30
  */
-public class AlipayMicropayOrderFreezeRequest implements
-        TaobaoRequest<AlipayMicropayOrderFreezeResponse> {
+public class AlipayMicropayOrderFreezeRequest
+        implements TaobaoRequest<AlipayMicropayOrderFreezeResponse> {
 
     /**
      * 需要冻结金额，[0.01,2000]，必须是正数，最多只能保留小数点两位,单位是元

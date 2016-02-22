@@ -14,8 +14,8 @@ import com.taobao.api.response.SellercenterSubusersGetResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:28
  */
-public class SellercenterSubusersGetRequest implements
-        TaobaoRequest<SellercenterSubusersGetResponse> {
+public class SellercenterSubusersGetRequest
+        implements TaobaoRequest<SellercenterSubusersGetResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 

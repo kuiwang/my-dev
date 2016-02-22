@@ -14,8 +14,8 @@ import com.taobao.api.response.SimbaAdgroupNonsearchstatesUpdateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:15
  */
-public class SimbaAdgroupNonsearchstatesUpdateRequest implements
-        TaobaoRequest<SimbaAdgroupNonsearchstatesUpdateResponse> {
+public class SimbaAdgroupNonsearchstatesUpdateRequest
+        implements TaobaoRequest<SimbaAdgroupNonsearchstatesUpdateResponse> {
 
     /**
      * 推广组ID通投状态json数组字符串，数组个数最多200个。json数组中的key必须和对应实体ADGroup

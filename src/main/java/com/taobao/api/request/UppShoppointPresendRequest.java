@@ -18,7 +18,8 @@ import com.taobao.api.response.UppShoppointPresendResponse;
 public class UppShoppointPresendRequest implements TaobaoRequest<UppShoppointPresendResponse> {
 
     /**
-     * 业务扩展信息 ，用于ISV描述积分记录的具体业务信息。 禁止含有“:”或“;”或“~”禁用字符 或者淘宝违禁词库中的其他字符。<br />
+     * 业务扩展信息 ，用于ISV描述积分记录的具体业务信息。 禁止含有“:”或“;”或“~”禁用字符 或者淘宝违禁词库中的其他字符。
+     * <br />
      * 支持最大长度为：30<br />
      * 支持的最大列表长度为：30
      */

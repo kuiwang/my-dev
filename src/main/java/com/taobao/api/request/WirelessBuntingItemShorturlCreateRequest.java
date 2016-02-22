@@ -13,8 +13,8 @@ import com.taobao.api.response.WirelessBuntingItemShorturlCreateResponse;
  * @author auto create
  * @since 1.0, 2014-11-02 16:51:49
  */
-public class WirelessBuntingItemShorturlCreateRequest implements
-        TaobaoRequest<WirelessBuntingItemShorturlCreateResponse> {
+public class WirelessBuntingItemShorturlCreateRequest
+        implements TaobaoRequest<WirelessBuntingItemShorturlCreateResponse> {
 
     private Map<String, String> headerMap = new TaobaoHashMap();
 
